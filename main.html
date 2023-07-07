@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+daff<!DOCTYPE html>
 <html>
 <head>
 <title>daihachiyoutube</title>
@@ -16,6 +16,168 @@ function onClick(e) {
   });
 }
 </script>
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Daihachi Games Channel　マインクラフト実況</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Daihachi Games Channel</h1>
+    <nav>
+      <a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA">Home</a>
+      <a href="https://www.youtube.com/@daihachigameschannel/videos">動画</a>
+      <a href="https://www.youtube.com/@daihachigameschannel/shorts">shorts</a>
+      <a href="https://www.youtube.com/@daihachigameschannel/about">概要</a>
+    </nav>
+  </header>
+  <main>
+    <section id="top">
+
+
+      
+    <section id="videos">
+      <h2>動画一覧</h2>
+      <ul>
+        <li><a href="https://youtu.be/CDlwWGdcQ-8">最新動画</a></li><iframe width="560" height="315" src="https://www.youtube.com/embed/CDlwWGdcQ-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </ul>
+    </section>
+    <section id="about">
+      <h2>daihachiについて</h2>
+      <p>daihachiは、2023年に開設された新しいYouTubeチャンネルです。<br>
+        minecraft実況をメインに活動しており、様々な種類を実況しています。<br>
+        minecraft好きの方は、ぜひチャンネル登録をお願いします。</p>
+    </section>
+    <section id="contact">
+      <h2>お問い合わせ</h2>
+      <p>お問い合わせはこちらからお願いします。<br>
+        Twitterまたはyoutubeのコメント</p>
+    </section>
+
+
+
+
+	<script>
+$.ajax({
+  type: 'GET',
+  url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={UCv92oIWF2kjqRTV0EyIGjOA}&maxResults=5&order=date&type=video&key={AIzaSyCInC8aJljGnEuRc1K2pF9rjirtwzWV-fo}',
+  datatype: 'json',
+  success: function(json){
+    num = json.items.length;
+    for(var i = 0; i < num ; i++){
+        var ID = json.items[i].id.videoId;
+        $("#youtubeList").append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + ID + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+    }
+  },
+  error: function(){
+    alert('error');
+  }
+});
+</script>
+
+
+
+
+
+  </main>
+  <footer>
+    <p>Daihachi Games Channel　マインクラフト実況</p>
+  </footer>
+	<style>
+		header {
+  height: 100px;
+  background-color: #888888;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+main {
+  margin-top: 100px;
+}
+
+section {
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+footer {
+  height: 100px;
+  background-color: #888888;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}```
+</style>
+
+<style>
+header {
+  height: 100px;
+  background-color: #888888;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+</style>
+
+<style>
+a {
+  transition: all 0.5s ease-in-out;
+}
+
+a:hover {
+  transform: scale(1.1);
+  color: green;
+}
+
+
+a:hover {
+  transform: scale(1.1);
+  color: green;
+  font-size: 2.1em;
+}
+
+</style>
+</body>
+</html>
+
 </head>
 <body>
 daihachiyoutube

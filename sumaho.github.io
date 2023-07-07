@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" type="image/x-icon" href="path/to/aciv7-httj2-001.ico">
+  <title>Daihachiのマインクラフト実況</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Daihachi Games Channel </h1>
+    <nav>
+      <a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA">チャンネル</a>
+      <a href="https://www.youtube.com/@daihachigameschannel/videos">動画</a>
+      <a href="https://www.youtube.com/@daihachigameschannel/shorts">shorts</a>
+      <a href="https://www.youtube.com/@daihachigameschannel/about">概要</a>
+    </nav>
+  </header>
+  <main>
+    <section id="top">
+
+
+      
+    <section id="videos">
+      <h2>動画一覧</h2>
+      <ul>
+        <li><a href="https://youtu.be/CDlwWGdcQ-8">最新動画</a></li><iframe width="560" height="315" src="https://www.youtube.com/embed/CDlwWGdcQ-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </ul>
+    </section>
+    <section id="about">
+      <h2>daihachiについて</h2>
+      <p>daihachiは、2023年に開設された新しいYouTubeチャンネルです。<br>
+        minecraft実況をメインに活動しており、様々な種類を実況しています。<br>
+        minecraft好きの方は、ぜひチャンネル登録をお願いします。</p>
+    </section>
+    <section id="contact">
+      <h2>お問い合わせ</h2>
+      <p>お問い合わせはこちらからお願いします。<br>
+        youtubeのコメント</p>
+    </section>

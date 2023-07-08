@@ -18,6 +18,15 @@ iframe {
   height:100%;
 }
 </style>
+<style>
+.for-pc { display:block; }
+.for-sp { display:none; }
+
+@media only screen and (max-width : 767px){
+  .for-pc { display:none; }
+  .for-sp { display:block; }
+}
+</style>
 </head>
 <body>
 <div class="for-pc"><iframe src="pc.html"></div> <div class="for-sp"><iframe src="index1.html"></div>

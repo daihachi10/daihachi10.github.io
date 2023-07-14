@@ -1,0 +1,43 @@
+function setup() {
+  createCanvas(600, 600);
+}
+
+//https://p5js.org/reference/#/p5.Image/mask
+const centercircle_radius = 50;
+function centercircle() {
+  noStroke();
+  fill(255);
+  circle(300,300,centercircle_radius);
+}
+
+const note_strokeweight = 10;
+function drawTap(degree,radius) {
+  angleMode(DEGREES);
+  stroke("cyan")
+  strokeWeight(note_strokeweight);
+  circle(300 + cos(degree)*radius,300 + sin(degree)*radius,centercircle_radius);
+}
+function drawHold(degree,radius) {
+  angleMode(DEGREES);
+  stroke("yellow")
+  strokeWeight(note_strokeweight);
+  circle(300 + cos(degree)*radius,300 + sin(degree)*radius,centercircle_radius);
+}
+function drawLong(degree,radius,length) {
+  angleMode(DEGREES);
+  stroke("cyan")
+  strokeWeight(note_strokeweight);
+  let x = 300 + cos(degree)*radius;
+  let y = 300 + sin(degree)*radius;
+  circle(x,y,centercircle_radius);
+}
+
+function draw() {
+  background(220);
+  
+  centercircle();
+  
+  drawTap(180,50);
+  drawHold(0,50);
+  drawLong(50,50,50);
+}

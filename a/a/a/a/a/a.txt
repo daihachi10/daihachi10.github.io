@@ -1,0 +1,50 @@
+function setup() {
+  createCanvas(600, 600);
+}
+
+//https://p5js.org/reference/#/p5.Image/mask
+const centercircle_radius = 50;
+function centercircle() {
+  noStroke();
+  fill(255);
+  circle(300,300,centercircle_radius);
+}
+
+const note_speed = 1;
+const note_strokeweight = 10;
+function drawTap(time,degree) {
+  angleMode(DEGREES);
+  stroke("cyan")
+  strokeWeight(note_strokeweight);
+  let radius_time = millis()-time;
+  if(radius_time >= 50) {
+    return;
+  }
+  circle(300 + cos(degree)*radius_time*note_speed,300 + sin(degree)*radius_time*note_speed,centercircle_radius);
+}
+function drawHold(time,degree) {
+  angleMode(DEGREES);
+  stroke("yellow")
+  strokeWeight(note_strokeweight);
+  let radius_time = millis()-time;
+  if(radius_time >= 50) {
+    return;
+  }
+  circle(300 + cos(degree)*radius_time*note_speed,300 + sin(degree)*radius_time*note_speed,centercircle_radius);
+}
+
+function draw() {
+  background(220);
+  
+  centercircle();
+  
+  // drawTap(180,50);
+  // drawHold(0,50);
+  // print(crypto.randomUUID());
+  
+  drawTap(1000,50);
+  
+  //end
+  clearStorage();
+
+}

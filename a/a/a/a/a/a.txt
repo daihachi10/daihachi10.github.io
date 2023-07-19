@@ -12,25 +12,61 @@ function centercircle() {
 
 const note_speed = 1;
 const note_strokeweight = 10;
-function drawTap(time,degree) {
+function drawTap(time,degree,isdraw=true) {
+  let radius_time = millis()-time;
+  if(radius_time >= 50) {
+    return [NaN,NaN];
+  }
+  let x = 300 + cos(degree)*radius_time*note_speed;
+  let y = 300 + sin(degree)*radius_time*note_speed;
+  if(isdraw) {
+    angleMode(DEGREES);
+    stroke("cyan")
+    strokeWeight(note_strokeweight);
+    circle(x,y,centercircle_radius);
+  }
+  // push();
+  return [x,y,radius_time];
+}
+function drawHold(time,degree,isdraw=true) {
+  let radius_time = millis()-time;
+  if(radius_time >= 0) {
+    return [NaN,NaN];
+  }
+  let x = 300 + cos(degree)*radius_time*note_speed;
+  let y = 300 + sin(degree)*radius_time*note_speed;
+  if(isdraw) {
+    angleMode(DEGREES);
+    stroke("yellow")
+    strokeWeight(note_strokeweight);
+    circle(x,y,centercircle_radius);
+  }
+  // push();
+  return [x,y,radius_time];
+}
+function drawLong(start_time,end_time,degree) {
+  let [start_x,start_y] = drawTap(start_time,degree,false);
+  if(isNaN(start_x) && isNaN(start_y)) {
+    start_x = 300;
+    start_y = 300;
+  }
+  let [end_x,end_y] = drawHold(end_time,degree,false);
+  if(isNaN(end_x) && isNaN(end_y)) {
+    return;
+  }
   angleMode(DEGREES);
+  stroke("gray");
+  line(start_x,start_y,end_x,end_y);
+  // pop();
+  // pop();
+  // angleMode(DEGREES);
   stroke("cyan")
   strokeWeight(note_strokeweight);
-  let radius_time = millis()-time;
-  if(radius_time >= 50) {
-    return;
-  }
-  circle(300 + cos(degree)*radius_time*note_speed,300 + sin(degree)*radius_time*note_speed,centercircle_radius);
-}
-function drawHold(time,degree) {
-  angleMode(DEGREES);
+  circle(start_x,start_y,centercircle_radius);
+  // angleMode(DEGREES);
   stroke("yellow")
   strokeWeight(note_strokeweight);
-  let radius_time = millis()-time;
-  if(radius_time >= 50) {
-    return;
-  }
-  circle(300 + cos(degree)*radius_time*note_speed,300 + sin(degree)*radius_time*note_speed,centercircle_radius);
+  circle(end_x,end_y,centercircle_radius);
 }
 
 function draw() {
@@ -42,9 +78,11 @@ function draw() {
   // drawHold(0,50);
   // print(crypto.randomUUID());
   
-  drawTap(1000,50);
+  drawTap(1000,50/*,true*/);
+  drawLong(2000,3000,50);
   
   //end
-  clearStorage();
+  // clearStorage();
 
 }
+//ｷﾀ━━━━(ﾟ∀ﾟ)━━━━!!

@@ -1,0 +1,300 @@
+<?php
+//##########################################################################
+//Google reCAPTCHA v2を使ったテストフォーム
+//##########################################################################
+
+	//##########################################################################
+	//初期設定
+	//##########################################################################
+
+	$site_key = "管理画面に表示されたサイトキー"; //サイトキー
+	$secret_key = "管理画面に表示されたシークレットキー"; //シークレットキー
+
+	ini_set( 'display_errors', 1 );// エラーを画面に出力する(本番実装時はオフ(0)にすること！)
+	ini_set('error_reporting', E_ALL); //全てのエラーを出力
+	//ini_set('error_reporting', E_COMPILE_ERROR | E_RECOVERABLE_ERROR | E_ERROR | E_CORE_ERROR); //致命的なエラーのみ表示
+
+	//================================================================
+
+	$debugs = array(); //debug用メッセージ格納
+	$errors = array(); //表示用エラーメッセージ格納
+
+	//##########################################################################
+	//POSTデータ送信処理
+	//##########################################################################
+	if(isset($_POST) && count($_POST) > 0){
+
+		$debugs["post"] = $_POST;
+		if(isset($_POST["text-word"]) === true && strlen($_POST["text-word"]) > 12){ //テキストパラメータチェック
+			$errors["text-word"] = "テキストは12文字までです";
+		}
+		//reCAPTCHA認証をユーザーが実行し、g-recaptcha-responseに自動設定されたトークンデータが飛んできている
+		if(isset($_POST["g-recaptcha-response"])){
+			$ch = curl_init(); //cURLを初期化
+			//curlオプションを設定
+			curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify"); //URLを設定
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //curl_execの返り値を文字列にする
+			curl_setopt($ch, CURLOPT_POST, true ); //POSTメソッド使用
+			curl_setopt($ch, CURLOPT_POSTFIELDS, //POSTパラメータの指定
+				http_build_query(array(
+					'secret' => $secret_key,
+					'response' => $_POST[ 'g-recaptcha-response' ]
+				))
+			);
+			$response_json = curl_exec($ch); //curl実行
+			curl_close($ch); //cURLを終了
+			$response = json_decode( $response_json, true ); //レスポンスのjsonを配列にデコード
+
+			$debugs["認証結果取得APIのレスポンス"] = $response;
+			if ( isset($response["success"]) && $response["success"] == 1) {
+				$debugs["APIの判定"] = "ReCAPTCHAの認証成功";
+			} else {
+				$errors["recaptcha"] = "ReCAPTCHAの検証に失敗しました";
+			}
+		}else{
+			$errors["recaptcha"] = "ReCAPTCHAのトークンがありません";
+		}
+
+    }
+
+	$debugs["全エラー"] = $errors;
+	//##########################################################################
+	//①送信データの処理に全て成功した時のページ
+	//##########################################################################
+	if(isset($_POST) && count($_POST) > 0 && count($errors) == 0){
+
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Google reCAPTCHA v2フォーム完了</title>
+	<script>
+	</script>
+	<style>
+
+        html{
+            text-align: center;
+        }
+
+        body{
+            padding: 1rem;
+            margin: auto;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        h1{
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        .my-debug{
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            text-align: left;
+            word-break: break-all;
+            background-color: #eee;
+            padding: 1rem;
+            margin: 1rem auto;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .message-info{
+            padding: 0.5rem;
+            border: 1px solid #99f;
+            background-color: #ccf;
+            color: #000;
+            margin: 1rem auto;
+        }
+
+	</style>
+</head>
+
+<body>
+
+	<h1>Google reCAPTCHA v2フォーム完了</h1>
+
+	<div class="message-info">
+		送信に成功しました！
+	</div>
+
+	<div style="text-align: center; padding: 1rem; margin: 2rem auto;">
+		<a href="?">フォームに戻る</a>
+	</div>
+
+	<div class="my-debug"><b>デバッグ:</b><br/><?php echo htmlspecialchars(var_export($debugs, true)) ?></div>
+
+</body>
+</html>
+
+<?php
+
+	//##########################################################################
+	//②送信データがないか、処理に失敗した時はフォームを表示
+	//##########################################################################
+    }else{
+
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Google reCAPTCHA v2フォーム入力</title>
+    <script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+	<style>
+
+        html{
+            text-align: center;
+        }
+
+        body{
+            padding: 1rem;
+            margin: auto;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        h1{
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+
+        #my-form{
+            display: block;
+            margin: 1rem auto;
+            padding: 1rem;
+            border: 1px solid #bbb;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #my-form input{
+            display: block;
+            margin: 1rem auto;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        #my-form input[type=submit]{
+            background-color: #2196F3;
+            border: 0px solid #000;
+            color: #fff;
+            border-radius: 3px;
+        }
+
+        #my-message-error-grecaptcha{
+            color: #f00;
+            font-weight: bold;
+        }
+
+        .g-recaptcha>*{
+            margin: auto;
+        }
+
+        .my-message-error{
+            padding: 0.5rem;
+            border: 1px solid #f99;
+            background-color: #fcc;
+            color: #f00;
+            margin: 1rem auto;
+        }
+
+        .my-debug{
+            font-size: 0.8rem;
+            white-space: pre-wrap;
+            text-align: left;
+            word-break: break-all;
+            background-color: #eee;
+            padding: 1rem;
+            margin: 1rem auto;
+            background-color: #000;
+            color: #fff;
+        }
+
+	</style>
+
+</head>
+
+<body>
+
+	<h1>Google reCAPTCHA v2フォーム入力</h1>
+
+<?php
+		if(count($errors) > 0){
+?>
+	<!-- エラーメッセージ -->
+	<div class="my-message-error">
+<?php
+			foreach($errors as $error_id => $error_message){
+?>
+				<div><?php echo $error_message ?></div>
+<?php
+			}
+?>
+	</div>
+<?php
+		}
+?>
+	<!-- 入力フォーム -->
+	<form id="my-form" action="?" method="POST">
+
+		<input type="text" name="text-word" value="<?php echo isset($_POST["text-word"]) ? htmlspecialchars($_POST["text-word"]) : ""; ?>" placeholder="何かテキストを入力">
+
+		<div>送信する直前にチェックを入れてください</div>
+		<div id="my-message-error-grecaptcha"><!-- CAPTCHAのエラーメッセージをここに表示 --></div>
+
+		<!-- Google reCAPTCHAのウィジェットをここに表示 -->
+		<div
+			class="g-recaptcha"
+			data-sitekey="<?php echo $site_key ?>"
+			data-callback="verifyCallback"
+			data-expired-callback="expiredCallback"
+			data-error-callback="errorCallback"
+		></div>
+
+		<input type="submit" value="送信する" onclick="">
+	</form>
+
+	<script>
+		//===========================================
+		// フォーム内のreCAPTCHAのイベント設定
+        //===========================================
+		var is_success_recaptcha = false; //recaptchaのステータス。trueにならないと送信できない
+
+		//reCAPTCHAに成功した時に実行されるコールバック関数
+		var verifyCallback = function(response) {
+			is_success_recaptcha = true;
+			console.log('reCAPTCHA V2 成功');
+			document.getElementById("my-message-error-grecaptcha").textContent = ''; //エラーメッセージを消す
+		};
+
+		//チェック後、2分間立って期限切れを起こした時に実行されるコールバック関数
+		var expiredCallback= function(response) {
+			is_success_recaptcha = false;
+			console.warn('reCAPTCHA V2 期限切れ');
+			document.getElementById("my-message-error-grecaptcha").textContent = '有効期限が切れました。再度チェックしてください';
+		};
+
+		//reCAPTCHAにネットワーク接続エラー等のエラーが起きた時に実行されるコールバック関数
+		var errorCallback= function(response) {
+			is_success_recaptcha = false;
+			console.error('reCAPTCHA V2 エラー');
+			document.getElementById("my-message-error-grecaptcha").textContent = 'reCAPTCHAエラーが発生しました。ネットワーク接続などを確認してページを再読み込みしてください。';
+		};
+
+		//フォームデータ送信前何かするための関数(必須ではない。トークンはフォームに自動設置される)
+		function sendFormData(e) {
+			console.log("sendFormData実行");
+			e.preventDefault(); //元のsubmitをいったんキャンセル
+			if(is_success_recaptcha){
+				console.log('ステータス有効。フォームデータを送信');
+	

@@ -1,9 +1,28 @@
-<DOCTYPE= html>
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>test</title>
 </head>
 <body>
-  <input type="file">
-</body>
+  <form action="test.html" method="post" enctype="multipart/form-data" >
+    <input type="file" name="test" onchange="previewFile(this);">
+    <input type="submit" value="送信する">
+  </form>
+  <p>プレビュー</p>
+  <img id="preview">
+ 
+  <script>
+  function previewFile(hoge){
+    var fileData = new FileReader();
+    fileData.onload = (function() {
+      //id属性が付与されているimgタグのsrc属性に、fileReaderで取得した値の結果を入力することで
+      //プレビュー表示している
+      document.getElementById('preview').src = fileData.result;
+    });
+    fileData.readAsDataURL(hoge.files[0]);
+  }
+  </script>
+  </body>
 </html>

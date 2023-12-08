@@ -36,12 +36,13 @@
 <body>
 
 <div id="timer"></div>
-<div id="word">Enterキーを押してゲームを開始してください。</div>
+<div id="word">Enterキーまたは「スタート」ボタンをクリックしてゲームを開始してください。</div>
 <div id="next"></div>
 <div id="inputContainer">
     <span id="typedChars"></span>
     <input type="text" id="inputWord" placeholder="ここに入力..." disabled>
 </div>
+<button id="startButton" onclick="startGame()">スタート</button>
 <div id="result"></div>
 
 <script>
@@ -113,7 +114,8 @@
         document.removeEventListener("keydown", handleKeyDown);
         const currentTime = new Date().getTime();
         const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
-        document.getElementById("result").textContent = "かかった時間: " + elapsedTime.toFixed(3) + "秒. スコア: " + score;
+        const resultText = score > 0 ? "かかった時間: " + elapsedTime.toFixed(3) + "秒. スコア: " + score : "なし";
+        document.getElementById("result").textContent = resultText;
     }
 
     function updateTimer() {
@@ -132,15 +134,16 @@
     // ゲームをリセットする関数
     function resetGame() {
         document.getElementById("inputWord").value = "";
-        document.getElementById("result").textContent = "ゲームをリセットしました。Enterキーを押してゲームを開始してください。";
+        document.getElementById("result").textContent = "ゲームをリセットしました。Enterキーまたは「スタート」ボタンをクリックしてゲームを開始してください。";
         document.removeEventListener("keydown", handleKeyDown);
+        document.getElementById("startButton").addEventListener("click", startGame);
         document.addEventListener("keydown", handleEnterKey);
     }
 
     // Enterキーが押されたときにゲームを開始
     function handleEnterKey(event) {
         if (event.key === "Enter") {
-            document.removeEventListener("keydown", handleEnterKey);
+            document.getElementById("startButton").removeEventListener("click", startGame);
             startGame();
         }
     }
@@ -159,7 +162,7 @@
     function updateDisplay() {
         document.getElementById("typedChars").textContent = typedChars;
         document.getElementById("word").textContent = currentChar;
-        document.getElementById("next").textContent = "次: " + nextChar;
+        document.getElementById("next").textContent = "次: " + (nextChar ? nextChar : "なし");
     }
 
     // Enterキーが押されたときにゲームを開始

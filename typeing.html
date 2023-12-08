@@ -10,55 +10,67 @@
             text-align: center;
         }
         #word {
-            font-size: 36px; /* フォントサイズを大きくする */
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        #next {
+            font-size: 24px;
             margin-bottom: 20px;
         }
         #inputWord {
-            font-size: 28px; /* フォントサイズを大きくする */
-            padding: 10px; /* 余白を追加 */
+            font-size: 28px;
+            padding: 10px;
         }
         #result {
             margin-top: 20px;
-            font-size: 24px; /* フォントサイズを大きくする */
+            font-size: 24px;
         }
         #timer {
             position: absolute;
             top: 10px;
             left: 10px;
-            font-size: 24px; /* フォントサイズを大きくする */
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
 
-<div id="timer">Time: 0.000s</div>
-<div id="word">Click "Start" to begin typing.</div>
-<input type="text" id="inputWord" placeholder="Type here..." disabled>
-<button onclick="startGame()">Start</button>
+<div id="timer"></div>
+<div id="word">Enterキーを押してゲームを開始してください。</div>
+<div id="next"></div>
+<div id="inputContainer">
+    <span id="typedChars"></span>
+    <input type="text" id="inputWord" placeholder="ここに入力..." disabled>
+</div>
 <div id="result"></div>
 
 <script>
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
     let currentIndex;
     let currentChar;
+    let nextChar;
     let score = 0;
     let startTime;
+    let typedChars = "";
 
     function startGame() {
         currentIndex = 0;
         score = 0;
         startTime = new Date().getTime();
+        typedChars = "";
 
         // 文字列をランダムに並び替え
         alphabet = shuffleString(alphabet);
 
         currentChar = alphabet[currentIndex];
+        nextChar = alphabet[currentIndex + 1]; // 次の文字
 
-        document.getElementById("word").textContent = currentChar;
-        document.getElementById("inputWord").value = "";
+        updateDisplay();
+
         document.getElementById("inputWord").disabled = false;
         document.getElementById("inputWord").focus();
         document.getElementById("result").textContent = "";
+        document.getElementById("timer").textContent = ""; // タイマー表示をリセット
 
         // キーボードイベントの監視を開始
         document.addEventListener("keydown", handleKeyDown);
@@ -87,7 +99,9 @@
 
             if (currentIndex < alphabet.length) {
                 currentChar = alphabet[currentIndex];
-                document.getElementById("word").textContent = currentChar;
+                nextChar = alphabet[currentIndex + 1]; // 次の文字
+                typedChars += inputChar; // 入力された文字を追加
+                updateDisplay();
                 document.getElementById("inputWord").value = "";
             }
         }
@@ -99,13 +113,13 @@
         document.removeEventListener("keydown", handleKeyDown);
         const currentTime = new Date().getTime();
         const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
-        document.getElementById("result").textContent = "Your time: " + elapsedTime.toFixed(3) + "s. Your score: " + score;
+        document.getElementById("result").textContent = "かかった時間: " + elapsedTime.toFixed(3) + "秒. スコア: " + score;
     }
 
     function updateTimer() {
         const currentTime = new Date().getTime();
         const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
-        document.getElementById("timer").textContent = "Time: " + elapsedTime.toFixed(3) + "s";
+        document.getElementById("timer").textContent = "経過時間: " + elapsedTime.toFixed(3) + "秒";
     }
 
     // エスケープキーが押されたときにゲームをリセット
@@ -118,8 +132,17 @@
     // ゲームをリセットする関数
     function resetGame() {
         document.getElementById("inputWord").value = "";
-        document.getElementById("result").textContent = "Game reset.";
-        startGame();
+        document.getElementById("result").textContent = "ゲームをリセットしました。Enterキーを押してゲームを開始してください。";
+        document.removeEventListener("keydown", handleKeyDown);
+        document.addEventListener("keydown", handleEnterKey);
+    }
+
+    // Enterキーが押されたときにゲームを開始
+    function handleEnterKey(event) {
+        if (event.key === "Enter") {
+            document.removeEventListener("keydown", handleEnterKey);
+            startGame();
+        }
     }
 
     // 文字列をランダムに並び替える関数
@@ -131,6 +154,17 @@
         }
         return array.join('');
     }
+
+    // 表示を更新する関数
+    function updateDisplay() {
+        document.getElementById("typedChars").textContent = typedChars;
+        document.getElementById("word").textContent = currentChar;
+        document.getElementById("next").textContent = "次: " + nextChar;
+    }
+
+    // Enterキーが押されたときにゲームを開始
+    document.addEventListener("keydown", handleEnterKey);
+
 </script>
 
 </body>

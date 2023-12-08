@@ -1,31 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>daihachi youtube</title>
-  	 <link rel="icon" href="aciv7-httj2-001.ico">
-<link rel="icon" href="aciv7-httj2-001.ico"
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>シンプルなタイピングゲーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #word {
+            font-size: 36px; /* フォントサイズを大きくする */
+            margin-bottom: 20px;
+        }
+        #inputWord {
+            font-size: 28px; /* フォントサイズを大きくする */
+            padding: 10px; /* 余白を追加 */
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px; /* フォントサイズを大きくする */
+        }
+        #timer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px; /* フォントサイズを大きくする */
+        }
+    </style>
 </head>
 <body>
-<font face="sans-serif">
-<style>
-button {
-  padding-top: 5em;
-  padding-bottom: 5em;
-  width: 15em;
-}
-</style>
- <style>
-body {
-  background-image: url(indexx.png);
-}
-</style>
-<h3><font size="6">ご利用の端末に合わせて選択してください</font></h3>
-  <h2><font size="6">スマホでは横画面にしてpcで見るを使ってください</font></h2>
-  <br>
-<button onclick="location.href='https://daihachi10.github.io/pc'"><font size="9">PCで見る</font></button>
-<button onclick="location.href='https://daihachi10.github.io/index1'"><font size="9">スマホで見る</font></button>
-</font>
+
+<div id="timer">Time: 0.000s</div>
+<div id="word">Click "Start" to begin typing.</div>
+<input type="text" id="inputWord" placeholder="Type here..." disabled>
+<button onclick="startGame()">Start</button>
+<div id="result"></div>
+
+<script>
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let currentIndex;
+    let currentChar;
+    let score = 0;
+    let startTime;
+
+    function startGame() {
+        currentIndex = 0;
+        score = 0;
+        startTime = new Date().getTime();
+
+        // 文字列をランダムに並び替え
+        alphabet = shuffleString(alphabet);
+
+        currentChar = alphabet[currentIndex];
+
+        document.getElementById("word").textContent = currentChar;
+        document.getElementById("inputWord").value = "";
+        document.getElementById("inputWord").disabled = false;
+        document.getElementById("inputWord").focus();
+        document.getElementById("result").textContent = "";
+
+        // キーボードイベントの監視を開始
+        document.addEventListener("keydown", handleKeyDown);
+
+        // 開始時にタイマーを開始
+        updateTimer();
+        const timerInterval = setInterval(updateTimer, 10); // 10ミリ秒ごとに更新
+
+        document.getElementById("inputWord").addEventListener("input", function(event) {
+            checkInput(event);
+
+            // ゲーム終了時にタイマーを停止
+            if (currentIndex === alphabet.length) {
+                clearInterval(timerInterval);
+                endGame();
+            }
+        });
+    }
+
+    function checkInput(event) {
+        const inputChar = event.target.value.trim().toLowerCase();
+
+        if (inputChar === currentChar) {
+            score++;
+            currentIndex++;
+
+            if (currentIndex < alphabet.length) {
+                currentChar = alphabet[currentIndex];
+                document.getElementById("word").textContent = currentChar;
+                document.getElementById("inputWord").value = "";
+            }
+        }
+    }
+
+    function endGame() {
+        document.getElementById("inputWord").disabled = true;
+        document.getElementById("inputWord").removeEventListener("input", checkInput);
+        document.removeEventListener("keydown", handleKeyDown);
+        const currentTime = new Date().getTime();
+        const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
+        document.getElementById("result").textContent = "Your time: " + elapsedTime.toFixed(3) + "s. Your score: " + score;
+    }
+
+    function updateTimer() {
+        const currentTime = new Date().getTime();
+        const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
+        document.getElementById("timer").textContent = "Time: " + elapsedTime.toFixed(3) + "s";
+    }
+
+    // エスケープキーが押されたときにゲームをリセット
+    function handleKeyDown(event) {
+        if (event.key === "Escape") {
+            resetGame();
+        }
+    }
+
+    // ゲームをリセットする関数
+    function resetGame() {
+        document.getElementById("inputWord").value = "";
+        document.getElementById("result").textContent = "Game reset.";
+        startGame();
+    }
+
+    // 文字列をランダムに並び替える関数
+    function shuffleString(str) {
+        let array = str.split('');
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array.join('');
+    }
+</script>
 
 </body>
 </html>

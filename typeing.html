@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>daihachiタイピングゲーム</title>
-	 <link rel="icon" href="aciv7-httj2-001.ico">
-    <link rel="icon" href="aciv7-httj2-001.ico">
+    <title>タイピングゲーム with ランダムなタイピング音</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,6 +41,10 @@
 </head>
 <body>
 
+<audio id="typeSound1" src="typing_sound.mp3"></audio>
+<audio id="typeSound2" src="typing_sound2.mp3"></audio>
+<audio id="typeSound3" src="typing_sound3.mp3"></audio>
+
 <div id="timer"></div>
 <div id="word">Enterキーまたは「スタート」ボタンをクリックしてゲームを開始してください。</div>
 <div id="next"></div>
@@ -53,9 +55,8 @@
 <button id="startButton" onclick="startGame()">スタート</button>
 <div id="result"></div>
 <div id="shareButton" onclick="shareOnTwitter()">
+    <img src="twitter_icon.png" alt="Twitterアイコン" style="width: 30px; height: 30px;">
     共有する
-    <hr></hr><img src="twitter_icon.png" alt="Twitterアイコン" style="width: 30px; height: 30px;">
-    
 </div>
 
 <script>
@@ -83,7 +84,7 @@
         typedChars = "";
         gameFinished = false;
 
-          // 文字列をランダムに並び替え
+        // 文字列をランダムに並び替え
         alphabet = shuffleString(alphabet);
 
         currentChar = alphabet[currentIndex];
@@ -101,7 +102,7 @@
 
         // 開始時にタイマーを開始
         updateTimer();
-        const timerInterval = setInterval(updateTimer, 10); // 10ミリ秒ごとに更新
+        timerInterval = setInterval(updateTimer, 10); // 10ミリ秒ごとに更新
 
         document.getElementById("inputWord").addEventListener("input", function(event) {
             checkInput(event);
@@ -115,27 +116,32 @@
     }
 
     function checkInput(event) {
-        const inputChar = event.target.value.trim().toLowerCase();
+        if (!gameFinished) {
+            const inputChar = event.target.value.trim().toLowerCase();
 
-        if (inputChar === currentChar) {
-            score++;
-            currentIndex++;
+            if (inputChar === currentChar) {
+                playRandomTypeSound();
+                score++;
+                currentIndex++;
 
-            if (currentIndex < alphabet.length) {
-                currentChar = alphabet[currentIndex];
-                nextChar = alphabet[currentIndex + 1]; // 次の文字
-                typedChars += inputChar; // 入力された文字を追加
-                updateDisplay();
-                document.getElementById("inputWord").value = "";
+                if (currentIndex < alphabet.length) {
+                    currentChar = alphabet[currentIndex];
+                    nextChar = alphabet[currentIndex + 1]; // 次の文字
+                    typedChars += inputChar; // 入力された文字を追加
+                    updateDisplay();
+                    document.getElementById("inputWord").value = "";
+                }
             }
         }
     }
 
     function endGame() {
+        gameFinished = true;
+        endTime = performance.now();
         document.getElementById("inputWord").disabled = true;
         document.getElementById("inputWord").removeEventListener("input", checkInput);
         document.removeEventListener("keydown", handleKeyDown);
-        const elapsedTime = (performance.now() - startTime) / 1000; // 秒単位に変換
+        const elapsedTime = (endTime - startTime) / 1000; // 秒単位に変換
         const resultText = score > 0 ? "かかった時間: " + elapsedTime.toFixed(3) + "秒. スコア: " + score : "なし";
         document.getElementById("result").textContent = resultText;
 
@@ -144,8 +150,11 @@
     }
 
     function updateTimer() {
-        const elapsedTime = (performance.now() - startTime) / 1000; // 秒単位に変換
-        document.getElementById("timer").textContent = "時間: " + elapsedTime.toFixed(3) + "秒";
+        if (!gameFinished) {
+            const currentTime = performance.now();
+            const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
+            document.getElementById("timer").textContent = "経過時間: " + elapsedTime.toFixed(3) + "秒";
+        }
     }
 
     // エスケープキーが押されたときにゲームをリセット
@@ -157,6 +166,7 @@
 
     // ゲームをリセットする関数
     function resetGame() {
+        clearInterval(timerInterval);
         document.getElementById("inputWord").value = "";
         document.getElementById("result").textContent = "ゲームをリセットしました。Enterキーまたは「スタート」ボタンをクリックしてゲームを開始してください。";
         document.getElementById("shareButton").style.display = "none"; // リセット時に共有ボタンを非表示にする
@@ -189,14 +199,18 @@
         document.getElementById("next").textContent = "次: " + (nextChar ? nextChar : "なし");
     }
 
-    // Enterキーが押されたときにゲームを開始
-    document.addEventListener("keydown", handleEnterKey);
+    // ランダムなタイピング音を再生する関数
+    function playRandomTypeSound() {
+        const randomIndex = Math.floor(Math.random() * typeSounds.length);
+        typeSounds[randomIndex].currentTime = 0;
+        typeSounds[randomIndex].play();
+    }
 
     // Twitterで共有する関数
     function shareOnTwitter() {
-        const elapsedTime = (performance.now() - startTime) / 1000;
+        const elapsedTime = (endTime - startTime) / 1000;
         const scoreText = score > 0 ? ` スコア: ${score}点` : "";
-        const text = `タイピングゲームすべて打つのにで${elapsedTime.toFixed(3)}秒かかりました！ https://daihachi10.github.io/typeing https://youtube.com/@daihachigame #タイピングゲーム @daihachiyoutube `;
+        const text = `タイピングゲームで${elapsedTime.toFixed(3)}秒かかりました！${scoreText} #タイピングゲーム #JavaScript`;
         const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         window.open(twitterUrl, '_blank');
     }

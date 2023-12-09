@@ -55,8 +55,8 @@
 <button id="startButton" onclick="startGame()">スタート</button>
 <div id="result"></div>
 <div id="shareButton" onclick="shareOnTwitter()">
-    <img src="twitter_icon.png" alt="Twitterアイコン" style="width: 30px; height: 30px;">
-    共有する
+    共有する<hr></hr><img src="twitter_icon.png" alt="Twitterアイコン" style="width: 30px; height: 30px;">
+    
 </div>
 
 <script>
@@ -153,7 +153,7 @@
         if (!gameFinished) {
             const currentTime = performance.now();
             const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
-            document.getElementById("timer").textContent = "経過時間: " + elapsedTime.toFixed(3) + "秒";
+            document.getElementById("timer").textContent = "時間: " + elapsedTime.toFixed(3) + "秒";
         }
     }
 

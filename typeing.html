@@ -31,6 +31,12 @@
             left: 10px;
             font-size: 24px;
         }
+        #shareButton {
+            display: none;
+            margin-top: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -44,6 +50,10 @@
 </div>
 <button id="startButton" onclick="startGame()">スタート</button>
 <div id="result"></div>
+<div id="shareButton" onclick="shareOnTwitter()">
+    <img src="twitter_icon.png" alt="Twitterアイコン" style="width: 30px; height: 30px;">
+    共有する
+</div>
 
 <script>
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -57,7 +67,7 @@
     function startGame() {
         currentIndex = 0;
         score = 0;
-        startTime = new Date().getTime();
+        startTime = performance.now();
         typedChars = "";
 
         // 文字列をランダムに並び替え
@@ -112,16 +122,17 @@
         document.getElementById("inputWord").disabled = true;
         document.getElementById("inputWord").removeEventListener("input", checkInput);
         document.removeEventListener("keydown", handleKeyDown);
-        const currentTime = new Date().getTime();
-        const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
+        const elapsedTime = (performance.now() - startTime) / 1000; // 秒単位に変換
         const resultText = score > 0 ? "かかった時間: " + elapsedTime.toFixed(3) + "秒. スコア: " + score : "なし";
         document.getElementById("result").textContent = resultText;
+
+        // ゲーム終了時に共有ボタンを表示
+        document.getElementById("shareButton").style.display = "block";
     }
 
     function updateTimer() {
-        const currentTime = new Date().getTime();
-        const elapsedTime = (currentTime - startTime) / 1000; // 秒単位に変換
-        document.getElementById("timer").textContent = "経過時間: " + elapsedTime.toFixed(3) + "秒";
+        const elapsedTime = (performance.now() - startTime) / 1000; // 秒単位に変換
+        document.getElementById("timer").textContent = "時間: " + elapsedTime.toFixed(3) + "秒";
     }
 
     // エスケープキーが押されたときにゲームをリセット
@@ -135,6 +146,7 @@
     function resetGame() {
         document.getElementById("inputWord").value = "";
         document.getElementById("result").textContent = "ゲームをリセットしました。Enterキーまたは「スタート」ボタンをクリックしてゲームを開始してください。";
+        document.getElementById("shareButton").style.display = "none"; // リセット時に共有ボタンを非表示にする
         document.removeEventListener("keydown", handleKeyDown);
         document.getElementById("startButton").addEventListener("click", startGame);
         document.addEventListener("keydown", handleEnterKey);
@@ -143,7 +155,6 @@
     // Enterキーが押されたときにゲームを開始
     function handleEnterKey(event) {
         if (event.key === "Enter") {
-            document.getElementById("startButton").removeEventListener("click", startGame);
             startGame();
         }
     }
@@ -167,6 +178,15 @@
 
     // Enterキーが押されたときにゲームを開始
     document.addEventListener("keydown", handleEnterKey);
+
+    // Twitterで共有する関数
+    function shareOnTwitter() {
+        const elapsedTime = (performance.now() - startTime) / 1000;
+        const scoreText = score > 0 ? ` スコア: ${score}点` : "";
+        const text = `タイピングゲームで${elapsedTime.toFixed(3)}秒かかりました！ https://daihachi10.github.io/typeing${scoreText} #タイピングゲーム #JavaScript`;
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+        window.open(twitterUrl, '_blank');
+    }
 
 </script>
 

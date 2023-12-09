@@ -183,7 +183,7 @@
     function shareOnTwitter() {
         const elapsedTime = (performance.now() - startTime) / 1000;
         const scoreText = score > 0 ? ` スコア: ${score}点` : "";
-        const text = `タイピングゲームで${elapsedTime.toFixed(3)}秒かかりました！ https://daihachi10.github.io/typeing${scoreText} #タイピングゲーム #JavaScript`;
+        const text = `タイピングゲームすべて打つのにで${elapsedTime.toFixed(3)}秒かかりました！ https://daihachi10.github.io/typeing https://youtube.com/@daihachigame#タイピングゲーム @daihachiyoutube `;
         const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         window.open(twitterUrl, '_blank');
     }

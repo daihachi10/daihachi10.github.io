@@ -65,15 +65,25 @@
     let nextChar;
     let score = 0;
     let startTime;
+    let endTime;
     let typedChars = "";
+    let timerInterval;
+    let gameFinished = false;
+
+    const typeSounds = [
+        document.getElementById("typeSound1"),
+        document.getElementById("typeSound2"),
+        document.getElementById("typeSound3")
+    ];
 
     function startGame() {
         currentIndex = 0;
         score = 0;
         startTime = performance.now();
         typedChars = "";
+        gameFinished = false;
 
-        // 文字列をランダムに並び替え
+          // 文字列をランダムに並び替え
         alphabet = shuffleString(alphabet);
 
         currentChar = alphabet[currentIndex];

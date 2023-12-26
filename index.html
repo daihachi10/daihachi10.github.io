@@ -13,12 +13,9 @@
 </head>
 <body>
   <header>
-    <h1>Daihachi Games Channel</h1>
+    <h1>google検索に出すサイト</h1>
     <nav>
-      <a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA">Home</a>
-      <a href="https://www.youtube.com/@daihachigame/shorts">short</a>
-      <a href="https://www.youtube.com/@daihachigame/videos">動画</a>
-      <a href="https://daihachi10.github.io/typing">typing</a>
+
     </nav>
   </header>
   <main>
@@ -27,55 +24,7 @@
 
       
     <section id="videos">
-      <h2>最新の動画</h2>
-      <ul>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/GDpmTiNljBw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>     	</ul>
-	<h2>おすすめの動画</h2>
-	    <ul>
-	    <iframe width="560" height="315" src="https://www.youtube.com/embed/77EMLByq2io" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-   		</ul>
-	       </section>
-    <section id="about">
-      <h2>daihachiについて</h2>
-	    
-      <p>daihachiは、2023年に開設された新しいYouTubeチャンネルです。<br>
-        minecraftのショート動画実況をメインに活動しており、様々な種類を実況しています。<br>
-        minecraft好きの方は、ぜひチャンネル登録をお願いします。<br>
-	チャンネル者数２０００人突破しました！！ </p>    
-    </section>
-
-
-
-
-
-	<script>
-$.ajax({
-  type: 'GET',
-  url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={UCv92oIWF2kjqRTV0EyIGjOA}&maxResults=5&order=date&type=video&key={AIzaSyCInC8aJljGnEuRc1K2pF9rjirtwzWV-fo}',
-  datatype: 'json',
-  success: function(json){
-    num = json.items.length;
-    for(var i = 0; i < num ; i++){
-        var ID = json.items[i].id.videoId;
-        $("#youtubeList").append('<iframe width="560" height="315" src="https://www.youtube.com/embed/' + ID + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-    }
-  },
-  error: function(){
-    alert('error');
-  }
-});
-</script>
-
-
-
-
-
-  </main>
-  <footer>
-	  <p>LINE公式アカウントをチェック！</p>
-	  <a href="https://lin.ee/uFACm5g"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
-	 <br> <a href="https://daihachi10.github.io/index">戻る</a>
-  </footer>
+  
 	<style>
 		header {
   height: 100px;

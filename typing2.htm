@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寿司打風タイピングゲーム</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #word {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        #next {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #timer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+        }
+        #score {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        #startButton {
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        hr {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="timer"></div>
+<div id="word"></div>
+<div id="next"></div>
+<div id="score">スコア: 0</div>
+<div id="result"></div>
+<button id="startButton" onclick="startGame()">スタート</button>
+
+<script>
+    const sushiWords = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    let currentIndex;
+    let currentWord;
+    let nextWord;
+    let score;
+    let startTime;
+    let gameFinished = false;
+
+    function startGame() {
+        currentIndex = 0;
+        score = 0;
+        startTime = performance.now();
+        gameFinished = false;
+
+        // 単語をランダムに選択
+        sushiWords.sort(() => Math.random() - 0.5);
+        currentWord = sushiWords[currentIndex];
+        nextWord = sushiWords[currentIndex + 1];
+
+        updateDisplay();
+
+        document.getElementById("startButton").style.display = "none";
+        document.getElementById("result").textContent = "";
+        document.getElementById("timer").textContent = "";
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        updateTimer();
+        setInterval(updateTimer, 10);
+    }
+
+    function handleKeyDown(event) {
+        if (!gameFinished) {
+            const inputWord = event.key.toLowerCase();
+
+            if (inputWord === currentWord) {
+                score++;
+                currentIndex++;
+
+                if (currentIndex < sushiWords.length) {
+                    currentWord = sushiWords[currentIndex];
+                    nextWord = sushiWords[currentIndex + 1];
+                    updateDisplay();
+                } else {
+                    endGame();
+                }
+            }
+        }
+    }
+
+    function endGame() {
+        gameFinished = true;
+        const endTime = performance.now();
+        document.removeEventListener("keydown", handleKeyDown);
+        const elapsedTime = (endTime - startTime) / 1000;
+        const resultText = `かかった時間: ${elapsedTime.toFixed(3)}秒. スコア: ${score}`;
+        document.getElementById("result").textContent = resultText;
+        document.getElementById("startButton").style.display = "block";
+    }
+
+    function updateTimer() {
+        if (!gameFinished) {
+            const currentTime = performance.now();
+            const elapsedTime = (currentTime - startTime) / 1000;
+            document.getElementById("timer").textContent = `時間: ${elapsedTime.toFixed(3)}秒`;
+        }
+    }
+
+    function updateDisplay() {
+        document.getElementById("word").textContent = currentWord;
+        document.getElementById("next").textContent = `次: ${nextWord ? nextWord : "なし"}`;
+        document.getElementById("score").textContent = `スコア: ${score}`;
+    }
+</script>
+
+</body>
+</html>

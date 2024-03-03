@@ -29,6 +29,31 @@
 	  <h4>Iキーを押すとアニメーションが付きます</h4>
 <input type="button" value="close" id="closebtn">
 
+
+
+<!-- HTML -->
+<input type="button" value="close" id="closebtn">
+
+<script>
+let newwin;
+
+let openbutton = document.getElementById('openbtn');
+openbutton.addEventListener('click', () => {
+    newwin = open('test.html');
+});
+
+let closebutton = document.getElementById('closebtn');
+closebutton.addEventListener('click', () => {
+    if (newwin) {
+        newwin.close();
+    }
+});
+</script>
+
+
+
+
+	  
 <script>
 let newwin;
 

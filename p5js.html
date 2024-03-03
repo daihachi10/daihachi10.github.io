@@ -27,7 +27,21 @@
 	  <h4>上矢印キーを押すといまボールがいるところの真下に落ちます</h4>
 	  <h4>下矢印キーを押すと早くボールが落ちます</h4>
 	  <h4>Iキーを押すとアニメーションが付きます</h4>
-	　<input type="button" onclick="window.close();" value="ウィンドウを閉じる">
+<input type="button" value="close" id="closebtn">
+
+<script>
+let newwin;
+
+let openbutton = document.getElementById('openbtn');
+openbutton.addEventListener('click', () => {
+    newwin = open('test.html');
+});
+
+let closebutton = document.getElementById('closebtn');
+closebutton.addEventListener('click', () => {
+    newwin.close();
+});
+</script>
 <style>
 		header {
   height: 100px;

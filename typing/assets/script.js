@@ -64,7 +64,7 @@
         endTime = performance.now();
         document.removeEventListener("keydown", handleKeyDown);
         const elapsedTime = (endTime - startTime) / 1000; // 秒単位に変換
-        const resultText = score > 0 ? "かかった時間: " + elapsedTime.toFixed(3) + "秒. スコア: " + score : "なし";
+        const resultText = score > 0 ? "時間: " + elapsedTime.toFixed(3) + "秒";
         document.getElementById("result").textContent = resultText;
 
         // ゲーム終了時に共有ボタンを表示
@@ -120,7 +120,7 @@
     function shareOnTwitter() {
         const elapsedTime = (endTime - startTime) / 1000;
         const scoreText = score > 0 ? ` スコア: ${score}点` : "";
-        const text = `タイピングゲームで${elapsedTime.toFixed(3)}秒かかりました！${scoreText} #タイピングゲーム #JavaScript`;
+        const text = `タイピングゲームで${elapsedTime.toFixed(3)}秒かかりました！#タイピングゲーム #daihachi`;
         const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         window.open(twitterUrl, '_blank');
     }

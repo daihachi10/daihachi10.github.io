@@ -12,40 +12,30 @@
       font-family: "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
     }
 
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
     header {
-      height: 100px;
-      background-color: #888888;
+      background-color: #9999;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+    }
+
+    .header-title {
       color: #fff;
       text-align: center;
-      padding: 20px;
-      animation: fadeIn 0.5s;
     }
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    nav a {
-      color: #fff;
-      font-size: 18px;
-      text-decoration: none;
-      transition: all 0.5s ease-in-out;
-    }
-
-    nav a:hover {
-      transform: scale(1.1);
-      color: green;
+    h1, h2, h4 {
+      color: #333;
+      text-align: left;
     }
 
     main {
@@ -66,12 +56,44 @@
       line-height: 1.5;
     }
 
-    footer {
-      height: 100px;
-      background-color: #888888;
+    nav {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    nav a {
       color: #fff;
-      text-align: center;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.5s ease-in-out;
+    }
+
+    nav a:hover {
+      transform: scale(1.1);
+      color: #00ff00;
+    }
+
+    footer {
+      background-color: #9999;
+      color: #fff;
       padding: 20px;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .close-btn {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease-in-out;
+    }
+
+    .close-btn:hover {
+      background-color: #9999;
     }
   </style>
 </head>

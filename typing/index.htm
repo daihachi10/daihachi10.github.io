@@ -4,57 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>テキストボックスなしのタイピングゲーム</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #word {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        #next {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 24px;
-        }
-        #timer {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 24px;
-        }
-        #shareButton {
-            display: none;
-            margin-top: 10px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        #twitterIcon {
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
-        }
-        #shareText {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        #startButton {
-            font-size: 18px;
-            padding: 10px;
-            cursor: pointer;
-        }
-        hr {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
 </head>
 <body>
-
+    <header>
+    <h1 class="header-title">P5JS操作方法説明</h1>
+    <nav>
+      <a onclick="closeWindow()" href="https://daihachi10.github.io">公式サイトに戻る</a>
+      <a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA">Home</a>
+      <a href="https://www.youtube.com/@daihachigame/shorts">Shorts</a>
+      <a href="https://www.youtube.com/@daihachigame/videos">動画</a>
+      <a href="https://www.youtube.com/@daihachigame/about">概要</a>  
+    </nav>
+  </header>
+  <main class="ud">
+<br><br>
 <audio id="typeSound1" src="typing_sound.mp3"></audio>
 <audio id="typeSound2" src="typing_sound2.mp3"></audio>
 <audio id="typeSound3" src="typing_sound3.mp3"></audio>
@@ -69,7 +33,11 @@
     <span id="shareText">共有する</span>
 </div>
 <button id="startButton" onclick="startGame()">スタート</button>
-
+<footer>
+    <button class="close-btn" onclick="closeWindow()">閉じる</button>
+    <br>
+    <br><a href="https://editor.p5js.org/daihachi10sub/full/FtExv5VZl" target="_blank" onclick="var NewWin=window.open(this.href,'','width=500,height=600,scrollbars=1,resizable=1');return false;" class="scrollbtn btn-entry__submit" rel="noopener noreferrer"><i></i><span class="">daihachi p5.js</span></a>
+  </footer>
 <script>
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
     let currentIndex;

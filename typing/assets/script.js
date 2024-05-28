@@ -1,3 +1,4 @@
+window.onload = function() {
     let alphabet = "abcdefghijklmnopqrstuvwxyz";
     let currentIndex;
     let currentChar;
@@ -124,3 +125,8 @@
         const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         window.open(twitterUrl, '_blank');
     }
+
+    // スタートボタンと共有ボタンのイベントリスナーを設定
+    document.getElementById("startButton").onclick = startGame;
+    document.getElementById("shareButton").onclick = shareOnTwitter;
+};

@@ -1,4 +1,4 @@
-let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
     let currentIndex;
     let currentChar;
     let nextChar;

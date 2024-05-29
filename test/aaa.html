@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Bar Example</title>
+    <style>
+        /* 全体のリセットスタイル */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: #29d;
+            z-index: 10000;
+            transition: width 0.4s ease-out, opacity 0.5s ease-out;
+        }
+
+        #content {
+            margin-top: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1000px; /* 必要に応じて調整 */
+            margin: 0 auto;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        /* 読み込まれるコンテンツに対する追加スタイル */
+        #content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #content p, #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+            margin-bottom: 1em;
+            line-height: 1.5;
+        }
+
+        #content ul, #content ol {
+            padding-left: 20px;
+            margin-bottom: 1em;
+        }
+
+        /* フェードアウト用のクラス */
+        .fade-out {
+            opacity: 1;
+        }
+
+        .fade-out.hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-bar" class="fade-out"></div>
+    <div id="content">
+        <a href="https://daihachi10.github.io/test/redirect.html" onclick="redirectToPage(event, 'https://daihachi10.github.io/test/redirect.html')">Load Redirect Page</a>
+    </div>
+
+    <script>
+        function redirectToPage(event, url) {
+            event.preventDefault();
+            startLoadingBar();
+
+            setTimeout(function() {
+                window.location.href = url;
+            }, 0); // 0秒でリダイレクト
+        }
+
+        function startLoadingBar() {
+            var loadingBar = document.getElementById('loading-bar');
+            loadingBar.style.width = '0';
+            loadingBar.classList.remove('hidden');
+            setTimeout(function() {
+                loadingBar.style.width = '50%';
+            }, 10);
+        }
+    </script>
+</body>
+</html>

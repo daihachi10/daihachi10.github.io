@@ -23,6 +23,7 @@ function loadContent(event, url) {
 function startLoadingBar() {
     var loadingBar = document.getElementById('loading-bar');
     loadingBar.style.width = '0';
+    loadingBar.classList.remove('hidden');
     setTimeout(function() {
         loadingBar.style.width = '50%';
     }, 10);
@@ -32,6 +33,6 @@ function finishLoadingBar() {
     var loadingBar = document.getElementById('loading-bar');
     loadingBar.style.width = '100%';
     setTimeout(function() {
-        loadingBar.style.width = '0';
+        loadingBar.classList.add('hidden');
     }, 400);
 }

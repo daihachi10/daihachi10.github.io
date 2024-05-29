@@ -72,7 +72,7 @@
 <body>
     <div id="loading-bar" class="fade-out"></div>
     <div id="content">
-        <!-- 動的にコンテンツをここに挿入 -->
+        <h>こんにちは！下のリンクを押して読み込みます。</h>
         <a href="page2.html" onclick="loadContent(event, 'page2.html')">Load Page 2</a>
     </div>
 
@@ -82,7 +82,7 @@
             startLoadingBar();
 
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', url, true);
+            xhr.open('GET', "https://daihachi10.github.io/", true);
             xhr.onload = function() {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     var content = document.getElementById('content');

@@ -7,7 +7,12 @@ function loadContent(event, url) {
     xhr.open('GET', url, true);
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 300) {
-            document.getElementById('content').innerHTML = xhr.responseText;
+            var content = document.getElementById('content');
+            content.innerHTML = xhr.responseText;
+            // 追加のスタイル適用
+            content.style.margin = '0';
+            content.style.padding = '20px';
+            content.style.boxSizing = 'border-box';
         }
         finishLoadingBar();
     };

@@ -1,0 +1,20 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+#loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: #29d;
+    z-index: 10000;
+    transition: width 0.4s ease-out;
+}
+
+#content {
+    margin-top: 20px;
+    padding: 20px;
+}

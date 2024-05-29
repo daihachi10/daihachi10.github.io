@@ -27,3 +27,26 @@ a {
     display: inline-block;
     margin: 10px 0;
 }
+
+/* 追加のリセットスタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 必要な要素にのみ適用 */
+#content img {
+    max-width: 100%;
+    height: auto;
+}
+
+#content p, #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+    margin-bottom: 1em;
+    line-height: 1.5;
+}
+
+#content ul, #content ol {
+    padding-left: 20px;
+    margin-bottom: 1em;
+}

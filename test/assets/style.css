@@ -32,8 +32,8 @@
         }
 
         a {
-            display: inline-block;
-            margin: 0 auto;
+            display: inline-block
+            text-align: center;
         }
 
         /* 読み込まれるコンテンツに対する追加スタイル */

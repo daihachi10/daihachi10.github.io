@@ -82,7 +82,7 @@
             startLoadingBar();
 
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', "https://daihachi10.github.io/", true);
+            xhr.open('GET', "http://daihachi10.github.io/test/redirect.html", true);
             xhr.onload = function() {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     var content = document.getElementById('content');

@@ -1,60 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading Bar Example</title>
-    <link href="https://daihachi10.github.io/test/assets/style.css" rel="stylesheet">
-</head>
-<body>
-    <div id="loading-bar" class="fade-out"></div>
-    <div id="content">
-        <!-- 動的にコンテンツをここに挿入 -->
-        <a href="https://daihachi10.github.io/test/redirect.html" onclick="loadContent(event, 'https://daihachi10.github.io/test/redirect.html')">Load Redirect Page</a>
-    </div>
-<script src="https://daihachi10.github.io/test/assets/script.js"></script>
-    <!--    <script>
-        function loadContent(event, url) {
-            event.preventDefault();
-            startLoadingBar();
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', url, true);
-            xhr.onload = function() {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    var content = document.getElementById('content');
-                    content.innerHTML = xhr.responseText;
-                    // 追加のスタイル適用
-                    content.style.margin = '0 auto';
-                    content.style.padding = '20px';
-                    content.style.boxSizing = 'border-box';
-                    content.style.maxWidth = '1000px'; // 必要に応じて調整
-                }
-                finishLoadingBar();
-            };
-            xhr.send();
-        }
-
-        function startLoadingBar() {
-            var loadingBar = document.getElementById('loading-bar');
-            loadingBar.style.width = '0';
-            loadingBar.classList.remove('hidden');
-            setTimeout(function() {
-                loadingBar.style.width = '50%';
-            }, 10);
-        }
-
-        function finishLoadingBar() {
-            var loadingBar = document.getElementById('loading-bar');
-            loadingBar.style.width = '100%';
-            setTimeout(function() {
-                loadingBar.classList.add('hidden');
-                setTimeout(function() {
-                    loadingBar.style.width = '0';
-                }, 500); // フェードアウト完了後に幅をリセット
-            }, 400);
-        }
-    </script> 
-    -->
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loading Bar Example</title>
+        <link href="https://daihachi10.github.io/test/assets/style.css" rel="stylesheet">
+    </head>
+        <body>
+            <div id="loading-bar" class="fade-out"></div>
+            <div id="content">
+                <!-- 動的にコンテンツをここに挿入 -->
+                <a href="https://daihachi10.github.io/test/redirect.html" onclick="loadContent(event, 'https://daihachi10.github.io/test/redirect.html')">Load Redirect Page</a>
+            </div>
+        <script src="https://daihachi10.github.io/test/assets/script.js"></script>
+     </body>
 </html>

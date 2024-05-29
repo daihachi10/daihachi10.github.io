@@ -32,8 +32,9 @@
         }
 
         a {
-            display: inline-block
+            display: inline-block;
             text-align: center;
+            font-size: 150%;
         }
 
         /* 読み込まれるコンテンツに対する追加スタイル */

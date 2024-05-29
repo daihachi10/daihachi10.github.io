@@ -10,9 +10,10 @@ function loadContent(event, url) {
             var content = document.getElementById('content');
             content.innerHTML = xhr.responseText;
             // 追加のスタイル適用
-            content.style.margin = '0';
+            content.style.margin = '0 auto';
             content.style.padding = '20px';
             content.style.boxSizing = 'border-box';
+            content.style.maxWidth = '1000px'; // 必要に応じて調整
         }
         finishLoadingBar();
     };

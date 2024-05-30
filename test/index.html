@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html lang="ja" style="--header-height: 64px; --display-base-w: 1366px; --display-base-h: 618px; --vh: 8.72px; --display-scale-min: 1.1244509516837482; --display-scale-max: 1.4110032362459546; --display-scale-x: 1.1244509516837482; --display-scale-y: 1.4110032362459546; --display-scale-inner-min: 1.1244509516837482; --display-scale-inner-max: 1.4584837545126355; --display-scale-inner-y: 1.4584837545126355; --subject-color-japaneselanguage: 197, 64, 111; --subject-color-socialstudy: 249, 140, 70; --subject-color-mathematics: 43, 141, 217; --subject-color-science: 75, 176, 98; --subject-color-english: 221, 176, 15; --drill-dark-mode-1: white; --drill-dark-mode-2: white; --drill-dark-mode-3: white; --drill-dark-mode-4: white; --drill-dark-mode-icon-blend: multiply; --drill-font-color-black: var(--bs-body-color); --header-font-color-white: white; --drill-dark-mode-font: #e6e6e6; --drill-rectangle-color: black; --drill-background-color-svg: white; --drill-footer-background-color: #5b5b5b; --drill-background-color-red-button: #e95300; --drill-image-outline: 0; --drill-footer-backgound-color: #f05000; --drill-footer-color: #fff;">
+<html lang="ja">
     <head>
         <meta charset="UTF-8">
         <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>daihachi web Entrance</title>
         <link href="https://daihachi10.github.io/test/assets/style.css" rel="stylesheet">
+
+
+        
+            <style>
+        body {
+            display: flex;
+            justify-content: center;  /* 水平方向の中央揃え */
+            align-items: center;      /* 垂直方向の中央揃え */
+            height: 100vh;            /* ビューポートの高さを100%に */
+            margin: 0;                /* デフォルトのマージンを削除 */
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;      /* 画像の縦横比を維持 */
+        }
+    </style>
+
+
+        
     </head>
         <body>
             <div id="loading-bar" class="fade-out"></div>
             <div id="content">
-                <!-- 動的にコンテンツをここに挿入 -->
-                <h>下のリンクから入る</h>
                 <br>
-                <a href="https://daihachi10.github.io/test/redirect.html" onclick="loadContent(event, 'https://daihachi10.github.io/test/redirect.html')">LETSGO
-                <img data-v-0ebd17f2="" src="https://daihachi10.github.io/test/assets/login_btn.svg">
+                <a href="https://daihachi10.github.io/test/redirect.html" onclick="loadContent(event, 'https://daihachi10.github.io/test/redirect.html')">
+                <img src="https://daihachi10.github.io/test/assets/login_btn.svg">
                 </a>
             </div>
         <script src="https://daihachi10.github.io/test/assets/script.js"></script>

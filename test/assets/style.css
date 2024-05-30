@@ -1,14 +1,15 @@
+/* 全体のリセットスタイル 
         * {
             margin: 0 auto;
             padding: 0;
             box-sizing: border-box;
         } 
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
+*/
         #loading-bar {
             position: fixed;
             top: 0;
@@ -46,17 +47,14 @@
             margin-bottom: 1em;
             line-height: 1.5;
         }
-
         #content ul, #content ol {
             padding-left: 20px;
             margin-bottom: 1em;
         }            */
-
         /* フェードアウト用のクラス */
         .fade-out {
             opacity: 1;
         }
-
         .fade-out.hidden {
             opacity: 0;
         }

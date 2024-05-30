@@ -1,9 +1,9 @@
 /* 全体のリセットスタイル */
-/*        * {
+        * {
             margin: 0 auto;
             padding: 0;
             box-sizing: border-box;
-        } */
+        } 
 
         body {
             font-family: Arial, sans-serif;
@@ -38,17 +38,17 @@
             margin: 0 auto;
         }
 
-        /* 読み込まれるコンテンツに対する追加スタイル 
+         読み込まれるコンテンツに対する追加スタイル 
         #content img {
             max-width: 100%;
             height: auto;
         }
-
+/*
         #content p, #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
             margin-bottom: 1em;
             line-height: 1.5;
         }
-
+*/
         #content ul, #content ol {
             padding-left: 20px;
             margin-bottom: 1em;

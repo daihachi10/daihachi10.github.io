@@ -10,7 +10,7 @@
 
     header {
       background-color: #9999;
-      color: #fff;
+      /*color: #fff;*/
       padding: 20px;
       text-align: center;
       position: fixed;
@@ -28,7 +28,7 @@
       color: #828B9C;
       text-align: left;
     }
-       h1, h2, h4 {
+      h2, h4 {
       color: #333;
       text-align: left;
     }

@@ -38,7 +38,7 @@
             margin: 0 auto;
         }
 
-        /* 読み込まれるコンテンツに対する追加スタイル */
+        /* 読み込まれるコンテンツに対する追加スタイル 
         #content img {
             max-width: 100%;
             height: auto;
@@ -52,7 +52,7 @@
         #content ul, #content ol {
             padding-left: 20px;
             margin-bottom: 1em;
-        }
+        }            */
 
         /* フェードアウト用のクラス */
         .fade-out {

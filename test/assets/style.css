@@ -1,5 +1,6 @@
 /* すべての画像に適用するスタイル */
 img {
+    width: 100%;
     margin: 0 auto;
     cursor: pointer;
     overflow: hidden;

@@ -1,5 +1,6 @@
 /* すべての画像に適用するスタイル */
 img {
+    margin: 0 auto;
     cursor: pointer;
     overflow: hidden;
     transition: transform .6s ease; /* ゆっくり変化させる */

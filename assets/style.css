@@ -21,7 +21,7 @@
     .header-title {
       color: #828B9C;
       text-align: center;
-      text-size: 200px;
+      text-size: 500px;
     }
 
       h2, h4 {
@@ -42,7 +42,7 @@
     }
 
     p {
-      font-size: 16px;
+      font-size: 20px;
       line-height: 1.5;
     }
 

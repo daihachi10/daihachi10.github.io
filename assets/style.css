@@ -21,13 +21,9 @@
     .header-title {
       color: #828B9C;
       text-align: center;
-      text-size: 130px;
+      text-size: 200px;
     }
 
-    h1 {
-      color: #828B9C;
-      text-align: left;
-    }
       h2, h4 {
       color: #333;
       text-align: left;
@@ -57,7 +53,7 @@
 
     nav a {
       color: #fff;
-      font-size: 18px;
+      font-size: 25px;
       text-decoration: none;
       transition: all 0.5s ease-in-out;
     }

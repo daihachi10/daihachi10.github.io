@@ -18,6 +18,14 @@
             margin: 0;                /* デフォルトのマージンを削除 */
         }
 
+        .image-container {
+            transition: transform 0.3s ease-in-out; /* アニメーションのトランジションを設定 */
+        }
+
+        .image-container:hover {
+            transform: scale(1.2); /* 画像を1.2倍に拡大 */
+        }
+
         img {
             max-width: 100%;
             max-height: 100%;

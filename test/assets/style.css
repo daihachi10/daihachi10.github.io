@@ -1,4 +1,3 @@
-/* 全体のリセットスタイル 
         * {
             margin: 0 auto;
             padding: 0;
@@ -10,7 +9,6 @@
             margin: 0;
             padding: 0;
         }
-*/
         #loading-bar {
             position: fixed;
             top: 0;

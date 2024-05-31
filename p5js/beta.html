@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>操作方法</title>
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+  <!-- Content for the top section -->
+  <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
+  <link href="https://daihachi10.github.io/assets/side_bar.css" rel="stylesheet">
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">✕</button>
+        <ul>
+            <li><a href="https://daihachi10.github.io">Home</a></li>
+            <li><a href="https://daihachi10.github.io/p5js/">P5JS</a></li>
+            <li><a href="https://daihachi10.github.io/typing">Typing</a></li>
+            <li><a href="https://daihachi10.github.io/outmoded">old</a></li>
+        </ul>
+    </div>
+  <header>
+    <!--<h1 class="header-title">P5JS操作方法説明</h1>-->
+    <img class="header-title" src="https://daihachi10.github.io/assets/img/daihachi_p5js.svg" alt="daihachi">
+  </header>
+  <main class="ud">
+    <br><br>
+    <h1>操作説明</h1>
+    <h2>左右の矢印キーでバーを動かします。<br>
+    ボールを拾ってポイントを稼ぎましょう。</h2><br>
+    <h3>
+      15%で当たると-５のボール（紫色）が、<br>
+      7.5%で当たると+５のボール（黄色）が出ます。
+    </h3>
+    <h4>Wキーを押しながら左右の矢印キーを押すと早く動かすことができます。<br></h4>
+    <h6>
+      (コントロールキーにしたらブラウザが戻ったのでWキーになりました。)<br><br>
+    </h6>
+    <h4>
+      赤い床にボールが触れたらゲームオーバーです。<br><br>
+      ゲームオーバーになったらエンターキーでリスタートできます。<br><br>
+      上矢印キーを押すといまボールがいるところの真下に落ちます。<br><br>
+      下矢印キーを押すと早くボールが落ちます。<br><br><br>
+    </h4>
+    <h5>
+      スコア40まではスコアが5上がるごとにボールが落ちてくるスピードが上がります。<br>
+      それ以降は一定のスピードまで少しずつ落ちる速度が速くなっていきます。<br><br>
+      Iキーを押すとアニメーションが付きます。<br><br>
+    </h5>
+    <img src="https://daihachi10.github.io/p5js/img.png" alt="ゲームの画像" width="300" height="300" />
+    <img src="https://daihachi10.github.io/p5js/movie.gif" alt="動画" width="300" height="300" />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </main>
+  <footer>
+    <button class="close-btn" onclick="closeWindow()">閉じる</button>
+    <br>
+    <br>
+    <nav>
+    <a href="https://editor.p5js.org/daihachi10sub/full/FtExv5VZl" target="_blank" onclick="var NewWin=window.open(this.href,'','width=500,height=600,scrollbars=1,resizable=1');return false;" class="scrollbtn btn-entry__submit" rel="noopener noreferrer"><i></i><span class="">daihachi p5.js</span></a>
+    </nav>
+  </footer>
+
+  <script>
+    function closeWindow() {
+      // ウィンドウを閉じる処理
+      window.close();
+    }
+  </script>
+    <script src="https://daihachi10.github.io/assets/side_bar.js"></script>
+</body>
+</html>

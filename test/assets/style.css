@@ -8,23 +8,12 @@
             z-index: 10000;
             transition: width 0.4s ease-out, opacity 0.5s ease-out;
         }
-
         .fade-out {
             opacity: 1;
         }
         .fade-out.hidden {
             opacity: 0;
         }
-
-
-/* カーソルを置いたときの拡大スタイル */
-.image:hover {
-    transform: scale(1.2); /* 1.2倍に拡大 */
-}
-
-
-
-
 /* 親要素のスタイル */
 .image-container {
     display: flex;
@@ -32,29 +21,27 @@
     align-items: center;
     height: 100vh; /* 画面の高さいっぱいに表示 */
 }
-
 /* 画像のスタイル */
 .image {
     cursor: pointer; /* カーソルをポインターに変更 */
     transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
     margin: 0 auto; /* 画像を中央に配置 */
 }
-
+/* カーソルを置いたときの拡大スタイル */
+.image:hover {
+    transform: scale(1.2); /* 1.2倍に拡大 */
+}
 .image-container {
-  z-index: 5;
   overflow: hidden;
   position: relative;
 }
-
 .image {
-  z-index: 5;         
   animation-name: open-keyanime1;
-  animation-duration: 2s; /* 1秒間で表示 */
+  animation-duration: 1s; /* 1秒間で表示 */
   animation-fill-mode: both;
   animation-delay: 2s; /* 待ってからアニメーション開始 */
   animation-iteration-count: 1; /* 1回のみ実行 */
 }
-
 @keyframes open-keyanime1 {
   0% {
     opacity: 0; /* 完全に透明 */

@@ -38,12 +38,8 @@
     cursor: pointer; /* カーソルをポインターに変更 */
     transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
     margin: 0 auto; /* 画像を中央に配置 */
-    z-index: 5;         
-    animation-name: image-keyanime; /* 新しいアニメーション名 */
-    animation-duration: 2s; /* 1秒間で表示 */
-    animation-fill-mode: both;
-    animation-delay: 2s; /* 待ってからアニメーション開始 */
-    animation-iteration-count: 1; /* 1回のみ実行 */
+    z-index: 5;
+    animation: image-keyanime 2s ease 2s 1 forwards, fade-out 2s ease 3s 1 forwards; /* 2つのアニメーションを連続して適用 */
 }
 
 @keyframes image-keyanime {
@@ -52,6 +48,15 @@
     }
     100% {
         opacity: 1; /* 透明度無し、通常表示 */
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1; /* 透明度無し、通常表示 */
+    }
+    100% {
+        opacity: 0; /* 完全に透明 */
     }
 }
 
@@ -71,12 +76,8 @@
     cursor: pointer; /* カーソルをポインターに変更 */
     transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
     margin: 0 auto; /* テキストを中央に配置 */
-    z-index: 5;         
-    animation-name: text-keyanime; /* 新しいアニメーション名 */
-    animation-duration: 1s; /* 1秒間で表示 */
-    animation-fill-mode: both;
-    animation-delay: 0s; /* 待ってからアニメーション開始 */
-    animation-iteration-count: 1; /* 1回のみ実行 */
+    z-index: 5;
+    animation: text-keyanime 1s ease 0s 1 forwards;
 }
 
 @keyframes text-keyanime {
@@ -87,4 +88,3 @@
         opacity: 1; /* 透明度無し、通常表示 */
     }
 }
-

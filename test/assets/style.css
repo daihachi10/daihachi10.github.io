@@ -53,7 +53,7 @@
   animation-name: open-keyanime1;
   animation-duration: 5s; /* 5秒間で表示 */
   animation-fill-mode: both;
-  animation-iteration-count: 10; /* 10回実行させています */
+  animation-iteration-count: 1; /* 1回のみ実行 */
 }
 
 @keyframes open-keyanime1 {

@@ -69,30 +69,4 @@
 
 
 
-/* 親要素のスタイル */
-.text-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* 画面の高さいっぱいに表示 */
-}
 
-/* 画像のスタイル */
-.text {
-    cursor: pointer; /* カーソルをポインターに変更 */
-    transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
-    margin: 0 auto; /* 画像を中央に配置 */
-}
-
-.text-container {
-  overflow: hidden;
-  position: relative;
-}
-
-.text {
-  animation-name: open-keyanime1;
-  animation-duration: 1s; /* 1秒間で表示 */
-  animation-fill-mode: both;
-  animation-delay: 0.5s; /* 待ってからアニメーション開始 */
-  animation-iteration-count: 1; /* 1回のみ実行 */
-}

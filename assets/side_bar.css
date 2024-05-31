@@ -55,6 +55,7 @@ body {
             padding: 10px 15px;
             cursor: pointer;
             border-radius: 100px; /* デフォルト5だった丸くなった */
+            position: fixed;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 

@@ -8,12 +8,7 @@
             z-index: 10000;
             transition: width 0.4s ease-out, opacity 0.5s ease-out;
         }
-      /*  a {
-            display: inline-block;
-            text-align: center;
-            font-size: 300%;
-            margin: 0 auto;
-        }*/
+
         .fade-out {
             opacity: 1;
         }
@@ -41,4 +36,26 @@
 /* カーソルを置いたときの拡大スタイル */
 .image:hover {
     transform: scale(1.2); /* 1.2倍に拡大 */
+}
+
+
+.img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  animation-name: open-keyanime1;
+  animation-duration: 5s; /* 5秒間で表示 */
+  animation-fill-mode: both;
+  animation-iteration-count: 10; /* 10回実行させています */
+}
+
+@keyframes open-keyanime1 {
+  0% {
+    opacity: 0; /* 完全に透明 */
+  }
+  100% {
+    opacity: 1; /* 透明度無し、通常表示 */
+  }
 }

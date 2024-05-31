@@ -22,15 +22,15 @@
     transform: scale(1.2); /* 1.2倍に拡大 */
 }
 
+
+
+
 /* 親要素のスタイル */
 .image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh; /* 画面の高さいっぱいに表示 */
-    z-index: 5;
-    overflow: hidden;
-    position: relative;
 }
 
 /* 画像のスタイル */
@@ -38,53 +38,28 @@
     cursor: pointer; /* カーソルをポインターに変更 */
     transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
     margin: 0 auto; /* 画像を中央に配置 */
-    z-index: 5;
-    animation: open-keyanime1 2s ease 2s 1 forwards, fade-out 2s ease 3s 1 forwards; /* 2つのアニメーションを連続して適用 */
+}
+
+.image-container {
+  z-index: 5;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  z-index: 5;         
+  animation-name: open-keyanime1;
+  animation-duration: 2s; /* 1秒間で表示 */
+  animation-fill-mode: both;
+  animation-delay: 2s; /* 待ってからアニメーション開始 */
+  animation-iteration-count: 1; /* 1回のみ実行 */
 }
 
 @keyframes open-keyanime1 {
-    0% {
-        opacity: 0; /* 完全に透明 */
-    }
-    100% {
-        opacity: 1; /* 透明度無し、通常表示 */
-    }
-}
-
-@keyframes fade-out {
-    0% {
-        opacity: 1; /* 透明度無し、通常表示 */
-    }
-    100% {
-        opacity: 0; /* 完全に透明 */
-    }
-}
-
-/* 親要素のスタイル */
-.text-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* 画面の高さいっぱいに表示 */
-    z-index: 5;
-    overflow: hidden;
-    position: relative;
-}
-
-/* テキストのスタイル */
-.text {
-    cursor: pointer; /* カーソルをポインターに変更 */
-    transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
-    margin: 0 auto; /* テキストを中央に配置 */
-    z-index: 5;
-    animation: text-keyanime 1s ease 0s 1 forwards;
-}
-
-@keyframes text-keyanime {
-    0% {
-        opacity: 0; /* 完全に透明 */
-    }
-    100% {
-        opacity: 1; /* 透明度無し、通常表示 */
-    }
+  0% {
+    opacity: 0; /* 完全に透明 */
+  }
+  100% {
+    opacity: 1; /* 透明度無し、通常表示 */
+  }
 }

@@ -83,6 +83,14 @@
       transition: background-color 0.5s ease-in-out;
     }
 
-    .back-btn:hover {
-      background-color: #9999;
+
+.title-btn {
+      background-color: #fff;
+      color: #333;
+      border-radius: 100px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease-in-out;
     }
+

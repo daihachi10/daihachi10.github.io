@@ -56,7 +56,7 @@ body {
             cursor: pointer;
             border-radius: 100px; /* デフォルト5だった丸くなった */
             box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            z-index: 2147483646;
+            z-index: 997;
         }
 
         .toggle-btn {
@@ -64,7 +64,7 @@ body {
             position: fixed;
             top: 100px;
             left: 15px;
-            z-index: 2147483647
+            z-index: 998
         }
 
         .close-btn {
@@ -72,7 +72,7 @@ body {
             text-align: left;
             padding-left: 20px;
             border-top-right-radius: 15px;
-            z-index: 2147483645
+            z-index: 999
         }
 
         .content {

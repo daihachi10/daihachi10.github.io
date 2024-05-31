@@ -1,4 +1,19 @@
-        #loading-bar {
+body {
+    background-image: url("https://daihachi10.github.io/test/assets/minecraft.jfif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+
+
+
+
+
+
+#loading-bar {
             position: fixed;
             top: 0;
             left: 0;

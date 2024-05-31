@@ -24,20 +24,21 @@
 
 
 /* 親要素のスタイル */
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* 画面の高さいっぱいに表示 */
-        }
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 画面の高さいっぱいに表示 */
+}
 
-        /* 画像のスタイル */
-        .image {
-            cursor: pointer; /* カーソルをポインターに変更 */
-            transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
-        }
+/* 画像のスタイル */
+.image {
+    cursor: pointer; /* カーソルをポインターに変更 */
+    transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
+    margin: 0 auto; /* 画像を中央に配置 */
+}
 
-        /* カーソルを置いたときの拡大スタイル */
-        .image:hover {
-            transform: scale(1.2); /* 1.2倍に拡大 */
-        }
+/* カーソルを置いたときの拡大スタイル */
+.image:hover {
+    transform: scale(1.2); /* 1.2倍に拡大 */
+}

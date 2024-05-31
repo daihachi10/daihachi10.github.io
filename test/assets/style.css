@@ -39,10 +39,10 @@
     transition: transform 0.3s ease; /* 拡大アニメーションの設定 */
     margin: 0 auto; /* 画像を中央に配置 */
     z-index: 5;
-    animation: image-keyanime 2s ease 2s 1 forwards, fade-out 2s ease 3s 1 forwards; /* 2つのアニメーションを連続して適用 */
+    animation: open-keyanime1 2s ease 2s 1 forwards, fade-out 2s ease 3s 1 forwards; /* 2つのアニメーションを連続して適用 */
 }
 
-@keyframes image-keyanime {
+@keyframes open-keyanime1 {
     0% {
         opacity: 0; /* 完全に透明 */
     }

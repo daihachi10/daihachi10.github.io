@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>daihachiのタイピング</title>
+    <title>daihachiタイピング</title>
     <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
     <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
+    <link href="https://daihachi10.github.io/assets/side_bar.css" rel="stylesheet">
     <link href="https://daihachi10.github.io/typing/assets/style.css" rel="stylesheet">
 </head>
 <body>
+  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">✕</button>
+        <ul>
+            <li><a href="https://daihachi10.github.io/next">Home</a></li>
+            <li><a href="https://daihachi10.github.io/p5js/">P5JS</a></li>
+            <li><a href="https://daihachi10.github.io/typing">Typing</a></li>
+            <li><a href="https://daihachi10.github.io/outmoded">old</a></li>
+        </ul>
+    </div>
     <header>
-    <!--<h1 class="header-title">daihachiのタイピング</h1>-->
-        <img class="header-title" src="https://daihachi10.github.io/assets/img/daihachi_typing.svg" alt="daihachi">
-    <nav>
-      <a onclick="closeWindow()" href="https://daihachi10.github.io">公式サイトに戻る</a>
-      <a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA">Home</a>
-      <a href="https://www.youtube.com/@daihachigame/shorts">Shorts</a>
-    </nav>
+    <!--<h1 class="header-title">daihachiのタイピング</h1>
+        <img class="header-title" src="https://daihachi10.github.io/assets/img/daihachi_typing.svg" alt="daihachi">-->
+      <button class="title-btn">daihachi Typing</button>
   </header>
   <main class="ud">
 <br><br><br><br>
@@ -31,6 +38,7 @@
 </div>
 <button id="startButton" onclick="startGame()">スタート</button>
 <footer>
+  <button class="google-btn" onclick="location.href='https://scratch.mit.edu/projects/807355130'">本格的なタイピング（Scratch）</button>
 </footer>
   
   <audio id="typeSound1" src="https://daihachi10.github.io/typing/assets/sound_assets/typing_sound.mp3"></audio>
@@ -38,5 +46,6 @@
   <audio id="typeSound3" src="https://daihachi10.github.io/typing/assets/sound_assets/typing_sound3.mp3"></audio>
   
   <script src="https://daihachi10.github.io/typing/assets/script.js"></script>
+  <script src="https://daihachi10.github.io/assets/side_bar.js"></script>
 </body>
 </html>

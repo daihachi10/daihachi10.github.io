@@ -87,6 +87,18 @@
 .title-btn {
       background-color: #fff;
       color: #333;
+      font-size: 150%;
+      border-radius: 100px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease-in-out;
+    }
+
+.google-btn {
+      background-color: #333;
+      color: #fff;
+      font-size: 150%;
       border-radius: 100px;
       padding: 10px 20px;
       border: none;

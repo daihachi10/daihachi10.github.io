@@ -82,7 +82,7 @@ body {
             #topButton {
             display: none; /* 最初は非表示 */
             position: fixed;
-            bottom: 120px;
+            bottom: 160px;
             right: 30px;
             z-index: 99;
             border: none;

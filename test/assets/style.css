@@ -39,7 +39,12 @@
 }
 
 
-.img-wrap {
+
+
+
+
+
+.image-container {
   overflow: hidden;
   position: relative;
 }

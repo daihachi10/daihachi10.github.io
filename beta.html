@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Example</title>
+    <script>
+        function loadHTML() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("content").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "https://daihachi10.github.io/assets/side_bar", true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body onload="loadHTML()">
+    <div id="content"></div>
+</body>
+</html>

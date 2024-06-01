@@ -1,62 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>daihachi web</title>
-  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
-
-  <!--
-  
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  -->
-  
-  <!-- Content for the top section -->
-  <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
-  <link href="https://daihachi10.github.io/assets/side_bar/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js Background</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden; /* スクロールバーを隠す */
+    }
+    canvas {
+      display: block; /* canvasをブロック要素に */
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; /* canvasを背景に */
+    }
+  </style>
 </head>
 <body>
-  <button class="toggle-btn" onclick="toggleSidebar()">☰  メニュー</button>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✕  閉じる</button>
-        <ul>
-            <li><a href="https://daihachi10.github.io">Logout</a></li>
-            <li><a href="https://daihachi10.github.io/p5js/">P5js</a></li>
-            <li><a href="https://daihachi10.github.io/typing/">Typing</a></li>
-            <li><a href="https://daihachi10.github.io/typing/full">Text Typing</a></li>
-            <li><a href="https://daihachi10.github.io/outmoded/">old</a></li>
-        </ul>
-    </div>
-  <header>
-    <!--<h1 class="header-title">daihachi</h1>-->
-    <!--<img class="header-title" src="https://daihachi10.github.io/assets/img/daihachi_logo.svg" alt="daihachi">-->
-    <button class="title-btn">daihachi</button>
-  </header>
-  <main>
-    <section id="top">
-      <!-- Content for the top section -->
-    </section>
-
-    <section id="about" class="content">
-      <br>
-      <br>
-      <h2 class="ud">daihachiについて</h2>
-      <p class="ud">daihachiはp5jsを中心にプログラミングをしています<br>
-                    ・p5jsとは<br>
-                    jsはScratchとはちがって、文字で打つプログラミング言語です。<br>
-                    Scratchよりも使える機能が多く、書き方がわかりやすく、<br>
-                    Scratchの次にする人が多いそうです。
-      </p>
-    </section>
-  </main>
-  <footer>
-    <!-- Content for the footer section -->
-    <button class="google-btn" onclick="location.href='https://daihachi10.github.io/outmoded/'">昔のサイト</button>
-  </footer>
-  <script src="https://daihachi10.github.io/assets/side_bar/script.js"></script>
-  <script src="https://daihachi10.github.io/beta/script.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <h1>My Website</h1>
+  <p>Content goes here...</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="https://daihachi10.github.io/beta/script.js"></script> <!-- スケッチコードをリンク -->
 </body>
 </html>
+
+
+
+
+
+
+

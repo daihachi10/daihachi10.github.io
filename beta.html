@@ -1,6 +1,76 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>daihachi web</title>
+    <script>
+        function loadHTML() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("content").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "https://daihachi10.github.io/assets/side_bar", true);
+            xhr.send();
+        }
+    </script>
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+
+  <!--
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  -->
+  
+  <!-- Content for the top section -->
+  <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
+  <link href="https://daihachi10.github.io/assets/side_bar.css" rel="stylesheet">
+</head>
+<body>
+   <header>
+    <!--<h1 class="header-title">daihachi</h1>-->
+    <!--<img class="header-title" src="https://daihachi10.github.io/assets/img/daihachi_logo.svg" alt="daihachi">-->
+    <button class="title-btn">daihachi</button>
+  </header>
+  <main>
+    <section id="top">
+      <!-- Content for the top section -->
+    </section>
+
+    <section id="about" class="content">
+      <br>
+      <br>
+      <h2 class="ud">daihachiについて</h2>
+      <p class="ud">daihachiはp5jsを中心にプログラミングをしています<br>
+                    ・p5jsとは<br>
+                    jsはScratchとはちがって、文字で打つプログラミング言語です。<br>
+                    Scratchよりも使える機能が多く、書き方がわかりやすく、<br>
+                    Scratchの次にする人が多いそうです。
+      </p>
+    </section>
+  </main>
+  <footer>
+    <!-- Content for the footer section -->
+    <button class="google-btn" onclick="location.href='https://daihachi10.github.io/outmoded/'">昔のサイト</button>
+  </footer>
+  <script src="https://daihachi10.github.io/assets/side_bar.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+<!--
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
     <meta charset="UTF-8">
     <title>AJAX Example</title>
     <script>
@@ -21,7 +91,9 @@
         <div id="content"></div>
         <script src="https://daihachi10.github.io/assets/side_bar.js"></script>
     </body> 
--->
 
     <body><script src="https://daihachi10.github.io/assets/side_bar.js"></script></body>
 </html>
+
+
+-->

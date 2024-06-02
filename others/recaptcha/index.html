@@ -4,15 +4,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>だいはち</title>
+  <title>reCAPTCHA</title>
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css" />
+  <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
+  <link href="https://daihachi10.github.io/assets/side_bar/style.css" rel="stylesheet">
   <!-- Don't use this in production: -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="daihachi10.github.io/assets/side_bar/script.js"></script>
 </head>
 
 <body>
+  <button class="toggle-btn" onclick="toggleSidebar()">☰  メニュー</button>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">✕  閉じる</button>
+        <ul>
+            <li><a href="https://daihachi10.github.io">Logout</a></li>
+            <li><a href="https://daihachi10.github.io/p5js/">P5js</a></li>
+            <li><a href="https://daihachi10.github.io/typing/">Typing</a></li>
+            <li><a href="https://daihachi10.github.io/typing/full">Text Typing</a></li>
+            <li><a href="https://daihachi10.github.io/outmoded/">old</a></li>
+            <li><a href="https://daihachi10.github.io/Others/recaptcha/">reCAPTCHA</a></li>
+            <li><a href="https://daihachi10.github.io/beta/">BETA</a></li>
+        </ul>
+    </div>
+  <header>
+    <button class="title-btn">reCAPTCHA</button>
+  </header>
   <div id="root"></div>
   <script type="text/babel">
     const App = () => {

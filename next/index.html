@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>daihachi web</title>
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+  <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
+  <link href="https://daihachi10.github.io/assets/side_bar/style.css" rel="stylesheet">
+  <link href="path/to/your/sidebar.css" rel="stylesheet"> <!-- 新しいCSSファイルのパスを指定 -->
+</head>
+<body>
+  <div class="overlay" id="overlay" onclick="hideSidebar()"></div>
+  <button class="toggle-btn" onclick="toggleSidebar()">☰ メニュー</button>
+  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">✕ 閉じる</button>
+    <ul>
+      <li><a href="https://daihachi10.github.io">Logout</a></li>
+      <li><a href="https://daihachi10.github.io/p5js/">P5js</a></li>
+      <li><a href="https://daihachi10.github.io/typing/">Typing</a></li>
+      <li><a href="https://daihachi10.github.io/typing/full">Text Typing</a></li>
+      <li><a href="https://daihachi10.github.io/outmoded/">old</a></li>
+      <li><a href="https://daihachi10.github.io/beta/">BETA</a></li>
+      <li><a href="https://daihachi10.github.io/others/recaptcha/">reCAPTCHA</a></li>
+    </ul>
+  </div>
+  <header>
+    <button class="title-btn">daihachi</button>
+  </header>
+  <main>
+    <section id="top">
+      <!-- Content for the top section -->
+    </section>
+
+    <section id="about" class="content">
+      <br>
+      <br>
+      <h2 class="ud">daihachiについて</h2>
+      <p class="ud">daihachiはp5jsを中心にプログラミングをしています<br>
+        ・p5jsとは<br>
+        jsはScratchとはちがって、文字で打つプログラミング言語です。<br>
+        Scratchよりも使える機能が多く、書き方がわかりやすく、<br>
+        Scratchの次にする人が多いそうです。
+      </p>
+    </section>
+  </main>
+  <footer>
+    <!-- Content for the footer section -->
+    <button class="google-btn" onclick="location.href='https://daihachi10.github.io/outmoded/'">昔のサイト</button>
+  </footer>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function hideSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+    }
+
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const toggleButton = document.querySelector('.toggle-btn');
+      if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+        hideSidebar();
+      }
+    });
+
+    window.onscroll = function() {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      const topButton = document.getElementById("topButton");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        topButton.style.display = "block";
+      } else {
+        topButton.style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>

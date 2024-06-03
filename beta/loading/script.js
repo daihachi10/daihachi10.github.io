@@ -1,4 +1,7 @@
-const loading = document.getElementById('loading');
-window.onload = function() {
-  loading.classList.add('loaded');
-}
+let docTitle = document.title;
+window.addEventListener("blur", () => {
+document.title = "戻ってきて！";
+})
+window.addEventListener("focus", () => {
+document.title = daihachi web;
+})

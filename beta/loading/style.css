@@ -80,3 +80,18 @@
   opacity: 0;
   pointer-events: none;
 }
+
+.square-move-3 {
+  --size: 24px;
+  --color: currentColor;
+  --accent-opacity: .25;
+  --animation-timing-function: linear;
+  --animation-duration: 2s;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  /* Add these styles to center the element */
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}

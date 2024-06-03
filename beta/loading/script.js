@@ -3,5 +3,5 @@ window.addEventListener("blur", () => {
 document.title = "戻ってきて！";
 })
 window.addEventListener("focus", () => {
-document.title = daihachi web;
+document.title = "daihachi web";
 })

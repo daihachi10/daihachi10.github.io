@@ -87,11 +87,10 @@
   --accent-opacity: .25;
   --animation-timing-function: linear;
   --animation-duration: 2s;
-  position: relative;
+  position: absolute; /* Change position to absolute */
+  top: 50%;
+  left: 50%; /* Add left: 50%; to center horizontally */
+  transform: translate(-50%, -50%); /* Change transform to center both horizontally and vertically */
   width: var(--size);
   height: var(--size);
-  /* Add these styles to center the element */
-  margin: 0 auto;
-  top: 50%;
-  transform: translateY(-50%);
 }

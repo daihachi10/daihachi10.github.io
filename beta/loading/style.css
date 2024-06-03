@@ -1,3 +1,12 @@
+/* コンテナスタイル */
+.container {
+  display: flex;
+  justify-content: center; /* 水平方向中央揃え */
+  align-items: center;     /* 垂直方向中央揃え */
+  height: 100vh;           /* ビューポート全体の高さを使用 */
+}
+
+/* アニメーションスタイル */
 .square-move-3 {
   --size: 24px;
   --color: currentColor;
@@ -31,66 +40,28 @@
   0% {
     transform: translate(0%, 0%);
   }
-
   12.5% {
     transform: translate(100%, 0%);
   }
-
   25% {
     transform: translate(100%, 0%);
   }
-
   37.5% {
     transform: translate(100%, 100%);
   }
-
   50% {
     transform: translate(100%, 100%);
   }
-
   62.5% {
     transform: translate(0%, 100%);
   }
-
   75% {
     transform: translate(0%, 100%);
   }
-
   87.5% {
     transform: translate(0%, 0%);
   }
-
   100% {
     transform: translate(0%, 0%);
   }
-}
-
-
-#loading {
-  display: grid;
-  place-items: center;
-  background-color: #222;
-  color: #fff;
-  position: fixed;
-  inset: 0;
-  font-size: 1.5rem;
-}
-
-#loading.loaded {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.square-move-3 {
-  --size: 24px;
-  --color: currentColor;
-  --accent-opacity: .25;
-  --animation-timing-function: linear;
-  --animation-duration: 2s;
-  position: absolute; /* Change position to absolute */
-  top: 50%;
-  left: 50%; /* Add left: 50%; to center horizontally */
-  transform: translate(-50%, -50%); /* Change transform to center both horizontally and vertically */
-  width: var(--size);
-  height: var(--size);
 }

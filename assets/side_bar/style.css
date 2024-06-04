@@ -61,7 +61,7 @@ body {
 .toggle-btn {
   position: absolute;
   position: fixed;
-  top: 100px;
+  top: 20px;/*100pxだった*/
   left: 15px;
   z-index: 998;
 }

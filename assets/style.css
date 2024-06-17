@@ -19,18 +19,27 @@
     font-style: normal;
 }
 
-.ud {
-      font-family: "FortniteSmall", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+.ud, .google-btn, .startButton {
+      font-family: "FortniteSmall", "FortniteJP", "HG創英角ｺﾞｼｯｸUB", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+    }
+
+.header, .title-btn {
+    font-family: "FortniteBig", "FortniteJP", "HG創英角ｺﾞｼｯｸUB", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+}
+h2, h4 {
+      font-family: "FortniteSmall", "FortniteJP", "HG創英角ｺﾞｼｯｸUB", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+      color: #000;
+      text-align: left;
     }
 
     body {
-      font-family: "BurbankBigRegular", 'Roboto', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
     }
 
     header {
-      font-family: "FortniteBig", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+      /*font-family: "FortniteBig", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;*/
       background-color: #9999;
       /*color: #fff;*/
       padding: 20px;
@@ -46,11 +55,7 @@
       text-size: 500px;
     }
 
-      h2, h4 {
-      font-family: FortniteSmall", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
-      color: #000;
-      text-align: left;
-    }
+
     main {
       margin-top: 100px;
     }
@@ -108,7 +113,7 @@
 
 
 .title-btn {
-      font-family: "FortniteBig", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+      /*font-family: "FortniteBig", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;*/
       background-color: #fff;
       color: #333;
       font-size: 150%;
@@ -120,7 +125,7 @@
     }
 
 .google-btn {
-      font-family: "FortniteSmall", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+      /*font-family: "FortniteSmall", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;*/
       background-color: #333;
       color: #fff;
       font-size: 150%;
@@ -132,7 +137,7 @@
     }
 
 .startButton {
-      font-family: "FortniteSmall", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+      /*font-family: "FortniteSmall", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;*/
       background-color: #333;
       color: #fff;
       font-size: 150%;

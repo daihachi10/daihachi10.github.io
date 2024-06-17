@@ -1,12 +1,19 @@
 @font-face {
-    font-family: 'BurbankBigRegular';
+    font-family: 'FortniteSmall';
     src: url('https://daihachi10.github.io/assets/fonts/burbanksmall-bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'FortniteBig';
+    src: url('https://daihachi10.github.io/assets/fonts/burbankbigregular-black.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
 .ud {
-      font-family: "BurbankBigRegular", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+      font-family: "FortniteSmall", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
     }
 
     body {
@@ -92,6 +99,7 @@
 
 
 .title-btn {
+      font-family: "FortniteBig", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
       background-color: #fff;
       color: #333;
       font-size: 150%;
@@ -103,6 +111,7 @@
     }
 
 .google-btn {
+      font-family: "FortniteSmall", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
       background-color: #333;
       color: #fff;
       font-size: 150%;
@@ -114,6 +123,7 @@
     }
 
 .startButton {
+      font-family: "FortniteSmall", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
       background-color: #333;
       color: #fff;
       font-size: 150%;

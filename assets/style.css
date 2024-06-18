@@ -26,6 +26,11 @@
 .header, .title-btn {
     font-family: "FortniteBig", "FortniteJP", "HG創英角ｺﾞｼｯｸUB", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
 }
+
+.Fn-Big {
+    font-family: "FortniteBig", "FortniteJP", "HG創英角ｺﾞｼｯｸUB", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
+    font-size: 350%;
+}
 h2, h4 {
       font-family: "FortniteSmall", "FortniteJP", "HG創英角ｺﾞｼｯｸUB", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;
       color: #000;

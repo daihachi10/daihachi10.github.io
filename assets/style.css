@@ -13,15 +13,8 @@
 }
 
 @font-face {
-    font-family: 'FortniteJP';
-    src: url('daihachi10.github.io/assets/fonts/Inter-Medium.woff2') format('woff2');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Japanese';
-    src: url('daihachi10.github.io/assets/fonts/japanese.woff2') format('woff2');
+    src: url('https://daihachi10.github.io/assets/fonts/japanese.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }

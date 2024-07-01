@@ -19,32 +19,37 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Japanese';
+    src: url('daihachi10.github.io/assets/fonts/japanese.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
 .ud, .google-btn, .startButton {
-      font-family: "FortniteSmall", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
+      font-family: "FortniteSmall", "Japanese", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
     }
 
 .header, .title-btn {
-    font-family: "FortniteBig", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
+    font-family: "FortniteBig", "Japanese", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
 }
 
 .Fn-Big {
-    font-family: "FortniteBig", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
+    font-family: "FortniteBig", "Japanese", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
     font-size: 350%;
 }
 h2, h4 {
-      font-family: "FortniteSmall", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
+      font-family: "FortniteSmall", "Japanese", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
       color: #000;
       text-align: left;
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
     }
 
     header {
-      /*font-family: "FortniteBig", "FortniteJP", "ＭＳ Ｐゴシック", "UD デジタル 教科書体 N-R", "Meiryo UI", "MS UI Gothic", sans-serif;*/
       background-color: #9999;
       /*color: #fff;*/
       padding: 20px;

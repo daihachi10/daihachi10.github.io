@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
 
 .mochiy-pop-one-regular {
   font-family: "Mochiy Pop One", sans-serif;
@@ -28,20 +29,18 @@
     font-style: normal;
 }
 
-.ud, .google-btn, .startButton {
-      font-family: "FortniteSmall", "Mochiy Pop One", "Japanese", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
+.ud, .google-btn, .startButton, h2, h4 {
+      font-family: "FortniteSmall", "M PLUS 1p", "Mochiy Pop One", "Japanese", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
     }
 
-.header, .title-btn {
-    font-family: "FortniteBig", "Mochiy Pop One", "Japanese", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
+.header, .title-btn, .Fn-Big {
+    font-family: "FortniteBig", "M PLUS 1p", "Mochiy Pop One", "Japanese", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
 }
 
 .Fn-Big {
-    font-family: "FortniteBig", "Mochiy Pop One", "Japanese", "UD デジタル 教科書体 N-B", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
     font-size: 350%;
 }
 h2, h4 {
-      font-family: "FortniteSmall", "Mochiy Pop One", "Japanese", "UD デジタル 教科書体 NK-R", "HG創英角ｺﾞｼｯｸUB", "Meiryo UI", "MS UI Gothic", sans-serif;
       color: #000;
       text-align: left;
     }

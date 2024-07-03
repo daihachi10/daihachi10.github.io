@@ -11,9 +11,11 @@
 </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
+    <script>
     Push.Permission.request(
     () => console.log('許可されました！'),
     () => console.log('許可されませんでした。')
 );
+      </script>
   </body>
 </html>

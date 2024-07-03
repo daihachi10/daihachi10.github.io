@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="offline.css">
-    <title>Offline</title>
+    <title>Online Page</title>
 </head>
 <body>
-    <h1>You are offline</h1>
-    <p>This is the offline page.</p>
+    <h1>Online Page</h1>
+    <p>This is the main online page.</p>
+    <script>
+        // Check if the browser is online or offline
+        function checkOnlineStatus() {
+            if (!navigator.onLine) {
+                localStorage.setItem('lastOnlinePage', window.location.href);
+                window.location = '/offline.html';
+            }
+        }
+
+        // Register the service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            }).catch(error => {
+                console.log('Service Worker registration failed:', error);
+            });
+        }
+
+        // Check online status on page load
+        window.addEventListener('load', checkOnlineStatus);
+        // Listen for changes in network status
+        window.addEventListener('online', () => window.location.reload());
+        window.addEventListener('offline', () => {
+            localStorage.setItem('lastOnlinePage', window.location.href);
+            window.location = '/offline.html';
+        });
+    </script>
 </body>
 </html>

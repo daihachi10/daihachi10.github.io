@@ -3,7 +3,7 @@
   "short_name": "daihachiAPP",
   "start_url": "https://daihachi10.github.io/",
   "background_color": "#ffffff",
-  "display": "standalone",
+  "display": "fullscreen",
   "icons": [
     {
       "src": "assets/img/icon-192x192.png",

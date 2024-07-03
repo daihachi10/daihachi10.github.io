@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>daihachi web</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <!-- Content for the top section -->
+  <link href="assets/style.css" rel="stylesheet">
+  
+</head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
+    Push.Permission.request(
+    () => console.log('許可されました！'),
+    () => console.log('許可されませんでした。')
+);
+  </body>
+</html>

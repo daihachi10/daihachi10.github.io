@@ -13,7 +13,7 @@
         function checkOnlineStatus() {
             if (!navigator.onLine) {
                 localStorage.setItem('lastOnlinePage', window.location.href);
-                window.location = '/offline.html';
+                window.location = 'https://daihachi10.github.io/beta/offline/offline.html';
             }
         }
 
@@ -33,7 +33,7 @@
         window.addEventListener('online', () => window.location.reload());
         window.addEventListener('offline', () => {
             localStorage.setItem('lastOnlinePage', window.location.href);
-            window.location = '/offline.html';
+            window.location = 'https://daihachi10.github.io/beta/offline/offline.html';
         });
     </script>
 </body>

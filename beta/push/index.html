@@ -17,7 +17,6 @@
 document.getElementById('notifyButton').addEventListener('click', function() {
     Push.create("アクション通知", {
         body: "ボタンがクリックされました！",
-        icon: 'path/to/icon.png',
         timeout: 5000,
         onClick: function () {
             console.log('通知がクリックされました！');

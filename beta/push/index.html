@@ -16,6 +16,19 @@
     () => console.log('許可されました！'),
     () => console.log('許可されませんでした。')
 );
+
+      if (Push.Permission.has()) {
+    Push.create("こんにちは！", {
+        body: "これはpush.jsのテスト通知です。",
+        icon: 'icon.png',
+        timeout: 4000,
+        onClick: function () {
+            window.focus();
+            this.close();
+        }
+    });
+}
+      
       </script>
   </body>
 </html>

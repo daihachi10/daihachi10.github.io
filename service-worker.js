@@ -5,6 +5,7 @@ const OFFLINE_CSS = 'https://daihachi10.github.io/beta/offline/offline.css';
 const ASSETS = [
   '/',
   OFFLINE_URL,
+    'https://daihachi10.github.io/assets/style.css',
   OFFLINE_CSS,
 ];
 

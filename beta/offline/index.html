@@ -12,7 +12,7 @@
         // Check if the browser is online or offline
         function checkOnlineStatus() {
             if (!navigator.onLine) {
-                window.location = '/offline.html';
+                window.location = 'https://daihachi10.github.io/beta/offline/offline.html';
             }
         }
 
@@ -30,7 +30,7 @@
         window.addEventListener('load', checkOnlineStatus);
         // Listen for changes in network status
         window.addEventListener('online', () => window.location.reload());
-        window.addEventListener('offline', () => window.location = '/offline.html');
+        window.addEventListener('offline', () => window.location = 'https://daihachi10.github.io/beta/offline/offline.html');
     </script>
 </body>
 </html>

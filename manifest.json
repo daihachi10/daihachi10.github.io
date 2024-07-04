@@ -1,6 +1,6 @@
 {
-  "name": "daihachiAPP",
-  "short_name": "daihachiAPP",
+  "name": "daihachi",
+  "short_name": "daihachi",
   "start_url": "https://daihachi10.github.io/",
   "background_color": "#ffffff",
   "display": "fullscreen",
@@ -16,6 +16,6 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#6fe398",
   "manifest_version": 3
 }

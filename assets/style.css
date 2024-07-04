@@ -159,3 +159,29 @@ h2, h4 {
       transition: background-color 0.5s ease-in-out;
     }
 
+
+/* 通知ポップアップのスタイル */
+        #notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 15px; /* 角を丸くする */
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 0.5s ease, transform 0.5s ease; /* フェードインとスライドインのトランジション */
+            text-align: center; /* 中央揃え */
+        }
+        /* バツボタンのスタイル */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }

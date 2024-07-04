@@ -1,7 +1,7 @@
 ﻿// service-worker.js
 const CACHE_NAME = 'offline-cache-v1';
-const OFFLINE_URL = 'https://daihachi10.github.io/beta/offline/offline.html';
-const OFFLINE_CSS = 'https://daihachi10.github.io/beta/offline/offline.css';
+const OFFLINE_URL = 'https://daihachi10.github.io/offline/'
+/* const OFFLINE_CSS = 'https://daihachi10.github.io/offline/offline.css'; */
 const ASSETS = [
   '/',
   OFFLINE_URL,

@@ -3,101 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PWA Install Prompt</title>
+    <title>ポップアップ例</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* ポップアップのスタイル */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
-
-        #installPrompt {
+        /* バツボタンのスタイル */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        /* 背景のオーバーレイ */
+        #overlay {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .prompt {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            position: relative;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        #installButton {
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
     </style>
 </head>
 <body>
-    <div id="installPrompt" class="hidden">
-        <div class="prompt">
-            <button class="close-btn" onclick="hideInstallPrompt()">✖</button>
-            <p>PWAをインストールしませんか？</p>
-            <button id="installButton">インストール</button>
-        </div>
+    <div id="overlay"></div>
+    <div id="popup">
+        <span class="close-btn" onclick="closePopup()">×</span>
+        <p>こちらのリンクをクリックしてください:</p>
+        <a href="https://daihachi10.github.io/" target="_blank">リンク</a>
     </div>
 
     <script>
-        let deferredPrompt;
+        // 5秒後にポップアップを表示
+        setTimeout(function() {
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }, 5000);
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            showInstallPrompt();
-        });
-
-        function showInstallPrompt() {
-            document.getElementById('installPrompt').classList.remove('hidden');
+        // ポップアップを閉じる関数
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
         }
-
-        function hideInstallPrompt() {
-            document.getElementById('installPrompt').classList.add('hidden');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('installButton').addEventListener('click', async () => {
-                hideInstallPrompt();
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    const { outcome } = await deferredPrompt.userChoice;
-                    if (outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                    deferredPrompt = null;
-                }
-            });
-
-            document.querySelector('.close-btn').addEventListener('click', hideInstallPrompt);
-        });
     </script>
 </body>
 </html>

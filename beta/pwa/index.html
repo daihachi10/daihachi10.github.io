@@ -16,7 +16,9 @@
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 15px; /* 角を丸くする */
             z-index: 1000;
+            transition: opacity 0.5s ease; /* フェードアウトのトランジション */
         }
         /* バツボタンのスタイル */
         .close-btn {
@@ -56,8 +58,14 @@
 
         // ポップアップを閉じる関数
         function closePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
+            var popup = document.getElementById('popup');
+            var overlay = document.getElementById('overlay');
+            popup.style.opacity = '0'; /* フェードアウト開始 */
+            overlay.style.opacity = '0'; /* フェードアウト開始 */
+            setTimeout(function() {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 500); /* フェードアウトの時間と一致させる */
         }
     </script>
 </body>

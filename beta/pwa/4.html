@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知ポップアップ例</title>
+    <style>
+        /* 通知ポップアップのスタイル */
+        #notification {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            padding: 16px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* 角を丸くする */
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 0.3s ease, transform 0.3s ease; /* フェードインとスライドインのトランジション */
+            text-align: left; /* 左揃え */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* フォントをWindows 11に合わせる */
+        }
+        /* バツボタンのスタイル */
+        .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #888888;
+        }
+        /* ボタンのスタイル */
+        .popup-button {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-top: 16px;
+            background-color: #0078d4;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .popup-button:hover {
+            background-color: #005a9e;
+        }
+    </style>
+</head>
+<body>
+    <div id="notification">
+        <span class="close-btn" onclick="closeNotification()">×</span>
+        <p>こちらのリンクをクリックしてください:</p>
+        <a href="https://daihachi10.github.io/" target="_blank" class="popup-button">リンク</a>
+    </div>
+
+    <script>
+        // 1秒後に通知を表示
+        setTimeout(function() {
+            var notification = document.getElementById('notification');
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10); // トランジションを有効にするための短い遅延
+        }, 1000);
+
+        // 通知を閉じる関数
+        function closeNotification() {
+            var notification = document.getElementById('notification');
+            notification.style.opacity = '0'; /* フェードアウト開始 */
+            notification.style.transform = 'translateX(100px)'; /* スライドアウト開始 */
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 300); /* フェードアウトの時間と一致させる */
+        }
+    </script>
+</body>
+</html>

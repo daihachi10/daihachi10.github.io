@@ -8,7 +8,6 @@
   <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
   <link href="https://daihachi10.github.io/assets/style.css" rel="stylesheet">
   <link href="https://daihachi10.github.io/assets/side_bar/style.css" rel="stylesheet">
-  <link href="path/to/your/sidebar.css" rel="stylesheet"> <!-- 新しいCSSファイルのパスを指定 -->
 </head>
 <body>
   <div class="overlay" id="overlay" onclick="hideSidebar()"></div>
@@ -25,6 +24,13 @@
       <li><a href="https://daihachi10.github.io/beta/">BETA</a></li>
     </ul>
   </div>
+
+    <div id="notification">
+        <span class="close-btn" onclick="closeNotification()">×</span>
+        <p>PWAアプリをインストールしてください</p>
+        <button class="google-btn" onclick="closeNotification()">OK</button>
+    </div>
+  
   <header>
     <button class="title-btn">daihachi</button>
   </header>
@@ -52,5 +58,6 @@
   <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
   <script src="https://daihachi10.github.io/assets/side_bar/script.js"></script>
   <script src="https://daihachi10.github.io/assets/offline.js"></script>
+  <script src="https://daihachi10.github.io/assets/popup.js"></script>
 </body>
 </html>

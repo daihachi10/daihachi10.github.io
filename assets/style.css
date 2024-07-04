@@ -164,9 +164,9 @@ h2, h4 {
         #notification {
             display: none;
             position: fixed;
-            bottom: 20px;
+            bottom: 35px;
             right: 20px;
-            width: 300px;
+            width: 240px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);

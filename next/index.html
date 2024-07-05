@@ -7,24 +7,9 @@
   <link rel="manifest" href="https://daihachi10.github.io/manifest.json">
   <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
   <link href="https://daihachi10.github.io/assets/style.css?v=3" rel="stylesheet">
-  <link href="https://daihachi10.github.io/assets/side_bar/style.css" rel="stylesheet">
 </head>
 <body>
-  <div class="overlay" id="overlay" onclick="hideSidebar()"></div>
-  <button class="toggle-btn" onclick="toggleSidebar()">☰ メニュー</button>
-  <div class="sidebar" id="sidebar">
-    <button class="close-btn" onclick="toggleSidebar()">✕ 閉じる</button>
-    <ul>
-      <li><a href="https://daihachi10.github.io">Logout</a></li>
-      <li><a href="https://daihachi10.github.io/p5js/">P5js</a></li>
-      <li><a href="https://daihachi10.github.io/typing/">Typing</a></li>
-      <li><a href="https://daihachi10.github.io/typing/full">Text Typing</a></li>
-      <li><a href="https://daihachi10.github.io/outmoded/">old</a></li>
-      <li><a href="https://daihachi10.github.io/others/recaptcha/">reCAPTCHA</a></li>
-      <li><a href="https://daihachi10.github.io/beta/">BETA</a></li>
-    </ul>
-  </div>
-
+  {% include menu.html %}
     <div id="notification">
         <span class="popup-close-btn" onclick="closeNotification()">×</span>
         <p>アプリをインストールしてください</p>
@@ -57,7 +42,6 @@
     <button class="google-btn" onclick="location.href='https://daihachi10.github.io/outmoded/'">昔のサイト</button>
   </footer>
   <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
-  <script src="https://daihachi10.github.io/assets/side_bar/script.js"></script>
   <script src="https://daihachi10.github.io/assets/offline.js"></script>
   <script src="https://daihachi10.github.io/assets/popup.js"></script>
 </body>

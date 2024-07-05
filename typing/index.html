@@ -13,22 +13,10 @@
             font-size: 350%;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <body>
-    <div class="overlay" id="overlay" onclick="hideSidebar()"></div>
-    <button class="toggle-btn" onclick="toggleSidebar()">☰ メニュー</button>
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✕ 閉じる</button>
-        <ul>
-            <li><a href="https://daihachi10.github.io">Home</a></li>
-            <li><a href="https://daihachi10.github.io/p5js/">P5js</a></li>
-            <li><a href="https://daihachi10.github.io/typing/">Typing</a></li>
-            <li><a href="https://daihachi10.github.io/typing/full">Text Typing</a></li>
-            <li><a href="https://daihachi10.github.io/outmoded/">old</a></li>
-            <li><a href="https://daihachi10.github.io/others/recaptcha/">reCAPTCHA</a></li>
-            <li><a href="https://daihachi10.github.io/beta/">BETA</a></li>
-        </ul>
-    </div>
+    <div id="side_ber"></div>
     <header>
         <button class="title-btn">daihachi Typing</button>
     </header>
@@ -59,5 +47,10 @@
     <script src="https://daihachi10.github.io/typing/assets/script.js"></script>
     <script src="https://daihachi10.github.io/assets/side_bar/script.js"></script>
     <script src="https://daihachi10.github.io/assets/offline.js"></script>
+    <script>
+       $(function() {
+        $("#side_ber").load("https://daihachi10.github.io/assets/side_ber/menu.html");
+      });
+    </script>
 </body>
 </html>

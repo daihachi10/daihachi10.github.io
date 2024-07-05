@@ -12,8 +12,12 @@
 <body>
     <script>
       $(function() {
-        $("#side_ber").load("https://daihachi10.github.io/assets/side_ber/menu.html");
-      });
+    $("#side_ber").load("https://daihachi10.github.io/assets/side_ber/menu.html", function(response, status, xhr) {
+        if (status == "error") {
+            $("#side_ber").text("コンテンツのロードに失敗しました。");
+        }
+    });
+});
     </script>
     <div id="notification">
         <span class="popup-close-btn" onclick="closeNotification()">×</span>

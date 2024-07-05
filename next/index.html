@@ -11,13 +11,7 @@
 </head>
 <body>
     <div id="side_ber"></div>
-    <div id="notification">
-        <span class="popup-close-btn" onclick="closeNotification()">×</span>
-        <p>アプリをインストールしてください</p>
-        <button class="cancel-btn" onclick="closeNotification()">キャンセル</button>
-        <button class="google-btn" onclick="closeNotification()">windows版をインストール</button>
-    </div>
-  
+    <div id="notification"></div>
   <header>
     <button class="title-btn">daihachi</button>
   </header>
@@ -44,10 +38,10 @@
   </footer>
   <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
   <script src="https://daihachi10.github.io/assets/offline.js"></script>
-  <script src="https://daihachi10.github.io/assets/popup.js"></script>
   <script>
        $(function() {
         $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");
+        $("#notification").load("https://daihachi10.github.io/assets/notification.html");
       });
     </script>
 </body>

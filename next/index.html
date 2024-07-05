@@ -10,15 +10,7 @@
   <link href="https://daihachi10.github.io/assets/style.css?v=3" rel="stylesheet">
 </head>
 <body>
-    <script>
-      $(function() {
-    $("#side_ber").load("https://daihachi10.github.io/assets/side_ber/menu.html", function(response, status, xhr) {
-        if (status == "error") {
-            $("#side_ber").text("コンテンツのロードに失敗しました。");
-        }
-    });
-});
-    </script>
+    <div id="side_ber"></div>
     <div id="notification">
         <span class="popup-close-btn" onclick="closeNotification()">×</span>
         <p>アプリをインストールしてください</p>
@@ -53,5 +45,14 @@
   <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
   <script src="https://daihachi10.github.io/assets/offline.js"></script>
   <script src="https://daihachi10.github.io/assets/popup.js"></script>
+  <script>
+      $(function() {
+    $("#side_ber").load("https://daihachi10.github.io/assets/side_ber/menu.html", function(response, status, xhr) {
+        if (status == "error") {
+            $("#side_ber").text("コンテンツのロードに失敗しました。");
+        }
+    });
+});
+    </script>
 </body>
 </html>

@@ -64,7 +64,25 @@
     }
 </style>
 <script>
-          // 1秒後に通知を表示
+
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("pwa");
+
+      
+              // 通知を閉じる関数
+        function closeNotification() {
+            var notification = document.getElementById('notification');
+            notification.style.opacity = '0'; /* フェードアウト開始 */
+            notification.style.transform = 'translateX(100px)'; /* スライドアウト開始 */
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 500); /* フェードアウトの時間と一致させる */
+        }
+      
+} else {
+      console.log("not pwa");
+      
+                // 1秒後に通知を表示
         setTimeout(function() {
             var notification = document.getElementById('notification');
             notification.style.display = 'block';
@@ -74,15 +92,7 @@
             }, 10); // トランジションを有効にするための短い遅延
         }, 1000);
 
-        // 通知を閉じる関数
-        function closeNotification() {
-            var notification = document.getElementById('notification');
-            notification.style.opacity = '0'; /* フェードアウト開始 */
-            notification.style.transform = 'translateX(100px)'; /* スライドアウト開始 */
-            setTimeout(function() {
-                notification.style.display = 'none';
-            }, 500); /* フェードアウトの時間と一致させる */
-        }
+}
 </script>
 <div id="notification">
         <span class="popup-close-btn" onclick="closeNotification()">×</span>

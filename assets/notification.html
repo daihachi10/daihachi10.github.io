@@ -82,23 +82,6 @@
 
 }
 
-
-              if (!navigator.onLine) {
-                console.log("off")
-      
-                // 1秒後に通知を表示
-        setTimeout(function() {
-            var off = document.getElementById('off');
-            off.style.display = 'block';
-            setTimeout(function() {
-                off.style.opacity = '1';
-                off.style.transform = 'translateX(0)';
-            }, 10); // トランジションを有効にするための短い遅延
-        }, 1000);
-                
-            } else {
-                console.log("on")
-            }
                 // 通知を閉じる関数
         function closeNotification() {
             var notification = document.getElementById('notification');
@@ -109,23 +92,10 @@
             }, 500); /* フェードアウトの時間と一致させる */
         }
 
-              function closeoff() {
-            var off = document.getElementById('off');
-            off.style.opacity = '0'; /* フェードアウト開始 */
-            off.style.transform = 'translateX(100px)'; /* スライドアウト開始 */
-            setTimeout(function() {
-                off.style.display = 'none';
-            }, 500); /* フェードアウトの時間と一致させる */
-        }
-</script>
+ </script>
 <div id="notification">
         <span class="popup-close-btn" onclick="closeNotification()">×</span>
         <p>アプリをインストールしてください</p>
         <button class="cancel-btn" onclick="closeNotification()">キャンセル</button>
         <button class="site-open-btn" onclick="location.href='https://daihachi10.github.io/assets/install/'">windows版をインストール</button>
-</div>
-
-<div id="off">
-        <span class="popup-close-btn" onclick="closeoff()">×</span>
-        <p>現在オフラインです。</p>
 </div>

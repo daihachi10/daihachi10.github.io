@@ -42,7 +42,10 @@
         if (window.matchMedia('(display-mode: standalone)').matches) {
   console.log("pwa");
             if (!navigator.onLine) {
+                console.log("オフライン")
                 showNewNotification();
+            } else {
+              console.log("オンライン")
             }
     } else {
       console.log("not pwa");

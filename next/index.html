@@ -39,7 +39,8 @@
   <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
   <script src="https://daihachi10.github.io/assets/offline.js"></script>
   <script>
-        if (window.matchMedia('(display-mode: standalone)').matches) {
+    function test() {
+              if (window.matchMedia('(display-mode: standalone)').matches) {
   console.log("pwa");
             if (!navigator.onLine) {
                 console.log("オフライン")
@@ -50,6 +51,8 @@
     } else {
       console.log("not pwa");
       }
+    }
+
 </script>
   <script>
        $(function() {

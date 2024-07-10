@@ -1,7 +1,9 @@
     if (window.matchMedia('(display-mode: standalone)').matches) {
   console.log("pwa");
-      showNewNotification()
-} else {
+            if (!navigator.onLine) {
+                off();
+            }
+    } else {
       console.log("not pwa");
 
 

@@ -1,4 +1,10 @@
-        if ('serviceWorker' in navigator) {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("pwa");
+} else {
+      console.log("not pwa");
+
+
+if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('https://daihachi10.github.io/beta/offline/service-worker.js')
     .then(registration => {
         console.log('Service Worker registered with scope:', registration.scope);
@@ -29,3 +35,5 @@
         // Listen for changes in network status
         window.addEventListener('online', () => window.location.reload());
         window.addEventListener('offline', () => window.location = 'https://daihachi10.github.io/beta/offline/offline.html');
+
+}

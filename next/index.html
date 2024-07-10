@@ -38,7 +38,16 @@
   </footer>
   <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
   <script src="https://daihachi10.github.io/assets/offline.js"></script>
-  <script src="https://daihachi10.github.io/assets/offopen.js"></script>
+  <script>
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("pwa");
+            if (!navigator.onLine) {
+                showNewNotification();
+            }
+    } else {
+      console.log("not pwa");
+      }
+</script>
   <script>
        $(function() {
         $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");

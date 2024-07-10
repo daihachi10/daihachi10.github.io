@@ -66,19 +66,7 @@
 <script>
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
-  console.log("pwa");
-
-      
-              // 通知を閉じる関数
-        function closeNotification() {
-            var notification = document.getElementById('notification');
-            notification.style.opacity = '0'; /* フェードアウト開始 */
-            notification.style.transform = 'translateX(100px)'; /* スライドアウト開始 */
-            setTimeout(function() {
-                notification.style.display = 'none';
-            }, 500); /* フェードアウトの時間と一致させる */
-        }
-      
+  console.log("pwa");      
 } else {
       console.log("not pwa");
       
@@ -93,10 +81,42 @@
         }, 1000);
 
 }
+
+
+              if (!navigator.onLine) {
+                console.log("off")
+      
+                // 1秒後に通知を表示
+        setTimeout(function() {
+            var notification = document.getElementById('off');
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10); // トランジションを有効にするための短い遅延
+        }, 1000);
+                
+            } else {
+                console.log("on")
+            }
+                // 通知を閉じる関数
+        function closeNotification() {
+            var notification = document.getElementById('notification');
+            notification.style.opacity = '0'; /* フェードアウト開始 */
+            notification.style.transform = 'translateX(100px)'; /* スライドアウト開始 */
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 500); /* フェードアウトの時間と一致させる */
+        }
 </script>
 <div id="notification">
         <span class="popup-close-btn" onclick="closeNotification()">×</span>
         <p>アプリをインストールしてください</p>
         <button class="cancel-btn" onclick="closeNotification()">キャンセル</button>
         <button class="site-open-btn" onclick="location.href='https://daihachi10.github.io/assets/install/'">windows版をインストール</button>
+</div>
+
+<div id="off">
+        <span class="popup-close-btn" onclick="closeNotification()">×</span>
+        <p>現在オフラインです。</p>
 </div>

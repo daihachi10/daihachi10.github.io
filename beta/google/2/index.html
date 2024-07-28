@@ -11,8 +11,8 @@
   <meta name="google-signin-client_id" content="304816629158-30vvphgdf08f16p5p5uqig9391jf7jlr.apps.googleusercontent.com">
 </head>
 <body>
-    <div id="side_ber"></div>
-    <div id="notice"></div>
+  <div id="side_ber"></div>
+  <div id="notice"></div>
   <header>
     <button class="title-btn">daihachi</button>
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -42,32 +42,33 @@
   <script src="https://daihachi10.github.io/assets/offline/script.js"></script>
   <script>
     function test() {
-              if (window.matchMedia('(display-mode: standalone)').matches) {
-  console.log("pwa");
-            if (!navigator.onLine) {
-                console.log("オフライン")
-                showNewNotification();
-            } else {
-              console.log("オンライン")
-            }
-    } else {
-      console.log("not pwa");
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log("pwa");
+        if (!navigator.onLine) {
+          console.log("オフライン");
+          showNewNotification();
+        } else {
+          console.log("オンライン");
+        }
+      } else {
+        console.log("not pwa");
       }
-    }
-
-    function onSignIn(googleUser) {
-      var profile = googleUser.getBasicProfile();
-      console.log('Image URL: ' + profile.getImageUrl());
-      var img = document.createElement('img');
-      img.src = profile.getImageUrl();
-      document.body.appendChild(img);
     }
   </script>
   <script>
-       $(function() {
-        $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");
-        $("#notice").load("https://daihachi10.github.io/assets/notification.html");
-      });
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+  </script>
+  <script>
+    $(function() {
+      $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");
+      $("#notice").load("https://daihachi10.github.io/assets/notification.html");
+    });
   </script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>

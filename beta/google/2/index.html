@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>daihachi web</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <link rel="manifest" href="https://daihachi10.github.io/manifest.json">
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+  <link href="https://daihachi10.github.io/assets/style.css?v=3" rel="stylesheet">
+  <meta name="google-signin-client_id" content="304816629158-30vvphgdf08f16p5p5uqig9391jf7jlr.apps.googleusercontent.com">
+</head>
+<body>
+    <div id="side_ber"></div>
+    <div id="notice"></div>
+  <header>
+    <button class="title-btn">daihachi</button>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  </header>
+  <main>
+    <section id="top">
+      <!-- Content for the top section -->
+    </section>
+
+    <section id="about" class="content">
+      <br>
+      <br>
+      <h2 class="ud">daihachiについて</h2>
+      <p class="ud">daihachiはp5jsを中心にプログラミングをしています<br>
+        ・p5jsとは<br>
+        jsはScratchとはちがって、文字で打つプログラミング言語です。<br>
+        Scratchよりも使える機能が多く、書き方がわかりやすく、<br>
+        Scratchの次にする人が多いそうです。
+      </p>
+    </section>
+  </main>
+  <footer>
+    <!-- Content for the footer section -->
+    <button class="google-btn" onclick="location.href='https://daihachi10.github.io/outmoded/'">昔のサイト</button>
+  </footer>
+  <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
+  <script src="https://daihachi10.github.io/assets/offline/script.js"></script>
+  <script>
+    function test() {
+              if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("pwa");
+            if (!navigator.onLine) {
+                console.log("オフライン")
+                showNewNotification();
+            } else {
+              console.log("オンライン")
+            }
+    } else {
+      console.log("not pwa");
+      }
+    }
+
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('Image URL: ' + profile.getImageUrl());
+      var img = document.createElement('img');
+      img.src = profile.getImageUrl();
+      document.body.appendChild(img);
+    }
+  </script>
+  <script>
+       $(function() {
+        $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");
+        $("#notice").load("https://daihachi10.github.io/assets/notification.html");
+      });
+  </script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+</html>

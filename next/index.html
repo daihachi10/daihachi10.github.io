@@ -8,12 +8,15 @@
   <link rel="manifest" href="https://daihachi10.github.io/manifest.json">
   <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
   <link href="https://daihachi10.github.io/assets/style.css?v=3" rel="stylesheet">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="304816629158-30vvphgdf08f16p5p5uqig9391jf7jlr.apps.googleusercontent.com">
 </head>
 <body>
     <div id="side_ber"></div>
     <div id="notice"></div>
   <header>
     <button class="title-btn">daihachi</button>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </header>
   <main>
     <section id="top">
@@ -53,6 +56,12 @@
       }
     }
 
+
+    function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('Image URL: ' + profile.getImageUrl());
+}
+    
 </script>
   <script>
        $(function() {

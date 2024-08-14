@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>daihachi search</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <link rel="manifest" href="https://daihachi10.github.io/manifest.json">
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+  <link href="https://daihachi10.github.io/assets/style.css?v=3" rel="stylesheet">
+</head>
+<body>
+    <div id="side_ber"></div>
+    <div id="notice"></div>
+  <header>
+    <button class="title-btn">search</button>
+  </header>
+  <main>
+    <div class="search-container">
+        <input type="text" id="search-box" placeholder="検索キーワードを入力">
+        <button onclick="searchGoogle()">検索</button>
+    </div>
+  </main>
+  <script src="https://daihachi10.github.io/assets/side_bar/mkeyopen.js"></script>
+  <script src="https://daihachi10.github.io/assets/offline/script.js"></script>
+  <script>
+    function test() {
+              if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log("pwa");
+            if (!navigator.onLine) {
+                console.log("オフライン")
+                showNewNotification();
+            } else {
+              console.log("オンライン")
+            }
+    } else {
+      console.log("not pwa");
+      }
+    }
+
+
+    function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('Image URL: ' + profile.getImageUrl());
+}
+    
+</script>
+  <script>
+       $(function() {
+        $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");
+        $("#notice").load("https://daihachi10.github.io/assets/notification.html");
+      });
+    </script>
+</body>
+</html>

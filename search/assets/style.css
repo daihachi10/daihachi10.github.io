@@ -7,6 +7,12 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.logo-header img {
+    max-width: 400px; /* 画像の最大幅を指定 */
+    height: auto;
+    margin-bottom: 20px;
+}
+
 .search-container {
     display: flex;
     align-items: center;

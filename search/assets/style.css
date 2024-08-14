@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -18,6 +19,14 @@ body {
     align-items: center;
 }
 
+#search-box {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+}
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -31,14 +40,6 @@ body {
 #search-logo {
     width: 100%;
     height: auto;
-}
-
-#search-box {
-    width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
 }
 
 button {

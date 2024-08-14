@@ -11,6 +11,7 @@ function search() {
     }
 
     window.location.href = url;
+    toggleSearchEngine(); // 検索実行後に検索エンジンを切り替える
 }
 
 // エンターキーで検索を実行する
@@ -28,9 +29,9 @@ window.onload = function() {
 function toggleSearchEngine() {
     if (currentEngine === "google") {
         currentEngine = "youtube";
-        document.getElementById("search-logo").src = "youtube-logo.png";
+        document.getElementById("search-logo").src = "https://daihachi10.github.io/search/img/youtube-logo.png";
     } else {
         currentEngine = "google";
-        document.getElementById("search-logo").src = "google-logo.png";
+        document.getElementById("search-logo").src = "https://daihachi10.github.io/search/img/google-logo.png";
     }
 }

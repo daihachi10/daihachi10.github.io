@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
 
-  </head>
-  <body>
-    <main>
-    </main>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>絵文字生成機</title>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <link rel="manifest" href="https://daihachi10.github.io/manifest.json">
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+</head>
+
+<body>
+  <main>
+    <div id="side_ber"></div>
     <script src="sketch.js"></script>
-  </body>
+  </main>
+  <script>
+    $(function () {
+      $("#side_ber").load("https://daihachi10.github.io/assets/side_bar/menu.html");
+      $("#notice").load("https://daihachi10.github.io/assets/notification.html");
+    });
+  </script>
+</body>
+
 </html>

@@ -25,12 +25,12 @@
 .image {
     cursor: pointer; /* カーソルをポインターに変更 */
     /*transition: transform 0.3s ease;  拡大アニメーションの設定 */
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.6s cubic-bezier(.41,1.48,.7,-0.03);
     margin: 0 auto; /* 画像を中央に配置 */
 }
 /* カーソルを置いたときの拡大スタイル */
 .image:hover {
-    transform: scale(3); /* 1.2倍に拡大 */
+    transform: scale(2); /* 1.2倍に拡大 */
 }
 .image-container {
   overflow: hidden;

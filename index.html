@@ -1,17 +1,140 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>daihachi web</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="assets/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <!-- Content for the top section -->
-  <link href="assets/style.css" rel="stylesheet">
-  <meta http-equiv="refresh" content="1;url=https://daihachi10.github.io/test">
+    <meta charset="UTF-8">
+    <title>daihachi official website</title>
+    <meta name="description" content="daihachiの公式サイト">
+    <meta name="viewport" content="width=device-width">
+    <script src="./js/toggle-menu.js"></script>
+    <link href="./css/common.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
 </head>
-  <body>
-    <script src="https://daihachi10.github.io/assets/offline.js"></script>
-  </body>
+
+<body>
+
+    <!-- headerここから -->
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="./index.html">
+                <p>daihachi</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <li><a href="./concept.html">INSTALL APP</a></li>
+                        <li><a href="./menu.html">MY PROGRAM</a></li>
+                        <li><a href="./shop.html">SHOP</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA"
+                                target="_blank">YOUTUBE</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="first-view">
+            <div class="first-view-text">
+                <h1>Various<br>Programming.</h1>
+                <p>様々なプログラミング。</p>
+            </div>
+        </div>
+        <div class="recommended">
+            <h2>MY SKETCH</h2>
+            <ul class="item-list">
+                <!-- 1つここから -->
+                <li>
+                    <a href="https://editor.p5js.org/daihachi10sub/sketches/RjiUk-K13" target="_blank">
+                        <img src="./images/index/img-item01-02.png" alt="typing">
+                        <dl>
+                            <dt>タイピング</dt>
+                            <dd>１文字づつの入力するスピードがどんどん早くなるタイピングです。入力した数によってランクが付きます。</dd>
+                        </dl>
+                    </a>
+                </li>
+                <!-- 1つここまで -->
+                <li>
+                    <a href="https://editor.p5js.org/daihachi10sub/sketches/AlGLqAysQ" target="_blank">
+                        <img src="./images/index/img-item02-02.png" alt="パスワード生成機">
+                        <dl>
+                            <dt>パスワード生成機</dt>
+                            <dd>大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。</dd>
+                        </dl>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://editor.p5js.org/daihachi10sub/sketches/FtExv5VZl" target="_blank">
+                        <img src="./images/index/img-item03-02.png" alt="ボール拾いゲーム">
+                        <dl>
+                            <dt>ボール拾いゲーム</dt>
+                            <dd>ボール拾いゲーム。スコアが増えるごとにボールのスピードが早くなる。ラッキーボールやアンラッキーボールも。</dd>
+                        </dl>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://editor.p5js.org/daihachi10sub/sketches/c6RZtr84M" target="_blank">
+                        <img src="./images/index/img-item04-02.png" alt="QRコード&reg;生成">
+                        <dl>
+                            <dt>QRコード生成</dt>
+                            <dd>QRコード&reg;生成を生成します。デフォルトではこのサイトのURLが指定されています。QRコード&reg;を入力することもできます。</dd>
+                        </dl>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://editor.p5js.org/daihachi10sub/sketches/6q085f6ij" target="_blank">
+                        <img src="./images/index/img-item05-02.png" alt="絵文字生成機">
+                        <dl>
+                            <dt>絵文字生成機</dt>
+                            <dd>絵文字生成機です。ランダムで100行絵文字を生成します。友達にLINE&reg;を送信するときに使えるかもしれませんね。</dd>
+                        </dl>
+                    </a>
+                </li>
+            </ul>
+            <div class="link-button-area">
+                <a class="link-button" href="./menu.html">MORE</a>
+            </div>
+        </div>
+        <div class="leadbox">
+            <div class="lead">
+                <h2>About daihachi</h2>
+                <p>daihachiはp5.jsを中心に様々なプログラミング言語でプログラミングをしています。<br></p>
+                <div class="link-button-area">
+                    <a class="link-button" href="./concept.html">INSTALL APP</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer">
+        <nav class="site-menu">
+            <ul>
+                <li><a href="./concept.html">CONCEPT</a></li>
+                <li><a href="./menu.html">MENU</a></li>
+                <li><a href="./shop.html">SHOP</a></li>
+                <li><a href="./access.html">ACCESS</a></li>
+            </ul>
+        </nav>
+        <a class="footer-logo" href="./index.html">
+            <!-- <img src="./images/common/logo-footer.png" alt="KISSA"> -->
+            <p>daihachi</p>
+        </a>
+        <p class="copyright"><small>&copy;daihachi</small></p>
+    </footer>
+    <!-- footerここまで -->
+
+</body>
+
 </html>

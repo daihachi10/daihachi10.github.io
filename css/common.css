@@ -42,6 +42,7 @@ img {
     justify-content: space-between;
     align-items: center;
     color: #1571c2;
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .toggle-menu-button {
@@ -55,6 +56,7 @@ img {
     display: block;
     width: 170px;
 }
+
 
 .site-menu ul {
     display: flex;
@@ -82,7 +84,7 @@ img {
 
 .footer-logo {
     font-family: "Caveat", cursive;
-    font-size: 50px;
+    font-size: 90px;
     font-weight: bold;
     display: block;
     margin-top: 90px;
@@ -115,6 +117,7 @@ img {
         height: 50px;
         z-index: 10;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+
     }
 
     .header-inner {
@@ -135,7 +138,7 @@ img {
         left: 0;
         right: 0;
         color: #ffffff;
-        background-color: rgba(21, 113, 194, 0.7);
+        background-color: rgba(21, 113, 194, 0.9);
         padding-top: 30px;
         padding-bottom: 50px;
         display: none;
@@ -168,9 +171,7 @@ img {
         margin-top: 60px;
     }
 
-    .footer-tel {
-        font-size: 20px;
-    }
+
 
     .copyright {
         margin-top: 50px;

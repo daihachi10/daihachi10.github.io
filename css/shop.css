@@ -230,9 +230,12 @@ canvas {
     .start,
     .settings {
         width: 100%;
+        color: #000000;
     }
 
     .footer {
         margin-top: 0;
     }
+
+    
 }

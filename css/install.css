@@ -1,0 +1,153 @@
+@charset "utf-8";
+
+.title {
+    height: 310px;
+    /* background-image: url(../images/concept/bg-main.jpg); */
+    background-color: #1571c2;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 10px #4b2c14;
+}
+
+.title h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.title p {
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.feature {
+    display: flex;
+    justify-content: space-between;
+    width: 930px;
+    max-width: 90%;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: flex-start;
+}
+
+.feature img {
+    width: 360px;
+}
+
+.feature-text {
+    max-width: 500px;
+    margin-right: 40px;
+}
+
+.reverse {
+    flex-direction: row-reverse;
+}
+
+.reverse .feature-text {
+    margin-left: 40px;
+    margin-right: 0;
+}
+
+.feature-text h2 {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.feature-text h2::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background-color: #000000;
+    margin-top: 20px;
+}
+
+.feature-text li {
+    list-style-type: decimal;
+    font-size: 15px;
+    line-height: 28px;
+    margin-top: 25px;
+}
+
+.movie {
+    width: 930px;
+    max-width: 90%;
+    background-color: #f8f8f8;
+    padding: 50px 60px;
+    margin-top: 55px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie h2 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.movie h2::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background-color: #000000;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie iframe {
+    display: block;
+    width: 100%;
+    height: 456px;
+    margin-top: 30px;
+}
+
+.movie p {
+    font-size: 15px;
+    line-height: 28px;
+    margin-top: 20px;
+}
+
+.footer {
+    margin-top: 100px;
+}
+
+@media (max-width:800px) {
+    .feature {
+        display: block;
+        width: 500px;
+        margin-top: 45px;
+    }
+
+    .feature-text {
+        margin-right: 0;
+    }
+
+    .reverse .feature-text {
+        margin-left: 0;
+    }
+
+    .feature img {
+        width: 100%;
+        height: auto;
+        margin-top: 25px;
+    }
+
+    .movie {
+        width: 500px;
+        padding: 30px 25px;
+    }
+
+    .movie iframe {
+        height: 240px;
+    }
+}

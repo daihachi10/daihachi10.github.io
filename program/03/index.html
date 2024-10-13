@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PROGRAM | daihachi official website</title>
+    <meta name="description" content="p5js typingのプレイができるサイトです。">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <script src="../../js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet">
+    <link href="../../css/shop.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href=".//style.css">
+</head>
+
+<body>
+
+    <!-- headerここから -->
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="../../index.html">
+                <p>daihachi</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <li><a href="../../install.html">INSTALL APP</a></li>
+                        <li><a href="../../program.html">MY PROGRAM</a></li>
+                        <!-- <li><a href="./shop.html">SHOP</a></li> -->
+                        <li><a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA"
+                                target="_blank">YOUTUBE</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="title">
+            <h1>BALL PICKING GAME</h1>
+            <p>ボール拾いゲーム</p>
+        </div>
+        <div class="shop-contents">
+            <div class="shop-item">
+                <h2>BALL PICKING GAME</h2>
+                <div class="item-area">
+                    <div id="p5-canvas-container"></div>
+                    <div class="about-item">
+                        <p class="item-text">
+                            ボール拾いゲーム。スコアが増えるごとにボールのスピードが早くなる。ラッキーボールやアンラッキーボールも。
+                            <br>操作方法を変更ボタンでキーボード/マウス・タップ操作を切り替えます。
+                        </p>
+
+                        <p class="item-text">
+                            <br>STARTボタンを押すと開始します。
+                        </p>
+                        <button class="settings" onclick="btnClicked()">操作方法を変更</button>
+                        <button class="start" onclick="programStart()">START/RESET</button>
+                        <a href="https://editor.p5js.org/daihachi10sub/sketches/FtExv5VZl" target="_blank">VIEW
+                            CODE</a>
+                    </div>
+                </div>
+                <div class="item-group recommended">
+                    <h2>RECOMMENDED</h2>
+                    <ul class="item-list">
+                        <li>
+                            <a href="../01/index.html">
+                                <img src="../../images/index/img-item01-02.png" alt="パスワード生成機">
+                                <dl>
+                                    <dt>タイピング</dt>
+                                    <dd>１文字づつの入力するスピードがどんどん早くなるタイピングです。入力した数によってランクが付きます。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../04/index.html">
+                                <img src="../../images/index/img-item05-02.png" alt="絵文字生成機">
+                                <dl>
+                                    <dt>絵文字生成機</dt>
+                                    <dd>絵文字生成機です。ランダムで100行絵文字を生成します。友達にLINE&reg;を送信するときに使えるかもしれませんね。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../02/index.html">
+                                <img src="../../images/index/img-item02-02.png" alt="パスワード生成機">
+                                <dl>
+                                    <dt>パスワード生成機</dt>
+                                    <dd>大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。</dd>
+                                </dl>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer">
+        <nav class="site-menu">
+            <ul>
+                <li><a href="../../install.html">INSTALL APP</a></li>
+                <li><a href="../../program.html">MY PROGRAM</a></li>
+                <!-- <li><a href="./shop.html">SHOP</a></li> -->
+                <li><a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA" target="_blank">YOUTUBE</a></li>
+            </ul>
+        </nav>
+        <a class="footer-logo" href="../../index.html">
+            <p>daihachi</p>
+        </a>
+        <p class="copyright"><small>&copy;daihachi</small></p>
+    </footer>
+    <!-- footerここまで -->
+    <script src=".//js/sketch.js"></script>
+</body>
+
+</html>

@@ -15,7 +15,7 @@ $(function () {
 
             setTimeout(function () {
                 window.location = url;  // 0.7秒後に取得したURLに遷移
-            }, 600);
+            }, 700);
         }
         return false;
     });

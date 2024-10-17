@@ -10,5 +10,3 @@ window.addEventListener('load', function () {
         }
     });
 });
-
-document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });

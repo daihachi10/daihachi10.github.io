@@ -24,6 +24,7 @@ function programStart() {
 }
 
 function draw() {
+  background("#fff")
   frameRate(fps);
   timer += speed;
   x = cos(timer * 200) * size + 200;
@@ -48,4 +49,20 @@ function draw() {
 function reset() {
   background("#fff");
   // lines("white");
+}
+
+function speedUp(){
+  if (fps == 60) {
+    fps = 10
+  } else {
+    fps += 5;
+  }
+}
+
+function katatiUp() {
+  speed += 0.001
+}
+
+function katatiDown() {
+  speed -= 0.001
 }

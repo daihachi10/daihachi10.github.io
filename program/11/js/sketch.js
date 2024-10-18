@@ -7,10 +7,14 @@ let speed = 0.001; //　デフォルトは0.001 ここいじる
 let size = 180; //　円の半径デフォルトは200
 
 function setup() {
+  let fpsSlider = document.getElementById("fpsSlider");
   let canvasContainer = document.getElementById("p5-canvas-container");
   let canvas = createCanvas(400, 400);
   canvas.parent(canvasContainer); // コンテナにキャンバスを配置
   background("#fff");
+  // slider = createSlider(1, 255, fps, 5);
+  // slider.position(10, 10);
+  // slider.size(200);
   noLoop();
 }
 
@@ -21,6 +25,7 @@ function programStart() {
 
 function draw() {
   // lines("#000");
+  fpsSlider = document.getElementById("fpsSlider");
   frameRate(fps);
   fps = fpsSlider.value;
   timer += speed;
@@ -29,10 +34,17 @@ function draw() {
   ellipseSize = 20;
   fill("white");
   stroke("black");
+  // textSize(20);
+  // text("fps:" + fps, 10, 50);
+  // strokeWeight(1);
   noStroke();
   fill("#e0e0e0");
   ellipse(200, 200, 20);
   ellipse(x, y, ellipseSize);
+  // line(200, 200, 200, y);
+  // line(200, 200, x, 200);
+  // line(200, y, x, y);
+  // line(x, 200, x, y);
   colorMode(HSB);
   stroke((2 * frameCount) % 360, 40, 100);
   colorMode(RGB);

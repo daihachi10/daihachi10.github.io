@@ -8,7 +8,7 @@ let size = 180; //　円の半径デフォルトは200
 function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let fpsSlider = document.getElementById("fpsSlider");
-    let kakuSlider = document.getElementById("speedSlider");
+    // let kakuSlider = document.getElementById("speedSlider");
     let canvas = createCanvas(400, 400);
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
     background("#fff");
@@ -27,7 +27,7 @@ function draw() {
     // lines("#000");
     // let fps = slider.value();
     let fps = fpsSlider.value
-    let kaku = kakuSlider.value
+    // let kaku = kakuSlider.value
     frameRate(fps);
     timer += kaku;
     x = cos(timer * 200) * size + 200;

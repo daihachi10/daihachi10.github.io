@@ -154,7 +154,8 @@ canvas {
 
 .about-item a,
 .about-item .start,
-.about-item .settings {
+.about-item .settings,
+.about-item .gui{
     background-color: #ff5283;
     display: inline-block;
     min-width: 180px;

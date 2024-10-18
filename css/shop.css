@@ -155,7 +155,7 @@ canvas {
 .about-item a,
 .about-item .start,
 .about-item .settings,
-.about-item .gui{
+.about-item .gui {
     background-color: #ff5283;
     display: inline-block;
     min-width: 180px;
@@ -174,7 +174,7 @@ canvas {
 .about-item a:hover,
 .about-item .start:hover,
 .about-item .settings:hover,
-.about-item .gui:hover{
+.about-item .gui:hover {
     background-color: #bf1948;
 }
 
@@ -240,12 +240,21 @@ canvas {
 
     .about-item a,
     .about-item .start,
-    .about-item .settings
-    .about-item .gui{
+    .about-item .settings {
         width: 100%;
         color: #000000;
+    }
+
+    .about-item #speedup {
+        width: 100%;
+    }
+
+    .about-item #nextpattern,
+    .about-item #backpattern {
+        width: 49%;
     }
 
     .footer {
         margin-top: 0;
     }
+}

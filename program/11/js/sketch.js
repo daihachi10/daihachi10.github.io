@@ -50,7 +50,7 @@ function reset() {
   // lines("white");
 }
 
-function speedUp(){
+function speedUp() {
   if (fps == 60) {
     fps = 10
   } else {
@@ -63,5 +63,7 @@ function katatiUp() {
 }
 
 function katatiDown() {
+  // if (speed > 0) {
   speed -= 0.001
+  // }
 }

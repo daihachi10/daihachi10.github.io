@@ -25,7 +25,6 @@ function programStart() {
 
 function draw() {
   frameRate(fps);
-  fps = fpsSlider.value;
   timer += speed;
   x = cos(timer * 200) * size + 200;
   y = sin(timer * 200) * size + 200;

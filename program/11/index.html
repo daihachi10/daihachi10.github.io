@@ -62,12 +62,33 @@
                         <p class="item-text">
                             <br>STARTボタンを押すと開始します。
                         </p>
-                        <button class="gui" id="speedup" onclick="speedUp()">SPEEDUP</button>
-                        <button class="gui" id="backpattern" onclick="katatiDown()">BACK PATTERN</button>
-                        <button class="gui" id="nextpattern" onclick="katatiUp()">NEXT PATTERN</button>
                         <button class="start" onclick="programStart()">START/RESET</button>
+                        <!-- <button class="gui" id="speedup" onclick="speedUp()">SPEEDUP</button> -->
+                        <!-- <button class="gui" id="backpattern" onclick="katatiDown()">BACK PATTERN</button> -->
+                        <!-- <button class="gui" id="nextpattern" onclick="katatiUp()">NEXT PATTERN</button> -->
+                        <!-- <button class="gui" id="backgroundreset" onclick="backgroundReset()">BACKGROUND</button> -->
+
+
+                        <!-- 折り畳み展開ポインタ -->
+                        <div
+                            onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+                            <a style="cursor:pointer;user-select: none;">▼ SETTINGS</a>
+                        </div>
+                        <!--// 折り畳み展開ポインタ -->
+
+                        <!-- 折り畳まれ部分 -->
+                        <div id="open" style="display:none;clear:both;">
+                            <button class="gui" id="speedup" onclick="speedUp()">SPEEDUP</button>
+                            <button class="gui" id="backpattern" onclick="katatiDown()">BACK PATTERN</button>
+                            <button class="gui" id="nextpattern" onclick="katatiUp()">NEXT PATTERN</button>
+                            <button class="gui" id="backgroundreset" onclick="backgroundReset()">BACKGROUND</button>
+
+                        </div>
+                        <!--// 折り畳まれ部分 -->
+
                         <a href="https://editor.p5js.org/daihachi10sub/sketches/Jx8OKPYs1" target="_blank">VIEW
                             CODE</a>
+
                     </div>
                 </div>
                 <div class="item-group recommended">

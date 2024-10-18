@@ -156,7 +156,6 @@ canvas {
 .about-item .start,
 .about-item .settings,
 .about-item .gui {
-    background-color: #ff5283;
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
@@ -170,12 +169,40 @@ canvas {
     cursor: pointer;
 }
 
+.about-item a,
+.about-item .start,
+.about-item .settings {
+    background-color: #ff5283;
+}
+
+.open {
+    background-color: #ededed;
+    user-select: none;
+    display: inline-block;
+    min-width: 180px;
+    line-height: 48px;
+    border-radius: 24px;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 35px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.about-item .gui {
+    background-color: #ff5283;
+}
 
 .about-item a:hover,
 .about-item .start:hover,
-.about-item .settings:hover,
-.about-item .gui:hover {
+.about-item .settings:hover {
     background-color: #bf1948;
+}
+
+.about-item .gui:hover {
+    background-color: rgba(255, 82, 131, 0.6);
 }
 
 .recommended {
@@ -185,6 +212,7 @@ canvas {
 .footer {
     margin-top: 100px;
 }
+
 
 
 @media (max-width:800px) {
@@ -240,7 +268,8 @@ canvas {
 
     .about-item a,
     .about-item .start,
-    .about-item .settings {
+    .about-item .settings,
+    .about-item #backgroundreset {
         width: 100%;
         color: #000000;
     }
@@ -251,7 +280,15 @@ canvas {
 
     .about-item #nextpattern,
     .about-item #backpattern {
-        width: 49%;
+        width: 46.2%;
+    }
+
+    .about-item #nextpattern {
+        margin-left: 15px;
+    }
+
+    .about-item #backpattern {
+        margin-right: 15px;
     }
 
     .footer {

@@ -5,6 +5,7 @@ let ellipseSize;
 let fps = 10; //defo10
 let speed = 0.001; //　デフォルトは0.001 ここいじる
 let size = 180; //　円の半径デフォルトは200
+let backgroundResetCount = false;
 
 function setup() {
   let fpsSlider = document.getElementById("fpsSlider");
@@ -24,6 +25,10 @@ function programStart() {
 }
 
 function draw() {
+  if (backgroundResetCount == true) {
+    background("#fff");
+  }
+
   frameRate(fps);
   timer += speed;
   x = cos(timer * 200) * size + 200;
@@ -66,4 +71,12 @@ function katatiDown() {
   // if (speed > 0) {
   speed -= 0.001
   // }
+}
+
+function backgroundReset() {
+  if (backgroundResetCount == true) {
+    backgroundResetCount = false;
+  } else {
+    backgroundResetCount = true;
+  }
 }

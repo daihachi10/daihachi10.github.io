@@ -1,1 +1,2 @@
-z
+> [!NOTE]  
+> daihachi official website

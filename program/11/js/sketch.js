@@ -7,6 +7,8 @@ let speed = 0.001; //　デフォルトは0.001 ここいじる
 let size = 180; //　円の半径デフォルトは200
 function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
+    let fpsSlider = document.getElementById("fpsSlider");
+    let speedSlider = document.getElementById("speedSlider");
     let canvas = createCanvas(400, 400);
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
     background("#fff");
@@ -24,6 +26,8 @@ function programStart() {
 function draw() {
     // lines("#000");
     // let fps = slider.value();
+    fps = fpsSlider.value
+    speed = speedSlider.value
     frameRate(fps);
     timer += speed;
     x = cos(timer * 200) * size + 200;

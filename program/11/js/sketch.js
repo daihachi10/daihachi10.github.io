@@ -26,8 +26,8 @@ function programStart() {
 function draw() {
     // lines("#000");
     // let fps = slider.value();
-    fps = fpsSlider.value
-    speed = speedSlider.value
+    let fps = fpsSlider.value
+    let speed = speedSlider.value
     frameRate(fps);
     timer += speed;
     x = cos(timer * 200) * size + 200;

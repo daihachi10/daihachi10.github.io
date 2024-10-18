@@ -3,12 +3,12 @@ let x;
 let y;
 let ellipseSize;
 let fps = 10; //defo10
-let speed = 0.001; //　デフォルトは0.001 ここいじる
+let kaku = 0.001; //　デフォルトは0.001 ここいじる
 let size = 180; //　円の半径デフォルトは200
 function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let fpsSlider = document.getElementById("fpsSlider");
-    let speedSlider = document.getElementById("speedSlider");
+    let kakuSlider = document.getElementById("speedSlider");
     let canvas = createCanvas(400, 400);
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
     background("#fff");
@@ -27,9 +27,9 @@ function draw() {
     // lines("#000");
     // let fps = slider.value();
     let fps = fpsSlider.value
-    let speed = speedSlider.value
+    let kaku = kakuSlider.value
     frameRate(fps);
-    timer += speed;
+    timer += kaku;
     x = cos(timer * 200) * size + 200;
     y = sin(timer * 200) * size + 200;
     ellipseSize = 20;

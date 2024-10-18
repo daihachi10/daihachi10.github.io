@@ -24,7 +24,6 @@ function programStart() {
 }
 
 function draw() {
-  background("#fff")
   frameRate(fps);
   timer += speed;
   x = cos(timer * 200) * size + 200;

@@ -239,8 +239,9 @@ canvas {
     }
 
     .about-item a,
-    .start,
-    .settings {
+    .about-item .start,
+    .about-item .settings
+    .about-item .gui{
         width: 100%;
         color: #000000;
     }

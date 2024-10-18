@@ -171,17 +171,12 @@ canvas {
 }
 
 
-
+.about-item a:hover,
 .about-item .start:hover,
-.about-item .settings:hover {
+.about-item .settings:hover,
+.about-item .gui:hover{
     background-color: #bf1948;
 }
-
-.about-item a:hover {
-    background-color: #bf1948;
-}
-
-
 
 .recommended {
     margin-top: 60px;

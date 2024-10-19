@@ -269,7 +269,8 @@ canvas {
     .about-item a,
     .about-item .start,
     .about-item .settings,
-    .about-item #backgroundreset {
+    .about-item #backgroundreset,
+    .about-item #varreset {
         width: 100%;
         color: #000000;
     }

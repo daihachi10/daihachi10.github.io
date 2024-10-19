@@ -6,8 +6,8 @@ let fps = 10; // デフォルト10
 let speed = 0.001; // デフォルトは0.001
 let size = 180; // 円の半径デフォルトは200
 let backgroundResetCount = false; // デフォルトはfalse
-let autoStart = false
-let fillColor = NaN
+let autoStart = false;
+let fillColor = NaN;
 
 let lastFps = fps;
 let lastSpeed = speed;
@@ -18,22 +18,23 @@ function setup() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  fps = parseInt(urlParams.get('fps')) || fps;
-  speed = parseFloat(urlParams.get('katati')) || speed;
+  fps = parseInt(urlParams.get('fps')) || getSavedValue('fps', fps);
+  speed = parseFloat(urlParams.get('katati')) || getSavedValue('speed', speed);
   fillColor = urlParams.get('color') || fillColor;
 
   // backgroundResetCountをtrue/falseで取得
-  backgroundResetCount = urlParams.get('background') === 'true' ? true : false;
-  autoStart = urlParams.get('autostart') === 'true' ? true : false;
+  backgroundResetCount = urlParams.get('background') === 'true' ? true : getSavedValue('backgroundResetCount', backgroundResetCount);
+  autoStart = urlParams.get('autostart') === 'true' ? true : getSavedValue('autoStart', autoStart);
 
   let canvasContainer = document.getElementById("p5-canvas-container");
   let canvas = createCanvas(400, 400);
   canvas.parent(canvasContainer); // コンテナにキャンバスを配置
   background("#fff");
-  if (autoStart == false) {
+
+  if (!autoStart) {
     noLoop();
   }
-  updateURLParams()
+  updateURLParams();
 }
 
 function programStart() {
@@ -44,7 +45,7 @@ function programStart() {
 function draw() {
   frameRate(fps);
 
-  if (backgroundResetCount == true) {
+  if (backgroundResetCount) {
     background("#fff");
   }
 
@@ -68,9 +69,12 @@ function draw() {
   line(200, y, x, 200);
   fill("black");
 
-  // fps, speed, backgroundResetCountが変更されたときにURLを更新
+  // fps, speed, backgroundResetCountが変更されたときにURLとlocalStorageを更新
   if (fps !== lastFps || speed !== lastSpeed || backgroundResetCount !== lastBackgroundResetCount) {
     updateURLParams();
+    saveValue('fps', fps);
+    saveValue('speed', speed);
+    saveValue('backgroundResetCount', backgroundResetCount);
     lastFps = fps;
     lastSpeed = speed;
     lastBackgroundResetCount = backgroundResetCount; // 更新後のリセット状態を保持
@@ -84,9 +88,8 @@ function updateURLParams() {
   // fps, speed, backgroundResetCountのパラメーターを更新
   urlParams.set('fps', fps);
   urlParams.set('katati', speed);
-  urlParams.set('background', backgroundResetCount); // リセット状態をtrue/falseで追加
+  urlParams.set('background', backgroundResetCount);
   urlParams.set('autostart', autoStart);
-  // urlParams.set('color', fillColor);
 
   // URLを更新（履歴は変更しない）
   const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
@@ -107,12 +110,33 @@ function speedUp() {
 
 function katatiUp() {
   speed += 0.001;
+  background("#fff");
 }
 
 function katatiDown() {
   speed -= 0.001;
+  background("#fff");
 }
 
 function backgroundReset() {
   backgroundResetCount = !backgroundResetCount; // リセット状態をトグル
+}
+
+// localStorageに値を保存する関数
+function saveValue(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+// localStorageから値を取得する関数
+function getSavedValue(key, defaultValue) {
+  const savedValue = localStorage.getItem(key);
+  return savedValue ? JSON.parse(savedValue) : defaultValue;
+}
+
+function varReset() {
+  background("#fff");
+  backgroundResetCount = false; // デフォルトはfalse
+  fps = 10; // デフォルト10
+  speed = 0.001; // デフォルトは0.001
+  autoStart = false;
 }

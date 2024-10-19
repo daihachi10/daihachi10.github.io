@@ -7,13 +7,13 @@ let ng = 0;
 let x = 0;
 let speed = 0.25;
 let kankaku = 0;
-// let keySound1;
+let keySound1;
 let game = true;
 let hyoukakekka;
 let hyoukaSpeed = 23
 
 function preload() {
-    // keySound1 = loadSound('https://daihachi10.github.io/typing/assets/sound_assets/typing_sound.mp3');
+    keySound1 = loadSound('./sound/key.mp3');
 }
 
 function setup() {
@@ -41,7 +41,7 @@ function draw() {
 
 function runs() {
     if (keyIsDown(keycode[randoms])) {
-        // keySound1.play();
+        keySound1.play();
         ok++;
         x = width / 2 - 150;
         speed = speed + 0.25;
@@ -152,7 +152,7 @@ function varReset() {
     x = width / 2 - 150;
     speed = 0.25;
     kankaku = 0;
-    // keySound1;
+    keySound1;
     game = true;
     hyoukakekka;
 }

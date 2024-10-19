@@ -7,6 +7,7 @@ let speed = 0.001; // デフォルトは0.001
 let size = 180; // 円の半径デフォルトは200
 let backgroundResetCount = false; // デフォルトはfalse
 let autoStart = false
+let fillColor = NaN
 
 let lastFps = fps;
 let lastSpeed = speed;
@@ -19,6 +20,7 @@ function setup() {
 
   fps = parseInt(urlParams.get('fps')) || fps;
   speed = parseFloat(urlParams.get('katati')) || speed;
+  fillColor = urlParams.get('color') || fillColor;
 
   // backgroundResetCountをtrue/falseで取得
   backgroundResetCount = urlParams.get('background') === 'true' ? true : false;
@@ -27,10 +29,11 @@ function setup() {
   let canvasContainer = document.getElementById("p5-canvas-container");
   let canvas = createCanvas(400, 400);
   canvas.parent(canvasContainer); // コンテナにキャンバスを配置
-  background("#fff"); // 固定の背景色
+  background("#fff");
   if (autoStart == false) {
     noLoop();
   }
+  updateURLParams()
 }
 
 function programStart() {
@@ -42,7 +45,7 @@ function draw() {
   frameRate(fps);
 
   if (backgroundResetCount == true) {
-    background("#fff"); // 固定の背景色
+    background("#fff");
   }
 
   timer += speed;
@@ -55,9 +58,11 @@ function draw() {
   fill("#e0e0e0");
   ellipse(200, 200, 20);
   ellipse(x, y, ellipseSize);
+
   colorMode(HSB);
   stroke((2 * frameCount) % 360, 40, 100);
   colorMode(RGB);
+
   strokeWeight(5);
   fill("red");
   line(200, y, x, 200);
@@ -79,7 +84,8 @@ function updateURLParams() {
   // fps, speed, backgroundResetCountのパラメーターを更新
   urlParams.set('fps', fps);
   urlParams.set('katati', speed);
-  urlParams.set('reset', backgroundResetCount); // リセット状態をtrue/falseで追加
+  urlParams.set('background', backgroundResetCount); // リセット状態をtrue/falseで追加
+  urlParams.set('color', fillColor);
 
   // URLを更新（履歴は変更しない）
   const newUrl = `${window.location.pathname}?${urlParams.toString()}`;

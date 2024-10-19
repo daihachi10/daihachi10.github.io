@@ -85,7 +85,7 @@ function updateURLParams() {
   urlParams.set('fps', fps);
   urlParams.set('katati', speed);
   urlParams.set('background', backgroundResetCount); // リセット状態をtrue/falseで追加
-  urlParams.set('color', fillColor);
+  // urlParams.set('color', fillColor);
 
   // URLを更新（履歴は変更しない）
   const newUrl = `${window.location.pathname}?${urlParams.toString()}`;

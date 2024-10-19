@@ -2,21 +2,35 @@ let timer = 0;
 let x;
 let y;
 let ellipseSize;
-let fps = 10; //defo10
-let speed = 0.001; //　デフォルトは0.001 ここいじる
-let size = 180; //　円の半径デフォルトは200
-let backgroundResetCount = false;
+let fps = 10; // デフォルト10
+let speed = 0.001; // デフォルトは0.001
+let size = 180; // 円の半径デフォルトは200
+let backgroundResetCount = false; // デフォルトはfalse
+let autoStart = false
+
+let lastFps = fps;
+let lastSpeed = speed;
+let lastBackgroundResetCount = backgroundResetCount; // 前回の背景リセット状態を保持
 
 function setup() {
-  let fpsSlider = document.getElementById("fpsSlider");
+  // URLのパラメーターを取得して初期値に適用
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  fps = parseInt(urlParams.get('fps')) || fps;
+  speed = parseFloat(urlParams.get('katati')) || speed;
+
+  // backgroundResetCountをtrue/falseで取得
+  backgroundResetCount = urlParams.get('reset') === 'true' ? true : false;
+  autoStart = urlParams.get('autostart') === 'true' ? true : false;
+
   let canvasContainer = document.getElementById("p5-canvas-container");
   let canvas = createCanvas(400, 400);
   canvas.parent(canvasContainer); // コンテナにキャンバスを配置
-  background("#fff");
-  // slider = createSlider(1, 255, fps, 5);
-  // slider.position(10, 10);
-  // slider.size(200);
-  noLoop();
+  background("#fff"); // 固定の背景色
+  if (autoStart == false) {
+    noLoop();
+  }
 }
 
 function programStart() {
@@ -25,11 +39,12 @@ function programStart() {
 }
 
 function draw() {
+  frameRate(fps);
+
   if (backgroundResetCount == true) {
-    background("#fff");
+    background("#fff"); // 固定の背景色
   }
 
-  frameRate(fps);
   timer += speed;
   x = cos(timer * 200) * size + 200;
   y = sin(timer * 200) * size + 200;
@@ -47,36 +62,50 @@ function draw() {
   fill("red");
   line(200, y, x, 200);
   fill("black");
-  // noLoop();
+
+  // fps, speed, backgroundResetCountが変更されたときにURLを更新
+  if (fps !== lastFps || speed !== lastSpeed || backgroundResetCount !== lastBackgroundResetCount) {
+    updateURLParams();
+    lastFps = fps;
+    lastSpeed = speed;
+    lastBackgroundResetCount = backgroundResetCount; // 更新後のリセット状態を保持
+  }
+}
+
+function updateURLParams() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  // fps, speed, backgroundResetCountのパラメーターを更新
+  urlParams.set('fps', fps);
+  urlParams.set('katati', speed);
+  urlParams.set('reset', backgroundResetCount); // リセット状態をtrue/falseで追加
+
+  // URLを更新（履歴は変更しない）
+  const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+  history.replaceState(null, '', newUrl);
 }
 
 function reset() {
   background("#fff");
-  // lines("white");
 }
 
 function speedUp() {
   if (fps == 60) {
-    fps = 10
+    fps = 10;
   } else {
     fps += 5;
   }
 }
 
 function katatiUp() {
-  speed += 0.001
+  speed += 0.001;
 }
 
 function katatiDown() {
-  // if (speed > 0) {
-  speed -= 0.001
-  // }
+  speed -= 0.001;
 }
 
 function backgroundReset() {
-  if (backgroundResetCount == true) {
-    backgroundResetCount = false;
-  } else {
-    backgroundResetCount = true;
-  }
+  backgroundResetCount = !backgroundResetCount; // リセット状態をトグル
 }

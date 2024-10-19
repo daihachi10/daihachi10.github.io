@@ -18,13 +18,13 @@ function setup() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  fps = parseInt(urlParams.get('fps')) || getSavedValue('fps', fps);
-  speed = parseFloat(urlParams.get('katati')) || getSavedValue('speed', speed);
-  fillColor = urlParams.get('color') || fillColor;
+  fps = parseInt(urlParams.get('f')) || getSavedValue('fps', fps);
+  speed = parseFloat(urlParams.get('k')) || getSavedValue('speed', speed);
+  // fillColor = urlParams.get('color') || fillColor;
 
   // backgroundResetCountをtrue/falseで取得
-  backgroundResetCount = urlParams.get('background') === 'true' ? true : getSavedValue('backgroundResetCount', backgroundResetCount);
-  autoStart = urlParams.get('autostart') === 'true' ? true : getSavedValue('autoStart', autoStart);
+  backgroundResetCount = urlParams.get('b') === 'true' ? true : getSavedValue('backgroundResetCount', backgroundResetCount);
+  autoStart = urlParams.get('a') === 'true' ? true : getSavedValue('autoStart', autoStart);
 
   let canvasContainer = document.getElementById("p5-canvas-container");
   let canvas = createCanvas(400, 400);
@@ -86,10 +86,10 @@ function updateURLParams() {
   const urlParams = new URLSearchParams(queryString);
 
   // fps, speed, backgroundResetCountのパラメーターを更新
-  urlParams.set('fps', fps);
-  urlParams.set('katati', speed);
-  urlParams.set('background', backgroundResetCount);
-  urlParams.set('autostart', autoStart);
+  urlParams.set('f', fps);
+  urlParams.set('k', speed);
+  urlParams.set('b', backgroundResetCount);
+  urlParams.set('a', autoStart);
 
   // URLを更新（履歴は変更しない）
   const newUrl = `${window.location.pathname}?${urlParams.toString()}`;

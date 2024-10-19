@@ -21,7 +21,7 @@ function setup() {
   speed = parseFloat(urlParams.get('katati')) || speed;
 
   // backgroundResetCountをtrue/falseで取得
-  backgroundResetCount = urlParams.get('reset') === 'true' ? true : false;
+  backgroundResetCount = urlParams.get('background') === 'true' ? true : false;
   autoStart = urlParams.get('autostart') === 'true' ? true : false;
 
   let canvasContainer = document.getElementById("p5-canvas-container");

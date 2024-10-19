@@ -6,6 +6,31 @@ body {
     /* font-weight: bold; */
 }
 
+
+/* progressber */
+/* スタイルをリセット */
+progress {
+    -webkit-appearance: none;
+}
+
+/* バーの背景色 */
+progress::-webkit-progress-bar {
+    background-color: #ffffff;
+}
+
+/* バーの色 */
+progress::-webkit-progress-value {
+    background-color: #00aa8c;
+}
+
+progress::-moz-progress-bar {
+    background-color: #00aa8c;
+}
+
+progress::-ms-fill {
+    background-color: #00aa8c;
+}
+
 .first-view {
     height: calc(100vh - 110px);
     background-image: url(../images/index/bg-main-02.jpg);

@@ -1,6 +1,6 @@
-// $(function () {
-// });
-
-setTimeout(function () {
+$(function () {
     $('html,body').animate({ scrollTop: 0 }, '1');
-}, 100);
+});
+
+// setTimeout(function () {
+// }, 700);

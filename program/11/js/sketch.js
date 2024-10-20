@@ -59,10 +59,13 @@ function draw() {
   fill("#e0e0e0");
   ellipse(200, 200, 20);
   ellipse(x, y, ellipseSize);
-
-  colorMode(HSB);
-  stroke((2 * frameCount) % 360, 40, 100);
-  colorMode(RGB);
+  if (backgroundResetCount) {
+    stroke("#000", 40, 100);
+  } else {
+    colorMode(HSB);
+    stroke((2 * frameCount) % 360, 40, 100);
+    colorMode(RGB);
+  }
 
   strokeWeight(5);
   fill("red");
@@ -120,6 +123,7 @@ function katatiDown() {
 
 function backgroundReset() {
   backgroundResetCount = !backgroundResetCount; // リセット状態をトグル
+  background("#fff")
 }
 
 // localStorageに値を保存する関数

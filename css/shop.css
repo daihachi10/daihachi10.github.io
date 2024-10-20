@@ -190,13 +190,15 @@ canvas {
 .about-item a,
 .about-item .start,
 .about-item .settings {
-    animation: hover 0.7s ease forwards;
+    /* animation: hover 0.7s ease forwards; */
+    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .about-item a:hover,
 .about-item .start:hover,
 .about-item .settings:hover {
-    animation: nothover 0.7s ease forwards;
+    /* animation: nothover 0.7s ease forwards; */
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes hover {
@@ -224,12 +226,14 @@ canvas {
 
 .about-item .gui {
     /* background-color: rgba(255, 82, 131, 0.6); */
-    animation: guinothover 0.2s ease forwards;
+    /* animation: guinothover 0.2s ease forwards; */
+    animation: guinothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .about-item .gui:hover {
     /* background-color: rgba(255, 82, 131, 0.3); */
-    animation: guihover 0.2s ease forwards;
+    /* animation: guihover 0.2s ease forwards; */
+    animation: guihover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 

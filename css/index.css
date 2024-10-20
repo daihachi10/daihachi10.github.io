@@ -108,7 +108,8 @@ progress::-ms-fill {
     border-radius: 24px;
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
-    animation: hover 0.7s ease forwards;
+    /* animation: hover 0.7s ease forwards; */
+    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* .link-button:hover {
@@ -116,7 +117,8 @@ progress::-ms-fill {
 } */
 
 .link-button:hover {
-    animation: nothover 0.7s ease forwards;
+    /* animation: nothover 0.7s ease forwards; */
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes hover {

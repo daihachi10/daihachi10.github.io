@@ -101,18 +101,48 @@ progress::-ms-fill {
 }
 
 .link-button {
-    background-color: #ff5283;
+    /* background-color: #ff5283; */
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
     border-radius: 24px;
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
+    animation: hover 0.7s ease forwards;
 }
 
-.link-button:hover {
+/* .link-button:hover {
     background-color: #bf1948;
+} */
+
+.link-button:hover {
+    animation: nothover 0.7s ease forwards;
 }
+
+@keyframes hover {
+    0% {
+        background-color: #bf1948;
+
+    }
+
+    100% {
+        background-color: #ff5283;
+    }
+}
+
+@keyframes nothover {
+    0% {
+
+        background-color: #ff5283;
+    }
+
+    100% {
+
+        background-color: #bf1948;
+    }
+}
+
+
 
 .recommended {
     background-color: #fafafa;

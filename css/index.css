@@ -3,7 +3,10 @@
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    cursor : url("https://daihachi10.github.io/images/cursor-normal.svg"),auto;
+    cursor : url("https://daihachi10.github.io/images/cursor-normal.svg"),default;
+}
+
+a:hover {
     cursor : url("https://daihachi10.github.io/images/cursor-link.svg"),pointer;
 }
 

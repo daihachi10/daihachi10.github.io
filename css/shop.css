@@ -3,12 +3,16 @@
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    cursor : url("https://daihachi10.github.io/images/cursor-normal.svg"),default;
+    cursor: url("../images/cursor-normal.svg"), default;
+    /* cursor: url("../images/normal.png"), default; */
 }
 
-a:hover {
-    cursor : url("https://daihachi10.github.io/images/cursor-link.svg"),pointer;
+a:hover,
+button:hover {
+    cursor: url("../images/cursor-link.svg"), pointer;
+    /* cursor: url("../images/link.png"), pointer; */
 }
+
 
 .title {
     display: flex;
@@ -170,7 +174,7 @@ canvas {
     margin-top: 35px;
     border: none;
     outline: none;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 

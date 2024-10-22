@@ -3,7 +3,14 @@
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    /* font-weight: bold; */
+    cursor: url("../images/cursor-normal.svg"), default;
+    /* cursor: url("../images/normal.png"), default; */
+}
+
+a:hover,
+button:hover {
+    cursor: url("../images/cursor-link.svg"), pointer;
+    /* cursor: url("../images/link.png"), pointer; */
 }
 
 .item-list li {

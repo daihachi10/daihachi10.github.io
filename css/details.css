@@ -185,7 +185,7 @@ canvas {
     margin-top: 35px;
     border: none;
     outline: none;
-    cursor: pointer;
+/*     cursor: pointer; */
 }
 
 .about-item a,

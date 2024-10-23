@@ -1,10 +1,10 @@
 body {
-    cursor: url("../images/cursor-normal.svg"), default;
-    /* cursor: url("../images/normal.png"), default; */
+/*     cursor: url("../images/cursor-normal.svg"), default; */
+    cursor: url("../images/normal.png"), default;
 }
 
 a:hover,
 button:hover {
-    cursor: url("../images/cursor-link.svg"), pointer;
-    /* cursor: url("../images/link.png"), pointer; */
+/*     cursor: url("../images/cursor-link.svg"), pointer; */
+    cursor: url("../images/link.png"), pointer;
 }

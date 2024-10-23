@@ -11,6 +11,11 @@ body {
     transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.item-list li img {
+    width:240px;
+    height:240px;
+}
+
 .item-list li:hover {
     transform: scale(1.2);
 }

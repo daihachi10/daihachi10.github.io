@@ -12,8 +12,8 @@ body {
 }
 
 .item-list li img {
-    width:240px;
-    height:240px;
+    width: 240px;
+    height: 240px;
 }
 
 .item-list li:hover {

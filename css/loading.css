@@ -93,14 +93,6 @@
     animation-delay: 0.8s;
 }
 
-.dot {
-    width: 10px;
-    height: 10px;
-    margin-left: 5px;
-    border-radius: 50%;
-    animation: blink 1s infinite;
-}
-
 @keyframes growShrink {
 
     0%,

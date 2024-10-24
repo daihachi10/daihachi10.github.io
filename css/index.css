@@ -3,21 +3,20 @@
 @import url('./cursor.css');
 
 @font-face {
-  font-family: "Noto Sans JP";
-  src:
-    url("./fonts/NotoSansJP-VariableFont_wght.woff2") format("woff2"),
-  display: swap;
+    font-family: "Noto Sans JP";
+    src:
+        url("./fonts/NotoSansJP-Bold.woff2") format("woff2");
+    /* display: swap; */
 }
 
 @font-face {
-  font-family: "Montserrat";
-  src:
-    url("./fonts/Montserrat-VariableFont_wght.woff2") format("woff2"),
-  display: swap;
+    font-family: "Montserrat";
+    src:
+        url("./fonts/Montserrat-Bold.woff2") format("woff2");
 }
 
 body {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
 }
 
 

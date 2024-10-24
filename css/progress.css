@@ -1,4 +1,4 @@
-/* .progress {
+.progress {
     border-bottom-right-radius: 20px;
     position: fixed;
     inset-block-start: 0;
@@ -27,4 +27,4 @@
     .progress {
         block-size: 3px;
     }
-} */
+}

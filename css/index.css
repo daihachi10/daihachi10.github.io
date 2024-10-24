@@ -24,7 +24,7 @@ body {
 
 .first-view {
     height: calc(100vh - 110px);
-    background-image: url(../images/index/bg-main-02.jpg);
+    background-image: url(../images/index/bg-main-02.webp);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -220,7 +220,7 @@ body {
 @media (max-width:800px) {
     .first-view {
         height: calc(100vh - 50vh);
-        background-image: url(../images/index/bg-main-sp-02.jpg);
+        background-image: url(../images/index/bg-main-sp-02.webp);
     }
 
     .first-view-text {

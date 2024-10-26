@@ -1,10 +1,11 @@
 @charset "utf-8";
 
-@font-face {
+/* @font-face {
     font-family: "Caveat";
     src:
         url("./fonts/Caveat-Bold.woff2") format("woff2");
-}
+} */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
 
 *,
 ::before,

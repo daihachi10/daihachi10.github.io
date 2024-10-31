@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>notepad</title>
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <style>
+        @font-face {
+            font-family: "Noto Sans JP";
+            src: url("../../css/fonts/NotoSansJP-Bold.woff2") format("woff2");
+        }
+
+        @font-face {
+            font-family: "Montserrat";
+            src: url("../../css/fonts/Montserrat-Bold.woff2") format("woff2");
+        }
+
+        body {
+            font-family: "Montserrat", "Noto Sans JP", serif;
+            font-size: 20px;
+        }
+
+        .tyui {
+            color: #f00;
+            font-size: 30px;
+        }
+
+        .reset {
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="setumei" contenteditable="true">
+        <h1 class="reset">テキストを編集</h1>
+    </div>
+
+    <div class="button">
+        <button onclick="saveTextFile()">.txtとして保存</button>
+        <button onclick="copyText()">コピー</button>
+    </div>
+
+    <script>
+        // Load saved content on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedContent = localStorage.getItem('notepadContent');
+            if (savedContent) {
+                document.querySelector('.setumei').innerHTML = savedContent;
+            }
+        });
+
+        // Save content automatically to localStorage on input
+        document.querySelector('.setumei').addEventListener('input', () => {
+            const content = document.querySelector('.setumei').innerHTML;
+            localStorage.setItem('notepadContent', content);
+        });
+ // Add spaces when Tab is pressed
+        document.querySelector('.setumei').addEventListener('keydown', (event) => {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+                document.execCommand('insertText', false, '                ');
+            }
+        });
+
+        function saveTextFile() {
+            const content = document.querySelector('.setumei').innerText;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'notepad.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copyText() {
+            const content = document.querySelector('.setumei').innerText;
+            navigator.clipboard.writeText(content)
+                .then(() => alert("テキストがコピーされました"))
+                .catch((error) => console.error("コピーに失敗しました:", error));
+        }
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html contenteditable="" lang="ja">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -7,20 +7,8 @@
     <title>notepad</title>
     <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
     <style>
-        /* @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap'); */
-
-        @font-face {
-            font-family: "Noto Sans JP";
-            src:
-                url("../../css/fonts/NotoSansJP-Bold.woff2") format("woff2");
-        }
-
-        @font-face {
-            font-family: "Montserrat";
-            src:
-                url("../../css/fonts/Montserrat-Bold.woff2") format("woff2");
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+        
         body {
             font-family: "Montserrat", "Noto Sans JP", serif;
             font-size: 20px;
@@ -34,14 +22,138 @@
         .reset {
             font-size: 25px;
         }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .button {
+    /* background-color: #ff5283; */
+            border-style:none;
+    display: inline-block;
+    min-width: 180px;
+    line-height: 48px;
+    border-radius: 24px;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    /* animation: hover 0.7s ease forwards; */
+    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* .link-button:hover {
+    background-color: #bf1948;
+} */
+
+.button:hover {
+    /* animation: nothover 0.7s ease forwards; */
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes hover {
+    0% {
+        background-color: #bf1948;
+
+    }
+
+    100% {
+        background-color: #ff5283;
+    }
+}
+
+@keyframes nothover {
+    0% {
+
+        background-color: #ff5283;
+    }
+
+    100% {
+
+        background-color: #bf1948;
+    }
+}
     </style>
 </head>
 
 <body>
-    <div class="setumei">
-        <h1 class="tyui">注意</h1>
-        <h1 class="reset">再読み込みするとリセットされます。</h1>
+    <div class="setumei" contenteditable="true">
+        <h1 class="reset">テキストを編集</h1>
     </div>
+
+    <div class="buttons">
+        <button onclick="saveTextFile()" class="button">.txtとして保存</button>
+        <button onclick="copyText()" class="button">コピー</button>
+        <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;">
+        <button onclick="document.getElementById('imageUpload').click()" class="button">画像をアップロード</button>
+    </div>
+
+    <script>
+        // Load saved content on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedContent = localStorage.getItem('notepadContent');
+            if (savedContent) {
+                document.querySelector('.setumei').innerHTML = savedContent;
+            }
+        });
+
+        // Save content automatically to localStorage on input
+        document.querySelector('.setumei').addEventListener('input', () => {
+            const content = document.querySelector('.setumei').innerHTML;
+            localStorage.setItem('notepadContent', content);
+        });
+
+        // Add spaces when Tab is pressed
+        document.querySelector('.setumei').addEventListener('keydown', (event) => {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+                document.execCommand('insertText', false, '  ');
+            }
+        });
+
+        // Save text as a .txt file
+        function saveTextFile() {
+            const content = document.querySelector('.setumei').innerText;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'notepad.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Copy text to clipboard
+        function copyText() {
+            const content = document.querySelector('.setumei').innerText;
+            navigator.clipboard.writeText(content)
+                .then(() => alert("テキストがコピーされました"))
+                .catch((error) => console.error("コピーに失敗しました:", error));
+        }
+
+        // Insert image at the end of the editable div
+        function insertImage() {
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    img.style.maxWidth = '50%';
+                    img.style.height = 'auto';
+                    
+                    // Append image to the contenteditable div
+                    document.querySelector('.setumei').appendChild(img);
+
+                    // Save the updated content to localStorage
+                    const content = document.querySelector('.setumei').innerHTML;
+                    localStorage.setItem('notepadContent', content);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </body>
 
 </html>

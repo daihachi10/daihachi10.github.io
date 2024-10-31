@@ -28,6 +28,10 @@ body {
 
 }
 
+.setumei img {
+    margin-right: 5px;
+}
+
 .button {
     color: #000;
     cursor: pointer;

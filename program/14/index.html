@@ -59,13 +59,15 @@
     </header>
     <!-- headerここまで -->
     <div class="setumei" contenteditable="true">
-        <h1 class="reset">テキストを編集</h1>
+        <h1 class="reset">テキストを編集<br>画像をアップロードすることもできますが、<br>高容量だと保存できない場合があります。</h1>
     </div>
 
     <div class="buttons">
         <button onclick="saveTextFile()" class="button">.txtとして保存</button>
+        <button onclick="save()" class="button">一時的に保存</button>
         <button onclick="copyText()" class="button">コピー</button>
-        <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;">
+        <!-- <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;"> -->
+        <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;" multiple>
         <button onclick="document.getElementById('imageUpload').click()" class="button">画像をアップロード</button>
     </div>
 
@@ -79,6 +81,11 @@
         });
 
         // Save content automatically to localStorage on input
+        function save() {
+            alert("保存されました。\nこのタブ（ブラウザ）を閉じても問題ありません。");
+
+        }
+
         document.querySelector('.setumei').addEventListener('input', () => {
             const content = document.querySelector('.setumei').innerHTML;
             localStorage.setItem('notepadContent', content);
@@ -88,7 +95,7 @@
         document.querySelector('.setumei').addEventListener('keydown', (event) => {
             if (event.key === 'Tab') {
                 event.preventDefault();
-                document.execCommand('insertText', false, '  ');
+                document.execCommand('insertText', false, '      ');
             }
         });
 
@@ -99,7 +106,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'notepad.txt';
+            a.download = 'daihachi offical websiteから保存されたファイル.txt';
             a.click();
             URL.revokeObjectURL(url);
         }
@@ -114,27 +121,51 @@
 
         // Insert image at the end of the editable div
         function insertImage() {
+            // const fileInput = document.getElementById('imageUpload');
+            // const file = fileInput.files[0];
+
+            // if (file) {
+            //     const reader = new FileReader();
+            //     reader.onload = function (event) {
+            //         const img = document.createElement('img');
+            //         img.src = event.target.result;
+            //         img.style.maxWidth = '30%';
+            //         img.style.height = 'auto';
+
+            //         // Append image to the contenteditable div
+            //         document.querySelector('.setumei').appendChild(img);
+
+            //         // Save the updated content to localStorage
+            //         const content = document.querySelector('.setumei').innerHTML;
+            //         localStorage.setItem('notepadContent', content);
+            //     };
+
+            //     reader.readAsDataURL(file);
+            // }
+
             const fileInput = document.getElementById('imageUpload');
-            const file = fileInput.files[0];
+            const files = fileInput.files;
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    const img = document.createElement('img');
-                    img.src = event.target.result;
-                    img.style.maxWidth = '30%';
-                    img.style.height = 'auto';
+            Array.from(files).forEach(file => {
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        const img = document.createElement('img');
+                        img.src = event.target.result;
+                        img.style.maxWidth = '30%';
+                        img.style.height = 'auto';
 
-                    // Append image to the contenteditable div
-                    document.querySelector('.setumei').appendChild(img);
+                        // Append image to the contenteditable div
+                        document.querySelector('.setumei').appendChild(img);
 
-                    // Save the updated content to localStorage
-                    const content = document.querySelector('.setumei').innerHTML;
-                    localStorage.setItem('notepadContent', content);
-                };
+                        // Save the updated content to localStorage
+                        const content = document.querySelector('.setumei').innerHTML;
+                        localStorage.setItem('notepadContent', content);
+                    };
 
-                reader.readAsDataURL(file);
-            }
+                    reader.readAsDataURL(file);
+                }
+            });
         }
     </script>
 </body>

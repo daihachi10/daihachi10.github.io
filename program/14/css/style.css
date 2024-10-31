@@ -40,6 +40,7 @@ body {
     font-size: 14px;
     /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    margin-bottom: 10px;
 }
 
 /* .link-button:hover {
@@ -77,6 +78,6 @@ background-color: #bf1948;
 @media (max-width:800px) {
     .setumei {
         margin: 70px 10px;
-        height: 73vh;
+        height: 63vh;
     }
 }

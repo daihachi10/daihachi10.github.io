@@ -72,3 +72,10 @@ background-color: #bf1948;
         background-color: #bf1948;
     }
 }
+
+@media (max-width:800px) {
+    .setumei {
+        margin: 70px 10px;
+        height: 73vh;
+    }
+}

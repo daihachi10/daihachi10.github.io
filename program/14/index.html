@@ -69,9 +69,16 @@
         <!-- <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;"> -->
         <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;" multiple>
         <button onclick="document.getElementById('imageUpload').click()" class="button">画像をアップロード</button>
+        <button onclick="reset()" class="button">リセット</button>
     </div>
 
     <script>
+
+        function reset() {
+            localStorage.clear();
+        }
+
+
         // Load saved content on page load
         window.addEventListener('DOMContentLoaded', () => {
             const savedContent = localStorage.getItem('notepadContent');

@@ -28,6 +28,7 @@ body {
 }
 
 .button {
+    color: #000;
     cursor: pointer;
     /* background-color: #ff5283; */
     border-style: none;

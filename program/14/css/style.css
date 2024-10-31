@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+body {
+    font-family: "Montserrat", "Noto Sans JP", serif;
+    font-size: 20px;
+}
+
+.tyui {
+    color: #f00;
+    font-size: 30px;
+}
+
+.reset {
+    font-size: 25px;
+}
+
+.buttons {
+    margin: 10px 10px;
+    /* margin-top: 10px; */
+}
+
+.setumei {
+    margin: 10px 10px;
+    height: 73vh;
+    /* overflow-y: scroll; */
+    overflow: auto;
+
+}
+
+.button {
+    cursor: pointer;
+    /* background-color: #ff5283; */
+    border-style: none;
+    display: inline-block;
+    min-width: 180px;
+    line-height: 48px;
+    border-radius: 24px;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    /* animation: hover 0.7s ease forwards; */
+    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* .link-button:hover {
+background-color: #bf1948;
+} */
+
+.button:hover {
+    /* animation: nothover 0.7s ease forwards; */
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes hover {
+    0% {
+        background-color: #bf1948;
+
+    }
+
+    100% {
+        background-color: #ff5283;
+    }
+}
+
+@keyframes nothover {
+    0% {
+
+        background-color: #ff5283;
+    }
+
+    100% {
+
+        background-color: #bf1948;
+    }
+}

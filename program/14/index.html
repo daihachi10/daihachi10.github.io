@@ -59,7 +59,8 @@
     </header>
     <!-- headerここまで -->
     <div class="setumei" contenteditable="true">
-        <h1 class="reset">テキストを編集<br>画像をアップロードすることもできますが、<br>高容量だと保存できない場合があります。</h1>
+        <h1 class="reset">タイトル</h1>
+        <p>本文</p>
     </div>
 
     <div class="buttons">
@@ -76,6 +77,7 @@
 
         function reset() {
             localStorage.clear();
+            window.location.reload();
         }
 
 

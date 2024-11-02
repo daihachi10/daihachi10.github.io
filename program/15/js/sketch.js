@@ -1,6 +1,6 @@
 let odai = [
     "グアムとサイパンは近い",
-    // "卓球で脱臼",
+    "卓球で脱臼",
     // "有給休暇を使う",
     // "シェフの気まぐれサラダ",
     // "キャラメルポップコーン",
@@ -21,7 +21,7 @@ let isKeyPushed = false;
 let imanoyatu = 0;
 let keys;
 let i = 0
-let moji = 0
+let moji = 0    //◯こめ
 let sushiImage;
 let sushi_karaImage;
 let countUpTimer = 0;
@@ -49,6 +49,7 @@ function setup() {
 }
 
 function draw() {
+    moji = imanoyatu//仮
     background(255);
 
     timers();
@@ -97,7 +98,7 @@ function draw() {
 }
 
 function typing() {
-    imanoyatu = Math.floor(random(0, odai.length - 1));
+    imanoyatu = Math.floor(random(0, odai.length));
 
 }
 

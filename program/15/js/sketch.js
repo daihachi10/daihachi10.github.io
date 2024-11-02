@@ -56,6 +56,7 @@ let sushiKasokudo = 0.03;
 let score = 0;
 let sara = 0;
 let juunokuraiSara = 0;
+let tien = 0; //次のに行ったら遅延
 function preload() {
     sushiImage = loadImage('image/sushi.webp');
     sushi_karaImage = loadImage('image/sushi_kara.webp');
@@ -88,11 +89,13 @@ function draw() {
     keys = romaji[moji][i]
 
     //長押しでも反応してしまう
-    if (key === keys) {
+    tien--;
+    if (key === keys && tien <= 0) {
         console.log("nyuryoku:" + key)
         i += 1;
         keys = romaji[moji][i]
         iscorrect = true
+        tien = 20;
     } else {
         iscorrect = false
     }

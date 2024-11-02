@@ -32,11 +32,23 @@ let barrrage = 0
 let barrrageSpeed = 1.35
 let barrrageX = 0
 
+
 //追加カウント
 let isAdd1Sec1 = false
 let isAdd1Sec2 = false
 let isAdd2Sec = false
 let isAdd3Sec = false
+
+//連打メーター表示されたかどうか
+let isShowAdd1Sec1 = false
+let isShowAdd1Sec2 = false
+let isShowAdd2Sec = false
+let isShowAdd3Sec = false
+
+//連打メーター表示されたかどうかの時間
+let defaultShowBarrageTime = 50
+let showBarrageTime = defaultShowBarrageTime
+
 
 function preload() {
     sushiImage = loadImage('image/sushi.webp');
@@ -121,6 +133,20 @@ function gui() {
     // image(barrage_arrowImage, 20, 70);
 
     //秒数追加
+    //2024-11-02ここ！！！
+    fill("#f54545");
+    textSize(20);
+    console.log(showBarrageTime)
+    if (isAdd1Sec1 == true && isShowAdd1Sec1 == false) {
+        if (showBarrageTime > 0) {
+            text("+1秒", 90, 50);
+            showBarrageTime--;
+        } else {
+            isShowAdd1Sec1 = true;
+            showBarrageTime = defaultShowBarrageTime
+        }
+
+    }
 
     // 左右の線
     fill("#f79a4f");

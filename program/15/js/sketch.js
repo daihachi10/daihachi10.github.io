@@ -89,12 +89,13 @@ function oldHyouji(n) {
 }
 
 function gui() {
-
+    stroke("#fff")
+    strokeWeight(3)
     //中央の文字の下の黒い四角
     textAlign(CENTER, CENTER);
     fill(0, 0, 0, 200);
     rect(50, 110, 300, 70, 7);
-
+    noStroke();
     //残り時間
     fill("#000");
     textSize(20);
@@ -125,10 +126,19 @@ function backgrounds() {
     //残り時間の下のやつ
     fill("#ffa65a");
     rect(0, 0, 400, 40, 5, 5, 0);
-    //寿司のレーン
-    fill("#efbf6b");
-    rect(0, 60, 400, 70)
     //背景の緑色のやつ
     fill("#b5bf65")
     rect(0, 40, 400, 45);
+    //寿司のレーン
+    fill("#efbf6b");
+    rect(0, 85, 400, 45)
+    //寿司のレーンの影
+    fill("#e49f36");
+    rect(0, 130, 400, 14)
+    //寿司のレーンの下
+    fill("#d69e4f");
+    rect(0, 144, 400, 70);
+    // 机
+    fill("#eab768");
+    rect(0, 214, 400);
 }

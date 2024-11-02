@@ -69,12 +69,11 @@
         <button onclick="copyText()" class="button">コピー</button>
         <!-- <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;"> -->
         <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;" multiple>
-        <button onclick="document.getElementById('imageUpload').click()" class="button">画像をアップロード</button>
+        <button onclick="imageAlert()" class="button">画像をアップロード</button>
         <button onclick="reset()" class="button">リセット</button>
     </div>
 
     <script>
-
         function reset() {
             localStorage.clear();
             window.location.reload();
@@ -129,29 +128,14 @@
         }
 
         // Insert image at the end of the editable div
+        function imageAlert() {
+            if (confirm('画像をアップロードすることもできますが、\n高容量(約5MB)だと保存できない場合があります。')) {
+                document.getElementById('imageUpload').click()
+            } else {
+            }
+        }
+
         function insertImage() {
-            // const fileInput = document.getElementById('imageUpload');
-            // const file = fileInput.files[0];
-
-            // if (file) {
-            //     const reader = new FileReader();
-            //     reader.onload = function (event) {
-            //         const img = document.createElement('img');
-            //         img.src = event.target.result;
-            //         img.style.maxWidth = '30%';
-            //         img.style.height = 'auto';
-
-            //         // Append image to the contenteditable div
-            //         document.querySelector('.setumei').appendChild(img);
-
-            //         // Save the updated content to localStorage
-            //         const content = document.querySelector('.setumei').innerHTML;
-            //         localStorage.setItem('notepadContent', content);
-            //     };
-
-            //     reader.readAsDataURL(file);
-            // }
-
             const fileInput = document.getElementById('imageUpload');
             const files = fileInput.files;
 

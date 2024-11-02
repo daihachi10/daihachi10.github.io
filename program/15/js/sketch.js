@@ -1,20 +1,14 @@
 let odai = [
     "グアムとサイパンは近い",
     "卓球で脱臼",
-    // "有給休暇を使う",
-    // "シェフの気まぐれサラダ",
-    // "キャラメルポップコーン",
-    // "ウサギをモフモフする",
-    // "普段着はパジャマです",
-    // "開いた口が塞がらない",
-    // "窓の外は冷たい雨",
-    // "アメリカンショートヘアー",
-    // "ここで会ったが百年目",
+    "ホームページ作りました",
+    "ミステリーツアー"
 ];
 
 let romaji = [
     ["g", "u", "a", "m", "u", "t", "o", "s", "a", "i", "p", "a", "n", "h", "a", "t", "i", "k", "a", "i",],
-    ["t", "a", "k", "k", "u", "u", "d", "e", "d", "a", "k", "k", "y", "u", "u",]
+    ["t", "a", "k", "k", "u", "u", "d", "e", "d", "a", "k", "k", "y", "u", "u",],
+    ["h", "o", "-", "m", "u", "p", "e", "-", "j", "i", "t", "u", "k", "u", "r", "i", "m", "a", "s", "i", "t", "a",]
 ]
 let isKeyPushed = false;
 // let keyIsReleased = true;  // フラグを追加
@@ -26,9 +20,10 @@ let sushiImage;
 let sushi_karaImage;
 let countUpTimer = 0;
 let countDownTimer;
-let time = 60
+let time = 90
 let sushiX = -103
 let sushiSpeed = 1;
+let sushiKasokudo = 0.03;
 let score = 0;
 let sara = 0;
 let juunokuraiSara = 0;
@@ -42,10 +37,11 @@ function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let canvas = createCanvas(400, 300);
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
-    typing();
+    next();
     noStroke();
     angleMode(DEGREES);//半円作るのに使う
     frameRate(60)
+    textFont("Noto Sans JP")
 }
 
 function draw() {
@@ -88,7 +84,7 @@ function draw() {
     if (i == romaji[moji].length) {
         // すべて打ったあとの処理
         sushiX = -103
-        sushiSpeed += 0.07
+        sushiSpeed += sushiKasokudo
         next();
         score++;
         sara++;
@@ -97,9 +93,9 @@ function draw() {
 
 }
 
-function typing() {
+function next() {
     imanoyatu = Math.floor(random(0, odai.length));
-
+    i = 0;
 }
 
 function odaihyouji() {
@@ -136,7 +132,7 @@ function gui() {
     fill("#f29e4f")
     rect(0, 270, 400, 50, 0, 0, 5, 5)
 
-    if (score >= 10) {
+    if (score >= 11) {
         //お皿の数のもの
         fill("#fff");
         rect(8, 185, 46, 25, 5);
@@ -170,9 +166,7 @@ function timers() {
     countDownTimer = time - countUpTimer.toFixed(0);
 }
 
-function next() {
-    i = 0;
-}
+
 
 function backgrounds() {
     //残り時間の下のやつ
@@ -197,13 +191,13 @@ function backgrounds() {
 }
 
 function sushiSet() {
-    if (sara >= 10) {
-        sara = 0
+    if (sara >= 11) {
+        sara = 1
     }
     // sara++;
 
     for (n = 0; n < sara; n += 1) {
         sushi_karaImage.resize(0, 50)
-        image(sushi_karaImage, 200 - 50.5, 210 - n * 5)
+        image(sushi_karaImage, 200 - 50.5, 210 - n * 4.6)
     }
 }

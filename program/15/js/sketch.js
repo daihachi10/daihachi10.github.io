@@ -29,15 +29,6 @@ let nihongo = [
 let guamu = [
     "g", "u", "a", "m", "u", "t", "o", "s", "a", "i", "p", "a", "n", "h", "a", "t", "i", "k", "a", "i",
 ]
-let iscorrect = false
-
-let keycodes = [
-    71, 85, 65, 77, 85, 84, 79, 83, 65, 73, 80, 65, 78, 72, 65, 84, 73, 75, 65, 73,
-    84, 65, 75, 75, 89, 85, 85, 68, 69, 75, 75, 89, 85, 85,
-    89, 85, 85, 75, 89, 85, 85, 75, 89, 85, 85, 75, 65, 87, 79, 84, 85, 75, 65, 85,
-    83, 72, 69, 72, 85, 78, 79, 75, 73, 77, 65, 71, 85, 82, 69, 83, 65, 82, 65, 68, 65,
-    75, 89, 65, 82, 65, 77, 69, 82, 85, 80, 79, 80, 80, 85, 75, 79, 189, 78,
-]
 
 let imanoyatu = 0;
 let keys;
@@ -47,40 +38,56 @@ function setup() {
     let canvas = createCanvas(400, 300);
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
     typing();
+    textAlign(CENTER, CENTER);
+    noStroke();
 }
 
 function draw() {
-    // background(255);
+    background(255);
+    gui();
     odaihyouji();
+    for (let n = 0; n < i; n += 1) {
+        oldHyouji(n);
+    }
     keys = guamu[i]
     if (keyIsPressed === true) {
         if (key === keys) {
+            console.log("nyuryoku:" + key)
             i += 1;
             keys = guamu[i]
-            console.log("nyuryoku:" + keys)
             iscorrect = true
         } else {
             iscorrect = false
         }
     }
-    oldHyouji();
     if (i == guamu.length) {
-        text("クリア", 200, 200);
-        noLoop();
+        // すべて打ったあとの処理
     }
 }
 
 function typing() {
     imanoyatu = Math.floor(random(0, odai.length - 1));
+
 }
 
 function odaihyouji() {
-    text(odai[imanoyatu], 10, 10);
-    text(nihongo[imanoyatu], 10, 20);
+    text(odai[imanoyatu], 200, 180);
+    // text(nihongo[imanoyatu], 10, 20);
+    fill("#828282");
+    for (let n = 0; n < guamu.length; n += 1) {
+        text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 200);
+    }
+    fill("#000000");
 }
 
-function oldHyouji() {
-    if (iscorrect === true) {
-        text(key, 10 + i * 9, 40);
-    }
+function oldHyouji(n) {
+    text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 200);
+    // if (iscorrect === true) {
+    // }
+}
+
+function gui() {
+    fill("#f5f5f5");
+    rect(50, 150, 300, 100);
+    fill("#000");
 }

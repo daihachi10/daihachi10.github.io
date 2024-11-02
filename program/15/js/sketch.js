@@ -33,6 +33,14 @@ let guamu = [
 let imanoyatu = 0;
 let keys;
 let i = 0
+let sushiImage;
+
+function preload() {
+    sushiImage = loadImage('image/sushi.webp');
+    // sushiImage = resize(10,10)
+
+}
+
 function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let canvas = createCanvas(400, 300);
@@ -43,22 +51,23 @@ function setup() {
 }
 
 function draw() {
-    background(255);
+    background(100);
+    sushi();
     gui();
     odaihyouji();
     for (let n = 0; n < i; n += 1) {
         oldHyouji(n);
     }
     keys = guamu[i]
+    if (key === keys) {
+        console.log("nyuryoku:" + key)
+        i += 1;
+        keys = guamu[i]
+        iscorrect = true
+    } else {
+        iscorrect = false
+    }
     if (keyIsPressed === true) {
-        if (key === keys) {
-            console.log("nyuryoku:" + key)
-            i += 1;
-            keys = guamu[i]
-            iscorrect = true
-        } else {
-            iscorrect = false
-        }
     }
     if (i == guamu.length) {
         // すべて打ったあとの処理
@@ -71,23 +80,28 @@ function typing() {
 }
 
 function odaihyouji() {
-    text(odai[imanoyatu], 200, 180);
+    text(odai[imanoyatu], 200, 135);
     // text(nihongo[imanoyatu], 10, 20);
-    fill("#828282");
+    fill("#fff");
     for (let n = 0; n < guamu.length; n += 1) {
-        text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 200);
+        text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 160);
     }
-    fill("#000000");
 }
 
 function oldHyouji(n) {
-    text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 200);
+    fill("#828282");
+    text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 160);
     // if (iscorrect === true) {
     // }
 }
 
 function gui() {
-    fill("#f5f5f5");
-    rect(50, 150, 300, 100);
-    fill("#000");
+    fill(0, 0, 0, 200);
+    rect(50, 110, 300, 70, 7);
+    fill("#fff");
+}
+
+function sushi() {
+    image(sushiImage, 0, 70)
+    sushiImage.resize(0, 50)
 }

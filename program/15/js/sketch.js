@@ -13,14 +13,15 @@ let odai = [
 ];
 
 let romaji = [
-    "g", "u", "a", "m", "u", "t", "o", "s", "a", "i", "p", "a", "n", "h", "a", "t", "i", "k", "a", "i",
-    // "t", "a", "k", "k", "u", "u", "d", "e", "d", "a", "k", "k", "y", "u", "u",
+    ["g", "u", "a", "m", "u", "t", "o", "s", "a", "i", "p", "a", "n", "h", "a", "t", "i", "k", "a", "i",],
+    ["t", "a", "k", "k", "u", "u", "d", "e", "d", "a", "k", "k", "y", "u", "u",]
 ]
 let isKeyPushed = false;
 // let keyIsReleased = true;  // フラグを追加
 let imanoyatu = 0;
 let keys;
 let i = 0
+let moji = 0
 let sushiImage;
 let sushi_karaImage;
 let countUpTimer = 0;
@@ -58,13 +59,13 @@ function draw() {
     for (let n = 0; n < i; n += 1) {
         oldHyouji(n);
     }
-    keys = romaji[i]
+    keys = romaji[moji][i]
 
     //長押しでも反応してしまう
     if (key === keys) {
         console.log("nyuryoku:" + key)
         i += 1;
-        keys = romaji[i]
+        keys = romaji[moji][i]
         iscorrect = true
     } else {
         iscorrect = false
@@ -73,7 +74,7 @@ function draw() {
     // if (keyIsPressed && !isKeyPushed && key === keys) {
     //     console.log("nyuryoku:" + key);
     //     i += 1;
-    //     keys = romaji[i];
+    //     keys = romaji[moji][i];
     //     iscorrect = true;
     //     isKeyPushed = true;  // キーが押されたときにフラグをリセット
     // } else if (!keyIsPressed) {
@@ -83,7 +84,7 @@ function draw() {
 
 
 
-    if (i == romaji.length) {
+    if (i == romaji[moji].length) {
         // すべて打ったあとの処理
         sushiX = -103
         sushiSpeed += 0.07
@@ -104,14 +105,14 @@ function odaihyouji() {
     fill("#fff");
     text(odai[imanoyatu], 200, 135);
     textSize(13);
-    for (let n = 0; n < romaji.length; n += 1) {
-        text(romaji[n], 10 + n * 9 + (10 * romaji.length / 2), 160);
+    for (let n = 0; n < romaji[moji].length; n += 1) {
+        text(romaji[moji][n], 10 + n * 9 + (10 * romaji[moji].length / 2), 160);
     }
 }
 
 function oldHyouji(n) {
     fill("#828282");
-    text(romaji[n], 10 + n * 9 + (10 * romaji.length / 2), 160);
+    text(romaji[moji][n], 10 + n * 9 + (10 * romaji[moji].length / 2), 160);
 }
 
 function gui() {

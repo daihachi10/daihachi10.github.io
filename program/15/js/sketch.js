@@ -3,7 +3,6 @@ let isKeyPushed = false;
 let imanoyatu = 0;
 let keys;
 let i = 0
-let moji = 0    //◯こめ
 let sushiImage;
 let sushi_karaImage;
 let countUpTimer = 0;
@@ -34,7 +33,6 @@ function setup() {
 }
 
 function draw() {
-    moji = imanoyatu//仮
     background(255);
 
     timers();
@@ -45,14 +43,14 @@ function draw() {
     for (let n = 0; n < i; n += 1) {
         oldHyouji(n);
     }
-    keys = romaji[moji][i]
+    keys = romaji[imanoyatu][i]
 
     //長押しでも反応してしまう
     tien--;
     if (key === keys && tien <= 0) {
         console.log("nyuryoku:" + key)
         i += 1;
-        keys = romaji[moji][i]
+        keys = romaji[imanoyatu][i]
         iscorrect = true
     } else {
         iscorrect = false
@@ -61,7 +59,7 @@ function draw() {
     // if (keyIsPressed && !isKeyPushed && key === keys) {
     //     console.log("nyuryoku:" + key);
     //     i += 1;
-    //     keys = romaji[moji][i];
+    //     keys = romaji[imanoyatu][i];
     //     iscorrect = true;
     //     isKeyPushed = true;  // キーが押されたときにフラグをリセット
     // } else if (!keyIsPressed) {
@@ -71,7 +69,7 @@ function draw() {
 
 
 
-    if (i == romaji[moji].length) {
+    if (i == romaji[imanoyatu].length) {
         // すべて打ったあとの処理
         sushiX = -103
         sushiSpeed += sushiKasokudo
@@ -93,14 +91,14 @@ function odaihyouji() {
     fill("#fff");
     text(odai[imanoyatu], 200, 135);
     textSize(13);
-    for (let n = 0; n < romaji[moji].length; n += 1) {
-        text(romaji[moji][n], 10 + n * 9 + (10 * romaji[moji].length / 2), 160);
+    for (let n = 0; n < romaji[imanoyatu].length; n += 1) {
+        text(romaji[imanoyatu][n], 10 + n * 9 + (10 * romaji[imanoyatu].length / 2), 160);
     }
 }
 
 function oldHyouji(n) {
     fill("#828282");
-    text(romaji[moji][n], 10 + n * 9 + (10 * romaji[moji].length / 2), 160);
+    text(romaji[imanoyatu][n], 10 + n * 9 + (10 * romaji[imanoyatu].length / 2), 160);
 }
 
 function gui() {

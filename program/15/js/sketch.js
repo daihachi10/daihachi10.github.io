@@ -12,7 +12,7 @@ let odai = [
     // "ここで会ったが百年目",
 ];
 
-let guamu = [
+let romaji = [
     "g", "u", "a", "m", "u", "t", "o", "s", "a", "i", "p", "a", "n", "h", "a", "t", "i", "k", "a", "i",
     // "t", "a", "k", "k", "u", "u", "d", "e", "d", "a", "k", "k", "y", "u", "u",
 ]
@@ -58,13 +58,13 @@ function draw() {
     for (let n = 0; n < i; n += 1) {
         oldHyouji(n);
     }
-    keys = guamu[i]
+    keys = romaji[i]
 
     //長押しでも反応してしまう
     if (key === keys) {
         console.log("nyuryoku:" + key)
         i += 1;
-        keys = guamu[i]
+        keys = romaji[i]
         iscorrect = true
     } else {
         iscorrect = false
@@ -73,7 +73,7 @@ function draw() {
     // if (keyIsPressed && !isKeyPushed && key === keys) {
     //     console.log("nyuryoku:" + key);
     //     i += 1;
-    //     keys = guamu[i];
+    //     keys = romaji[i];
     //     iscorrect = true;
     //     isKeyPushed = true;  // キーが押されたときにフラグをリセット
     // } else if (!keyIsPressed) {
@@ -83,7 +83,7 @@ function draw() {
 
 
 
-    if (i == guamu.length) {
+    if (i == romaji.length) {
         // すべて打ったあとの処理
         sushiX = -103
         sushiSpeed += 0.07
@@ -104,14 +104,14 @@ function odaihyouji() {
     fill("#fff");
     text(odai[imanoyatu], 200, 135);
     textSize(13);
-    for (let n = 0; n < guamu.length; n += 1) {
-        text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 160);
+    for (let n = 0; n < romaji.length; n += 1) {
+        text(romaji[n], 10 + n * 9 + (10 * romaji.length / 2), 160);
     }
 }
 
 function oldHyouji(n) {
     fill("#828282");
-    text(guamu[n], 10 + n * 9 + (10 * guamu.length / 2), 160);
+    text(romaji[n], 10 + n * 9 + (10 * romaji.length / 2), 160);
 }
 
 function gui() {

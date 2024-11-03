@@ -1,60 +1,4 @@
-let imanoyatu = 0;
-let keys;
-let oldKeys;
-let i = 0;
-let romajiIndex = 0;
 
-//images
-let sushiImage;
-let sushi_karaImage;
-
-let sushiImageSmall;
-let sushi_karaImageSmall;
-
-let barrage_arrowImage;
-
-//timers
-let countUpTimer = 0;
-let countDownTimer;
-let time = 90;
-
-//流れる寿司
-let sushiX = -103;
-let sushiY = 0;
-let sushiSpeed = 1;//1
-let sushiKasokudo = 0.03;
-
-//score
-let score = 0;
-
-//皿の数
-let sara = 0;
-let juunokuraiSara = 0;
-
-//次のに行ったら遅延
-let tien = 0;
-
-//連打メーター
-let barrrage = 0;
-let barrrageSpeed = 1.35;
-let barrrageX = 0;
-
-
-//追加カウント
-let isAdd1Sec1 = false;
-let isAdd1Sec2 = false;
-let isAdd2Sec = false;
-let isAdd3Sec = false;
-
-//連打メーター表示されたかどうか
-let isShowAdd1Sec1 = false;
-let isShowAdd1Sec2 = false;
-let isShowAdd2Sec = false;
-let isShowAdd3Sec = false;
-
-//連打メーター表示されたかどうかの時間
-let defaultShowBarrageTime = 50;
-let showBarrageTime = defaultShowBarrageTime;
 
 function next() {
     imanoyatu = Math.floor(random(0, odai.length));
@@ -208,8 +152,6 @@ function timers() {
     countDownTimer = time - countUpTimer.toFixed(0);
 }
 
-
-
 function backgrounds() {
     //背景の緑色のやつ
     fill("#b5bf65");
@@ -296,6 +238,7 @@ function barrage_Meter() {
         barrrage = 0;
     }
 }
+
 function barrageMeterTimeShows() {
 
     fill("#f54545");
@@ -339,7 +282,6 @@ function barrageMeterTimeShows() {
     }
 }
 
-
 function keyboard() {
 
     keys = romaji[imanoyatu][i];
@@ -349,14 +291,10 @@ function keyboard() {
     tien--;
     if (key === keys && tien <= 0) {
         i += 1;
-        oldKeys = keys
         keys = romaji[imanoyatu][i];
         barrrage++;
     }
 
-    if (!oldKeys == keys) {
-        barrrage = 0
-    }
     if (i == romaji[imanoyatu].length) {
         // すべて打ったあとの処理
         sushiX = -103;

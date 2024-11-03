@@ -17,7 +17,7 @@ let time = 90;
 //流れる寿司
 let sushiX = -103;
 let sushiY = 0;
-let sushiSpeed = 1;
+let sushiSpeed = 1;//1
 let sushiKasokudo = 0.03;
 
 //score

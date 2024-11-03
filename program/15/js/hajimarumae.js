@@ -1,6 +1,14 @@
 let tSushiX = 400;
+let isTitle = true;
 let isStarted = false;
-let tobiraX
+
+let tobiraX = 200
+
+let course = "普通"
+let difficulty = "お勧め"
+let now
+
+let attentionImage
 function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let canvas = createCanvas(400, 300);
@@ -17,22 +25,24 @@ function preload() {
     sushiImage = loadImage('image/sushi.webp');
     sushi_karaImage = loadImage('image/sushi_kara.webp');
     barrage_arrowImage = loadImage('image/barrage_arrow.webp');
+    attentionImage = loadImage('image/attention.webp');
 }
 
 function draw() {
-    if (!isStarted) {
-        title();
-        varReset();//変数全てリセット
+    title();
+    // // standby();
 
-    } else {
-        difficultySelect()
-
-        // start();
-    }
+    // if (isTitle) {
+    // varReset();//変数全てリセット
+    // } else if (!isStarted) { difficultySelect(); } else { start(); }
 
 }
 
+
+
+
 function title() {
+    now = "title";
     tobiraX1 = 0
     tobiraX2 = 400
     //背景の緑色のやつ
@@ -67,22 +77,20 @@ function title() {
 
 
     //後ろで流れてる寿司
-    for (let n = 0; n < 100; n++) {
-        image(sushiImage, tSushiX + n * -130, 150);
-    }
+    for (let n = 0; n < 100; n++) { image(sushiImage, tSushiX + n * -130, 150); }
     tSushiX++;
 
     //周りの枠
     gridLine();
     //スタートボタン
-    button();
+    startButton();
 
 
 }
 
 
 
-function button() {
+function startButton() {
     //スタート形
     fill(255, 255, 255, 200);
     stroke("#93660a");
@@ -95,30 +103,36 @@ function button() {
     text("スタート", 200, 175);
 
 }
-//ESCキーでタイトルに戻る
-function keyPressed() {
-    if (keyCode === 27) {
-        isStarted = false;
 
-    }
+function keyPressed() {
+    if (keyCode === 27) { isTitle = true; isStarted = false; }//ESCキーでタイトルに戻る
+    if (keyCode === 32 || keyCode === 13 && now == "standby") { start(); }
 }
 
-//スタート当たり判定
+//ボタン当たり判定
 function mouseClicked() {
-    if (mouseX > 135 && mouseX < 130 + 135 && mouseY > 160 && mouseY < 190) {
-        isStarted = true;
+    if (now == "title") {                   //title画面
+        if (mouseX > 135 && mouseX < 130 + 135 && mouseY > 160 && mouseY < 190) {
+            isTitle = false;
+        }
+    } else if (now == "difficultyselect") { //難易度を選択画面
+        // rect(260,270,90,20,5)
+        if (mouseX > 260 && mouseX < 350 && mouseY > 270 && mouseY < 290) { isTitle = true; isStarted = false; };//タイトルに戻るが押された
+        if (mouseX > 50 && mouseX < 350 && mouseY > 155 && mouseY < 200) { standby(); difficulty = "お勧め" }   //お勧めが押された
     }
 }
 
 function difficultySelect() {
+    now = "difficultyselect";
     gridLine();
 
     //閉まるアニメーション
-    if (tobiraX < 200) { tobiraX += 15; };
+    // tobiraX = 400
+    if (tobiraX < 200) { tobiraX += 20; };
     fill("#f7a152");
     rect(5, 40, tobiraX, 270); //tobiraX
     rect(400, 40, -tobiraX, 270);
-    if (tobiraX > 200) {
+    if (tobiraX > 180) {
 
         //説明テキスト
         fill("#000");
@@ -200,13 +214,72 @@ function difficultySelect() {
         text("文字数　　：9~14文字以上", 190, 114 + 110);
         text("制限時間　：120秒", 190, 130 + 110);
 
+        //タイトルに戻るボタン
+        fill("#fff");
+        stroke("#9a6400");
+        rect(260, 270, 90, 20, 5);
+        noStroke();
+        fill("#000");
+        textSize(11);
+        text("タイトルに戻る", 266, 280);
         textAlign(CENTER, CENTER);
+
+        //寿司
+        sushiImage.resize(0, 25);
+        sushi_karaImage.resize(0, 20);
+        for (let n = 0; n < 3; n++) {
+            if (n == 1) { image(sushiImage, 17, 110 + 55 * n); } else { image(sushi_karaImage, 20, 110 + 55 * n); }
+        }
     }
 }
 
 
+function standby() {
+    now = "standby";
+    gridLine();
+    fill("#f7a152");
+    rect(5, 40, tobiraX, 270); //tobiraX
+    rect(400, 40, -tobiraX, 270);
+    fill("#343434");
+    rect(30, 50, 330, 30, 9);
+
+    //上の黒いの
+    textAlign(LEFT, TOP);
+    textSize(18);
+    fill("#4f92b1");
+    text(difficulty, 50, 55);
+    fill("#fff");
+    if (difficulty == "お勧め") { text("5,000円コース", 120, 55); };
+    if (course == "普通") { fill("#ffcf00"); text("【普通】", 260, 55); };
+    textAlign(CENTER, CENTER);
+
+    //注意書き
+    fill("#fff");
+    ellipse(30 + 12.5, 107 + 12.5, 20, 20)
+    attentionImage.resize(0, 25);
+    image(attentionImage, 30, 107);
+
+    fill("#000");
+    textSize(17);
+    text("タイピング中はキーボードを使います", 200, 120);
+
+    fill("#a40402");
+    text("【スペースかEnterキーを押すとスタートします】", 200, 160);
+
+    fill("#000");
+    textSize(10);
+    text("※ゲーム中や結果画面では、「ESCキー」を押すと\nすぐにタイピングをやり直す事ができます。", 200, 220)
+}
+
+
+
+
+
+
 
 function start() {
+    now = "start";
+    isStarted = true;
     timers();           //残り◯秒
     backgrounds();      //背景
     sushi();            //寿司
@@ -218,6 +291,10 @@ function start() {
     keyboard();         //入力判定
     sushiSet();         //真ん中の寿司
 }
+
+
+
+
 
 
 
@@ -237,7 +314,7 @@ function varReset() {
     //流れる寿司
     sushiX = -103;
     sushiY = 0;
-    sushiSpeed = 1;
+    // sushiSpeed = 1;
     sushiKasokudo = 0.03;
 
     //score

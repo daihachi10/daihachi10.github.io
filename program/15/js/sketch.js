@@ -52,38 +52,6 @@ let isShowAdd3Sec = false;
 let defaultShowBarrageTime = 50;
 let showBarrageTime = defaultShowBarrageTime;
 
-
-function preload() {
-    sushiImage = loadImage('image/sushi.webp');
-    sushi_karaImage = loadImage('image/sushi_kara.webp');
-    barrage_arrowImage = loadImage('image/barrage_arrow.webp')
-}
-
-function setup() {
-    // frameRate(180);
-    let canvasContainer = document.getElementById("p5-canvas-container");
-    let canvas = createCanvas(400, 300);
-    canvas.parent(canvasContainer); // コンテナにキャンバスを配置
-    next();
-    noStroke();
-    angleMode(DEGREES);//半円作るのに使う
-    frameRate(60);
-    textFont("Noto Sans JP");
-}
-
-function draw() {
-    background(255);
-    timers();           //残り◯秒
-    backgrounds();      //背景
-    sushi();            //寿司
-    barrage_Meter();    //連打メーター
-    gui();              //GUI
-    odaihyouji();       //日本語・ローマ字表示
-    oldHyouji();        //ローマ字打った履歴表示
-    keyboard();         //入力判定
-    sushiSet();         //真ん中の寿司
-}
-
 function next() {
     imanoyatu = Math.floor(random(0, odai.length));
     i = 0;
@@ -119,7 +87,6 @@ function gui() {
     strokeWeight(3);
 
     //中央の文字の下の黒い四角
-    textAlign(CENTER, CENTER);
     fill(0, 0, 0, 200);
     rect(50, 110, 300, 70, 7);
     noStroke();
@@ -140,11 +107,12 @@ function gui() {
     rect(160, 17, barrrage_X, 3);
 
     //連打メーター矢印    
-
     barrage_arrowImage.resize(0, 10);
     for (let n = 0; n < 3; n++) {
         image(barrage_arrowImage, 202 + n * 50, 20);
     }
+
+    //連打メーター秒数
     image(barrage_arrowImage, 202 + 166, 20);
     for (let n = 0; n < 2; n++) {
         fill("#d73019");
@@ -155,17 +123,11 @@ function gui() {
     text("3秒追加", 350, 29);
 
 
-    //秒数追加
+    //連打メーターの秒数追加
     barrageMeterTimeShows();
 
-    // 左右の線
-    fill("#f79a4f");
-    rect(0, 40, 5, 230);
-    rect(400, 40, -5, 230);
 
-    // スコア
-    fill("#f29e4f");
-    rect(0, 270, 400, 50, 0, 0, 5, 5);
+    //スコア
     fill("#000");
     textSize(15);
     text("スコア", 30, 285);
@@ -245,25 +207,43 @@ function timers() {
 
 
 function backgrounds() {
-    //残り時間の下のやつ
-    fill("#ffa65a");
-    rect(0, 0, 400, 40, 5, 5, 0);
     //背景の緑色のやつ
     fill("#b5bf65");
     rect(0, 40, 400, 45);
+
     //寿司のレーン
     fill("#efbf6b");
     rect(0, 85, 400, 45);
+
     //寿司のレーンの影
     fill("#e49f36");
     rect(0, 130, 400, 14);
+
     //寿司のレーンの下
     fill("#d69e4f");
     rect(0, 144, 400, 70);
+
     // 机
     fill("#eab768");
-    rect(0, 214, 400, 370);
+    rect(0, 214, 400, 370, 0, 0, 5, 5);
 
+
+
+}
+
+function gridLine() {
+    //残り時間の下のやつ
+    fill("#ffa65a");
+    rect(0, 0, 400, 40, 5, 5, 0);
+
+    // 左右の線
+    fill("#f79a4f");
+    rect(0, 40, 5, 230);
+    rect(400, 40, -5, 230);
+
+    // スコア下
+    fill("#f29e4f");
+    rect(0, 270, 400, 50, 0, 0, 5, 5);
 }
 
 function sushiSet() {

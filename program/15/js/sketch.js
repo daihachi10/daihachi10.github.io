@@ -2,6 +2,7 @@ let imanoyatu = 0;
 let keys;
 let oldKeys;
 let i = 0;
+let romajiIndex = 0
 
 //images
 let sushiImage;
@@ -77,9 +78,8 @@ function draw() {
     barrage_Meter();
     gui();
     odaihyouji();
-    for (let n = 0; n < i; n += 1) {
-        oldHyouji(n);
-    }
+    oldHyouji();
+
     keyboard()
     sushiSet();
 
@@ -94,14 +94,25 @@ function odaihyouji() {
     fill("#fff");
     text(odai[imanoyatu], 200, 135);
     textSize(13);
+    if (romaji[imanoyatu].length >= 20) {
+        romajiIndex = 4.34;
+    } else if (romaji[imanoyatu].length > 15) {
+        romajiIndex = 7;
+    } else if (romaji[imanoyatu].length > 10) {
+        romajiIndex = 12;
+    } else if (romaji[imanoyatu].length > 7) {
+        romajiIndex = 20;
+    }
     for (let n = 0; n < romaji[imanoyatu].length; n += 1) {
-        text(romaji[imanoyatu][n], 10 + n * 9 + (10 * romaji[imanoyatu].length / 2), 160);
+        text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
     }
 }
 
-function oldHyouji(n) {
+function oldHyouji() {
     fill("#828282");
-    text(romaji[imanoyatu][n], 10 + n * 9 + (10 * romaji[imanoyatu].length / 2), 160);
+    for (let n = 0; n < i; n += 1) {
+        text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+    }
 }
 
 function gui() {
@@ -130,16 +141,17 @@ function gui() {
     rect(160, 17, barrrage_X, 3);
 
     //連打メーター矢印    
-    // barrage_arrowImage.resize(0, 10);
-    // image(barrage_arrowImage, 199, 20);
+
     barrage_arrowImage.resize(0, 10);
     for (let n = 0; n < 3; n++) {
         image(barrage_arrowImage, 202 + n * 50, 20);
     }
     image(barrage_arrowImage, 202 + 166, 20);
+    for (let n = 0; n < 2; n++) {
+        text("1秒追加", 100 + n * 50, 20)
+    }
 
     //秒数追加
-    //2024-11-02ここ！！！
     barrageMeterTimeShows();
 
     // 左右の線

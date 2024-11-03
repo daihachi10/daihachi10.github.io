@@ -369,51 +369,50 @@ function gameOverProcessing() {
                 if (course == "普通") { fill("#ffcf00"); text("【普通】", 260, 55 - 14); };
                 textAlign(CENTER, CENTER);
 
-                for (let n = 0; n < 4; n++) {
-                    //成績
-                    if (n == 0) {
-                        //ゲット数・成績画像
-                        fill("#000");
-                        textAlign(LEFT, CENTER);
-                        textSize(16);
-                        text(nedan, 130, 90);
-                        text("   ,         円分のお寿司をゲット！", 130, 90);
-                    } else if (n == 1) {
-                        fill("#969696");
-                        textSize(16)
-                        text("5,000円　払って・・・", 130, 115);
-                    } else if (n == 2) {
-                        if (nedan - 5000 > 0) {
-                            stroke("#6f9825");
-                            fill("#6f9825");
-                            kekka = nedan - 5000;
-                            // textSize(18);
-                            strokeWeight(4);
-                            fill("#fff")
-                            rect(50, 140, 305, 30, 5);
-                            noStroke();
-                            fill("#6f9825");
-                            text("円分 お得でした！", 185, 155);
-                        } else {
-                            stroke("#656065");
-                            kekka = 5000 - nedan;
-                            strokeWeight(4);
-                            fill("#fff");
-                            rect(50, 140, 305, 30, 5);
-                            noStroke();
-                            fill("#656065");
-                            text("円分 損でした・・・", 185, 155);
-                        }
 
+                //成績
+
+                //ゲット数・成績画像
+                gameOverResultTien++;
+                if (gameOverResultTien > 60) {
+                    fill("#000");
+                    textAlign(LEFT, CENTER);
+                    textSize(16);
+                    text(nedan, 130, 90);
+                    text("   ,         円分のお寿司をゲット！", 130, 90);
+                }
+                if (gameOverResultTien > 120) {
+                    fill("#969696");
+                    textSize(16)
+                    text("5,000円　払って・・・", 130, 115);
+                }
+                if (gameOverResultTien > 180) {
+                    if (nedan - 5000 > 0) {
+                        stroke("#6f9825");
+                        fill("#6f9825");
+                        kekka = nedan - 5000;
+                        // textSize(18);
+                        strokeWeight(4);
+                        fill("#fff")
+                        rect(50, 140, 305, 30, 5);
+                        noStroke();
+                        fill("#6f9825");
+                        text("円分 お得でした！", 185, 155);
+                    } else {
+                        stroke("#656065");
+                        kekka = 5000 - nedan;
+                        strokeWeight(4);
                         fill("#fff");
-
+                        rect(50, 140, 305, 30, 5);
+                        noStroke();
+                        fill("#656065");
+                        text("円分 損でした・・・", 185, 155);
                         fill("#000");
                         textSize(18);
                         textAlign(LEFT, CENTER);
                         text(kekka, 110, 155);
                         textAlign(CENTER, CENTER);
                     }
-
                 }
             }
         }

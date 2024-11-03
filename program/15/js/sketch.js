@@ -1,5 +1,6 @@
 let imanoyatu = 0;
 let keys;
+let oldKeys;
 let i = 0;
 
 //images
@@ -129,24 +130,17 @@ function gui() {
     rect(160, 17, barrrage_X, 3);
 
     //連打メーター矢印    
-    // sushiImage.resize(0, 50);
-    // image(barrage_arrowImage, 20, 70);
+    // barrage_arrowImage.resize(0, 10);
+    // image(barrage_arrowImage, 199, 20);
+    barrage_arrowImage.resize(0, 10);
+    for (let n = 0; n < 3; n++) {
+        image(barrage_arrowImage, 202 + n * 50, 20);
+    }
+    image(barrage_arrowImage, 202 + 166, 20);
 
     //秒数追加
     //2024-11-02ここ！！！
-    fill("#f54545");
-    textSize(20);
-    console.log(showBarrageTime)
-    if (isAdd1Sec1 == true && isShowAdd1Sec1 == false) {
-        if (showBarrageTime > 0) {
-            text("+1秒", 90, 50);
-            showBarrageTime--;
-        } else {
-            isShowAdd1Sec1 = true;
-            showBarrageTime = defaultShowBarrageTime
-        }
-
-    }
+    barrageMeterTimeShows();
 
     // 左右の線
     fill("#f79a4f");
@@ -222,6 +216,7 @@ function sushi() {
         image(sushiImage, sushiX, 70);
     } else {
         sushiX = -103;
+        barrrage = 0
         next();
     }
     sushiX += sushiSpeed;
@@ -269,54 +264,121 @@ function sushiSet() {
 
 function barrage_Meter() {
     barrrage_X = barrrage * barrrageSpeed;
+    // barrrage_X = 217;
     // if (barrrage == 249) {
 
     // }
 
-    if (barrrage_X > 45 && isAdd1Sec1 == false) {
+    if (barrrage_X > 50 && isAdd1Sec1 == false) {
+        isAdd3Sec = false;
+        isShowAdd3Sec = false;
+
         console.log("1秒追加")
         countUpTimer -= 1;
         isAdd1Sec1 = true
-    } else if (barrrage_X > 90 && isAdd1Sec2 == false) {
+    } else if (barrrage_X > 100 && isAdd1Sec2 == false) {
         console.log("1秒追加")
         countUpTimer -= 1;
         isAdd1Sec2 = true
-    } else if (barrrage_X > 135 && isAdd2Sec == false) {
+    } else if (barrrage_X > 150 && isAdd2Sec == false) {
         console.log("2秒追加")
         countUpTimer -= 2;
         isAdd2Sec = true
-    } else if (barrrage_X > 207 && isAdd3Sec == false) {
+    } else if (barrrage_X > 217 && isAdd3Sec == false) {
         console.log("3秒追加")
         countUpTimer -= 3;
+        isAdd3Sec = true;
+
+        //もう一度表示できるようにする
         isAdd1Sec1 = false;
+        isShowAdd1Sec1 = false;
         isAdd1Sec2 = false;
+        isShowAdd1Sec2 = false;
         isAdd2Sec = false;
-        isAdd3Sec = false;
+        isShowAdd2Sec = false
+
         barrrage = 0;
     }
-
 }
+function barrageMeterTimeShows() {
 
+    fill("#f54545");
+    textSize(20);
+    // console.log(showBarrageTime)
+    if (isAdd1Sec1 == true && isShowAdd1Sec1 == false) {
+        if (showBarrageTime > 0) {
+            text("+1秒", 90, 50);
+            showBarrageTime--;
+        } else {
+            isShowAdd1Sec1 = true;
+            showBarrageTime = defaultShowBarrageTime
+        }
+    }
+    if (isAdd1Sec2 == true && isShowAdd1Sec2 == false) {
+        if (showBarrageTime > 0) {
+            text("+1秒", 90, 50);
+            showBarrageTime--;
+        } else {
+            isShowAdd1Sec2 = true;
+            showBarrageTime = defaultShowBarrageTime
+        }
+    }
+    if (isAdd2Sec == true && isShowAdd2Sec == false) {
+        if (showBarrageTime > 0) {
+            text("+2秒", 90, 50);
+            showBarrageTime--;
+        } else {
+            isShowAdd2Sec = true;
+            showBarrageTime = defaultShowBarrageTime
+        }
+    }
+    if (isAdd3Sec == true && isShowAdd3Sec == false) {
+        if (showBarrageTime > 0) {
+            text("+3秒", 90, 50);
+            showBarrageTime--;
+        } else {
+            isShowAdd3Sec = true;
+            showBarrageTime = defaultShowBarrageTime
+        }
+    }
+}
 
 
 function keyboard() {
 
     keys = romaji[imanoyatu][i];
+    oldKeys = keys
+
+    if (!key == keys) {
+        console.log("miss");
+        barrrage = 0
+
+        if (!key === keys) {
+
+        }
+    }
+
+    console.log("key=:" + key)
+    console.log("keys=:" + keys)
+    // console.log(key === keys);
 
     //長押しでも反応してしまう
     tien--;
     if (key === keys && tien <= 0) {
-        console.log("nyuryoku:" + key);
+        // console.log("nyuryoku:" + key);
         i += 1;
+        oldKeys = keys
         keys = romaji[imanoyatu][i];
         iscorrect = true;
         barrrage++;
     } else {
         iscorrect = false;
     }
-    if (keyIsPressed && !key === keys) {
+
+    if (!oldKeys == keys) {
         barrrage = 0
     }
+    // console.log(key === keys)
     //長押しでも反応しないけど早く入力すると反応しない
     // if (keyIsPressed && !isKeyPushed && key === keys) {
     //     console.log("nyuryoku:" + key);

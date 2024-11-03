@@ -347,11 +347,12 @@ function gameOverProcessing() {
         if (gameOverTien < 0) {
             if (tobiraX < 200) { };
             tobiraX += 20;
-            console.log(tobiraX);
+            // console.log(tobiraX);
             fill("#f7a152");
-            rect(5, 40, tobiraX, 270); //tobiraX
-            rect(400, 40, -tobiraX, 270);
-            if (tobiraX >= 200) {
+            rect(5, 40, tobiraX, 230); //tobiraX
+            rect(400, 40, -tobiraX, 230);
+            if (tobiraX >= 1000) {
+                isTimeShow = false
 
                 //背景
                 fill("#fff");

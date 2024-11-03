@@ -47,13 +47,14 @@ let now = "title"                               //今なんの画面か
 
 let imanoyatu = 0;                              //今ローマ字どれくらい打ったか
 let keys;                                       //次に打たないといけないキー
-// let oldKeys;                                 //使わん
 let i = 0;                                      //打った数
 let romajiIndex = 0;                            //ローマ字の中央寄せするときに使う
 
+//ゲームオーバー
 let isOdaiShow = true;                          //ゲームオーバーの終了の文字を表示するときにfalseになる
-let gameOverTien = 30;                         //終了の文字がでてから扉が閉じるまでの遅延
-
+let gameOverTien = 30;                          //終了の文字がでてから扉が閉じるまでの遅延
+let gameOverResultTien = 60;                    //白い背景がでてから結果が出るまでの遅延
+let isTimeShow = true;                          //ゲームオーバーの扉が閉まるとfalseになる
 
 //images
 let sushiImage;                                 //寿司の画像

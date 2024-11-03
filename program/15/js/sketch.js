@@ -7,6 +7,10 @@ let romajiIndex = 0;
 //images
 let sushiImage;
 let sushi_karaImage;
+
+let sushiImageSmall;
+let sushi_karaImageSmall;
+
 let barrage_arrowImage;
 
 //timers

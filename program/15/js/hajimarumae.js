@@ -2,13 +2,13 @@ let tSushiX = 400;
 let isTitle = true;
 let isStarted = false;
 
-let tobiraX = 200
+let tobiraX = 0
 
 let course = "普通"
 let difficulty = "お勧め"
-let now
+let now = "title"
+let nexts = "title"
 
-let attentionImage
 function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let canvas = createCanvas(400, 300);
@@ -17,8 +17,10 @@ function setup() {
     noStroke();
     angleMode(DEGREES);//半円作るのに使う
     frameRate(60);
-    textFont("Noto Sans JP");
+    // textFont("Noto Sans JP");
+    textFont("Yuji Mai");
     textAlign(CENTER, CENTER);
+    varReset();
 }
 
 function preload() {
@@ -26,15 +28,22 @@ function preload() {
     sushi_karaImage = loadImage('image/sushi_kara.webp');
     barrage_arrowImage = loadImage('image/barrage_arrow.webp');
     attentionImage = loadImage('image/attention.webp');
+    sushiImageSmall = loadImage('image/sushi_small.webp');
+    sushi_karaImageSmall = loadImage('image/sushi_kara_small.webp');
+
 }
 
 function draw() {
-    title();
-    // // standby();
+    if (now == "title") { title(); }
+    else if (now == "difficultyselect") { difficultySelect(); }
+    else if (now == "standby") { standby(); }
+    else if (now == "start") { start(); }
 
+    // 
+    // start();
     // if (isTitle) {
-    // varReset();//変数全てリセット
-    // } else if (!isStarted) { difficultySelect(); } else { start(); }
+    // //変数全てリセット
+    // } else if (!isStarted) {  } else { start(); }
 
 }
 
@@ -43,8 +52,8 @@ function draw() {
 
 function title() {
     now = "title";
-    tobiraX1 = 0
-    tobiraX2 = 400
+    tobiraX = 0
+
     //背景の緑色のやつ
     fill("#b5bf65");
     rect(0, 20, 400);
@@ -105,27 +114,26 @@ function startButton() {
 }
 
 function keyPressed() {
-    if (keyCode === 27) { isTitle = true; isStarted = false; }//ESCキーでタイトルに戻る
-    if (keyCode === 32 || keyCode === 13 && now == "standby") { start(); }
+    if (keyCode === 27) { now == "standby" }//ESCキーでタイトルに戻る
+    if (keyCode === 32 || keyCode === 13 && now == "standby") { start(); now = "start" }
 }
 
 //ボタン当たり判定
 function mouseClicked() {
     if (now == "title") {                   //title画面
         if (mouseX > 135 && mouseX < 130 + 135 && mouseY > 160 && mouseY < 190) {
-            isTitle = false;
+            now = "difficultyselect";
         }
     } else if (now == "difficultyselect") { //難易度を選択画面
         // rect(260,270,90,20,5)
-        if (mouseX > 260 && mouseX < 350 && mouseY > 270 && mouseY < 290) { isTitle = true; isStarted = false; };//タイトルに戻るが押された
-        if (mouseX > 50 && mouseX < 350 && mouseY > 155 && mouseY < 200) { standby(); difficulty = "お勧め" }   //お勧めが押された
+        if (mouseX > 260 && mouseX < 350 && mouseY > 270 && mouseY < 290) { now = "title" };//タイトルに戻るが押された
+        if (mouseX > 50 && mouseX < 350 && mouseY > 155 && mouseY < 200) { now = "standby"; difficulty = "お勧め" }   //お勧めが押された
     }
 }
 
 function difficultySelect() {
     now = "difficultyselect";
     gridLine();
-
     //閉まるアニメーション
     // tobiraX = 400
     if (tobiraX < 200) { tobiraX += 20; };
@@ -225,10 +233,10 @@ function difficultySelect() {
         textAlign(CENTER, CENTER);
 
         //寿司
-        sushiImage.resize(0, 25);
-        sushi_karaImage.resize(0, 20);
+        sushiImageSmall.resize(0, 25);
+        sushi_karaImageSmall.resize(0, 20);
         for (let n = 0; n < 3; n++) {
-            if (n == 1) { image(sushiImage, 17, 110 + 55 * n); } else { image(sushi_karaImage, 20, 110 + 55 * n); }
+            if (n == 1) { image(sushiImageSmall, 17, 110 + 55 * n); } else { image(sushi_karaImageSmall, 20, 110 + 55 * n); }
         }
     }
 }
@@ -279,7 +287,7 @@ function standby() {
 
 function start() {
     now = "start";
-    isStarted = true;
+    // isStarted = true;
     timers();           //残り◯秒
     backgrounds();      //背景
     sushi();            //寿司

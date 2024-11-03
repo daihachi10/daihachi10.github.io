@@ -1,75 +1,85 @@
-
-
+//次のものをランダムで決める
 function next() {
     imanoyatu = Math.floor(random(0, odai.length));
     i = 0;
 }
 
+//お題を表示する
 function odaihyouji() {
-    fill("#fff");
-    text(odai[imanoyatu], 200, 135);
-    textSize(13);
-    if (romaji[imanoyatu].length >= 20) {
-        romajiIndex = 4.34;
-    } else if (romaji[imanoyatu].length > 15) {
-        romajiIndex = 7;
-    } else if (romaji[imanoyatu].length > 10) {
-        romajiIndex = 12;
-    } else if (romaji[imanoyatu].length > 7) {
-        romajiIndex = 20;
-    }
-    for (let n = 0; n < romaji[imanoyatu].length; n += 1) {
-        text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+    if (isOdaiShow) {
+        fill("#fff");
+        text(odai[imanoyatu], 200, 135);
+        textSize(13);
+        if (romaji[imanoyatu].length >= 20) {
+            romajiIndex = 4.34;
+        } else if (romaji[imanoyatu].length > 15) {
+            romajiIndex = 7;
+        } else if (romaji[imanoyatu].length > 10) {
+            romajiIndex = 12;
+        } else if (romaji[imanoyatu].length > 7) {
+            romajiIndex = 20;
+        }
+        for (let n = 0; n < romaji[imanoyatu].length; n += 1) {
+            text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+        }
     }
 }
 
+//入力した文字を灰色にする処理
 function oldHyouji() {
-    fill("#828282");
-    for (let n = 0; n < i; n += 1) {
-        text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+    if (isOdaiShow) {
+        fill("#828282");
+        for (let n = 0; n < i; n += 1) {
+            text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+        }
     }
 }
 
+//GUI
 function gui() {
-    stroke("#fff");
-    strokeWeight(3);
 
-    //中央の文字の下の黒い四角
-    fill(0, 0, 0, 200);
-    rect(50, 110, 300, 70, 7);
-    noStroke();
 
     //残り時間
     fill("#000");
     textSize(20);
-    text("残り" + countDownTimer + "秒", 60, 20);
+    if (isTimeShow) { if (countUpTimer < time) { text("残り" + countDownTimer + "秒", 60, 20); } else { text("残り0秒", 60, 20); } } //終了したらマイナスではなく0と表示
+    if (isOdaiShow) {
+        stroke("#fff");
+        strokeWeight(3);
 
-    //連打メーター
-    textSize(11);
-    text("連打メーター", 180, 10);
-    fill("#4c4034");
-    rect(160, 17, 217, 3);
-
-    //連打メーター棒
-    fill("#fff489");
-    rect(160, 17, barrrage_X, 3);
-
-    //連打メーター矢印    
-    barrage_arrowImage.resize(0, 10);
-    for (let n = 0; n < 3; n++) {
-        image(barrage_arrowImage, 202 + n * 50, 20);
+        //中央の文字の下の黒い四角
+        fill(0, 0, 0, 200);
+        rect(50, 110, 300, 70, 7);
+        noStroke();
     }
 
-    //連打メーター秒数
-    image(barrage_arrowImage, 202 + 166, 20);
-    for (let n = 0; n < 2; n++) {
-        fill("#d73019");
-        textSize(8.5);
-        text("1秒追加", 185 + n * 50, 29);
-    }
-    text("2秒追加", 284, 29);
-    text("3秒追加", 350, 29);
+    if (isTimeShow) {
+        //連打メーター
+        textSize(11);
+        text("連打メーター", 180, 10);
+        fill("#4c4034");
+        rect(160, 17, 217, 3);
 
+        //連打メーター棒
+        fill("#fff489");
+        rect(160, 17, barrrage_X, 3);
+
+        //連打メーター矢印    
+        barrage_arrowImage.resize(0, 10);
+        for (let n = 0; n < 3; n++) {
+            image(barrage_arrowImage, 202 + n * 50, 20);
+        }
+
+        //連打メーター秒数
+        image(barrage_arrowImage, 202 + 166, 20);
+        for (let n = 0; n < 2; n++) {
+            fill("#d73019");
+            textSize(8.5);
+            text("1秒追加", 185 + n * 50, 29);
+        }
+        text("2秒追加", 284, 29);
+        text("3秒追加", 350, 29);
+    }
 
     //連打メーターの秒数追加
     barrageMeterTimeShows();
@@ -136,6 +146,7 @@ function gui() {
     }
 }
 
+//流れる寿司
 function sushi() {
     if (sushiX < 400) {
         sushiImage.resize(0, 50);
@@ -147,11 +158,14 @@ function sushi() {
     }
     sushiX += sushiSpeed;
 }
+
+//残りの時間
 function timers() {
     countUpTimer += 1 / 60;
     countDownTimer = time - countUpTimer.toFixed(0);
 }
 
+//背景
 function backgrounds() {
     //背景の緑色のやつ
     fill("#b5bf65");
@@ -177,6 +191,7 @@ function backgrounds() {
 
 }
 
+//周りの枠
 function gridLine() {
     //残り時間の下のやつ
     fill("#ffa65a");
@@ -192,6 +207,7 @@ function gridLine() {
     rect(0, 270, 400, 50, 0, 0, 5, 5);
 }
 
+//入力した後の寿司を表示
 function sushiSet() {
     if (sara >= 11) {
         sara = 1;
@@ -204,6 +220,7 @@ function sushiSet() {
     }
 }
 
+//連打メーター
 function barrage_Meter() {
     barrrage_X = barrrage * barrrageSpeed;
 
@@ -239,6 +256,7 @@ function barrage_Meter() {
     }
 }
 
+//+◯秒の表示
 function barrageMeterTimeShows() {
 
     fill("#f54545");
@@ -282,6 +300,7 @@ function barrageMeterTimeShows() {
     }
 }
 
+//入力の処理
 function keyboard() {
 
     keys = romaji[imanoyatu][i];

@@ -51,6 +51,10 @@ let keys;                                       //次に打たないといけな
 let i = 0;                                      //打った数
 let romajiIndex = 0;                            //ローマ字の中央寄せするときに使う
 
+let isOdaiShow = true;                          //ゲームオーバーの終了の文字を表示するときにfalseになる
+let gameOverTien = 30;                         //終了の文字がでてから扉が閉じるまでの遅延
+
+
 //images
 let sushiImage;                                 //寿司の画像
 let sushi_karaImage;                            //寿司の空の画像
@@ -70,8 +74,9 @@ let sushiSpeed = 1;                             //基本のスピード
 let sushiKasokudo = 0.03;                       //1つ終わる事にどれくらい加速するか
 
 let score = 0;                                  //score
-
+let nedan = 0;                                  //nedan
 //皿
+let kekka = 0;                                  //払った値段を引いた値段
 let sara = 0;                                   //皿の数
 let juunokuraiSara = 0;                         //十の位の皿の数
 

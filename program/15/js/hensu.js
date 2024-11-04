@@ -63,7 +63,7 @@ let isShowSetting = false                        //設定画面が表示され�
 let isChangeFont = false                        //fontをNoto Sans JPに変更したかどうか
 let isRomajiShow = true                         //ローマ字表示するか
 let isBgm = false                                //BGMを流すか
-let isSoundEffect = false                        //効果音を流すか
+let isSoundEffect = true                        //効果音を流すか
 let isType = true                               //タイプ音を流すか
 
 //images

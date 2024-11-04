@@ -1,6 +1,7 @@
 //ゲームオーバーの処理
 function gameOverProcessing() {
     if (countDownTimer <= 0) {
+        if (!isStopSounds) { isStopSounds = true; stopSounds.play(); }
         isOdaiShow = false
         nedan = score * 240
         //終了文字
@@ -41,6 +42,7 @@ function gameOverProcessing() {
                 //ゲット数・成績画像
                 gameOverResultTien++;
                 if (gameOverResultTien > 30) {
+                    if (!isResult1Sounds) { result1Sounds.play(); isResult1Sounds = true; }
                     fill("#000");
                     textAlign(LEFT, CENTER);
                     textSize(16);
@@ -48,11 +50,13 @@ function gameOverProcessing() {
                     text("             円分のお寿司をゲット！", 130, 90);
                 }
                 if (gameOverResultTien > 60) {
+                    if (!isResult2Sounds) { result1Sounds.play(); isResult2Sounds = true; }
                     fill("#969696");
                     textSize(16)
                     text("5,000円　払って・・・", 130, 115);
                 }
                 if (gameOverResultTien > 100) {
+                    if (!isResult3Sounds) { result2Sounds.play(); isResult3Sounds = true; }
                     if (nedan - 5000 > 0) {
                         kekka = nedan - 5000;
                         stroke("#6f9825");

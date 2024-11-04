@@ -45,10 +45,11 @@ let now = "title"                               //今なんの画面か
 let course = "普通"                             //難易度
 let difficulty = "お勧め"                       //コース
 
-let imanoyatu = 0;                              //今ローマ字どれくらい打ったか
+let imanoyatu                              //今ローマ字どれくらい打ったか
 let keys;                                       //次に打たないといけないキー
 let i = 0;                                      //打った数
 let romajiIndex = 0;                            //ローマ字の中央寄せするときに使う
+let hajimete = true;                            //最初の入力する文字
 
 //ゲームオーバー
 let isOdaiShow = true;                          //ゲームオーバーの終了の文字を表示するときにfalseになる
@@ -61,8 +62,9 @@ let isTimeShow = true;                          //ゲームオーバーの扉が
 let isShowSetting = false                        //設定画面が表示されているかどうか
 let isChangeFont = false                        //fontをNoto Sans JPに変更したかどうか
 let isRomajiShow = true                         //ローマ字表示するか
-let isBgm = true                                //BGMを流すか
-let isSoundEffect = true                        //効果音を流すか
+let isBgm = false                                //BGMを流すか
+let isSoundEffect = false                        //効果音を流すか
+let isType = true                               //タイプ音を流すか
 
 //images
 let sushiImage;                                 //寿司の画像
@@ -79,6 +81,18 @@ let checkImage;                                 //チェックの画像
 let keySounds1;                                 //タイピング音
 let keySounds2;                                 //タイピング音
 let keySounds3;                                 //タイピング音
+let keySound;                                   //random
+let startSounds;                                //スタートの笛
+let stopSounds;                                 //stopの笛
+let isStopSounds = false;                               //stopの音を再生したかどうか
+
+let result1Sounds;
+let isResult1Sounds = false
+let isResult2Sounds = false
+let result2;
+let isResult3Sounds = false
+
+let bgmInput;                                   //bgmをインプット
 
 //timers
 let countUpTimer = 0;                           //カウントアップタイマー

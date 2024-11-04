@@ -2,6 +2,8 @@ function setup() {
     let canvasContainer = document.getElementById("p5-canvas-container");
     let canvas = createCanvas(400, 300);
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
+
+    // createCanvas(400, 300);
     next();
     noStroke();
     angleMode(DEGREES);//半円作るのに使う
@@ -19,6 +21,7 @@ function setup() {
     settingsImageSmall.resize(0, 13);
     checkImage.resize(0, 20);
     check_boxImage.resize(0, 20);
+
 }
 
 function preload() {
@@ -32,6 +35,17 @@ function preload() {
     settingsImageSmall = loadImage('image/settings_small.webp');
     check_boxImage = loadImage('image/check_box.webp')
     checkImage = loadImage('image/check_box_checked.webp');
+
+
+    keySounds1 = loadSound('sounds/key1.mp3');
+    keySounds2 = loadSound('sounds/key2.mp3');
+    keySounds3 = loadSound('sounds/key3.mp3');
+
+    startSounds = loadSound('sounds/start.wav');
+    stopSounds = loadSound('sounds/stop.wav');
+
+    result1Sounds = loadSound('sounds/result1.wav');
+    result2Sounds = loadSound('sounds/result2.wav');
 }
 
 function draw() {
@@ -47,7 +61,7 @@ function draw() {
 //ESCキー、ENTERキーが押されたとき
 function keyPressed() {
     if (now == "start" && keyCode === 27) { now = "standby"; varReset(); }//プレイ中にESCキーでスタンバイに戻る
-    if (keyCode === 32 || keyCode === 13 && now == "standby") { varReset(); start(); now = "start" }
+    if (keyCode === 32 && now == "standby" || keyCode === 13 && now == "standby") { varReset(); start(); now = "start"; startSounds.play(); }
 }
 
 //ボタン当たり判定
@@ -67,8 +81,9 @@ function mouseClicked() {
     if (!isShowSetting && now == "standby" && mouseX > 27 && mouseY > 268 && mouseX < 120 && mouseY < 290) { isShowSetting = true }
     //27,268 120,290
     //設定項目
-    if (isShowSetting && mouseX > 120 && mouseY > 68 && mouseX < 270 + 30 && mouseY < 85) { if (isChangeFont) { isChangeFont = false; } else { isChangeFont = true; } }          //フォントを変更する
-    if (isShowSetting && mouseX > 120 && mouseY > 103 && mouseX < 230 + 30 && mouseY < 103 + 17) { if (isRomajiShow) { isRomajiShow = false; } else { isRomajiShow = true; } }   //ローマ字表示を切り替える
+    if (isShowSetting && mouseX > 120 && mouseY > 68 - 10 && mouseX < 270 + 30 && mouseY < 85 - 10) { if (isChangeFont) { isChangeFont = false; } else { isChangeFont = true; } }          //フォントを変更する
+    if (isShowSetting && mouseX > 120 && mouseY > 103 - 10 && mouseX < 230 + 30 && mouseY < 103 + 17 - 10) { if (isRomajiShow) { isRomajiShow = false; } else { isRomajiShow = true; } }   //ローマ字表示を切り替える
+    if (isShowSetting && mouseX > 120 && mouseY > 128 && mouseX < 230 + 30 && mouseY < 138) { if (isType) { isType = false; } else { isType = true; } }                                    //タイプ音
     if (isShowSetting && mouseX > 120 && mouseY > 163 && mouseX < 200 + 30 && mouseY < 163 + 17) { if (isBgm) { isBgm = false; } else { isBgm = true; } }                        //BGM
     if (isShowSetting && mouseX > 120 && mouseY > 196 && mouseX < 200 + 30 && mouseY < 196 + 17) { if (isSoundEffect) { isSoundEffect = false; } else { isSoundEffect = true; } }//効果音
 }
@@ -331,14 +346,16 @@ function settings() {
 
     //チェックボックス
 
-    if (isChangeFont) { image(checkImage, 120, 67); } else { image(check_boxImage, 120, 67); };
-    if (isRomajiShow) { image(checkImage, 120, 67 + 35); } else { image(check_boxImage, 120, 67 + 35); }
+    if (isChangeFont) { image(checkImage, 120, 67 - 10); } else { image(check_boxImage, 120, 67 - 10); };
+    if (isRomajiShow) { image(checkImage, 120, 67 + 35 - 10); } else { image(check_boxImage, 120, 67 + 35 - 10); }
+    if (isType) { image(checkImage, 120, 160 - 35); } else { image(check_boxImage, 120, 160 - 35); };
     if (isBgm) { image(checkImage, 120, 160); } else { image(check_boxImage, 120, 160); };
     if (isSoundEffect) { image(checkImage, 120, 160 + 35); } else { image(check_boxImage, 120, 160 + 35); };
 
     //詳細設定文字
-    text("フォントを変更する", 150, 70);
-    text("ローマ字表示", 150, 104);
+    text("フォントを変更する", 150, 70 - 10);
+    text("ローマ字表示", 150, 104 - 10);
+    text("♪タイプ音", 150, 163 - 35);
     text("♪BGM", 150, 163);
     text("♪効果音", 150, 199);
 
@@ -388,6 +405,10 @@ function varReset() {
     gameOverTien = 30;                          //終了の文字がでてから扉が閉じるまでの遅延
     gameOverResultTien = 0;                     //白い背景がでてから結果が出るまでの遅延
     isTimeShow = true;                          //ゲームオーバーの扉が閉まるとfalseになる
+    isStopSounds = false
+    isResult1Sounds = false
+    isResult2Sounds = false
+    isResult3Sounds = false
 
     //images
     sushiImage;                                 //寿司の画像

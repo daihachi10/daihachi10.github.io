@@ -144,8 +144,7 @@ ul li {
     display: flex;
 }
 
-.item-area img,
-canvas {
+.item-area img {
     z-index: 10;
     width: 50%;
     max-width: 380px;

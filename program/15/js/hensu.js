@@ -75,6 +75,11 @@ let settingsImageSmall;                              //設定の画像小さい
 let check_boxImage;                             //チェックボックスだけの画像
 let checkImage;                                 //チェックの画像
 
+//sounds
+let keySounds1;                                 //タイピング音
+let keySounds2;                                 //タイピング音
+let keySounds3;                                 //タイピング音
+
 //timers
 let countUpTimer = 0;                           //カウントアップタイマー
 let countDownTimer;                             //カウントダウンタイマー

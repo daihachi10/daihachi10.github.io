@@ -312,6 +312,9 @@ function keyboard() {
     //長押しでも反応してしまう
     tien--;
     if (key === keys && tien <= 0) {
+        keysound = Math.floor(random(0, 2));
+        if (keybord = 0) { keySounds1.play(); } else if (keybord = 1) { keySounds2.play(); } else if (keybord = 2) { keySounds3.play(); }
+        console.log(keybord)
         i += 1;
         keys = romaji[imanoyatu][i];
         barrrage++;

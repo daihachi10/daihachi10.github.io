@@ -61,7 +61,7 @@ function draw() {
 //ESCキー、ENTERキーが押されたとき
 function keyPressed() {
     if (now == "start" && keyCode === 27) { now = "standby"; varReset(); }//プレイ中にESCキーでスタンバイに戻る
-    if (keyCode === 32 && now == "standby" || keyCode === 13 && now == "standby") { varReset(); start(); now = "start"; startSounds.play(); }
+    if (keyCode === 32 && now == "standby" || keyCode === 13 && now == "standby") { varReset(); start(); now = "start"; if (isSoundEffect) { startSounds.play(); } }
 }
 
 //ボタン当たり判定

@@ -6,10 +6,19 @@ function setup() {
     noStroke();
     angleMode(DEGREES);//半円作るのに使う
     frameRate(60);
-    textFont("Yuji Mai");
-    // textFont("Noto Sans JP");
+
     textAlign(CENTER, CENTER);
     varReset();
+
+    sushiImage.resize(0, 50);
+    sushi_karaImage.resize(0, 50);
+    sushiImageSmall.resize(0, 25);
+    sushi_karaImageSmall.resize(0, 20);
+    attentionImage.resize(0, 25);
+    settingsImage.resize(0, 20);
+    settingsImageSmall.resize(0, 13);
+    checkImage.resize(0, 20);
+    check_boxImage.resize(0, 20);
 }
 
 function preload() {
@@ -20,25 +29,30 @@ function preload() {
     sushiImageSmall = loadImage('image/sushi_small.webp');
     sushi_karaImageSmall = loadImage('image/sushi_kara_small.webp');
     settingsImage = loadImage('image/settings.webp');
+    settingsImageSmall = loadImage('image/settings_small.webp');
+    check_boxImage = loadImage('image/check_box.webp')
+    checkImage = loadImage('image/check_box_checked.webp');
 }
 
 function draw() {
-    if (now == "title") { title(); }
-    else if (now == "difficultyselect") { difficultySelect(); }
-    else if (now == "standby") { standby(); }
-    else if (now == "start") { start(); }
+    if (now == "title" || isShowSetting) { title(); }
+    else if (now == "difficultyselect" || isShowSetting) { difficultySelect(); }
+    else if (now == "standby" || isShowSetting) { standby(); }
+    else if (now == "start" || isShowSetting) { start(); }
     if (isShowSetting) { settings(); }
-    console.log(now);
+
+    if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }
 }
 
 //ESCキー、ENTERキーが押されたとき
 function keyPressed() {
     if (now == "start" && keyCode === 27) { now = "standby"; varReset(); }//プレイ中にESCキーでスタンバイに戻る
-    if (keyCode === 32 || keyCode === 13 && now == "standby") { start(); now = "start" }
+    if (keyCode === 32 || keyCode === 13 && now == "standby") { varReset(); start(); now = "start" }
 }
 
 //ボタン当たり判定
 function mouseClicked() {
+    console.log("mouseClicked X: " + mouseX + "Y: " + mouseY);
     if (now == "title" && mouseX > 135 && mouseX < 130 + 135 && mouseY > 160 && mouseY < 190) { now = "difficultyselect"; }                   //タイトル画面でスタートが押されたら難易度選択画面に行く
 
     else if (now == "difficultyselect") {                                                                                                     //難易度を選択画面で
@@ -46,6 +60,17 @@ function mouseClicked() {
         if (mouseX > 50 && mouseX < 350 && mouseY > 155 && mouseY < 200) { now = "standby"; difficulty = "お勧め" }                           //お勧めが押されたらスタンバイ画面に行く
 
     } else if (now == "standby" && mouseX > 260 && mouseX < 350 && mouseY > 270 && mouseY < 290) { now = "title" };                           //スタンバイ画面でタイトルに戻るが押されたらタイトルに戻る
+
+    //設定
+    if (!isShowSetting && now == "title" && mouseX > 150 && mouseX < 250 && mouseY > 220 && mouseY < 245) { isShowSetting = true }            //タイトル画面で設定を表示ボタンを押した
+    if (isShowSetting && mouseX > 120 && mouseX < 260 && mouseY > 240 && mouseY < 270) { isShowSetting = false }                               //設定画面で閉じるボタンが押された
+    if (!isShowSetting && now == "standby" && mouseX > 27 && mouseY > 268 && mouseX < 120 && mouseY < 290) { isShowSetting = true }
+    //27,268 120,290
+    //設定項目
+    if (isShowSetting && mouseX > 120 && mouseY > 68 && mouseX < 270 + 30 && mouseY < 85) { if (isChangeFont) { isChangeFont = false; } else { isChangeFont = true; } }          //フォントを変更する
+    if (isShowSetting && mouseX > 120 && mouseY > 103 && mouseX < 230 + 30 && mouseY < 103 + 17) { if (isRomajiShow) { isRomajiShow = false; } else { isRomajiShow = true; } }   //ローマ字表示を切り替える
+    if (isShowSetting && mouseX > 120 && mouseY > 163 && mouseX < 200 + 30 && mouseY < 163 + 17) { if (isBgm) { isBgm = false; } else { isBgm = true; } }                        //BGM
+    if (isShowSetting && mouseX > 120 && mouseY > 196 && mouseX < 200 + 30 && mouseY < 196 + 17) { if (isSoundEffect) { isSoundEffect = false; } else { isSoundEffect = true; } }//効果音
 }
 
 //タイトル画面
@@ -58,13 +83,11 @@ function title() {
     rect(0, 20, 400);
 
     //寿司打のタイトルの文字
-    textSize(70);
+    textSize(100);
     fill("#000")
     textFont("Yuji Mai");
     text("寿司打", 200, 100);
-    // textFont("Noto Sans JP");
-    sushiImage.resize(0, 50);
-    sushi_karaImage.resize(0, 50);
+    if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }
 
     //寿司のレーン
     fill("#efbf6b");
@@ -105,7 +128,16 @@ function title() {
     textSize(20);
     text("スタート", 200, 175);
 
-
+    //設定ボタン
+    fill(255, 255, 255, 200);
+    stroke("#93660a");
+    strokeWeight(4);
+    rect(150, 220, 100, 25, 5);
+    noStroke();
+    fill("#667938");
+    textSize(15);
+    image(settingsImage, 160, 222);
+    text("設定", 200, 232);
 }
 
 //難易度選択画面
@@ -210,8 +242,7 @@ function difficultySelect() {
         textAlign(CENTER, CENTER);
 
         //寿司
-        sushiImageSmall.resize(0, 25);
-        sushi_karaImageSmall.resize(0, 20);
+
         for (let n = 0; n < 3; n++) {
             if (n == 1) { image(sushiImageSmall, 17, 110 + 55 * n); } else { image(sushi_karaImageSmall, 20, 110 + 55 * n); }
         }
@@ -240,7 +271,7 @@ function standby() {
     //注意書き
     fill("#fff");
     ellipse(30 + 12.5, 107 + 12.5, 20, 20)
-    attentionImage.resize(0, 25);
+
     image(attentionImage, 30, 107);
 
     fill("#000");
@@ -256,7 +287,8 @@ function standby() {
 
     //タイトルに戻るボタン
     textAlign(LEFT, CENTER);
-    fill("#fff");
+    fill(255, 255, 255, 200);
+
     stroke("#9a6400");
     rect(260, 270, 90, 20, 5);
     noStroke();
@@ -265,6 +297,16 @@ function standby() {
     text("タイトルに戻る", 266, 280);
     textAlign(CENTER, CENTER);
     tobiraX = 0
+
+    //設定ボタン
+    fill(255, 255, 255, 200);
+    stroke("#93660a");
+    strokeWeight(4);
+    rect(30, 270, 90, 20, 5);
+    noStroke();
+    fill("#667938");
+    image(settingsImageSmall, 40, 274);
+    text("設定", 80, 280);
 }
 
 //設定画面
@@ -277,10 +319,36 @@ function settings() {
     fill("#607531");
     textAlign(CENTER, CENTER);
 
-    settingsImage.resize(0, 20);
-    image(settingsImage, 105, 21);
 
-    text("　タイピングの設定", 200, 30);
+    image(settingsImage, 105, 21);
+    text("タイピングの設定", 210, 30);
+
+    //詳細設定
+    fill("#fff");
+    textSize(13);
+    textFont("Noto Sans JP");
+    textAlign(LEFT, TOP);
+
+    //チェックボックス
+
+    if (isChangeFont) { image(checkImage, 120, 67); } else { image(check_boxImage, 120, 67); };
+    if (isRomajiShow) { image(checkImage, 120, 67 + 35); } else { image(check_boxImage, 120, 67 + 35); }
+    if (isBgm) { image(checkImage, 120, 160); } else { image(check_boxImage, 120, 160); };
+    if (isSoundEffect) { image(checkImage, 120, 160 + 35); } else { image(check_boxImage, 120, 160 + 35); };
+
+    //詳細設定文字
+    text("フォントを変更する", 150, 70);
+    text("ローマ字表示", 150, 104);
+    text("♪BGM", 150, 163);
+    text("♪効果音", 150, 199);
+
+    //閉じるボタン
+    fill("#7a7a7a");
+    rect(120, 240, 140, 30, 4);
+    fill("000");
+    text("✕ 閉じる", 163, 248);
+    textAlign(CENTER, CENTER);
+    if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }
 }
 
 //ゲーム処理
@@ -295,7 +363,7 @@ function start() {
     textFont("Noto Sans JP");   //フォントを読みやすいのに変更
     odaihyouji();               //日本語・ローマ字表示
     oldHyouji();                //ローマ字打った履歴表示
-    textFont("Yuji Mai");       //フォントを寿司打っぽく変更
+    if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }
     keyboard();                 //入力判定
     sushiSet();                 //真ん中の寿司
     gameOverProcessing();       //ゲームオーバー処理
@@ -303,52 +371,75 @@ function start() {
 
 //変数リセット
 function varReset() {
-    imanoyatu = 0;
-    i = 0;
-    romajiIndex = 0;
+    tSushiX = 400;                              //タイトル画面の寿司
+    tobiraX = 0                                 //画面が変わるときの扉
+    // now = "title"                               //今なんの画面か
+
+    course = "普通"                             //難易度
+    difficulty = "お勧め"                       //コース
+
+    imanoyatu = 0;                              //今ローマ字どれくらい打ったか
+    keys;                                       //次に打たないといけないキー
+    i = 0;                                      //打った数
+    romajiIndex = 0;                            //ローマ字の中央寄せするときに使う
+
+    //ゲームオーバー
+    isOdaiShow = true;                          //ゲームオーバーの終了の文字を表示するときにfalseになる
+    gameOverTien = 30;                          //終了の文字がでてから扉が閉じるまでの遅延
+    gameOverResultTien = 0;                     //白い背景がでてから結果が出るまでの遅延
+    isTimeShow = true;                          //ゲームオーバーの扉が閉まるとfalseになる
+
+    //images
+    sushiImage;                                 //寿司の画像
+    sushi_karaImage;                            //寿司の空の画像
+    sushiImageSmall;                            //寿司の難易度選択で使う画像
+    sushi_karaImageSmall;                       //寿司の空の難易度選択で使う画像
+    barrage_arrowImage;                         //連打バーの矢印の画像
+    settingsImage;                              //設定の画像
+    check_boxImage;                             //チェックボックスだけの画像
+    checkImage;                                 //チェックの画像
 
     //timers
-    countUpTimer = 0;
-    countDownTimer;
-    time = 90;
+    countUpTimer = 0;                           //カウントアップタイマー
+    countDownTimer;                             //カウントダウンタイマー
+    time = 90;                                  //残りの時間設定
 
     //流れる寿司
-    sushiX = -103;
-    sushiY = 0;
-    // sushiSpeed = 1;
-    sushiKasokudo = 0.03;
+    sushiX = -103;                              //X
+    sushiY = 0;                                 //Y
+    sushiSpeed = 1;                             //基本のスピード
+    sushiKasokudo = 0.03;                       //1つ終わる事にどれくらい加速するか
 
-    //score
-    score = 0;
+    score = 0;                                  //score
+    nedan = 0;                                  //nedan
+    //皿
+    kekka = 0;                                  //払った値段を引いた値段
+    sara = 0;                                   //皿の数
+    juunokuraiSara = 0;                         //十の位の皿の数
 
-    //皿の数
-    sara = 0;
-    juunokuraiSara = 0;
-
-    //次のに行ったら遅延
-    tien = 0;
+    tien = 0;                                   //次のに行ったら遅延
 
     //連打メーター
-    barrrage = 0;
-    barrrageSpeed = 1.35;
-    barrrageX = 0;
-
+    barrrage = 0;                               //連打の数
+    barrrageSpeed = 1.35;                       //連打する事の数
+    barrrageX = 0;                              //連打のバーの数
 
     //追加カウント
-    isAdd1Sec1 = false;
-    isAdd1Sec2 = false;
-    isAdd2Sec = false;
-    isAdd3Sec = false;
+    isAdd1Sec1 = false;                         //1秒1回目
+    isAdd1Sec2 = false;                         //1秒2回目
+    isAdd2Sec = false;                          //2秒
+    isAdd3Sec = false;                          //3秒
 
     //連打メーター表示されたかどうか
-    isShowAdd1Sec1 = false;
-    isShowAdd1Sec2 = false;
-    isShowAdd2Sec = false;
-    isShowAdd3Sec = false;
+    isShowAdd1Sec1 = false;                     //1秒1回目
+    isShowAdd1Sec2 = false;                     //1秒2回目
+    isShowAdd2Sec = false;                      //2秒
+    isShowAdd3Sec = false;                      //3秒
 
     //連打メーター表示されたかどうかの時間
-    defaultShowBarrageTime = 50;
-    showBarrageTime = defaultShowBarrageTime;
+    defaultShowBarrageTime = 80;                //基準
+    showBarrageTime = defaultShowBarrageTime;   //最初にリセット
+
 }
 
 

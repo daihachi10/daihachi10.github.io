@@ -19,9 +19,12 @@ function odaihyouji() {
         } else if (romaji[imanoyatu].length > 7) {
             romajiIndex = 20;
         }
-        for (let n = 0; n < romaji[imanoyatu].length; n += 1) {
-            text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+        if (isRomajiShow) {             //設定でローマ字を非表示にできるように
+            for (let n = 0; n < romaji[imanoyatu].length; n += 1) {
+                text(romaji[imanoyatu][n], romaji[imanoyatu].length * romajiIndex + 10 * n, 160);
+            }
         }
+
     }
 }
 

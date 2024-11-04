@@ -45,7 +45,7 @@ function gameOverProcessing() {
                     textAlign(LEFT, CENTER);
                     textSize(16);
                     text(nedan, 130, 90);
-                    text("   ,         円分のお寿司をゲット！", 130, 90);
+                    text("             円分のお寿司をゲット！", 130, 90);
                 }
                 if (gameOverResultTien > 60) {
                     fill("#969696");
@@ -54,10 +54,9 @@ function gameOverProcessing() {
                 }
                 if (gameOverResultTien > 100) {
                     if (nedan - 5000 > 0) {
+                        kekka = nedan - 5000;
                         stroke("#6f9825");
                         fill("#6f9825");
-                        kekka = nedan - 5000;
-                        // textSize(18);
                         strokeWeight(4);
                         fill("#fff")
                         rect(50, 140, 305, 30, 5);
@@ -73,12 +72,12 @@ function gameOverProcessing() {
                         noStroke();
                         fill("#656065");
                         text("円分 損でした・・・", 185, 155);
-                        fill("#000");
-                        textSize(18);
-                        textAlign(LEFT, CENTER);
-                        text(kekka, 110, 155);
-                        textAlign(CENTER, CENTER);
                     }
+                    fill("#000");
+                    textSize(18);
+                    textAlign(LEFT, CENTER);
+                    text(kekka, 110, 155);
+                    textAlign(CENTER, CENTER);
                 }
             }
         }

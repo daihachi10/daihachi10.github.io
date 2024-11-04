@@ -41,7 +41,6 @@ let romaji = [                                  //ローマ字
 let tSushiX = 400;                              //タイトル画面の寿司
 let tobiraX = 0                                 //画面が変わるときの扉
 let now = "title"                               //今なんの画面か
-let isShowSetting = "false"                     //設定画面が表示されているかどうか
 
 let course = "普通"                             //難易度
 let difficulty = "お勧め"                       //コース
@@ -54,8 +53,16 @@ let romajiIndex = 0;                            //ローマ字の中央寄せす
 //ゲームオーバー
 let isOdaiShow = true;                          //ゲームオーバーの終了の文字を表示するときにfalseになる
 let gameOverTien = 30;                          //終了の文字がでてから扉が閉じるまでの遅延
-let gameOverResultTien = 0;                    //白い背景がでてから結果が出るまでの遅延
+let gameOverResultTien = 0;                     //白い背景がでてから結果が出るまでの遅延
 let isTimeShow = true;                          //ゲームオーバーの扉が閉まるとfalseになる
+
+
+//settings
+let isShowSetting = false                        //設定画面が表示されているかどうか
+let isChangeFont = false                        //fontをNoto Sans JPに変更したかどうか
+let isRomajiShow = true                         //ローマ字表示するか
+let isBgm = true                                //BGMを流すか
+let isSoundEffect = true                        //効果音を流すか
 
 //images
 let sushiImage;                                 //寿司の画像
@@ -64,6 +71,9 @@ let sushiImageSmall;                            //寿司の難易度選択で使
 let sushi_karaImageSmall;                       //寿司の空の難易度選択で使う画像
 let barrage_arrowImage;                         //連打バーの矢印の画像
 let settingsImage;                              //設定の画像
+let settingsImageSmall;                              //設定の画像小さい
+let check_boxImage;                             //チェックボックスだけの画像
+let checkImage;                                 //チェックの画像
 
 //timers
 let countUpTimer = 0;                           //カウントアップタイマー

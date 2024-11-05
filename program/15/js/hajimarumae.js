@@ -380,8 +380,8 @@ function start() {
     gridLine()                  //枠線
     barrage_Meter();            //連打メーター
     gui();                      //GUI
-    // textFont("Noto Sans JP");   //フォントを読みやすいのに変更
-    textFont("Montserrat");
+    textFont("Noto Sans JP");   //フォントを読みやすいのに変更
+    // textFont("Montserrat");
     odaihyouji();               //日本語・ローマ字表示
     oldHyouji();                //ローマ字打った履歴表示
     if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }

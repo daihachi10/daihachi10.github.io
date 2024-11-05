@@ -36,6 +36,9 @@ let romaji = [                                  //ローマ字
 
 ]
 
+let lastTime = 0;                               //ひとつ前のFPS
+let fps = 0;                                    //今のFPS
+
 let tSushiX = 400;                              //タイトル画面の寿司
 let tobiraX = 0                                 //画面が変わるときの扉
 let now = "title"                               //今なんの画面か

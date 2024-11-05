@@ -49,7 +49,7 @@ function preload() {
 }
 
 function draw() {
-    fpsCount();
+    
     if (now == "title" || isShowSetting) { title(); }
     else if (now == "difficultyselect" || isShowSetting) { difficultySelect(); }
     else if (now == "standby" || isShowSetting) { standby(); }
@@ -57,6 +57,7 @@ function draw() {
     if (isShowSetting) { settings(); }
 
     if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }
+    fpsCount();
 }
 
 //ESCキー、ENTERキーが押されたとき

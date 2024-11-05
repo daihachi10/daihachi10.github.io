@@ -479,8 +479,8 @@ function fpsCount() {
   // FPSを表示
   fill(0);
   textSize(7);
-  textAlign(RIGHT,TOP)
-  text(fps.toFixed(1), 0, 1);
+  textAlign(LEFT,TOP)
+  text(fps.toFixed(1), 385, 1);
   console.log(fps.toFixed(1));
   textAlign(CENTER,CENTER)
     

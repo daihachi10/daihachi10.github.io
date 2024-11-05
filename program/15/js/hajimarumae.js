@@ -49,6 +49,7 @@ function preload() {
 }
 
 function draw() {
+    fpsCount();
     if (now == "title" || isShowSetting) { title(); }
     else if (now == "difficultyselect" || isShowSetting) { difficultySelect(); }
     else if (now == "standby" || isShowSetting) { standby(); }
@@ -463,4 +464,22 @@ function varReset() {
 
 }
 
+function fpsCount() {
+// 時間差を計算
+  let currentTimea = millis();
+  let deltaTime = currentTimea - lastTime;
+
+  // FPSを計算（1000ミリ秒 / 経過したミリ秒）
+  fps = 1000 / deltaTime;
+
+  // 次のフレームに備えて時間を更新
+  lastTime = currentTimea;
+
+  // FPSを表示
+  fill(0);
+  textSize(3);
+  textAlign(CENTER,CENTER)
+  text(fps.toFixed(1), 386, 6);
+  console.log(fps.toFixed(1));
+}
 

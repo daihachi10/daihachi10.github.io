@@ -7,7 +7,6 @@ function setup() {
     next();
     noStroke();
     angleMode(DEGREES);//半円作るのに使う
-    frameRate(60);
 
     textAlign(CENTER, CENTER);
     varReset();
@@ -22,6 +21,8 @@ function setup() {
     checkImage.resize(0, 20);
     check_boxImage.resize(0, 20);
 
+    //fps測定
+    lastTime = millis();  // プログラム開始時の時間を保存
 }
 
 function preload() {
@@ -49,7 +50,7 @@ function preload() {
 }
 
 function draw() {
-    
+
     if (now == "title" || isShowSetting) { title(); }
     else if (now == "difficultyselect" || isShowSetting) { difficultySelect(); }
     else if (now == "standby" || isShowSetting) { standby(); }
@@ -379,7 +380,8 @@ function start() {
     gridLine()                  //枠線
     barrage_Meter();            //連打メーター
     gui();                      //GUI
-    textFont("Noto Sans JP");   //フォントを読みやすいのに変更
+    // textFont("Noto Sans JP");   //フォントを読みやすいのに変更
+    textFont("Montserrat");
     odaihyouji();               //日本語・ローマ字表示
     oldHyouji();                //ローマ字打った履歴表示
     if (isChangeFont) { textFont("Noto Sans JP"); } else { textFont("Zen Old Mincho"); }
@@ -465,26 +467,26 @@ function varReset() {
 
 }
 
+//FPS測定
 function fpsCount() {
-// 時間差を計算
-  let currentTimea = millis();
-  let deltaTime = currentTimea - lastTime;
+    // 時間差を計算
+    let currentTime = millis();
+    let deltaTime = currentTime - lastTime;
 
-  // FPSを計算（1000ミリ秒 / 経過したミリ秒）
-  fps = 1000 / deltaTime;
+    // FPSを計算（1000ミリ秒 / 経過したミリ秒）
+    fps = 1000 / deltaTime;
 
-  // 次のフレームに備えて時間を更新
-  lastTime = currentTimea;
+    // FPSの合計とフレーム数を更新
+    fpsTotal += fps;
+    frameCount++;
 
-  // FPSを表示
-  fill(0);
-  textSize(7);
-  textAlign(LEFT,TOP);
-    if (fps > 55) {fill("#000")} else {fill("#ff4a4a")}
-  text(fps.toFixed(1), 385, 1);
+    // 平均FPSを計算
+    averageFps = fpsTotal / frameCount;
+
+    // 次のフレームに備えて時間を更新
+    lastTime = currentTime;
     fill("#000");
-  console.log(fps.toFixed(1));
-  textAlign(CENTER,CENTER)
-    
+    textSize(12)
+    text("FPS:" + averageFps.toFixed(1), 372, 7)
 }
 

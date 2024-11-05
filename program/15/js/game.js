@@ -10,14 +10,26 @@ function odaihyouji() {
         fill("#fff");
         text(odai[imanoyatu], 200, 135);
         textSize(13);
-        if (romaji[imanoyatu].length >= 20) {
+        if (romaji[imanoyatu].length > 20) {
             romajiIndex = 4.34;
         } else if (romaji[imanoyatu].length > 15) {
             romajiIndex = 7;
+        } else if (romaji[imanoyatu].length > 13) {
+            romajiIndex = 8
         } else if (romaji[imanoyatu].length > 10) {
             romajiIndex = 12;
+        } else if (romaji[imanoyatu].length > 8) {
+            romajiIndex = 15;
         } else if (romaji[imanoyatu].length > 7) {
             romajiIndex = 20;
+        } else if (romaji[imanoyatu].length > 5) {
+            romajiIndex = 25;
+        } else if (romaji[imanoyatu].length == 4) {
+            romajiIndex = 46;
+        } else if (romaji[imanoyatu].length == 3) {
+            romajiIndex = 63;
+        } else if (romaji[imanoyatu].length == 2) {
+            romajiIndex = 98;
         }
         if (isRomajiShow) {             //設定でローマ字を非表示にできるように
             for (let n = 0; n < romaji[imanoyatu].length; n += 1) {

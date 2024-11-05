@@ -164,7 +164,7 @@ function sushi() {
 
 //残りの時間
 function timers() {
-    countUpTimer += 1 / 60;
+    countUpTimer += deltaTime / 1000
     countDownTimer = time - countUpTimer.toFixed(0);
 }
 

@@ -487,16 +487,16 @@ function fpsCount() {
     lastTime = currentTime;
 
 
-    if (averageFps > 55) {
-    fill("#000");
+    // if (averageFps > 55) {
+    // fill("#000");
         
-    } else (averageFps > 52) {
-    fill("#ffd000");
+    // } else (averageFps > 52) {
+    // fill("#ffd000");
         
-    } else {
-    fill("#ff0000");
+    // } else {
+    // fill("#ff0000");
         
-    } 
+    // } 
     
     textSize(12)
     text("FPS:" + averageFps.toFixed(1), 372, 7);

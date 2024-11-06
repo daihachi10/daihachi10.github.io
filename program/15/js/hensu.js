@@ -96,11 +96,17 @@ let romaji = [                                  //ローマ字
 
 ]
 
+//FPS測定
 let lastTime = 0;
 let fps = 0;
 let fpsTotal = 0;
-let frameCount = 0;
+let frameCountH = [];
+let frameCountTotal = 0;
+
 let averageFps = 0;
+let minFps = 300;
+let maxFps = 0;
+let tien = 60;
 
 let tSushiX = 400;                              //タイトル画面の寿司
 let tobiraX = 0                                 //画面が変わるときの扉

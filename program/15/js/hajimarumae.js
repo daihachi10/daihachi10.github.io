@@ -487,16 +487,17 @@ function fpsCount() {
     lastTime = currentTime;
 
 
-    if (fps > 55) {
-    fill("#000");
+    // if (fps > 55) {
+    // fill("#000");
         
-    } else (fps > 52) {
-    fill("#ffd000");
+    // } else (fps > 52) {
+    // fill("#ffd000");
         
-    } else {
-    fill("#ff0000");
+    // } else {
+    // fill("#ff0000");
         
-    } 
+    // } 
+    fill("#000")
     
     textSize(12)
     text("FPS:" + fps.toFixed(1), 372, 7);

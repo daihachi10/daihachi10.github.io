@@ -469,45 +469,33 @@ function varReset() {
 
 //FPS測定
 function fpsCount() {
-    // 時間差を計算
-    let currentTime = millis();
-    let deltaTime = currentTime - lastTime;
+  // 時間差を計算
+  let currentTime = millis();
+  let deltaTime1 = currentTime - lastTime;
 
-    // FPSを計算（1000ミリ秒 / 経過したミリ秒）
-    fps = 1000 / deltaTime;
+  // FPSを計算（1000ミリ秒 / 経過したミリ秒）
+  fps = 1000 / deltaTime1;
 
-
-    for (let n = 0; n < 20; n++) {
+  for (let n = 0; n < 20; n++) {
     frameCountH[n]++;
   }
-    // FPSの合計とフレーム数を更新
-    fpsTotal += fps;
-    frameCountTotal = 0;
+
+  // FPSの合計とフレーム数を更新
+  fpsTotal += fps;
+
+  frameCountTotal = 0;
   for (let n = 0; n < 20; n++) {
     frameCountTotal += frameCountH[n];
   }
   frameCount1 = frameCountTotal / 6;
+
+  // 平均FPSを計算
+  averageFps = fpsTotal / frameCount;
+
+  // 次のフレームに備えて時間を更新
+  lastTime = currentTime;
     
-
-    // 平均FPSを計算
-    averageFps = fpsTotal / frameCount;
-
-    // 次のフレームに備えて時間を更新
-    lastTime = currentTime;
-
-
-    // if (averageFps > 55) {
-    // fill("#000");
-        
-    // } else (averageFps > 52) {
-    // fill("#ffd000");
-        
-    // } else {
-    // fill("#ff0000");
-        
-    // } 
-    
-    if (tien < 0) {
+  if (tien < 0) {
     if (fps < minFps) {
       minFps = fps;
     }
@@ -515,7 +503,7 @@ function fpsCount() {
       maxFps = fps;
     }
   }
-    tien--;
+  tien--;
     fill("#000)
     textSize(12)
     text("FPS:" + averageFps.toFixed(1), 372, 7);

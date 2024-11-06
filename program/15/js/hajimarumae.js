@@ -485,8 +485,21 @@ function fpsCount() {
 
     // 次のフレームに備えて時間を更新
     lastTime = currentTime;
+
+
+    if (fps > 55) {
     fill("#000");
+        
+    } else (fps > 52) {
+    fill("#ffd000");
+        
+    } else {
+    fill("#ff0000");
+        
+    } 
+    
     textSize(12)
-    text("FPS:" + averageFps.toFixed(1), 372, 7)
+    text("FPS:" + fps.toFixed(1), 372, 7);
+    fill("#000")
 }
 

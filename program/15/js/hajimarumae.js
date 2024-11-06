@@ -23,6 +23,7 @@ function setup() {
 
     //fps測定
     lastTime = millis();  // プログラム開始時の時間を保存
+    frameRate(60)
 }
 
 function preload() {
@@ -392,6 +393,9 @@ function start() {
 
 //変数リセット
 function varReset() {
+
+
+
     tSushiX = 400;                              //タイトル画面の寿司
     tobiraX = 0                                 //画面が変わるときの扉
     // now = "title"                               //今なんの画面か
@@ -465,48 +469,52 @@ function varReset() {
     defaultShowBarrageTime = 80;                //基準
     showBarrageTime = defaultShowBarrageTime;   //最初にリセット
 
+    minFps = 60;
+    maxFps = 60;
+    fpsTien = 60;
 }
 
 //FPS測定
 function fpsCount() {
-  // 時間差を計算
-  let currentTime = millis();
-  let deltaTime1 = currentTime - lastTime;
+    // 時間差を計算
+    let currentTime = millis();
+    let deltaTime1 = currentTime - lastTime;
 
-  // FPSを計算（1000ミリ秒 / 経過したミリ秒）
-  fps = 1000 / deltaTime1;
+    // FPSを計算（1000ミリ秒 / 経過したミリ秒）
+    fps = 1000 / deltaTime1;
 
-  for (let n = 0; n < 20; n++) {
-    frameCountH[n]++;
-  }
-
-  // FPSの合計とフレーム数を更新
-  fpsTotal += fps;
-
-  frameCountTotal = 0;
-  for (let n = 0; n < 20; n++) {
-    frameCountTotal += frameCountH[n];
-  }
-  frameCount1 = frameCountTotal / 6;
-
-  // 平均FPSを計算
-  averageFps = fpsTotal / frameCount;
-
-  // 次のフレームに備えて時間を更新
-  lastTime = currentTime;
-    
-  if (tien < 0) {
-    if (fps < minFps) {
-      minFps = fps;
+    for (let n = 0; n < 20; n++) {
+        frameCountH[n]++;
     }
-    if (maxFps < fps) {
-      maxFps = fps;
+
+    // FPSの合計とフレーム数を更新
+    fpsTotal += fps;
+
+    frameCountTotal = 0;
+    for (let n = 0; n < 20; n++) {
+        frameCountTotal += frameCountH[n];
     }
-  }
-  tien--;
-    fill("#000)
+    frameCount1 = frameCountTotal / 20
+
+    // 平均FPSを計算
+    if (countDownTimer >= 0) { averageFps = fpsTotal / frameCount; }
+
+    // 次のフレームに備えて時間を更新
+    lastTime = currentTime;
+
+    if (fpsTien < 0) {
+        if (fps < minFps) {
+            minFps = fps;
+        }
+        if (maxFps < fps) {
+            maxFps = fps;
+        }
+    }
+    fpsTien--;
+    fill("#000")
     textSize(12)
-    text("FPS:" + averageFps.toFixed(1), 372, 7);
+    text("FPS:" + fps.toFixed(1), 372, 7);
+    text("AvarageFPS:" + averageFps.toFixed(1), 350, 7 + 13);
     fill("#000")
 }
 

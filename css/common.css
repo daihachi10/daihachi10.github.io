@@ -102,7 +102,7 @@ img {
 
 @keyframes header-logo-hovers {
     0% {
-        rgb(21, 113, 194);
+        color: rgb(21, 113, 194);
     }
 
     100% {
@@ -116,7 +116,7 @@ img {
     }
 
     100% {
-        rgb(21, 113, 194);
+        color: rgb(21, 113, 194);
     }
 }
 

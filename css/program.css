@@ -2,19 +2,6 @@
 
 @import url('./cursor.css');
 
-@font-face {
-    font-family: "Noto Sans JP";
-    src:
-        url("./fonts/NotoSansJP-Bold.woff2") format("woff2");
-    /* display: swap; */
-}
-
-@font-face {
-    font-family: "Montserrat";
-    src:
-        url("./fonts/Montserrat-Bold.woff2") format("woff2");
-}
-
 body {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
 }

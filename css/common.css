@@ -1,13 +1,5 @@
 @charset "utf-8";
 
-@font-face {
-    font-family: "Caveat";
-    src:
-        url("./fonts/Caveat-Bold.woff2") format("woff2");
-}
-
-/* @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap'); */
-
 *,
 ::before,
 ::after {
@@ -101,6 +93,22 @@ img {
     width: 170px;
 }
 
+.header-logo:hover {
+    animation: 3s linear 1s logo-hover;
+}
+
+@keyframes logo-hover {
+    0% {
+        color: #1571c2;
+    }
+
+    100% {
+        color: #000;
+    }
+}
+
+
+
 
 .site-menu ul {
     display: flex;
@@ -124,7 +132,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 .footer-logo {
@@ -155,7 +163,7 @@ img {
 
     .header {
         position: fixed;
-/*         position:sticky; */
+        /*         position:sticky; */
         top: 0;
         left: 0;
         right: 0;

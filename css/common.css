@@ -1,12 +1,13 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
-@font-face {
+/*@font-face {
     font-family: "Caveat";
     src:
         url("./fonts/Caveat-Bold.woff2") format("woff2");
-}
+}*/
 
-/* @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
 
 *,
 ::before,
@@ -99,6 +100,31 @@ img {
     font-weight: bold;
     display: block;
     width: 170px;
+		animation: 0.2s forwards header-logo-nothovers;
+}
+
+
+.header-logo:hover {
+	animation: 0.2s forwards header-logo-hovers;
+}
+
+
+@keyframes header-logo-hovers {
+    0% {
+					rgb(21, 113, 194);
+							}
+    100% {
+					color:#000;
+							}
+}
+
+@keyframes header-logo-nothovers {
+    0% {
+					color:#000;
+							}
+    100% {
+					rgb(21, 113, 194);
+							}
 }
 
 
@@ -133,7 +159,31 @@ img {
     font-weight: bold;
     display: block;
     margin-top: 90px;
+		animation: 0.2s cubic-bezier(.27,.73,.74,.44) footer-logo-nothovers;
 }
+
+.footer-logo:hover {
+		animation: 0.2s cubic-bezier(.27,.73,.74,.44) footer-logo-nothovers;
+	}
+
+@keyframes footer-logo-hovers {
+    0% {
+					color:#fff;
+							}
+    100% {
+					color:#000;
+							}
+}
+
+@keyframes footer-logo-nothovers {
+    0% {
+					color:#000;
+							}
+    100% {
+					color:#fff;
+							}
+}
+
 
 
 

@@ -1,7 +1,9 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 @import url('./cursor.css');
 
-@font-face {
+
+
+/*@font-face {
     font-family: "Noto Sans JP";
     src:
         url("./fonts/NotoSansJP-Bold.woff2") format("woff2");
@@ -13,7 +15,7 @@
     src:
         url("./fonts/Montserrat-Bold.woff2") format("woff2");
     font-display: swap;
-}
+}*/
 
 body {
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;

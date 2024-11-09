@@ -1,5 +1,11 @@
 ﻿@charset "utf-8";
 
+::selection {
+    color: #fff;
+    background-color: #ff5283;
+}
+
+
 *,
 ::before,
 ::after {

@@ -51,18 +51,6 @@ a {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-body {
-    /* font-family: sans-serif; */
-    font-size: 16px;
-    color: #000000;
-    line-height: 1;
-    background-color: #ffffff;
-}
-
-img {
-    max-width: 100%;
-}
-
 .header-inner {
     max-width: 1200px;
     height: 110px;
@@ -121,6 +109,19 @@ img {
     cursor: pointer;
 }
 
+body {
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+    color: #000000;
+    line-height: 1;
+    background-color: #ffffff;
+}
+
+img {
+    max-width: 100%;
+}
+
+
 .footer {
     color: #ffffff;
     /* background-color: #1571c2; */
@@ -145,12 +146,18 @@ img {
     cursor: pointer;
 }
 
+.copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 90px;
+}
+
 /* 
 .footer-logo:hover {
     animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers;
 } */
 
-@keyframes footer-logo-hovers {
+/* @keyframes footer-logo-hovers {
     0% {
         color: #fff;
     }
@@ -168,16 +175,7 @@ img {
     100% {
         color: #fff;
     }
-}
-
-
-
-
-.copyright {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 90px;
-}
+} */
 
 @media (max-width: 800px) {
     .site-menu ul {
@@ -257,20 +255,13 @@ img {
         margin-top: 60px;
     }
 
-
-
     .copyright {
         margin-top: 50px;
     }
 }
 
-body {
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
-}
 
-
-
-
+/*画像*/
 .first-view {
     height: calc(100vh - 110px + 120px);
     background-image: url(./images/IMG_0023.JPG);

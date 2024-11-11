@@ -2,15 +2,16 @@
 <html lang="ja">
 <!--
 
-全画面表示(https://example.com/index.htmlの右)
-で見ることを推奨します。
+できれば全画面表示(https://example.com/index.htmlの右)
+で見て下さい！！
 
 -->
 
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <title>HTML Preview</title>
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <title>HOME | BuildingPC Parts Introduction</title>
 </head>
 
 <body>
@@ -29,6 +30,8 @@
                         <li><a onclick="about()">About</a></li>
                         <!-- <li><a href="#3">PARTS LIST</a></li> -->
                         <li><a onclick="partslist()">PARTS LIST</a></li>
+                        <!-- <li><a href="#4">MOVIE</a></li> -->
+                        <li><a onclick="movie()">MOVIE</a></li>
                     </ul>
                 </nav>
             </div>
@@ -37,8 +40,8 @@
     <!-- headerここまで -->
 
     <!-- mainここから -->
-    <main class="main" id="1">
-        <div class="first-view">
+    <main class="main">
+        <div class="first-view" id="1">
             <div class="first-view-text">
                 <h1>BuildingPC<br>Parts Introduction</h1>
                 <p>自作パソコンパーツ紹介</p>
@@ -49,7 +52,7 @@
             <div class="lead">
                 <h2>ABOUT BUILDING PC</h2>
                 <p>自作PC（パソコン）とは、<a onclick="partslist()" style="color:#ff5283"><u>CPUやメモリ、マザーボード、<br>
-                            グラフィックカードなど<img src="./images/link.png" height="15px"></u> </a>を自分で選んで組み立てるパソコンです。<br><br>
+                            グラフィックカードなど<img src="./images/link.png" height="15px"></u></a>を自分で選んで組み立てるパソコンです。<br><br>
                 </p>
                 <p>
                     自作PCのメリットは、自分の希望に沿ったパソコンを作れる、<br>
@@ -135,26 +138,27 @@
                             </dl>
                         </a>
                     </li>
-
-
                 </ul>
-            </div>
-            <div class="link-button-area">
-                <a class="link-button" href="https://sakidori.co/article/1140332#index_1" target="_blank">MORE <img
-                        src="./images/open_in_new.png" width="11"></a>
+                <div class="link-button-area">
+                    <a class="link-button" href="https://sakidori.co/article/1140332#index_1" target="_blank">MORE <img
+                            src="./images/open_in_new.png" width="11"></a>
+                </div>
             </div>
         </div>
 
-
+        <div class="movie" id="4">
+            <h2>DETAILED CPU 3DVCACHE MOVIE</h2>
+            <iframe src="https://www.youtube.com/embed/4SOlZbRt9lc" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>RyzenCPU 3DVcacheについて詳しい解説</p>
+        </div>
     </main>
     <!-- mainここまで -->
-
 
     <div class="back-to-top">
         <a onclick="pageTop()"></a>
     </div>
-
-
 
     <!-- footerここから -->
     <footer class="footer">
@@ -164,6 +168,8 @@
                 <li><a onclick="about()">About</a></li>
                 <!-- <li><a href="#3">PARTS LIST</a></li> -->
                 <li><a onclick="partslist()">PARTS LIST</a></li>
+                <!-- <li><a href="#4">MOVIE</a></li> -->
+                <li><a onclick="movie()">MOVIE</a></li>
             </ul>
         </nav>
         <a class="footer-logo" onclick="pageTop()">
@@ -176,14 +182,15 @@
     </footer>
     <!-- footerここまで -->
 
-
-
-
     <script>
         //🤔
         function pageTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
         function about() { window.scrollTo({ top: window.innerHeight - 50, behavior: "smooth" }); }
         function partslist() { window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" }); }
+        function movie() { window.scrollTo({ top: window.innerHeight + 1150, behavior: "smooth" }); }
+
+        let name = "HOME | BuildingPC Parts Introduction"
+        document.title = name;
     </script>
 </body>
 

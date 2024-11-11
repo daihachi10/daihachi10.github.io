@@ -9,7 +9,7 @@
       "src": "assets/img/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
-    },
+    }
   ],
   "theme_color": "#1571c2",
   "manifest_version": 3,

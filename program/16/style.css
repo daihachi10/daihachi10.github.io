@@ -16,7 +16,9 @@
 }
 
 * {
-    cursor: url('./images/cursor.png'), auto;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor.png'), auto;
+
+    /*画像10枚までだった、、、、、、、、、、、、*/
 }
 
 ul,

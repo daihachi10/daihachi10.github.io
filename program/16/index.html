@@ -191,6 +191,34 @@
 
         let name = "HOME | BuildingPC Parts Introduction"
         document.title = name;
+
+        window.addEventListener('load', (event) => {
+
+            // (1)ページ読み込み時に一度だけスクロール量を出力
+            var scrollY = window.scrollY;
+            console.log(scrollY);
+
+            // (2)スクロールするたびにスクロール量を出力
+            window.addEventListener('scroll', (event) => {
+                var scrollY = window.scrollY;
+                console.log(scrollY);
+                document.title = name;
+
+                if (scrollY > 1900) {
+                    name = "DETAILED CPU 3DVCACHE MOVIE | BuildingPC Parts Introduction";
+                } else if (scrollY > 1090) {
+                    name = "PARTS LIST | BuildingPC Parts Introduction";
+                }
+                if (scrollY < 1200) {
+                    name = "ABOUT BUILDING PC | BuildingPC Parts Introduction";
+                }
+                if (scrollY < 400) {
+                    name = "HOME | BuildingPC Parts Introduction";
+                }
+            });
+        });
+
+
     </script>
 </body>
 

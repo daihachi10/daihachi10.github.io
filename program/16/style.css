@@ -1,5 +1,4 @@
-/*google Fonts読み込み
-絶対こっちのほうが簡単、、、*/
+/*google Fonts読み込み*/
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
 
 
@@ -273,6 +272,31 @@ img {
     display: flex;
     align-items: center;
 }
+
+    @keyframes slide-animation-01 {
+        0% {opacity: 1; transform: scale(1.0);}
+      30% {opacity: 1;}
+      40% {opacity: 0; transform: scale(1.15);}
+      90% {opacity: 0}
+    100% {opacity: 1; transform: scale(1.0);}
+    }
+    @keyframes slide-animation-02 {
+        0% {opacity: 0;}
+      30% {opacity: 0; transform: scale(1.1);}
+      40% {opacity: 1;}
+      60% {opacity: 1;}
+      70% {opacity: 0; transform: scale(1.0);}
+    100% {opacity: 0;}
+    }
+    @keyframes slide-animation-03 {
+        0% {opacity: 0;}
+      60% {opacity: 0;  transform: scale(1.0);}
+      70% {opacity: 1;}
+      90% {opacity: 1;}
+    100% {opacity: 0; transform: scale(1.1);}
+    }
+
+
 
 .first-view-text {
     width: 100%;
@@ -559,7 +583,14 @@ lead a {
 
 
 
-/*アニメーション*/
+/*アニメーション
+firefox対応してない、、
+あとパソコン室のパソコンは
+バージョンが古いから無理っぽい？
+(chrome・edge:var115~)
+https://caniuse.com/?search=animation-range
+*/
+
 @keyframes scroll-anim {
     from {
         opacity: 0;
@@ -636,4 +667,31 @@ lead a {
     .movie iframe {
         height: 240px;
     }
+}
+
+.slideshow-fade{
+    position: relative;
+    margin-top:55px;
+    
+    margin-left:auto;
+    margin-right:auto;
+    
+    width: 300px;
+    height: 500px;
+    li{ 
+        margin-top:10px;
+        list-style: none;
+        width: 100%;
+        height: 100%;
+        img{
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+        }
+    }
+}
+
+.slideshow-fade img {
+  transform: scale(1.2);
 }

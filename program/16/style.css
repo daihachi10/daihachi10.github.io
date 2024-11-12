@@ -17,9 +17,14 @@
 }
 
 body {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor.png'), auto;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;
 
     /*画像10枚までだった、、、、、、、、、、、、*/
+}
+
+
+a:hover{
+  cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 ul,
@@ -87,7 +92,7 @@ a {
 
 .header-logo:hover {
     color: #1571c2;
-    cursor: pointer;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 .site-menu ul {
@@ -107,7 +112,7 @@ a {
 }
 
 .site-menu ul li a:hover {
-    cursor: pointer;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 body {
@@ -144,7 +149,7 @@ img {
 }
 
 .footer-logo:hover {
-    cursor: pointer;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 .copyright {
@@ -244,7 +249,7 @@ img {
         border: none;
         border-radius: 0;
         outline: none;
-        cursor: pointer;
+        cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
     }
 
     .main {
@@ -326,7 +331,7 @@ lead a {
 }
 
 .lead a:hover {
-    cursor: pointer;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 .leadbox {
@@ -479,7 +484,7 @@ lead a {
 
 .item-list li:hover {
     transform: scale(1.3);
-    cursor: pointer;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 
@@ -539,7 +544,7 @@ lead a {
 
     .item-list li:hover {
         transform: scale(1.2);
-        cursor: pointer;
+        cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
     }
 }
 
@@ -556,7 +561,7 @@ lead a {
     border-radius: 50%;
     background: #e33969;
 
-    cursor: pointer;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 .back-to-top a {

@@ -19,6 +19,7 @@ https://caniuse.com/?search=animation-range
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <title>読み込み中</title>
 </head>
 
 <body>
@@ -189,6 +190,25 @@ https://caniuse.com/?search=animation-range
         <a onclick="pageTop()"></a>
     </div>
 
+    <!-- <div class="bootstrap">
+        <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+
+                    <strong class="me-auto">アニメーション非対応</strong>
+                    <small>Now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    ブラウザが対応していないためアニメーションを再生することができません。対応表は<a href="https://caniuse.com/?search=animation-range"
+                        target="_blank"><u>こちら</u></a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
     <!-- footerここから -->
     <footer class="footer">
         <nav class="site-menu">
@@ -213,14 +233,22 @@ https://caniuse.com/?search=animation-range
     </footer>
     <!-- footerここまで -->
 
+
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <script>
         //🤔
         function pageTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
-        function about() { window.scrollTo({ top: window.innerHeight - 10, behavior: "smooth" }); }
+        function about() { window.scrollTo({ top: window.innerHeight - 200, behavior: "smooth" }); }
         function partslist() { window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" }); }
         function movie() { window.scrollTo({ top: window.innerHeight + 1150, behavior: "smooth" }); }
         function picture() { window.scrollTo({ top: window.innerHeight + 1950, behavior: "smooth" }); }
@@ -271,6 +299,16 @@ https://caniuse.com/?search=animation-range
         });
 
 
+        //notice
+        const toastTrigger = document.getElementById('liveToastBtn')
+        const toastLiveExample = document.getElementById('liveToast')
+
+        if (toastTrigger) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+            toastTrigger.addEventListener('click', () => {
+                toastBootstrap.show()
+            })
+        }
     </script>
 </body>
 

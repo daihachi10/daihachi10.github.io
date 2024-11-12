@@ -23,8 +23,8 @@ body {
 }
 
 
-a:hover{
-  cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+a:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 ul,
@@ -278,28 +278,82 @@ img {
     align-items: center;
 }
 
-    @keyframes slide-animation-01 {
-        0% {opacity: 1; transform: scale(1.0);}
-      30% {opacity: 1;}
-      40% {opacity: 0; transform: scale(1.15);}
-      90% {opacity: 0}
-    100% {opacity: 1; transform: scale(1.0);}
+@keyframes slide-animation-01 {
+    0% {
+        opacity: 1;
+        transform: scale(1.0);
     }
-    @keyframes slide-animation-02 {
-        0% {opacity: 0;}
-      30% {opacity: 0; transform: scale(1.1);}
-      40% {opacity: 1;}
-      60% {opacity: 1;}
-      70% {opacity: 0; transform: scale(1.0);}
-    100% {opacity: 0;}
+
+    30% {
+        opacity: 1;
     }
-    @keyframes slide-animation-03 {
-        0% {opacity: 0;}
-      60% {opacity: 0;  transform: scale(1.0);}
-      70% {opacity: 1;}
-      90% {opacity: 1;}
-    100% {opacity: 0; transform: scale(1.1);}
+
+    40% {
+        opacity: 0;
+        transform: scale(1.15);
     }
+
+    90% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+}
+
+@keyframes slide-animation-02 {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0;
+        transform: scale(1.0);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-animation-03 {
+    0% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 0;
+        transform: scale(1.0);
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
 
 
 
@@ -615,14 +669,18 @@ https://caniuse.com/?search=animation-range
 /* .movie, */
 .movie h2,
 .movie iframe,
-.movie p {
+.movie p,
+.picture h2,
+.picture p,
+.slideshow-fade {
     animation: scroll-anim linear;
     animation-timeline: view();
     animation-range: entry 0% contain 20%;
 }
 
 /*Youtube動画*/
-.movie {
+.movie,
+.picture {
     width: 930px;
     max-width: 90%;
     background-color: #f8f8f8;
@@ -633,13 +691,15 @@ https://caniuse.com/?search=animation-range
     margin-bottom: 80px;
 }
 
-.movie h2 {
+.movie h2,
+.picture h2 {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
 }
 
-.movie h2::after {
+.movie h2::after,
+.picture h2::after {
     content: '';
     display: block;
     width: 36px;
@@ -657,7 +717,8 @@ https://caniuse.com/?search=animation-range
     margin-top: 30px;
 }
 
-.movie p {
+.movie p,
+.picture {
     font-size: 15px;
     line-height: 28px;
     margin-top: 20px;
@@ -674,29 +735,31 @@ https://caniuse.com/?search=animation-range
     }
 }
 
-.slideshow-fade{
+.slideshow-fade {
     position: relative;
-    margin-top:55px;
-    
-    margin-left:auto;
-    margin-right:auto;
-    
+    margin-top: 55px;
+
+    margin-left: auto;
+    margin-right: auto;
+
     width: 300px;
     height: 500px;
-    li{ 
-        margin-top:10px;
+
+    li {
+        margin-top: 10px;
         list-style: none;
         width: 100%;
         height: 100%;
-        img{
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
         }
     }
 }
 
 .slideshow-fade img {
-  transform: scale(1.2);
+    transform: scale(1.2);
 }

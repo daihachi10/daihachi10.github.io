@@ -50,18 +50,18 @@ https://caniuse.com/?search=animation-range
 
     <!-- mainここから -->
     <main class="main">
-      
+
         <div class="first-view" id="1">
-                                <div class="first-view-text">
+            <div class="first-view-text">
                 <h1>BuildingPC<br>Parts Introduction</h1>
                 <p>自作パソコンパーツ紹介</p>
             </div>
         </div>
 
         <div class="leadbox" id="2">
-          
-                      
-          
+
+
+
             <div class="lead">
                 <h2>ABOUT BUILDING PC</h2>
                 <p>自作PC（パソコン）とは、<a onclick="partslist()" style="color:#ff5283"><u>CPUやメモリ、マザーボード、<br>
@@ -166,19 +166,20 @@ https://caniuse.com/?search=animation-range
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <p>RyzenCPU 3DVcacheについて詳しい解説</p>
         </div>
-        
-        
-        <div class="movie" id="5">
+
+
+        <div class="picture" id="5">
             <h2>BUILD PC PICTURE</h2>
             <ul class="slideshow-fade">
-  <li><img src="https://daihachi10.github.io/program/16/images/image-01.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/image-02.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/image-03.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/image-04.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/image-05.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/image-06.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/image-07.JPG"></li>
-  <li><img src="https://daihachi10.github.io/program/16/images/IMG_0023.JPG"></li></ul>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-01.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-02.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-03.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-04.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-05.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-06.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/image-07.JPG"></li>
+                <li><img src="https://daihachi10.github.io/program/16/images/IMG_0023.JPG"></li>
+            </ul>
             <p>PCを組み立てている時の写真です。</p>
         </div>
     </main>
@@ -199,7 +200,7 @@ https://caniuse.com/?search=animation-range
                 <!-- <li><a href="#4">MOVIE</a></li> -->
                 <li><a onclick="movie()">MOVIE</a></li>
                 <!-- <li><a href="#5">PICTURE</a></li> -->
-                        <li><a onclick="picture()">PICTURE</a></li>
+                <li><a onclick="picture()">PICTURE</a></li>
             </ul>
         </nav>
         <a class="footer-logo" onclick="pageTop()">
@@ -212,18 +213,18 @@ https://caniuse.com/?search=animation-range
     </footer>
     <!-- footerここまで -->
 
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <script>
         //🤔
         function pageTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
-        function about() { window.scrollTo({ top: window.innerHeight - 50, behavior: "smooth" }); }
+        function about() { window.scrollTo({ top: window.innerHeight - 10, behavior: "smooth" }); }
         function partslist() { window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" }); }
         function movie() { window.scrollTo({ top: window.innerHeight + 1150, behavior: "smooth" }); }
-        function picture() { window.scrollTo({ top: window.innerHeight + 1800, behavior: "smooth" }); }
-        
+        function picture() { window.scrollTo({ top: window.innerHeight + 1950, behavior: "smooth" }); }
+
         let name = "HOME | BuildingPC Parts Introduction"
         document.title = name;
 
@@ -235,39 +236,39 @@ https://caniuse.com/?search=animation-range
                 var scrollY = window.scrollY;
                 console.log(scrollY);
                 document.title = name;
-                
-                if ( scrollY > window.innerHeight + 1739) { name = "PICTURE | BuildingPC Parts Introduction"}
-                else if ( scrollY > window.innerHeight + 884) { name = "MOVIE | BuildingPC Parts Introduction"}
-                else if ( scrollY > window.innerHeight + 301) { name = "PARTS LIST | BuildingPC Parts Introduction"}
-                else if ( scrollY > window.innerHeight - 240) { name = "ABOUT | BuildingPC Parts Introduction"}
-                else {name = "HOME | BuildingPC Parts Introduction"}
+
+                if (scrollY > window.innerHeight + 1739) { name = "PICTURE | BuildingPC Parts Introduction" }
+                else if (scrollY > window.innerHeight + 884) { name = "MOVIE | BuildingPC Parts Introduction" }
+                else if (scrollY > window.innerHeight + 301) { name = "PARTS LIST | BuildingPC Parts Introduction" }
+                else if (scrollY > window.innerHeight - 240) { name = "ABOUT | BuildingPC Parts Introduction" }
+                else { name = "HOME | BuildingPC Parts Introduction" }
             });
         });
-// $('.slide-items').slick();
+        // $('.slide-items').slick();
 
 
 
-/*
-
-アニメーションパソコン室のパソコンは
-バージョンが古いから無理っぽい？
-(chrome・edge:var115~)
-
-https://caniuse.com/?search=animation-range
-
-
-*/
-$(function(){
-  $(".slideshow-fade li").css({"position":"relative","overflow":"hidden"});
-  $(".slideshow-fade li").hide().css({"position":"absolute","top":0,"left":0});
-  $(".slideshow-fade li:first").addClass("fade").show();
-  setInterval(function(){
-    var $active = $(".slideshow-fade li.fade");
-    var $next = $active.next("li").length?$active.next("li"):$(".slideshow-fade li:first");
-    $active.fadeOut(1000).removeClass("fade");
-    $next.fadeIn(1000).addClass("fade");
-  },2000);
-});
+        /*
+        
+        アニメーションパソコン室のパソコンは
+        バージョンが古いから無理っぽい？
+        (chrome・edge:var115~)
+        
+        https://caniuse.com/?search=animation-range
+        
+        
+        */
+        $(function () {
+            $(".slideshow-fade li").css({ "position": "relative", "overflow": "hidden" });
+            $(".slideshow-fade li").hide().css({ "position": "absolute", "top": 0, "left": 0 });
+            $(".slideshow-fade li:first").addClass("fade").show();
+            setInterval(function () {
+                var $active = $(".slideshow-fade li.fade");
+                var $next = $active.next("li").length ? $active.next("li") : $(".slideshow-fade li:first");
+                $active.fadeOut(1000).removeClass("fade");
+                $next.fadeIn(1000).addClass("fade");
+            }, 2000);
+        });
 
 
     </script>

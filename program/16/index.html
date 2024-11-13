@@ -74,10 +74,12 @@ https://caniuse.com/?search=animation-range
             </div>
         </div>
 
-        <div class="scroll">
-            <p>SCROLL</p>
-            <img src="https://daihachi10.github.io/program/16/images/down.png">
-        </div>
+        <a onclick="down()">
+            <div class="scroll" class=”blinking”>
+                <p>SCROLL</p>
+                <img src="https://daihachi10.github.io/program/16/images/down.png" width="30px">
+            </div>
+        </a>
 
         <div class="leadbox" id="2">
             <div class="lead">
@@ -291,6 +293,12 @@ https://caniuse.com/?search=animation-range
         function pageTop() {
             window.scrollTo({ top: 0, behavior: "smooth" })
         }
+
+        function down() {
+            // window.scrollTo({ top: 400, behavior: "smooth" })
+            about();
+        }
+
         function about() {
             window.scrollTo({ top: window.innerHeight - 200, behavior: "smooth" })
         }

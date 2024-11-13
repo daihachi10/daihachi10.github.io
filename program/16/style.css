@@ -50,7 +50,7 @@ a {
 /*header固定*/
 .header {
     position: fixed;
-    z-index: 10;
+    z-index: 2000;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -770,8 +770,57 @@ https://caniuse.com/?search=animation-range
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    bottom: 80px;
-    width: 40px;
-    height: 40px;
+    bottom: 200px;
+    width: 100px;
+    height: 60px;
+    border-radius: 50px;
     cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png), auto;
+    background-color: #ff5283;
+}
+
+.scroll p {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.scroll img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* 点滅 */
+.scroll {
+    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
+    -moz-animation: blink 0.5s ease-in-out infinite alternate;
+    animation: blink 0.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

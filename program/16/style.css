@@ -620,13 +620,13 @@ lead a {
     border: 1px solid #ffffff;
     border-radius: 50%;
     background: #e33969;
-    animation: notshadowhover 0.5s ease-in-out forwards;
+    animation: notdownhover 0.5s ease-in-out forwards;
 
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
 .back-to-top:hover {
-    animation: shadowhover 0.5s ease-in-out forwards;
+    animation: downhover 0.5s ease-in-out forwards;
 
 
 }
@@ -790,7 +790,7 @@ https://caniuse.com/?search=animation-range
     border-radius: 50px;
     cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png), auto;
     background-color: rgb(255, 82, 131, 0.5);
-    animation: notshadowhover 0.5s ease-in-out forwards;
+    animation: notdownhover 0.5s ease-in-out forwards;
     border: 1px solid;
 }
 
@@ -805,34 +805,51 @@ https://caniuse.com/?search=animation-range
 }
 
 .scroll:hover {
-    animation: shadowhover 0.5s ease-in-out forwards;
+    animation: downhover 0.5s ease-in-out forwards;
 }
 
 @keyframes shadowhover {
     0% {
         box-shadow: 0 0 0 0;
-        /* background-color: rgb(255, 82, 131, 0.2); */
-        /* background-color: rgb(255, 82, 131, 0); */
-        background-color: rgb(0, 0, 0, 0.1);
     }
 
     100% {
         box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
-        background-color: rgb(255, 82, 131, 1);
     }
 }
 
 @keyframes notshadowhover {
     0% {
         box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0;
+    }
+}
+
+
+@keyframes downhover {
+    0% {
+        box-shadow: 0 0 0 0;
+        background-color: rgb(0, 0, 0, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+        background-color: rgb(255, 82, 131, 1);
+    }
+}
+
+@keyframes notdownhover {
+    0% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
         background-color: rgb(255, 82, 131, 1);
     }
 
     100% {
         box-shadow: 0 0 0 0;
-        /* background-color: rgb(255, 82, 131, 0.2); */
-        /* background-color: rgb(255, 82, 131, 0); */
-        background-color: rgb(0, 0, 0, 0.1);
+        background-color: rgb(0, 0, 0, 0.7);
     }
 }
 

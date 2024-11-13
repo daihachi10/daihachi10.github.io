@@ -103,7 +103,7 @@ https://caniuse.com/?search=animation-range
             <div class="js-scrollable">
                 <ul class="item-list">
                     <!-- 1つここから -->
-                    <li>
+                    <li class="Ttext">
                         <a href="https://www.asus.com/jp/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx4090-o24g-gaming/"
                             target="_blank">
                             <img src="./images/graphics-board.png" class="item-image" alt="グラボ">
@@ -118,7 +118,7 @@ https://caniuse.com/?search=animation-range
                     </li>
                     <!-- 1つここまで -->
 
-                    <li>
+                    <li class="Ttext">
                         <a href="https://www.amd.com/ja/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x.html"
                             target="_blank">
                             <img src="./images/cpu.png" class="item-image" alt="CPU">
@@ -131,7 +131,7 @@ https://caniuse.com/?search=animation-range
                         </a>
                     </li>
 
-                    <li>
+                    <li class="Ttext">
                         <a href="https://www.crucial.jp/memory/ddr5/cp2k32g56c46u5" target="_blank">
                             <img src="./images/memory.png" class="item-image" alt="メモリ">
                             <dl>
@@ -143,7 +143,7 @@ https://caniuse.com/?search=animation-range
                         </a>
                     </li>
 
-                    <li>
+                    <li class="Ttext">
                         <a href="https://www.asus.com/jp/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b650-plus-wifi/"
                             target="_blank">
                             <img src="./images/motherboard.png" class="item-image" alt="マザボ">
@@ -157,7 +157,7 @@ https://caniuse.com/?search=animation-range
                         </a>
                     </li>
 
-                    <li>
+                    <li class="Ttext">
                         <a href="https://www.asus.com/jp/motherboards-components/power-supply-units/tuf-gaming/tuf-gaming-1200g/"
                             target="_blank">
                             <img src="./images/power.png" class="item-image" alt="電源ユニット">
@@ -170,7 +170,7 @@ https://caniuse.com/?search=animation-range
                         </a>
                     </li>
 
-                    <li>
+                    <li class="Ttext">
                         <a href="https://shop.tsukumo.co.jp/goods/0718037887357/?cid=kakakukcom" target="_blank">
                             <img src="./images/ssd.png" id="ssd-image" alt="ssd">
                             <dl>
@@ -186,6 +186,7 @@ https://caniuse.com/?search=animation-range
                     target="_blank">MORE <img src="./images/open_in_new.png" width="11"></a>
             </div>
         </div>
+
         <div class="movie" id="4">
             <h2><span class="text a1">DETAILED</span>
                 <span class="text a2">CPU</span>
@@ -195,7 +196,7 @@ https://caniuse.com/?search=animation-range
             <iframe src="https://www.youtube.com/embed/4SOlZbRt9lc" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>RyzenCPU 3DVcacheについて詳しい解説</p>
+            <p class="Ttext">RyzenCPU 3DVcacheについて詳しい解説</p>
         </div>
 
         <div class="picture" id="5">
@@ -214,7 +215,7 @@ https://caniuse.com/?search=animation-range
                 <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-07.JPG"> </li>
                 <li> <img src="https://daihachi10.github.io/program/16/images/yoko/IMG_0023.JPG"> </li>
             </ul>
-            <p>PCを組み立てている時の写真です。</p>
+            <p class="Ttext">PCを組み立てている時の写真です。</p>
         </div>
     </main>
     <!-- mainここまで -->
@@ -265,7 +266,7 @@ https://caniuse.com/?search=animation-range
             window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" })
         }
         function movie() {
-            window.scrollTo({ top: window.innerHeight + 1150, behavior: "smooth" })
+            window.scrollTo({ top: window.innerHeight + 1150 + 25, behavior: "smooth" })
         }
         function picture() {
             window.scrollTo({ top: window.innerHeight + 1950, behavior: "smooth" })
@@ -356,7 +357,7 @@ https://caniuse.com/?search=animation-range
                 const elements = document.querySelectorAll(className);
                 elements.forEach((el) => {
                     const rect = el.getBoundingClientRect();
-                    const isVisible = rect.top < window.innerHeight && rect.bottom >= 400; //0
+                    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0; //0
 
                     if (isVisible) {
                         el.classList.add('appear');

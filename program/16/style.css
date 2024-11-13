@@ -521,8 +521,8 @@ lead a {
 
 .item-list {
     display: flex;
-    padding-top: 55px;
-    padding-bottom: 45px;
+    padding-top: 60px;
+    padding-bottom: 50px;
     padding-left: 60px;
     padding-right: 60px;
     overflow: auto;
@@ -789,9 +789,9 @@ https://caniuse.com/?search=animation-range
     height: 60px;
     border-radius: 50px;
     cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png), auto;
-    background-color: #ff5283;
+    background-color: rgb(255, 82, 131, 0.5);
     animation: notshadowhover 0.5s ease-in-out forwards;
-
+    border: 1px solid;
 }
 
 .scroll p {
@@ -810,23 +810,29 @@ https://caniuse.com/?search=animation-range
 
 @keyframes shadowhover {
     0% {
-        box-shadow: 0 0 0 0
+        box-shadow: 0 0 0 0;
+        /* background-color: rgb(255, 82, 131, 0.2); */
+        /* background-color: rgb(255, 82, 131, 0); */
+        background-color: rgb(0, 0, 0, 0.1);
     }
 
     100% {
         box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
-
+        background-color: rgb(255, 82, 131, 1);
     }
 }
 
 @keyframes notshadowhover {
     0% {
         box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+        background-color: rgb(255, 82, 131, 1);
     }
 
     100% {
-
-        box-shadow: 0 0 0 0
+        box-shadow: 0 0 0 0;
+        /* background-color: rgb(255, 82, 131, 0.2); */
+        /* background-color: rgb(255, 82, 131, 0); */
+        background-color: rgb(0, 0, 0, 0.1);
     }
 }
 
@@ -861,12 +867,17 @@ span.appear {
 }
 
 .d2 {
-    animation-delay: 2s;
+    animation-delay: 1.7s;
 }
 
 .d3 {
     animation-delay: 3s;
 }
+
+.d4 {
+    animation-delay: 4s;
+}
+
 
 @keyframes show {
     0% {
@@ -886,4 +897,35 @@ span.appear {
 
 
     }
+}
+
+.text {
+    display: inline-block;
+    transform-origin: center top;
+    opacity: 0;
+    transform: translate(0, 2em);
+}
+
+.a1 {
+    animation-delay: 0s;
+}
+
+.a2 {
+    animation-delay: 0.7s;
+}
+
+.a3 {
+    animation-delay: 1.4s;
+}
+
+.a4 {
+    animation-delay: 2.1s;
+}
+
+.a5 {
+    animation-delay: 2.8s;
+}
+
+.a6 {
+    animation-delay: 3.5s;
 }

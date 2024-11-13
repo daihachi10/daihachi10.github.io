@@ -108,10 +108,16 @@ a {
     font-weight: bold;
     padding-top: 5px;
     padding-bottom: 5px;
+    /* padding-left: 2px; */
+    margin-left: 10px;
+    animation: notshadowhover 0.5s ease-in-out forwards;
+    border-radius: 50px;
 }
 
 .site-menu ul li a:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+    animation: shadowhover 0.5s ease-in-out forwards;
+
 }
 
 body {
@@ -442,6 +448,7 @@ lead a {
 .link-button:hover {
     /* animation: nothover 0.7s ease forwards; */
     animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
 }
 
 @keyframes hover {
@@ -613,8 +620,15 @@ lead a {
     border: 1px solid #ffffff;
     border-radius: 50%;
     background: #e33969;
+    animation: notshadowhover 0.5s ease-in-out forwards;
 
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+.back-to-top:hover {
+    animation: shadowhover 0.5s ease-in-out forwards;
+
+
 }
 
 .back-to-top a {
@@ -771,11 +785,13 @@ https://caniuse.com/?search=animation-range
     margin-left: auto;
     margin-right: auto;
     bottom: 200px;
-    width: 100px;
+    width: 200px;
     height: 60px;
     border-radius: 50px;
     cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png), auto;
     background-color: #ff5283;
+    animation: notshadowhover 0.5s ease-in-out forwards;
+
 }
 
 .scroll p {
@@ -788,32 +804,37 @@ https://caniuse.com/?search=animation-range
     margin: 0 auto;
 }
 
+.scroll:hover {
+    animation: shadowhover 0.5s ease-in-out forwards;
+}
+
+@keyframes shadowhover {
+    0% {
+        box-shadow: 0 0 0 0
+    }
+
+    100% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+
+    }
+}
+
+@keyframes notshadowhover {
+    0% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+    }
+
+    100% {
+
+        box-shadow: 0 0 0 0
+    }
+}
+
+
 /* 点滅 */
-.scroll {
-    -webkit-animation: blink 0.5s ease-in-out infinite alternate;
-    -moz-animation: blink 0.5s ease-in-out infinite alternate;
+/* .scroll:not(:hover) {
     animation: blink 0.5s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes blink {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes blink {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
+} */
 
 @keyframes blink {
     0% {
@@ -822,5 +843,47 @@ https://caniuse.com/?search=animation-range
 
     100% {
         opacity: 1;
+    }
+}
+
+
+.appear {
+    transform-origin: center top;
+    animation: show 1s both;
+}
+
+span.appear {
+    display: inline-block;
+}
+
+.d1 {
+    animation-delay: 1s;
+}
+
+.d2 {
+    animation-delay: 2s;
+}
+
+.d3 {
+    animation-delay: 3s;
+}
+
+@keyframes show {
+    0% {
+        transform: translate(0, 2em);
+        opacity: 0;
+        text-shadow: 0 0 0 #ff5283;
+    }
+
+    50% {
+        text-shadow: 0 0 0.5em #ff5283;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+        text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);
+
+
     }
 }

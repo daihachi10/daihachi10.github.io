@@ -69,13 +69,18 @@ https://caniuse.com/?search=animation-range
     <main class="main">
         <div class="first-view" id="1">
             <div class="first-view-text">
-                <h1 id="Ttext1">BuildingPC<br><ins>0.5</ins>Parts Introduction</h1>
+                <!-- <h1 id="Ttext1">BuildingPC<br><ins>0.5</ins>Parts Introduction</h1> -->
+                <h1>
+                    <span class="appear d1">BuildingPC</span><br>
+                    <span class="appear d2">Parts</span>
+                    <span class="appear d3">Introduction</span>
+                </h1>
                 <p id="Ttext2">自作パソコンパーツ紹介</p>
             </div>
         </div>
 
         <a onclick="down()">
-            <div class="scroll" class=”blinking”>
+            <div class="scroll">
                 <p>SCROLL</p>
                 <img src="https://daihachi10.github.io/program/16/images/down.png" width="30px">
             </div>
@@ -183,8 +188,8 @@ https://caniuse.com/?search=animation-range
                     </li>
                 </ul>
                 <div class="link-button-area">
-                    <a class="link-button" href="https://sakidori.co/article/1140332#index_1" target="_blank">MORE <img
-                            src="./images/open_in_new.png" width="11"></a>
+                    <a class="link-button" href="https://www.dospara.co.jp/contents/start-homebuild-pc.html"
+                        target="_blank">MORE <img src="./images/open_in_new.png" width="11"></a>
                 </div>
             </div>
         </div>
@@ -295,12 +300,12 @@ https://caniuse.com/?search=animation-range
         }
 
         function down() {
-            // window.scrollTo({ top: 400, behavior: "smooth" })
-            about();
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+            // about();
         }
 
         function about() {
-            window.scrollTo({ top: window.innerHeight - 200, behavior: "smooth" })
+            window.scrollTo({ top: window.innerHeight - 170, behavior: "smooth" })
         }
         function partslist() {
             window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" })
@@ -382,7 +387,7 @@ https://caniuse.com/?search=animation-range
 
         $(function () {
             $("#Ttext1").t({
-                delay: 0.5,
+                delay: 1,
                 speed: 30,
                 speed_vary: true,//人間
                 blink_perm: false, //常に点滅しない
@@ -396,11 +401,11 @@ https://caniuse.com/?search=animation-range
 
         $(function () {
             $("#Ttext2").t({
-                delay: 2,
-                speed: 20,
+                delay: 3,
+                speed: 60,
                 speed_vary: true,//人間
                 blink_perm: false, //常に点滅しない
-                caret: "_"
+                caret: "|"
             })
         })
     </script>

@@ -275,7 +275,7 @@ img {
 /*画像*/
 .first-view {
     height: calc(100vh - 110px + 120px);
-    background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.JPG);
+    background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

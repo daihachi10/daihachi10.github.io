@@ -946,3 +946,53 @@ span.appear {
 .a6 {
     animation-delay: 3.5s;
 }
+
+#loading {
+    display: grid;
+    place-items: center;
+    background-color: #222;
+    color: #fff;
+    position: fixed;
+    inset: 0;
+    font-size: 2rem;
+    z-index: 9000;
+}
+
+#loading.loaded {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #0000;
+    /* border-right-color: #ffa50097; */
+    border-right-color: rgba(255, 255, 255, 0.5);
+    position: relative;
+    animation: load 0.5s infinite linear;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
+}
+
+.loader:after {
+    animation-duration: 4s;
+}
+
+@keyframes load {
+    100% {
+        transform: rotate(1turn)
+    }
+}

@@ -19,11 +19,46 @@ https://caniuse.com/?search=animation-range
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
     <title>読み込み中</title>
+
+
+
+    <meta name="title" content="Building PC
+Parts Introduction
+自作パソコンパーツ紹介​" />
+    <meta name="description" content="自作パソコンの紹介です。" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://metatags.io/" />
+    <meta property="og:title" content="Building PC
+Parts Introduction
+自作パソコンパーツ紹介​" />
+    <meta property="og:description" content="自作パソコンの紹介です。" />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://metatags.io/" />
+    <meta property="twitter:title" content="Building PC
+Parts Introduction
+自作パソコンパーツ紹介​" />
+    <meta property="twitter:description" content="自作パソコンの紹介です。" />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
 </head>
 
 <body>
+    <!-- loadings -->
+    <div id="loading">
+        loading...
+        <!-- <div class="circle-spin-2"></div> -->
+
+        <div class="loader"></div>
+    </div>
+
+
     <!-- headerここから -->
     <header class="header">
         <div class="header-inner">
@@ -258,6 +293,15 @@ https://caniuse.com/?search=animation-range
     <!-- footerここまで -->
 
     <script>
+        //loading処理
+        const loading = document.getElementById('loading');
+
+        window.onload = function () {
+            loading.classList.add('loaded');
+        }
+
+
+
         //スクロール処理
         function pageTop() { window.scrollTo({ top: 0, behavior: "smooth" }) }
         function down() { window.scrollTo({ top: window.innerHeight - 200, behavior: "smooth" }) }

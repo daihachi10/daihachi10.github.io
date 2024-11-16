@@ -966,32 +966,62 @@ span.appear {
 
 /* HTML: <div class="loader"></div> */
 .loader {
-    width: 120px;
-    height: 22px;
-    border-radius: 40px;
-    color: #514b82;
-    border: 2px solid;
+    width: 40px;
+    aspect-ratio: 1;
     position: relative;
-    overflow: hidden;
 }
 
-.loader::before {
+.loader:before,
+.loader:after {
     content: "";
     position: absolute;
-    margin: 2px;
-    width: 14px;
     top: 0;
-    bottom: 0;
-    left: -20px;
-    border-radius: inherit;
-    background: currentColor;
-    box-shadow: -10px 0 12px 3px currentColor;
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%, -30px 50%);
-    animation: l14 1s infinite linear;
+    left: 0;
+    margin: -8px 0 0 -8px;
+    width: 16px;
+    aspect-ratio: 1;
+    background: #ff5283;
+    animation:
+        l1-1 2s infinite,
+        l1-2 .5s infinite;
 }
 
-@keyframes l14 {
+.loader:after {
+    background: #ff5283;
+    animation-delay: -1s, 0s;
+}
+
+@keyframes l1-1 {
+    0% {
+        top: 0;
+        left: 0
+    }
+
+    25% {
+        top: 100%;
+        left: 0
+    }
+
+    50% {
+        top: 100%;
+        left: 100%
+    }
+
+    75% {
+        top: 0;
+        left: 100%
+    }
+
     100% {
-        left: calc(100% + 20px)
+        top: 0;
+        left: 0
+    }
+}
+
+@keyframes l1-2 {
+
+    80%,
+    100% {
+        transform: rotate(0.5turn)
     }
 }

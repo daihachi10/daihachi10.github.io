@@ -1,5 +1,23 @@
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-image: url('images/wallpaper.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: 0 -50px;
+}
+
+.video {
+    /* margin: 0 auto; */
+}
+
+body iframe {
+    width: 80%;
+    margin: 0 auto;
 }

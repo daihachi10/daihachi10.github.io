@@ -966,46 +966,32 @@ span.appear {
 
 /* HTML: <div class="loader"></div> */
 .loader {
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 8px solid #0000;
-    /* border-right-color: #ffa50097; */
-    border-right-color: rgba(255, 255, 255, 0.5);
+    width: 120px;
+    height: 22px;
+    border-radius: 40px;
+    color: #514b82;
+    border: 2px solid;
     position: relative;
-    animation: load 0.8s infinite linear;
+    overflow: hidden;
 }
 
-.loader:before,
-.loader:after {
+.loader::before {
     content: "";
     position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: inherit;
-    animation: inherit;
-    animation-duration: 2s;
+    margin: 2px;
+    width: 14px;
+    top: 0;
+    bottom: 0;
+    left: -20px;
+    border-radius: inherit;
+    background: currentColor;
+    box-shadow: -10px 0 12px 3px currentColor;
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%, -30px 50%);
+    animation: l14 1s infinite linear;
 }
 
-.loader:after {
-    animation-duration: 4s;
-}
-
-@keyframes load {
+@keyframes l14 {
     100% {
-        transform: rotate(1turn)
+        left: calc(100% + 20px)
     }
-}
-
-
-/*画像*/
-.side-scroll-list-wrapper {
-    position: relative;
-    width: 100%;
-    height: 700px;
-}
-
-.side-scroll-list {
-    position: absolute;
-    display: flex;
 }

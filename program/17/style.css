@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+
 *,
 ::before,
 ::after {
@@ -13,11 +16,59 @@ body {
     background-position: 0 -50px;
 }
 
-.video {
-    /* margin: 0 auto; */
+.video-container {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+    /* display: grid;
+    place-items: center; */
 }
 
 body iframe {
     width: 80%;
-    margin: 0 auto;
+    height: 700px;
+    margin-top: 30px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    font-family: "Montserrat", "Noto Sans JP";
+}
+
+.input-container {
+    display: block;
+}
+
+.video-container {
+    display: none;
+}
+
+input[type="text"] {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+}
+
+.input-container {
+    color: #fff;
+}
+
+.input-container p {
+    margin: 10px 0;
 }

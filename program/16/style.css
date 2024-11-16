@@ -973,7 +973,7 @@ span.appear {
     /* border-right-color: #ffa50097; */
     border-right-color: rgba(255, 255, 255, 0.5);
     position: relative;
-    animation: load 0.5s infinite linear;
+    animation: load 0.8s infinite linear;
 }
 
 .loader:before,
@@ -995,4 +995,17 @@ span.appear {
     100% {
         transform: rotate(1turn)
     }
+}
+
+
+/*画像*/
+.side-scroll-list-wrapper {
+    position: relative;
+    width: 100%;
+    height: 700px;
+}
+
+.side-scroll-list {
+    position: absolute;
+    display: flex;
 }

@@ -48,6 +48,9 @@ Parts Introduction
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
+
 </head>
 
 <body>
@@ -68,7 +71,7 @@ Parts Introduction
             <button class="toggle-menu-button"></button>
             <div class="header-site-menu">
                 <nav class="site-menu">
-                    <ul>
+                    <ul id="step1">
                         <!-- <li><a href="#2">About</a></li> -->
                         <li><a onclick="about()">About</a></li>
                         <!-- <li><a href="#3">PARTS LIST</a></li> -->
@@ -100,7 +103,7 @@ Parts Introduction
         </div>
 
         <a onclick="down()">
-            <div class="scroll">
+            <div class="scroll" id="step2">
                 <p>SCROLL</p>
                 <img src="https://daihachi10.github.io/program/16/images/down.webp" width="30px">
             </div>
@@ -263,6 +266,18 @@ Parts Introduction
             <p class="Ttext">PCを組み立てている時の写真です。</p>
         </div>
 
+        <div class="jisaku" id="6">
+            <h2>
+                <span class="text a1">PERFORMANCE</span>
+                <!-- <span class="text a2">PC</span>
+                <span class="text a3">PICTURE</span> -->
+            </h2>
+
+            <iframe src="../19/index.html" frameborder="0"></iframe>
+            <p class="Ttext">PCを組み立てている時の写真です。</p>
+        </div>
+
+
     </main>
     <!-- mainここまで -->
 
@@ -295,12 +310,46 @@ Parts Introduction
     <!-- footerここまで -->
 
     <script>
+        const driver = window.driver.js.driver;
+        const driverObj = driver({
+            steps: [{
+                element: '#step1',
+                popover: {
+                    title: 'ここから項目に飛ぶことができます。',
+                    description: '',
+                    side: "bottom",
+                    align: 'center'
+                }
+            },
+            {
+                element: '#step2',
+                popover: {
+                    title: 'GO!',
+                    description: '',
+                    side: "top",
+                    align: 'center'
+                }
+            },
+            ],
+
+            nextBtnText: '次へ',
+            prevBtnText: '戻る',
+            doneBtnText: '閉じる',
+            showProgress: true,
+        });
+
+
 
         //loading処理
         const loading = document.getElementById('loading');
 
         window.onload = function () {
             loading.classList.add('loaded');
+
+            driverObj.drive();
+            setTimeout(function () {
+            }, 6000);
+
         }
 
 

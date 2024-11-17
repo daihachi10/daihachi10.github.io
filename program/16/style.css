@@ -679,7 +679,10 @@ https://caniuse.com/?search=animation-range
 .movie p,
 .picture h2,
 .picture p,
-.slideshow-fade {
+.slideshow-fade,
+.jisaku h2,
+.jisaku iframe,
+.jisaku p {
     animation: scroll-anim linear;
     animation-timeline: view();
     animation-range: entry 0% contain 20%;
@@ -687,7 +690,9 @@ https://caniuse.com/?search=animation-range
 
 /*Youtube動画*/
 .movie,
-.picture {
+.picture,
+/* .jisaku iframe, */
+.jisaku {
     width: 930px;
     max-width: 90%;
     background-color: #f8f8f8;
@@ -699,14 +704,16 @@ https://caniuse.com/?search=animation-range
 }
 
 .movie h2,
-.picture h2 {
+.picture h2,
+.jisaku h2 {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
 }
 
 .movie h2::after,
-.picture h2::after {
+.picture h2::after,
+.jisaku h2::after {
     content: '';
     display: block;
     width: 36px;
@@ -717,7 +724,8 @@ https://caniuse.com/?search=animation-range
     margin-right: auto;
 }
 
-.movie iframe {
+.movie iframe,
+.jisaku iframe {
     display: block;
     width: 100%;
     height: 456px;
@@ -725,7 +733,8 @@ https://caniuse.com/?search=animation-range
 }
 
 .movie p,
-.picture p {
+.picture p,
+.jisaku p {
     font-size: 15px;
     line-height: 28px;
     margin-top: 20px;

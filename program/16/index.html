@@ -338,7 +338,6 @@ Parts Introduction
             loading.classList.add('loaded');
 
 
-            driverObj.drive();
         }
 
 
@@ -346,6 +345,7 @@ Parts Introduction
             if (!localStorage.getItem('disp_popup')) {
                 localStorage.setItem('disp_popup', 'on');
                 console.log("初回");
+                driverObj.drive();
                 setTimeout(function () {
                 }, 4000);
 

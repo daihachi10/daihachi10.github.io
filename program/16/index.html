@@ -73,13 +73,13 @@ Parts Introduction
                 <nav class="site-menu">
                     <ul id="step1">
                         <!-- <li><a href="#2">About</a></li> -->
-                        <li><a onclick="about()">About</a></li>
+                        <li><a onclick="about()" id="step2">About</a></li>
                         <!-- <li><a href="#3">PARTS LIST</a></li> -->
-                        <li><a onclick="partslist()">PARTS LIST</a></li>
+                        <li><a onclick="partslist()" id="step3">PARTS LIST</a></li>
                         <!-- <li><a href="#4">MOVIE</a></li> -->
-                        <li><a onclick="movie()">MOVIE</a></li>
+                        <li><a onclick="movie()" id="step4">MOVIE</a></li>
                         <!-- <li><a href="#5">PICTURE</a></li> -->
-                        <li><a onclick="picture()">PICTURE</a></li>
+                        <li><a onclick="picture()" id="step5">PICTURE</a></li>
                     </ul>
                 </nav>
             </div>
@@ -103,7 +103,7 @@ Parts Introduction
         </div>
 
         <a onclick="down()">
-            <div class="scroll" id="step2">
+            <div class="scroll" id="step6">
                 <p>SCROLL</p>
                 <img src="https://daihachi10.github.io/program/16/images/down.webp" width="30px">
             </div>
@@ -312,24 +312,15 @@ Parts Introduction
     <script>
         const driver = window.driver.js.driver;
         const driverObj = driver({
-            steps: [{
-                element: '#step1',
-                popover: {
-                    title: 'ここから項目に飛ぶことができます。',
-                    description: '',
-                    side: "bottom",
-                    align: 'center'
-                }
-            },
-            {
-                element: '#step2',
-                popover: {
-                    title: 'GO!',
-                    description: '',
-                    side: "top",
-                    align: 'center'
-                }
-            },
+            steps: [
+                { element: '#step1', popover: { title: 'ここから項目に飛ぶことができます。', description: '', side: "bottom", align: 'center' } },
+
+                { element: '#step2', popover: { title: 'ABOUT', description: 'そもそも自作PCとはなにか、どんなメリットがあるかを簡単に説明しています。', side: "bottom", align: 'center' } },
+                { element: '#step3', popover: { title: 'PARTS LIST', description: 'PCに必要な主要なパーツの一覧です。', side: "bottom", align: 'center' } },
+                { element: '#step4', popover: { title: 'MOVIE', description: 'CPUの3DVCACHEという機能についての詳しい動画です', side: "bottom", align: 'center' } },
+                { element: '#step5', popover: { title: 'PICTURE', description: 'PCを組み立てているときの写真です。', side: "bottom", align: 'center' } },
+
+                { element: '#step6', popover: { title: 'GO!', description: '', side: "top", align: 'center' } },
             ],
 
             nextBtnText: '次へ',
@@ -346,11 +337,24 @@ Parts Introduction
         window.onload = function () {
             loading.classList.add('loaded');
 
-            driverObj.drive();
-            setTimeout(function () {
-            }, 6000);
 
+            driverObj.drive();
         }
+
+
+        window.addEventListener('load', function () {
+            if (!localStorage.getItem('disp_popup')) {
+                localStorage.setItem('disp_popup', 'on');
+                console.log("初回");
+                setTimeout(function () {
+                }, 4000);
+
+            } else {
+                console.log("初回ではない")
+            }
+        }, false);
+
+
 
 
 

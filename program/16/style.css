@@ -52,10 +52,15 @@ a {
     opacity: 0;
 }
 
+
 .reset:hover {
     /* visibility: visible; */
     opacity: 1;
 
+}
+
+.reset p {
+    text-align: center;
 }
 
 /*header固定*/
@@ -984,10 +989,12 @@ span.appear {
     height: 450px;
 }
 
-#loading .tetris #newtab {
+#loading .tetris #newtab,
+#loading .tetris #close {
     font-size: 18px;
     text-align: center;
     display: block;
+    margin-top: 10px;
 }
 
 @keyframes loaded {

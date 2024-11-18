@@ -73,13 +73,15 @@ Parts Introduction
                 <nav class="site-menu">
                     <ul id="step1">
                         <!-- <li><a href="#2">About</a></li> -->
-                        <li><a onclick="about()" id="step2">About</a></li>
+                        <li><a onclick="about()" id="step2">ABOUT</a></li>
                         <!-- <li><a href="#3">PARTS LIST</a></li> -->
                         <li><a onclick="partslist()" id="step3">PARTS LIST</a></li>
                         <!-- <li><a href="#4">MOVIE</a></li> -->
                         <li><a onclick="movie()" id="step4">MOVIE</a></li>
                         <!-- <li><a href="#5">PICTURE</a></li> -->
                         <li><a onclick="picture()" id="step5">PICTURE</a></li>
+                        <!-- <li><a href="#5">PICTURE</a></li> -->
+                        <li><a onclick="performance()" id="step6">PERFORMANCE</a></li>
                     </ul>
                 </nav>
             </div>
@@ -365,6 +367,8 @@ Parts Introduction
         function partslist() { window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" }) }
         function movie() { window.scrollTo({ top: window.innerHeight + 1150 + 25, behavior: "smooth" }) }
         function picture() { window.scrollTo({ top: window.innerHeight + 1950, behavior: "smooth" }) }
+        function performance() { window.scrollTo({ top: window.innerHeight + 2500, behavior: "smooth" }) }
+
 
         //ページの名前上書き
         let name = "HOME | BuildingPC Parts Introduction"

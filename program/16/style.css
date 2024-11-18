@@ -182,7 +182,7 @@ img {
     }
 } */
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
     .site-menu ul {
         display: block;
         text-align: center;
@@ -194,7 +194,6 @@ img {
 
     .header {
         position: fixed;
-        /*         position:sticky; */
         top: 0;
         left: 0;
         right: 0;
@@ -263,7 +262,7 @@ img {
     .copyright {
         margin-top: 50px;
     }
-}
+} */
 
 
 /*画像*/

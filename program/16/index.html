@@ -80,8 +80,9 @@ Parts Introduction
                         <li><a onclick="movie()" id="step4">MOVIE</a></li>
                         <!-- <li><a href="#5">PICTURE</a></li> -->
                         <li><a onclick="picture()" id="step5">PICTURE</a></li>
-                        <!-- <li><a href="#5">PICTURE</a></li> -->
-                        <li><a onclick="performance()" id="step6">PERFORMANCE</a></li>
+                        <!-- <li><a href="#6">PICTURE</a></li> -->
+                        <li><a onclick="performance()" id="step6">PERFORMANCE</a></li><!--なんか関数にならない-->
+                        <li><a onclick="reset()">reset</a></li>
                     </ul>
                 </nav>
             </div>
@@ -105,7 +106,7 @@ Parts Introduction
         </div>
 
         <a onclick="down()">
-            <div class="scroll" id="step6">
+            <div class="scroll" id="step7">
                 <p>SCROLL</p>
                 <img src="https://daihachi10.github.io/program/16/images/down.webp" width="30px">
             </div>
@@ -114,9 +115,11 @@ Parts Introduction
         <div class="leadbox" id="2">
             <div class="lead">
                 <h2>
-                    <span class="text a1">ABOUT</span>
-                    <span class="text a2">BUILDING</span>
-                    <span class="text a3">PC</span>
+                    <a onclick="reset()">
+                        <span class="text a1">ABOUT</span>
+                        <span class="text a2">BUILDING</span>
+                        <span class="text a3">PC</span>
+                    </a>
                 </h2>
                 <p class="Ttext">
                     <ins>7</ins>自作PC（パソコン）とは、<a onclick="partslist()" style="color: #ff5283"><u>CPUやメモリ、マザーボード、<br>
@@ -299,15 +302,26 @@ Parts Introduction
                 <li><a onclick="movie()">MOVIE</a></li>
                 <!-- <li><a href="#5">PICTURE</a></li> -->
                 <li><a onclick="picture()">PICTURE</a></li>
+                <!-- <li><a href="#6">PICTURE</a></li> -->
+                <li><a onclick="performance()">PERFORMANCE</a></li><!--なんか関数にならない-->
             </ul>
         </nav>
         <a class="footer-logo" onclick="pageTop()">
             <p>buildPC</p>
         </a>
+        <div class="reset">
 
-        <a href="https://daihachi10.github.io/" target="_blank">
-            <p class="copyright"><small>&copy;daihachi</small></p>
-        </a>
+            <a onclick="reset()">reset</a>
+        </div>
+
+        <p class="copyright">
+            <small>
+                <a href="https://daihachi10.github.io/" target="_blank">
+                    &copy;daihachi
+                </a>
+            </small>
+        </p>
+
     </footer>
     <!-- footerここまで -->
 
@@ -319,10 +333,10 @@ Parts Introduction
 
                 { element: '#step2', popover: { title: 'ABOUT', description: 'そもそも自作PCとはなにか、どんなメリットがあるかを簡単に説明しています。', side: "bottom", align: 'center' } },
                 { element: '#step3', popover: { title: 'PARTS LIST', description: 'PCに必要な主要なパーツの一覧です。', side: "bottom", align: 'center' } },
-                { element: '#step4', popover: { title: 'MOVIE', description: 'CPUの3DVCACHEという機能についての詳しい動画です', side: "bottom", align: 'center' } },
+                { element: '#step4', popover: { title: 'MOVIE', description: 'CPUの3DVCACHEという機能についての詳しい動画です。', side: "bottom", align: 'center' } },
                 { element: '#step5', popover: { title: 'PICTURE', description: 'PCを組み立てているときの写真です。', side: "bottom", align: 'center' } },
-
-                { element: '#step6', popover: { title: 'GO!', description: '', side: "top", align: 'center' } },
+                { element: '#step6', popover: { title: 'PERFORMANCE', description: '組み立てたPCの性能です。', side: "bottom", align: 'center' } },
+                { element: '#step7', popover: { title: 'GO!', description: '', side: "top", align: 'center' } },
             ],
 
             nextBtnText: '次へ',
@@ -357,7 +371,12 @@ Parts Introduction
         }, false);
 
 
-
+        function reset() {
+            loading.classList.remove('loaded');
+            window.scrollTo({ top: 0 })
+            localStorage.clear();
+            location.reload();
+        }
 
 
         //スクロール処理
@@ -367,7 +386,7 @@ Parts Introduction
         function partslist() { window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" }) }
         function movie() { window.scrollTo({ top: window.innerHeight + 1150 + 25, behavior: "smooth" }) }
         function picture() { window.scrollTo({ top: window.innerHeight + 1950, behavior: "smooth" }) }
-        function performance() { window.scrollTo({ top: window.innerHeight + 2500, behavior: "smooth" }) }
+        function performance() { window.scrollTo({ top: window.innerHeight + 2550, behavior: "smooth" }) }
 
 
         //ページの名前上書き

@@ -987,6 +987,7 @@ span.appear {
 
 #loading .tetris iframe {
     height: 450px;
+    /* width: 650px; */
 }
 
 #loading .tetris #newtab,

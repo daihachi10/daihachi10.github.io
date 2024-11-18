@@ -984,6 +984,12 @@ span.appear {
     height: 450px;
 }
 
+#loading .tetris #newtab {
+    font-size: 18px;
+    text-align: center;
+    display: block;
+}
+
 @keyframes loaded {
     0% {
         background-color: rgba(40, 40, 40, 1);

@@ -4,10 +4,10 @@ const context = canvas.getContext('2d');
 // ゲーム設定を管理するオブジェクト
 const gameConfig = {
     blockSize: 20, // ブロックのサイズ
-    speed: 10,   // 初期スピード（ms）
-    backgroundColor: '#000', // 背景色
+    speed: 1000,   // 初期スピード（ms）
+    backgroundColor: 'rgb(40, 40, 40)', // 背景色
     gridColor: '#333', // グリッド線の色
-    lineWidth: 0.05,  // グリッド線の太さ
+    lineWidth: 0.1,  // グリッド線の太さ
     colors: [
         null,
         '#dc2171',  // 1番目

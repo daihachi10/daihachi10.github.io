@@ -970,18 +970,23 @@ span.appear {
     inset: 0;
     font-size: 2rem;
     z-index: 9000;
-    animation: loading 0.2s ease-in-out forwards;
+    animation: loading 0.3s ease-in-out forwards;
 }
 
 #loading.loaded {
-    animation: loaded 0.2s ease-in-out forwards;
+    animation: loaded 0.3s ease-in-out forwards;
     pointer-events: none;
     /* display: none; */
 }
 
+
+#loading .tetris iframe {
+    height: 450px;
+}
+
 @keyframes loaded {
     0% {
-        background-color: rgba(40, 40, 40, 0.7);
+        background-color: rgba(40, 40, 40, 1);
         opacity: 1;
 
     }
@@ -1000,7 +1005,7 @@ span.appear {
     }
 
     100% {
-        background-color: rgba(40, 40, 40, 0.7);
+        background-color: rgba(40, 40, 40, 1);
         opacity: 1;
     }
 }

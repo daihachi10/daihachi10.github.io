@@ -1,21 +1,31 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 
-// スケール設定
-context.scale(20, 20);
+// ゲーム設定を管理するオブジェクト
+const gameConfig = {
+    blockSize: 20, // ブロックのサイズ
+    speed: 10,   // 初期スピード（ms）
+    backgroundColor: '#000', // 背景色
+    gridColor: '#333', // グリッド線の色
+    lineWidth: 0.05,  // グリッド線の太さ
+    colors: [
+        null,
+        '#dc2171',  // 1番目
+        '#ff708f',  // 2番目
+        '#ffb5cf',  // 3番目
+        '#a6c7ff',  // 4番目
+        '#7397e6',  // 5番目
+        '#3e69b3',  // 6番目
+        '#003f83',  // 7番目
+    ],
+    dropInterval: 1000, // ドロップ間隔（ms）
+    restartButtonText: 'Restart', // リスタートボタンのテキスト
+    gameOverText: 'Game Over! Score: ', // ゲームオーバーのメッセージ
+};
+
+context.scale(gameConfig.blockSize, gameConfig.blockSize);
 
 const arena = createMatrix(12, 20);
-
-const colors = [
-    null,
-    '#dc2171',  // 1番目
-    '#ff708f',  // 2番目
-    '#ffb5cf',  // 3番目
-    '#a6c7ff',  // 4番目
-    '#7397e6',  // 5番目
-    '#3e69b3',  // 6番目
-    '#003f83',  // 7番目
-];
 
 const player = {
     pos: { x: 0, y: 0 },
@@ -24,8 +34,8 @@ const player = {
 };
 
 const restartButton = document.createElement('button');
-restartButton.innerText = "Restart";
-restartButton.style.display = "none";
+restartButton.innerText = gameConfig.restartButtonText;
+restartButton.style.display = 'none';
 restartButton.onclick = restartGame;
 document.body.appendChild(restartButton);
 
@@ -87,7 +97,7 @@ function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
-                context.fillStyle = colors[value];
+                context.fillStyle = gameConfig.colors[value];
                 context.fillRect(x + offset.x, y + offset.y, 1, 1);
             }
         });
@@ -95,21 +105,21 @@ function drawMatrix(matrix, offset) {
 }
 
 function drawGrid() {
-    context.strokeStyle = '#333'; // 線の色
-    context.lineWidth = 0.05; // 線の太さ
+    context.strokeStyle = gameConfig.gridColor;
+    context.lineWidth = gameConfig.lineWidth;
 
-    for (let x = 0; x < canvas.width / 20; x++) {
-        for (let y = 0; y < canvas.height / 20; y++) {
-            context.strokeRect(x, y, 1, 1); // 各セルに線を描画
+    for (let x = 0; x < canvas.width / gameConfig.blockSize; x++) {
+        for (let y = 0; y < canvas.height / gameConfig.blockSize; y++) {
+            context.strokeRect(x, y, 1, 1);
         }
     }
 }
 
 function draw() {
-    context.fillStyle = '#000';
+    context.fillStyle = gameConfig.backgroundColor;
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    drawGrid(); // グリッド線を描画
+    drawGrid();
     drawMatrix(arena, { x: 0, y: 0 });
     drawMatrix(player.matrix, player.pos);
 
@@ -117,9 +127,9 @@ function draw() {
     if (player.pos.y === 0 && collide(arena, player)) {
         context.fillStyle = 'white';
         context.font = '1.5em Arial';
-        context.fillText(`Game Over! Score: ${player.score}`, 2, 10);
+        context.fillText(`${gameConfig.gameOverText} ${player.score}`, 2, 10);
 
-        restartButton.style.display = 'block';  // リスタートボタンを表示
+        restartButton.style.display = 'block'; // リスタートボタンを表示
     }
 }
 
@@ -241,7 +251,7 @@ function arenaSweep() {
 }
 
 let dropCounter = 0;
-let dropInterval = 1000;
+let dropInterval = gameConfig.dropInterval;
 
 let lastTime = 0;
 
@@ -265,19 +275,19 @@ document.addEventListener('keydown', event => {
         playerMove(1);
     } else if (event.key === 'ArrowDown') {
         playerDrop();
+    } else if (event.key === ' ') {
+        playerDropInstant();
     } else if (event.key === 'ArrowUp') {
         playerRotate(1);
-    } else if (event.key === ' ') {
-        playerDropInstant(); // スペースキーで即時落下
     }
 });
 
 function restartGame() {
-    arena.forEach(row => row.fill(0)); // ゲームフィールドをリセット
     player.score = 0; // スコアをリセット
-    restartButton.style.display = 'none'; // リスタートボタンを隠す
-    playerReset(); // プレイヤーのリセット
-    update(); // ゲームを再開
+    restartButton.style.display = 'none'; // リスタートボタンを非表示にする
+    arena.forEach(row => row.fill(0)); // フィールドをリセット
+    playerReset();
+    update();
 }
 
 playerReset();

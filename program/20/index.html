@@ -44,6 +44,7 @@
 </div>
 
 <script>
+    document.addEventListener("dblclick", function (e) { e.preventDefault(); }, { passive: false });
 
     const canvas = document.getElementById('tetris'); const context = canvas.getContext('2d');
     const gameConfig = {

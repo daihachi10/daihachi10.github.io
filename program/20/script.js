@@ -1,48 +1,55 @@
+// ダブルクリックを無効化する（モバイル操作時の誤作動防止）
 document.addEventListener("dblclick", function (e) {
     e.preventDefault();
 }, {
     passive: false
 });
 
+// キャンバスの設定とゲームの初期設定
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 const gameConfig = {
-    blockSize: 20,
-    speed: 1000,
+    blockSize: 20, // 1ブロックのサイズ（ピクセル）
+    speed: 1000, // ブロックの落下速度（ミリ秒）
     backgroundColor: 'rgb(40, 40, 40)', // 背景色
-    gridColor: '#d6d6d6', // グリッド線の色
-    lineWidth: 0.1, // グリッド線の太さ
-    colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6',
-        '#3e69b3', '#003f83',
-    ],
-    dropInterval: 1000,
-    restartButtonText: 'Restart',
-    gameOverText: 'Game Over! Score: ',
+    gridColor: '#d6d6d6', // グリッドの線の色
+    lineWidth: 0.1, // グリッドの線の太さ
+    colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6', '#3e69b3', '#003f83'], // ブロックの色
+    dropInterval: 1000, // 自動落下の間隔
+    restartButtonText: 'Restart', // リスタートボタンのテキスト
+    gameOverText: 'Game Over! Score: ', // ゲームオーバー時のメッセージ
 };
+
+// キャンバスのスケールを設定
 context.scale(gameConfig.blockSize, gameConfig.blockSize);
+
+// ゲーム用の配列（アリーナ）を生成
 const arena = createMatrix(12, 20);
+
+// プレイヤーの初期データ
 const player = {
-    pos: {
-        x: 0,
-        y: 0
-    },
-    matrix: null,
-    score: 0,
+    pos: { x: 0, y: 0 }, // プレイヤーの位置
+    matrix: null, // 現在操作中のブロック
+    score: 0, // スコア
 };
+
+// リスタートボタンの作成
 const restartButton = document.createElement('button');
 restartButton.innerText = gameConfig.restartButtonText;
-restartButton.style.display = 'none';
-restartButton.onclick = restartGame;
+restartButton.style.display = 'none'; // 初期状態では非表示
+restartButton.onclick = restartGame; // ボタンがクリックされたときにゲームをリセット
 document.body.appendChild(restartButton);
 
+// 指定したサイズの2次元配列を作成
 function createMatrix(width, height) {
     const matrix = [];
     while (height--) {
-        matrix.push(new Array(width).fill(0));
+        matrix.push(new Array(width).fill(0)); // 初期値はすべて0
     }
     return matrix;
 }
 
+// 指定された形状のテトリスのブロックを生成
 function createPiece(type) {
     if (type === 'T') {
         return [
@@ -89,10 +96,11 @@ function createPiece(type) {
     }
 }
 
+// 指定されたマトリックス（ブロック）を描画
 function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
-            if (value !== 0) {
+            if (value !== 0) { // 値が0でない部分だけ描画
                 context.fillStyle = gameConfig.colors[value];
                 context.fillRect(x + offset.x, y + offset.y, 1, 1);
             }
@@ -100,6 +108,7 @@ function drawMatrix(matrix, offset) {
     });
 }
 
+// グリッド（背景のマス目）を描画
 function drawGrid() {
     context.strokeStyle = gameConfig.gridColor;
     context.lineWidth = gameConfig.lineWidth;
@@ -110,21 +119,43 @@ function drawGrid() {
     }
 }
 
+// ゲーム画面全体を描画
 function draw() {
-    context.fillStyle = gameConfig.backgroundColor;
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    drawGrid();
-    drawMatrix(arena, {
-        x: 0,
-        y: 0
-    });
-    drawMatrix(player.matrix, player.pos);
-    if (player.pos.y === 0 && collide(arena, player)) {
+    context.fillStyle = gameConfig.backgroundColor; // 背景色を設定
+    context.fillRect(0, 0, canvas.width, canvas.height); // 全体を塗りつぶす
+    drawProjection();
+    drawGrid(); // グリッドを描画
+    drawMatrix(arena, { x: 0, y: 0 }); // アリーナを描画
+    drawMatrix(player.matrix, player.pos); // プレイヤーのブロックを描画
+    if (player.pos.y === 0 && collide(arena, player)) { // ゲームオーバー判定
         context.fillStyle = 'white';
         context.font = '1.5em Arial';
         context.fillText(`${gameConfig.gameOverText} ${player.score}`, 2, 10);
-        restartButton.style.display = 'block';
+        restartButton.style.display = 'block'; // リスタートボタンを表示
     }
+}
+
+function drawProjection() {
+    const projectionPos = { ...player.pos }; // プレイヤー位置をコピー
+    while (!collide(arena, { ...player, pos: projectionPos })) {
+        projectionPos.y++; // 衝突するまで落下位置を計算
+    }
+    projectionPos.y--; // 衝突位置の1つ上に調整
+
+    // 半透明の白で補助線を描画
+    context.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 半透明の白
+    player.matrix.forEach((row, y) => {
+        row.forEach((value, x) => {
+            if (value !== 0) {
+                context.fillRect(
+                    x + projectionPos.x,
+                    y + projectionPos.y,
+                    1,
+                    1
+                );
+            }
+        });
+    });
 }
 
 function merge(arena, player) {

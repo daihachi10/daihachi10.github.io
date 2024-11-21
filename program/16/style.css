@@ -1,6 +1,12 @@
+:root {
+    --pink-color: #ff5283;
+    --pink-hover-color: #bf1948;
+    --header-footer-color: #3a5e98;
+}
+
 ::selection {
     color: #fff;
-    background-color: #ff5283;
+    background-color: var(--pink-color);
 }
 
 *,
@@ -84,8 +90,8 @@ header {
 #animated-header {
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
-    background-color: rgba(0, 0, 0, 0.4);
-    height: 60px;
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 50px;
 }
 
 #animated-header.visible {
@@ -106,7 +112,7 @@ header {
     justify-content: space-between;
     align-items: center;
     /* color: #1571c2; */
-    color: #3a5e98;
+    color: var(--header-footer-color);
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
@@ -122,7 +128,7 @@ header {
     justify-content: space-between;
     align-items: center;
     /* color: #1571c2; */
-    color: #3a5e98;
+    color: var(--header-footer-color);
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
@@ -139,7 +145,7 @@ header {
     width: 170px;
     animation: 0.2s forwards header-logo-nothovers;
     /* color: #1571c2; */
-    color: #3a5e98;
+    color: var(--header-footer-color);
     /* color: #3b6930; */
 }
 
@@ -164,14 +170,18 @@ header {
     padding-top: 5px;
     padding-bottom: 5px;
     /* padding-left: 2px; */
-    margin-left: 10px;
+    /* margin-left: 10px; */
     animation: notshadowhover 0.5s ease-in-out forwards;
     border-radius: 50px;
+
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 .site-menu ul li a:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
     animation: shadowhover 0.5s ease-in-out forwards;
+
 
 }
 
@@ -185,7 +195,7 @@ img {
 .footer {
     color: #ffffff;
     /* background-color: #1571c2; */
-    background-color: #3a5e98;
+    background-color: var(--header-footer-color);
     padding-top: 30px;
     padding-bottom: 15px;
     display: flex;
@@ -479,7 +489,7 @@ lead a {
 }
 
 .link-button {
-    /* background-color: #ff5283; */
+    /* background-color: var(--pink-color); */
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
@@ -491,7 +501,7 @@ lead a {
 }
 
 /* .link-button:hover {
-    background-color: #bf1948;
+    background-color: var(--pink-hover-color);
 } */
 
 .link-button:hover {
@@ -502,24 +512,24 @@ lead a {
 
 @keyframes hover {
     0% {
-        background-color: #bf1948;
+        background-color: var(--pink-hover-color);
 
     }
 
     100% {
-        background-color: #ff5283;
+        background-color: var(--pink-color);
     }
 }
 
 @keyframes nothover {
     0% {
 
-        background-color: #ff5283;
+        background-color: var(--pink-color);
     }
 
     100% {
 
-        background-color: #bf1948;
+        background-color: var(--pink-hover-color);
     }
 }
 
@@ -959,11 +969,11 @@ span.appear {
     0% {
         transform: translate(0, 2em);
         opacity: 0;
-        text-shadow: 0 0 0 #ff5283;
+        text-shadow: 0 0 0 var(--pink-color);
     }
 
     50% {
-        text-shadow: 0 0 0.5em #ff5283;
+        text-shadow: 0 0 0.5em var(--pink-color);
     }
 
     100% {
@@ -1081,14 +1091,14 @@ span.appear {
     margin: -8px 0 0 -8px;
     width: 16px;
     aspect-ratio: 1;
-    background: #ff5283;
+    background: var(--pink-color);
     animation:
         l1-1 2s infinite,
         l1-2 .5s infinite;
 }
 
 .loader:after {
-    background: #ff5283;
+    background: var(--pink-color);
     animation-delay: -1s, 0s;
 }
 

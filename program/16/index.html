@@ -68,7 +68,7 @@ https://caniuse.com/?search=animation-range
 
 
     <!-- headerここから -->
-    <header class="header">
+    <header id="default-header">
         <div class="header-inner">
             <!-- <a class="header-logo" href="#1"> -->
             <a class="header-logo" onclick="pageTop()">
@@ -95,6 +95,36 @@ https://caniuse.com/?search=animation-range
         </div>
     </header>
     <!-- headerここまで -->
+
+    <!-- アニメーションheaderここから -->
+    <header id="animated-header" class="hidden">
+        <div class="header-inner" id="animation-header-inner">
+            <!-- <a class="header-logo" href="#1"> -->
+            <a class="header-logo" onclick="pageTop()">
+                <p>buildPC</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <!-- <li><a href="#2">About</a></li> -->
+                        <li><a onclick="about()">ABOUT</a></li>
+                        <!-- <li><a href="#3">PARTS LIST</a></li> -->
+                        <li><a onclick="partslist()">PARTS LIST</a></li>
+                        <!-- <li><a href="#4">MOVIE</a></li> -->
+                        <li><a onclick="movie()">MOVIE</a></li>
+                        <!-- <li><a href="#5">PICTURE</a></li> -->
+                        <li><a onclick="picture()">PICTURE</a></li>
+                        <!-- <li><a href="#6">PICTURE</a></li> -->
+                        <li><a onclick="performance()">PERFORMANCE</a></li><!--なんか関数にならない-->
+                        <!-- <li><a onclick="reset()">RESET</a></li> -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- アニメーションheaderここまで -->
+
 
     <!-- mainここから -->
     <main class="main">
@@ -334,6 +364,32 @@ https://caniuse.com/?search=animation-range
     <!-- footerここまで -->
 
     <script>
+        let lastScrollY = 0;
+        const defaultHeader = document.getElementById('default-header');
+        const animatedHeader = document.getElementById('animated-header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // スクロールダウン: 通常ヘッダーを非表示、アニメーションヘッダーを表示
+                defaultHeader.classList.add('hidden');
+                animatedHeader.classList.add('visible');
+            } else if (currentScrollY < lastScrollY && currentScrollY > 100) {
+                // スクロールアップ: アニメーションヘッダーを表示
+                animatedHeader.classList.add('visible');
+            } else if (currentScrollY <= 100) {
+                // 一番上に戻ったとき: 通常ヘッダーを表示、アニメーションヘッダーを非表示
+                defaultHeader.classList.remove('hidden');
+                animatedHeader.classList.remove('visible');
+            }
+
+            lastScrollY = currentScrollY;
+        });
+
+
+
+
         const driver = window.driver.js.driver;
         const driverObj = driver({
             steps: [

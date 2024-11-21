@@ -64,17 +64,56 @@ a {
 }
 
 /*header固定*/
-.header {
+header {
     position: fixed;
     z-index: 2000;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
+
+#default-header {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#default-header.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#animated-header {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 60px;
+}
+
+#animated-header.visible {
+    transform: translateY(0);
+}
+
+
+
 
 .header-inner {
     max-width: 1200px;
     height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* color: #1571c2; */
+    color: #3a5e98;
+    /* color: #3b6930; */
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+}
+
+#animation-header-inner {
+    max-width: 1200px;
+    height: 50px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 40px;
@@ -208,7 +247,7 @@ img {
         margin-top: 20px;
     }
 
-    .header {
+    header {
         position: fixed;
         top: 0;
         left: 0;
@@ -284,6 +323,7 @@ img {
 /*画像*/
 .first-view {
     height: calc(100vh - 110px + 120px);
+    /* + 120px*/
     background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp);
     background-repeat: no-repeat;
     background-position: center center;

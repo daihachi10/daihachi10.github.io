@@ -123,10 +123,10 @@ function drawGrid() {
 function draw() {
     context.fillStyle = gameConfig.backgroundColor; // 背景色を設定
     context.fillRect(0, 0, canvas.width, canvas.height); // 全体を塗りつぶす
-    drawProjection();
     drawGrid(); // グリッドを描画
     drawMatrix(arena, { x: 0, y: 0 }); // アリーナを描画
     drawMatrix(player.matrix, player.pos); // プレイヤーのブロックを描画
+    drawProjection();
     if (player.pos.y === 0 && collide(arena, player)) { // ゲームオーバー判定
         context.fillStyle = 'white';
         context.font = '1.5em Arial';

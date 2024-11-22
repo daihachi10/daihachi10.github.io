@@ -1016,7 +1016,8 @@ span.appear {
     animation-delay: 3.5s;
 }
 
-#loading {
+#loading,
+#firstvideo {
     display: grid;
     place-items: center;
     /* background-color: rgba(40, 40, 40, 0.7); */
@@ -1025,10 +1026,20 @@ span.appear {
     inset: 0;
     font-size: 2rem;
     z-index: 9000;
+}
+
+#loading {
     animation: loading 0.3s ease-in-out forwards;
+
 }
 
 #loading.loaded {
+    animation: loaded 0.3s ease-in-out forwards;
+    pointer-events: none;
+    /* display: none; */
+}
+
+#firstvideo.end {
     animation: loaded 0.3s ease-in-out forwards;
     pointer-events: none;
     /* display: none; */
@@ -1050,26 +1061,30 @@ span.appear {
 
 @keyframes loaded {
     0% {
-        background-color: rgba(40, 40, 40, 1);
+        /* background-color: rgba(40, 40, 40, 1); */
+        background-color: rgba(255, 255, 255, 1);
         opacity: 1;
 
     }
 
     100% {
-        background-color: rgba(40, 40, 40, 0);
+        /* background-color: rgba(40, 40, 40, 0); */
+        background-color: rgba(255, 255, 255, 0);
         opacity: 0;
     }
 }
 
 @keyframes loading {
     0% {
-        background-color: rgba(40, 40, 40, 0);
+        /* background-color: rgba(40, 40, 40, 0); */
+        background-color: rgba(255, 255, 255, 0);
         opacity: 0;
 
     }
 
     100% {
-        background-color: rgba(40, 40, 40, 1);
+        /* background-color: rgba(40, 40, 40, 1); */
+        background-color: rgba(255, 255, 255, 1);
         opacity: 1;
     }
 }

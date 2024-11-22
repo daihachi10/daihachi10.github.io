@@ -4,7 +4,7 @@ const videoId = document.getElementById('firstvideo');
 for (let i = 0; i < videos.length; i++) {
     videos[i].addEventListener('ended', function (event) {
         console.log('ended');
-        videoId.classList.add('firstvideo');
+        videoId.classList.add('end');
 
     });
 }

@@ -1035,6 +1035,9 @@ span.appear {
 }
 
 #firstvideo {
+    /* animation: loading 0.3s ease-in-out forwards; */
+    background-color: #fff;
+
     pointer-events: none;
 }
 

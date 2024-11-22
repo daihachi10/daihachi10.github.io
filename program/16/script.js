@@ -10,7 +10,6 @@ for (let i = 0; i < videos.length; i++) {
 }
 
 
-
 let lastScrollY = 0;
 const defaultHeader = document.getElementById('default-header');
 const animatedHeader = document.getElementById('animated-header');

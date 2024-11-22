@@ -1034,6 +1034,10 @@ span.appear {
 
 }
 
+#firstvideo {
+    pointer-events: none;
+}
+
 #loading.loaded {
     animation: loaded 0.3s ease-in-out forwards;
     pointer-events: none;

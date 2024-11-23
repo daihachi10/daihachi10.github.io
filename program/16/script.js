@@ -19,7 +19,11 @@ const videoId = document.getElementById('firstvideo');
 for (let i = 0; i < videos.length; i++) {
     videos[i].addEventListener('ended', function (event) {
         console.log('video end');
-        videoId.classList.add('end');
+
+        setTimeout(function () {
+            videoId.classList.add('end');
+
+        }, 900);
 
     });
 }

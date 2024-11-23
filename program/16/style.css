@@ -989,19 +989,19 @@ span.appear {
 }
 
 .d1 {
-    animation-delay: 5s;
-}
-
-.d2 {
-    animation-delay: 5.7s;
-}
-
-.d3 {
     animation-delay: 7s;
 }
 
+.d2 {
+    animation-delay: 7.7s;
+}
+
+.d3 {
+    animation-delay: 9s;
+}
+
 .d4 {
-    animation-delay: 8s;
+    animation-delay: 10s;
 }
 
 
@@ -1087,7 +1087,7 @@ span.appear {
 }
 
 #firstvideo.end {
-    animation: loaded 0.3s ease-in-out forwards;
+    animation: loaded 1s ease-in-out forwards;
     pointer-events: none;
     /* display: none; */
 }

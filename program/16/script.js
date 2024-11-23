@@ -225,3 +225,15 @@ function addScrollAnimation(className) {
 addScrollAnimation('.text');
 addScrollAnimation('.2text');
 
+
+
+const click = new Audio('https://daihachi10.github.io/program/16/click.mp3');
+
+// 音を再生
+
+document.addEventListener('click', function (event) {
+    console.log("click")
+    // clickSound.play();
+    click.play();
+
+});

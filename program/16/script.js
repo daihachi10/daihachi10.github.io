@@ -1,13 +1,33 @@
 
+//youtubeビデオ
+const youtubeId = document.getElementById('youtubeVideo');
+
+// クラスを付与
+function youtubeHide() {
+    youtubeId.classList.add('hide');
+}
+
+function youtubeNotHide() {
+    youtubeId.classList.remove('hide');
+}
+
+
+
+
 const videos = document.getElementsByTagName('video');
 const videoId = document.getElementById('firstvideo');
 for (let i = 0; i < videos.length; i++) {
     videos[i].addEventListener('ended', function (event) {
-        console.log('ended');
+        console.log('video end');
         videoId.classList.add('end');
 
     });
 }
+
+document.addEventListener('keydown', event => {
+    videoId.classList.add('end');
+    console.log("video Skip")
+});
 
 
 let lastScrollY = 0;

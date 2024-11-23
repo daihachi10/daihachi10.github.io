@@ -13,25 +13,34 @@ function youtubeNotHide() {
 
 
 
+//戻ってきた場合は動画を表示しない
+const params = new URLSearchParams(window.location.search);
+const isVideoPlay = params.get('v');
 
 const videos = document.getElementsByTagName('video');
 const videoId = document.getElementById('firstvideo');
 for (let i = 0; i < videos.length; i++) {
     videos[i].addEventListener('ended', function (event) {
         console.log('video end');
-
-        setTimeout(function () {
-            videoId.classList.add('end');
-
-        }, 900);
+        videoId.classList.add('end');
 
     });
 }
+
+    if (isVideoPlay == true) {
+        videoId.classList.add('end');
+        console.log('video end');
+
+    }
 
 document.addEventListener('keydown', event => {
     videoId.classList.add('end');
     console.log("video Skip")
 });
+
+
+
+
 
 
 let lastScrollY = 0;

@@ -1107,6 +1107,10 @@ span.appear {
     color: #000;
 }
 
+.clousebox {
+    padding: 40px;
+}
+
 @keyframes loaded {
     0% {
         /* background-color: rgba(40, 40, 40, 1); */

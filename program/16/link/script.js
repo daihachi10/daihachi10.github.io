@@ -22,8 +22,8 @@ if (!targetUrl) {
 
     // "行く"ボタンのイベント設定
     goButton.addEventListener("click", () => {
-        window.location.href = "../index.html";
         window.open(targetUrl, "_blank"); // 新しいタブで開く
+        window.location.href = "../index.html";
 
     });
 }

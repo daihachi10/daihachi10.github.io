@@ -23,12 +23,12 @@ if (!targetUrl) {
     // "行く"ボタンのイベント設定
     goButton.addEventListener("click", () => {
         window.open(targetUrl, "_blank"); // 新しいタブで開く
-        window.location.href = "https://daihachi10.github.io/program/16/index.html";
+        window.location.href = "../index.html";
 
     });
 }
 
 // "戻る"ボタンのイベント設定
 backButton.addEventListener("click", () => {
-    window.location.href = "https://daihachi10.github.io/program/16/index.html";
+    window.location.href = "../index.html";
 });

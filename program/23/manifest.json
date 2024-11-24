@@ -1,0 +1,33 @@
+{
+  "name": "自衛隊島根地方協力本部",
+  "short_name": "自衛隊島根地本",
+  "start_url": "index.html",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "images/logo-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#3a5e98",
+  "manifest_version": 3,
+  "id": "ShimaneProvincialCooperationOffice",
+  "description": "自衛隊島根地方協力本部",
+  "categories": [
+    "entertainment",
+    "games",
+    "kids",
+    "security",
+    "utilities"
+  ],
+  "screenshots": [
+    {
+      "src": "images/screenshot-pc.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

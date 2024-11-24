@@ -1,0 +1,1354 @@
+:root {
+    --pink-color: #ff5283;
+    --pink-hover-color: #bf1948;
+    --header-footer-color: #3a5e98;
+    --loading-text-color: #000;
+}
+
+::selection {
+    color: #fff;
+    background-color: var(--pink-color);
+}
+
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;
+    /*画像10枚までだった、、、、、、、、、、、、*/
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+    color: #000000;
+    line-height: 1;
+    background-color: #ffffff;
+}
+
+
+a:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.header-inner a,
+.footer a {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    /* color: #fff; */
+    text-decoration: none;
+}
+
+.reset {
+    padding: 5px;
+    /* display: none; */
+    /* visibility: hidden; */
+    opacity: 0;
+}
+
+
+.reset:hover {
+    /* visibility: visible; */
+    opacity: 1;
+
+}
+
+.reset p {
+    text-align: center;
+}
+
+/*header固定*/
+header {
+    position: fixed;
+    z-index: 2000;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#default-header {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#default-header.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#animated-header {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 50px;
+}
+
+#animated-header.visible {
+    transform: translateY(0);
+}
+
+
+
+
+.header-inner {
+    max-width: 1200px;
+    height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* color: #1571c2; */
+    color: var(--header-footer-color);
+    /* color: #3b6930; */
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+}
+
+#animation-header-inner {
+    max-width: 1200px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* color: #1571c2; */
+    color: var(--header-footer-color);
+    /* color: #3b6930; */
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.toggle-menu-button {
+    display: none;
+}
+
+.header-logo {
+    font-family: "Montserrat", cursive;
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+    width: 170px;
+    animation: 0.2s forwards header-logo-nothovers;
+    /* color: #1571c2; */
+    color: var(--header-footer-color);
+    /* color: #3b6930; */
+}
+
+
+.header-logo:hover {
+    color: #1571c2;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+.site-menu ul {
+    display: flex;
+}
+
+.site-menu ul li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.site-menu ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* padding-left: 2px; */
+    /* margin-left: 10px; */
+    animation: notshadowhover 0.5s ease-in-out forwards;
+    border-radius: 50px;
+
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.site-menu ul li a:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+    animation: shadowhover 0.5s ease-in-out forwards;
+
+
+}
+
+
+
+img {
+    max-width: 100%;
+}
+
+
+.footer {
+    color: #ffffff;
+    /* background-color: #1571c2; */
+    background-color: var(--header-footer-color);
+    padding-top: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.footer-logo {
+    font-size: 70px;
+    font-weight: bold;
+    display: block;
+    margin-top: 90px;
+    /* animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers; */
+}
+
+.footer-logo:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+.copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 90px;
+}
+
+/* 
+.footer-logo:hover {
+    animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers;
+} */
+
+/* @keyframes footer-logo-hovers {
+    0% {
+        color: #fff;
+    }
+
+    100% {
+        color: #000;
+    }
+}
+
+@keyframes footer-logo-nothovers {
+    0% {
+        color: #000;
+    }
+
+    100% {
+        color: #fff;
+    }
+} */
+
+@media (max-width: 800px) {
+    .site-menu ul {
+        display: block;
+        text-align: center;
+    }
+
+    .site-menu li {
+        margin-top: 20px;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #ffffff;
+        height: 50px;
+        z-index: 2000;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-inner li a:after {
+        background-color: #fff;
+    }
+
+    .header-inner {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 100%;
+        position: relative;
+    }
+
+    .header-logo {
+        font-size: 20px;
+        width: 100px;
+    }
+
+    .header-site-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        color: #ffffff;
+        background-color: rgba(21, 113, 194, 0.9);
+        padding-top: 30px;
+        padding-bottom: 50px;
+        display: none;
+    }
+
+    .header-site-menu.is-show {
+        display: block;
+    }
+
+    .toggle-menu-button {
+        display: block;
+        width: 44px;
+        height: 34px;
+        background-image: url(./images/icon-menu.webp);
+        background-size: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        outline: none;
+        cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+    }
+
+    .main {
+        padding-top: 50px;
+    }
+
+    .footer-logo {
+        font-size: 50px;
+        margin-top: 60px;
+    }
+
+    .copyright {
+        margin-top: 50px;
+    }
+}
+
+
+/*画像*/
+.first-view {
+    height: calc(100vh - 110px + 120px);
+    /* + 120px*/
+    background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes slide-animation-01 {
+    0% {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+        transform: scale(1.15);
+    }
+
+    90% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+}
+
+@keyframes slide-animation-02 {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0;
+        transform: scale(1.0);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-animation-03 {
+    0% {
+        opacity: 0;
+    }
+
+    60% {
+        opacity: 0;
+        transform: scale(1.0);
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+
+
+.first-view-text {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-bottom: 80px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);
+}
+
+.first-view-text h1 {
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 56px;
+    line-height: 72px;
+}
+
+.lead {
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+lead a {
+    color: #1571c2 !important;
+}
+
+.lead a:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+.leadbox {
+    background-color: #fafafa;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.lead p {
+    line-height: 2;
+    text-align: center;
+}
+
+.lead h2 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.lead h2::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background-color: #000000;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.link-button-area {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.link-button {
+    /* background-color: var(--pink-color); */
+    display: inline-block;
+    min-width: 180px;
+    line-height: 48px;
+    border-radius: 24px;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    /* animation: hover 0.7s ease forwards; */
+    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* .link-button:hover {
+    background-color: var(--pink-hover-color);
+} */
+
+.link-button:hover {
+    /* animation: nothover 0.7s ease forwards; */
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+}
+
+@keyframes hover {
+    0% {
+        background-color: var(--pink-hover-color);
+
+    }
+
+    100% {
+        background-color: var(--pink-color);
+    }
+}
+
+@keyframes nothover {
+    0% {
+
+        background-color: var(--pink-color);
+    }
+
+    100% {
+
+        background-color: var(--pink-hover-color);
+    }
+}
+
+
+
+.recommended {
+    padding-top: 30px;
+    /* background-color: #fafafa; */
+    background-color: #ebebeb;
+    padding-bottom: 55px;
+}
+
+.recommended h2 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.recommended h2::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background-color: #000000;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item-image {
+    height: 130px;
+}
+
+#ssd-image {
+    margin-bottom: 55px;
+}
+
+.copyright2 {
+    background-color: #fafafa;
+    margin-right: auto;
+    padding-bottom: 40px;
+}
+
+.copyright2 p {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.item-list {
+    display: flex;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+    overflow: auto;
+}
+
+.item-list li {
+    flex-shrink: 0;
+    width: 260px;
+    margin-left: 75px;
+}
+
+.item-list li:first-child {
+    margin-left: 0;
+}
+
+.item-list li {
+    transition: transform 0.3s ease;
+}
+
+.item-list li:hover {
+    transform: scale(1.3);
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+
+.item-list dl {
+    margin-top: 20px;
+}
+
+.item-list dt {
+    font-weight: bold;
+}
+
+.item-list dd {
+    font-size: 13px;
+    line-height: 20px;
+    margin-top: 10px;
+}
+
+.item-list .price {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+@media (max-width:800px) {
+    .first-view {
+        height: calc(100vh - 20vh);
+        /* background-image: url(../images/index/bg-main-sp-02.webp); */
+    }
+
+    .first-view-text {
+        padding-top: 60px;
+        padding-left: 20px;
+    }
+
+    .first-view-text h1 {
+        font-size: 36px;
+        line-height: 48px;
+    }
+
+    .first-view-text p {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .lead {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* .lead p {
+        text-align: left;
+    } */
+
+    .item-list li {
+        width: 220px;
+        margin-left: 30px;
+    }
+
+    .item-list li:hover {
+        transform: scale(1.2);
+        cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+    }
+}
+
+.back-to-top {
+    /* display: none; */
+
+    z-index: 1000;
+    position: fixed;
+    right: 30px;
+    bottom: 80px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    background: #e33969;
+    animation: notdownhover 0.5s ease-in-out forwards;
+
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+.back-to-top:hover {
+    animation: downhover 0.5s ease-in-out forwards;
+
+
+}
+
+.back-to-top a {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.back-to-top a:before {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: rotate(-45deg);
+    border-top: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+    content: "";
+    transform: rotate(-45deg) translate(-17%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+
+
+
+
+/*アニメーション
+firefox対応してない、、
+あとパソコン室のパソコンは
+バージョンが古いから無理っぽい？
+(chrome・edge:var115~)
+https://caniuse.com/?search=animation-range
+*/
+
+@keyframes scroll-anim {
+    from {
+        opacity: 0;
+        scale: 0.9;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.lead h2,
+.lead p,
+.recommended h2,
+.recommended ul,
+/* .movie, */
+.movie h2,
+.movie iframe,
+.movie p,
+.picture h2,
+.picture p,
+.slideshow-fade,
+.jisaku h2,
+.jisaku iframe,
+.jisaku p {
+    animation: scroll-anim linear;
+    animation-timeline: view();
+    animation-range: entry 0% contain 20%;
+}
+
+/*Youtube動画*/
+.movie,
+.picture,
+/* .jisaku iframe, */
+.jisaku {
+    width: 930px;
+    max-width: 90%;
+    background-color: #f8f8f8;
+    padding: 50px 60px;
+    margin-top: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+}
+
+.movie h2,
+.picture h2,
+.jisaku h2 {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.movie h2::after,
+.picture h2::after,
+.jisaku h2::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background-color: #000000;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie img,
+.jisaku iframe {
+    display: block;
+    width: 100%;
+    height: 456px;
+    margin-top: 30px;
+}
+
+.movie p,
+.picture p,
+.jisaku p {
+    font-size: 15px;
+    line-height: 28px;
+    margin-top: 20px;
+}
+
+#youtubeVideo {
+    display: none;
+}
+
+#youtubeVideo.hide {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+#youtubeVideo.hide {
+    display: block;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1999;
+}
+
+#youtubeVideo.hide iframe {
+    top: 50%;
+    left: 50%;
+
+    width: 80%;
+    height: 80%;
+}
+
+#youtubeVideo.hide .clouse {
+    left: calc(100vh - 200px);
+    top: 50%;
+    left: 50%;
+}
+
+@media (max-width:800px) {
+    .movie {
+        width: 500px;
+        padding: 30px 25px;
+    }
+
+    .movie iframe {
+        height: 240px;
+    }
+}
+
+.slideshow-fade {
+    position: relative;
+    margin-top: 55px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    /*width: 300px;*/
+    height: 600px;
+
+    /*なぜエラー,,,,,,,,,,,,,,,,,,,,,,,,,*/
+    li {
+        margin-top: 10px;
+        list-style: none;
+        width: 100%;
+        height: 100%;
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+    }
+}
+
+.slideshow-fade img {
+    transform: scale(1.2);
+}
+
+.scroll {
+    color: #fff;
+    z-index: 1000;
+    /* position: fixed; */
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 200px;
+    width: 200px;
+    height: 60px;
+    border-radius: 50px;
+    cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png), auto;
+    background-color: rgb(255, 82, 131, 0.5);
+    animation: notdownhover 0.5s ease-in-out forwards;
+    border: 1px solid;
+}
+
+.scroll p {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.scroll img {
+    display: block;
+    margin: 0 auto;
+}
+
+.scroll:hover {
+    animation: downhover 0.5s ease-in-out forwards;
+}
+
+@keyframes shadowhover {
+    0% {
+        box-shadow: 0 0 0 0;
+    }
+
+    100% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+    }
+}
+
+@keyframes notshadowhover {
+    0% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0;
+    }
+}
+
+
+@keyframes downhover {
+    0% {
+        box-shadow: 0 0 0 0;
+        background-color: rgb(0, 0, 0, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+        background-color: rgb(255, 82, 131, 1);
+    }
+}
+
+@keyframes notdownhover {
+    0% {
+        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+        background-color: rgb(255, 82, 131, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0;
+        background-color: rgb(0, 0, 0, 0.7);
+    }
+}
+
+
+/* 点滅 */
+/* .scroll:not(:hover) {
+    animation: blink 0.5s ease-in-out infinite alternate;
+} */
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.appear {
+    transform-origin: center top;
+    animation: show 1s both;
+}
+
+span.appear {
+    display: inline-block;
+}
+
+.d1 {
+    animation-delay: 7s;
+}
+
+.d2 {
+    animation-delay: 7.7s;
+}
+
+.d3 {
+    animation-delay: 9s;
+}
+
+.d4 {
+    animation-delay: 10s;
+}
+
+
+@keyframes show {
+    0% {
+        transform: translate(0, 2em);
+        opacity: 0;
+        text-shadow: 0 0 0 var(--pink-color);
+    }
+
+    50% {
+        text-shadow: 0 0 0.5em var(--pink-color);
+    }
+
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+        text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);
+
+
+    }
+}
+
+.text {
+    display: inline-block;
+    transform-origin: center top;
+    opacity: 0;
+    transform: translate(0, 2em);
+}
+
+.a1 {
+    animation-delay: 0s;
+}
+
+.a2 {
+    animation-delay: 0.7s;
+}
+
+.a3 {
+    animation-delay: 1.4s;
+}
+
+.a4 {
+    animation-delay: 2.1s;
+}
+
+.a5 {
+    animation-delay: 2.8s;
+}
+
+.a6 {
+    animation-delay: 3.5s;
+}
+
+#loading,
+#firstvideo {
+    display: grid;
+    place-items: center;
+    /* background-color: rgba(40, 40, 40, 0.7); */
+    color: #fff;
+    position: fixed;
+    inset: 0;
+    font-size: 2rem;
+    z-index: 9000;
+}
+
+#loading {
+    animation: loading 0.3s ease-in-out forwards;
+
+}
+
+#firstvideo {
+    /* animation: loading 0.3s ease-in-out forwards; */
+    background-color: #fff;
+
+    pointer-events: none;
+}
+
+#loading.loaded {
+    animation: loaded 0.3s ease-in-out forwards;
+    pointer-events: none;
+    /* display: none; */
+}
+
+#firstvideo.end {
+    animation: loaded 0.6s ease-in-out forwards;
+    pointer-events: none;
+    /* display: none; */
+}
+
+
+#loading .tetris iframe {
+    height: 550px;
+    /* width: 650px; */
+}
+
+#loading .tetris #newtab,
+#loading .tetris #close {
+    font-size: 18px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    color: #000;
+}
+
+.clousebox {
+    padding: 40px;
+}
+
+@keyframes loaded {
+    0% {
+        /* background-color: rgba(40, 40, 40, 1); */
+        background-color: rgba(255, 255, 255, 1);
+        opacity: 1;
+
+    }
+
+    100% {
+        /* background-color: rgba(40, 40, 40, 0); */
+        background-color: rgba(255, 255, 255, 0);
+        opacity: 0;
+    }
+}
+
+@keyframes loading {
+    0% {
+        /* background-color: rgba(40, 40, 40, 0); */
+        background-color: rgba(255, 255, 255, 0);
+        opacity: 0;
+
+    }
+
+    100% {
+        /* background-color: rgba(40, 40, 40, 1); */
+        background-color: rgba(255, 255, 255, 1);
+        opacity: 1;
+    }
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 40px;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.loader:before,
+.loader:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: -8px 0 0 -8px;
+    width: 16px;
+    aspect-ratio: 1;
+    background: var(--pink-color);
+    animation:
+        l1-1 2s infinite,
+        l1-2 .5s infinite;
+}
+
+.loader:after {
+    background: var(--pink-color);
+    animation-delay: -1s, 0s;
+}
+
+@keyframes l1-1 {
+    0% {
+        top: 0;
+        left: 0
+    }
+
+    25% {
+        top: 100%;
+        left: 0
+    }
+
+    50% {
+        top: 100%;
+        left: 100%
+    }
+
+    75% {
+        top: 0;
+        left: 100%
+    }
+
+    100% {
+        top: 0;
+        left: 0
+    }
+}
+
+@keyframes l1-2 {
+
+    80%,
+    100% {
+        transform: rotate(0.5turn)
+    }
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader-text {
+    --w: 10ch;
+    /* font-weight: bold; */
+    /* font-family: monospace; */
+    font-size: 30px;
+    line-height: 1.2em;
+    letter-spacing: var(--w);
+    width: var(--w);
+    overflow: hidden;
+    white-space: nowrap;
+    color: #000;
+    animation: l17 2s infinite;
+}
+
+.loader-text:before {
+    content: "Loading...";
+}
+
+@keyframes l17 {
+    0% {
+        text-shadow:
+            calc(0*var(--w)) -1.2em var(--loading-text-color), calc(-1*var(--w)) -1.2em var(--loading-text-color), calc(-2*var(--w)) -1.2em var(--loading-text-color), calc(-3*var(--w)) -1.2em var(--loading-text-color), calc(-4*var(--w)) -1.2em var(--loading-text-color),
+            calc(-5*var(--w)) -1.2em var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    4% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) -1.2em var(--loading-text-color), calc(-2*var(--w)) -1.2em var(--loading-text-color), calc(-3*var(--w)) -1.2em var(--loading-text-color), calc(-4*var(--w)) -1.2em var(--loading-text-color),
+            calc(-5*var(--w)) -1.2em var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    8% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) -1.2em var(--loading-text-color), calc(-3*var(--w)) -1.2em var(--loading-text-color), calc(-4*var(--w)) -1.2em var(--loading-text-color),
+            calc(-5*var(--w)) -1.2em var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    12% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) -1.2em var(--loading-text-color), calc(-4*var(--w)) -1.2em var(--loading-text-color),
+            calc(-5*var(--w)) -1.2em var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    16% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) -1.2em var(--loading-text-color),
+            calc(-5*var(--w)) -1.2em var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    20% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) -1.2em var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    24% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) -1.2em var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    28% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) -1.2em var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    32% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) 0 var(--loading-text-color), calc(-8*var(--w)) -1.2em var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    36% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) 0 var(--loading-text-color), calc(-8*var(--w)) 0 var(--loading-text-color), calc(-9*var(--w)) -1.2em var(--loading-text-color)
+    }
+
+    40%,
+    60% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) 0 var(--loading-text-color), calc(-8*var(--w)) 0 var(--loading-text-color), calc(-9*var(--w)) 0 var(--loading-text-color)
+    }
+
+    64% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) 0 var(--loading-text-color), calc(-8*var(--w)) 0 var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    68% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) 0 var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    72% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 0 var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    76% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 0 var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    80% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 0 var(--loading-text-color),
+            calc(-5*var(--w)) 1.2em var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    84% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 0 var(--loading-text-color), calc(-4*var(--w)) 1.2em var(--loading-text-color),
+            calc(-5*var(--w)) 1.2em var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    88% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 0 var(--loading-text-color), calc(-3*var(--w)) 1.2em var(--loading-text-color), calc(-4*var(--w)) 1.2em var(--loading-text-color),
+            calc(-5*var(--w)) 1.2em var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    92% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 0 var(--loading-text-color), calc(-2*var(--w)) 1.2em var(--loading-text-color), calc(-3*var(--w)) 1.2em var(--loading-text-color), calc(-4*var(--w)) 1.2em var(--loading-text-color),
+            calc(-5*var(--w)) 1.2em var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    96% {
+        text-shadow:
+            calc(0*var(--w)) 0 var(--loading-text-color), calc(-1*var(--w)) 1.2em var(--loading-text-color), calc(-2*var(--w)) 1.2em var(--loading-text-color), calc(-3*var(--w)) 1.2em var(--loading-text-color), calc(-4*var(--w)) 1.2em var(--loading-text-color),
+            calc(-5*var(--w)) 1.2em var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+
+    100% {
+        text-shadow:
+            calc(0*var(--w)) 1.2em var(--loading-text-color), calc(-1*var(--w)) 1.2em var(--loading-text-color), calc(-2*var(--w)) 1.2em var(--loading-text-color), calc(-3*var(--w)) 1.2em var(--loading-text-color), calc(-4*var(--w)) 1.2em var(--loading-text-color),
+            calc(-5*var(--w)) 1.2em var(--loading-text-color), calc(-6*var(--w)) 1.2em var(--loading-text-color), calc(-7*var(--w)) 1.2em var(--loading-text-color), calc(-8*var(--w)) 1.2em var(--loading-text-color), calc(-9*var(--w)) 1.2em var(--loading-text-color)
+    }
+}

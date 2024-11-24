@@ -1,0 +1,73 @@
+/* 全体のリセット */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* 中央配置 */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 見出し */
+h1 {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* メッセージ */
+p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* ボタン全体 */
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* ボタン共通 */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* 行くボタン */
+.btn-go {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.btn-go:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* 戻るボタン */
+.btn-back {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.btn-back:hover {
+    background-color: #e53935;
+    transform: scale(1.05);
+}

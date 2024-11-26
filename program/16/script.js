@@ -27,11 +27,11 @@ for (let i = 0; i < videos.length; i++) {
     });
 }
 
-    if (isVideoPlay == true) {
-        videoId.classList.add('end');
-        console.log('video end');
+if (isVideoPlay == true) {
+    videoId.classList.add('end');
+    console.log('video end');
 
-    }
+}
 
 document.addEventListener('keydown', event => {
     videoId.classList.add('end');
@@ -131,8 +131,16 @@ function notTetris() {
 
 
 //スクロール処理
+
+
+function down() {
+    if (window.innerWidth > 800) {
+        window.scrollTo({ top: window.innerHeight - 200, behavior: "smooth" })
+    } else {
+        window.scrollTo({ top: window.innerHeight - 500, behavior: "smooth" })
+    }
+}
 function pageTop() { window.scrollTo({ top: 0, behavior: "smooth" }) }
-function down() { window.scrollTo({ top: window.innerHeight - 200, behavior: "smooth" }) }
 function about() { window.scrollTo({ top: window.innerHeight - 170, behavior: "smooth" }) }
 function partslist() { window.scrollTo({ top: window.innerHeight + 430, behavior: "smooth" }) }
 function movie() { window.scrollTo({ top: window.innerHeight + 1150 + 25, behavior: "smooth" }) }
@@ -249,4 +257,17 @@ document.addEventListener('click', function (event) {
     // clickSound.play();
     click.play();
 
+});
+
+window.addEventListener('load', function () {
+    var $button = document.querySelector('.toggle-menu-button');
+    var $menu = document.querySelector('.header-site-menu');
+    $button.addEventListener('click', function () {
+        if ($menu.classList.contains('is-show')) {
+            $menu.classList.remove('is-show');
+        }
+        else {
+            $menu.classList.add('is-show');
+        }
+    });
 });

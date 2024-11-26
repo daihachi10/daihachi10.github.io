@@ -1,4 +1,3 @@
-/* CSS変数 */
 :root {
     --pink-color: #ff5283;
     --pink-hover-color: #bf1948;
@@ -6,7 +5,6 @@
     --loading-text-color: #000;
 }
 
-/* リセット */
 ::selection {
     color: #fff;
     background-color: var(--pink-color);
@@ -21,9 +19,9 @@
     scroll-behavior: smooth;
 }
 
-/* ベース要素 */
 body {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;
+    /*画像10枚までだった、、、、、、、、、、、、*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 16px;
     color: #000000;
@@ -31,10 +29,6 @@ body {
     background-color: #ffffff;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
 
 a:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
@@ -45,59 +39,10 @@ ol {
     list-style: none;
 }
 
-/* ヘッダー */
-header {
-    position: fixed;
-    z-index: 2000;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+a {
+    color: inherit;
+    text-decoration: none;
 }
-
-#default-header {
-    transition: opacity 0.3s ease-in-out;
-}
-
-#default-header.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-#animated-header {
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.7);
-    height: 50px;
-}
-
-#animated-header.visible {
-    transform: translateY(0);
-}
-
-/* フッター */
-.footer {
-    color: #ffffff;
-    background-color: var(--header-footer-color);
-    padding-top: 30px;
-    padding-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-logo {
-    font-size: 70px;
-    font-weight: bold;
-    display: block;
-    margin-top: 90px;
-}
-
-.copyright {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 90px;
-}
-
 
 .header-inner a,
 .footer a {
@@ -126,9 +71,34 @@ header {
     text-align: center;
 }
 
+/*header固定*/
+header {
+    position: fixed;
+    z-index: 2000;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
 
+#default-header {
+    transition: opacity 0.3s ease-in-out;
+}
 
+#default-header.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
+#animated-header {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 50px;
+}
+
+#animated-header.visible {
+    transform: translateY(0);
+}
 
 
 
@@ -170,6 +140,7 @@ header {
 }
 
 .header-logo {
+    font-family: "Montserrat", cursive;
     font-size: 30px;
     font-weight: bold;
     display: block;
@@ -196,6 +167,7 @@ header {
 }
 
 .site-menu ul li a {
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -222,10 +194,35 @@ img {
 }
 
 
+.footer {
+    color: #ffffff;
+    /* background-color: #1571c2; */
+    background-color: var(--header-footer-color);
+    padding-top: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.footer-logo {
+    font-size: 70px;
+    font-weight: bold;
+    display: block;
+    margin-top: 90px;
+    /* animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers; */
+}
+
 .footer-logo:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
+.copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 90px;
+}
 
 /* 
 .footer-logo:hover {
@@ -439,6 +436,7 @@ img {
 }
 
 .first-view-text h1 {
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 56px;
     line-height: 72px;
 }
@@ -498,6 +496,7 @@ lead a {
     min-width: 180px;
     line-height: 48px;
     border-radius: 24px;
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
     /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -1172,6 +1171,8 @@ span.appear {
 /* HTML: <div class="loader"></div> */
 .loader-text {
     --w: 10ch;
+    /* font-weight: bold; */
+    /* font-family: monospace; */
     font-size: 30px;
     line-height: 1.2em;
     letter-spacing: var(--w);

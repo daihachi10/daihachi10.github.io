@@ -17,6 +17,7 @@ https://caniuse.com/?search=animation-range
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css" type="text/css">
+    <meta name="viewport" content="width=device-width">
     <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
     <title>読み込み中</title>
 
@@ -87,22 +88,26 @@ https://caniuse.com/?search=animation-range
         <div class="header-inner">
             <!-- <a class="header-logo" href="#1"> -->
             <a class="header-logo" onclick="pageTop()">
-                <p>buildPC</p>
+
+                <div style="display: flex;">
+
+                    <p class="logo-jp" style="margin:auto 0;">BuildPC</p>
+                </div>
             </a>
             <button class="toggle-menu-button"></button>
             <div class="header-site-menu">
                 <nav class="site-menu">
                     <ul id="step1">
-                        <!-- <li><a href="#2">About</a></li> -->
-                        <li><a onclick="about()" id="step2">ABOUT</a></li>
-                        <!-- <li><a href="#3">PARTS LIST</a></li> -->
-                        <li><a onclick="partslist()" id="step3">PARTS LIST</a></li>
-                        <!-- <li><a href="#4">MOVIE</a></li> -->
-                        <li><a onclick="movie()" id="step4">MOVIE</a></li>
-                        <!-- <li><a href="#5">PICTURE</a></li> -->
-                        <li><a onclick="picture()" id="step5">PICTURE</a></li>
-                        <!-- <li><a href="#6">PICTURE</a></li> -->
-                        <li><a onclick="performance()" id="step6">PERFORMANCE</a></li><!--なんか関数にならない-->
+                        <li><a href="#2" id="step2">ABOUT</a></li>
+                        <li><a href="#3" id="step3">PARTS LIST</a></li>
+                        <li><a href="#4" id="step4">MOVIE</a></li>
+                        <li><a href="#5" id="step5">PICTURE</a></li>
+                        <li><a href="#6" id="step6">PERFORMANCE</a></li>
+                        <!-- <li><a onclick="about()" id="step2">ABOUT</a></li> -->
+                        <!-- <li><a onclick="partslist()" id="step3">PARTS LIST</a></li> -->
+                        <!-- <li><a onclick="movie()" id="step4">MOVIE</a></li> -->
+                        <!-- <li><a onclick="picture()" id="step5">PICTURE</a></li> -->
+                        <!-- <li><a onclick="performance()" id="step6">PERFORMANCE</a></li>なんか関数にならない -->
                         <!-- <li><a onclick="reset()">RESET</a></li> -->
                     </ul>
                 </nav>
@@ -118,21 +123,19 @@ https://caniuse.com/?search=animation-range
             <a class="header-logo" onclick="pageTop()">
                 <p>buildPC</p>
             </a>
-            <button class="toggle-menu-button"></button>
             <div class="header-site-menu">
                 <nav class="site-menu">
                     <ul>
-                        <!-- <li><a href="#2">About</a></li> -->
-                        <li><a onclick="about()">ABOUT</a></li>
-                        <!-- <li><a href="#3">PARTS LIST</a></li> -->
-                        <li><a onclick="partslist()">PARTS LIST</a></li>
-                        <!-- <li><a href="#4">MOVIE</a></li> -->
-                        <li><a onclick="movie()">MOVIE</a></li>
-                        <!-- <li><a href="#5">PICTURE</a></li> -->
-                        <li><a onclick="picture()">PICTURE</a></li>
-                        <!-- <li><a href="#6">PICTURE</a></li> -->
-                        <li><a onclick="performance()">PERFORMANCE</a></li><!--なんか関数にならない-->
-                        <!-- <li><a onclick="reset()">RESET</a></li> -->
+                        <li><a href="#2">ABOUT</a></li>
+                        <li><a href="#3">PARTS LIST</a></li>
+                        <li><a href="#4">MOVIE</a></li>
+                        <li><a href="#5">PICTURE</a></li>
+                        <li><a href="#6">PERFORMANCE</a></li>
+                        <!-- <li><a onclick="about()">ABOUT</a></li> -->
+                        <!-- <li><a onclick="partslist()">PARTS LIST</a></li> -->
+                        <!-- <li><a onclick="movie()">MOVIE</a></li> -->
+                        <!-- <li><a onclick="picture()">PICTURE</a></li> -->
+                        <!-- <li><a onclick="performance()">PERFORMANCE</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -298,8 +301,10 @@ https://caniuse.com/?search=animation-range
                 <span class="text a4">MOVIE</span>
             </h2>
             <a onclick="youtubeHide()">
-                <img src="https://daihachi10.github.io/program/16/images/samune.jpg" alt="Youtube" srcset=""
-                    class="samune">
+                <!-- <img src="https://daihachi10.github.io/program/16/images/samune.jpg" alt="Youtube" srcset=""
+                    class="samune"> -->
+
+                <div class="samune"></div>
             </a>
             <p class="Ttext">RyzenCPU 3DVcacheについて詳しい解説</p>
         </div>
@@ -402,7 +407,7 @@ https://caniuse.com/?search=animation-range
     </footer>
     <!-- footerここまで -->
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');

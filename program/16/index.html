@@ -54,7 +54,6 @@ https://caniuse.com/?search=animation-range
 </head>
 
 <body>
-
     <!-- loadings -->
     <div id="loading">
         <div class="loader-text"></div>
@@ -143,6 +142,7 @@ https://caniuse.com/?search=animation-range
     </header>
     <!-- アニメーションheaderここまで -->
 
+    <!-- プログレスバー -->
 
     <!-- mainここから -->
     <main class="main">
@@ -159,12 +159,13 @@ https://caniuse.com/?search=animation-range
             </div>
         </div>
 
-        <a onclick="down()">
+        <!--        <a onclick="down()" style="height:0;">
             <div class="scroll" id="step7">
                 <p>SCROLL</p>
                 <img src="https://daihachi10.github.io/program/16/images/down.webp" width="30px">
             </div>
         </a>
+-->
 
         <div class="leadbox" id="2">
             <div class="lead">
@@ -342,8 +343,7 @@ https://caniuse.com/?search=animation-range
                 <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-05.JPG"> </li>
                 <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-06.JPG"> </li>
                 <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-07.JPG"> </li>
-                <li> <img
-                        src="https://daihachi10.github.io/program/16sssssssssssssssssssssssssssssssssssssssssssssssssssss/yoko/IMG_0023.JPG">
+                <li> <img src="https://daihachi10.github.io/program/16/yoko/IMG_0023.JPG">
                 </li>
             </ul>
 
@@ -374,16 +374,11 @@ https://caniuse.com/?search=animation-range
     <footer class="footer">
         <nav class="site-menu">
             <ul>
-                <!-- <li><a href="#2">About</a></li> -->
-                <li><a onclick="about()">About</a></li>
-                <!-- <li><a href="#3">PARTS LIST</a></li> -->
-                <li><a onclick="partslist()">PARTS LIST</a></li>
-                <!-- <li><a href="#4">MOVIE</a></li> -->
-                <li><a onclick="movie()">MOVIE</a></li>
-                <!-- <li><a href="#5">PICTURE</a></li> -->
-                <li><a onclick="picture()">PICTURE</a></li>
-                <!-- <li><a href="#6">PICTURE</a></li> -->
-                <li><a onclick="performance()">PERFORMANCE</a></li><!--なんか関数にならない-->
+                <li><a href="#2">ABOUT</a></li>
+                <li><a href="#3">PARTS LIST</a></li>
+                <li><a href="#4">MOVIE</a></li>
+                <li><a href="#5">PICTURE</a></li>
+                <li><a href="#6">PERFORMANCE</a></li>
             </ul>
         </nav>
         <a class="footer-logo" onclick="pageTop()">

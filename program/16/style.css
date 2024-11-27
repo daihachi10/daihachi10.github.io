@@ -74,48 +74,6 @@ header {
     transform: translateY(0);
 }
 
-/* フッター */
-.footer {
-    color: #ffffff;
-    background-color: var(--header-footer-color);
-    padding-top: 30px;
-    padding-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-logo {
-    font-size: 70px;
-    font-weight: bold;
-    display: block;
-    margin-top: 90px;
-}
-
-.copyright {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 90px;
-}
-
-
-.header-inner a,
-.footer a {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    /* color: #fff; */
-    text-decoration: none;
-}
-
-.reset {
-    padding: 5px;
-    /* display: none; */
-    /* visibility: hidden; */
-    opacity: 0;
-}
-
-
 .reset:hover {
     /* visibility: visible; */
     opacity: 1;
@@ -125,13 +83,6 @@ header {
 .reset p {
     text-align: center;
 }
-
-
-
-
-
-
-
 
 .header-inner {
     max-width: 1200px;
@@ -186,6 +137,76 @@ header {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
+/* フッター */
+.footer {
+    color: #ffffff;
+    background-color: var(--header-footer-color);
+    padding-top: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 70px;
+    font-weight: bold;
+    display: block;
+    margin-top: 90px;
+}
+
+.copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 90px;
+}
+
+.footer-logo:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+
+.header-inner a,
+.footer a {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    /* color: #fff; */
+    text-decoration: none;
+}
+
+.reset {
+    padding: 5px;
+    /* display: none; */
+    /* visibility: hidden; */
+    opacity: 0;
+}
+
+#progress {
+    z-index: 8002;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: red;
+    transform-origin: 0 50%;
+    animation: grow-progress auto linear;
+    animation-timeline: scroll();
+}
+
+@keyframes grow-progress {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+
+
 .site-menu ul {
     display: flex;
 }
@@ -215,16 +236,12 @@ header {
 
 }
 
-
-
 img {
     max-width: 100%;
 }
 
 
-.footer-logo:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
-}
+
 
 
 /* 
@@ -309,7 +326,7 @@ img {
         display: block;
         width: 44px;
         height: 34px;
-        background-image: url(./images/icon-menu.webp);
+        background-image: url(https://daihachi10.github.io/program/16/images/icon-menu.webp);
         background-size: 50%;
         background-position: center;
         background-repeat: no-repeat;
@@ -423,7 +440,6 @@ img {
         transform: scale(1.1);
     }
 }
-
 
 
 .first-view-text {
@@ -666,8 +682,8 @@ lead a {
     width: 10px;
     height: 10px;
     transform: rotate(-45deg);
-    border-top: solid 2px #ffffff;
-    border-right: solid 2px #ffffff;
+    border-top: solid 2px #000;
+    border-right: solid 2px #000;
     content: "";
     transform: rotate(-45deg) translate(-17%, -50%);
     top: 50%;
@@ -1212,7 +1228,7 @@ ul:has(a:hover) a:not(:hover) {
 
 .samune {
     margin-top: 50px;
-    background-image: url(./images/samune.jpg);
+    background-image: url(https://daihachi10.github.io/program/16/images/samune.jpg);
     background-size: cover;
     width: 100%;
     height: 520px;
@@ -1404,7 +1420,7 @@ ul:has(a:hover) a:not(:hover) {
 
     .samune {
         margin-top: 50px;
-        background-image: url(./images/samune.jpg);
+        background-image: url(https://daihachi10.github.io/program/16/images/samune.jpg);
         background-size: cover;
         width: 100%;
         height: 210px;

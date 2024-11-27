@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +17,19 @@
       height: 100vh;
       background-color: #f4f4f4;
     }
+
     .splide {
       width: 80%;
       max-width: 800px;
     }
+
     .splide__slide img {
       width: 100%;
       border-radius: 10px;
     }
   </style>
 </head>
+
 <body>
   <div id="image-slider" class="splide">
     <div class="splide__track">
@@ -40,7 +44,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       new Splide('#image-slider', {
-        type   : 'loop',
+        type: 'loop',
         perPage: 1,
         autoplay: true,
         interval: 3000,
@@ -48,4 +52,5 @@
     });
   </script>
 </body>
+
 </html>

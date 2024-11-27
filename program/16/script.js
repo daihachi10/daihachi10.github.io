@@ -282,6 +282,8 @@ document.addEventListener('DOMContentLoaded', function () {
         padding: '5rem',
         drag: 'free',
         snap: true,
-        lazyLoad: 'nearby',
+        lazyLoad: 'sequential',
+        Keyboard: true,
+        wheel: true,
     }).mount();
 });

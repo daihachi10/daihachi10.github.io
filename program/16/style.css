@@ -269,7 +269,7 @@ img {
     }
 } */
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .site-menu ul {
         display: block;
         text-align: center;
@@ -824,7 +824,7 @@ https://caniuse.com/?search=animation-range
     left: 50%;
 }
 
-@media (max-width:800px) {
+@media (max-width:1000px) {
     .movie {
         width: 500px;
         padding: 30px 25px;
@@ -1356,7 +1356,7 @@ ul:has(a:hover) a:not(:hover) {
 }
 
 
-@media (max-width:800px) {
+@media (max-width:1000px) {
     .first-view {
         height: calc(100vh - 50vh);
     }

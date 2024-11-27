@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Splide Image Slider</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    .splide {
+      width: 80%;
+      max-width: 800px;
+    }
+    .splide__slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="image-slider" class="splide">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide"><img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1"></li>
+        <li class="splide__slide"><img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2"></li>
+        <li class="splide__slide"><img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3"></li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Splide('#image-slider', {
+        type   : 'loop',
+        perPage: 1,
+        autoplay: true,
+        interval: 3000,
+      }).mount();
+    });
+  </script>
+</body>
+</html>

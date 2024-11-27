@@ -51,6 +51,10 @@ https://caniuse.com/?search=animation-range
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
 
+    <!-- Splide.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -143,6 +147,7 @@ https://caniuse.com/?search=animation-range
     <!-- アニメーションheaderここまで -->
 
     <!-- プログレスバー -->
+    <div id="progress"></div>
 
     <!-- mainここから -->
     <main class="main">
@@ -335,17 +340,44 @@ https://caniuse.com/?search=animation-range
                 <span class="text a2">PC</span>
                 <span class="text a3">PICTURE</span>
             </h2>
-            <ul class="slideshow-fade">
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-01.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-02.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-03.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-04.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-05.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-06.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/images/yoko/image-07.JPG"> </li>
-                <li> <img src="https://daihachi10.github.io/program/16/yoko/IMG_0023.JPG">
-                </li>
-            </ul>
+            <div id="image-slider" class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-01.JPG" alt="Image 1"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-02.JPG" alt="Image 2"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-03.JPG" alt="Image 3"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-04.JPG" alt="Image 4"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-05.JPG" alt="Image 5"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-06.JPG" alt="Image 6"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program/16/images/yoko/image-07.JPG" alt="Image 7"
+                                style="padding-left: 10px;">
+                        </li>
+                        <li class="splide__slide"><img
+                                src="https://daihachi10.github.io/program\16\images\yoko\IMG_0023.JPG" alt="Image 8"
+                                style="padding-left: 10px;">
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
 
             <p class="Ttext">PCを組み立てている時の写真です。</p>

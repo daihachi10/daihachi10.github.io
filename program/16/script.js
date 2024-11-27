@@ -271,3 +271,17 @@ window.addEventListener('load', function () {
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    new Splide('#image-slider', {
+        type: 'loop',
+        perPage: 1,
+        autoplay: true,
+        interval: 3000,
+        padding: '5rem',
+        drag: 'free',
+        snap: true,
+        lazyLoad: 'nearby',
+    }).mount();
+});

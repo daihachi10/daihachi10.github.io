@@ -74,16 +74,6 @@ header {
     transform: translateY(0);
 }
 
-.reset:hover {
-    /* visibility: visible; */
-    opacity: 1;
-
-}
-
-.reset p {
-    text-align: center;
-}
-
 .header-inner {
     max-width: 1200px;
     height: 110px;
@@ -165,6 +155,22 @@ header {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
+.reset:hover {
+    /* visibility: visible; */
+    opacity: 1;
+
+}
+
+.reset p {
+    text-align: center;
+}
+
+.reset {
+    padding: 5px;
+    /* display: none; */
+    /* visibility: hidden; */
+    opacity: 0;
+}
 
 .header-inner a,
 .footer a {
@@ -175,13 +181,7 @@ header {
     text-decoration: none;
 }
 
-.reset {
-    padding: 5px;
-    /* display: none; */
-    /* visibility: hidden; */
-    opacity: 0;
-}
-
+/* プログレスバー */
 #progress {
     z-index: 8002;
     position: fixed;
@@ -189,7 +189,7 @@ header {
     left: 0;
     width: 100%;
     height: 0.1em;
-    background-color: red;
+    background-color: var(--pink-color);
     transform-origin: 0 50%;
     animation: grow-progress auto linear;
     animation-timeline: scroll();
@@ -724,7 +724,7 @@ https://caniuse.com/?search=animation-range
 .movie p,
 .picture h2,
 .picture p,
-.slideshow-fade,
+#image-slider,
 .jisaku h2,
 .jisaku iframe,
 .jisaku p {
@@ -835,34 +835,13 @@ https://caniuse.com/?search=animation-range
     }
 }
 
-.slideshow-fade {
-    position: relative;
+#image-slider {
     margin-top: 55px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    /*width: 300px;*/
-    height: 600px;
-
-    /*なぜエラー,,,,,,,,,,,,,,,,,,,,,,,,,*/
-    li {
-        margin-top: 10px;
-        list-style: none;
-        width: 100%;
-        height: 100%;
-
-        img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-        }
-    }
 }
 
-.slideshow-fade img {
-    transform: scale(1.2);
+.splide__slide img {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .scroll {

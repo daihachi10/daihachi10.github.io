@@ -231,7 +231,7 @@ header {
 
 .site-menu ul li a:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
-    animation: shadowhover 0.5s ease-in-out forwards;
+    /* animation: shadowhover 0.5s ease-in-out forwards; */
 
 
 }

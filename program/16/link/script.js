@@ -8,7 +8,6 @@ function getUrlParameter(name) {
 if (getUrlParameter("reset") === "true") {
     localStorage.removeItem("skipConfirmation");
     alert("ローカルストレージをリセットしました。");
-    window.location.href = "../index.html";
 }
 
 // "url"パラメーターを取得
@@ -29,6 +28,7 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
     if (!targetUrl) {
         messageElement.textContent = "エラー: URLパラメーターが見つかりません。";
         goButton.style.display = "none";
+        window.location.href = "../index.html";
     } else {
         // メッセージの設定
         messageElement.textContent = `URL "${targetUrl}" に移動しますが、よろしいですか？`;

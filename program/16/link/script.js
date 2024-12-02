@@ -35,7 +35,6 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
         goButton.addEventListener("click", () => {
             if (dontShowAgainCheckbox.checked) {
                 localStorage.setItem("skipConfirmation", "true");
-
             }
             window.open(targetUrl, "_blank"); // 新しいタブで開く
             window.location.href = "../index.html";

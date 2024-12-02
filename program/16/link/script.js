@@ -22,7 +22,8 @@ const dontShowAgainCheckbox = document.getElementById("dont-show-again");
 
 // ローカルストレージを確認
 if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
-    window.location.href = targetUrl; // URLに直接リダイレクト
+    // window.location.href = targetUrl; 
+    window.open(targetUrl, "_blank"); // 新しいタブで開く
 } else {
     // パラメーターがない場合の処理
     if (!targetUrl) {

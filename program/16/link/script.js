@@ -21,14 +21,12 @@ const dontShowAgainCheckbox = document.getElementById("dont-show-again");
 
 // ローカルストレージを確認
 if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
-    window.open(targetUrl, "_blank"); // 新しいタブで開く
-    window.location.href = "../index.html";
+    window.location.href = targetUrl; // URLに直接リダイレクト
 } else {
     // パラメーターがない場合の処理
     if (!targetUrl) {
         messageElement.textContent = "エラー: URLパラメーターが見つかりません。";
         goButton.style.display = "none";
-        window.location.href = "../index.html";
     } else {
         // メッセージの設定
         messageElement.textContent = `URL "${targetUrl}" に移動しますが、よろしいですか？`;
@@ -37,6 +35,7 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
         goButton.addEventListener("click", () => {
             if (dontShowAgainCheckbox.checked) {
                 localStorage.setItem("skipConfirmation", "true");
+
             }
             window.open(targetUrl, "_blank"); // 新しいタブで開く
             window.location.href = "../index.html";

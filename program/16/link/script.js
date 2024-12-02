@@ -8,6 +8,7 @@ function getUrlParameter(name) {
 if (getUrlParameter("reset") === "true") {
     localStorage.removeItem("skipConfirmation");
     alert("ローカルストレージをリセットしました。");
+    window.location.href = "../index.html";
 }
 
 // "url"パラメーターを取得

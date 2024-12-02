@@ -19,6 +19,9 @@ const goButton = document.getElementById("go-button");
 const backButton = document.getElementById("back-button");
 const dontShowAgainCheckbox = document.getElementById("dont-show-again");
 
+// メッセージの設定
+messageElement.textContent = `URL "${targetUrl}" に移動しますが、よろしいですか？`;
+
 // ローカルストレージを確認
 if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
     window.location.href = targetUrl; // URLに直接リダイレクト
@@ -28,8 +31,8 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
         messageElement.textContent = "エラー: URLパラメーターが見つかりません。";
         goButton.style.display = "none";
     } else {
-        // メッセージの設定
-        messageElement.textContent = `URL "${targetUrl}" に移動しますが、よろしいですか？`;
+
+
 
         // "行く"ボタンのイベント設定
         goButton.addEventListener("click", () => {

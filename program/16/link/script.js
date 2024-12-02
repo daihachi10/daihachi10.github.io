@@ -36,8 +36,8 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
             if (dontShowAgainCheckbox.checked) {
                 localStorage.setItem("skipConfirmation", "true");
             }
-            window.open(targetUrl, "_blank"); // 新しいタブで開く
-            window.location.href = "../index.html";
+            window.location.href = targetUrl; // URLに直接リダイレクト
+
         });
     }
 }

@@ -61,3 +61,15 @@
     padding-left: 20px;
     padding-bottom: 10px;
 }
+
+.youtubebox {
+    width: 60%;
+    padding: 20px;
+}
+
+.splide__slide iframe {
+    margin-left: 2px;
+    margin-right: 2px;
+    height: 600px;
+    width: 80%;
+}

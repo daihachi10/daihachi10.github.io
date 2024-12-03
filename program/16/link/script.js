@@ -29,6 +29,7 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
     // パラメーターがない場合の処理
     if (!targetUrl) {
         messageElement.textContent = "エラー: URLパラメーターが見つかりません。";
+        window.location.href = "../index.html";
         goButton.style.display = "none";
     } else {
 

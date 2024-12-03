@@ -32,24 +32,25 @@ https://caniuse.com/?search=animation-range
     <meta property="og:description" content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです" />
     <meta property="og:image" content="https://daihachi10.github.io/program/16/images/IMG_0023.webp" />
 
-    <!-- Twitter -->
+    <!--     Twitter-->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://daihachi10.github.io/" />
     <meta property="twitter:title" content="BuildPC Introduction" />
     <meta property="twitter:description" content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです" />
     <meta property="twitter:image" content="https://daihachi10.github.io/program/16/images/IMG_0023.webp" />
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
-
     <!-- driver.js -->
-    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
 
-    <!-- p5.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+    <!-- Splide.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
+    <!-- mediaelement.js -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/7.0.5/mediaelementplayer-legacy.min.css" />
+
+    <link rel="stylesheet" href="https://daihachi10.github.io/css/loading.css">
+    <script src="https://daihachi10.github.io/js/loading.js"></script>
 
 </head>
 
@@ -485,52 +486,10 @@ https://caniuse.com/?search=animation-range
     <!-- mediaelement.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/7.0.5/mediaelement.min.js"></script>
 
-    <script>
-        //戻ってきた場合は動画を表示しない
-        const params = new URLSearchParams(window.location.search);
-        const isVideoPlay = params.get('v');
 
-        const videos = document.getElementsByTagName('video');
-        const videoId = document.getElementById('firstvideo');
-        for (let i = 0; i < videos.length; i++) {
-            videos[i].addEventListener('ended', function (event) {
-                console.log('video end');
-                videoId.classList.add('end');
-
-            });
-        }
-
-        if (isVideoPlay == true) {
-            videoId.classList.add('end');
-            console.log('video end');
-
-        }
-
-        document.addEventListener('keydown', event => {
-            videoId.classList.add('end');
-            console.log("video Skip")
-        });
-
-        const driver = window.driver.js.driver;
-        const driverObj = driver({
-            steps: [
-                { element: '#step1', popover: { title: 'ここから項目に飛ぶことができます。', description: '', side: "bottom", align: 'center' } },
-
-                { element: '#step2', popover: { title: 'ABOUT', description: 'そもそも自作PCとはなにか、どんなメリットがあるかを簡単に説明しています。', side: "bottom", align: 'center' } },
-                { element: '#step3', popover: { title: 'PARTS LIST', description: 'PCに必要な主要なパーツの一覧です。', side: "bottom", align: 'center' } },
-                { element: '#step4', popover: { title: 'MOVIE', description: 'CPUの3DVCACHEという機能についての詳しい動画です。', side: "bottom", align: 'center' } },
-                { element: '#step5', popover: { title: 'PICTURE', description: 'PCを組み立てているときの写真です。', side: "bottom", align: 'center' } },
-                { element: '#step6', popover: { title: 'PERFORMANCE', description: '組み立てたPCの性能です。', side: "bottom", align: 'center' } },
-                { element: '#step7', popover: { title: 'GO!', description: '', side: "top", align: 'center' } },
-            ],
-
-            nextBtnText: '次へ',
-            prevBtnText: '戻る',
-            doneBtnText: '閉じる',
-            showProgress: true,
-        });
-    </script>
     <script src="script.js"></script>
+    <!-- <script src="https://daihachi10.github.io/program/16/script.js"></script> -->
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
     </style>

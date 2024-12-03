@@ -69,24 +69,7 @@ window.addEventListener('scroll', () => {
 
 
 
-const driver = window.driver.js.driver;
-const driverObj = driver({
-    steps: [
-        { element: '#step1', popover: { title: 'ここから項目に飛ぶことができます。', description: '', side: "bottom", align: 'center' } },
 
-        { element: '#step2', popover: { title: 'ABOUT', description: 'そもそも自作PCとはなにか、どんなメリットがあるかを簡単に説明しています。', side: "bottom", align: 'center' } },
-        { element: '#step3', popover: { title: 'PARTS LIST', description: 'PCに必要な主要なパーツの一覧です。', side: "bottom", align: 'center' } },
-        { element: '#step4', popover: { title: 'MOVIE', description: 'CPUの3DVCACHEという機能についての詳しい動画です。', side: "bottom", align: 'center' } },
-        { element: '#step5', popover: { title: 'PICTURE', description: 'PCを組み立てているときの写真です。', side: "bottom", align: 'center' } },
-        { element: '#step6', popover: { title: 'PERFORMANCE', description: '組み立てたPCの性能です。', side: "bottom", align: 'center' } },
-        { element: '#step7', popover: { title: 'GO!', description: '', side: "top", align: 'center' } },
-    ],
-
-    nextBtnText: '次へ',
-    prevBtnText: '戻る',
-    doneBtnText: '閉じる',
-    showProgress: true,
-});
 
 
 

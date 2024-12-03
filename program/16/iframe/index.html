@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ja">
+<!--
+
+できれば全画面表示で見て下さい！！
+
+
+アニメーションパソコン室のパソコンは
+バージョンが古いから無理っぽい？
+(chrome・edge:var115~)
+
+https://caniuse.com/?search=animation-range
+
+
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../style.css" type="text/css">
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <title>読み込み中</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="BuildPC Introduction" />
+    <meta name="description" content="パソコンの組み方" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://daihachi10.github.io/" />
+    <meta property="og:title" content="BuildPC Introduction" />
+    <meta property="og:description" content="パソコンの組み方" />
+    <meta property="og:image" content="https://daihachi10.github.io/program/16/images/IMG_0023.webp" />
+
+    <!--     Twitter-->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://daihachi10.github.io/" />
+    <meta property="twitter:title" content="BuildPC Introduction" />
+    <meta property="twitter:description" content="パソコンの組み方" />
+    <meta property="twitter:image" content="https://daihachi10.github.io/program/16/images/IMG_0023.webp" />
+
+    <!-- driver.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
+
+    <!-- Splide.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" />
+
+    <!-- mediaelement.js -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/7.0.5/mediaelementplayer-legacy.min.css" />
+</head>
+
+<body>
+    <!-- loadings -->
+    <div id="loading">
+        <div class="loader-text"></div>
+        <div class="tetris">
+            <iframe src="https://daihachi10.github.io/program/20/" frameborder="0"></iframe>
+
+            <a href="https://daihachi10.github.io/program/20/" target="_blank" id="newtab">テトリスをプレイ
+
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000">
+                    <path
+                        d="M216-144q-29.7 0-50.85-21.15Q144-186.3 144-216v-528q0-29.7 21.15-50.85Q186.3-816 216-816h264v72H216v528h528v-264h72v264q0 29.7-21.15 50.85Q773.7-144 744-144H216Zm171-192-51-51 357-357H576v-72h240v240h-72v-117L387-336Z" />
+                </svg>
+            </a>
+
+
+        </div>
+        <div class="loader"></div>
+    </div>
+
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="box">
+
+            <ul class="list-wrap">
+                <li class="list">
+                    <span class="title">CPUを取り付ける</span>
+                    <p class="description">▲マークが左上に来るように乗せる。</p>
+                    <img class="image" src="./image/01.png" alt="01">
+                </li>
+                <li class="list">
+                    <span class="title">CPUファンをねじ止めする</span>
+                    <img class="image" src="./image/02.png" alt="01">
+                </li>
+                <li class="list">
+                    <span class="title">SSD（M.2SSD)をねじ止めする</span>
+                    <img class="image" src="./image/03.png" alt="01">
+                </li>
+                <li class="list">
+                    <span class="title">メモリを取り付ける</span>
+                    <p class="description">使用するスロット・向きを気をつける。</p>
+                    <img class="image" src="./image/04.png" alt="01">
+                </li>
+                <li class="list">
+                    <span class="title">PCケースに電源ユニットを取り付ける</span>
+                    <img class="image" src="./image/05.png" alt="01">
+                </li>
+                <li class="list">
+                    <span class="title">マザーボードをPCケースに装着する</span>
+                </li>
+                <li class="list">
+                    <span class="title">GPUを取り付ける</span>
+                </li>
+                <li class="list">
+                    <img class="image" src="./image/06.png" alt="01">
+                </li>
+
+                <li class="list">
+                    <span class="title">各種ケーブルを接続する</span>
+                    <p class="description">接続し忘れがないようにする。</p>
+                </li>
+                <li class="list">
+                    <span class="title">起動確認をする</span>
+                </li>
+                <li class="list">
+                    <span class="title">配線をまとめて、見た目を整える</span>
+                    <img class="image" src="./image/08.png" alt="01">
+                </li>
+                <li class="list">
+                    <span class="title">OS(Windows)・ドライバーなどのインストールをする</span>
+                </li>
+
+            </ul>
+        </div>
+    </main>
+    <!-- mainここまで -->
+
+    <div class="back-to-top">
+        <a onclick="pageTop()"></a>
+    </div>
+
+    <!-- footerここから -->
+    <footer class="footer">
+        <nav class="site-menu">
+            <ul>
+                <li><a href="#2">ABOUT</a></li>
+                <li><a href="#3">PARTS LIST</a></li>
+                <li><a href="#4">MOVIE</a></li>
+                <li><a href="#5">PICTURE</a></li>
+                <li><a href="#6">PERFORMANCE</a></li>
+            </ul>
+        </nav>
+        <a class="footer-logo" onclick="pageTop()">
+            <p>buildPC</p>
+        </a>
+        <div class="reset">
+
+            <p><a onclick="reset()">LocalStorage Reset</a><br><br>
+                <a onclick="tetris()">tetris</a>
+            </p>
+        </div>
+
+        <p class="copyright">
+            <small>
+                <a href="https://daihachi10.github.io/" target="_blank">
+                    &copy;daihachi
+                </a>
+            </small>
+        </p>
+
+    </footer>
+    <!-- footerここまで -->
+
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
+
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+
+    <!-- driver.js -->
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+
+    <!-- Splide.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+    <!-- mediaelement.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/7.0.5/mediaelement.min.js"></script>
+
+    <script src="../script.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+    </style>
+
+
+
+
+</body>
+
+</html>

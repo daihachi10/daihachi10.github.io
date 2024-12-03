@@ -48,11 +48,34 @@ https://caniuse.com/?search=animation-range
     <!-- mediaelement.js -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/7.0.5/mediaelementplayer-legacy.min.css" />
+
+
+    <link rel="stylesheet" href="https://daihachi10.github.io/css/loading.css">
+    <script src="https://daihachi10.github.io/js/loading.js"></script>
 </head>
 
 <body>
-    <!-- loadings -->
+
     <div id="loading">
+
+        <div id="loadings" class="loading-overlay">
+            <div class="loading-animation">
+                <div class="bar purple"></div>
+                <div class="bar cyan"></div>
+                <div class="bar green"></div>
+                <div class="bar yellow"></div>
+                <div class="bar pink"></div>
+            </div>
+        </div>
+        <!-- <div class="spinner"></div>
+        <p>読み込み中...</p> -->
+    </div>
+
+
+
+
+    <!-- loadings -->
+    <!-- <div id="loading">
         <div class="loader-text"></div>
         <div class="tetris">
             <iframe src="https://daihachi10.github.io/program/20/" frameborder="0"></iframe>
@@ -68,7 +91,7 @@ https://caniuse.com/?search=animation-range
 
         </div>
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <div id="firstvideo">
         <video width="100%" autoplay muted playsinline disablepictureinpicture>
@@ -464,6 +487,31 @@ https://caniuse.com/?search=animation-range
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/7.0.5/mediaelement.min.js"></script>
 
     <script>
+        //戻ってきた場合は動画を表示しない
+        const params = new URLSearchParams(window.location.search);
+        const isVideoPlay = params.get('v');
+
+        const videos = document.getElementsByTagName('video');
+        const videoId = document.getElementById('firstvideo');
+        for (let i = 0; i < videos.length; i++) {
+            videos[i].addEventListener('ended', function (event) {
+                console.log('video end');
+                videoId.classList.add('end');
+
+            });
+        }
+
+        if (isVideoPlay == true) {
+            videoId.classList.add('end');
+            console.log('video end');
+
+        }
+
+        document.addEventListener('keydown', event => {
+            videoId.classList.add('end');
+            console.log("video Skip")
+        });
+
         const driver = window.driver.js.driver;
         const driverObj = driver({
             steps: [
@@ -483,7 +531,7 @@ https://caniuse.com/?search=animation-range
             showProgress: true,
         });
     </script>
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
     </style>

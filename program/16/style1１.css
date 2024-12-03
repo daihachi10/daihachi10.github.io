@@ -1,3 +1,4 @@
+/* CSS変数 */
 :root {
     --pink-color: #ff5283;
     --pink-hover-color: #bf1948;
@@ -5,6 +6,9 @@
     --loading-text-color: #000;
 }
 
+
+
+/* リセット */
 ::selection {
     color: #fff;
     background-color: var(--pink-color);
@@ -19,9 +23,9 @@
     scroll-behavior: smooth;
 }
 
+/* ベース要素 */
 body {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;
-    /*画像10枚までだった、、、、、、、、、、、、*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 16px;
     color: #000000;
@@ -29,6 +33,10 @@ body {
     background-color: #ffffff;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
 a:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
@@ -39,39 +47,7 @@ ol {
     list-style: none;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.header-inner a,
-.footer a {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    /* color: #fff; */
-    text-decoration: none;
-}
-
-.reset {
-    padding: 5px;
-    /* display: none; */
-    /* visibility: hidden; */
-    opacity: 0;
-}
-
-
-.reset:hover {
-    /* visibility: visible; */
-    opacity: 1;
-
-}
-
-.reset p {
-    text-align: center;
-}
-
-/*header固定*/
+/* ヘッダー */
 header {
     position: fixed;
     z-index: 2000;
@@ -99,9 +75,6 @@ header {
 #animated-header.visible {
     transform: translateY(0);
 }
-
-
-
 
 .header-inner {
     max-width: 1200px;
@@ -140,7 +113,6 @@ header {
 }
 
 .header-logo {
-    font-family: "Montserrat", cursive;
     font-size: 30px;
     font-weight: bold;
     display: block;
@@ -157,6 +129,86 @@ header {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
+/* フッター */
+.footer {
+    color: #ffffff;
+    background-color: var(--header-footer-color);
+    padding-top: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 70px;
+    font-weight: bold;
+    display: block;
+    margin-top: 90px;
+}
+
+.copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 90px;
+}
+
+.footer-logo:hover {
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+.reset:hover {
+    /* visibility: visible; */
+    opacity: 1;
+
+}
+
+.reset p {
+    text-align: center;
+}
+
+.reset {
+    padding: 5px;
+    /* display: none; */
+    /* visibility: hidden; */
+    opacity: 0;
+}
+
+.header-inner a,
+.footer a {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    /* color: #fff; */
+    text-decoration: none;
+}
+
+/* プログレスバー */
+#progress {
+    z-index: 8002;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: var(--pink-color);
+    transform-origin: 0 50%;
+    animation: grow-progress auto linear;
+    animation-timeline: scroll();
+}
+
+@keyframes grow-progress {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+
+
 .site-menu ul {
     display: flex;
 }
@@ -167,7 +219,6 @@ header {
 }
 
 .site-menu ul li a {
-    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -182,47 +233,18 @@ header {
 
 .site-menu ul li a:hover {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
-    animation: shadowhover 0.5s ease-in-out forwards;
+    /* animation: shadowhover 0.5s ease-in-out forwards; */
 
 
 }
-
-
 
 img {
     max-width: 100%;
 }
 
 
-.footer {
-    color: #ffffff;
-    /* background-color: #1571c2; */
-    background-color: var(--header-footer-color);
-    padding-top: 30px;
-    padding-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-}
 
-.footer-logo {
-    font-size: 70px;
-    font-weight: bold;
-    display: block;
-    margin-top: 90px;
-    /* animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers; */
-}
-
-.footer-logo:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
-}
-
-.copyright {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 90px;
-}
 
 /* 
 .footer-logo:hover {
@@ -249,7 +271,7 @@ img {
     }
 } */
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .site-menu ul {
         display: block;
         text-align: center;
@@ -306,7 +328,7 @@ img {
         display: block;
         width: 44px;
         height: 34px;
-        background-image: url(./images/icon-menu.webp);
+        background-image: url(https://daihachi10.github.io/program/16/images/icon-menu.webp);
         background-size: 50%;
         background-position: center;
         background-repeat: no-repeat;
@@ -422,7 +444,6 @@ img {
 }
 
 
-
 .first-view-text {
     width: 100%;
     max-width: 1200px;
@@ -436,7 +457,6 @@ img {
 }
 
 .first-view-text h1 {
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 56px;
     line-height: 72px;
 }
@@ -496,7 +516,6 @@ lead a {
     min-width: 180px;
     line-height: 48px;
     border-radius: 24px;
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
     /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -665,8 +684,8 @@ lead a {
     width: 10px;
     height: 10px;
     transform: rotate(-45deg);
-    border-top: solid 2px #ffffff;
-    border-right: solid 2px #ffffff;
+    border-top: solid 2px #000;
+    border-right: solid 2px #000;
     content: "";
     transform: rotate(-45deg) translate(-17%, -50%);
     top: 50%;
@@ -707,7 +726,7 @@ https://caniuse.com/?search=animation-range
 .movie p,
 .picture h2,
 .picture p,
-.slideshow-fade,
+#image-slider,
 .jisaku h2,
 .jisaku iframe,
 .jisaku p {
@@ -807,7 +826,7 @@ https://caniuse.com/?search=animation-range
     left: 50%;
 }
 
-@media (max-width:800px) {
+@media (max-width:1000px) {
     .movie {
         width: 500px;
         padding: 30px 25px;
@@ -818,34 +837,13 @@ https://caniuse.com/?search=animation-range
     }
 }
 
-.slideshow-fade {
-    position: relative;
+#image-slider {
     margin-top: 55px;
-
-    margin-left: auto;
-    margin-right: auto;
-
-    /*width: 300px;*/
-    height: 600px;
-
-    /*なぜエラー,,,,,,,,,,,,,,,,,,,,,,,,,*/
-    li {
-        margin-top: 10px;
-        list-style: none;
-        width: 100%;
-        height: 100%;
-
-        img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-        }
-    }
 }
 
-.slideshow-fade img {
-    transform: scale(1.2);
+.splide__slide img {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .scroll {
@@ -1019,6 +1017,8 @@ span.appear {
     animation-delay: 3.5s;
 }
 
+
+
 #loading,
 #firstvideo {
     display: grid;
@@ -1171,8 +1171,6 @@ span.appear {
 /* HTML: <div class="loader"></div> */
 .loader-text {
     --w: 10ch;
-    /* font-weight: bold; */
-    /* font-family: monospace; */
     font-size: 30px;
     line-height: 1.2em;
     letter-spacing: var(--w);
@@ -1213,7 +1211,7 @@ ul:has(a:hover) a:not(:hover) {
 
 .samune {
     margin-top: 50px;
-    background-image: url(./images/samune.jpg);
+    background-image: url(https://daihachi10.github.io/program/16/images/samune.jpg);
     background-size: cover;
     width: 100%;
     height: 520px;
@@ -1362,7 +1360,7 @@ ul:has(a:hover) a:not(:hover) {
 }
 
 
-@media (max-width:800px) {
+@media (max-width:1000px) {
     .first-view {
         height: calc(100vh - 50vh);
     }
@@ -1405,7 +1403,7 @@ ul:has(a:hover) a:not(:hover) {
 
     .samune {
         margin-top: 50px;
-        background-image: url(./images/samune.jpg);
+        background-image: url(https://daihachi10.github.io/program/16/images/samune.jpg);
         background-size: cover;
         width: 100%;
         height: 210px;

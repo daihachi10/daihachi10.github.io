@@ -6,6 +6,8 @@
     --loading-text-color: #000;
 }
 
+
+
 /* リセット */
 ::selection {
     color: #fff;
@@ -1014,6 +1016,8 @@ span.appear {
 .a6 {
     animation-delay: 3.5s;
 }
+
+
 
 #loading,
 #firstvideo {

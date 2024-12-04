@@ -1028,7 +1028,7 @@ span.appear {
     position: fixed;
     inset: 0;
     font-size: 2rem;
-    z-index: 9000;
+    z-index: 2147483647;
 }
 
 #loading {
@@ -1445,8 +1445,8 @@ ul:has(a:hover) a:not(:hover) {
 .toumeibox {
     background-color: rgba(255, 255, 255, 1);
     padding-bottom: 30px;
-    padding-top: 30px;
-    border-radius: 40px;
+    padding-top: 10px;
+    border-radius: 10px;
     width: 80vw;
     margin-left: auto;
     margin-right: auto;

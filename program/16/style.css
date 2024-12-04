@@ -358,7 +358,7 @@ img {
 .first-view {
     height: calc(100vh - 110px + 120px);
     /* + 120px*/
-    background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp);
+    /* background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp); */
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -1438,4 +1438,6 @@ ul:has(a:hover) a:not(:hover) {
 .first-view-video-area {
     position: fixed;
     z-index: -1;
+    height: 100% !important;
+    width: 100% !important;
 }

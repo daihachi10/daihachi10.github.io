@@ -25,7 +25,8 @@
 
 /* ベース要素 */
 body {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;
+    /*cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;*/
+    /*cursor: none;*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 16px;
     color: #000000;
@@ -1424,19 +1425,52 @@ ul:has(a:hover) a:not(:hover) {
 
 .safari {
     width: 100%;
+    /*position: sticky;*/
+    /*top: 60px;!*自分が固定したい位置*!*/
+    /*z-index: 250;*/
 }
 
 .mackdockbox{
     text-align:center;
-
+    /*height: 90vh;*/
+    /*overflow-y: scroll;*/
 }
 
 .macdock {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+
+    position: sticky;
+    bottom: 10px;
+    z-index: 250;
 }
 
+
+.cursor, .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 200000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out;
+}
+
+.cursor {
+    background-color: #dfdfdf;/*333*/
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-out;
+}
 
 
 

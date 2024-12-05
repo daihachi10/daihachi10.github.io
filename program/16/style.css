@@ -846,6 +846,10 @@ https://caniuse.com/?search=animation-range
     margin-right: 10px;
 }
 
+.splide-image{
+    padding-left: 10px;
+}
+
 .scroll {
     color: #000;
     font-weight: bold;
@@ -1447,7 +1451,7 @@ ul:has(a:hover) a:not(:hover) {
     padding-bottom: 30px;
     /* padding-top: 10px; */
     border-radius: 20px;
-    width: 80vw;
+    width: 70vw;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;

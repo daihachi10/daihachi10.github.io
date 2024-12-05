@@ -1448,7 +1448,7 @@ ul:has(a:hover) a:not(:hover) {
 
 .toumeibox {
     background-color: rgba(255, 255, 255, 1);
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     /* padding-top: 10px; */
     border-radius: 20px;
     width: 70vw;

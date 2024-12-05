@@ -846,7 +846,7 @@ https://caniuse.com/?search=animation-range
     margin-right: 10px;
 }
 
-.splide-image{
+.splide-image {
     padding-left: 10px;
 }
 
@@ -1457,6 +1457,6 @@ ul:has(a:hover) a:not(:hover) {
     margin-bottom: 50px;
 }
 
-.safari{
+.safari {
     width: 100%;
 }

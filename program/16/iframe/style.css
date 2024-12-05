@@ -1,42 +1,27 @@
 .list-wrap {
     list-style: none;
-    /* デフォルトのアイコンを消す */
     margin: 0;
-    /* デフォルト指定上書き */
     padding: 0;
-    /* デフォルト指定上書き */
     counter-reset: li_count;
-    /* カウンタをセット */
 }
 
 .list {
     padding: 10px;
-    /* 余白指定 */
     margin-bottom: 5px;
-    /* 要素と要素の間指定 */
     font-size: 30px;
-    /* 文字サイズ指定 */
 }
 
 .list:before {
     counter-increment: li_count;
-    /* カウンタの値を計算していく */
     content: counter(li_count)".";
-    /* 数字出力 */
     color: #F44336;
-    /* 文字色指定 */
     margin-right: 5px;
-    /* 余白指定 */
 }
 
 .box {
     padding-top: 50px;
-}
-
-.box {
     max-width: 500px;
 }
-
 
 .title {
     font-size: 25px;
@@ -49,7 +34,6 @@
 .image {
     width: 100%;
 }
-
 
 .description,
 .image {

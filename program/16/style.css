@@ -1455,7 +1455,7 @@ ul:has(a:hover) a:not(:hover) {
     height: 20px;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 200000;
+    z-index: 2147483647;
     transform: translate(-50%, -50%);
     transition: transform 0.2s ease-out;
 }

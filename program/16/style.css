@@ -803,6 +803,10 @@ https://caniuse.com/?search=animation-range
     margin-top: 30px;
 }
 
+.jisaku iframe {
+    height: 600px;
+}
+
 .movie p,
 .picture p,
 .jisaku p {

@@ -1,3 +1,10 @@
+:root {
+    --pink-color: #ff5283;
+    --pink-hover-color: #bf1948;
+    --header-footer-color: #3a5e98;
+    --loading-text-color: #000;
+}
+
 .list-wrap {
     list-style: none;
     margin: 0;
@@ -56,4 +63,24 @@
     margin-right: 2px;
     height: 300px;
     width: 80%;
+}
+
+/* スクロールバー全体のスタイル */
+::-webkit-scrollbar {
+    width: 12px; /* 横スクロールバーの幅 */
+    height: 12px; /* 縦スクロールバーの高さ */
+}
+
+/* スクロールバーのスライダー部分 */
+::-webkit-scrollbar-thumb {
+    background-color: var(--header-footer-color); /* スライダーの色 */
+    border-radius: 6px; /* 角丸の半径 */
+    border: 3px solid transparent; /* スライダー周りのスペース */
+    background-clip: content-box; /* スライダーの内側だけ色を適用 */
+}
+
+/* スクロールバーの背景 */
+::-webkit-scrollbar-track {
+    background: #f0f0f0; /* 背景の色 */
+    border-radius: 6px; /* 背景も角丸に */
 }

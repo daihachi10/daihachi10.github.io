@@ -1202,7 +1202,7 @@ span.appear {
 }
 
 ul:has(a:hover) a:not(:hover) {
-    color: rgba(0, 0, 0, 0.1)
+    color: rgba(0, 0, 0, 0.8)
 }
 
 .header-site-menu.is-show {

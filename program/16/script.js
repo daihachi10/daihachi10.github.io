@@ -218,7 +218,7 @@ $(function () {
         speed: 60,
         speed_vary: true,//人間
         blink_perm: false, //常に点滅しない
-        caret: "|"
+        caret: "●"
     })
 })
 

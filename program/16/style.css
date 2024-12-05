@@ -1460,3 +1460,14 @@ ul:has(a:hover) a:not(:hover) {
 .safari {
     width: 100%;
 }
+
+.mackdockbox{
+    text-align:center;
+
+}
+
+.macdock {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}

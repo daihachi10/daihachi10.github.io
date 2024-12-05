@@ -1445,10 +1445,14 @@ ul:has(a:hover) a:not(:hover) {
 .toumeibox {
     background-color: rgba(255, 255, 255, 1);
     padding-bottom: 30px;
-    padding-top: 10px;
-    border-radius: 10px;
+    /* padding-top: 10px; */
+    border-radius: 20px;
     width: 80vw;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 50px;
+}
+
+.safari{
+    width: 100%;
 }

@@ -191,6 +191,10 @@ header {
     text-align: center;
 }
 
+del {
+    text-decoration: none;
+}
+
 .reset {
     padding: 5px;
     /* display: none; */

@@ -212,11 +212,12 @@ $(function () {
 // $('.Ttext').t('pause'[true])
 // subdirectory_arrow_rightshorthand: $('.Ttext').p([true])
 
+//t.js
 $(function () {
     $("#Ttext2").t({
         delay: 3,
         speed: 60,
-        speed_vary: true,//人間
+        speed_vary: false,//人間
         blink_perm: false, //常に点滅しない
         caret: "●"
     })

@@ -21,11 +21,13 @@
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+
 }
 
 /* ベース要素 */
 body {
     /*cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;*/
+    /*cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.png'), auto;*/
     cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.png'), auto;
     /*cursor: none;*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;

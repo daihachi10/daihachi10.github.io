@@ -1164,6 +1164,23 @@ span.appear {
     pointer-events: none;
 }
 
+.dark-firstvideo {
+    display: none;
+}
+
+body.dark .dark-firstvideo {
+    display: block;
+}
+
+.light-firstvideo {
+    display: block;
+}
+
+body.dark .light-firstvideo {
+    display: none;
+}
+
+
 #loading.loaded {
     animation: loaded 0.3s ease-in-out forwards;
     pointer-events: none;

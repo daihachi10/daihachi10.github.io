@@ -13,6 +13,9 @@
     --bg-color-dark-animation-header: rgba(0, 0, 0, 0.7);
     --header-text-color-dark: #fff;
 
+    --bg-color-light-scrollbar:#f0f0f0;
+    --bg-color-dark-scrollbar: #7a7a7a;
+
 
     --text-color-light: #000000;
     --text-color-dark: #ffffff;
@@ -85,8 +88,13 @@ body.dark {
 
 /* スクロールバーの背景 */
 ::-webkit-scrollbar-track {
-    background: #f0f0f0; /* 背景の色 */
     border-radius: 6px; /* 背景も角丸に */
+    background-color: var(--bg-color-light-scrollbar);
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+body.dark ::-webkit-scrollbar-track {
+    background-color: var(--bg-color-dark-scrollbar);
 }
 
 a {
@@ -200,6 +208,27 @@ body.dark .header-inner {
 .header-logo:hover {
     color: #1571c2;
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+}
+
+body.dark .recommended {
+    background-color: var(--bg-color-dark-recommended);
+}
+
+.header-light {
+    display:block;
+}
+
+.header-dark {
+    display: none;
+}
+
+body.dark .header-light {
+    display: none;
+}
+
+body.dark .header-dark {
+    display:block;
+
 }
 
 /* フッター */

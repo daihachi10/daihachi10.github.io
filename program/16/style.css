@@ -205,12 +205,18 @@ body.dark .header-inner {
 /* フッター */
 .footer {
     color: #ffffff;
-    background-color: var(--header-footer-color);
+    /*background-color: var(--header-footer-color);*/
     padding-top: 30px;
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--header-footer-color);
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+body.dark .footer {
+    background-color: var(--bg-color-dark-header);
 }
 
 .footer-logo {

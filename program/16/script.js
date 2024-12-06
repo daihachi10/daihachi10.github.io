@@ -309,6 +309,19 @@ function animateFollower() {
 
 animateFollower();
 
+if (localStorage.getItem('isDarkMode') === 'true') {
+    document.body.classList.add('dark');
+}
+
 function theme() {
     document.body.classList.toggle('dark');
+    //darkmode localstoreage
+    if (document.body.classList.contains('dark')) {
+        console.log('ダークモード');
+        localStorage.setItem('isDarkMode', 'true');
+    } else {
+        console.log('ライトモード');
+        localStorage.setItem('isDarkMode', 'false');
+    }
 }
+

@@ -1424,7 +1424,7 @@ ul:has(a:hover) a:not(:hover) {
 .video-container {
     position: relative;
     width: 100%;
-    height: 300px; /* 必要に応じて調整 */
+    height: 300px;
     overflow: hidden;
 }
 
@@ -1440,9 +1440,9 @@ video {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2); /* 半透明の黒背景 */
+    background: rgba(0, 0, 0, 0.1); /* 半透明の黒背景 */
     background-image: radial-gradient(circle, rgba(0, 0, 0, 0.5) 1px, transparent 1px);
-    background-size: 10px 10px; /* 点の間隔を調整 */
+    background-size: 7px 7px; /* 点の間隔を調整 */
     pointer-events: none; /* ユーザーの操作を無効化 */
 }
 

@@ -26,7 +26,7 @@
 /* ベース要素 */
 body {
     /*cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;*/
-    cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.webp'), auto;
+    cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.png'), auto;
     /*cursor: none;*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 16px;
@@ -275,7 +275,7 @@ img {
 
 
 
-/* 
+/*
 .footer-logo:hover {
     animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers;
 } */

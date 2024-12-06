@@ -308,3 +308,7 @@ function animateFollower() {
 }
 
 animateFollower();
+
+function theme() {
+    document.body.classList.toggle('dark');
+}

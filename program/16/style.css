@@ -40,7 +40,28 @@
 /*defolt dark color #1a1a1a*/
 /*google dark color #202124*/
 
+.light-firstvideo,
+.header-light,
+.recommended-bottom-light,
+.macdock-dark,
 
+body.dark .dark-firstvideo,
+body.dark .header-dark,
+body.dark .recommended-bottom-dark,
+body.dark .macdock-light {
+    display:block;
+}
+.dark-firstvideo,
+.header-dark,
+.recommended-bottom-dark,
+.macdock-light,
+
+body.dark .light-firstvideo,
+body.dark .header-light,
+body.dark .recommended-bottom-light,
+body.dark .macdock-dark{
+    display: none;
+}
 
 /* リセット */
 ::selection {
@@ -221,22 +242,6 @@ body.dark .recommended {
     background-color: var(--bg-color-dark-recommended);
 }
 
-.header-light {
-    display:block;
-}
-
-.header-dark {
-    display: none;
-}
-
-body.dark .header-light {
-    display: none;
-}
-
-body.dark .header-dark {
-    display:block;
-
-}
 
 /* フッター */
 .footer {
@@ -456,6 +461,10 @@ img {
         border-radius: 0;
         outline: none;
         cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+    }
+
+    body.dark .toggle-menu-button {
+        background-image: url(https://daihachi10.github.io/program/16/images/icon-menu-dark.svg);
     }
 
     .main {
@@ -703,22 +712,7 @@ body.dark .recommended {
     background-color: var(--bg-color-dark-recommended);
 }
 
-.recommended-bottom-light {
-    display:block;
-}
 
-.recommended-bottom-dark {
-    display: none;
-}
-
-body.dark .recommended-bottom-light {
-    display: none;
-}
-
-body.dark .recommended-bottom-dark {
-    display:block;
-
-}
 
 .recommended h2 {
     font-size: 22px;
@@ -1218,23 +1212,6 @@ body.dark #loadings {
     pointer-events: none;
 }
 
-.dark-firstvideo {
-    display: none;
-}
-
-body.dark .dark-firstvideo {
-    display: block;
-}
-
-.light-firstvideo {
-    display: block;
-}
-
-body.dark .light-firstvideo {
-    display: none;
-}
-
-
 #loading.loaded {
     animation: loaded 0.3s ease-in-out forwards;
     pointer-events: none;
@@ -1638,7 +1615,8 @@ body.dark .toumeibox {
 
 }
 
-.macdock {
+.macdock-dark,
+.macdock-light {
     width: 50%;
     margin-left: auto;
     margin-right: auto;

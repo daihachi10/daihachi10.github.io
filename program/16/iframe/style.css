@@ -85,4 +85,12 @@
     border-radius: 6px; /* 背景も角丸に */
 }
 
+body {
+    background-color: #fff !important;
+}
+
+body.dark{
+    background-color: #202124 !important;
+}
+
 

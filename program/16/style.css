@@ -2015,6 +2015,49 @@ body.dark .toumeibox {
     transition: transform 0.1s ease-out;
 }
 
+.logo-slider {
+    border-radius: 50px;
+    overflow: hidden;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-track {
+    display: flex;
+    animation: scroll 20s linear infinite;
+}
+
+.logo-track img,
+.logo-track p{
+    width: 150px;
+    height: 100px;
+
+    text-align:center;
+    padding:20px 0;
+
+    margin-right: 60px;
+    flex-shrink: 0;
+}
+
+/* アニメーション */
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* ホバー時に停止 */
+.logo-slider:hover .logo-track {
+    animation-play-state: paused;
+}
+
 
 @media (max-width:1000px) {
     .first-view {

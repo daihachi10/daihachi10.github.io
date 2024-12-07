@@ -332,3 +332,6 @@ function theme() {
     }
 }
 
+//ダブルタップで拡大しない
+document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
+

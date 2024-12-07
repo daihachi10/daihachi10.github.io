@@ -50,3 +50,4 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
 backButton.addEventListener("click", () => {
     window.location.href = "../index.html?video=skip";
 });
+

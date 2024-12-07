@@ -5,17 +5,25 @@
     --header-footer-color: #3a5e98;
     --loading-text-color: #000;
 
-    --transition-duration: 0.5s;
+    --transition-duration: 1s;
 
-    --bg-color-light-header: #fff;
-    --bg-color-dark-header: #202124;
+    /*--bg-color-light-header: #fff;*/
+    /*--bg-color-dark-header: #202124;*/
+
+    --bg-color-light-header: rgba(255, 255, 255, 1);
+    --bg-color-dark-header: rgba(32, 33, 36, 1);
+
+
     --bg-color-light-animation-header: rgba(255, 255, 255, 0.7);
     --bg-color-dark-animation-header: rgba(0, 0, 0, 0.7);
+
     --header-text-color-dark: #fff;
+
+    --bg-color-light-loading: #fafafa;
+    --bg-color-dark-loading: #2f3133;
 
     --bg-color-light-scrollbar:#f0f0f0;
     --bg-color-dark-scrollbar: #7a7a7a;
-
 
     --text-color-light: #000000;
     --text-color-dark: #ffffff;
@@ -1197,6 +1205,15 @@ span.appear {
 
 }
 
+#loadings {
+    background-color: var(--bg-color-light-loading);
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+body.dark #loadings {
+    background-color: var(--bg-color-dark-loading);
+}
+
 #firstvideo {
     /* animation: loading 0.3s ease-in-out forwards; */
     background-color: #fff;
@@ -1661,8 +1678,6 @@ body.dark .toumeibox {
     background-color: rgba(0, 0, 0, 0.1);
     transition: transform 0.1s ease-out;
 }
-
-
 
 
 @media (max-width:1000px) {

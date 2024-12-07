@@ -28,7 +28,7 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
 } else {
     // パラメーターがない場合の処理
     if (!targetUrl) {
-        window.location.href = "../index.html";
+        window.location.href = "../index.html?video=skip";
         messageElement.textContent = "エラー: URLパラメーターが見つかりません。";
         goButton.style.display = "none";
     } else {
@@ -48,5 +48,5 @@ if (localStorage.getItem("skipConfirmation") === "true" && targetUrl) {
 
 // "戻る"ボタンのイベント設定
 backButton.addEventListener("click", () => {
-    window.location.href = "../index.html";
+    window.location.href = "../index.html?video=skip";
 });

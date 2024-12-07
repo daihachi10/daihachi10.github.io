@@ -38,6 +38,13 @@ document.addEventListener('keydown', event => {
     console.log("video Skip")
 });
 
+const videoParams = new URLSearchParams(window.location.search);
+
+if (videoParams.get('video') === 'skip') {
+    videoId.classList.add('end');
+}
+
+
 
 
 

@@ -2035,7 +2035,7 @@ body.dark .logo-slider {
 
 .logo-track {
     display: flex;
-    animation: scroll 45s linear infinite;
+    animation: scroll 35s linear infinite;
 }
 
 .logo-track img,
@@ -2054,11 +2054,11 @@ body.dark .logo-slider {
 /* アニメーション */
 @keyframes scroll {
     0% {
-        transform: translateX(100%);
+        transform: translateX(140%);
     }
 
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-160%);
     }
 }
 

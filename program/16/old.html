@@ -59,28 +59,55 @@ https://caniuse.com/?search=animation-range
         <p>読み込み中...</p> -->
     </div>
 
+
+
+
+    <!-- loadings -->
+    <!-- <div id="loading">
+        <div class="loader-text"></div>
+        <div class="tetris">
+            <iframe src="https://daihachi10.github.io/program/20/" frameborder="0"></iframe>
+
+            <a href="https://daihachi10.github.io/program/20/" target="_blank" id="newtab">テトリスをプレイ
+
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000">
+                    <path
+                        d="M216-144q-29.7 0-50.85-21.15Q144-186.3 144-216v-528q0-29.7 21.15-50.85Q186.3-816 216-816h264v72H216v528h528v-264h72v264q0 29.7-21.15 50.85Q773.7-144 744-144H216Zm171-192-51-51 357-357H576v-72h240v240h-72v-117L387-336Z" />
+                </svg>
+            </a>
+
+
+        </div>
+        <div class="loader"></div>
+    </div> -->
+
     <div id="firstvideo">
         <video class="light-firstvideo"width="100%" autoplay muted playsinline disablepictureinpicture>
             <source src="https://daihachi10.github.io/program/16/first.mp4" type="video/mp4" autoplay muted playsinline
                 disablepictureinpicture />
+
+            <!-- <source src="first.mp4" type="video/mp4" autoplay muted playsinline disablepictureinpicture /> -->
         </video>
 
         <video class="dark-firstvideo" width="100%" autoplay muted playsinline disablepictureinpicture>
             <source src="https://daihachi10.github.io/program/16/first-dark.mp4" type="video/mp4" autoplay muted playsinline
                     disablepictureinpicture />
+
+            <!-- <source src="first.mp4" type="video/mp4" autoplay muted playsinline disablepictureinpicture /> -->
         </video>
     </div>
 
     <!-- headerここから -->
     <header id="default-header">
         <div class="header-inner">
-
+            <!-- <a class="header-logo" href="#1"> -->
             <a class="header-logo" onclick="pageTop()">
+
                 <div style="display: flex;">
+
                     <p class="logo-jp" style="margin:auto 0;">BuildPC</p>
                 </div>
             </a>
-
             <button class="toggle-menu-button"></button>
             <div class="header-site-menu">
                 <nav class="site-menu">
@@ -92,6 +119,12 @@ https://caniuse.com/?search=animation-range
                         <li><a href="#6" id="step5">PICTURE</a></li>
                         <li class="header-light"><a onclick="theme()">DARK</a></li>
                         <li class="header-dark"><a onclick="theme()">LIGHT</a></li>
+                        <!-- <li><a onclick="about()" id="step2">ABOUT</a></li> -->
+                        <!-- <li><a onclick="partslist()" id="step3">PARTS LIST</a></li> -->
+                        <!-- <li><a onclick="movie()" id="step4">MOVIE</a></li> -->
+                        <!-- <li><a onclick="picture()" id="step5">PICTURE</a></li> -->
+                        <!-- <li><a onclick="HOW TO BUILD()" id="step6">HOW TO BUILD</a></li>なんか関数にならない -->
+                        <!-- <li><a onclick="reset()">RESET</a></li> -->
                     </ul>
                 </nav>
             </div>
@@ -102,6 +135,7 @@ https://caniuse.com/?search=animation-range
     <!-- アニメーションheaderここから -->
     <header id="animated-header" class="hidden">
         <div class="header-inner" id="animation-header-inner">
+            <!-- <a class="header-logo" href="#1"> -->
             <a class="header-logo" onclick="pageTop()">
                 <p>buildPC</p>
             </a>
@@ -114,6 +148,11 @@ https://caniuse.com/?search=animation-range
                         <li><a href="#5">HOW TO BUILD</a></li>
                         <li><a href="#6">PICTURE</a></li>
                         <li><a onclick="theme()">DARK</a></li>
+                        <!-- <li><a onclick="about()">ABOUT</a></li> -->
+                        <!-- <li><a onclick="partslist()">PARTS LIST</a></li> -->
+                        <!-- <li><a onclick="movie()">MOVIE</a></li> -->
+                        <!-- <li><a onclick="picture()">PICTURE</a></li> -->
+                        <!-- <li><a onclick="HOW TO BUILD()">HOW TO BUILD</a></li>-->
                     </ul>
                 </nav>
             </div>
@@ -135,6 +174,8 @@ https://caniuse.com/?search=animation-range
             <div class="first-view-video-area">
                 <video class="first-view-video-iframe" muted autoplay loop>
                     <source src="https://daihachi10.github.io/program/16/images/first-view-video.mp4" type="video/mp4">
+                    <!--                    <source src="https://daihachi10.github.io/program/16/images/IMG_0727.mp4" type="video/mp4">-->
+
                     <img src="https://daihachi10.github.io/program/16/images/yoko/image-16.webp" alt="background-image">
                 </video>
                 <div class="dot-overlay"></div>
@@ -143,6 +184,7 @@ https://caniuse.com/?search=animation-range
 
         <div class="first-view" id="1">
             <div class="first-view-text">
+                <!-- <h1 id="Ttext1">BuildingPC<br><ins>0.5</ins>Parts Introduction</h1> -->
                 <h1>
                     <span class="appear d1">Building</span>
                     <span class="appear d2">PC</span><br>
@@ -175,6 +217,16 @@ https://caniuse.com/?search=animation-range
             </div>
         </div>
 
+
+
+        <!--        <a onclick="down()" style="height:0;">
+            <div class="scroll" id="step7">
+                <p>SCROLL</p>
+                <img src="https://daihachi10.github.io/program/16/images/down.webp" width="30px">
+            </div>
+        </a>
+-->
+
         <div class="leadbox" id="2">
             <div class="lead">
                 <h2>
@@ -188,7 +240,7 @@ https://caniuse.com/?search=animation-range
                     <ins>7</ins>自作PC（パソコン）とは、<a onclick="partslist()" style="color: #ff5283"><u>CPUやメモリ、マザーボード、<br>
                             グラフィックカードなど<img style="vertical-align: middle;"
                                 src="https://daihachi10.github.io/program/16/images/link.webp"
-                                height="15px" alt="リンク"></u></a>を自分で選んで組み立てるパソコンです。
+                                height="15px"></u></a>を自分で選んで組み立てるパソコンです。
                 </p>
                 <p class="Ttext">
                     <ins>7</ins><br><br>自作PCのメリットは、自分の希望に沿ったパソコンを作れる、<br>
@@ -330,17 +382,17 @@ https://caniuse.com/?search=animation-range
         <div class="toumeibox">
             <img class="safari" src="https://daihachi10.github.io/program/16/images/macui/safari.svg" alt="MacUI">
             <div class=" movie" id="4">
-
                 <h2><span class="text a1">DETAILED</span>
                     <span class="text a2">CPU</span>
                     <span class="text a3">3DVCACHE</span>
                     <span class="text a4">MOVIE</span>
                 </h2>
-
                 <a onclick="youtubeHide()">
+                    <!-- <img src="https://daihachi10.github.io/program/16/images/samune.jpg" alt="Youtube" srcset=""
+                    class="samune"> -->
+
                     <div class="samune"></div>
                 </a>
-
                 <p class="Ttext">RyzenCPU 3DVcacheについて詳しい解説</p>
             </div>
 
@@ -368,6 +420,8 @@ https://caniuse.com/?search=animation-range
                     <span class="text a1">HOW</span>
                     <span class="text a2">TO</span>
                     <span class="text a3">BUILD</span>
+                    <!-- <span class="text a2">PC</span>
+                <span class="text a3">PICTURE</span> -->
                 </h2>
 
                 <iframe src="https://daihachi10.github.io/program/16/iframe/" frameborder="0"></iframe>
@@ -501,6 +555,8 @@ https://caniuse.com/?search=animation-range
 
     </footer>
     <!-- footerここまで -->
+
+    <!--    loading-->
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@100..900&display=swap');

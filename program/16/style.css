@@ -7,9 +7,6 @@
 
     --transition-duration: 1s;
 
-    /*--bg-color-light-header: #fff;*/
-    /*--bg-color-dark-header: #202124;*/
-
     --bg-color-light-header: rgba(255, 255, 255, 1);
     --bg-color-dark-header: rgba(32, 33, 36, 1);
 

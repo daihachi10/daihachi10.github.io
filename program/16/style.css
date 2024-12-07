@@ -44,22 +44,26 @@
 .header-light,
 .recommended-bottom-light,
 .macdock-dark,
+.light-item,
 
 body.dark .dark-firstvideo,
 body.dark .header-dark,
 body.dark .recommended-bottom-dark,
-body.dark .macdock-light {
+body.dark .macdock-light,
+.dark-item{
     display:block;
 }
 .dark-firstvideo,
 .header-dark,
 .recommended-bottom-dark,
 .macdock-light,
+.dark-item,
 
 body.dark .light-firstvideo,
 body.dark .header-light,
 body.dark .recommended-bottom-light,
-body.dark .macdock-dark{
+body.dark .macdock-dark,
+.light-item {
     display: none;
 }
 

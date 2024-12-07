@@ -27,7 +27,9 @@
     --bg-color-dark-recommended: #202124;
 
     --bg-color-light-toumeibox: rgba(255, 255, 255, 0.9);
-    --bg-color-dark-toumeibox: rgba(0, 0, 0, 0.3);
+    --bg-color-dark-toumeibox: rgba(32, 33, 36, 0.5);
+
+
 }
 
 /*defolt dark color #1a1a1a*/
@@ -637,6 +639,15 @@ body.dark .leadbox {
     font-size: 14px;
     /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+    box-shadow:
+            2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+            12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+            100px 100px 80px rgba(0, 0, 0, 0.07)
+;
 }
 
 /* .link-button:hover {
@@ -1583,10 +1594,20 @@ video {
     margin-bottom: 50px;
     background-color: var(--bg-color-light-toumeibox);
     transition: background-color var(--transition-duration), color var(--transition-duration);
+
+    box-shadow:
+            2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+            6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+            12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+            22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+            41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+            100px 100px 80px rgba(0, 0, 0, 0.07)
+;
 }
 
 body.dark .toumeibox {
     background-color: var(--bg-color-dark-toumeibox);
+
 }
 
 .safari {
@@ -1600,6 +1621,7 @@ body.dark .toumeibox {
     text-align:center;
     /*height: 90vh;*/
     /*overflow-y: scroll;*/
+
 }
 
 .macdock {
@@ -1610,6 +1632,8 @@ body.dark .toumeibox {
     position: sticky;
     bottom: 10px;
     z-index: 250;
+
+
 }
 
 

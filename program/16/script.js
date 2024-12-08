@@ -206,15 +206,15 @@ $(function () {
 })
 
 //テキスト入力
-$(function () {
-    $(".Ttext").t({
-        speed: 30,
-        // speed_vary: true,//人間
-        blink_perm: false, //常に点滅しない
-        caret: "",
-        pause_on_click: true,
-    })
-})
+// $(function () {
+//     $(".Ttext").t({
+//         speed: 30,
+//         // speed_vary: true,//人間
+//         blink_perm: false, //常に点滅しない
+//         caret: "",
+//         pause_on_click: true,
+//     })
+// })
 
 // $('.Ttext').t('pause'[true])
 // subdirectory_arrow_rightshorthand: $('.Ttext').p([true])

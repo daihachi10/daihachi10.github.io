@@ -167,7 +167,7 @@ body.dark #animated-header {
 }
 
 .header-inner {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     height: 110px;
     margin-left: auto;
     margin-right: auto;
@@ -188,7 +188,7 @@ body.dark .header-inner {
 }
 
 #animation-header-inner {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     height: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -560,7 +560,7 @@ img {
 
 .first-view-text {
     width: 100%;
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin-left: auto;
     margin-right: auto;
     padding-left: 40px;
@@ -576,7 +576,7 @@ img {
 }
 
 .lead {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 60px auto;
 }
 
@@ -611,18 +611,6 @@ body.dark .leadbox {
     text-align: center;
     padding-bottom: 50px;
 }
-
-.lead h2::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 3px;
-    background-color: #000000;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 
 .link-button-area {
     text-align: center;
@@ -704,17 +692,6 @@ body.dark .recommended {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
-}
-
-.recommended h2::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 3px;
-    background-color: #000000;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .item-image {
@@ -852,25 +829,25 @@ https://caniuse.com/?search=animation-range
         scale: 1;
     }
 }
-
-.lead h2,
-.lead p,
-.recommended h2,
-.recommended ul,
-    /* .movie, */
-.movie h2,
-.movie iframe,
-.movie p,
-.picture h2,
-.picture p,
-#image-slider,
-.jisaku h2,
-.jisaku iframe,
-.jisaku p {
-    animation: scroll-anim linear;
-    animation-timeline: view();
-    animation-range: entry 0% contain 20%;
-}
+/*ページアニメーション*/
+/*.lead h2,*/
+/*.lead p,*/
+/*.recommended h2,*/
+/*.recommended ul,*/
+/*    !* .movie, *!*/
+/*.movie h2,*/
+/*.movie iframe,*/
+/*.movie p,*/
+/*.picture h2,*/
+/*.picture p,*/
+/*#image-slider,*/
+/*.jisaku h2,*/
+/*.jisaku iframe,*/
+/*.jisaku p {*/
+/*    animation: scroll-anim linear;*/
+/*    animation-timeline: view();*/
+/*    animation-range: entry 0% contain 20%;*/
+/*}*/
 
 /*Youtube動画*/
 .movie,
@@ -895,6 +872,8 @@ https://caniuse.com/?search=animation-range
     text-align: center;
 }
 
+.lead h2::after,
+.recommended h2::after,
 .movie h2::after,
 .picture h2::after,
 .jisaku h2::after {
@@ -902,10 +881,19 @@ https://caniuse.com/?search=animation-range
     display: block;
     width: 36px;
     height: 3px;
-    background-color: #000000;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+    background-color: #000;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+body.dark .lead h2::after,
+body.dark .recommended h2::after,
+body.dark .movie h2::after,
+body.dark .picture h2::after,
+body.dark .jisaku h2::after {
+    background-color: #fff;
 }
 
 .movie img,

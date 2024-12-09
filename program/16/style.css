@@ -246,6 +246,41 @@ body.dark .footer {
     background-color: var(--bg-color-dark-header);
 }
 
+.otherbox {
+    display: none;
+}
+
+.otherdisplay {
+    z-index: 1000;
+    position: fixed;
+    right: 80px;
+    top: 130px;
+    width: 90px;
+    height: 80px;
+    border-radius: 10px;
+    background-color: #006bd5;
+}
+
+
+.othericon {
+    fill:#000;
+    transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
+}
+
+body.dark .othericon {
+    fill:#fff;
+}
+
+.othernav {
+    text-align: center;
+}
+
+.otherli {
+    padding-top: 10px;
+}
+
+
+
 .footer-logo {
     font-size: 70px;
     font-weight: bold;

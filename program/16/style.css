@@ -251,16 +251,21 @@ body.dark .footer {
 }
 
 .otherdisplay {
+    display: block;
     z-index: 1000;
     position: fixed;
     right: 80px;
     top: 130px;
     width: 90px;
-    height: 80px;
-    border-radius: 10px;
-    background-color: #006bd5;
+    height: 120px;
+    border-radius: 5px;
+    background-color: var(--bg-color-light-header);
+    transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
 }
 
+body.dark .otherdisplay {
+    background-color: var(--bg-color-dark-header);
+}
 
 .othericon {
     fill:#000;
@@ -273,10 +278,11 @@ body.dark .othericon {
 
 .othernav {
     text-align: center;
+    font-weight: bold;
 }
 
-.otherli {
-    padding-top: 10px;
+.other li {
+    padding-top: 14px;
 }
 
 

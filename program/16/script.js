@@ -335,3 +335,10 @@ function theme() {
 //ダブルタップで拡大しない
 document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
 
+
+//other表示
+const otherboxid = document.getElementById('otherbox');
+function other() {
+    otherboxid.classList.toggle('otherdisplay');
+    console.log("otherbox")
+}

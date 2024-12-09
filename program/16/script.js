@@ -248,17 +248,23 @@ function addScrollAnimation(className) {
 addScrollAnimation('.text');
 addScrollAnimation('.2text');
 
-
+//音再生するかどうか
+let isSound = false;
+function sound() {
+    isSound = !isSound; //???
+}
 
 const click = new Audio('https://daihachi10.github.io/program/16/click.mp3');
 
 // 音を再生
 
 document.addEventListener('click', function (event) {
-    console.log("click")
+    // console.log("click")
     // clickSound.play();
-    click.play();
-
+    notOther();
+    if (isSound) {
+        click.play();
+    }
 });
 
 window.addEventListener('load', function () {
@@ -339,6 +345,12 @@ document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passi
 //other表示
 const otherboxid = document.getElementById('otherbox');
 function other() {
-    otherboxid.classList.toggle('otherdisplay');
-    console.log("otherbox")
+
+    setTimeout(function(){
+        otherboxid.classList.toggle('otherdisplay');
+    },1);
+}
+
+function notOther() {
+    otherboxid.classList.remove('otherdisplay');
 }

@@ -46,20 +46,20 @@ https://caniuse.com/?search=animation-range
 <body class="light">
 
 <!--読み込み中-->
-<!--<div id="loading">-->
+<div id="loading">
 
-<!--    <div id="loadings" class="loading-overlay">-->
-<!--        <div class="loading-animation">-->
-<!--            <div class="bar purple"></div>-->
-<!--            <div class="bar cyan"></div>-->
-<!--            <div class="bar green"></div>-->
-<!--            <div class="bar yellow"></div>-->
-<!--            <div class="bar pink"></div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; <div class="spinner"></div>-->
-<!--    <p>読み込み中...</p> &ndash;&gt;-->
-<!--</div>-->
+    <div id="loadings" class="loading-overlay">
+        <div class="loading-animation">
+            <div class="bar purple"></div>
+            <div class="bar cyan"></div>
+            <div class="bar green"></div>
+            <div class="bar yellow"></div>
+            <div class="bar pink"></div>
+        </div>
+    </div>
+    <!-- <div class="spinner"></div>
+    <p>読み込み中...</p> -->
+</div>
 
 <div id="firstvideo">
     <video class="light-item" width="100%" autoplay muted playsinline disablepictureinpicture>
@@ -147,6 +147,7 @@ https://caniuse.com/?search=animation-range
     <nav class="othernav">
         <ul class="other">
             <li style="padding-top: 140px"><a href="#6" onclick="notOther()">PICTURE</a></li>
+            <li><a href="">RECOMMENDED STORES</a></li>
             <li class="light-item otherli"><a onclick="theme();notOther()">DARK</a></li>
             <li class="dark-item otherli"><a onclick="theme();notOther()">LIGHT</a></li>
             <li><a onclick="sound();notOther()">SOUND</a></li>
@@ -501,14 +502,14 @@ https://caniuse.com/?search=animation-range
             </h2>
 
             <p class="Ttext">
-                自作PC（パソコン）とは、<a href="#3" style="color: #ff5283"><u>CPUやメモリ、マザーボード、<br>
-                グラフィックカードなど<img style="vertical-align: middle;"
+                自作PC（パソコン）とは、パーツ（<a href="#3" style="color: #ff5283"><u>CPUやメモリ、マザーボード、<br>
+                グラフィックボードなど<img style="vertical-align: middle;"
                                            src="https://daihachi10.github.io/program/16/images/link.webp" height="15px"
-                                           alt="リンク"></u></a>を自分で選んで組み立てるパソコンです。
+                                           alt="リンク"></u></a>）を自分で選んで組み立てるパソコンです。
             </p>
             <p class="Ttext" style="margin-top: 50px">
                 自作PCのメリットは、自分の希望に沿ったパソコンを作れる、<br>
-                パーツの組み換えができる、メンテナンスを自分でできるなどがあります。
+                パーツの組み換えができる、コストパフォーマンスがよいなどがあります。
                 <picture>
                     <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f600/512.webp"
                             type="image/webp">
@@ -530,6 +531,7 @@ https://caniuse.com/?search=animation-range
 
         </div>
     </div>
+
 
     <!--  パーツリスト  -->
     <div class="recommended" id="3">
@@ -636,7 +638,8 @@ https://caniuse.com/?search=animation-range
         </div>
     </div>
 
-
+    <!-- おすすめのショップ   -->
+    <!--
     <div class="recommended">
         <h2>
             <span class="text a1">RECOMMENDED</span>
@@ -644,7 +647,6 @@ https://caniuse.com/?search=animation-range
         </h2>
         <div class="js-scrollable">
             <ul class="item-list">
-                <!-- 1つここから -->
                 <li class="Ttext">
                     <a href="https://daihachi10.github.io/program/16/link?url=https://shop.tsukumo.co.jp/parts"
                        target="_blank">
@@ -654,7 +656,6 @@ https://caniuse.com/?search=animation-range
                         </dl>
                     </a>
                 </li>
-                <!-- 1つここまで -->
 
                 <li class="Ttext">
                     <a href="https://daihachi10.github.io/program/16/link?url=https://www.amazon.co.jp/s?k=PCパーツ"
@@ -668,8 +669,7 @@ https://caniuse.com/?search=animation-range
             </ul>
         </div>
     </div>
-
-
+    -->
 
     <!--  なみなみ  -->
     <svg class="light-item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 152">
@@ -702,7 +702,7 @@ https://caniuse.com/?search=animation-range
             </h2>
 
             <a onclick="youtubeHide()">
-                <div class="samune"></div>
+                <div class="samune shadow"></div>
             </a>
 
             <p class="Ttext">RyzenCPU 3DVcacheについて詳しい解説</p>
@@ -736,12 +736,12 @@ https://caniuse.com/?search=animation-range
             </h2>
 
             <div class="dark-item">
-                <iframe src="https://daihachi10.github.io/program/16/iframe/index.html?theme=dark"
+                <iframe class="shadow" src="https://daihachi10.github.io/program/16/iframe/index.html?theme=dark"
                         frameborder="0"></iframe>
             </div>
 
             <div class="light-item">
-                <iframe src="https://daihachi10.github.io/program/16/iframe/index.html?theme=light"
+                <iframe class="shadow" src="https://daihachi10.github.io/program/16/iframe/index.html?theme=light"
                         frameborder="0"></iframe>
             </div>
             <p class="Ttext">簡単な組み立て方です。</p>
@@ -766,71 +766,71 @@ https://caniuse.com/?search=animation-range
             <div id="image-slider" class="splide">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-01.webp"
                                                        alt="Image 1" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-02.webp"
                                                        alt="Image 2" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-04.webp"
                                                        alt="Image 4" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-05.webp"
                                                        alt="Image 5" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-06.webp"
                                                        alt="Image 6" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-07.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program\16\images\yoko\image-12.webp"
                                                        alt="Image 8" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-10.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-14.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-15.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-16.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-17.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-18.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-19.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-20.webp"
                                                        alt="Image 7" width="650" height="426.66" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-21.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
-                        <li class="splide__slide"><img class="splide-image"
+                        <li class="splide__slide"><img class="splide-image shadow"
                                                        src="https://daihachi10.github.io/program/16/images/yoko/image-22.webp"
                                                        alt="Image 7" width="650" loading="lazy">
                         </li>
@@ -952,8 +952,8 @@ https://caniuse.com/?search=animation-range
 <script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
 
 <!-- p5.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>
-<script src="https://cdnjslllll.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>-->
+<!--<script src="https://cdnjslllll.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>-->
 
 <!-- driver.js -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>

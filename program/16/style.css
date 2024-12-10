@@ -87,7 +87,16 @@ body {
 
     color: var(--text-color-light);
     transition: background-color var(--transition-duration), color var(--transition-duration);
+}
 
+/* リアルな影 */
+.shadow {
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 
@@ -273,8 +282,8 @@ body.dark .footer {
     position: fixed;
     right: 80px;
     top: -5px;
-    width: 160px;
-    height: 430px;
+    width: 240px;
+    height: 500px;
     border-radius: 5px;
     background-color: var(--bg-color-light-header);
     transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
@@ -945,6 +954,13 @@ https://caniuse.com/?search=animation-range
     margin-right: auto;
     background-color: #000;
     transition: background-color var(--transition-duration), color var(--transition-duration);
+
+    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 body.dark .lead h2::after,
@@ -1217,7 +1233,6 @@ span.appear {
 #firstvideo {
     display: grid;
     place-items: center;
-    /* background-color: rgba(40, 40, 40, 0.7); */
     color: #fff;
     position: fixed;
     inset: 0;

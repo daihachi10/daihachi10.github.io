@@ -40,6 +40,14 @@
 /*defolt dark color #1a1a1a*/
 /*google dark color #202124*/
 
+/*
+ライト・ダークで隠すやつ
+
+.light-item -> ライトモードのときに表示
+.dark-item -> ダークモードのときに表示
+
+*/
+
 .light-item, body.dark .dark-item {
     display: block;
 }
@@ -48,12 +56,14 @@
     display: none;
 }
 
-/* リセット */
+
+/* 文字選択したときの色 */
 ::selection {
     color: #fff;
     background-color: var(--pink-color);
 }
 
+/* リセット */
 *,
 ::before,
 ::after {
@@ -107,19 +117,22 @@ body.dark {
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
+/* ダークモードのときのスクロールバー */
 body.dark ::-webkit-scrollbar-track {
     background-color: var(--bg-color-dark-scrollbar);
 }
 
+/* aタグの色と下線を消す */
 a {
     color: inherit;
     text-decoration: none;
 }
 
 a:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto; /* リンクのカーソル */
 }
 
+/* リストの点消す */
 ul,
 ol {
     list-style: none;
@@ -139,6 +152,7 @@ header {
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
+/* ダークモードのときのヘッダー */
 body.dark #default-header {
     background-color: var(--bg-color-dark-header);
 }
@@ -152,6 +166,7 @@ body.dark #default-header {
     pointer-events: none;
 }
 
+/* スクロールするとでてくるヘッダー */
 #animated-header {
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
@@ -159,6 +174,7 @@ body.dark #default-header {
     background-color: var(--bg-color-light-animation-header);
 }
 
+/* ダークモードのときのスクロールするとでてくるヘッダー */
 body.dark #animated-header {
     background-color: var(--bg-color-dark-animation-header);
 }
@@ -167,6 +183,7 @@ body.dark #animated-header {
     transform: translateY(0);
 }
 
+/* ヘッダーの中の文字 */
 .header-inner {
     /*max-width: 1200px;*/
     height: 110px;
@@ -225,10 +242,6 @@ body.dark .header-inner {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
-body.dark .recommended {
-    background-color: var(--bg-color-dark-recommended);
-}
-
 
 /* フッター */
 .footer {
@@ -243,14 +256,17 @@ body.dark .recommended {
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
+/* ダークモードのときのfooter */
 body.dark .footer {
     background-color: var(--bg-color-dark-header);
 }
 
+/* デフォルトでotherboxを隠す */
 .otherbox {
     display: none;
 }
 
+/* otherbox表示 */
 .otherdisplay {
     display: block;
     z-index: 1000;
@@ -268,6 +284,7 @@ body.dark .otherdisplay {
     background-color: var(--bg-color-dark-header);
 }
 
+/*ヘッダーのotherの文字の右の矢印*/
 .othericon {
     fill: var(--header-footer-color);
     transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
@@ -321,6 +338,7 @@ body.dark .other li {
     text-align: center;
 }
 
+/*t.jsの中央の線を消す*/
 del {
     text-decoration: none;
 }
@@ -425,6 +443,7 @@ img {
     }
 } */
 
+/* スマホ・タブレット */
 @media (max-width: 1000px) {
     .site-menu ul {
         display: block;
@@ -601,7 +620,7 @@ img {
     }
 }
 
-
+/* first-view-text box */
 .first-view-text {
     width: 100%;
     /*max-width: 1200px;*/
@@ -632,6 +651,7 @@ lead a {
     cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
 }
 
+/* About */
 .leadbox {
     /*background-color: #fafafa;*/
     padding-top: 40px;
@@ -672,6 +692,7 @@ body.dark .leadbox {
     /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
+    /* 影 */
     box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
@@ -713,7 +734,7 @@ body.dark .leadbox {
     }
 }
 
-
+/* パーツリスト */
 .recommended {
     padding-top: 30px;
     /* background-color: #fafafa; */
@@ -726,7 +747,6 @@ body.dark .leadbox {
 body.dark .recommended {
     background-color: var(--bg-color-dark-recommended);
 }
-
 
 .recommended h2 {
     font-size: 22px;
@@ -802,6 +822,7 @@ body.dark .recommended {
 }
 
 
+/* TOPに戻る */
 .back-to-top {
     /* display: none; */
 
@@ -866,25 +887,25 @@ https://caniuse.com/?search=animation-range
     }
 }
 
-/*ページアニメーション*/
-/*.lead h2,*/
-/*.lead p,*/
-/*.recommended h2,*/
-/*.recommended ul,*/
-/*    !* .movie, *!*/
-/*.movie h2,*/
-/*.movie iframe,*/
-/*.movie p,*/
-/*.picture h2,*/
-/*.picture p,*/
-/*#image-slider,*/
-/*.jisaku h2,*/
-/*.jisaku iframe,*/
-/*.jisaku p {*/
-/*    animation: scroll-anim linear;*/
-/*    animation-timeline: view();*/
-/*    animation-range: entry 0% contain 20%;*/
-/*}*/
+/*ページアニメーション
+.lead h2,
+.lead p,
+.recommended h2,
+.recommended ul,
+.movie,
+.movie h2,
+.movie iframe,
+.movie p,
+.picture h2,
+.picture p,
+#image-slider,
+.jisaku h2,
+.jisaku iframe,
+.jisaku p {
+    animation: scroll-anim linear;
+    animation-timeline: view();
+    animation-range: entry 0% contain 20%;
+}*/
 
 /*Youtube動画*/
 .movie,
@@ -909,6 +930,7 @@ https://caniuse.com/?search=animation-range
     text-align: center;
 }
 
+/* h2の下の線 */
 .lead h2::after,
 .recommended h2::after,
 .movie h2::after,
@@ -993,6 +1015,7 @@ body.dark .jisaku h2::after {
     left: 50%;
 }
 
+/* スマホ・タブレット */
 @media (max-width: 1000px) {
     .movie {
         width: 500px;
@@ -1111,6 +1134,7 @@ body.dark .jisaku h2::after {
 }
 
 
+/* アニメーション */
 .appear {
     transform-origin: center top;
     animation: show 1s both;
@@ -1403,6 +1427,7 @@ body.dark #loadings {
     }
 }
 
+/* loading */
 @keyframes l17 {
     0% {
         text-shadow: calc(0 * var(--w)) -1.2em var(--loading-text-color),
@@ -1856,7 +1881,7 @@ body.dark .logo-slider {
     animation-play-state: paused;
 }
 
-
+/* スマホ・タブレット */
 @media (max-width: 1000px) {
     .first-view {
         height: calc(100vh - 50vh);

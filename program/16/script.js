@@ -267,9 +267,9 @@ document.addEventListener('click', function (event) {
     }
 });
 
+    var $menu = document.querySelector('.header-site-menu');
 window.addEventListener('load', function () {
     var $button = document.querySelector('.toggle-menu-button');
-    var $menu = document.querySelector('.header-site-menu');
     $button.addEventListener('click', function () {
         if ($menu.classList.contains('is-show')) {
             $menu.classList.remove('is-show');
@@ -278,6 +278,8 @@ window.addEventListener('load', function () {
             $menu.classList.add('is-show');
         }
     });
+
+
 });
 
 
@@ -353,4 +355,9 @@ function other() {
 
 function notOther() {
     otherboxid.classList.remove('otherdisplay');
+}
+
+const siteMenu = document.getElementById('header-site-menu');
+function siteMenuTojiru() {
+    siteMenu.classList.remove('is-show');
 }

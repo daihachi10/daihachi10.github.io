@@ -273,8 +273,8 @@ body.dark .footer {
     position: fixed;
     right: 80px;
     top: -5px;
-    width: 110px;
-    height: 350px;
+    width: 160px;
+    height: 430px;
     border-radius: 5px;
     background-color: var(--bg-color-light-header);
     transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);

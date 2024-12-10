@@ -282,7 +282,7 @@ body.dark .footer {
     position: fixed;
     right: 80px;
     top: -5px;
-    width: 240px;
+    width: 350px;
     height: 500px;
     border-radius: 5px;
     background-color: var(--bg-color-light-header);

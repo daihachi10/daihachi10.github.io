@@ -261,7 +261,7 @@ const click = new Audio('https://daihachi10.github.io/program/16/click.mp3');
 document.addEventListener('click', function (event) {
     // console.log("click")
     // clickSound.play();
-    notOther();
+    // notOther();
     if (isSound) {
         click.play();
     }

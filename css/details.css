@@ -85,6 +85,7 @@ body {
 
 ul .now {
     color: #ff5283;
+    font-weight: bold;
     /* color: #1571c2; */
 }
 
@@ -264,6 +265,20 @@ ul li {
 
 .footer {
     margin-top: 100px;
+}
+
+.hot,
+.game{
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.hot {
+    color: #ff0000;
+}
+
+.game {
+    color: rgba(255, 0, 0, 0.7);
 }
 
 

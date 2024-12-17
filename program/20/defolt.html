@@ -74,7 +74,7 @@
                 <h2>TYPING</h2>
                 <div class="item-area">
                     <div id="p5-canvas-container">
-                        <iframe src="https://daihachi10.github.io/program/20/" frameborder="0"></iframe>
+                        <iframe src="https://daihachi10.github.io/program/20/" frameborder="0" style="height: 600px;"></iframe>
                     </div>
                     <div class="about-item">
                         <p class="item-text">
@@ -168,6 +168,16 @@
     <script src="./js/noscroll.js"></script>
 
     <script src="./js/popup.js"></script>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+  // スペースキー (キーコード: 32) または 上矢印キー (キーコード: 38)
+  if (event.key === " " || event.key === "ArrowUp") {
+    event.preventDefault(); // デフォルトの動作を無効化
+  }
+});
+
+    </script>
 </body>
 
 </html>

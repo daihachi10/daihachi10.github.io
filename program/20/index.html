@@ -1,66 +1,175 @@
 <!DOCTYPE html>
-<html lang="JP">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tetris</title>
-<style>
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: #fff !important;
-        margin: 0;
-    }
+<html>
 
-    canvas {
-        border: 1px solid #fff;
-        margin-bottom: 10px;
-    }
-
-    #controls {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    button {
-        width: 50px;
-        height: 50px;
-
-        /* padding: 10px 15px; */
-        /* font-size: 26px; */
-        cursor: pointer;
-        border-style: none;
-    }
-</style>
+<head>
+    <meta charset="UTF-8">
+    <title>PROGRAM | daihachi official website</title>
+    <meta name="description" content="daihachiのプログラムがプレイができるサイトです。">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <script src="../../js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet">
+    <link href="../../css/details.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="../../css/loading.css" rel="stylesheet">
+    <script src="../../js/loading.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap');
+    </style>
 
 
-<canvas id="tetris" width="240" height="400"></canvas>
+</head>
 
-<div id="controls">
-    <button onclick="playerMove(-1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-        </svg></button>
-    <button onclick="playerRotate(1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path
-                d="M204-318q-22-38-33-78t-11-82q0-134 93-228t227-94h7l-64-64 56-56 160 160-160 160-56-56 64-64h-7q-100 0-170 70.5T240-478q0 26 6 51t18 49l-60 60ZM481-40 321-200l160-160 56 56-64 64h7q100 0 170-70.5T720-482q0-26-6-51t-18-49l60-60q22 38 33 78t11 82q0 134-93 228t-227 94h-7l64 64-56 56Z" />
-        </svg></button>
-    <button onclick="playerMove(1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
-        </svg></button>
-    <button onclick="playerDrop()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" />
-        </svg></button>
-    <button onclick="playerDropInstant()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z" />
-        </svg></button>
-</div>
+<body>
 
-<script src="script.js"></script>
+    <div id="loading">
+
+        <div id="loadings" class="loading-overlay">
+            <div class="loading-animation">
+                <div class="bar purple"></div>
+                <div class="bar cyan"></div>
+                <div class="bar green"></div>
+                <div class="bar yellow"></div>
+                <div class="bar pink"></div>
+            </div>
+        </div>
+        <!-- <div class="spinner"></div>
+        <p>読み込み中...</p> -->
+    </div>
+
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="../../index.html">
+                <p>daihachi</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <li><a href="../../install.html">INSTALL APP</a></li>
+                        <li><a href="../../program.html">MY PROGRAM</a></li>
+                        <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+                                target="_blank">ENGLISH</a></li>
+                        <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
+                                target="_blank">HIRAGANA</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="title">
+            <h1>TETRIS</h1>
+            <p>テトリス</p>
+        </div>
+        <div class="shop-contents">
+            <div class="shop-item">
+                <h2>TYPING</h2>
+                <div class="item-area">
+                    <div id="p5-canvas-container">
+                        <iframe src="https://daihachi10.github.io/program/20/iframe.html" frameborder="0" style="height: 600px;"></iframe>
+                    </div>
+                    <div class="about-item">
+                        <p class="item-text">シンプルなテトリス風のゲームです。
+                        </p><a href="https://tetris.com/" target="blank">公式サイト</a>
+                        <p class="item-text">
+                        </p>
+                        <a href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/15/js"
+                            target="_blank">VIEW
+                            CODE</a>
+                    </div>
+                </div>
+                <div class="item-group recommended">
+                    <h2>RECOMMENDED</h2>
+                    <ul class="item-list">
+                        <li>
+                            <a href="../01/index.html">
+                                <img src="../../images/program-img/img-item01-02.webp" alt="パスワード生成機">
+                                <dl>
+                                    <dt>タイピング</dt>
+                                    <dd>１文字づつの入力するスピードがどんどん早くなるタイピングです。入力した数によってランクが付きます。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../04/index.html">
+                                <img src="../../images/program-img/img-item05-02.webp" alt="絵文字生成機">
+                                <dl>
+                                    <dt>絵文字生成機</dt>
+                                    <dd>絵文字生成機です。ランダムで100行絵文字を生成します。友達にLINE&reg;を送信するときに使えるかもしれませんね。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../02/index.html">
+                                <img src="../../images/program-img/img-item02-02.webp" alt="パスワード生成機">
+                                <dl>
+                                    <dt>パスワード生成機</dt>
+                                    <dd>大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <aside class="shop-menu">
+                <div class="shop-menu-inner">
+                    <h2>PROGRAM LIST</h2>
+                    <ul>
+                        <li><a href="../13/index.html">BATTLE ROYAL</a></li>
+                        <li><a href="../03/index.html">BALL PICKING GAME</a></li>
+                        <li class="now"><a href="../01/index.html">TETRIS</a></li>
+                        <li><a href="../02/index.html">PASSWORD GENERATOR</a></li>
+                        <li><a href="../04/index.html">EMOJI GENERATOR</a></li>
+                        <li><a href="../05/index.html">QR CODE GENERATOR</a></li>
+                        <li><a href="../11/index.html">P5 ANIMATION 01</a></li>
+                        <li><a href="../10/index.html">P5 ANIMATION 02</a></li>
+                        <li><a href="../12/index.html">P5 ANIMATION 03</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer">
+        <nav class="site-menu">
+            <ul>
+                <li><a href="../../install.html">INSTALL APP</a></li>
+                <li><a href="../../program.html">MY PROGRAM</a></li>
+                <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+                        target="_blank">ENGLISH</a></li>
+                <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a>
+                </li>
+            </ul>
+        </nav>
+        <a class="footer-logo" href="../../index.html">
+            <p>daihachi</p>
+        </a>
+        <p class="copyright"><small>&copy;daihachi</small></p>
+    </footer>
+    <!-- footerここまで -->
+    <script src="./js/noscroll.js"></script>
+
+    <script src="./js/popup.js"></script>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+  // スペースキー (キーコード: 32) または 上矢印キー (キーコード: 38)
+  if (event.key === " " || event.key === "ArrowUp" || event.key === "ArrowDown") {
+    event.preventDefault(); // デフォルトの動作を無効化
+  }
+});
+
+    </script>
+</body>
+
+</html>

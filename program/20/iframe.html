@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="JP">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetris</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #fff !important;
+        margin: 0;
+    }
+
+    canvas {
+        border: 1px solid #fff;
+        margin-bottom: 10px;
+    }
+
+    #controls {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+
+        /* padding: 10px 15px; */
+        /* font-size: 26px; */
+        cursor: pointer;
+        border-style: none;
+    }
+</style>
+
+
+<canvas id="tetris" width="240" height="400"></canvas>
+
+<div id="controls">
+    <button onclick="playerMove(-1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#000">
+            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+        </svg></button>
+    <button onclick="playerRotate(1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#000">
+            <path
+                d="M204-318q-22-38-33-78t-11-82q0-134 93-228t227-94h7l-64-64 56-56 160 160-160 160-56-56 64-64h-7q-100 0-170 70.5T240-478q0 26 6 51t18 49l-60 60ZM481-40 321-200l160-160 56 56-64 64h7q100 0 170-70.5T720-482q0-26-6-51t-18-49l60-60q22 38 33 78t11 82q0 134-93 228t-227 94h-7l64 64-56 56Z" />
+        </svg></button>
+    <button onclick="playerMove(1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#000">
+            <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
+        </svg></button>
+    <button onclick="playerDrop()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#000">
+            <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" />
+        </svg></button>
+    <button onclick="playerDropInstant()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+            width="24px" fill="#000">
+            <path d="M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z" />
+        </svg></button>
+</div>
+
+<script src="script.js"></script>

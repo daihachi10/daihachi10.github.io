@@ -14,7 +14,7 @@ body {
 
 .first-view {
     height: calc(100vh - 110px);
-    background-image: url(../images/index/bg-main-02.webp);
+    /* background-image: url(../images/index/bg-main-02.webp); */
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -241,4 +241,52 @@ body {
         width: 220px;
         margin-left: 30px;
     }
+}
+
+
+.first-view-video-iframe {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    width: 177.77777778vh;
+    height: 56.25vw;
+    min-height: 100%;
+    min-width: 100%;
+    filter: brightness(85%);
+    filter: saturate(90%);
+}
+
+.first-view-video-area {
+    position: fixed;
+    z-index: -1;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dot-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1); /* 半透明の黒背景 */
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+    background-size: 4px 4px; /* 点の間隔を調整 */
+    pointer-events: none; /* ユーザーの操作を無効化 */
 }

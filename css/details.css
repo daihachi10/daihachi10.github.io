@@ -280,6 +280,11 @@ ul li {
 .game {
     color: rgba(255, 0, 0, 0.7);
 }
+.fire {
+    width: 13px !important;
+    height: 13px !important;
+    vertical-align: bottom;
+}
 
 
 

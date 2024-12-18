@@ -98,7 +98,7 @@ body {
 }
 
 .hot,
-.game{
+.game {
     padding-left: 3px;
     font-size: 10px;
     font-weight: bold;
@@ -112,7 +112,13 @@ body {
     color: rgba(255, 0, 0, 0.7);
 }
 
-@media (max-width:800px) {
+.fire {
+    width: 13px !important;
+    height: 13px !important;
+    vertical-align: bottom;
+}
+
+@media (max-width: 800px) {
     .item-list {
         margin-top: 45px;
         row-gap: 40px;

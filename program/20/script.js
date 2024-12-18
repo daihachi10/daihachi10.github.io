@@ -1,3 +1,4 @@
+
 // ダブルクリックを無効化する（モバイル操作時の誤作動防止）
 document.addEventListener("dblclick", function (e) {
     e.preventDefault();
@@ -11,7 +12,7 @@ const context = canvas.getContext('2d');
 const gameConfig = {
     blockSize: 20, // 1ブロックのサイズ（ピクセル）
     speed: 1000, // ブロックの落下速度（ミリ秒）
-    backgroundColor: 'rgb(40, 40, 40)', // 背景色
+    backgroundColor: '#fff', // 背景色
     gridColor: '#d6d6d6', // グリッドの線の色
     lineWidth: 0.1, // グリッドの線の太さ
     colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6', '#3e69b3', '#003f83'], // ブロックの色
@@ -121,19 +122,23 @@ function drawGrid() {
 
 // ゲーム画面全体を描画
 function draw() {
-    context.fillStyle = gameConfig.backgroundColor; // 背景色を設定
-    context.fillRect(0, 0, canvas.width, canvas.height); // 全体を塗りつぶす
-    drawGrid(); // グリッドを描画
-    drawMatrix(arena, { x: 0, y: 0 }); // アリーナを描画
-    drawMatrix(player.matrix, player.pos); // プレイヤーのブロックを描画
-    drawProjection();
-    if (player.pos.y === 0 && collide(arena, player)) { // ゲームオーバー判定
-        context.fillStyle = 'white';
-        context.font = '1.5em Arial';
-        context.fillText(`${gameConfig.gameOverText} ${player.score}`, 2, 10);
-        restartButton.style.display = 'block'; // リスタートボタンを表示
-    }
+
 }
+function start(){
+context.fillStyle = gameConfig.backgroundColor; // 背景色を設定
+context.fillRect(0, 0, canvas.width, canvas.height); // 全体を塗りつぶす
+drawGrid(); // グリッドを描画
+drawMatrix(arena, { x: 0, y: 0 }); // アリーナを描画
+drawMatrix(player.matrix, player.pos); // プレイヤーのブロックを描画
+drawProjection();
+if (player.pos.y === 0 && collide(arena, player)) { // ゲームオーバー判定
+    context.fillStyle = 'white';
+    context.font = '1.5em Arial';
+    context.fillText(`${gameConfig.gameOverText} ${player.score}`, 2, 10);
+    restartButton.style.display = 'block'; // リスタートボタンを表示
+}
+}
+
 
 function drawProjection() {
     const projectionPos = { ...player.pos }; // プレイヤー位置をコピー
@@ -143,7 +148,7 @@ function drawProjection() {
     projectionPos.y--; // 衝突位置の1つ上に調整
 
     // 半透明の白で補助線を描画
-    context.fillStyle = 'rgba(255, 255, 255, 0.3)'; // 半透明の白
+    context.fillStyle = 'rgba(0, 0, 0, 0.3)'; // 半透明の白
     player.matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {

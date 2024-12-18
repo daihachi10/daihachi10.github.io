@@ -1,4 +1,3 @@
-
 // ダブルクリックを無効化する（モバイル操作時の誤作動防止）
 document.addEventListener("dblclick", function (e) {
     e.preventDefault();
@@ -29,7 +28,7 @@ const arena = createMatrix(12, 20);
 
 // プレイヤーの初期データ
 const player = {
-    pos: { x: 0, y: 0 }, // プレイヤーの位置
+    pos: {x: 0, y: 0}, // プレイヤーの位置
     matrix: null, // 現在操作中のブロック
     score: 0, // スコア
 };
@@ -120,29 +119,39 @@ function drawGrid() {
     }
 }
 
+let start = false
+
+function gameStart() {
+    start = true;
+
+    const elements = document.querySelectorAll('.startbutton');
+    elements.forEach(element => {
+        element.classList.add('started');
+    });
+
+}
+
 // ゲーム画面全体を描画
 function draw() {
-
+    if (start) {
+        context.fillStyle = gameConfig.backgroundColor; // 背景色を設定
+        context.fillRect(0, 0, canvas.width, canvas.height); // 全体を塗りつぶす
+        drawGrid(); // グリッドを描画
+        drawMatrix(arena, {x: 0, y: 0}); // アリーナを描画
+        drawMatrix(player.matrix, player.pos); // プレイヤーのブロックを描画
+        drawProjection();
+        if (player.pos.y === 0 && collide(arena, player)) { // ゲームオーバー判定
+            context.fillStyle = 'white';
+            context.font = '1.5em Arial';
+            context.fillText(`${gameConfig.gameOverText} ${player.score}`, 2, 10);
+            restartButton.style.display = 'block'; // リスタートボタンを表示
+        }
+    }
 }
-function start(){
-context.fillStyle = gameConfig.backgroundColor; // 背景色を設定
-context.fillRect(0, 0, canvas.width, canvas.height); // 全体を塗りつぶす
-drawGrid(); // グリッドを描画
-drawMatrix(arena, { x: 0, y: 0 }); // アリーナを描画
-drawMatrix(player.matrix, player.pos); // プレイヤーのブロックを描画
-drawProjection();
-if (player.pos.y === 0 && collide(arena, player)) { // ゲームオーバー判定
-    context.fillStyle = 'white';
-    context.font = '1.5em Arial';
-    context.fillText(`${gameConfig.gameOverText} ${player.score}`, 2, 10);
-    restartButton.style.display = 'block'; // リスタートボタンを表示
-}
-}
-
 
 function drawProjection() {
-    const projectionPos = { ...player.pos }; // プレイヤー位置をコピー
-    while (!collide(arena, { ...player, pos: projectionPos })) {
+    const projectionPos = {...player.pos}; // プレイヤー位置をコピー
+    while (!collide(arena, {...player, pos: projectionPos})) {
         projectionPos.y++; // 衝突するまで落下位置を計算
     }
     projectionPos.y--; // 衝突位置の1つ上に調整
@@ -267,6 +276,7 @@ function arenaSweep() {
         ++y;
     }
 }
+
 let dropCounter = 0;
 let dropInterval = gameConfig.dropInterval;
 let lastTime = 0;
@@ -281,6 +291,7 @@ function update(time = 0) {
     draw();
     requestAnimationFrame(update);
 }
+
 document.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft') {
         playerMove(-1);
@@ -302,6 +313,7 @@ function restartGame() {
     playerReset();
     update();
 }
+
 playerReset();
 update();
 

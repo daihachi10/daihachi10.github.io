@@ -34,10 +34,24 @@
         cursor: pointer;
         border-style: none;
     }
+
+    .startbutton {
+        width: 200px;
+        height: 50px;
+        margin-bottom: 30px;
+        background-color: #ff5283;
+        border-radius: 25px;
+    }
+
+    .started {
+        display: none;
+    }
 </style>
 
 
 <canvas id="tetris" width="240" height="400"></canvas>
+
+<button class="startbutton" onclick="gameStart()">START</button>
 
 <div id="controls">
     <button onclick="playerMove(-1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"

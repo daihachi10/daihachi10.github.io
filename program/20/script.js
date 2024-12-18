@@ -150,13 +150,21 @@ function draw() {
     }
 }
 
-    document.addEventListener('keydown', (event) => {
-        // event.key を使用して ESC キーを判定
-        if (event.key === 'Escape') {
-            window.location.reload();
+document.addEventListener('keydown', (event) => {
+    // event.key を使用して ESC キーを判定
+    if (event.key === 'Escape') {
+        window.location.reload();
 
-        }
-    });
+    }
+});
+
+
+document.addEventListener('keydown', (event) => {
+    // event.key を使用して ESC キーを判定
+    if (event.key === 'Enter') {
+        gameStart();
+    }
+});
 
 function drawProjection() {
     const projectionPos = {...player.pos}; // プレイヤー位置をコピー

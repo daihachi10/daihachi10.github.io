@@ -301,7 +301,9 @@ let lastTime = 0;
 function update(time = 0) {
     const deltaTime = time - lastTime;
     lastTime = time;
-    dropCounter += deltaTime;
+    if (start) {
+        dropCounter += deltaTime;
+    }
     if (dropCounter > dropInterval) {
         playerDrop();
     }

@@ -1,4 +1,5 @@
 ﻿@charset "utf-8";
+@import url(defolt.css);
 
 ::selection {
     color: #fff;
@@ -83,7 +84,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #1571c2;
+    color: var(--header-footer-color);
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
 
@@ -122,7 +123,7 @@ img {
     }
 
     100% {
-        color: rgb(21, 113, 194);
+        color: var(--header-footer-color);
     }
 }
 
@@ -159,7 +160,7 @@ img {
 
 .footer {
     color: #ffffff;
-    background-color: #1571c2;
+    background-color: var(--header-footer-color);
     padding-top: 30px;
     padding-bottom: 15px;
     display: flex;

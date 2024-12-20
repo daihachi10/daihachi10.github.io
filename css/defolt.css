@@ -1,0 +1,13 @@
+﻿@charset "utf-8";
+
+:root {
+    /*--pink-color: #ff5283;          !*デフォルト*!*/
+    --pink-hover-color: #bf1948;    /*デフォルト*/
+    /*--header-footer-color: #3a5e98; !*デフォルト*!*/
+
+    --background-color:#fff;
+
+
+    --pink-color: #006f49;
+    --header-footer-color: #b7193a;
+}

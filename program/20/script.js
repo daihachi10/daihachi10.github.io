@@ -11,7 +11,8 @@ const context = canvas.getContext('2d');
 const gameConfig = {
     blockSize: 20, // 1ブロックのサイズ（ピクセル）
     speed: 1000, // ブロックの落下速度（ミリ秒）
-    backgroundColor: '#fff', // 背景色
+    backgroundColor: '#244785',
+    // backgroundColor: '#fff', // 背景色
     gridColor: '#d6d6d6', // グリッドの線の色
     lineWidth: 0.1, // グリッドの線の太さ
     // colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6', '#3e69b3', '#003f83'], // ブロックの色

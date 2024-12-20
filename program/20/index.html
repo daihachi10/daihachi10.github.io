@@ -101,7 +101,7 @@
             <h2>TETRIS</h2>
             <div class="item-area">
                 <div id="p5-canvas-container">
-                    <iframe src="iframe.html" frameborder="0" style="height: 470px;"></iframe>
+                    <iframe src="iframe.html" frameborder="0" style="height: 470px;" allowtransparency="true"></iframe>
                 </div>
                 <div class="about-item">
                     <p class="item-text">シンプルなテトリス風のゲームです。<br>ENTERキーまたはスタートボタンでスタート<br>ESCキーでリスタート
@@ -212,27 +212,9 @@
 
 <script src="./js/popup.js"></script>
 
+
+
 <script>
-    window.onload = function () {
-        window.addEventListener('keydown', keydownfunc, true);
-    }
-
-    var keydownfunc = function (event) {
-        var code = event.keyCode;
-        switch (code) {
-            case 32:
-            case 37: // ←
-            case 38: // ↑
-            case 39: // →
-            case 40: // ↓
-                event.preventDefault();
-                console.log(code);
-        }
-    }
-
-</script>
-<script>
-
     const canvas = document.getElementById('snowCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -241,21 +223,19 @@
 
     const snowflakes = [];
 
-    // 雪の結晶を表すクラス
     class Snowflake {
         constructor(x, y, radius, speed) {
             this.x = x;
             this.y = y;
             this.radius = radius;
             this.speed = speed;
-            this.wind = Math.random() * 1 - 0.5; // ランダムな風の効果
+            this.wind = Math.random() * 1 - 0.5;
         }
 
         update() {
             this.y += this.speed;
             this.x += this.wind;
 
-            // 下まで行ったら再配置
             if (this.y > canvas.height) {
                 this.y = -this.radius;
                 this.x = Math.random() * canvas.width;
@@ -271,18 +251,16 @@
         }
     }
 
-    // 雪の結晶を生成
     function createSnowflakes(count) {
         for (let i = 0; i < count; i++) {
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height;
-            const radius = Math.random() * 3 + 1; // 雪の大きさ
-            const speed = Math.random() * 2 + 0.5; // 落下速度
+            const radius = Math.random() * 3 + 1;
+            const speed = Math.random() * 2 + 0.5;
             snowflakes.push(new Snowflake(x, y, radius, speed));
         }
     }
 
-    // アニメーション
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         snowflakes.forEach((snowflake) => {
@@ -292,11 +270,9 @@
         requestAnimationFrame(animate);
     }
 
-    // 初期化
-    createSnowflakes(200); // 雪の結晶の数を指定
+    createSnowflakes(200);
     animate();
 
-    // ウィンドウサイズ変更時に再調整
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;

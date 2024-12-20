@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="変更" />
+    <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="変更">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/20/iframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/20/iframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/20/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/20/script.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +45,7 @@
     &quot;Node.js.script.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;&lt;不明&gt;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/daihachi/Documents/GitHub/daihachi10.github.io&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -111,6 +115,8 @@
       <workItem from="1734423594465" duration="2034000" />
       <workItem from="1734500456983" duration="4898000" />
       <workItem from="1734517562741" duration="5040000" />
+      <workItem from="1734692261993" duration="95000" />
+      <workItem from="1734693256718" duration="3173000" />
     </task>
     <servers />
   </component>

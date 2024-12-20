@@ -35,15 +35,24 @@
         border-style: none;
     }
 
-    .startbutton {
+    .startbutton,
+    .colorbutton {
         position: absolute;
-        top: 200px;
         width: 200px;
         height: 50px;
         margin-bottom: 300px;
         background-color: #ff5283;
         border-radius: 25px;
         color: #000;
+    }
+
+
+    .startbutton {
+        top: 200px;
+    }
+
+    .colorbutton {
+        top: 260px;
     }
 
     .started {
@@ -55,6 +64,8 @@
 <canvas id="tetris" width="240" height="400"></canvas>
 
 <button class="startbutton" onclick="gameStart()">START</button>
+<!--<button class="colorbutton" onclick="colorSettings()">COLOR</button>-->
+
 
 <div id="controls">
     <button onclick="playerMove(-1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"

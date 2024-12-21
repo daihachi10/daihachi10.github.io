@@ -30,6 +30,8 @@ body {
 
     background-color: #fff;
     color: #000;
+
+    /*border-radius: 10px;*/
 }
 
 .setumei img {
@@ -44,12 +46,13 @@ body {
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
-    border-radius: 24px;
+    /*border-radius: 24px;*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
     /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 /* .link-button:hover {
@@ -63,24 +66,24 @@ background-color: #bf1948;
 
 @keyframes hover {
     0% {
-        background-color: #bf1948;
+        background-color: var(--pink-hover-color);
 
     }
 
     100% {
-        background-color: #ff5283;
+        background-color: var(--pink-color);
     }
 }
 
 @keyframes nothover {
     0% {
+        background-color: var(--pink-color);
 
-        background-color: #ff5283;
     }
 
     100% {
+        background-color: var(--pink-hover-color);
 
-        background-color: #bf1948;
     }
 }
 

@@ -39,9 +39,8 @@ body {
 }
 
 .button {
-    color: #000;
+    color: var(--text-color);
     cursor: pointer;
-    /* background-color: #ff5283; */
     border-style: none;
     display: inline-block;
     min-width: 180px;
@@ -49,15 +48,10 @@ body {
     /*border-radius: 24px;*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
-    /* animation: hover 0.7s ease forwards; */
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     margin-bottom: 10px;
     margin-right: 10px;
 }
-
-/* .link-button:hover {
-background-color: #bf1948;
-} */
 
 .button:hover {
     /* animation: nothover 0.7s ease forwards; */

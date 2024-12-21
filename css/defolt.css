@@ -5,24 +5,11 @@
     /*--pink-hover-color: #bf1948;    !*デフォルト*!*/
     /*--header-footer-color: #3a5e98; !*デフォルト*!*/
 
+
+
     --background-color: #003a28;
-
-
     --pink-color: #b7193a;
     --pink-hover-color: #610d1d;
-
-
     --header-footer-color: #b7193a;
-
-
-    --text-color:#fff;
-
-
-
-    /*  index  */
-
-}
-
-h2::after {
-    color: var(--text-color) !important;
+    --text-color: #fff;
 }

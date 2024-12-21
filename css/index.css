@@ -28,7 +28,7 @@ body {
      background-image: url(../images/index/bg-main-02.webp);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 110%;
+    background-size: cover;
     display: flex;
     align-items: center;
 }

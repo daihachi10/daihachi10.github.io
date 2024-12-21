@@ -2,6 +2,16 @@
 @import url('./cursor.css');
 @import url('defolt.css');
 
+:root {
+    /*--bg-myprogram: #fafafa;*/
+    /*--bg-about:#ebebeb;*/
+
+    --bg-myprogramm: #003a28;
+    --bg-about: #013525;
+
+
+}
+
 
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap'); */
 
@@ -47,7 +57,7 @@ body {
 }
 
 .leadbox {
-    background-color: #ebebeb;
+    background-color: var(--bg-about);
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -128,7 +138,7 @@ body {
 
 
 .recommended {
-    background-color: #fafafa;
+    background-color: var(--bg-myprogram);
     padding-bottom: 55px;
 }
 
@@ -150,7 +160,7 @@ body {
 }
 
 .copyright2 {
-    background-color: #fafafa;
+    background-color: var(--bg-myprogramm);
     margin-right: auto;
     padding-bottom: 40px;
 }
@@ -167,6 +177,8 @@ body {
     padding-left: 60px;
     padding-right: 60px;
     overflow: scroll;
+
+    overflow-y: hidden;
 }
 
 .item-list li {

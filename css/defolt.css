@@ -2,12 +2,23 @@
 
 :root {
     /*--pink-color: #ff5283;          !*デフォルト*!*/
-    --pink-hover-color: #bf1948;    /*デフォルト*/
+    /*--pink-hover-color: #bf1948;    !*デフォルト*!*/
     /*--header-footer-color: #3a5e98; !*デフォルト*!*/
 
-    --background-color:#fff;
+    --background-color: #003a28;
 
 
-    --pink-color: #006f49;
+    --pink-color: #b7193a;
+    --pink-hover-color: #610d1d;
+
+
     --header-footer-color: #b7193a;
+
+
+    --text-color:#fff;
+
+
+
+    /*  index  */
+
 }

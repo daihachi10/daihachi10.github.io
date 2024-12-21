@@ -65,9 +65,9 @@ a {
 body {
     /* font-family: sans-serif; */
     font-size: 16px;
-    color: #000000;
+    color: var(--text-color);
     line-height: 1;
-    background-color: #ffffff;
+    background-color: var(--background-color);
 }
 
 img {

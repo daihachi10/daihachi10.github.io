@@ -2,6 +2,7 @@
 
 @import url('./cursor.css');
 @import url('./fonts.css');
+@import url('defolt.css');
 
 
 body {
@@ -161,7 +162,7 @@ ul li {
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
-    border-radius: 24px;
+    /*!*border-radius: 24px;*!    クリスマス*/
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
     text-align: center;
@@ -205,24 +206,23 @@ ul li {
 
 @keyframes hover {
     0% {
-        background-color: #bf1948;
+        background-color: var(--pink-hover-color);
 
     }
 
     100% {
-        background-color: #ff5283;
+        background-color: var(--pink-color);
     }
 }
 
 @keyframes nothover {
     0% {
-
-        background-color: #ff5283;
+        background-color: var(--pink-color);
     }
 
     100% {
 
-        background-color: #bf1948;
+        background-color: var(--pink-hover-color);
     }
 }
 

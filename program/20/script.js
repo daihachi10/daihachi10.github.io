@@ -13,8 +13,8 @@ const gameConfig = {
     speed: 1000, // ブロックの落下速度（ミリ秒）
     backgroundColor: '#244785',
     // backgroundColor: '#fff', // 背景色
-    gridColor: '#d6d6d6', // グリッドの線の色
-    lineWidth: 0.1, // グリッドの線の太さ
+    gridColor: '#787878', // グリッドの線の色
+    lineWidth: 0.005, // グリッドの線の太さ
     // colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6', '#3e69b3', '#003f83'], // ブロックの色
     // colors: [null, '#d0563f', '#f8a552', '#f4e178', '#4bc572', '#257247', '#277047', '#c48341'], // ブロックの色
     colors: [null, '#e4dad0', '#b3715b', '#ca433f', '#912525', '#49552d', '#c4a590', '#d8bb99'], // ブロックの色  クリスマス

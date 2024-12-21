@@ -27,6 +27,7 @@ body {
     /* overflow-y: scroll; */
     overflow: auto;
 
+    background-color: #fff;
 }
 
 .setumei img {

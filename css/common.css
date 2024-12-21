@@ -235,10 +235,11 @@ img {
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
-html {
-    scrollbar-width: 12px; /* スクロールバーの幅: thin, auto, none */
-    scrollbar-color: var(--header-footer-color) var(--background-color);
-}
+/*html {*/
+/*    scrollbar-width: 12px; !* スクロールバーの幅: thin, auto, none *!*/
+/*    scrollbar-color: var(--header-footer-color) var(--background-color);*/
+/*    border-radius: 6px; !* 背景も角丸に *!*/
+/*}*/
 
 
 @media (max-width: 800px) {

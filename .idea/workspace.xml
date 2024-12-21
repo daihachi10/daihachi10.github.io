@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="変更">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/cursor.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/cursor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/defolt.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/defolt.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/details.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/details.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/install.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/install.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/15/js/hensu.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/15/js/hensu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/common.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +120,7 @@
       <workItem from="1734696901731" duration="921000" />
       <workItem from="1734699926285" duration="1425000" />
       <workItem from="1734738793807" duration="295000" />
-      <workItem from="1734739533255" duration="4406000" />
+      <workItem from="1734739533255" duration="5739000" />
     </task>
     <servers />
   </component>

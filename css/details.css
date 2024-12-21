@@ -55,7 +55,7 @@ body {
     display: block;
     width: 36px;
     height: 3px;
-    background-color: #000000;
+    background-color: var(--text-color);
     margin-top: 20px;
 }
 

@@ -22,3 +22,7 @@
     /*  index  */
 
 }
+
+h2::after {
+    color: var(--text-color) !important;
+}

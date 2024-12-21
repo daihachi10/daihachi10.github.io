@@ -317,15 +317,15 @@ function update(time = 0) {
 }
 
 document.addEventListener('keydown', event => {
-    if (event.key === 'ArrowLeft') {
+    if (event.key === 'ArrowLeft' || event.key === 'a') {
         playerMove(-1);
-    } else if (event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight' || event.key === 'd') {
         playerMove(1);
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.key === 'ArrowDown' || event.key === 's') {
         playerDrop();
-    } else if (event.key === ' ') {
+    } else if (event.key === ' ' || event.key === '　') {
         playerDropInstant();
-    } else if (event.key === 'ArrowUp') {
+    } else if (event.key === 'ArrowUp' || event.key === 'w') {
         playerRotate(1);
     }
 });

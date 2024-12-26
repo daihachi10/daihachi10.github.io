@@ -45,7 +45,7 @@ body {
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
-    /*border-radius: 24px;*/
+    border-radius: 24px;
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
     animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;

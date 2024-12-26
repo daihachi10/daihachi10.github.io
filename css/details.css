@@ -162,7 +162,7 @@ ul li {
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
-    /*!*border-radius: 24px;*!    クリスマス*/
+    border-radius: 24px;
     font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
     font-size: 14px;
     text-align: center;

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channel Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /*background: linear-gradient(135deg, #ff7eb3, #8e44ad);*/
+            background-image: url("https://t3.ftcdn.net/jpg/03/75/54/54/360_F_375545408_Pd2knX2UoXLmAkDPiiqBzB9rOO4lIfXX.jpg");
+            background-size: cover;
+
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* 折り返しを有効にする */
+            justify-content: center;
+            gap: 20px;
+            max-width: 600px; /* 全体の幅を調整 */
+        }
+
+        .channel-card {
+            background: #ffffff;
+            color: #333;
+            width: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .channel-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .channel-card h3 {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .channel-card a {
+            text-decoration: none;
+            color: #8e44ad;
+            font-size: 14px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .link {
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a class="link" href="https://www.google.com">
+        <div class="channel-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
+                 alt="Channel Icon">
+            <h3>Google</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com">
+        <div class="channel-card">
+            <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/395_Youtube_logo-512.png"
+                 alt="Channel Icon">
+            <h3>Youtube</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://x.com">
+        <div class="channel-card">
+            <img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg"
+                 alt="Channel Icon">
+            <h3>X</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://mail.google.com/mail/u/0/#inbox">
+        <div class="channel-card">
+            <img src="https://cdn.icon-icons.com/icons2/2631/PNG/512/gmail_new_logo_icon_159149.png" alt="Channel Icon">
+            <h3>Gmail</h3>
+        </div>
+    </a>
+
+
+    <a class="link" href="https://www.deepl.com/ja/translator">
+        <div class="channel-card">
+            <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnCzTIURlExTvn6vGrmhWYo6wBZ4w7HUXNNvejfz.luH1lU7EfmENnHaz7zrTOpX8zq_6gduheBzYtMud2NN8o0-&format=source"
+                 alt="Channel Icon">
+            <h3>DeepL</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://github.com/daihachi10/daihachi10.github.io">
+        <div class="channel-card">
+            <img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-512.png" alt="Channel Icon">
+            <h3>GitHub</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@SakuraMiko">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/3st5iCi65fsN1P4-yTbWLHZH84eLsPqWsQ4MBkR1J72FW8pBm2IpHxFGtQ84ZFCcCX8sGJl-Ag=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>さくらみこ</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@HoshimachiSuisei">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/ytc/AIdro_kLDBK5ksSvk5-XJ6S8e0kWfjy7mVl3jyUkgDeMQ7rlCpU=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>星街すいせい</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@OozoraSubaru">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/ytc/AIdro_k5mjdt1wcbaYCXKwmDpVXmSGtOc-LH3WjIyUHVC4soP28=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>大空スバル</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@InugamiKorone">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/ytc/AIdro_nrS6tFctvjyWv1mKzKBIetHJBfpqwHOpvRFc3KU2P_5yc=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>戌神ころね</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@TodorokiHajime">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/LObfzJe4AIufIErJzQy1xzwQcA5AX6rJh8AxJe-qvG2yBO-tbTVDwXqOkoeK_MoGPC6C3lMxQ_c=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>轟はじめ</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@hololive">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/7ajjK5dKPtpFdAVtuZAdanfIwPhSa1tif_5TCLEApvx1J3kovTayOXGspX9FHHReP_6M-Nel=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>ホロライブ</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@ui_shig">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/ytc/AIdro_m6xQ9ez0I8lnwswHqAns9ZRPsaCCutfzu6eUbM7pwzqsA=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>しぐれうい</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@shinomiyaruna">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/Rgt9lslf7OZntxcW8A9mMFWDdXTG1IxqCq4tZ14Rd7rB1rm4gxQZPTc5kM9LdGTPmXGWkfyzWw=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>紫宮るな</h3>
+        </div>
+    </a>
+
+    <a class="link" href="https://www.youtube.com/@Lunlun_nijisanji">
+        <div class="channel-card">
+            <img src="https://yt3.googleusercontent.com/L9FU9DSo-1kAkkDrVU2IvftjWPRrED8H35Yl63NcMaDCo5TVBG_ngeaV1_3-O4swEim3GisoPl8=s160-c-k-c0x00ffffff-no-rj"
+                 alt="Channel Icon">
+            <h3>ルンルン</h3>
+        </div>
+    </a>
+
+
+</div>
+
+
+</body>
+</html>

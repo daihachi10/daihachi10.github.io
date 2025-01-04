@@ -1,0 +1,14 @@
+{
+  "name": "HUB",
+  "description": "HUB",
+  "version": "1.0.1",
+  "manifest_version": 3,
+  "permissions": ["scripting"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"]
+    }
+  ]
+}

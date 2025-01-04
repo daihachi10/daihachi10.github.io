@@ -1,0 +1,4 @@
+/* bodyの上部に余白を追加して、div要素のスペースを確保 */
+body {
+    margin-top: 80px !important; /* divの高さに合わせて調整 */
+}

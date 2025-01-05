@@ -5,167 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://daihachi10.github.io/assets/favicon.ico" type="image/x-icon">
     <title>Hub</title>
-    <style>
-
-        :root {
-            --shadow-color: 0deg 0% 16%;
-
-            --shadow-elevation-low:
-                    0.2px 0.3px 0.4px hsl(var(--shadow-color) / 0.34),
-                    0.4px 0.5px 0.7px -1.2px hsl(var(--shadow-color) / 0.34),
-                    1px 1.3px 1.8px -2.5px hsl(var(--shadow-color) / 0.34);
-            --shadow-elevation-medium:
-                    0.2px 0.3px 0.4px hsl(var(--shadow-color) / 0.36),
-                    0.8px 1px 1.4px -0.8px hsl(var(--shadow-color) / 0.36),
-                    2px 2.6px 3.7px -1.7px hsl(var(--shadow-color) / 0.36),
-                    4.9px 6.3px 9px -2.5px hsl(var(--shadow-color) / 0.36);
-            --shadow-elevation-high:
-                    0.2px 0.3px 0.4px hsl(var(--shadow-color) / 0.34),
-                    1.4px 1.8px 2.6px -0.4px hsl(var(--shadow-color) / 0.34),
-                    2.6px 3.4px 4.8px -0.7px hsl(var(--shadow-color) / 0.34),
-                    4.3px 5.6px 7.9px -1.1px hsl(var(--shadow-color) / 0.34),
-                    6.9px 9px 12.8px -1.4px hsl(var(--shadow-color) / 0.34),
-                    10.9px 14px 20px -1.8px hsl(var(--shadow-color) / 0.34),
-                    16.5px 21.3px 30.3px -2.1px hsl(var(--shadow-color) / 0.34),
-                    24.3px 31.4px 44.7px -2.5px hsl(var(--shadow-color) / 0.34);
-
-            --shadow-elevation-high-top:
-            0px 1px 1.1px hsl(var(--shadow-color) / 0.34),
-            0.1px 5.8px 6.5px -0.4px hsl(var(--shadow-color) / 0.34),
-            0.1px 10.9px 12.3px -0.7px hsl(var(--shadow-color) / 0.34),
-            0.2px 17.9px 20.1px -1.1px hsl(var(--shadow-color) / 0.34),
-            0.3px 28.6px 32.2px -1.4px hsl(var(--shadow-color) / 0.34),
-            0.5px 44.7px 50.3px -1.8px hsl(var(--shadow-color) / 0.34),
-            0.7px 67.9px 76.4px -2.1px hsl(var(--shadow-color) / 0.34),
-            1px 100px 112.5px -2.5px hsl(var(--shadow-color) / 0.34);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-
-        body {
-            font-family: Arial, sans-serif;
-            /*background: linear-gradient(135deg, #ff7eb3, #8e44ad);*/
-            /*background-image: url("https://t3.ftcdn.net/jpg/03/75/54/54/360_F_375545408_Pd2knX2UoXLmAkDPiiqBzB9rOO4lIfXX.jpg");*/
-            background-image: url(bg.jpg);
-            background-size: cover;
-
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-
-            overflow-y: hidden;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap; /* 折り返しを有効にする */
-            justify-content: center;
-            gap: 20px;
-            max-width: 600px; /* 全体の幅を調整 */
-        }
-
-        .channel-card {
-            background: #ffffff;
-            color: #333;
-            width: 150px;
-            border-radius: 10px;
-            /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-            text-align: center;
-            padding: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: var(--shadow-elevation-medium);
-
-        }
-
-        .channel-card:hover {
-            transform: translateY(-5px);
-            /*box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);*/
-            box-shadow: var(--shadow-elevation-high-top);
-        }
-
-        .channel-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 2px solid #ddd;
-        }
-
-        .channel-card h3 {
-            font-size: 16px;
-            margin-top: 5px;
-        }
-
-        .channel-card a {
-            text-decoration: none;
-            color: #8e44ad;
-            font-size: 14px;
-            margin-top: 10px;
-            display: inline-block;
-        }
-
-        .link {
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .holo {
-            height: 450px;
-            width: 40vw;
-            margin: 70px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-elevation-high);
-
-        }
-
-        .left {
-            display: block;
-            text-align: center;
-        }
-
-        .weather {
-            border-radius: 100px;
-            margin-bottom: 10px !important;
-            /*margin-bottom: 80px !important;*/
-            /*padding-bottom: 50px;*/
-
-            margin-left: 70px !important;
-            margin-right: 70px !important;
-
-            /*width: 100% !important;*/
-
-
-            width: 40vw !important;
-            /*margin: 70px;*/
-
-
-        }
-
-        .time {
-            /*margin-bottom: 25px !important;*/
-
-        }
-
-        span {
-            color: #0b1429 !important;
-        }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="left">
 
-    <iframe class="time" src="https://free.timeanddate.com/clock/i9pfezys/n1064/fn7/fs48/fc17263d/tct/pct/ftb/th2/ts1" frameborder="0" width="354" height="68" allowtransparency="true"></iframe>
-
+    <iframe class="time" src="https://free.timeanddate.com/clock/i9pfezys/n1064/fn7/fs48/fc17263d/tct/pct/ftb/th2/ts1"
+            frameborder="0" width="354" height="68" allowtransparency="true"></iframe>
 
 
     <br>
@@ -173,25 +20,27 @@
     <iframe class="holo" src="https://schedule.hololive.tv" frameborder="0"></iframe>
     <br>
 
-<!--    <div class="weather" id="ww_9d8be93dc3add" v='1.3' loc='id'-->
-<!--         a='{"t":"horizontal","lang":"ja","sl_lpl":1,"ids":["wl6983"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>-->
-<!--        More forecasts: <a href="https://oneweather.org/ja/tokyo/10_days/" id="ww_9d8be93dc3add_u" target="_blank">天気-->
-<!--        10日間-->
-<!--        東京</a></div>-->
-<!--    <script async src="https://app3.weatherwidget.org/js/?id=ww_9d8be93dc3add"></script>-->
+    <!--    <div class="weather" id="ww_9d8be93dc3add" v='1.3' loc='id'-->
+    <!--         a='{"t":"horizontal","lang":"ja","sl_lpl":1,"ids":["wl6983"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>-->
+    <!--        More forecasts: <a href="https://oneweather.org/ja/tokyo/10_days/" id="ww_9d8be93dc3add_u" target="_blank">天気-->
+    <!--        10日間-->
+    <!--        東京</a></div>-->
+    <!--    <script async src="https://app3.weatherwidget.org/js/?id=ww_9d8be93dc3add"></script>-->
 
-    <div class="weather" id="ww_374cd5eaaa003" v='1.3' loc='id' a='{"t":"responsive","lang":"ja","sl_lpl":1,"ids":["wl6983"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>More forecasts: <a href="https://oneweather.org/ja/tokyo/10_days/" id="ww_374cd5eaaa003_u" target="_blank">10日間天気 東京</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_374cd5eaaa003"></script>
+    <div class="weather" id="ww_374cd5eaaa003" v='1.3' loc='id'
+         a='{"t":"responsive","lang":"ja","sl_lpl":1,"ids":["wl6983"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+        More forecasts: <a href="https://oneweather.org/ja/tokyo/10_days/" id="ww_374cd5eaaa003_u" target="_blank">10日間天気
+        東京</a></div>
+    <script async src="https://app3.weatherwidget.org/js/?id=ww_374cd5eaaa003"></script>
 
     <br>
-
-
 
 
 </div>
 
 <div class="container">
     <a class="link" href="https://www.google.com">
-        <div class="channel-card">
+        <div class="channel-card c00">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"
                  alt="Channel Icon">
             <h3>Google</h3>
@@ -199,7 +48,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com">
-        <div class="channel-card">
+        <div class="channel-card c10">
             <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/395_Youtube_logo-512.png"
                  alt="Channel Icon">
             <h3>Youtube</h3>
@@ -207,7 +56,7 @@
     </a>
 
     <a class="link" href="https://x.com">
-        <div class="channel-card">
+        <div class="channel-card c20">
             <img src="https://img.freepik.com/free-vector/new-2023-twitter-logo-x-icon-design_1017-45418.jpg"
                  alt="Channel Icon">
             <h3>X</h3>
@@ -215,7 +64,7 @@
     </a>
 
     <a class="link" href="https://mail.google.com/mail/u/0/#inbox">
-        <div class="channel-card">
+        <div class="channel-card c01">
             <img src="https://cdn.icon-icons.com/icons2/2631/PNG/512/gmail_new_logo_icon_159149.png" alt="Channel Icon">
             <h3>Gmail</h3>
         </div>
@@ -223,7 +72,7 @@
 
 
     <a class="link" href="https://www.deepl.com/ja/translator">
-        <div class="channel-card">
+        <div class="channel-card c11">
             <img src="https://images-eds-ssl.xboxlive.com/image?url=4rt9.lXDC4H_93laV1_eHHFT949fUipzkiFOBH3fAiZZUCdYojwUyX2aTonS1aIwMrx6NUIsHfUHSLzjGJFxxnCzTIURlExTvn6vGrmhWYo6wBZ4w7HUXNNvejfz.luH1lU7EfmENnHaz7zrTOpX8zq_6gduheBzYtMud2NN8o0-&format=source"
                  alt="Channel Icon">
             <h3>DeepL</h3>
@@ -231,14 +80,14 @@
     </a>
 
     <a class="link" href="https://github.com/daihachi10/daihachi10.github.io">
-        <div class="channel-card">
+        <div class="channel-card c21">
             <img src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/github-512.png" alt="Channel Icon">
             <h3>GitHub</h3>
         </div>
     </a>
 
     <a class="link" href="https://www.youtube.com/@SakuraMiko">
-        <div class="channel-card">
+        <div class="channel-card c02">
             <img src="https://yt3.googleusercontent.com/3st5iCi65fsN1P4-yTbWLHZH84eLsPqWsQ4MBkR1J72FW8pBm2IpHxFGtQ84ZFCcCX8sGJl-Ag=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>さくらみこ</h3>
@@ -246,7 +95,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@HoshimachiSuisei">
-        <div class="channel-card">
+        <div class="channel-card c12">
             <img src="https://yt3.googleusercontent.com/ytc/AIdro_kLDBK5ksSvk5-XJ6S8e0kWfjy7mVl3jyUkgDeMQ7rlCpU=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>星街すいせい</h3>
@@ -254,7 +103,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@OozoraSubaru">
-        <div class="channel-card">
+        <div class="channel-card c22">
             <img src="https://yt3.googleusercontent.com/ytc/AIdro_k5mjdt1wcbaYCXKwmDpVXmSGtOc-LH3WjIyUHVC4soP28=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>大空スバル</h3>
@@ -262,7 +111,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@InugamiKorone">
-        <div class="channel-card">
+        <div class="channel-card c03">
             <img src="https://yt3.googleusercontent.com/ytc/AIdro_nrS6tFctvjyWv1mKzKBIetHJBfpqwHOpvRFc3KU2P_5yc=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>戌神ころね</h3>
@@ -270,7 +119,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@TodorokiHajime">
-        <div class="channel-card">
+        <div class="channel-card c13">
             <img src="https://yt3.googleusercontent.com/LObfzJe4AIufIErJzQy1xzwQcA5AX6rJh8AxJe-qvG2yBO-tbTVDwXqOkoeK_MoGPC6C3lMxQ_c=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>轟はじめ</h3>
@@ -278,7 +127,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@hololive">
-        <div class="channel-card">
+        <div class="channel-card c23">
             <img src="https://yt3.googleusercontent.com/7ajjK5dKPtpFdAVtuZAdanfIwPhSa1tif_5TCLEApvx1J3kovTayOXGspX9FHHReP_6M-Nel=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>ホロライブ</h3>
@@ -286,7 +135,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@ui_shig">
-        <div class="channel-card">
+        <div class="channel-card c04">
             <img src="https://yt3.googleusercontent.com/ytc/AIdro_m6xQ9ez0I8lnwswHqAns9ZRPsaCCutfzu6eUbM7pwzqsA=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>しぐれうい</h3>
@@ -294,7 +143,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@shinomiyaruna">
-        <div class="channel-card">
+        <div class="channel-card c14">
             <img src="https://yt3.googleusercontent.com/Rgt9lslf7OZntxcW8A9mMFWDdXTG1IxqCq4tZ14Rd7rB1rm4gxQZPTc5kM9LdGTPmXGWkfyzWw=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>紫宮るな</h3>
@@ -302,7 +151,7 @@
     </a>
 
     <a class="link" href="https://www.youtube.com/@Lunlun_nijisanji">
-        <div class="channel-card">
+        <div class="channel-card c24">
             <img src="https://yt3.googleusercontent.com/L9FU9DSo-1kAkkDrVU2IvftjWPRrED8H35Yl63NcMaDCo5TVBG_ngeaV1_3-O4swEim3GisoPl8=s160-c-k-c0x00ffffff-no-rj"
                  alt="Channel Icon">
             <h3>ルンルン</h3>
@@ -311,90 +160,7 @@
 
 
 </div>
-<script>
-    // キーが押されたときのイベントリスナー
-    document.addEventListener('keydown', function (event) {
-        // 押されたキーに基づいて処理を分岐
-        switch (event.key.toLowerCase()) { // 小文字に変換して判定
-            case '1':
-                window.location.href = 'https://google.com';
-                break;
-
-            case '2':
-                window.location.href = 'https://youtube.com';
-                break;
-
-            case '3':
-                window.location.href = 'https://x.com';
-                break;
-
-            case '4':
-                window.location.href = 'https://mail.google.com';
-                break;
-
-            case '5':
-                window.location.href = 'https://deepl.com';
-                break;
-
-            case '6':
-                window.location.href = 'https://github.com';
-                break;
-
-            case '7':
-                window.location.href = 'https://www.youtube.com/@SakuraMiko';
-                break;
-
-            case '8':
-                window.location.href = 'https://www.youtube.com/@HoshimachiSuisei';
-                break;
-
-            case '9':
-                window.location.href = 'https://www.youtube.com/@OozoraSubaru';
-                break;
-
-
-            case 'q':
-                window.location.href = 'https://mail.google.com';
-                break;
-
-            case 'w':
-                window.location.href = 'https://deepl.com';
-                break;
-
-            case 'e':
-                window.location.href = 'https://github.com';
-                break;
-
-            case 'a':
-                window.location.href = 'https://www.youtube.com/@SakuraMiko';
-                break;
-
-            case 's':
-                window.location.href = 'https://www.youtube.com/@HoshimachiSuisei';
-                break;
-
-            case 'd':
-                window.location.href = 'https://www.youtube.com/@OozoraSubaru';
-                break;
-
-            case 'z':
-                window.location.href = 'https://www.youtube.com/@InugamiKorone';
-                break;
-
-            case 'x':
-                window.location.href = 'https://www.youtube.com/@shinomiyaruna';
-                break;
-
-            case 'c':
-                window.location.href = 'https://www.youtube.com/@Lunlun_nijisanji';
-                break;
-
-            default:
-                console.log(`押されたキー: ${event.key}`);
-                break;
-        }
-    });
-</script>
+<script src="script.js"></script>
 
 
 </body>

@@ -122,7 +122,7 @@ body.dark #default-header {
 .first-view {
     /* height: calc(100vh - 110px); */ /*ヘッダー変える前*/
     height: 100vh;
-    background-image: url(https://img.skin/3840x2160/696969);
+    background-image: url(https://img.skin/1920x1080/696969);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -359,7 +359,7 @@ body.dark #default-header {
 @media (max-width:800px) {
     .first-view {
         height: calc(100vh - 50vh);
-        background-image: url(https://img.skin/1920x1080/696969);
+        background-image: url(https://img.skin/600x500/696969);
     }
 
     .first-view-text {

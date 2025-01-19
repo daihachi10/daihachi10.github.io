@@ -12,6 +12,26 @@
 
 
     --box-padding:40px;
+
+    --pink-color: #ff5283;          /*デフォルト*/
+    --pink-hover-color: #bf1948;    /*デフォルト*/
+    --header-footer-color: #76B900; /*デフォルト*/
+    --background-color: #fff;
+    --text-color: #000;
+    --bg-myprogram: #fafafa;
+    --bg-about:#ebebeb;
+    --bg-video:#f8f8f8;
+
+
+    --dark-pink-color: #ff5283;          /*デフォルト*/
+    --dark-pink-hover-color: #bf1948;    /*デフォルト*/
+    --dark-header-footer-color: #3a5e98; /*デフォルト*/
+    --dark-background-color: #000;
+    --dark-text-color: #fff;
+    --dark-bg-myprogram: #fafafa;
+    --dark-bg-about:#ebebeb;
+    --dark-bg-video:#f8f8f8;
+    
 }
 
 
@@ -26,6 +46,15 @@ body {
     scroll-behavior: smooth;
     margin: 0;
     scroll-margin-top: 100px;
+}
+
+
+/* スクロールするとでてくるヘッダー */
+#animated-header {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    height: 50px;
+    background-color: var(--bg-color-light-animation-header);
 }
 
 .shadow {

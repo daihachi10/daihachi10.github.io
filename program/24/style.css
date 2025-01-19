@@ -16,6 +16,15 @@
     --pink-color: #ff5283;          /*デフォルト*/
     --pink-hover-color: #bf1948;    /*デフォルト*/
     --header-footer-color: #76B900; /*デフォルト*/
+
+
+    --bg-color-light-header: rgba(255, 255, 255, 1);
+    --bg-color-dark-header: rgba(32, 33, 36, 1);
+
+
+    --bg-color-light-animation-header: rgba(255, 255, 255, 0.7);
+    --bg-color-dark-animation-header: rgba(0, 0, 0, 0.7);
+
     --background-color: #fff;
     --text-color: #000;
     --bg-myprogram: #fafafa;
@@ -32,6 +41,7 @@
     --dark-bg-about:#ebebeb;
     --dark-bg-video:#f8f8f8;
     
+
 }
 
 
@@ -48,21 +58,70 @@ body {
     scroll-margin-top: 100px;
 }
 
+/* ヘッダー */
+header {
+    position: fixed;
+    z-index: 2000;
+    width: 100%;
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+    user-select: none;
+}
+
+/* ヘッダーの中の文字 */
+.header-inner {
+    /*max-width: 1200px;*/
+    height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* color: #1571c2; */
+    /* color: #3b6930; */
+    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+    color: var(--header-footer-color);
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
 
 /* スクロールするとでてくるヘッダー */
 #animated-header {
-    transform: translateY(-100%);
+    transform: translateY(-150%);
     transition: transform 0.3s ease-in-out;
     height: 50px;
     background-color: var(--bg-color-light-animation-header);
 }
 
+#animated-header.visible {
+    transform: translateY(0);
+}
+
+#default-header {
+    background-color: var(--bg-color-light-header);
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+/* ダークモードのときのヘッダー */
+body.dark #default-header {
+    background-color: var(--bg-color-dark-header);
+}
+
+#default-header {
+    transition: opacity 0.3s ease-in-out;
+}
+
+#default-header.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 .shadow {
     box-shadow:var(--shadow-elevation-low);
 }
 
 .first-view {
-    height: calc(100vh - 110px);
+    /* height: calc(100vh - 110px); */ /*ヘッダー変える前*/
+    height: 100vh;
     background-image: url(https://img.skin/3840x2160/696969);
     background-repeat: no-repeat;
     background-position: center center;

@@ -361,6 +361,10 @@ body.dark #default-header {
         background-color: rgba(118, 185, 0,0.8);
     }
 
+    .header-logo {
+        font-size: 50px;
+    }
+
     .first-view {
         height: calc(100vh - 50vh);
         background-image: url(https://img.skin/600x500/696969);

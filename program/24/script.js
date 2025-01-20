@@ -1,3 +1,10 @@
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+}
+
 
 let lastScrollY = 0;
 const defaultHeader = document.getElementById('default-header');
@@ -21,3 +28,4 @@ window.addEventListener('scroll', () => {
 
     lastScrollY = currentScrollY;
 });
+

@@ -7,9 +7,9 @@
     <meta name="description" content="description">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
-    <link href="style.css" rel="stylesheet">
     <link href="../../css/common.css" rel="stylesheet">
     <link href="../../css/loading.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <script src="../../js/loading.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -21,114 +21,200 @@
 <body class="is-slide" id="page-animate">
 
 
-<div id="loading">
+    <div id="loading">
 
-    <div id="loadings" class="loading-overlay">
-        <div class="loading-animation">
-            <div class="bar purple"></div>
-            <div class="bar cyan"></div>
-            <div class="bar green"></div>
-            <div class="bar yellow"></div>
-            <div class="bar pink"></div>
+        <div id="loadings" class="loading-overlay">
+            <div class="loading-animation">
+                <div class="bar purple"></div>
+                <div class="bar cyan"></div>
+                <div class="bar green"></div>
+                <div class="bar yellow"></div>
+                <div class="bar pink"></div>
+            </div>
         </div>
-    </div>
-    <!-- <div class="spinner"></div>
+        <!-- <div class="spinner"></div>
     <p>読み込み中...</p> -->
-</div>
+    </div>
 
 
-<div class="progress"></div>
+    <div class="progress"></div>
 
 
-<!-- headerここから -->
-<header class="header">
-    <div class="header-inner">
-        <a class="header-logo" href="./index.html">
+    <!-- headerここから -->
+    <header id="default-header">
+        <div class="header-inner">
+            <a class="header-logo" id="default-header-logo" href="#top">
 
-            <p>LOGO</p>
-        </a>
-        <button class="toggle-menu-button"></button>
-        <div class="header-site-menu">
-            <nav class="site-menu">
-                <ul>
-                    <li><a href="#1">H1</a></li>
-                    <li><a href="">H2</a></li>
-                    <li><a href="">H3</a></li>
-                    <li><a href="">H4</a></li>
+                <p>nvidia</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <li><a href="#1">H1</a></li>
+                        <li><a href="#2">H2</a></li>
+                        <li><a href="#3">H3</a></li>
+                        <li><a href="#4">H4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- headerここまで -->
+
+    <!-- アニメーションheaderここから -->
+    <header id="animated-header" class="hidden">
+        <div class="header-inner" id="animation-header-inner" style="height:50px;">
+            <a class="header-logo" id="animation-header-logo" href="#top">
+
+                <p>nvidia</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <li><a href="#1">H1</a></li>
+                        <li><a href="#2">H2</a></li>
+                        <li><a href="#3">H3</a></li>
+                        <li><a href="#4">H4</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- アニメーションheaderここまで -->
+
+
+    <!-- mainここから -->
+    <main class="main">
+        <!-- 最初の画像 -->
+        <div class="first-view" id="top">
+            <div class="first-view-text">
+                <h1>TITLE</h1>
+                <p>SUBTITLE</p>
+            </div>
+        </div>
+
+        <!-- 最初の文 -->
+        <div class="leadbox">
+            <div class="lead">
+                <h2 id="1">headline</h2>
+                <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+                </p>
+                <div class="link-button-area">
+                    <a class="link-button shadow" href="">BUTTON</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 画像を並べるbox -->
+        <div class="recommended">
+            <h2 id="2">headline</h2>
+            <div class="js-scrollable">
+                <ul class="item-list">
+
+                    <!-- 一つここから -->
+                    <li>
+                        <a href="">
+                            <div class="li-image-box">
+                                <img src="https://img.skin/600x500/76B900" alt="image" loading="lazy" width="260">
+                            </div>
+                            <dl>
+                                <dt>title1</dt>
+                                <dd>Description</dd>
+                            </dl>
+                        </a>
+                    </li>
+                    <!-- 一つここまで -->
+
+                    <li>
+                        <a href="">
+                            <div class="li-image-box">
+                                <img src="https://img.skin/600x500/5f8f0b" alt="image" loading="lazy" width="260">
+                            </div>
+                            <dl>
+                                <dt>title2</dt>
+                                <dd>Description</dd>
+                            </dl>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <div class="li-image-box">
+                                <img src="https://img.skin/600x500/517315" alt="image" loading="lazy" width="260">
+                            </div>
+                            <dl>
+                                <dt>title3</dt>
+                                <dd>Description</dd>
+                            </dl>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <div class="li-image-box">
+                                <img src="https://img.skin/600x500/425c15" alt="image" loading="lazy" width="260">
+                            </div>
+                            <dl>
+                                <dt>title4</dt>
+                                <dd>Description</dd>
+                            </dl>
+                        </a>
+                    </li>
+
                 </ul>
-            </nav>
-        </div>
-    </div>
-</header>
-<!-- headerここまで -->
+            </div>
 
-<!-- mainここから -->
-<main class="main">
-    <div class="first-view">
-        <div class="first-view-text">
-            <h1>TITLE</h1>
-            <p>SUBTITLE</p>
-        </div>
-    </div>
-    <div class="recommended" id="1">
-        <h2>headline</h2>
-        <div class="js-scrollable">
-            <ul class="item-list">
-                <li>
-                    <a href="">
-                        <img src="" alt="image"
-                             loading="lazy" width="260">
-                        <dl>
-                            <dt>title</dt>
-                            <dd>Description</dd>
-                        </dl>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="link-button-area">
-            <a class="link-button shadow" href="">BUTTON</a>
-        </div>
-    </div>
-    <div class="leadbox">
-        <div class="lead">
-            <h2>headline</h2>
-            <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+            <!-- ボタン -->
             <div class="link-button-area">
                 <a class="link-button shadow" href="">BUTTON</a>
             </div>
+
         </div>
+<<<<<<< HEAD
     </div>
     <div class="movie">
         <h2>SUPPORT MOVIE</h2>
         <iframe src="https://www.youtube.com/embed/3Ghk_9FsrBk" title="YouTube video player"
+=======
+
+        <!-- 動画 -->
+        <div class="movie">
+            <h2 id="3">headline</h2>
+            <iframe style="border:none;" src="https://www.youtube.com/embed/EZ5UBhEDm-I" title="YouTube video player"
+>>>>>>> 95eeb45c6041ac16e7982812e1bfee0617630ad9
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <p>詳しいやり方を解説します。</p>
-    </div>
+            <p>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+        </div>
 
-</main>
-<!-- mainここまで -->
+    </main>
+    <!-- mainここまで -->
 
-<!-- footerここから -->
-<footer class="footer">
-    <nav class="site-menu">
-        <ul>
-            <li><a href="">H1</a></li>
-            <li><a href="">H2</a></li>
-            <li><a href="">H3</a></li>
-            <li><a href="">H4</a></li>
-        </ul>
-    </nav>
-    <a class="footer-logo" href="./index.html">
-        <p style="padding-left: 10px;padding-right: 10px;">LOGO</p>
-    </a>
-    <p class="copyright"><small>&copy;2025 Izumo City Second Junior High School Student Apprentice</small></p>
-</footer>
-<!-- footerここまで -->
-<script src="../../js/toggle-menu.js"></script>
-<script src="../../js/page-top.js"></script>
-<link href="../../css/fonts.css" rel="stylesheet">
+    <!-- footerここから -->
+    <footer class="footer">
+        <nav class="site-menu">
+            <ul>
+                <li><a href="#1">H1</a></li>
+                <li><a href="#2">H2</a></li>
+                <li><a href="#3">H3</a></li>
+                <li><a href="#4">H4</a></li>
+            </ul>
+        </nav>
+        <a class="footer-logo" onclick="scrollToTop()">
+            <p style="padding-left: 10px;padding-right: 10px;">logo</p>
+        </a>
+        <!-- <p class="copyright"><small>&copy;2025 Izumo City Second Junior High School Student Apprentice</small></p> -->
+        <p class="copyright"><small><a>&copy;2025 Students of the Computer Club at</a><a class="nityu"
+                    href="https://www.izumo.ed.jp/daini-chu/">Izumo City 2nd Junior High School</a></small></p>
+
+    </footer>
+    <!-- footerここまで -->
+    <script src="../../js/toggle-menu.js"></script>
+    <script src="../../js/page-top.js"></script>
+    <script src="script.js"></script>
+    <link href="../../css/fonts.css" rel="stylesheet">
 </body>
 
 </html>

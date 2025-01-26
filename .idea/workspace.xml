@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/18acc80625c1ea30507b0989b366125a.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/278f257518b4c58e5d9d8bf5460b5809.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/3339a2953a3bf62bb80e54ff575dbced.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/5fab1922f254ae9fd150162c3e392bef.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/7f925162eb6732609e274348e9c1fcb5.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/8d7cb546f14458893402439a2827e1eb.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/927d672925e7b99f7813735c484c6922.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/98f053f9681e872f34fafd783ce72205.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/c8d90320d2966c08af8cdd1c6a7a93b5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/cd21514d0531fdffb22204e0ec5ed84a.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/db97b4b28349055e4883a838039eb611.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/e8fd0e2fcff9b3f27cc3642f5cfb86fd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/f3cf62f3444156393a5f0acdf8ac5e55.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/assets/project.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/f/script.js" beforeDir="false" />
-    </list>
+    <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +133,7 @@
       <workItem from="1737114704830" duration="5388000" />
       <workItem from="1737164983343" duration="307000" />
       <workItem from="1737798711825" duration="730000" />
+      <workItem from="1737877236425" duration="323000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />
@@ -240,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737118222965</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="homepage">
+      <option name="closed" value="true" />
+      <created>1737877333860</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737877333860</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

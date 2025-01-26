@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PROGRAM | daihachi official website</title>
+    <meta name="description" content="大乱闘のプログラムがプレイができるサイトです。">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <script src="../../js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet">
+    <link href="../../css/details.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="../../css/loading.css" rel="stylesheet">
+    <script src="../../js/loading.js"></script>
+</head>
+
+<body>
+
+    <div id="loading">
+
+        <div id="loadings" class="loading-overlay">
+            <div class="loading-animation">
+                <div class="bar purple"></div>
+                <div class="bar cyan"></div>
+                <div class="bar green"></div>
+                <div class="bar yellow"></div>
+                <div class="bar pink"></div>
+            </div>
+        </div>
+        <!-- <div class="spinner"></div>
+        <p>読み込み中...</p> -->
+    </div>
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header">
+        <div class="header-inner">
+            <a class="header-logo" href="../../index.html">
+                <p>daihachi</p>
+            </a>
+            <button class="toggle-menu-button"></button>
+            <div class="header-site-menu">
+                <nav class="site-menu">
+                    <ul>
+                        <li><a href="../../install.html">INSTALL APP</a></li>
+                        <li><a href="../../program.html">MY PROGRAM</a></li>
+                        <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+                                target="_blank">ENGLISH</a></li>
+                        <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
+                                target="_blank">HIRAGANA</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="title">
+            <h1>BATTLE ROYAL</h1>
+            <p>大乱闘</p>
+        </div>
+        <div class="shop-contents">
+            <div class="shop-item">
+                <h2>BATTLE ROYAL</h2>
+                <div class="item-area">
+                    <div id="p5-canvas-container"></div>
+                    <!-- <iframe src="https://scratch.mit.edu/projects/1084336973/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe> -->
+                    <iframe src="./f/index.html" width="480" height="360" allowtransparency="true" frameborder="0"
+                        scrolling="no" allowfullscreen></iframe>
+                    <div class="about-item">
+                        <p class="item-text">
+                            大乱闘!<br>スペースキーを押しながらジョンの冒険を押すと…
+                        </p>
+
+                        <a href="https://scratch.mit.edu/projects/1084336973/editor/" target="_blank">VIEW
+                            CODE</a>
+                    </div>
+                </div>
+                <div class="item-group recommended">
+                    <h2>RECOMMENDED</h2>
+                    <ul class="item-list">
+                        <li>
+                            <a href="../02/index.html">
+                                <img src="../../images/program-img/img-item02-02.webp" alt="パスワード生成機">
+                                <dl>
+                                    <dt>パスワード生成機</dt>
+                                    <dd>大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../03/index.html">
+                                <img src="../../images/program-img/img-item03-02.webp" alt="ボール拾いゲーム">
+                                <dl>
+                                    <dt>ボール拾いゲーム</dt>
+                                    <dd>ボール拾いゲーム。スコアが増えるごとにボールのスピードが早くなる。ラッキーボールやアンラッキーボールも。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../01/index.html">
+                                <img src="../../images/program-img/img-item01-02.webp" alt="パスワード生成機">
+                                <dl>
+                                    <dt>タイピング</dt>
+                                    <dd>１文字づつの入力するスピードがどんどん早くなるタイピングです。入力した数によってランクが付きます。</dd>
+                                </dl>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <aside class="shop-menu">
+                <div class="shop-menu-inner">
+                    <h2>PROGRAM LIST</h2>
+                    <ul>
+                        <li><a href="../15/index.html">SUSHITYPING <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
+                        <li><a href="../16/index.html">BuildpcPartsIntroduction <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
+                        <li><a href="../14/index.html">NOTEPAD <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
+                        <li><a href="../20/index.html">TETRIS <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
+                        <li><a href="../06/index.html">SCROLLING PLATFORMER MAKER <span class="game">GAME</span></a></li>
+                        <li><a href="../07/index.html">Geometry Dash Minecraft version <span class="game">GAME</span></a></li>
+                        <li><a href="../08/index.html">Geometry Dash Minecraft version2 <span class="game">GAME</span></a></li>
+                        <li><a href="../09/index.html">LASERS || a mobile platformer <span class="game">GAME</span></a></li>
+                        <li><a href="../13/index.html" class="now">BATTLE ROYAL <span class="game">GAME</span></a></li>
+                        <li><a href="../03/index.html">BALL PICKING GAME <span class="game">GAME</span></a></li>
+                        <li><a href="../01/index.html">TYPING</a></li>
+                        <li><a href="../02/index.html">PASSWORD GENERATOR</a></li>
+                        <li><a href="../04/index.html">EMOJI GENERATOR</a></li>
+                        <li><a href="../05/index.html">QR CODE GENERATOR</a></li>
+                        <li><a href="../10/index.html">P5 ANIMATION 02</a></li>
+                        <li><a href="../11/index.html">P5 ANIMATION 01</a></li>
+                        <li><a href="../12/index.html">P5 ANIMATION 03</a></li>
+                        <li><a href="../17/index.html">YOUTUBE VIDEO PLAYER</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer">
+        <nav class="site-menu">
+            <ul>
+                <li><a href="../../install.html">INSTALL APP</a></li>
+                <li><a href="../../program.html">MY PROGRAM</a></li>
+                <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+                        target="_blank">ENGLISH</a></li>
+                <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a>
+                </li>
+            </ul>
+        </nav>
+        <a class="footer-logo" href="../../index.html">
+            <p>daihachi</p>
+        </a>
+        <p class="copyright"><small>&copy;daihachi</small></p>
+    </footer>
+    <!-- footerここまで -->
+    <script src=".//js/sketch.js"></script>
+    <script src="noscroll.js"></script>
+</body>
+
+</html>

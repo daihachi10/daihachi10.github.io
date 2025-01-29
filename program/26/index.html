@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日本語タイピングゲーム</title>
+    <title>PROGRAM | daihachi official website</title>
+    <meta name="description" content="大乱闘のプログラムがプレイができるサイトです。">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <script src="../../js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet">
+    <!-- <link href="../../css/details.css" rel="stylesheet"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="../../css/loading.css" rel="stylesheet">
+    <script src="../../js/loading.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Noto Sans JP", "Montserrat", Arial, sans-serif !important;
             text-align: center;
             padding: 20px;
         }
@@ -38,7 +48,7 @@
 
         .wrong {
             color: red;
-            text-decoration: underline;
+            /* text-decoration: underline; */
         }
 
         #result {
@@ -55,12 +65,11 @@
 <body>
 
     <div id="game-container">
-        <h1>日本語タイピングゲーム</h1>
-        <p id="timer">制限時間: <span id="time">60</span>秒</p>
         <div id="text-display-container">
             <div id="text-display"></div>
         </div>
         <textarea id="input-box" autocomplete="off"></textarea>
+        <p id="timer">制限時間: <span id="time">60</span>秒</p>
         <button id="retry-btn" class="hidden">再挑戦</button>
         <div id="result" class="hidden"></div>
     </div>
@@ -76,7 +85,7 @@
 よって、ここに、国際連合総会は、
 社会の各個人及び各機関が、この世界人権宣言を常に念頭に置きながら、加盟国自身の人民の間にも、また、加盟国の管轄下にある地域の人民の間にも、これらの権利と自由との尊重を指導及び教育によって促進すること並びにそれらの普遍的かつ効果的な承認と遵守とを国内的及び国際的な漸進的措置によって確保することに努力するように、すべての人民とすべての国とが達成すべき共通の基準として、この世界人権宣言を公布する。`;
 
-        let timer = 60;
+        let timer = 300;
         let interval;
         let userText = "";
 

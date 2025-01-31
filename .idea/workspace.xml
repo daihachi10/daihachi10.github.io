@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change afterPath="$PROJECT_DIR$/program/27/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/20/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/20/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/26/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/26/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/common.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +60,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\program\22" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\program" />
+      <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\program\22" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\css" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\program\16" />
@@ -139,7 +137,7 @@
       <workItem from="1737164983343" duration="307000" />
       <workItem from="1737798711825" duration="730000" />
       <workItem from="1737877236425" duration="323000" />
-      <workItem from="1738324775266" duration="2377000" />
+      <workItem from="1738324775266" duration="3389000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />
@@ -237,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737877333860</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="homepage">
+      <option name="closed" value="true" />
+      <created>1738327254342</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738327254342</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

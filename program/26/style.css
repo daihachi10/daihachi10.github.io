@@ -1,0 +1,43 @@
+body {
+    font-family: "Noto Sans JP", "Montserrat", Arial, sans-serif !important;
+    text-align: center;
+    padding: 20px;
+}
+
+#game-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+#text-display-container {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 18px;
+}
+
+#input-box {
+    width: 97%;
+    height: 150px;
+    font-size: 18px;
+    padding: 8px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+.wrong {
+    color: red;
+    /* text-decoration: underline; */
+}
+
+#result {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}

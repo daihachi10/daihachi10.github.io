@@ -233,9 +233,24 @@ function playerDropInstant() {
     dropCounter = 0;
 }
 
+// 7-Bag ランダム用の配列
+const piecesBag = [];
+
+// piecesBag をシャッフルして補充する関数
+function fillPiecesBag() {
+    const pieces = 'ILJOTSZ'.split('');
+    for (let i = pieces.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pieces[i], pieces[j]] = [pieces[j], pieces[i]]; // シャッフル
+    }
+    piecesBag.push(...pieces);
+}
+
 function playerReset() {
-    const pieces = 'ILJOTSZ';
-    player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+    if (piecesBag.length === 0) {
+        fillPiecesBag();
+    }
+    player.matrix = createPiece(piecesBag.shift()); // piecesBag から取り出す
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 |
         0);

@@ -7,8 +7,8 @@ body {
 #game-container {
     max-width: 800px;
     
-    margin-bottom:150px;
     margin-top:150px;
+    /* margin-bottom:150px; */
 
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +17,7 @@ body {
 #text-display-container {
     height: 200px;
     overflow-y: auto;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     padding: 10px;
     text-align: left;
     /* white-space: pre-wrap; */
@@ -28,9 +28,9 @@ body {
     width: 97%;
     height: 150px;
     font-size: 18px;
-    padding: 8px;
+    padding: 10px;
     margin-top: 10px;
-    white-space: pre-wrap;
+    /* white-space: pre-wrap; */
 }
 
 .wrong {

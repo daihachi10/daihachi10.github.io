@@ -192,6 +192,8 @@ body {
 }
 
 .item-list img{
+    width: 260px;
+    height: 260px;
     transition: transform 0.3s ease-in-out;
 }
 

@@ -195,8 +195,14 @@ body {
     transition: transform 0.3s ease;
 }
 
-.item-list li:hover {
-    transform: scale(1.05);
+.item-list img:hover {
+    transform: scale(1.15);
+}
+
+.li-image-box {
+    width: 260px;
+    height: 200px;
+    overflow: hidden;
 }
 
 

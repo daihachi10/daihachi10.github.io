@@ -219,6 +219,28 @@ body {
     margin-top: 15px;
 }
 
+.hot,
+.game {
+    padding-left: 3px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.hot {
+    color: #ff0000;
+}
+
+.game {
+    color: rgba(255, 0, 0, 0.7);
+}
+
+.fire {
+    width: 13px !important;
+    height: 13px !important;
+    vertical-align: bottom;
+}
+
+
 @media (max-width:800px) {
     .first-view {
         height: calc(100vh - 50vh);

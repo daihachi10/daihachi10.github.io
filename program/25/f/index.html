@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <!-- We only include this to explicitly loosen the CSP of various packager environments. It does not provide any security. -->
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob:">
-  <title>fullscreen game</title>
+  <title>fullscreengame</title>
   <style>
     body {
-      color: #ff147a;
+      color: #ff8a8a;
       font-family: sans-serif;
       overflow: hidden;
       margin: 0;
@@ -132,7 +132,7 @@
       cursor: auto;
     }
     .sc-monitor-root[data-opcode^="data_"] .sc-monitor-value-color {
-      background-color: #404040;
+      background-color: #616161;
     }
     .sc-monitor-row-value-outer {
       background-color: #fc662c;
@@ -160,7 +160,7 @@
 
   <div id="loading" class="screen">
     <noscript>Enable JavaScript</noscript>
-    <h1 class="loading-text">loading...</h1>
+    <h1 class="loading-text">loading</h1>
     <div class="loading-image"><img src="data:image/x-icon;base64,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t/+torf/pZO3/6iQsv/cxZr//+6L/7KjY/8tIDT/Ui5//2w2tf9nK7z/XR+7/1ITs/+TEqP/oyyw/69MuP+zXLn/sl+1/6xZrf+0cLP/vIW3/7eErv+/mrX/wKSz/8Kvsv/QxLD/++mQ/8u9b/8zNij/iJR5/8fStP/EybX/uLev/6ujp/+2p5//5dKR///ui//Ht27/Qjc4/0cvY/9qQZ3/ajqu/2Aurv9XIq3/TBal/5Ualf+qPKj/rkqp/6pIov+nR5v/sGCi/7l7q/+udZz/r4Gb/7mVof/Ao6T/wK2i/9THov//7Y7/saVi/zI3Jf+Uo3b/x9Sn/8PJqf/DwaL/18qT//fljP/76If/sqRl/0k/Pf9OO17/bE2O/21Jn/9kPaH/WzGh/1Elnv9FGZb/kxiE/50fi/+fKIr/oziL/69Yl/+6dZ//1qmX/72bff90Wl7/iGpr/7Waj/+9qpD/1seS///ujf+XjVT/NDkm/5elaP/GzIb/3taO//bljP//7Ir/28t4/4N5UP9LQ0L/YFFk/3Vehf9yV5H/aUuU/18/lf9VM5P/SiiQ/z4ch/+SGnT/mRt3/6MwgP+wU47/tmaT/7hwjP/ryob//OqI/66fYv9oWED/hnVf/6KSbf/KvHr//+2L/7yuZ/+jmlz/49d///vqif/86Yj/3Mx4/5mQWP9hXUH/YVtO/3luaf9/cHz/eGaE/25Zh/9kTYn/WkKI/082hf9DKoH/OB94/5IdZP+dJWz/rkuD/7Nbhv+wWnv/qVNr/8KHeP/x14j//+2L/+7cgf/i0Hz/6NaA//Tihf//7Yv//+2L//7riv/s24H/xrtu/5OPUv9vcUD/cnVI/4WFWf+NiGb/iIBv/350dv90aHr/alx9/19Qff9URHz/STl4/z0tc/8xImn/kiBV/5slW/+oPWr/qENl/6RCWf+tW2T/uXp3/8KReP/TsHD/6tN9//Xihv/y4IP/6Nd8/9fJdf+/tmf/oqNQ/5CYS/+PmVX/maRa/52nUv+epFb/mJta/46OYf+Fgmj/enZt/3Bqcf9lXnL/WlJy/09Hb/9DO2r/NzBk/yslWv+SI0X/miRI/50mSP+gMUf/qk1V/7dvav+7fW3/t31f/694SP+6lV3/vqdn/7KjXf+hmEL/oaFM/6qyWP+xxEj/uNBG/8HSX/+9y2L/q7dL/6CpSv+WnFH/i49a/4GDYP93d2X/bGtn/2BgaP9VVGb/SUlj/z0+Xf8xM1X/JChL/5ImNv+aKDj/nSg3/6M3Pf+zYVr/uXNh/7d2V/+vbz3/s30+/8GcW//Eql//xbNd/760QP/Dw0P/z9hf/9DjVf/F3jr/vNE6/7PEO/+ntjr/nqlD/5OdTP+JkVT/foVZ/3N5XP9nbV7/XGJd/1BXW/9DTFb/N0FP/yo2R/8eKzz/kykm/5orKP+dKyf/oTQq/61TPv+xZEH/rWIu/61rKP+6iUL/w59T/8WrU//ItlP/xLs9/8HBKv/N1kj/0uRR/8beMv+60Cf/sMMq/6a3NP+cqj7/kZ5H/4aSTf97hlH/b3tU/2NvVP9XZFP/S1lP/z5OSf8xQ0L/JDk4/xcuLf+SLRf/mi4X/50uF/+gMhf/o0AY/6dOGP+pXBf/snMm/72OO/+8lTL/xapD/8SxOP/GvDb/wcIb/8bRIf/M4Cv/xN4c/7nQG/+vxCX/pLcw/5qrOv+On0H/g5NG/3eISv9rfEv/X3FL/1NmSP9GW0P/OVE9/ytGNP8ePCr/EDEd/5IvCf+aMQn/nTEJ/6AzCf+jQAn/p04J/6pcCf+xcRX/s34R/7aLEv/EqTb/wKwd/8G2Fv/Cwg7/xM8I/8fdCP/D3Qz/udEW/67EI/+juC3/mKw2/4ygPP+AlEH/dIlD/2h+Q/9bc0L/Tmg+/0FdOf80UzH/Jkko/xg+HP8KNBD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="></div>
     <div class="progress-bar-outer"><div class="progress-bar-inner" id="loading-inner"></div></div>
   </div>
@@ -201,7 +201,7 @@
       setProgress(0.1);
 
       const scaffolding = new Scaffolding.Scaffolding();
-      scaffolding.width = 640;
+      scaffolding.width = 480;
       scaffolding.height = 360;
       scaffolding.resizeMode = "preserve-ratio";
       scaffolding.editableLists = false;
@@ -224,7 +224,7 @@
       scaffolding.setAccentColor("#ff4c4c");
 
       try {
-        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@プロジェクト 4.sb3"));
+        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@aaaaaaaaaaaaaaaaaaaa.sb3"));
       } catch (error) {
         console.error(error);
       }

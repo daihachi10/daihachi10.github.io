@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100vh;
+        }
+
+        .text-container {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            font-size: 2rem;
+            font-family: 'Arial', sans-serif;
+            color: #ff69b4;
+        }
+
+        .text-container span {
+            opacity: 0;
+            transform: translateY(100%);
+            animation: floatUp 2s ease-in-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100%);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="text-container" id="text-container"></div>
+
+<script>
+    const text = "Happy Birthday";
+    const container = document.getElementById('text-container');
+
+    function createBalloon(letter) {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        container.appendChild(span);
+
+        setTimeout(() => {
+            span.style.animation = 'floatUp 2s ease-in-out forwards';
+        }, 1000);
+    }
+
+    function animateText() {
+        let delay = 0;
+        for (let i = 0; i < text.length; i++) {
+            setTimeout(() => {
+                createBalloon(text[i]);
+            }, delay);
+            delay += 200;
+        }
+    }
+
+    animateText();
+</script>
+</body>
+</html>

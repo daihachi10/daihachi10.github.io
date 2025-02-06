@@ -191,12 +191,20 @@ body {
     margin-left: 0;
 }
 
-.item-list li {
-    transition: transform 0.3s ease;
+.item-list img{
+    width: 260px;
+    height: 260px;
+    transition: transform 0.3s ease-in-out;
 }
 
-.item-list li:hover {
-    transform: scale(1.05);
+.item-list img:hover {
+    transform: scale(1.2);
+}
+
+.li-image-box {
+    width: 260px;
+    height: 260px;
+    overflow: hidden;
 }
 
 
@@ -218,6 +226,28 @@ body {
     font-weight: bold;
     margin-top: 15px;
 }
+
+.hot,
+.game {
+    padding-left: 3px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.hot {
+    color: #ff0000;
+}
+
+.game {
+    color: rgba(255, 0, 0, 0.7);
+}
+
+.fire {
+    width: 13px !important;
+    height: 13px !important;
+    vertical-align: bottom;
+}
+
 
 @media (max-width:800px) {
     .first-view {

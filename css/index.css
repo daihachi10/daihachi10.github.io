@@ -187,6 +187,9 @@ body {
     margin-left: 75px;
 }
 
+.li-image-box {
+}
+
 .item-list li:first-child {
     margin-left: 0;
 }
@@ -205,6 +208,7 @@ body {
     width: 260px;
     height: 260px;
     overflow: hidden;
+    margin-left: 75px;
 }
 
 
@@ -281,6 +285,10 @@ body {
 
     .item-list li {
         width: 220px;
+        margin-left: 30px;
+    }
+
+    .li-image-box {
         margin-left: 30px;
     }
 }

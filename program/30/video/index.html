@@ -18,9 +18,18 @@
 
     <style>
         .back{
-            padding-left: 50px;
-            font-size: 30px;
+            /* padding-left: 50px; */
+            font-size: 20px !important;
 
+        }
+
+        .back:hover {
+            text-decoration: underline;
+            /* border-style: dotted; */
+            /* border:none; */
+            /* border-bottom: 5px;
+            padding-bottom: 5px;
+            margin-bottom:5px */
         }
         
         .video {
@@ -76,7 +85,10 @@
 
     <!-- mainここから -->
     <main class="main">
-        <a href="../index.html" class="back">＜戻る<br></a>
+        <div class="about-item" style="margin-left: 50px;">
+            <a href="../index.html" class="back">＜戻る</a>
+        </div>
+        <!-- <a href="../index.html" class="back">＜戻る<br></a> -->
         <div class="videobox">
             <video controls muted autoplay class="video">
                 <source src="media/60fps.mp4" type="video/mp4" />

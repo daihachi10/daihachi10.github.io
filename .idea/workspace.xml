@@ -5,7 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change beforePath="$PROJECT_DIR$/program/30/video/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/30/video/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/daihachi10.github.io.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/daihachi10.github.io.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/details.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/01/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/01/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/02/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/02/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/03/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/03/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/04/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/04/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/05/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/05/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/06/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/06/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/07/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/07/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/08/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/08/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/09/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/09/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/10/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/10/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/11/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/11/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/12/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/12/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/13/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/13/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/14/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/14/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/15/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/15/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/27/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/28/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/29/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/30/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/30/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/プログラム一覧.txt" beforeDir="false" afterPath="$PROJECT_DIR$/program/プログラム一覧.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +165,8 @@
       <workItem from="1738844623766" duration="317000" />
       <workItem from="1739018526604" duration="12000" />
       <workItem from="1739018601284" duration="606000" />
+      <workItem from="1739088964347" duration="169000" />
+      <workItem from="1739089329822" duration="2260000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />

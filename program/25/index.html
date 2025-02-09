@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link href="../../css/loading.css" rel="stylesheet">
     <script src="../../js/loading.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -60,16 +61,17 @@
     <!-- mainここから -->
     <main class="main">
         <div class="title">
-            <h1>BATTLE ROYAL</h1>
-            <p>大乱闘</p>
+            <h1>NEW GUN GAME</h1>
+            <p>新しい銃のゲーム</p>
         </div>
         <div class="shop-contents">
             <div class="shop-item">
-                <h2>BATTLE ROYAL</h2>
+
+                <h2>NEW GUN GAME</h2>
                 <div class="item-area">
                     <div id="p5-canvas-container"></div>
                     <!-- <iframe src="https://scratch.mit.edu/projects/1084336973/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe> -->
-                    <iframe src="./f/index.html" width="480" height="360" allowtransparency="true" frameborder="0"
+                    <iframe src="./f/index.html" width="800" height="360" allowtransparency="true" frameborder="0"
                         scrolling="no" allowfullscreen></iframe>
                     <div class="about-item">
                         <p class="item-text">
@@ -112,31 +114,12 @@
                     </ul>
                 </div>
             </div>
-            <aside class="shop-menu">
-                <div class="shop-menu-inner">
-                    <h2>PROGRAM LIST</h2>
-                    <ul>
-                        <li><a href="../15/index.html">SUSHITYPING <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
-                        <li><a href="../16/index.html">BuildpcPartsIntroduction <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
-                        <li><a href="../14/index.html">NOTEPAD <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
-                        <li><a href="../20/index.html">TETRIS <span class="hot">HOT<img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span></a></li>
-                        <li><a href="../06/index.html">SCROLLING PLATFORMER MAKER <span class="game">GAME</span></a></li>
-                        <li><a href="../07/index.html">Geometry Dash Minecraft version <span class="game">GAME</span></a></li>
-                        <li><a href="../08/index.html">Geometry Dash Minecraft version2 <span class="game">GAME</span></a></li>
-                        <li><a href="../09/index.html">LASERS || a mobile platformer <span class="game">GAME</span></a></li>
-                        <li><a href="../13/index.html" class="now">BATTLE ROYAL <span class="game">GAME</span></a></li>
-                        <li><a href="../03/index.html">BALL PICKING GAME <span class="game">GAME</span></a></li>
-                        <li><a href="../01/index.html">TYPING</a></li>
-                        <li><a href="../02/index.html">PASSWORD GENERATOR</a></li>
-                        <li><a href="../04/index.html">EMOJI GENERATOR</a></li>
-                        <li><a href="../05/index.html">QR CODE GENERATOR</a></li>
-                        <li><a href="../10/index.html">P5 ANIMATION 02</a></li>
-                        <li><a href="../11/index.html">P5 ANIMATION 01</a></li>
-                        <li><a href="../12/index.html">P5 ANIMATION 03</a></li>
-                        <li><a href="../17/index.html">YOUTUBE VIDEO PLAYER</a></li>
-                    </ul>
-                </div>
-            </aside>
+            <aside class="shop-menu"></aside>
+            <script>
+                $(function () {
+                    $(".shop-menu").load("https://daihachi10.github.io/program/common.html");
+                });
+            </script>
         </div>
     </main>
     <!-- mainここまで -->

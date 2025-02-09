@@ -6,7 +6,7 @@
 
 
 body {
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-family: 'Montserrat', 'Noto Sans JP','Noto Color Emoji', sans-serif;
 }
 
 .title {
@@ -100,8 +100,12 @@ ul li {
     margin-top: 10px;
 }
 
+.shop-menu ul a:hover {
+    color: #ff5283 ;
+}
+
 .shop-menu {
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif; */
     flex-shrink: 0;
     margin-right: 60px;
 }
@@ -268,8 +272,10 @@ ul li {
 }
 
 .hot,
-.game{
-    font-size: 10px;
+.game,
+.new{
+    padding-left: 10px;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -277,13 +283,25 @@ ul li {
     color: #ff0000;
 }
 
-.game {
-    color: rgba(255, 0, 0, 0.7);
+.game,
+.new {
+    color: #ff0000b3;
 }
-.fire {
+.fire,
+.new-image {
     width: 13px !important;
     height: 13px !important;
     vertical-align: bottom;
+}
+
+.game-icon,
+.tool-icon,
+.Keyboard-icon {
+    fill: var(--pink-color);
+    width: 14px;
+    height: 14px;
+    vertical-align: bottom;
+    margin-right: 7px;
 }
 
 

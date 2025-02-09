@@ -67,13 +67,24 @@ body {
     row-gap: 40px;
 }
 
+.item-list .img-box {
+    overflow: hidden;
+}
+
+.item-list img {    
+    transition-duration: 0.2s;
+    width: 100%;
+}
+
+
 .item-list a {
     display: block;
     transition-duration: 0.2s;
 }
 
-.item-list a:hover {
-    transform: scale(1.09);
+
+.item-list img:hover {
+    transform: scale(1.3);
 }
 
 .item-list dl {

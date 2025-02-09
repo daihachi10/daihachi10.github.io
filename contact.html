@@ -46,8 +46,10 @@
         };
 
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbyh8qvlsJeYYQU-xAxTtCjE7uWEYyb389Mwm76C3F6dwZ8aL7v8h3JoODtSnwrg8dsP/exec', {
+            // fetch部分を修正
+            const response = await fetch('https://script.google.com/macros/s/AKfycbxEzVerEPO0BHgPUl6l_fB4K5IDcQdknlyZlSynF6iL-HZlB0ZtyiIhuNtlYpAh3Ynr/exec', {
                 method: 'POST',
+                mode: 'cors', // 明示的にCORSモードを指定
                 headers: {
                     'Content-Type': 'application/json',
                 },

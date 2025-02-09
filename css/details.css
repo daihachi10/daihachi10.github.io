@@ -102,6 +102,7 @@ ul li {
 
 .shop-menu ul a:hover {
     color: #ff5283 ;
+    text-decoration: underline;
 }
 
 .shop-menu {

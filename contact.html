@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>お問い合わせフォーム</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <h2>お問い合わせフォーム</h2>
+    
+    <div id="login-container">
+        <div id="g_id_onload"
+             data-client_id="あなたのGoogle Client ID"
+             data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin" data-type="standard"></div>
+    </div>
+
+    <div id="user-section" style="display: none;">
+        <p>ログイン中: <span id="user-email"></span></p>
+        
+        <h3>新しいお問い合わせ</h3>
+        <textarea id="message" placeholder="お問い合わせ内容を入力"></textarea><br>
+        <button onclick="saveData()">送信</button>
+
+        <h3>過去のお問い合わせ</h3>
+        <button onclick="loadUserData()">更新</button>
+        <div id="pastData"></div>
+    </div>
+
+    <script>
+        let userEmail = "";
+
+        function handleCredentialResponse(response) {
+            fetch('GASのウェブアプリURL?mode=login', {
+                method: 'POST',
+                body: JSON.stringify({ id_token: response.credential }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    userEmail = data.email;
+                    localStorage.setItem('user_email', userEmail);
+                    document.getElementById('user-email').textContent = userEmail;
+                    document.getElementById('login-container').style.display = 'none';
+                    document.getElementById('user-section').style.display = 'block';
+                    loadUserData();
+                } else {
+                    alert('ログイン失敗');
+                }
+            });
+        }
+
+        function saveData() {
+            if (!userEmail) {
+                alert('ログインしてください');
+                return;
+            }
+
+            const content = document.getElementById('message').value;
+            if (!content) {
+                alert('内容を入力してください');
+                return;
+            }
+
+            fetch('GASのウェブアプリURL?mode=save', {
+                method: 'POST',
+                body: JSON.stringify({ email: userEmail, content }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('送信成功');
+                    document.getElementById('message').value = '';
+                    loadUserData();
+                } else {
+                    alert('送信失敗');
+                }
+            });
+        }
+
+        function loadUserData() {
+            if (!userEmail) return;
+
+            fetch('GASのウェブアプリURL?mode=fetch', {
+                method: 'POST',
+                body: JSON.stringify({ email: userEmail }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(res => res.json())
+            .then(data => {
+                const pastDataDiv = document.getElementById('pastData');
+                pastDataDiv.innerHTML = data.map(entry => `<p>${new Date(entry.date).toLocaleString()}: ${entry.content}</p>`).join('');
+            });
+        }
+
+        // ページ読み込み時にログイン状態を確認
+        window.onload = () => {
+            userEmail = localStorage.getItem('user_email');
+            if (userEmail) {
+                document.getElementById('user-email').textContent = userEmail;
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('user-section').style.display = 'block';
+                loadUserData();
+            }
+        };
+    </script>
+</body>
+</html>

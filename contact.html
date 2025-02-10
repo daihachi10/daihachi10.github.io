@@ -1,111 +1,62 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>お問い合わせフォーム</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <title>お問い合わせフォーム</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <h2>お問い合わせフォーム</h2>
+  <h1>お問い合わせフォーム</h1>
+  <form id="contactForm">
+    <label for="requirement">要件:</label>
+    <input type="text" id="requirement" name="requirement" required><br><br>
     
-    <div id="login-container">
-        <div id="g_id_onload"
-             data-client_id="304816629158-30vvphgdf08f16p5p5uqig9391jf7jlr.apps.googleusercontent.com"
-             data-callback="handleCredentialResponse">
-        </div>
-        <div class="g_id_signin" data-type="standard"></div>
-    </div>
+    <label for="email">メールアドレス:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    
+    <label for="message">本文:</label>
+    <textarea id="message" name="message" required></textarea><br><br>
+    
+    <div class="g-recaptcha" data-sitekey="6LdEQD0oAAAAAItJ4o11u2_3R8hQafD-5pFL7smv"></div><br>
+    
+    <button type="submit">送信</button>
+  </form>
 
-    <div id="user-section" style="display: none;">
-        <p>ログイン中: <span id="user-email"></span></p>
-        
-        <h3>新しいお問い合わせ</h3>
-        <textarea id="message" placeholder="お問い合わせ内容を入力"></textarea><br>
-        <button onclick="saveData()">送信</button>
-
-        <h3>過去のお問い合わせ</h3>
-        <button onclick="loadUserData()">更新</button>
-        <div id="pastData"></div>
-    </div>
-
-    <script>
-        let userEmail = "";
-
-        function handleCredentialResponse(response) {
-            fetch('https://script.google.com/macros/s/AKfycbxEGLnuq6QyXllwBqd-2T_42Cs47qIehXqJFCRIwwBJ3HRR-eUgji28LmCoMWOyKpXD/exec?mode=login', {
-                method: 'POST',
-                body: JSON.stringify({ id_token: response.credential }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    userEmail = data.email;
-                    localStorage.setItem('user_email', userEmail);
-                    document.getElementById('user-email').textContent = userEmail;
-                    document.getElementById('login-container').style.display = 'none';
-                    document.getElementById('user-section').style.display = 'block';
-                    loadUserData();
-                } else {
-                    alert('ログイン失敗');
-                }
-            });
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      var response = grecaptcha.getResponse();
+      if (response.length == 0) {
+        alert('reCAPTCHAを確認してください');
+        return;
+      }
+      
+      var formData = {
+        requirement: document.getElementById('requirement').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value,
+        recaptcha: response
+      };
+      
+      fetch('https://script.google.com/macros/s/AKfycbzkNv8WPhnvIxmYiBlzt7jrBW9njVL5Y4TlqoM8eNHWqnfCZNEhGfyvXw8nNR8rvbwI/exec', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
         }
-
-        function saveData() {
-            if (!userEmail) {
-                alert('ログインしてください');
-                return;
-            }
-
-            const content = document.getElementById('message').value;
-            if (!content) {
-                alert('内容を入力してください');
-                return;
-            }
-
-            fetch('https://script.google.com/macros/s/AKfycbxEGLnuq6QyXllwBqd-2T_42Cs47qIehXqJFCRIwwBJ3HRR-eUgji28LmCoMWOyKpXD/exec?mode=save', {
-                method: 'POST',
-                body: JSON.stringify({ email: userEmail, content }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    alert('送信成功');
-                    document.getElementById('message').value = '';
-                    loadUserData();
-                } else {
-                    alert('送信失敗');
-                }
-            });
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.result === 'success') {
+          alert('送信が成功しました');
+        } else {
+          alert('送信に失敗しました');
         }
-
-        function loadUserData() {
-            if (!userEmail) return;
-
-            fetch('https://script.google.com/macros/s/AKfycbxEGLnuq6QyXllwBqd-2T_42Cs47qIehXqJFCRIwwBJ3HRR-eUgji28LmCoMWOyKpXD/exec?mode=fetch', {
-                method: 'POST',
-                body: JSON.stringify({ email: userEmail }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(res => res.json())
-            .then(data => {
-                const pastDataDiv = document.getElementById('pastData');
-                pastDataDiv.innerHTML = data.map(entry => `<p>${new Date(entry.date).toLocaleString()}: ${entry.content}</p>`).join('');
-            });
-        }
-
-        // ページ読み込み時にログイン状態を確認
-        window.onload = () => {
-            userEmail = localStorage.getItem('user_email');
-            if (userEmail) {
-                document.getElementById('user-email').textContent = userEmail;
-                document.getElementById('login-container').style.display = 'none';
-                document.getElementById('user-section').style.display = 'block';
-                loadUserData();
-            }
-        };
-    </script>
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
 </body>
 </html>

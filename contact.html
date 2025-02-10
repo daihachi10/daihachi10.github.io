@@ -1,74 +1,12 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>お問い合わせフォーム</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-<form id="contactForm">
-    <div>
-        <label>要件:</label>
-        <select name="requirement" required>
-            <option value="お見積もり">お見積もり</option>
-            <option value="ご質問">ご質問</option>
-            <option value="その他">その他</option>
-        </select>
-    </div>
-
-    <div>
-        <label>メールアドレス:</label>
-        <input type="email" name="email" required>
-    </div>
-
-    <div>
-        <label>希望日時:</label>
-        <input type="datetime-local" name="datetime" required>
-    </div>
-
-    <div>
-        <label>本文:</label>
-        <textarea name="body" rows="4" required></textarea>
-    </div>
-
-    <button type="submit">送信</button>
-</form>
-
-<script>
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const formData = {
-            requirement: e.target.requirement.value,
-            email: e.target.email.value,
-            datetime: e.target.datetime.value,
-            body: e.target.body.value
-        };
-
-        try {
-            // fetch部分を修正
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxEzVerEPO0BHgPUl6l_fB4K5IDcQdknlyZlSynF6iL-HZlB0ZtyiIhuNtlYpAh3Ynr/exec', {
-                method: 'POST',
-                mode: 'cors', // 明示的にCORSモードを指定
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const result = await response.json();
-            if (result.status === 'success') {
-                alert('送信が成功しました');
-                e.target.reset();
-            } else {
-                throw new Error(result.message);
-            }
-        } catch (error) {
-            alert(`エラーが発生しました: ${error.message}`);
-        }
-    });
-
-        <h2>お問い合わせフォーム</h2>
+    <h2>お問い合わせフォーム</h2>
     
     <div id="login-container">
         <div id="g_id_onload"
@@ -84,6 +22,7 @@
         <h3>新しいお問い合わせ</h3>
         <textarea id="message" placeholder="お問い合わせ内容を入力"></textarea><br>
         <button onclick="saveData()">送信</button>
+
         <h3>過去のお問い合わせ</h3>
         <button onclick="loadUserData()">更新</button>
         <div id="pastData"></div>
@@ -91,8 +30,9 @@
 
     <script>
         let userEmail = "";
+
         function handleCredentialResponse(response) {
-            fetch('https://script.google.com/macros/s/AKfycby3G_xdb9HeLPXS7grM1bW18iWdxIgU7m41AecN6tDmn2EYA0fmLEbxNV343pqBlyie/exec?mode=login', {
+            fetch('https://script.google.com/macros/s/AKfycbxEGLnuq6QyXllwBqd-2T_42Cs47qIehXqJFCRIwwBJ3HRR-eUgji28LmCoMWOyKpXD/exec?mode=login', {
                 method: 'POST',
                 body: JSON.stringify({ id_token: response.credential }),
                 headers: { 'Content-Type': 'application/json' }
@@ -124,7 +64,7 @@
                 return;
             }
 
-            fetch('GASのウェブアプリURL?mode=save', {
+            fetch('https://script.google.com/macros/s/AKfycbxEGLnuq6QyXllwBqd-2T_42Cs47qIehXqJFCRIwwBJ3HRR-eUgji28LmCoMWOyKpXD/exec?mode=save', {
                 method: 'POST',
                 body: JSON.stringify({ email: userEmail, content }),
                 headers: { 'Content-Type': 'application/json' }
@@ -144,7 +84,7 @@
         function loadUserData() {
             if (!userEmail) return;
 
-            fetch('GASのウェブアプリURL?mode=fetch', {
+            fetch('https://script.google.com/macros/s/AKfycbxEGLnuq6QyXllwBqd-2T_42Cs47qIehXqJFCRIwwBJ3HRR-eUgji28LmCoMWOyKpXD/exec?mode=fetch', {
                 method: 'POST',
                 body: JSON.stringify({ email: userEmail }),
                 headers: { 'Content-Type': 'application/json' }
@@ -167,7 +107,5 @@
             }
         };
     </script>
-
-</script>
 </body>
 </html>

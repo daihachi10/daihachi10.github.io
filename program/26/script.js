@@ -8,7 +8,7 @@ const sentence = `人類社会のすべての構成員の固有の尊厳と平�
 よって、ここに、国際連合総会は、
 社会の各個人及び各機関が、この世界人権宣言を常に念頭に置きながら、加盟国自身の人民の間にも、また、加盟国の管轄下にある地域の人民の間にも、これらの権利と自由との尊重を指導及び教育によって促進すること並びにそれらの普遍的かつ効果的な承認と遵守とを国内的及び国際的な漸進的措置によって確保することに努力するように、すべての人民とすべての国とが達成すべき共通の基準として、この世界人権宣言を公布する。`;
 
-        let timer = 300;
+        let timer = 60;
         let interval;
         let userText = "";
 
@@ -24,7 +24,7 @@ const sentence = `人類社会のすべての構成員の固有の尊厳と平�
             inputBox.value = "";
             userText = "";
             inputBox.focus();
-            timer = 300;
+            timer = 60;
             timerDisplay.innerText = timer;
             resultDisplay.classList.add("hidden");
             retryBtn.classList.add("hidden");

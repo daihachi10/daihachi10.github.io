@@ -264,6 +264,11 @@ body {
     vertical-align: bottom;
 }
 
+.new-image {
+    width: 13px !important;
+    height: 13px !important;
+    vertical-align: bottom;
+}
 
 @media (max-width:800px) {
     .first-view {

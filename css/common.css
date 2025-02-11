@@ -333,4 +333,8 @@ img {
     .copyright {
         margin-top: 50px;
     }
+
+    .main {
+        overflow-x: scroll;
+    }
 }

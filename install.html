@@ -13,6 +13,8 @@
     <link href="./css/install.css" rel="stylesheet">
     <link href="./css/loading.css" rel="stylesheet">
     <script src="./js/loading.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body class="is-slide" id="page-animate">
@@ -58,15 +60,15 @@
 
     <!-- mainここから -->
     <main class="main">
-        <div class="title">
-            <h1>INSTALL APP</h1>
-            <p>アプリをインストール</p>
+        <div class="title" data-aos="zoom-out">
+            <h1 data-aos="fade-up" data-aos-delay="100">INSTALL APP</h1>
+            <p data-aos="fade-up" data-aos-delay="200">アプリをインストール</p>
         </div>
         <div class="feature">
             <div class="feature-text">
-                 <h2>WindowsPC</h2>
+                 <h2 data-aos="fade-right" data-aos-delay="500">WindowsPC</h2>
                 <lu>
-                    <li><a href="https://github.com/daihachi10/daihachi10.github.io/releases/download/v1.0.0/daihachi.app.for.windows.zip">windows版のダウンロード</a></li>
+                    <li data-aos="fade-right" data-aos-delay="600"><a href="https://github.com/daihachi10/daihachi10.github.io/releases/download/v1.0.0/daihachi.app.for.windows.zip">windows版のダウンロード</a></li>
                 </lu>
             </div>
             <div class="feature-text">
@@ -76,30 +78,30 @@
 
         <div class="feature">
             <div class="feature-text">
-                <h2>macOS</h2>
+                <h2 data-aos="fade-right">macOS</h2>
                 <lu>
-                    <li><a href="https://github.com/daihachi10/daihachi10.github.io/releases" target="_blank">macOS版のダウンロード</a></li>
+                    <li data-aos="fade-right" data-aos-delay="100"><a href="https://github.com/daihachi10/daihachi10.github.io/releases" target="_blank">macOS版のダウンロード</a></li>
                 </lu>
             </div>
         </div>
 
         <div class="feature">
             <div class="feature-text">
-                <h2>iPhone</h2>
+                <h2 data-aos="fade-right">iPhone</h2>
                 <lu>
-                    <li>中央下の共有ボタンを押します</li>
-                    <li>次にホーム画面に追加を押します</li>
-                    <li>アプリでこのサイトが開かれます</li>
+                    <li data-aos="fade-right" data-aos-delay="200">中央下の共有ボタンを押します</li>
+                    <li data-aos="fade-right" data-aos-delay="400">次にホーム画面に追加を押します</li>
+                    <li data-aos="fade-right" data-aos-delay="600">アプリでこのサイトが開かれます</li>
                 </lu>
             </div>
-            <img src="./images/concept/img-item02-02.jpg" alt="iPhoneのアプリ画像">
+            <img data-aos="fade-left" data-aos-delay="800" src="./images/concept/img-item02-02.jpg" alt="iPhoneのアプリ画像">
         </div>
 
         <div class="feature">
             <div class="feature-text">
-                <h2>Github Releases</h2>
+                <h2 data-aos="fade-right">Github Releases</h2>
                 <lu>
-                    <li><a href="https://github.com/daihachi10/daihachi10.github.io/releases" target="_blank">Github Releases</a></li>
+                    <li data-aos="fade-right" data-aos-delay="100"><a href="https://github.com/daihachi10/daihachi10.github.io/releases" target="_blank">Github Releases</a></li>
                 </lu>
 
             </div>
@@ -115,26 +117,31 @@
     <!-- mainここまで -->
 
     <!-- footerここから -->
-    <footer class="footer">
-        <nav class="site-menu">
-            <ul>
-                <li><a href="./install.html">INSTALL APP</a></li>
-                <li><a href="./program.html">MY PROGRAM</a></li>
-                <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
-                        target="_blank">ENGLISH</a></li>
-                <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a>
-                </li>
-            </ul>
-        </nav>
-        <a class="footer-logo" href="./index.html">
-            <p>　daihachi　</p>
-        </a>
-        <p class="copyright"><small>&copy;daihachi</small></p>
-    </footer>
+<footer class="footer">
+    <nav class="site-menu">
+        <ul>
+            <li data-aos="fade-up" data-aos-delay="100"><a href="./install.html">INSTALL APP</a></li>
+            <li data-aos="fade-up" data-aos-delay="200"><a href="./program.html">MY PROGRAM</a></li>
+            <li data-aos="fade-up" data-aos-delay="300"><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja" target="_blank">ENGLISH</a></li>
+            <li data-aos="fade-up" data-aos-delay="400"><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a></li>
+        </ul>
+    </nav>
+    <a class="footer-logo" href="./index.html" data-aos="zoom-in" data-aos-delay="500">
+        <!-- <img src="./images/common/logo-footer.png" alt="KISSA"> -->
+        <p>daihachi</p>
+    </a>
+    <div data-aos="fade-down" data-aos-delay="700">
+        <p class="copyright" ><small>&copy;daihachi</small></p>
+    </div>
+</footer>
     <!-- footerここまで -->
     <script src="./js/page-top.js"></script>
     <link href="./css/fonts.css" rel="stylesheet">
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

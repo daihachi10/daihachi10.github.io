@@ -15,9 +15,10 @@ const gameConfig = {
     // backgroundColor: '#fff', // 背景色
     gridColor: '#787878', // グリッドの線の色
     lineWidth: 0.005, // グリッドの線の太さ
-    colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6', '#3e69b3', '#003f83'], // ブロックの色
+    // colors: [null, '#dc2171', '#ff708f', '#ffb5cf', '#a6c7ff', '#7397e6', '#3e69b3', '#003f83'], // ブロックの色
     // colors: [null, '#d0563f', '#f8a552', '#f4e178', '#4bc572', '#257247', '#277047', '#c48341'], // ブロックの色
     // colors: [null, '#e4dad0', '#b3715b', '#ca433f', '#912525', '#49552d', '#c4a590', '#d8bb99'], // ブロックの色  クリスマス
+    colors: [null, '#605042', '#e985a0', '#261312', '#d86867', '#f8ce74', '#ab9ba9', '#d0d9d3'], // ブロックの色     バレンタイン
 
     dropInterval: 1000, // 自動落下の間隔
     restartButtonText: 'Restart', // リスタートボタンのテキスト

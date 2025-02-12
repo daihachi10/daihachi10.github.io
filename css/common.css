@@ -29,6 +29,10 @@ a {
     text-decoration: none;
 }
 
+.header {
+    opacity: 100;
+}
+
 .header-inner a,
 .footer a {
     display: inline-block;
@@ -103,7 +107,8 @@ img {
     /*font-weight: bold;*/
     font-weight: 600;
     display: block;
-    width: 170px; /*240*/
+    width: 170px;
+    /*240*/
     /*animation: 0.2s forwards header-logo-nothovers;*/
 }
 
@@ -224,21 +229,28 @@ img {
 
 /*スクロールバー*/
 ::-webkit-scrollbar {
-    width: 12px; /* 横スクロールバーの幅 */
-    height: 12px; /* 縦スクロールバーの高さ */
+    width: 12px;
+    /* 横スクロールバーの幅 */
+    height: 12px;
+    /* 縦スクロールバーの高さ */
 }
 
 /* スクロールバーのスライダー部分 */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--header-footer-color); /* スライダーの色 */
-    border-radius: 6px; /* 角丸の半径 */
-    border: 3px solid transparent; /* スライダー周りのスペース */
-    background-clip: content-box; /* スライダーの内側だけ色を適用 */
+    background-color: var(--header-footer-color);
+    /* スライダーの色 */
+    border-radius: 6px;
+    /* 角丸の半径 */
+    border: 3px solid transparent;
+    /* スライダー周りのスペース */
+    background-clip: content-box;
+    /* スライダーの内側だけ色を適用 */
 }
 
 /* スクロールバーの背景 */
 ::-webkit-scrollbar-track {
-    border-radius: 6px; /* 背景も角丸に */
+    border-radius: 6px;
+    /* 背景も角丸に */
     background-color: var(--bg-color-light-scrollbar);
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }

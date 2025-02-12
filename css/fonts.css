@@ -21,3 +21,22 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+
+@font-face {
+    font-family: 'LINE Seed JP';
+    src: url('./fonts/LINESeedJP.woff2') format('woff2');
+}
+
+
+@font-face {
+    font-family: 'LINE Seed Sans';
+    src: url('./fonts/LINESeedSans.woff2') format('woff2');
+}
+
+body {
+    font-family: 'Montserrat', 'LINE Seed JP', sans-serif !important;
+}
+
+
+

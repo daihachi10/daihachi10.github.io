@@ -16,6 +16,7 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/animation.css">
     <script src="./js/animation.js"></script> -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 
@@ -44,7 +45,7 @@
 <!-- headerここから -->
 <header class="header">
     <div class="header-inner">
-        <a class="header-logo" href="./index.html">
+        <a data-aos="fade-down" data-aos-delay="200" class="header-logo" href="./index.html">
 
             <p>daihachi</p>
         </a>
@@ -52,12 +53,10 @@
         <div class="header-site-menu">
             <nav class="site-menu">
                 <ul>
-                    <li><a href="./install.html">INSTALL APP</a></li>
-                    <li><a href="./program.html">MY PROGRAM</a></li>
-                    <li><a href="en.html"
-                           target="_blank">ENGLISH</a></li>
-                    <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
-                           target="_blank">HIRAGANA</a>
+                    <li data-aos="fade-down" data-aos-delay="600"><a href="./install.html">INSTALL APP</a></li>
+                    <li data-aos="fade-down" data-aos-delay="800"><a href="./program.html">MY PROGRAM</a></li>
+                    <li data-aos="fade-down" data-aos-delay="1000"><a href="en.html" target="_blank">ENGLISH</a></li>
+                    <li data-aos="fade-down" data-aos-delay="1200"><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a></li>
                 </ul>
             </nav>
         </div>
@@ -79,20 +78,21 @@
 <!--        </div>-->
 <!--    </div>-->
 
-    <div class="first-view">
+    <div class="first-view" data-aos="fade-left" data-aos-delay="1600">
         <div class="first-view-text">
-            <h1>Various<br>Programming.</h1>
-            <p>様々なプログラミング。</p>
+            <h1 data-aos="zoom-in" data-aos-delay="1800">Various</h1>
+            <h1 data-aos="zoom-in" data-aos-delay="2000">Programming.</h1>
+            <p data-aos="fade-up" data-aos-delay="2200" style="padding-top: 10px;">様々なプログラミング。</p>
         </div>
     </div>
-    <div class="copyright2">
+    <div class="copyright2" data-aos="fade-left">
         <p><small><a href="https://www.pakutaso.com/20210915263post-36804.html"
                      target="_blank">&copy;PAKUTASO</a></small></p>
     </div>
     <div class="recommended">
-        <h2>MY PROGRAM</h2>
+        <h2 data-aos="zoom-in">MY PROGRAM</h2>
         <div class="js-scrollable">
-            <ul class="item-list">
+            <ul class="item-list" data-aos="fade-up">
                 <li class="item">
                     <a href="./program/31/">
                         <div class="li-image-box">
@@ -353,15 +353,15 @@
                                         -->
             </ul>
         </div>
-        <div class="link-button-area">
+        <div class="link-button-area" data-aos="zoom-out">
             <a class="link-button" href="./program.html">MORE PROGRAMS</a>
         </div>
     </div>
     <div class="leadbox">
         <div class="lead">
-            <h2>About daihachi</h2>
-            <p>daihachiはp5.jsを中心に様々なプログラミング言語でプログラミングをしています。<br></p>
-            <div class="link-button-area">
+            <h2 data-aos="fade-up">About daihachi</h2>
+            <p data-aos="fade-up">daihachiはp5.jsを中心に様々なプログラミング言語でプログラミングをしています。<br></p>
+            <div class="link-button-area" data-aos="zoom-out">
                 <a class="link-button" href="./install.html">INSTALL APP</a>
             </div>
         </div>
@@ -374,23 +374,27 @@
 <footer class="footer">
     <nav class="site-menu">
         <ul>
-            <li><a href="./install.html">INSTALL APP</a></li>
-            <li><a href="./program.html">MY PROGRAM</a></li>
-            <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
-                   target="_blank">ENGLISH</a></li>
-            <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a>
-            </li>
+            <li data-aos="fade-up" data-aos-delay="100"><a href="./install.html">INSTALL APP</a></li>
+            <li data-aos="fade-up" data-aos-delay="200"><a href="./program.html">MY PROGRAM</a></li>
+            <li data-aos="fade-up" data-aos-delay="300"><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja" target="_blank">ENGLISH</a></li>
+            <li data-aos="fade-up" data-aos-delay="400"><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a></li>
         </ul>
     </nav>
-    <a class="footer-logo" href="./index.html">
+    <a class="footer-logo" href="./index.html" data-aos="zoom-in" data-aos-delay="500">
         <!-- <img src="./images/common/logo-footer.png" alt="KISSA"> -->
         <p>　daihachi　</p>
     </a>
-    <p class="copyright"><small>&copy;daihachi</small></p>
+    <div data-aos="fade-down" data-aos-delay="700">
+        <p class="copyright" ><small>&copy;daihachi</small></p>
+    </div>
 </footer>
 <!-- footerここまで -->
 <script src="./js/toggle-menu.js"></script>
 <script src="./js/page-top.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 <link href="./css/fonts.css" rel="stylesheet">
 </body>
 

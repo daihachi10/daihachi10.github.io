@@ -38,19 +38,18 @@
     <!-- headerここから -->
     <header class="header">
         <div class="header-inner">
-            <a class="header-logo" href="./index.html">
+            <a data-aos="fade-down" data-aos-delay="200" class="header-logo" href="./index.html">
+
                 <p>daihachi</p>
             </a>
             <button class="toggle-menu-button"></button>
             <div class="header-site-menu">
                 <nav class="site-menu">
                     <ul>
-                        <li><a href="./install.html">INSTALL APP</a></li>
-                        <li><a href="./program.html">MY PROGRAM</a></li>
-                        <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
-                                target="_blank">ENGLISH</a></li>
-                        <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
-                                target="_blank">HIRAGANA</a></li>
+                        <li data-aos="fade-down" data-aos-delay="600"><a href="./install.html">INSTALL APP</a></li>
+                        <li data-aos="fade-down" data-aos-delay="800"><a href="./program.html">MY PROGRAM</a></li>
+                        <li data-aos="fade-down" data-aos-delay="1000"><a href="en.html" target="_blank">ENGLISH</a></li>
+                        <li data-aos="fade-down" data-aos-delay="1200"><a href="./account/"><span class="username">LOGIN / SIGNUP</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -148,6 +147,18 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const urlUser = params.get('user');
+            let user = null;
+            user = localStorage.getItem('user');
+            if (user) {
+                const usernameElements = document.querySelectorAll('span.username');
+                usernameElements.forEach(function(element) {
+                    element.textContent = 'Hi ' + user + '!';
+                });
+            }})
     </script>
 </body>
 

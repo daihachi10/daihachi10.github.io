@@ -5,7 +5,7 @@ body {
 }
 
 .main {
-    height: calc(100vh - 110px);
+    /*height: calc(100vh - 110px);*/
 }
 
 .login-box {
@@ -47,7 +47,7 @@ body {
     padding-bottom: 5px;
 }
 
-#email, #password {
+#email, #password,#password2 {
     height: 40px;
     width: calc(100% - 30px);
     margin-left: 5px;
@@ -78,12 +78,18 @@ body {
     border: none;
 }
 
-.forgotbox {
+.link-box {
     text-align: center;
     width: calc(100% - 30px);
     margin-top: 15px;
 }
 
-.forgot {
+.forgot,
+.signup{
     text-decoration: underline;
+    display: block;
+}
+
+.forgot {
+    padding-bottom: 20px;
 }

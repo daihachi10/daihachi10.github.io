@@ -144,13 +144,14 @@
     function login() {
         const value1 = document.getElementById("password").value;
         const value2 = document.getElementById("password2").value;
+        const email = document.getElementById("email").value;
+        const username = email.split('@')[0];
 
         if (value1 === value2) {
-            location.href = "https://daihachi10.github.io";
+            location.href = "https://daihachi10.github.io?user=" + username;
         } else {
             alert("Password does not match");
         }
-
     }
 </script>
 <link href="./css/fonts.css" rel="stylesheet">

@@ -76,7 +76,7 @@
     </div>
 
     <div style="text-align: center; width: calc(100% - 20px);">
-    <p data-aos="fade-up" data-aos-delay="1600" class="username">Error</p>
+    <span data-aos="fade-up" data-aos-delay="1600" class="username" style="font-size:20px;font-weight: bold;">Error</span>
     </div>
 
     <button data-aos="fade-up" data-aos-delay="1800" data-aos-offset="-100px" style="display: block" class="loginbutton" onclick="signout()">
@@ -121,16 +121,9 @@
     const urlUser = params.get('user');
     let user = null;
 
-    if (urlUser) {
-      // URLパラメーターがある場合はローカルストレージを更新
-      user = urlUser;
-      localStorage.setItem('user', user);
-    } else {
-      // URLパラメーターがなければローカルストレージから取得
       user = localStorage.getItem('user');
-    }
-
     // userが存在する場合のみspan要素のテキストを更新
+
     if (user) {
       const usernameElements = document.querySelectorAll('span.username');
       usernameElements.forEach(function(element) {

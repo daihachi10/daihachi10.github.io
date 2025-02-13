@@ -6,12 +6,12 @@ body {
 
 .main {
     /*height: calc(100vh - 110px);*/
-    display: -webkit-flex;
+    /* display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;
     justify-content: center;
     -webkit-align-items: center;
-    align-items: center;
+    align-items: center;*/
 }
 
 .login-box,

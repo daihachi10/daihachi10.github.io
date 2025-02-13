@@ -56,7 +56,7 @@
                     <li data-aos="fade-down" data-aos-delay="600"><a href="./install.html">INSTALL APP</a></li>
                     <li data-aos="fade-down" data-aos-delay="800"><a href="./program.html">MY PROGRAM</a></li>
                     <li data-aos="fade-down" data-aos-delay="1000"><a href="en.html" target="_blank">ENGLISH</a></li>
-                    <li data-aos="fade-down" data-aos-delay="1200"><a href="./login">LOGIN / SIGNUP</a></li>
+                    <li data-aos="fade-down" data-aos-delay="1200"><a href="./login"><span class="username">LOGIN / SIGNUP</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -433,16 +433,29 @@
 </script>
 
 <script>
-    const params = new URLSearchParams(window.location.hash.substring(1));
-    const accessToken = params.get("access_token");
+    document.addEventListener("DOMContentLoaded", function() {
+        const params = new URLSearchParams(window.location.search);
+        const urlUser = params.get('user');
+        let user = null;
 
-    if (accessToken) {
-        fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-            headers: {Authorization: `Bearer ${accessToken}`}
-        })
-            .then(res => res.json())
-            .then(data => console.log(data));
-    }
+        if (urlUser) {
+            // URLパラメーターがある場合はローカルストレージを更新
+            user = urlUser;
+            localStorage.setItem('user', user);
+        } else {
+            // URLパラメーターがなければローカルストレージから取得
+            user = localStorage.getItem('user');
+        }
+
+        // userが存在する場合のみspan要素のテキストを更新
+        if (user) {
+            const usernameElements = document.querySelectorAll('span.username');
+            usernameElements.forEach(function(element) {
+                element.textContent = 'Hi ' + user + '!';
+            });
+        }
+    });
+
 </script>
 
 <link href="./css/fonts.css" rel="stylesheet">

@@ -140,10 +140,12 @@
         const password = document.getElementById("password").value;
         const email = document.getElementById("email").value;
 
-        if (password === "password" && email === "example@gmail.com") {
-            location.href = "https://daihachi10.github.io";
+        const username = email.split('@')[0];
+
+        if (password === "password") {
+            location.href = "https://daihachi10.github.io?user=" + username;
         } else {
-            alert("Password does not match");
+            alert("Password does not match  your password is password.");
         }
 
     }

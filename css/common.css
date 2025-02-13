@@ -30,6 +30,7 @@ a {
 }
 
 .header {
+    background-color: var(--background-color);
     opacity: 100;
 }
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>daihachi official website</title>
+    <meta name="description" content="daihachiの公式サイト">
+    <meta name="viewport" content="width=device-width">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <link href="../css/login/email.css" rel="stylesheet">
+    <link href="../css/common.css" rel="stylesheet">
+    <link href="../css/loading.css" rel="stylesheet">
+    <script src="../js/loading.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/animation.css">
+    <script src="./js/animation.js"></script> -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+
+<body class="is-slide" id="page-animate">
+
+
+<div id="loading">
+
+    <div id="loadings" class="loading-overlay">
+        <div class="loading-animation">
+            <div class="bar purple"></div>
+            <div class="bar cyan"></div>
+            <div class="bar green"></div>
+            <div class="bar yellow"></div>
+            <div class="bar pink"></div>
+        </div>
+    </div>
+    <!-- <div class="spinner"></div>
+<p>読み込み中...</p> -->
+</div>
+
+
+<div class="progress"></div>
+
+
+<!-- headerここから -->
+<header class="header">
+    <div class="header-inner">
+        <a data-aos="fade-down" data-aos-delay="200" class="header-logo" href="./index.html">
+
+            <p>daihachi</p>
+        </a>
+        <button class="toggle-menu-button"></button>
+        <div class="header-site-menu">
+            <nav class="site-menu">
+                <ul>
+                    <li data-aos="fade-down" data-aos-delay="600"><a href="./install.html">INSTALL APP</a></li>
+                    <li data-aos="fade-down" data-aos-delay="800"><a href="./program.html">MY PROGRAM</a></li>
+                    <li data-aos="fade-down" data-aos-delay="1000"><a href="en.html" target="_blank">ENGLISH</a></li>
+                    <li data-aos="fade-down" data-aos-delay="1200"><a
+                            href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
+                            target="_blank">HIRAGANA</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<!-- headerここまで -->
+
+<!-- mainここから -->
+<main class="main">
+    <div data-aos="fade-up" data-aos-delay="1450" class="login-box">
+
+        <h2 class="logintext" data-aos="fade-up" data-aos-delay="1500">login</h2>
+        <div data-aos="fade-up" data-aos-delay="1500" class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 -960 960 960">
+                <path d="M360-390q-21 0-35.5-14.5T310-440q0-21 14.5-35.5T360-490q21 0 35.5 14.5T410-440q0 21-14.5 35.5T360-390Zm240 0q-21 0-35.5-14.5T550-440q0-21 14.5-35.5T600-490q21 0 35.5 14.5T650-440q0 21-14.5 35.5T600-390ZM480-160q134 0 227-93t93-227q0-24-3-46.5T786-570q-21 5-42 7.5t-44 2.5q-91 0-172-39T390-708q-32 78-91.5 135.5T160-486v6q0 134 93 227t227 93Zm0 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-54-715q42 70 114 112.5T700-640q14 0 27-1.5t27-3.5q-42-70-114-112.5T480-800q-14 0-27 1.5t-27 3.5ZM177-581q51-29 89-75t57-103q-51 29-89 75t-57 103Zm249-214Zm-103 36Z"/>
+            </svg>
+        </div>
+
+        <p data-aos="fade-up" data-aos-delay="1550">Email</p>
+        <input data-aos="fade-up" data-aos-delay="1600" type="email" name="email" id="email" placeholder="Email">
+
+        <p data-aos="fade-up" data-aos-delay="1650">Password</p>
+        <input data-aos="fade-up" data-aos-delay="1700" type="password" name="password" id="password"
+               placeholder="Password">
+        <label data-aos="fade-up" data-aos-delay="1750" for="showpassword" class="showpasswordlabel">
+            <input type="checkbox" name="showpassword" id="showpassword">
+            <span class="showpassword">Show Password</span>
+        </label>
+
+        <button data-aos="fade-up" data-aos-delay="1800" style="display: block" class="loginbutton" onclick="login()">
+            LOG IN
+        </button>
+        <div data-aos="fade-up" data-aos-delay="1900" data-aos-offset="-500" class="forgotbox">
+            <a href="" class="forgot">ForgotPassword?</a>
+        </div>
+
+        <a href="https://accounts.google.com/o/oauth2/auth?
+    client_id=304816629158-30vvphgdf08f16p5p5uqig9391jf7jlr.apps.googleusercontent.com&
+    redirect_uri=https://daihachi10.github.io&
+    response_type=token&
+    scope=email profile openid">
+            Googleでログイン
+        </a>
+
+    </div>
+</main>
+<!-- mainここまで -->
+
+<!-- footerここから -->
+<footer class="footer">
+    <nav class="site-menu">
+        <ul>
+            <li data-aos="fade-up" data-aos-delay="100"><a href="./install.html">INSTALL APP</a></li>
+            <li data-aos="fade-up" data-aos-delay="200"><a href="./program.html">MY PROGRAM</a></li>
+            <li data-aos="fade-up" data-aos-delay="300"><a
+                    href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+                    target="_blank">ENGLISH</a></li>
+            <li data-aos="fade-up" data-aos-delay="400"><a
+                    href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a></li>
+        </ul>
+    </nav>
+    <a class="footer-logo" href="./index.html" data-aos="zoom-in" data-aos-delay="500">
+        <!-- <img src="./images/common/logo-footer.png" alt="KISSA"> -->
+        <p>daihachi</p>
+    </a>
+    <div data-aos="fade-down" data-aos-delay="700" data-aos-offset="-100">
+        <p class="copyright"><small>&copy;daihachi</small></p>
+    </div>
+</footer>
+<!-- footerここまで -->
+<script src="./js/toggle-menu.js"></script>
+<script src="./js/page-top.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    // JavaScript
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('showpassword');
+
+    togglePassword.addEventListener('change', function () {
+        // チェックボックスの状態に応じてtype属性を変更
+        passwordInput.type = this.checked ? 'text' : 'password';
+    });
+
+    function login() {
+        location.href = "https://daihachi10.github.io";
+    }
+</script>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<div id="g_id_onload"
+     data-client_id="304816629158-30vvphgdf08f16p5p5uqig9391jf7jlr.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse">
+</div>
+<div class="g_id_signin"
+     data-type="standard">
+</div>
+<script>
+    function handleCredentialResponse(response) {
+        console.log("Google Token:", response.credential);
+        // トークンをサーバーに送信して認証処理を行う
+    }
+</script>
+
+
+<link href="./css/fonts.css" rel="stylesheet">
+</body>
+
+</html>

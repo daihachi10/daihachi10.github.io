@@ -6,9 +6,16 @@ body {
 
 .main {
     /*height: calc(100vh - 110px);*/
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
-.login-box {
+.login-box,
+.welcome-box {
     padding-top: 35px;
     padding-bottom: 30px;
 
@@ -23,6 +30,7 @@ body {
     border-radius: 20px;
     border: #2f3133 solid 1px;
 }
+
 
 .logintext {
     padding-bottom: 30px;

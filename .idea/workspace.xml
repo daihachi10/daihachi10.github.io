@@ -5,40 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.html" beforeDir="false" afterPath="$PROJECT_DIR$/common.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/en.html" beforeDir="false" afterPath="$PROJECT_DIR$/en.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/01/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/01/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/02/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/02/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/03/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/03/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/04/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/04/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/05/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/05/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/06/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/06/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/07/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/07/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/08/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/08/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/09/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/09/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/10/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/10/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/11/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/11/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/12/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/12/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/13/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/13/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/14/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/14/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/15/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/15/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/16/en.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/16/en.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/16/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/16/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/16/stores.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/16/stores.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/17/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/17/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/19/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/19/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/20/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/20/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/20/noiframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/20/noiframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/21/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/21/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/22/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/22/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/24/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/24/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/25/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/25/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/26/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/26/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/30/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/30/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/30/video/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/30/video/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/31/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/31/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/32/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/32/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/common/footer.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +161,7 @@
       <workItem from="1739277782728" duration="15000" />
       <workItem from="1739355733334" duration="3888000" />
       <workItem from="1739437849387" duration="12363000" />
-      <workItem from="1739530467181" duration="4727000" />
+      <workItem from="1739530467181" duration="5033000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />

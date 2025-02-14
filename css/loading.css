@@ -8,8 +8,8 @@
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /*justify-content: center;*/
+    /*align-items: center;*/
     z-index: 1000;
 }
 
@@ -115,4 +115,44 @@
     50% {
         opacity: 0.3;
     }
+}
+
+.loader-top {
+    height: 3px;
+    width: 100vw;
+    --c:no-repeat linear-gradient(#6100ee 0 0);
+    background: var(--c),var(--c),#d7b8fc;
+    background-size: 60% 100%;
+    animation: l16 3s infinite;
+}
+@keyframes l16 {
+    0%   {background-position:-150% 0,-150% 0}
+    66%  {background-position: 250% 0,-150% 0}
+    100% {background-position: 250% 0, 250% 0}
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #514b82;
+    animation:
+            l20-1 0.8s infinite linear alternate,
+            l20-2 1.6s infinite linear;
+}
+@keyframes l20-1{
+    0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
+    12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
+    25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
+    50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+    62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
+    75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
+    100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+}
+@keyframes l20-2{
+    0%    {transform:scaleY(1)  rotate(0deg)}
+    49.99%{transform:scaleY(1)  rotate(135deg)}
+    50%   {transform:scaleY(-1) rotate(0deg)}
+    100%  {transform:scaleY(-1) rotate(-135deg)}
 }

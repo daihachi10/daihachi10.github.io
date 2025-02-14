@@ -1,7 +1,8 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 :root {
-    /* --pink-color: #ff5283;          
+    /* 
+    --pink-color: #ff5283;          
     --pink-hover-color: #bf1948;    
     --header-footer-color: #3a5e98; 
     --background-color: #fff;
@@ -9,7 +10,6 @@
     --bg-myprogram: #fafafa;
     --bg-about:#ebebeb;
     --bg-video:#f8f8f8;
-
 
     --dark-pink-color: #ff5283;          
     --dark-pink-hover-color: #bf1948;    
@@ -32,6 +32,7 @@
     /*--bg-about: #013525;*/
     /*--bg-video: #003325;*/
 
+    /* バレンタイン
     --pink-color: #da516aaf;          
     --pink-hover-color: #da516b;    
     --header-footer-color: #e985a0; 
@@ -40,5 +41,14 @@
     --text-color: #605042;
     --bg-myprogram: #fffee8;
     --bg-about:#fffdda;
-    --bg-video:#fffdd1;
+    --bg-video:#fffdd1;*/
+    
+    --pink-color: rgba(254, 199, 1,0.8);          
+    --pink-hover-color: rgba(254, 199, 1,1);    
+    --header-footer-color: #1DB31D; 
+    --background-color: #fff;
+    --text-color: #000;
+    --bg-myprogram: #fafafa;
+    --bg-about:#ebebeb;
+    --bg-video:#f8f8f8;
 }

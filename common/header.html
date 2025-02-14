@@ -27,7 +27,11 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 
-    document.addEventListener("DOMContentLoaded", function () {
+
+
+    window.onload = function () {
+        AOS.init();
+
         const params = new URLSearchParams(window.location.search);
         const urlUser = params.get('user');
         let user = null;
@@ -38,9 +42,5 @@
                 element.textContent = 'Hi ' + user + '!';
             });
         }
-    })
-
-    window.onload = function () {
-        AOS.init();
     }
 </script>

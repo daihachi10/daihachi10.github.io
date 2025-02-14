@@ -13,426 +13,372 @@
     <link href="./css/loading.css" rel="stylesheet">
     <script src="./js/loading.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://daihachi10.github.io/common/script.js"></script>
 </head>
 
 <body class="is-slide" id="page-animate">
 
+<div id="loading"></div>
+<header class="header"></header>
 
-    <div id="loading">
-
-        <div id="loadings" class="loading-overlay">
-            <div class="loading-animation">
-                <div class="bar purple"></div>
-                <div class="bar cyan"></div>
-                <div class="bar green"></div>
-                <div class="bar yellow"></div>
-                <div class="bar pink"></div>
-            </div>
-        </div>
-        <!-- <div class="spinner"></div>
-    <p>読み込み中...</p> -->
+<!-- mainここから -->
+<main class="main">
+    <div class="title">
+        <h1>MY PROGRAM</h1>
+        <p>プログラム一覧</p>
     </div>
-
-    <div class="progress"></div>
-    <!-- headerここから --><header class="header">
-        <div class="header-inner">
-            <a data-aos="fade-down" data-aos-delay="200" class="header-logo" href="./index.html">
-
-                <p>daihachi</p>
+    <ul class="item-list">
+        <li>
+            <a href="./program/31/">
+                <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item31.webp" alt="reCAPTCHA" loading="lazy">
+                    <p class="item-label">MANY reCAPTCHA</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">MANY reCAPTCHA <span class="hot">New！
+                                <img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
+                                     alt="🔥">
+                            </span></dt>
+                    <div>
+                        <dd data-aos="fade-up" data-aos-delay="150">自分がロボットでは無いことを確認する時に</dd>
+                    </div></dl>
             </a>
-            <button class="toggle-menu-button"></button>
-            <div class="header-site-menu">
-                <nav class="site-menu">
-                    <ul>
-                        <li data-aos="fade-down" data-aos-delay="600"><a href="./install.html">INSTALL APP</a></li>
-                        <li data-aos="fade-down" data-aos-delay="800"><a href="./program.html">MY PROGRAM</a></li>
-                        <li data-aos="fade-down" data-aos-delay="1000"><a href="en.html" target="_blank">ENGLISH</a></li>
-                        <li data-aos="fade-down" data-aos-delay="1200"><a href="./account/"><span class="username">LOGIN / SIGNUP</span></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <!-- headerここまで -->
-
-    <!-- mainここから -->
-    <main class="main">
-        <div class="title">
-            <h1>MY PROGRAM</h1>
-            <p>プログラム一覧</p>
-        </div>
-        <ul class="item-list">
-            <li>
-                <a href="./program/31/">
-                    <div data-aos="fade-up">
-                        <img src="./images/program-img/img-item31.webp" alt="reCAPTCHA" loading="lazy">
-                        <p class="item-label">MANY reCAPTCHA</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">MANY reCAPTCHA <span class="hot">New！
+        </li>
+        <li>
+            <a href="./program/30/">
+                <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item30.webp" alt="figma" loading="lazy">
+                    <p class="item-label">REPRODUCED IN FIGMA</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">REPRODUCED IN FIGMA <span class="hot">New！
                                 <img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
-                                    alt="🔥">
+                                     alt="🔥">
                             </span></dt>
-                        <div>
-                            <dd data-aos="fade-up" data-aos-delay="150">自分がロボットでは無いことを確認する時に</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/30/">
-                    <div data-aos="fade-up">
-                        <img src="./images/program-img/img-item30.webp" alt="figma" loading="lazy">
-                        <p class="item-label">REPRODUCED IN FIGMA</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">REPRODUCED IN FIGMA <span class="hot">New！
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        ホームページをfigmaで再現してみましたアニメーションこだわった！
+                    </dd>
+                </dl>
+            </a>
+        </li>
+
+        <li>
+            <a href="./program/25/">
+                <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item25.webp" alt="2Dシューティングゲーム" loading="lazy">
+                    <p class="item-label">2DShootingGame</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">2DShootingGame</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">2Dシューティングゲーム</dd>
+                </dl>
+            </a>
+
+        </li>
+
+
+        <li>
+            <a href="./program/16/index.html">
+                <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item16-02.webp" alt="自作パソコン" loading="lazy">
+                    <p class="item-label">BUILDINGPC</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">buildingPC <span class="hot">HOT
                                 <img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
-                                    alt="🔥">
+                                     alt="🔥">
                             </span></dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">ホームページをfigmaで再現してみましたアニメーションこだわった！</dd>
-                    </dl>
-                </a>
-            </li>
+                    <dd data-aos="fade-up" data-aos-delay="150">自作パソコン紹介</dd>
+                </dl>
+            </a>
+        </li>
 
-            <li>
-                <a href="./program/25/">
-                    <div data-aos="fade-up">
-                        <img src="./images/program-img/img-item25.webp" alt="2Dシューティングゲーム" loading="lazy">
-                        <p class="item-label">2DShootingGame</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">2DShootingGame</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">2Dシューティングゲーム</dd>
-                    </dl>
-                </a>
+        <li>
+            <a href="./program/20/index.html">
+                <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item20-02.webp" alt="テトリス" loading="lazy">
+                    <p class="item-label">TETRIS</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">テトリス&reg; <span class="hot">HOT<img class="fire"
+                                                                                                        src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
+                                                                                                        alt="🔥"></span>
+                    </dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">再現してみた</dd>
+                </dl>
+            </a>
+        </li>
 
-            </li>
+        <li>
+            <a href="./program/15/index.html">
+                <div data-aos="fade-up">
 
+                    <img src="./images/program-img/img-item15-02.webp" alt="寿司タイピング" loading="lazy">
+                    <p class="item-label">TYPING</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">寿司タイピング <span class="hot">HOT<img class="fire"
+                                                                                                         src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
+                                                                                                         alt="🔥"></span>
+                    </dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">再現してみた</dd>
+                </dl>
+            </a>
+        </li>
 
-            <li>
-                <a href="./program/16/index.html">
-                    <div data-aos="fade-up">
-                        <img src="./images/program-img/img-item16-02.webp" alt="自作パソコン" loading="lazy">
-                        <p class="item-label">BUILDINGPC</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">buildingPC <span class="hot">HOT
-                                <img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
-                                    alt="🔥">
-                            </span></dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">自作パソコン紹介</dd>
-                    </dl>
-                </a>
-            </li>
+        <li>
+            <a href="./program/14/index.html">
+                <div data-aos="fade-up">
 
-            <li>
-                <a href="./program/20/index.html">
-                    <div data-aos="fade-up">
-                        <img src="./images/program-img/img-item20-02.webp" alt="テトリス" loading="lazy">
-                        <p class="item-label">TETRIS</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">テトリス&reg; <span class="hot">HOT<img class="fire"
-                                    src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span>
-                        </dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">再現してみた</dd>
-                    </dl>
-                </a>
-            </li>
+                    <img src="./images/program-img/notepad.webp" alt="Geometry Dash v1.3.2 Minecraft版"
+                         loading="lazy">
+                    <p class="item-label">NotePad</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">NotePad<span class="hot">HOT<img class="fire"
+                                                                                                 src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
+                                                                                                 alt="🔥"></span>
+                    </dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">シンプルなメモ帳です。</dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/13/index.html">
+                <div data-aos="fade-up">
 
-            <li>
-                <a href="./program/15/index.html">
-                    <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item13-02.webp" alt="大乱闘!" loading="lazy">
+                    <p class="item-label">BATTLE ROYAL</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">大乱闘!<span class="hot">HOT<img class="fire"
+                                                                                                 src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif"
+                                                                                                 alt="🔥"></span>
+                    </dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">スペースキーを押しながらジョンの冒険を押すと…</dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/07/index.html">
+                <div data-aos="fade-up">
 
-                        <img src="./images/program-img/img-item15-02.webp" alt="寿司タイピング" loading="lazy">
-                        <p class="item-label">TYPING</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">寿司タイピング <span class="hot">HOT<img class="fire"
-                                    src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span>
-                        </dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">再現してみた</dd>
-                    </dl>
-                </a>
-            </li>
+                    <img src="./images/program-img/img-item07-02.webp" alt="Geometry Dash v1.3.2 Minecraft版"
+                         loading="lazy">
+                    <p class="item-label">Geometry Dash Minecraft version</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">Geometry Dash v1.3.2 Minecraft版</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">Geometry Dashのマイクラバージョンです。</dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/08/index.html">
+                <div data-aos="fade-up">
 
-            <li>
-                <a href="./program/14/index.html">
-                    <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item08-02.webp" alt="Geometry Dash v1.3.2 Minecraft版"
+                         loading="lazy">
+                    <p class="item-label">Geometry Dash Minecraft version2</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">Geometry Dash v1.3.2 Minecraft版2</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">Geometry Dashのマイクラバージョンです<br>ステージの種類が増えました。
+                    </dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/09/index.html">
+                <div data-aos="fade-up">
 
-                        <img src="./images/program-img/notepad.webp" alt="Geometry Dash v1.3.2 Minecraft版"
-                            loading="lazy">
-                        <p class="item-label">NotePad</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">NotePad<span class="hot">HOT<img class="fire"
-                                    src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span>
-                        </dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">シンプルなメモ帳です。</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/13/index.html">
-                    <div data-aos="fade-up">
+                    <img src="./images/program-img/img-item09-02.webp" alt="レーザーをよけろ" loading="lazy">
+                    <p class="item-label">LASERS || a mobile platformer</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">レーザーをよけろ</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">レーザーなどの様々なギミックを回避してクリアしよう。</dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/06/index.html">
+                <div data-aos="fade-up">
 
-                        <img src="./images/program-img/img-item13-02.webp" alt="大乱闘!" loading="lazy">
-                        <p class="item-label">BATTLE ROYAL</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">大乱闘!<span class="hot">HOT<img class="fire"
-                                    src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span>
-                        </dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">スペースキーを押しながらジョンの冒険を押すと…</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/07/index.html">
-                    <div data-aos="fade-up">
-
-                        <img src="./images/program-img/img-item07-02.webp" alt="Geometry Dash v1.3.2 Minecraft版"
-                            loading="lazy">
-                        <p class="item-label">Geometry Dash Minecraft version</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">Geometry Dash v1.3.2 Minecraft版</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">Geometry Dashのマイクラバージョンです。</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/08/index.html">
-                    <div data-aos="fade-up">
-
-                        <img src="./images/program-img/img-item08-02.webp" alt="Geometry Dash v1.3.2 Minecraft版"
-                            loading="lazy">
-                        <p class="item-label">Geometry Dash Minecraft version2</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">Geometry Dash v1.3.2 Minecraft版2</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">Geometry Dashのマイクラバージョンです<br>ステージの種類が増えました。</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/09/index.html">
-                    <div data-aos="fade-up">
-
-                        <img src="./images/program-img/img-item09-02.webp" alt="レーザーをよけろ" loading="lazy">
-                        <p class="item-label">LASERS || a mobile platformer</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">レーザーをよけろ</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">レーザーなどの様々なギミックを回避してクリアしよう。</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/06/index.html">
-                    <div data-aos="fade-up">
-
-                        <img src="./images/program-img/img-item06-02.webp"
-                            alt="スクロールプラットフォーマーメーカー【モバイル対応】【日本語訳】|Square ◆ scrolling platformer creator" loading="lazy">
-                        <p class="item-label">SCROLLING PLATFORMER MAKER</p>
-                    </div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">スクロールプラットフォーマーメーカー【モバイル対応】</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">スクロールプラットフォームを作ってみよう。</dd>
-                    </dl>
-                </a>
-            </li>
+                    <img src="./images/program-img/img-item06-02.webp"
+                         alt="スクロールプラットフォーマーメーカー【モバイル対応】【日本語訳】|Square ◆ scrolling platformer creator"
+                         loading="lazy">
+                    <p class="item-label">SCROLLING PLATFORMER MAKER</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">スクロールプラットフォーマーメーカー【モバイル対応】</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">スクロールプラットフォームを作ってみよう。</dd>
+                </dl>
+            </a>
+        </li>
 
 
-            <li>
-                <a href="./program/03/index.html">
-                    <div data-aos="fade-up">
-                    
+        <li>
+            <a href="./program/03/index.html">
+                <div data-aos="fade-up">
+
                     <img src="./images/program-img/img-item03-02.webp" alt="ボール拾いゲーム" loading="lazy">
                     <p class="item-label">BALL PICKING GAME</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">ボール拾いゲーム</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">
-                            ボール拾いゲーム。スコアが増えるごとにボールのスピードが早くなる。ラッキーボールやアンラッキーボールも。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/11/index.html">
-                    <div data-aos="fade-up">
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">ボール拾いゲーム</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        ボール拾いゲーム。スコアが増えるごとにボールのスピードが早くなる。ラッキーボールやアンラッキーボールも。
+                    </dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/11/index.html">
+                <div data-aos="fade-up">
 
                     <img src="./images/program-img/img-item11-02.webp" alt="P5 ANIMATION 01" loading="lazy"
-                        >
-                        <p class="item-label">P5 ANIMATION 01</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">P5 アニメーション 01</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">鮮やかな色の四方に広がる星形模様が円形の点線で囲まれた、幾何学的で対称的なデザインです。</dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/01/index.html">
-                    <div data-aos="fade-up">
+                    >
+                    <p class="item-label">P5 ANIMATION 01</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">P5 アニメーション 01</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        鮮やかな色の四方に広がる星形模様が円形の点線で囲まれた、幾何学的で対称的なデザインです。
+                    </dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/01/index.html">
+                <div data-aos="fade-up">
 
                     <img src="./images/program-img/img-item01-02.webp" alt="typing" loading="lazy">
                     <p class="item-label">TYPING</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">タイピング</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">
-                            １文字づつの入力するスピードがどんどん早くなるタイピングです。入力した数によってランクが付きます。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">タイピング</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        １文字づつの入力するスピードがどんどん早くなるタイピングです。入力した数によってランクが付きます。
+                    </dd>
+                </dl>
+            </a>
+        </li>
 
-            <li>
-                <a href="./program/02/index.html">
-                    <div data-aos="fade-up">
+        <li>
+            <a href="./program/02/index.html">
+                <div data-aos="fade-up">
 
                     <img src="./images/program-img/img-item02-02.webp" alt="パスワード生成機" loading="lazy">
                     <p class="item-label">PASSWORD GENERATOR</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">パスワード生成機</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">
-                            大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            <li>
-                <a href="./program/04/index.html">
-                    <div data-aos="fade-up">
-                    
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">パスワード生成機</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。
+                    </dd>
+                </dl>
+            </a>
+        </li>
+        <li>
+            <a href="./program/04/index.html">
+                <div data-aos="fade-up">
+
                     <img src="./images/program-img/img-item05-02.webp" alt="絵文字生成機" loading="lazy">
                     <p class="item-label">EMOJI GENERATOR</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">絵文字生成機</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">ランダム様々な絵文字を生成します。友達にLINE&reg;を送信するときに使えるかもしれませんね。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">絵文字生成機</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">ランダム様々な絵文字を生成します。友達にLINE&reg;を送信するときに使えるかもしれませんね。
+                    </dd>
+                </dl>
+            </a>
+        </li>
 
-            <li>
-                <a href="./program/05/index.html">
-                    <div data-aos="fade-up">
-                    
+        <li>
+            <a href="./program/05/index.html">
+                <div data-aos="fade-up">
+
                     <img src="./images/program-img/img-item04-02.webp" alt="QRコード&reg;生成" loading="lazy">
                     <p class="item-label">QR CODE GENERATOR</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">QRコード生成</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">
-                            QRコード&reg;生成を生成します。このサイトのURLが指定されています。サイトを共有するときに使えるかもしれません。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">QRコード生成</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        QRコード&reg;生成を生成します。このサイトのURLが指定されています。サイトを共有するときに使えるかもしれません。
+                    </dd>
+                </dl>
+            </a>
+        </li>
 
 
-            <li>
-                <a href="./program/10/index.html">
-                    <div data-aos="fade-up">
+        <li>
+            <a href="./program/10/index.html">
+                <div data-aos="fade-up">
 
                     <img src="./images/program-img/img-item10-02.webp" alt="P5 ANIMATION 02" loading="lazy"
-                        >
-                        <p class="item-label">P5 ANIMATION 02</p>
-</div>
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">P5 アニメーション 02</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">
-                            緑色の小さな正方形が斜めに一直線に並んでいるデザインです。シンプルでミニマルな構図で、各正方形が均等な間隔で配置されているのが特徴です。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
+                    >
+                    <p class="item-label">P5 ANIMATION 02</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">P5 アニメーション 02</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        緑色の小さな正方形が斜めに一直線に並んでいるデザインです。シンプルでミニマルな構図で、各正方形が均等な間隔で配置されているのが特徴です。
+                    </dd>
+                </dl>
+            </a>
+        </li>
 
 
-            <li>
-                <a href="./program/12/index.html">
-                    <div data-aos="fade-up">
+        <li>
+            <a href="./program/12/index.html">
+                <div data-aos="fade-up">
 
                     <img src="./images/program-img/img-item12-02.webp" alt="P5 ANIMATION 03" loading="lazy"
-                        >
-                        <p class="item-label">P5 ANIMATION 03</p>
-</div>  
+                    >
+                    <p class="item-label">P5 ANIMATION 03</p>
+                </div>
 
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">P5 アニメーション 03</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">
-                            赤、青、緑の円が重なり合ってランダムに配置されたデザインです。円の大きさや位置に変化があり、白い背景とのコントラストが目立ちます。全体的にポップでカラフルな印象を与えるアブストラクトな模様です。
-                        </dd>
-                    </dl>
-                </a>
-            </li>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">P5 アニメーション 03</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">
+                        赤、青、緑の円が重なり合ってランダムに配置されたデザインです。円の大きさや位置に変化があり、白い背景とのコントラストが目立ちます。全体的にポップでカラフルな印象を与えるアブストラクトな模様です。
+                    </dd>
+                </dl>
+            </a>
+        </li>
 
 
-            <!--             coming soon -->
-            <li>
-                <a href="">
-                    <div data-aos="fade-up">
+        <!--             coming soon -->
+        <li>
+            <a href="">
+                <div data-aos="fade-up">
 
                     <img src="./images/program-img/coming-soon.webp" alt="coming-soon" loading="lazy"
-                        data-aos="fade-up">
-                        <p class="item-label">COMING SOON</p>
-                        </
-                    <dl>
-                        <dt data-aos="fade-up" data-aos-delay="100">COMING SOON</dt>
-                        <dd data-aos="fade-up" data-aos-delay="150">COMING SOON</dd>
-                    </dl>
-                </a>
-            </li>
-        </ul>
+                         data-aos="fade-up">
+                    <p class="item-label">COMING SOON</p>
+                </div>
+                <dl>
+                    <dt data-aos="fade-up" data-aos-delay="100">COMING SOON</dt>
+                    <dd data-aos="fade-up" data-aos-delay="150">COMING SOON</dd>
+                </dl>
+            </a>
+        </li>
+    </ul>
 
 
-    </main>
-    <!-- mainここまで -->
+</main>
+<!-- mainここまで -->
 
-    <!-- footerここから -->
-    <footer class="footer">
-        <nav class="site-menu">
-            <ul>
-                <li data-aos="fade-up" data-aos-delay="100"><a href="./install.html">INSTALL APP</a></li>
-                <li data-aos="fade-up" data-aos-delay="200"><a href="./program.html">MY PROGRAM</a></li>
-                <li data-aos="fade-up" data-aos-delay="300"><a
-                        href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
-                        target="_blank">ENGLISH</a></li>
-                <li data-aos="fade-up" data-aos-delay="400"><a
-                        href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a>
-                </li>
-            </ul>
-        </nav>
-        <a class="footer-logo" href="./index.html" data-aos="zoom-in" data-aos-delay="500">
-            <!-- <img src="./images/common/logo-footer.png" alt="KISSA"> -->
-            <p>daihachi</p>
-        </a>
-        <div data-aos="fade-down" data-aos-delay="700">
-            <p class="copyright"><small>&copy;daihachi</small></p>
-        </div>
-    </footer>
-    <script src="./js/toggle-menu.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
+<!-- footerここから -->
+<footer class="footer"></footer>
+<script src="./js/toggle-menu.js"></script>
+<script>
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const params = new URLSearchParams(window.location.search);
-            const urlUser = params.get('user');
-            let user = null;
-            user = localStorage.getItem('user');
-            if (user) {
-                const usernameElements = document.querySelectorAll('span.username');
-                usernameElements.forEach(function(element) {
-                    element.textContent = 'Hi ' + user + '!';
-                });
-            }})
-    </script>
+</script>
 </body>
 
 </html>

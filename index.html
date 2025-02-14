@@ -13,25 +13,17 @@
     <link href="./css/loading.css" rel="stylesheet">
     <script src="./js/loading.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/animation.css">
-    <script src="./js/animation.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://daihachi10.github.io/common/script.js"></script>
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!--        <script src="https://daihachi10.github.io/common/script.js"></script>-->
+    <script src="./common/script.js"></script>
+
 </head>
 
 
 <body class="is-slide" id="page-animate">
 
 
-<div id="loading">
-
-    <div id="loadings" class="loading-overlay">
-
-    </div>
-    <!-- <div class="spinner"></div>
-<p>読み込み中...</p> -->
-</div>
+<div id="loading"></div>
 
 
 <div class="progress"></div>
@@ -388,11 +380,11 @@
 <script src="./js/page-top.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init();
+    // AOS.init();
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         const params = new URLSearchParams(window.location.search);
         const urlUser = params.get('user');
         let user = null;
@@ -409,7 +401,7 @@
         // userが存在する場合のみspan要素のテキストを更新
         if (user) {
             const usernameElements = document.querySelectorAll('span.username');
-            usernameElements.forEach(function(element) {
+            usernameElements.forEach(function (element) {
                 element.textContent = 'Hi ' + user + '!';
             });
         }

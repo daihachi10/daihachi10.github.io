@@ -118,10 +118,10 @@
 }
 
 .loader-top {
-    height: 3px;
+    height: 8px;
     width: 100vw;
-    --c:no-repeat linear-gradient(#6100ee 0 0);
-    background: var(--c),var(--c),#d7b8fc;
+    --c:no-repeat linear-gradient(#1db31d 0 0);
+    background: var(--c),var(--c), rgba(29, 179, 29, 0.25);
     background-size: 60% 100%;
     animation: l16 3s infinite;
 }
@@ -136,7 +136,7 @@
     width: 50px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 8px solid #514b82;
+    border: 8px solid #1db31d;
     animation:
             l20-1 0.8s infinite linear alternate,
             l20-2 1.6s infinite linear;

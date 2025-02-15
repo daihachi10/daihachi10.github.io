@@ -87,6 +87,8 @@
   });
 
   function signout() {
+    localStorage.removeItem('user');
+    alert('ログアウトしました。');
     location.href = "./login.html";
   }
 </script>

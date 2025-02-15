@@ -122,7 +122,7 @@
     height: 8px;
     width: 100vw;
     --c:no-repeat linear-gradient(#1db31d 0 0);
-    background: var(--c),var(--c), rgba(29, 179, 29, 0.25);
+    background: var(--c),var(--c), rgba(254, 199, 1, 0.5);
     background-size: 60% 100%;
     animation: l16 3s infinite;
 }

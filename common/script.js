@@ -14,6 +14,5 @@ document.addEventListener("click", function (event) {
 for (let i = 0; i < 500; i++) {
     setTimeout(function () {
         AOS.init();
-        console.log(i)
-    }, 200);
+    }, 500);
 }

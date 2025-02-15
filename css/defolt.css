@@ -43,8 +43,8 @@
     --bg-about:#fffdda;
     --bg-video:#fffdd1;*/
     
-    --pink-color: rgba(254, 199, 1,0.8);          
-    --pink-hover-color: rgba(254, 199, 1,1);    
+    --pink-color: rgb(254, 199, 1);
+    --pink-hover-color: rgb(191, 151, 0);
     --header-footer-color: #1DB31D; 
     --background-color: #fff;
     --text-color: #000;

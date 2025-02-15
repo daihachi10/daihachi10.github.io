@@ -140,23 +140,6 @@ img {
     }
 }
 
-.header-logo:hover {
-    animation: 3s linear 1s logo-hover;
-}
-
-@keyframes logo-hover {
-    0% {
-        color: #1571c2;
-    }
-
-    100% {
-        color: #000;
-    }
-}
-
-
-
-
 .site-menu ul {
     display: flex;
 }

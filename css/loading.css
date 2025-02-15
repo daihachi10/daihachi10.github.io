@@ -159,9 +159,9 @@
 }
 
 .loading-image{
-    width: 100px;
+    width: 300px;
     display:block;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 30vh;
+    margin-top: 60vh;
 }

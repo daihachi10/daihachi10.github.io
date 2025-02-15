@@ -157,3 +157,11 @@
     50%   {transform:scaleY(-1) rotate(0deg)}
     100%  {transform:scaleY(-1) rotate(-135deg)}
 }
+
+.loading-image{
+    width: 100px;
+    display:block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30vh;
+}

@@ -114,32 +114,6 @@ img {
     /*animation: 0.2s forwards header-logo-nothovers;*/
 }
 
-
-.header-logo:hover {
-    animation: 0.2s forwards header-logo-hovers;
-}
-
-
-@keyframes header-logo-hovers {
-    0% {
-        color: rgb(21, 113, 194);
-    }
-
-    100% {
-        color: #000;
-    }
-}
-
-@keyframes header-logo-nothovers {
-    0% {
-        color: #000;
-    }
-
-    100% {
-        color: var(--header-footer-color);
-    }
-}
-
 .site-menu ul {
     display: flex;
 }

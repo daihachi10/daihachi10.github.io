@@ -102,8 +102,9 @@ img {
 }
 
 .header-logo {
-    font-family: "Caveat", cursive;
+    /*font-family: "Caveat", cursive;*/
     /*font-family: 'Poppins', sans-serif;*/
+    font-family: 'Montserrat','LINE Seed Sans', sans-serif;
     font-size: 50px;
     /*font-weight: bold;*/
     font-weight: 600;
@@ -299,6 +300,10 @@ img {
     .header-logo {
         font-size: 30px;
         width: 100px;
+    }
+
+    .logo-text {
+        display: none;
     }
 
     .header-site-menu {

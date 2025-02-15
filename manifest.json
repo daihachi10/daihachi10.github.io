@@ -2,7 +2,7 @@
   "name": "daihachi",
   "short_name": "daihachi",
   "start_url": "https://daihachi10.github.io/",
-  "background_color": "#e985a0",
+  "background_color": "#1db31d",
   "display": "fullscreen",
   "icons": [
     {
@@ -11,7 +11,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#1571c2",
+  "theme_color": "#1db31d",
   "manifest_version": 3,
   "id": "daihachi",
   "description": "daihachi official app",

@@ -39,7 +39,8 @@
     text-align: center;
 }
 
-.loading-overlay {
+.loading-overlay,
+.loading-logo{
     position: fixed;
     /* 常に画面に表示されるように */
     top: 0;

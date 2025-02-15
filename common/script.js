@@ -4,9 +4,15 @@ $(function () {
     $(".header").load("https://daihachi10.github.io/common/header.html");
 });
 
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
     // クリックされたときの処理
     console.log("クリックされました！", event.clientX, event.clientY);
-
     AOS.init();
+
 });
+
+for (let i = 0; i < 10; i++) {
+    setTimeout(function () {
+        AOS.init();
+    }, 200);
+}

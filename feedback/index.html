@@ -42,23 +42,37 @@
     </form>
   </div>
 
-  <script>
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      const form = event.target;
-      const formData = new FormData(form);
 
-      fetch(form.action, {
-        method: "POST",
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert(data.message);
-        form.reset();
-      })
-      .catch(error => alert("エラーが発生しました"));
-    }
+  <script>
+function handleFormSubmit(event) {
+  event.preventDefault();
+  
+  // フォームデータをオブジェクトに変換
+  const formData = {
+    grade: event.target.grade.value,
+    name: event.target.name.value,
+    subject: event.target.subject.value,
+    content: event.target.content.value
+  };
+
+  // GASのデプロイURLを指定
+  const gasUrl = "https://script.google.com/macros/s/AKfycbwBgdXBqyOeKdp0goJzJ0itCif6y2XwtoX3DotwML5hyUYlyIedq9eqba1LgUVg5-hV/exec";
+
+  fetch(gasUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert(data.message);
+    event.target.reset();
+  })
+  .catch(error => alert("エラーが発生しました"));
+}
+
   </script>
 </body>
 </html>

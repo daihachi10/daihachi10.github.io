@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>意見募集フォーム</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            max-width: 600px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input, select, textarea, button {
-            padding: 10px;
-            font-size: 16px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        textarea {
-            resize: vertical;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <style>
+    .container { max-width: 600px; margin: 20px auto; padding: 20px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input, select, textarea { width: 100%; padding: 8px; }
+    button { background: #4285f4; color: white; padding: 10px 20px; border: none; }
+  </style>
 </head>
 <body>
-    <h1>意見募集フォーム</h1>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfqILJJMTqcyTh4L-zApz8YGFdUg0iYmb6R-03LlQF2DEHkfQ/viewform?embedded=true" width="640" height="822" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+  <div class="container">
+    <h1>意見投稿フォーム</h1>
+    <form id="myForm" onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+        <label>学年:</label>
+        <select name="grade" required>
+          <option value="">選択してください</option>
+          <option value="1年生">1年生</option>
+          <option value="2年生">2年生</option>
+          <option value="3年生">3年生</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>名前:</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label>件名:</label>
+        <input type="text" name="subject" required>
+      </div>
+
+      <div class="form-group">
+        <label>内容:</label>
+        <textarea name="content" rows="5" required></textarea>
+      </div>
+
+      <button type="submit">送信</button>
+    </form>
+  </div>
+
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        form.reset();
+      })
+      .catch(error => alert("エラーが発生しました"));
+    }
+  </script>
 </body>
 </html>

@@ -41,59 +41,6 @@
 </head>
 <body>
     <h1>意見募集フォーム</h1>
-    <form id="feedbackForm">
-        <label for="grade">学年:</label>
-        <select id="grade" name="grade" required>
-            <option value="">選んでください</option>
-            <option value="1年生">1年生</option>
-            <option value="2年生">2年生</option>
-            <option value="3年生">3年生</option>
-        </select>
-
-        <label for="name">名前:</label>
-        <input type="text" id="name" name="name" placeholder="名前を入力してください" required>
-
-        <label for="subject">件名:</label>
-        <input type="text" id="subject" name="subject" placeholder="件名を入力してください" required>
-
-        <label for="message">内容:</label>
-        <textarea id="message" name="message" rows="5" placeholder="意見の内容を入力してください" required></textarea>
-
-        <button type="submit">送信</button>
-    </form>
-
-    <script>
-        document.getElementById("feedbackForm").addEventListener("submit", async function (event) {
-            event.preventDefault(); // フォームのデフォルト動作を停止
-
-            const formData = new FormData(event.target);
-
-            // データをオブジェクト形式に変換
-            const data = {
-                grade: formData.get("grade"),
-                name: formData.get("name"),
-                subject: formData.get("subject"),
-                message: formData.get("message")
-            };
-
-            try {
-                const response = await fetch("https://script.google.com/macros/s/AKfycbwPXZutLojALqqF3beQqZlbWO4lkcmkKJZZcvp5h1p2qwai6Cga2nWX5WNtio4pm1NCxQ/exec", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    alert("送信が完了しました！");
-                    event.target.reset(); // フォームをリセット
-                } else {
-                    alert("送信に失敗しました。");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("エラーが発生しました。");
-            }
-        });
-    </script>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfqILJJMTqcyTh4L-zApz8YGFdUg0iYmb6R-03LlQF2DEHkfQ/viewform?embedded=true" width="640" height="822" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
 </body>
-</html>#
+</html>

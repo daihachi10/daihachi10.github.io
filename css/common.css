@@ -7,7 +7,7 @@
 
 ::selection {
     color: #fff;
-    background-color: #ff5283;
+    background-color: var(--header-footer-color);
 }
 
 

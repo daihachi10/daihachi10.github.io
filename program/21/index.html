@@ -83,6 +83,13 @@
             }
         }
 
+        document.addEventListener('keydown', function(event) {
+            // 上矢印キー（38）または下矢印キー（40）が押された場合
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+                event.preventDefault();
+            }
+        });
+
     </script>
 </body>
 

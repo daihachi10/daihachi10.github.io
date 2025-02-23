@@ -94,7 +94,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
 
@@ -131,7 +131,7 @@ img {
 
 .footer {
     color: #ffffff;
-    background-color: var(--header-footer-color);
+    background-color: var(--theme-color);
     padding-top: 30px;
     padding-bottom: 15px;
     display: flex;
@@ -172,7 +172,7 @@ img {
 
 /* スクロールバーのスライダー部分 */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--header-footer-color);
+    background-color: var(--theme-color);
     /* スライダーの色 */
     border-radius: 6px;
     /* 角丸の半径 */
@@ -192,7 +192,7 @@ img {
 
 /*html {*/
 /*    scrollbar-width: 12px; !* スクロールバーの幅: thin, auto, none *!*/
-/*    scrollbar-color: var(--header-footer-color) var(--background-color);*/
+/*    scrollbar-color: var(--theme-color) var(--background-color);*/
 /*    border-radius: 6px; !* 背景も角丸に *!*/
 /*}*/
 

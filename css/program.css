@@ -24,7 +24,7 @@ body {
 .title {
     height: 310px;
     /* background-image: url(../images/menu/bg-main.jpg); */
-    background-color: var(--header-footer-color);
+    background-color: var(--theme-color);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

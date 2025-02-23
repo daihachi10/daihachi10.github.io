@@ -82,7 +82,7 @@ body {
     margin-left: 5px;
     height: 40px;
     color: #fff;
-    background-color: var(--header-footer-color);
+    background-color: var(--theme-color);
     border: none;
 }
 

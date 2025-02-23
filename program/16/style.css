@@ -1,8 +1,8 @@
 /* CSS変数 */
 :root {
-    --pink-color: #ff5283;
-    --pink-hover-color: #bf1948;
-    --header-footer-color: #3a5e98;
+    --sub-color: #ff5283;
+    --sub-hover-color: #bf1948;
+    --theme-color: #3a5e98;
     --loading-text-color: #000;
 
     --transition-duration: 1s;
@@ -60,7 +60,7 @@
 /* 文字選択したときの色 */
 ::selection {
     color: #fff;
-    background-color: var(--pink-color);
+    background-color: var(--sub-color);
 }
 
 /* リセット */
@@ -113,7 +113,7 @@ body.dark {
 
 /* スクロールバーのスライダー部分 */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--header-footer-color); /* スライダーの色 */
+    background-color: var(--theme-color); /* スライダーの色 */
     border-radius: 6px; /* 角丸の半径 */
     border: 3px solid transparent; /* スライダー周りのスペース */
     background-clip: content-box; /* スライダーの内側だけ色を適用 */
@@ -206,7 +206,7 @@ body.dark #animated-header {
     /* color: #1571c2; */
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
@@ -225,7 +225,7 @@ body.dark .header-inner {
     justify-content: space-between;
     align-items: center;
     /* color: #1571c2; */
-    /*color: var(--header-footer-color);*/
+    /*color: var(--theme-color);*/
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
@@ -241,7 +241,7 @@ body.dark .header-inner {
     width: 200px;
     animation: 0.2s forwards header-logo-nothovers;
     /* color: #1571c2; */
-    /*color: var(--header-footer-color);*/
+    /*color: var(--theme-color);*/
     /* color: #3b6930; */
 }
 
@@ -255,13 +255,13 @@ body.dark .header-inner {
 /* フッター */
 .footer {
     color: #ffffff;
-    /*background-color: var(--header-footer-color);*/
+    /*background-color: var(--theme-color);*/
     padding-top: 30px;
     padding-bottom: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--header-footer-color);
+    background-color: var(--theme-color);
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
@@ -295,7 +295,7 @@ body.dark .otherdisplay {
 
 /*ヘッダーのotherの文字の右の矢印*/
 .othericon {
-    fill: var(--header-footer-color);
+    fill: var(--theme-color);
     transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
 }
 
@@ -311,7 +311,7 @@ body.dark .othericon {
 .other li {
     padding-top: 40px;
 
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
@@ -376,7 +376,7 @@ del {
     left: 0;
     width: 100%;
     height: 0.1em;
-    background-color: var(--pink-color);
+    background-color: var(--sub-color);
     transform-origin: 0 50%;
     animation: grow-progress auto linear;
     animation-timeline: scroll();
@@ -692,7 +692,7 @@ body.dark .leadbox {
 }
 
 .link-button {
-    /* background-color: var(--pink-color); */
+    /* background-color: var(--sub-color); */
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
@@ -711,7 +711,7 @@ body.dark .leadbox {
 }
 
 /* .link-button:hover {
-    background-color: var(--pink-hover-color);
+    background-color: var(--sub-hover-color);
 } */
 
 .link-button:hover {
@@ -722,24 +722,24 @@ body.dark .leadbox {
 
 @keyframes hover {
     0% {
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
 
     }
 
     100% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 }
 
 @keyframes nothover {
     0% {
 
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 
     100% {
 
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
     }
 }
 
@@ -1181,11 +1181,11 @@ span.appear {
     0% {
         transform: translate(0, 2em);
         opacity: 0;
-        text-shadow: 0 0 0 var(--pink-color);
+        text-shadow: 0 0 0 var(--sub-color);
     }
 
     50% {
-        text-shadow: 0 0 0.5em var(--pink-color);
+        text-shadow: 0 0 0.5em var(--sub-color);
     }
 
     100% {
@@ -1339,13 +1339,13 @@ body.dark #loadings {
     margin: -8px 0 0 -8px;
     width: 16px;
     aspect-ratio: 1;
-    background: var(--pink-color);
+    background: var(--sub-color);
     animation: l1-1 2s infinite,
     l1-2 .5s infinite;
 }
 
 .loader:after {
-    background: var(--pink-color);
+    background: var(--sub-color);
     animation-delay: -1s, 0s;
 }
 

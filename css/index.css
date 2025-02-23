@@ -113,23 +113,23 @@ body {
 
 @keyframes hover {
     0% {
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
 
     }
 
     100% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 }
 
 @keyframes nothover {
     0% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 
     100% {
 
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
     }
 }
 

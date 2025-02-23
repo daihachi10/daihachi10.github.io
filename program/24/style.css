@@ -13,11 +13,11 @@
 
     --box-padding: 40px;
 
-    --pink-color: #ff5283;
+    --sub-color: #ff5283;
     /*デフォルト*/
-    --pink-hover-color: #bf1948;
+    --sub-hover-color: #bf1948;
     /*デフォルト*/
-    --header-footer-color: #76B900;
+    --theme-color: #76B900;
     /*デフォルト*/
 
 
@@ -87,7 +87,7 @@ header {
     /* color: #1571c2; */
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
@@ -229,23 +229,23 @@ body.dark #default-header {
 
 @keyframes hover {
     0% {
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
 
     }
 
     100% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 }
 
 @keyframes nothover {
     0% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 
     100% {
 
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
     }
 }
 

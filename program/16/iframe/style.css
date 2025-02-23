@@ -1,7 +1,7 @@
 :root {
-    --pink-color: #ff5283;
-    --pink-hover-color: #bf1948;
-    --header-footer-color: #3a5e98;
+    --sub-color: #ff5283;
+    --sub-hover-color: #bf1948;
+    --theme-color: #3a5e98;
     --loading-text-color: #000;
 }
 
@@ -73,7 +73,7 @@
 
 /* スクロールバーのスライダー部分 */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--header-footer-color); /* スライダーの色 */
+    background-color: var(--theme-color); /* スライダーの色 */
     border-radius: 6px; /* 角丸の半径 */
     border: 3px solid transparent; /* スライダー周りのスペース */
     background-clip: content-box; /* スライダーの内側だけ色を適用 */

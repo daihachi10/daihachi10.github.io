@@ -2,9 +2,9 @@
 
 :root {
     /* 
-    --pink-color: #ff5283;          
-    --pink-hover-color: #bf1948;    
-    --header-footer-color: #3a5e98; 
+    --sub-color: #ff5283;
+    --sub-hover-color: #bf1948;
+    --theme-color: #3a5e98;
     --background-color: #fff;
     --text-color: #000;
     --bg-myprogram: #fafafa;
@@ -24,18 +24,18 @@
 
     /* クリスマス 
     --background-color: #003a28;
-    --pink-color: #b7193a;
-    --pink-hover-color: #610d1d;
-    --header-footer-color: #b7193a;
+    --sub-color: #b7193a;
+    --sub-hover-color: #610d1d;
+    --theme-color: #b7193a;
     --text-color: #fff;
     --bg-myprogramm: #003a28;
     --bg-about: #013525;
     --bg-video: #003325;*/
 
     /* バレンタイン
-    --pink-color: #da516aaf;          
-    --pink-hover-color: #da516b;    
-    --header-footer-color: #e985a0; 
+    --sub-color: #da516aaf;
+    --sub-hover-color: #da516b;
+    --theme-color: #e985a0;
     --first-view-color: rgba(255, 254, 232, 0.01);
     --background-color: #fffee8;
     --text-color: #605042;
@@ -43,9 +43,9 @@
     --bg-about:#fffdda;
     --bg-video:#fffdd1;*/
     
-    --pink-color: #fec701;
-    --pink-hover-color: rgb(191, 151, 0);
-    --header-footer-color: #1DB31D; 
+    --sub-color: #fec701;
+    --sub-hover-color: rgb(191, 151, 0);
+    --theme-color: #1DB31D;
     --background-color: #fff;
     --text-color: #000;
     --bg-myprogram: #fafafa;

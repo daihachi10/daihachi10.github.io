@@ -222,23 +222,23 @@ ul li {
 
 @keyframes hover {
     0% {
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
 
     }
 
     100% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 }
 
 @keyframes nothover {
     0% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 
     100% {
 
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
     }
 }
 
@@ -309,7 +309,7 @@ ul li {
 .game-icon,
 .tool-icon,
 .Keyboard-icon {
-    fill: var(--pink-color);
+    fill: var(--sub-color);
     width: 14px;
     height: 14px;
     vertical-align: bottom;

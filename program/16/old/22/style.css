@@ -1,13 +1,13 @@
 :root {
-    --pink-color: #ff5283;
-    --pink-hover-color: #bf1948;
-    --header-footer-color: #3a5e98;
+    --sub-color: #ff5283;
+    --sub-hover-color: #bf1948;
+    --theme-color: #3a5e98;
     --loading-text-color: #000;
 }
 
 ::selection {
     color: #fff;
-    background-color: var(--pink-color);
+    background-color: var(--sub-color);
 }
 
 *,
@@ -113,7 +113,7 @@ header {
     justify-content: space-between;
     align-items: center;
     /* color: #1571c2; */
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
@@ -129,7 +129,7 @@ header {
     justify-content: space-between;
     align-items: center;
     /* color: #1571c2; */
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     /* color: #3b6930; */
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
@@ -146,7 +146,7 @@ header {
     width: 170px;
     animation: 0.2s forwards header-logo-nothovers;
     /* color: #1571c2; */
-    color: var(--header-footer-color);
+    color: var(--theme-color);
     /* color: #3b6930; */
 }
 
@@ -196,7 +196,7 @@ img {
 .footer {
     color: #ffffff;
     /* background-color: #1571c2; */
-    background-color: var(--header-footer-color);
+    background-color: var(--theme-color);
     padding-top: 30px;
     padding-bottom: 15px;
     display: flex;
@@ -490,7 +490,7 @@ lead a {
 }
 
 .link-button {
-    /* background-color: var(--pink-color); */
+    /* background-color: var(--sub-color); */
     display: inline-block;
     min-width: 180px;
     line-height: 48px;
@@ -502,7 +502,7 @@ lead a {
 }
 
 /* .link-button:hover {
-    background-color: var(--pink-hover-color);
+    background-color: var(--sub-hover-color);
 } */
 
 .link-button:hover {
@@ -513,24 +513,24 @@ lead a {
 
 @keyframes hover {
     0% {
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
 
     }
 
     100% {
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 }
 
 @keyframes nothover {
     0% {
 
-        background-color: var(--pink-color);
+        background-color: var(--sub-color);
     }
 
     100% {
 
-        background-color: var(--pink-hover-color);
+        background-color: var(--sub-hover-color);
     }
 }
 
@@ -1009,11 +1009,11 @@ span.appear {
     0% {
         transform: translate(0, 2em);
         opacity: 0;
-        text-shadow: 0 0 0 var(--pink-color);
+        text-shadow: 0 0 0 var(--sub-color);
     }
 
     50% {
-        text-shadow: 0 0 0.5em var(--pink-color);
+        text-shadow: 0 0 0.5em var(--sub-color);
     }
 
     100% {
@@ -1158,14 +1158,14 @@ span.appear {
     margin: -8px 0 0 -8px;
     width: 16px;
     aspect-ratio: 1;
-    background: var(--pink-color);
+    background: var(--sub-color);
     animation:
         l1-1 2s infinite,
         l1-2 .5s infinite;
 }
 
 .loader:after {
-    background: var(--pink-color);
+    background: var(--sub-color);
     animation-delay: -1s, 0s;
 }
 

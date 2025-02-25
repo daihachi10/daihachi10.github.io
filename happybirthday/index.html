@@ -5,8 +5,331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>happybirthday</title>
 <meta name="theme-color" content="#1DB31D" />
+    <style>@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+    body {
+        /*background: #34E1FF;*/
+        font-family: 'Fredoka One', cursive;
+        overflow-x: hidden;
+        background-color: #1DB31D;
+    }
+
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .text {
+        min-width: 100%;
+        text-align: center;
+        color: white;
+        text-shadow: 1px 1px #2C3A49;
+        font-size: 3em;
+    }
+
+    .text .char {
+        animation: slide-in 1s cubic-bezier(.5, 0, .5, 1) both;
+        animation-delay: calc(60ms * var(--char-index));
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateY(-1em) rotate(-0.5turn) scale(0.5);
+            opacity: 0;
+        }
+    }
+
+    .presents {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 200px;
+    }
+
+    .present {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .present .lid {
+        height: 20%;
+        width: calc(100% + 10px);
+        border: 4px solid #2C3A49;
+        border-radius: 5px;
+        box-shadow: inset 2px 2px rgba(255, 255, 255, 0.5), 5px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .present .box {
+        width: 100%;
+        height: 100%;
+        border: 4px solid #2C3A49;
+        border-top: 0;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        box-shadow: inset -10px 5px rgba(0, 0, 0, 0.3), 5px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .present .ribbon {
+        position: absolute;
+        top: -3px;
+        width: 30px;
+        height: calc(100% - 5px);
+        border: 4px solid #2C3A49;
+        border-radius: 5px;
+        box-shadow: inset 2px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    .present .ribbon::before {
+        display: block;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .present .bow {
+        position: absolute;
+        top: -20px;
+        width: 20px;
+        height: 20px;
+        border: 4px solid #2C3A49;
+        border-radius: 50%;
+        box-shadow: inset 2px 2px rgba(255, 255, 255, 0.5), inset -2px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .present .bow::before,
+    .present .bow::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: -10px;
+        width: 30px;
+        height: 30px;
+        border: 4px solid #2C3A49;
+        border-radius: 50%;
+        box-shadow: inset 2px 2px rgba(255, 255, 255, 0.5), inset -2px -5px rgba(0, 0, 0, 0.3);
+        z-index: -1;
+    }
+
+    .present .bow::before {
+        left: 15px;
+    }
+
+    .present .bow::after {
+        right: 15px;
+    }
+
+    /* 各プレゼントのスタイル */
+    .green {
+        position: relative;
+        left: -20px;
+        width: 100px;
+        height: 100px;
+        z-index: 1;
+        background-color: #3DDC81;
+    }
+
+    .green .box {
+        background-image: radial-gradient(white 20%, transparent 20%), radial-gradient(white 20%, transparent 20%);
+        background-color: #3DDC81;
+    }
+
+    .green .ribbon {
+        background: #F75D4C;
+    }
+
+    .green .bow,
+    .green .bow::before,
+    .green .bow::after {
+        background: #F75D4C;
+    }
+
+    .orange {
+        position: relative;
+        left: 20px;
+        width: 130px;
+        height: 120px;
+        z-index: 10;
+        background-color: #FFA726;
+    }
+
+    .orange .box {
+        background-image: radial-gradient(#2C3A49 20%, transparent 20%), radial-gradient(#2C3A49 20%, transparent 20%);
+        background-color: #FFA726;
+    }
+
+    .orange .ribbon {
+        background: #F75D4C;
+    }
+
+    .orange .bow,
+    .orange .bow::before,
+    .orange .bow::after {
+        background: #F75D4C;
+    }
+
+    .blue {
+        position: relative;
+        left: 0;
+        width: 120px;
+        height: 160px;
+        z-index: 0;
+        background-color: #1BB5FE;
+    }
+
+    .blue .box {
+        background-image: radial-gradient(transparent 20%, transparent 20%), radial-gradient(transparent 20%, transparent 20%);
+        background-color: #1BB5FE;
+    }
+
+    .blue .ribbon {
+        background: #3DDC81;
+    }
+
+    .blue .bow,
+    .blue .bow::before,
+    .blue .bow::after {
+        background: #3DDC81;
+    }
+
+    /* アニメーション */
+    @keyframes green {
+        0%, 100% {
+            width: 100px;
+            height: 100px;
+        }
+        30% {
+            width: 110px;
+            height: 90px;
+        }
+        60% {
+            width: 90px;
+            height: 110px;
+        }
+    }
+
+    @keyframes orange {
+        0%, 100% {
+            width: 130px;
+            height: 120px;
+        }
+        30% {
+            width: 140px;
+            height: 110px;
+        }
+        60% {
+            width: 120px;
+            height: 130px;
+        }
+    }
+
+    @keyframes blue {
+        0%, 100% {
+            width: 120px;
+            height: 160px;
+        }
+        30% {
+            width: 130px;
+            height: 150px;
+        }
+        60% {
+            width: 110px;
+            height: 170px;
+        }
+    }
+
+    .green:hover {
+        animation: 0.5s green;
+    }
+
+    .orange:hover {
+        animation: 0.5s orange;
+    }
+
+    .blue:hover {
+        animation: 0.5s blue;
+    }
+    </style>
 </head>
 <body>
-    happybirthday
+<div class="container">
+    <div class="text" data-splitting="">Happy Birthday</div>
+    <div class="presents">
+        <div class="present orange">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="bow"></div>
+            <div class="ribbon"></div>
+        </div>
+        <div class="present blue">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="bow"></div>
+            <div class="ribbon"></div>
+        </div>
+        <div class="present green">
+            <div class="lid"></div>
+            <div class="box"></div>
+            <div class="bow"></div>
+            <div class="ribbon"></div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("click", (event) => {
+        bursty(event.pageX, event.pageY);
+    });
+
+    setInterval(() => randomizedConfetti(), 500);
+
+    function bursty(x, y) {
+        const burst = new mojs.Burst({
+            left: 0,
+            top: 0,
+            radius: { 0: 200 },
+            count: 20,
+            degree: 360,
+            children: {
+                fill: { white: "#34E1FF" },
+                duration: 2000
+            }
+        }).tune({
+            x: x,
+            y: y
+        });
+
+        burst.replay();
+    }
+
+    function randomizedConfetti() {
+        let randomX = Math.floor(Math.random() * (document.body.clientWidth-100) + 0);
+        let randomY = Math.floor(Math.random() * (window.innerHeight-200) + 0);
+        const burst = new mojs.Burst({
+            left: 0,
+            top: 0,
+            radius: { 0: 200 },
+            count: 20,
+            degree: 360,
+            children: {
+                fill: { white: "#34E1FF" },
+                duration: 2000
+            }
+        }).tune({
+            x: randomX,
+            y: randomY
+        });
+
+        burst.replay();
+    }
+
+    Splitting();
+
+</script>
 </body>
 </html>

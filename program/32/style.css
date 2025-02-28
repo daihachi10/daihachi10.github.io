@@ -48,6 +48,8 @@
 }
         
 .divbox {
+    background-color: #1db31db2;
+    border-color: #363636;
     border: 1px;
     border-radius: 5px;
 }

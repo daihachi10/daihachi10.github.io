@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PROGRAM | daihachi official website</title>
+    <meta name="description" content="figma">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <script src="../../js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet">
+    <link href="../../css/details.css" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="../../css/loading.css" rel="stylesheet">
+    <script src="../../js/loading.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../common/script.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <script src="https://daihachi10.github.io/common/script.js"></script><meta name="theme-color" content="#1DB31D" />
+</head>
+
+
+<body>
+
+<div id="loading"></div>
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header"></header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="title">
+            <h1>reCAPTCHA</h1>
+            <p>reCAPTCHA</p>
+        </div>
+        <div class="shop-contents">
+            <div class="shop-item">
+                <h2>reCAPTCHA</h2>
+                <div class="item-area">
+                    <div id="p5-canvas-container"></div>
+                    <!-- <iframe src="https://scratch.mit.edu/projects/1084336973/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe> -->
+                    
+                    <div class="programbox" style="width: 100%; height: 500px; overflow: auto; background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9IsDW8jhf17fEhysINuQMYnBigIOOGjachA&s); background-size: cover; ">
+
+                    </div>
+
+                    <div class="about-item">
+                        <p class="item-text">
+                            たくさんreCAPTCHA
+                        </p>
+
+                        <!-- <a href="video/index.html">アニメーションを再生</a> -->
+                        <!-- <a href="https://embed.figma.com/design/fMRZ8MS69mUxOAuaOKfQwV/Daihachi-index?node-id=0-1&embed-host=share" target="_blank">全画面表示モード</a> -->
+                    </div>
+                </div>
+                <div class="item-group recommended">
+                    <h2>RECOMMENDED</h2>
+                    <ul class="item-list"></ul>
+                </div>
+            </div>
+            <aside class="shop-menu"></aside>
+            <script>
+                $(function () {
+                    $(".shop-menu").load("https://daihachi10.github.io/program/common.html");
+                });
+            </script>
+        </div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer"></footer>
+    <!-- footerここまで -->
+    <script src=".//js/sketch.js"></script>
+    <script src="noscroll.js"></script>
+    <style>
+        .programbox:hover{
+            cursor:wait;
+        }
+    </style>
+</body>
+
+</html>

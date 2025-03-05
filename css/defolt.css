@@ -45,7 +45,8 @@
     
     --sub-color: #fec701;
     --sub-hover-color: rgb(191, 151, 0);
-    --theme-color: #1DB31D;
+    /* --theme-color: #1DB31D; */
+    --theme-color: #60b49f;
     --background-color: #fff;
     --text-color: #000;
     --bg-myprogram: #fafafa;

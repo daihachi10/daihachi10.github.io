@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PROGRAM | daihachi official website</title>
+    <meta name="description" content="daihachiのプログラムがプレイができるサイトです。">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <script src="../../js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet">
+    <link href="../../css/details.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href="../../css/loading.css" rel="stylesheet">
+    <script src="../../js/loading.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap');
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../common/script.js"></script>
+        <script src="https://daihachi10.github.io/common/script.js"></script><meta name="theme-color" content="#1DB31D" />
+</head>
+
+<body>
+
+<div id="loading"></div>
+
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header"></header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+        <div class="title">
+            <h1>SUSHITYPING</h1>
+            <p>寿司タイピング</p>
+        </div>
+        <div class="shop-contents">
+            <div class="shop-item">
+                <h2>TYPING</h2>
+                <div class="item-area">
+                    <div id="p5-canvas-container"></div>
+                    <div class="about-item">
+                        <p class="item-text">
+                            『寿司タイピング』はローマ字入力用のタイピング練習ゲームです。<br>
+                            回転寿司のお皿が流れてしまう前に画面の文字をタイプして、どれだけ寿司を取れるか（= たくさん食べられるか）を競います。(寿司打)<br>
+                            効果音&copy;otologic
+                        </p><a href="https://sushida.net" target="blank">本家様 : sushida.net</a>
+                        <p class="item-text">
+                        </p>
+                        <a href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/15/js"
+                            target="_blank">VIEW
+                            CODE</a>
+                    </div>
+                </div>
+                <div class="item-group recommended">
+                    <h2>RECOMMENDED</h2>
+                    <ul class="item-list"></ul>
+                </div>
+            </div>
+            <aside class="shop-menu"></aside>
+        </div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer"></footer>
+    <!-- footerここまで -->
+    <script src="./js/game.js"></script>
+</body>
+
+</html>

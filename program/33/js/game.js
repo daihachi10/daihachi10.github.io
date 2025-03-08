@@ -40,6 +40,7 @@ function setup() {
 
     lastTime = millis();  // プログラム開始時の時間を保存
 
+    noLoop();
 }
 
 function draw() {
@@ -268,5 +269,13 @@ function fpsCount() {
 
     // if (frameCount % 5 == 0) {
     // }
+
+}
+
+function start() {
+    loop();
+    $(document).ready(function () {
+        $("#startbutton").addClass("started");
+    });
 
 }

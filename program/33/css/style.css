@@ -17,3 +17,7 @@
 #GameOver.gameover {
     display: block;
 }
+
+#startbutton.started {
+    display: none;
+}

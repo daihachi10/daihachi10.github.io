@@ -1,4 +1,5 @@
 let is2Players = false
+let keys = {};
 
 let grid = 15;
 let gridSize = 512 / grid;
@@ -19,7 +20,7 @@ let twoPlayerDirection = 0;
 let twoPlayerSpeed = 4; //4
 let twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
 let twoPlayerY = 512 / 2 - 17;
-let twoPlayerColor = "#ea4335"
+let twoPlayerColor = "#fec701"
 
 let twoPlayerOldPlayerX = [twoPlayerX];
 let twoPlayerOldPlayerY = [twoPlayerY];
@@ -51,7 +52,7 @@ function setup() {
     canvas.parent(canvasContainer); // コンテナにキャンバスを配置
     frameRate(60);
     noStroke();
-    appleX = random(512);
+    appleX = 240;
     appleY = random(512);
 
     lastTime = millis();  // プログラム開始時の時間を保存
@@ -98,7 +99,13 @@ function draw() {
     drawScore();
     fpsCount();
 }
+    function keyPressed() {
+        keys[key] = true;
+    }
 
+function keyReleased() {
+    keys[key] = false;
+}
 
 function drawLine() {
     stroke("#708A41");
@@ -117,9 +124,7 @@ function onePleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-    // console.log(onePlayerY % gridSize);
-    if (key === "ArrowLeft" || key === "a") {
-        //left
+    if (keys['a']) {
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "left";
 
@@ -131,8 +136,8 @@ function onePleyerJudgment() {
         }
     }
 
-    if (key === "ArrowUp" || key === "w") {
-        //top
+    if (keys['w']) {
+
         if (onePlayerX % gridSize <= miss) {
             onePlayerDirection = "top";
 
@@ -144,8 +149,8 @@ function onePleyerJudgment() {
         }
     }
 
-    if (key === "ArrowRight" || key === "d") {
-        //right
+    if (keys['d']) {
+
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "right";
 
@@ -157,8 +162,8 @@ function onePleyerJudgment() {
         }
     }
 
-    if (key === "ArrowDown" || key === "s") {
-        //bottom
+    if (keys['s']) {
+
         if (onePlayerX % gridSize <= miss) {
             onePlayerDirection = "bottom";
 
@@ -169,6 +174,61 @@ function onePleyerJudgment() {
             }
         }
     }
+
+//
+//
+//     // console.log(onePlayerY % gridSize);
+//     if (key === "ArrowLeft" || key === "a") {
+//         //left
+//         if (onePlayerY % gridSize <= miss) {
+//             onePlayerDirection = "left";
+//
+//             if (onePlayerY % gridSize > standardRevision) {
+//                 onePlayerY -= revision;
+//             } else if (onePlayerY % gridSize < standardRevision) {
+//                 onePlayerY += revision;
+//             }
+//         }
+//     }
+//
+//     if (key === "ArrowUp" || key === "w") {
+//         //top
+//         if (onePlayerX % gridSize <= miss) {
+//             onePlayerDirection = "top";
+//
+//             if (onePlayerX % gridSize > standardRevision) {
+//                 onePlayerX -= revision;
+//             } else if (onePlayerY % gridSize < standardRevision) {
+//                 onePlayerX += revision;
+//             }
+//         }
+//     }
+//
+//     if (key === "ArrowRight" || key === "d") {
+//         //right
+//         if (onePlayerY % gridSize <= miss) {
+//             onePlayerDirection = "right";
+//
+//             if (onePlayerY % gridSize > standardRevision) {
+//                 onePlayerY -= revision;
+//             } else if (onePlayerY % gridSize < standardRevision) {
+//                 onePlayerY += revision;
+//             }
+//         }
+//     }
+//
+//     if (key === "ArrowDown" || key === "s") {
+//         //bottom
+//         if (onePlayerX % gridSize <= miss) {
+//             onePlayerDirection = "bottom";
+//
+//             if (onePlayerX % gridSize > standardRevision) {
+//                 onePlayerX -= revision;
+//             } else if (onePlayerY % gridSize < standardRevision) {
+//                 onePlayerX += revision;
+//             }
+//         }
+//     }
 }
 
 function onePlayerSpan(x, y) {

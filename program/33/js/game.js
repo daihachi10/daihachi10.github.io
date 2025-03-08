@@ -2,7 +2,7 @@ let grid = 15;
 let gridSize = 512 / grid;
 
 let orientation = 0;
-let speed = 4; //34.1
+let speed = 4; //4
 let playerX = 512 / 2 - 17; // width / 2 - 間隔 / 2
 let playerY = 512 / 2 - 17;
 let playerColor = "#4674e1"
@@ -15,7 +15,20 @@ let appleY = 0;
 
 let score = 0;
 
+let minFps = 60;
+let maxFps = 60;
+
+let fps = 60;
+
+let appleImage;
+
+function preload() {
+    appleImage = loadImage('image/apple.png');
+
+}
+
 function setup() {
+    appleImage.resize(0, 25);
     // createCanvas(512, 512);
     let canvasContainer = document.getElementById("p5-canvas-container");
     let canvas = createCanvas(512, 512);
@@ -24,6 +37,9 @@ function setup() {
     noStroke();
     appleX = random(512);
     appleY = random(512);
+
+    lastTime = millis();  // プログラム開始時の時間を保存
+
 }
 
 function draw() {
@@ -31,12 +47,13 @@ function draw() {
     background("#abd55b");
     drawLine();
     judgment();
-    crone(score);
+    crone();
     playerSpan(playerX, playerY);
     appleSpan(appleX, appleY);
     move(orientation);
     game();
     drawScore();
+    fpsCount();
 }
 
 function judgment() {
@@ -125,18 +142,16 @@ function crone() {
         fill(playerColor);
 
         rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
-        fill("#fff")
+        fill("#fff");
     }
+
 }
 
 function appleSpan(x, y) {
-    let size = 4;
-
     let revision = 1;
     let standardRevision = 1;
-    fill("#f00")
-    rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
-    fill("#fff")
+    image(appleImage, appleX + 5, appleY + 5);
+
     let detection = 15
     if (
         playerX - appleX < detection &&
@@ -189,19 +204,44 @@ function move(i) {
 
 function game() {
     // console.log(playerY)
-    if (playerX >= 512 || playerX <= 0 - gridSize || playerY >= 512 || playerY <= 0 - gridSize) {
-        fill("#ff0000");
-        textSize(50);
-        textAlign(CENTER);
-        text("GameOver", width / 2, height / 2);
-        noLoop();
+    if (playerX >= 512 || playerX <= 0 - 10 || playerY >= 512 || playerY <= 0 - gridSize) {
+        gameOver()
     }
+
+}
+
+function gameOver() {
+    fill("#ff0000");
+    textSize(50);
+    textAlign(CENTER);
+    text("GameOver", width / 2, height / 2);
+    noLoop();
+
+    $(document).ready(function () {
+        $("#GameOver").text("リスタート");
+    });
 }
 
 function drawScore() {
-    fill("#420e0e");
-    textSize(20);
-    textAlign(LEFT, TOP);
-    text("score: " + score, 10, 10);
-    fill("#fff");
+    // fill("#000");
+    // textSize(20);
+    // textAlign(LEFT, TOP);
+    // text("score: " + score, 10, 10);
+    // fill("#fff");
+
+    $(document).ready(function () {
+        $("#score").text("score:" + score);
+    });
+}
+
+function fpsCount() {
+    fps = frameRate();
+    // fill(0);
+    // textSize(16);
+    // textAlign(RIGHT,TOP)
+    // text(fps.toFixed(2), 512, 0);
+
+    $(document).ready(function () {
+        $("#fps").text("fps:" + fps.toFixed(2));
+    });
 }

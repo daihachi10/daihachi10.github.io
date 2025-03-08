@@ -1,5 +1,6 @@
-<!--<div id="overlay"></div>
+<--<div id="overlay"></div>
 
+<!-- カラーピッカーモーダル -->
 <div id="colorPickerModal">
     <h2>色を選択</h2>
     <label>
@@ -18,6 +19,9 @@
 </div>
 
 <script>
+let isUseColorChange;
+
+    if (!isUseColorChange == false) {
 
     // サブカラーを暗くする関数（20%暗くする）
     function darkenColor(color, percent) {
@@ -105,6 +109,10 @@
         localStorage.removeItem('themeColor');
         localStorage.removeItem('subColor');
         location.reload();
+    }} else {
+        $(document).ready(function () {
+            $("#colorchange").text("このページでは使用不可");
+        });
     }
 </script>
 
@@ -189,4 +197,4 @@
         background-color: #fff;
     }
 
-</style>-->
+</style>

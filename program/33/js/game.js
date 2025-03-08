@@ -43,6 +43,7 @@ function setup() {
 }
 
 function draw() {
+    console.log(key)
     // console.log("x:" + playerX + "y:" + playerY);
     background("#abd55b");
     drawLine();
@@ -62,7 +63,7 @@ function judgment() {
     let standardRevision = 0.5;
 
     // console.log(playerY % gridSize);
-    if (key === "ArrowLeft") {
+    if (key === "ArrowLeft" || key === "a") {
         //left
         if (playerY % gridSize <= miss) {
             orientation = "left";
@@ -75,7 +76,7 @@ function judgment() {
         }
     }
 
-    if (key === "ArrowUp") {
+    if (key === "ArrowUp" || key === "w") {
         //top
         if (playerX % gridSize <= miss) {
             orientation = "top";
@@ -88,7 +89,7 @@ function judgment() {
         }
     }
 
-    if (key === "ArrowRight") {
+    if (key === "ArrowRight" || key === "d") {
         //right
         if (playerY % gridSize <= miss) {
             orientation = "right";
@@ -101,7 +102,7 @@ function judgment() {
         }
     }
 
-    if (key === "ArrowDown") {
+    if (key === "ArrowDown" || key === "s") {
         //bottom
         if (playerX % gridSize <= miss) {
             orientation = "bottom";

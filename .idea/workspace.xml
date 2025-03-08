@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/color.html" beforeDir="false" afterPath="$PROJECT_DIR$/common/color.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/33/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/program/33/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/33/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/33/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/33/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/33/js/game.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +165,7 @@
       <workItem from="1739530467181" duration="7557000" />
       <workItem from="1739589560302" duration="15610000" />
       <workItem from="1740302711631" duration="760000" />
-      <workItem from="1741360695396" duration="16062000" />
+      <workItem from="1741360695396" duration="16489000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />

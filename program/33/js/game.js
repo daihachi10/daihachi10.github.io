@@ -43,7 +43,7 @@ function setup() {
 }
 
 function draw() {
-    console.log(key)
+    // console.log(key)
     // console.log("x:" + playerX + "y:" + playerY);
     background("#abd55b");
     drawLine();
@@ -241,8 +241,9 @@ function fpsCount() {
     // textSize(16);
     // textAlign(RIGHT,TOP)
     // text(fps.toFixed(2), 512, 0);
-
-    $(document).ready(function () {
-        $("#fps").text("fps:" + fps.toFixed(2));
-    });
+    if (frameCount % 60 == 0) {
+        $(document).ready(function () {
+            $("#fps").text("fps:" + fps.toFixed(2));
+        });
+    }
 }

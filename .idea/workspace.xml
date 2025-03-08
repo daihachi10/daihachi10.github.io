@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change afterPath="$PROJECT_DIR$/program/33/css/popup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/33/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/33/js/game.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/common/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/program/33/js/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/program/33/js/game.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +53,7 @@
     "JavaScript Debug.index.html.executor": "Run",
     "JavaScript デバッグ.index.html.executor": "Run",
     "JavaScript デバッグ.program-beta.html.executor": "Run",
+    "Node.js.game.js.executor": "Run",
     "Node.js.script.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -75,8 +74,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\login" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\program" />
+      <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\login" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\program\22" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io\css" />
       <recent name="C:\Users\daihachi\Documents\GitHub\daihachi10.github.io" />
@@ -167,7 +166,7 @@
       <workItem from="1739530467181" duration="7557000" />
       <workItem from="1739589560302" duration="15610000" />
       <workItem from="1740302711631" duration="760000" />
-      <workItem from="1741360695396" duration="311000" />
+      <workItem from="1741360695396" duration="5144000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />
@@ -319,5 +318,23 @@
     <MESSAGE value="update" />
     <MESSAGE value="homepage" />
     <option name="LAST_COMMIT_MESSAGE" value="homepage" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/program/33/js/game.js</url>
+          <line>41</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/program/33/js/game.js</url>
+          <line>118</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

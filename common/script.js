@@ -5,8 +5,7 @@ $(function () {
     $(".header").load("https://daihachi10.github.io/common/header.html");
 
     $.get("https://daihachi10.github.io/common/color.html", function(data){
-        $("body").prepend(data); // 先頭に追加する場合
-        // $("body").append(data); // 末尾に追加する場合は、こちらを使用
+        $("body").append(data);
       });
 });
 

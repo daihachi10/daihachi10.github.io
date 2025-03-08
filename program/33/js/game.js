@@ -5,7 +5,7 @@ let gridSize = 512 / grid;
 
 let onePlayerDirection = 0;
 let onePlayerSpeed = 4; //4
-let onePlayerX = 512 / 2 - 17; // width / 2 - 間隔 / 2
+let onePlayerX = 512 / 2 - 17 - gridSize * 3; // width / 2 - 間隔 / 2
 let onePlayerY = 512 / 2 - 17;
 let onePlayerColor = "#4674e1"
 
@@ -17,7 +17,7 @@ let onePlayerScore = 0;
 
 let twoPlayerDirection = 0;
 let twoPlayerSpeed = 4; //4
-let twoPlayerX = 512 / 2 - 17; // width / 2 - 間隔 / 2
+let twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
 let twoPlayerY = 512 / 2 - 17;
 let twoPlayerColor = "#ea4335"
 
@@ -66,16 +66,32 @@ function draw() {
     appleSpan(appleX, appleY);
 
     onePleyerJudgment();
-    onePlayerClone();
-    onePlayerSpan(onePlayerX, onePlayerY);
-    onePleyerMove(onePlayerDirection);
-    onePleyerGame();
 
     if (is2Players) {
         twoPleyerJudgment();
+    }
+
+    onePlayerClone();
+
+    if (is2Players) {
         twoPleyerClone();
+    }
+
+    onePlayerSpan(onePlayerX, onePlayerY);
+
+    if (is2Players) {
         twoPlayerSpan(twoPlayerX, twoPlayerY);
+    }
+
+    onePleyerMove(onePlayerDirection);
+
+    if (is2Players) {
         twoPleyerMove(twoPlayerDirection);
+    }
+
+    onePleyerGame();
+
+    if (is2Players) {
         twoPleyerGame();
     }
 
@@ -324,12 +340,7 @@ function appleSpan(x, y) {
     image(appleImage, appleX + 5, appleY + 5);
 
     let detection = 15
-    if (
-        onePlayerX - appleX < detection &&
-        onePlayerX - appleX > -detection &&
-        onePlayerY - appleY < detection &&
-        onePlayerY - appleY > -detection
-    ) {
+    if (onePlayerX - appleX < detection && onePlayerX - appleX > -detection && onePlayerY - appleY < detection && onePlayerY - appleY > -detection) {
         onePlayerScore++
         if (onePlayerScore % 2 === 0) {
             onePlayerSpeed += 0.25;
@@ -338,12 +349,7 @@ function appleSpan(x, y) {
         appleY = random(512);
     }
 
-    if (
-        twoPlayerX - appleX < detection &&
-        twoPlayerX - appleX > -detection &&
-        twoPlayerY - appleY < detection &&
-        twoPlayerY - appleY > -detection
-    ) {
+    if (twoPlayerX - appleX < detection && twoPlayerX - appleX > -detection && twoPlayerY - appleY < detection && twoPlayerY - appleY > -detection) {
         twoPlayerScore++
         if (twoPlayerScore % 2 === 0) {
             twoPlayerSpeed += 0.25;
@@ -432,5 +438,10 @@ function start() {
         $("#2pstartbutton").addClass("started");
 
     });
+
+    if (is2Players) {
+        onePlayerX = -gridSize;
+        twoPlayerX = +gridSize;
+    }
 
 }

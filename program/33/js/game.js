@@ -1,4 +1,5 @@
 let is2Players = false
+
 let keys = {};
 
 let grid = 15;
@@ -99,9 +100,10 @@ function draw() {
     drawScore();
     fpsCount();
 }
-    function keyPressed() {
-        keys[key] = true;
-    }
+
+function keyPressed() {
+    keys[key] = true;
+}
 
 function keyReleased() {
     keys[key] = false;
@@ -288,9 +290,8 @@ function twoPleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-    // console.log(twoPlayerY % gridSize);
-    if (key === "j") {
-        //left
+
+    if (keys['j']) {
         if (twoPlayerY % gridSize <= miss) {
             twoPlayerDirection = "left";
 
@@ -302,8 +303,8 @@ function twoPleyerJudgment() {
         }
     }
 
-    if (key === "i") {
-        //top
+    if (keys['i']) {
+
         if (twoPlayerX % gridSize <= miss) {
             twoPlayerDirection = "top";
 
@@ -315,8 +316,8 @@ function twoPleyerJudgment() {
         }
     }
 
-    if (key === "l") {
-        //right
+    if (keys['l']) {
+
         if (twoPlayerY % gridSize <= miss) {
             twoPlayerDirection = "right";
 
@@ -328,8 +329,8 @@ function twoPleyerJudgment() {
         }
     }
 
-    if (key === "k") {
-        //bottom
+    if (keys['k']) {
+
         if (twoPlayerX % gridSize <= miss) {
             twoPlayerDirection = "bottom";
 
@@ -339,6 +340,7 @@ function twoPleyerJudgment() {
                 twoPlayerX += revision;
             }
         }
+
     }
 }
 

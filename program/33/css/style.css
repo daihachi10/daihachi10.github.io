@@ -1,5 +1,5 @@
 #fps {
-    font-family: 10px;
+    /* font-size: 10px; */
 }
 
 #score {
@@ -8,4 +8,12 @@
 
 .red {
     color: #f00;
+}
+
+#GameOver {
+    display: none;
+}
+
+#GameOver.gameover {
+    display: block;
 }

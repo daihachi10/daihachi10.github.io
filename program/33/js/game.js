@@ -219,7 +219,9 @@ function gameOver() {
     noLoop();
 
     $(document).ready(function () {
-        $("#GameOver").text("リスタート");
+        // $("#GameOver").text("リスタート");
+        $("#GameOver").addClass("gameover");
+
     });
 }
 
@@ -256,7 +258,7 @@ function fpsCount() {
     $(document).ready(function () {
         $("#fps").text("fps:" + fps.toFixed(0) + " " + minFps.toFixed(1) + "/" + maxFps.toFixed(1));
 
-        if (fps < 50) {
+        if (fps < 45) {
             $("#fps").addClass("red");
         } else {
             $("#fps").removeClass("red");

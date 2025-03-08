@@ -241,9 +241,18 @@ function fpsCount() {
     // textSize(16);
     // textAlign(RIGHT,TOP)
     // text(fps.toFixed(2), 512, 0);
-        $(document).ready(function () {
-            $("#fps").text("fps:" + fps.toFixed(0));
-        });
-    if (frameCount % 5 == 0) {
-    }
+    $(document).ready(function () {
+        $("#fps").text("fps:" + fps.toFixed(0));
+
+        if (fps < 50) {
+            $("#fps").addClass("red");
+        } else {
+            $("#fps").removeClass("red");
+        }
+
+    });
+
+    // if (frameCount % 5 == 0) {
+    // }
+
 }

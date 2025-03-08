@@ -43,13 +43,12 @@
     --bg-about:#fffdda;
     --bg-video:#fffdd1;*/
     
-    /* --sub-color: #fec701; */
-    /* --sub-color: #fec701; */
-    --sub-color: #b7282e;
-    --sub-hover-color: #992228;
-    /* --sub-hover-color: rgb(191, 151, 0); */
-    /* --theme-color: #1DB31D; */
-    --theme-color: #60b49f;
+     --sub-color: #fec701;
+    /*--sub-color: #b7282e;*/
+    /*--sub-hover-color: #992228;*/
+     --sub-hover-color: rgb(191, 151, 0);
+     --theme-color: #1DB31D;
+    /*--theme-color: #60b49f;*/
     --background-color: #fff;
     --text-color: #231816;
     --bg-myprogram: #fafafa;

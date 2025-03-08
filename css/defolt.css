@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 :root {
     /* 
@@ -43,11 +43,11 @@
     --bg-about:#fffdda;
     --bg-video:#fffdd1;*/
     
-     --sub-color: #fec701;
     /*--sub-color: #b7282e;*/
     /*--sub-hover-color: #992228;*/
-     --sub-hover-color: rgb(191, 151, 0);
-     --theme-color: #1DB31D;
+    --sub-color: #fec701;
+    --theme-color: #1DB31D;
+    --sub-hover-color: rgb(191, 151, 0);
     /*--theme-color: #60b49f;*/
     --background-color: #fff;
     --text-color: #231816;

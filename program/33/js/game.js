@@ -15,10 +15,10 @@ let appleY = 0;
 
 let score = 0;
 
-let minFps = 60;
-let maxFps = 60;
+let minFps = 512;
+let maxFps = -512;
 
-let fps = 60;
+let fps = 0;
 
 let appleImage;
 
@@ -162,7 +162,7 @@ function appleSpan(x, y) {
     ) {
         score++
         if (score % 2 === 0) {
-            speed += 0.5;
+            speed += 0.25;
         }
         appleX = random(512);
         appleY = random(512);

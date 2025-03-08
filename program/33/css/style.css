@@ -2,8 +2,8 @@
     /* font-size: 10px; */
 }
 
-#score {
-    font-size: 30px;
+.score{
+    font-size: 30px !important;
 }
 
 .red {
@@ -18,6 +18,6 @@
     display: block;
 }
 
-#startbutton.started {
-    display: none;
+.started{
+    display: none !important;
 }

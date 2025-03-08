@@ -1,19 +1,35 @@
+let is2Players = false
+
 let grid = 15;
 let gridSize = 512 / grid;
 
-let orientation = 0;
-let speed = 4; //4
-let playerX = 512 / 2 - 17; // width / 2 - 間隔 / 2
-let playerY = 512 / 2 - 17;
-let playerColor = "#4674e1"
+let onePlayerDirection = 0;
+let onePlayerSpeed = 4; //4
+let onePlayerX = 512 / 2 - 17; // width / 2 - 間隔 / 2
+let onePlayerY = 512 / 2 - 17;
+let onePlayerColor = "#4674e1"
 
-let oldPlayerX = [playerX];
-let oldPlayerY = [playerY];
+let onePlayerOldPlayerX = [onePlayerX];
+let onePlayerOldPlayerY = [onePlayerY];
+
+let onePlayerScore = 0;
+
+
+let twoPlayerDirection = 0;
+let twoPlayerSpeed = 4; //4
+let twoPlayerX = 512 / 2 - 17; // width / 2 - 間隔 / 2
+let twoPlayerY = 512 / 2 - 17;
+let twoPlayerColor = "#ea4335"
+
+let twoPlayerOldPlayerX = [twoPlayerX];
+let twoPlayerOldPlayerY = [twoPlayerY];
+
+let twoPlayerScore = 0;
+
 
 let appleX = 0;
 let appleY = 0;
 
-let score = 0;
 
 let minFps = 512;
 let maxFps = -512;
@@ -44,78 +60,29 @@ function setup() {
 }
 
 function draw() {
-    // console.log(key)
-    // console.log("x:" + playerX + "y:" + playerY);
     background("#abd55b");
+
     drawLine();
-    judgment();
-    crone();
-    playerSpan(playerX, playerY);
     appleSpan(appleX, appleY);
-    move(orientation);
-    game();
+
+    onePleyerJudgment();
+    onePlayerClone();
+    onePlayerSpan(onePlayerX, onePlayerY);
+    onePleyerMove(onePlayerDirection);
+    onePleyerGame();
+
+    if (is2Players) {
+        twoPleyerJudgment();
+        twoPleyerClone();
+        twoPlayerSpan(twoPlayerX, twoPlayerY);
+        twoPleyerMove(twoPlayerDirection);
+        twoPleyerGame();
+    }
+
     drawScore();
     fpsCount();
 }
 
-function judgment() {
-    let miss = 7;
-    let revision = 1;
-    let standardRevision = 0.5;
-
-    // console.log(playerY % gridSize);
-    if (key === "ArrowLeft" || key === "a") {
-        //left
-        if (playerY % gridSize <= miss) {
-            orientation = "left";
-
-            if (playerY % gridSize > standardRevision) {
-                playerY -= revision;
-            } else if (playerY % gridSize < standardRevision) {
-                playerY += revision;
-            }
-        }
-    }
-
-    if (key === "ArrowUp" || key === "w") {
-        //top
-        if (playerX % gridSize <= miss) {
-            orientation = "top";
-
-            if (playerX % gridSize > standardRevision) {
-                playerX -= revision;
-            } else if (playerY % gridSize < standardRevision) {
-                playerX += revision;
-            }
-        }
-    }
-
-    if (key === "ArrowRight" || key === "d") {
-        //right
-        if (playerY % gridSize <= miss) {
-            orientation = "right";
-
-            if (playerY % gridSize > standardRevision) {
-                playerY -= revision;
-            } else if (playerY % gridSize < standardRevision) {
-                playerY += revision;
-            }
-        }
-    }
-
-    if (key === "ArrowDown" || key === "s") {
-        //bottom
-        if (playerX % gridSize <= miss) {
-            orientation = "bottom";
-
-            if (playerX % gridSize > standardRevision) {
-                playerX -= revision;
-            } else if (playerY % gridSize < standardRevision) {
-                playerX += revision;
-            }
-        }
-    }
-}
 
 function drawLine() {
     stroke("#708A41");
@@ -129,25 +96,227 @@ function drawLine() {
     noStroke();
 }
 
-function playerSpan(x, y) {
+function onePleyerJudgment() {
+    let miss = 7;
+    let revision = 1;
+    let standardRevision = 0.5;
+
+    // console.log(onePlayerY % gridSize);
+    if (key === "ArrowLeft" || key === "a") {
+        //left
+        if (onePlayerY % gridSize <= miss) {
+            onePlayerDirection = "left";
+
+            if (onePlayerY % gridSize > standardRevision) {
+                onePlayerY -= revision;
+            } else if (onePlayerY % gridSize < standardRevision) {
+                onePlayerY += revision;
+            }
+        }
+    }
+
+    if (key === "ArrowUp" || key === "w") {
+        //top
+        if (onePlayerX % gridSize <= miss) {
+            onePlayerDirection = "top";
+
+            if (onePlayerX % gridSize > standardRevision) {
+                onePlayerX -= revision;
+            } else if (onePlayerY % gridSize < standardRevision) {
+                onePlayerX += revision;
+            }
+        }
+    }
+
+    if (key === "ArrowRight" || key === "d") {
+        //right
+        if (onePlayerY % gridSize <= miss) {
+            onePlayerDirection = "right";
+
+            if (onePlayerY % gridSize > standardRevision) {
+                onePlayerY -= revision;
+            } else if (onePlayerY % gridSize < standardRevision) {
+                onePlayerY += revision;
+            }
+        }
+    }
+
+    if (key === "ArrowDown" || key === "s") {
+        //bottom
+        if (onePlayerX % gridSize <= miss) {
+            onePlayerDirection = "bottom";
+
+            if (onePlayerX % gridSize > standardRevision) {
+                onePlayerX -= revision;
+            } else if (onePlayerY % gridSize < standardRevision) {
+                onePlayerX += revision;
+            }
+        }
+    }
+}
+
+function onePlayerSpan(x, y) {
     let size = 7;
-    fill(playerColor);
+    fill(onePlayerColor);
     rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
 }
 
-function crone() {
+function onePlayerClone() {
 
-    for (let i = 0; i < score + 20; i++) {
+    for (let i = 0; i < onePlayerScore + 20; i++) {
         let size = 7;
-        let x = oldPlayerX[oldPlayerX.length - i];
-        let y = oldPlayerY[oldPlayerX.length - i];
-        fill(playerColor);
+        let x = onePlayerOldPlayerX[onePlayerOldPlayerX.length - i];
+        let y = onePlayerOldPlayerY[onePlayerOldPlayerY.length - i];
+        fill(onePlayerColor);
 
         rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
         fill("#fff");
     }
 
 }
+
+function onePleyerMove(i) {
+    switch (i) {
+        case "left":
+            onePlayerX -= onePlayerSpeed;
+            break;
+
+        case "right":
+            onePlayerX += onePlayerSpeed;
+            break;
+
+        case "top":
+            onePlayerY -= onePlayerSpeed;
+            break;
+
+        case "bottom":
+            onePlayerY += onePlayerSpeed;
+            break;
+    }
+
+    onePlayerOldPlayerX.push(onePlayerX);
+    onePlayerOldPlayerY.push(onePlayerY);
+}
+
+function onePleyerGame() {
+    // console.log(onePlayerY)
+    if (onePlayerX >= 512 || onePlayerX <= 0 - 10 || onePlayerY >= 512 || onePlayerY <= 0 - gridSize) {
+        gameOver()
+    }
+
+}
+
+
+function twoPleyerJudgment() {
+    let miss = 7;
+    let revision = 1;
+    let standardRevision = 0.5;
+
+    // console.log(twoPlayerY % gridSize);
+    if (key === "j") {
+        //left
+        if (twoPlayerY % gridSize <= miss) {
+            twoPlayerDirection = "left";
+
+            if (twoPlayerY % gridSize > standardRevision) {
+                twoPlayerY -= revision;
+            } else if (twoPlayerY % gridSize < standardRevision) {
+                twoPlayerY += revision;
+            }
+        }
+    }
+
+    if (key === "i") {
+        //top
+        if (twoPlayerX % gridSize <= miss) {
+            twoPlayerDirection = "top";
+
+            if (twoPlayerX % gridSize > standardRevision) {
+                twoPlayerX -= revision;
+            } else if (twoPlayerY % gridSize < standardRevision) {
+                twoPlayerX += revision;
+            }
+        }
+    }
+
+    if (key === "l") {
+        //right
+        if (twoPlayerY % gridSize <= miss) {
+            twoPlayerDirection = "right";
+
+            if (twoPlayerY % gridSize > standardRevision) {
+                twoPlayerY -= revision;
+            } else if (twoPlayerY % gridSize < standardRevision) {
+                twoPlayerY += revision;
+            }
+        }
+    }
+
+    if (key === "k") {
+        //bottom
+        if (twoPlayerX % gridSize <= miss) {
+            twoPlayerDirection = "bottom";
+
+            if (twoPlayerX % gridSize > standardRevision) {
+                twoPlayerX -= revision;
+            } else if (twoPlayerY % gridSize < standardRevision) {
+                twoPlayerX += revision;
+            }
+        }
+    }
+}
+
+function twoPlayerSpan(x, y) {
+    let size = 7;
+    fill(twoPlayerColor);
+    rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
+}
+
+function twoPleyerClone() {
+
+    for (let i = 0; i < twoPlayerScore + 20; i++) {
+        let size = 7;
+        let x = twoPlayerOldPlayerX[twoPlayerOldPlayerX.length - i];
+        let y = twoPlayerOldPlayerY[twoPlayerOldPlayerX.length - i];
+        fill(twoPlayerColor);
+
+        rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
+        fill("#fff");
+    }
+
+}
+
+function twoPleyerMove(i) {
+    switch (i) {
+        case "left":
+            twoPlayerX -= twoPlayerSpeed;
+            break;
+
+        case "right":
+            twoPlayerX += twoPlayerSpeed;
+            break;
+
+        case "top":
+            twoPlayerY -= twoPlayerSpeed;
+            break;
+
+        case "bottom":
+            twoPlayerY += twoPlayerSpeed;
+            break;
+    }
+
+    twoPlayerOldPlayerX.push(twoPlayerX);
+    twoPlayerOldPlayerY.push(twoPlayerY);
+}
+
+function twoPleyerGame() {
+    // console.log(twoPlayerY)
+    if (twoPlayerX >= 512 || twoPlayerX <= 0 - 10 || twoPlayerY >= 512 || twoPlayerY <= 0 - gridSize) {
+        gameOver()
+    }
+
+}
+
 
 function appleSpan(x, y) {
     let revision = 1;
@@ -156,14 +325,28 @@ function appleSpan(x, y) {
 
     let detection = 15
     if (
-        playerX - appleX < detection &&
-        playerX - appleX > -detection &&
-        playerY - appleY < detection &&
-        playerY - appleY > -detection
+        onePlayerX - appleX < detection &&
+        onePlayerX - appleX > -detection &&
+        onePlayerY - appleY < detection &&
+        onePlayerY - appleY > -detection
     ) {
-        score++
-        if (score % 2 === 0) {
-            speed += 0.25;
+        onePlayerScore++
+        if (onePlayerScore % 2 === 0) {
+            onePlayerSpeed += 0.25;
+        }
+        appleX = random(512);
+        appleY = random(512);
+    }
+
+    if (
+        twoPlayerX - appleX < detection &&
+        twoPlayerX - appleX > -detection &&
+        twoPlayerY - appleY < detection &&
+        twoPlayerY - appleY > -detection
+    ) {
+        twoPlayerScore++
+        if (twoPlayerScore % 2 === 0) {
+            twoPlayerSpeed += 0.25;
         }
         appleX = random(512);
         appleY = random(512);
@@ -171,45 +354,14 @@ function appleSpan(x, y) {
 
     if (appleY % gridSize > standardRevision) {
         appleY -= revision;
-    } else if (playerY % gridSize < standardRevision) {
+    } else if (onePlayerY % gridSize < standardRevision) {
         appleY += revision;
     }
     if (appleX % gridSize > standardRevision) {
         appleX -= revision;
-    } else if (playerX % gridSize < standardRevision) {
+    } else if (onePlayerX % gridSize < standardRevision) {
         appleX += revision;
     }
-}
-
-function move(i) {
-    switch (i) {
-        case "left":
-            playerX -= speed;
-            break;
-
-        case "right":
-            playerX += speed;
-            break;
-
-        case "top":
-            playerY -= speed;
-            break;
-
-        case "bottom":
-            playerY += speed;
-            break;
-    }
-
-    oldPlayerX.push(playerX);
-    oldPlayerY.push(playerY);
-}
-
-function game() {
-    // console.log(playerY)
-    if (playerX >= 512 || playerX <= 0 - 10 || playerY >= 512 || playerY <= 0 - gridSize) {
-        gameOver()
-    }
-
 }
 
 function gameOver() {
@@ -227,14 +379,15 @@ function gameOver() {
 }
 
 function drawScore() {
-    // fill("#000");
-    // textSize(20);
-    // textAlign(LEFT, TOP);
-    // text("score: " + score, 10, 10);
-    // fill("#fff");
 
     $(document).ready(function () {
-        $("#score").text("score:" + score);
+        if (is2Players) {
+            $("#1Pscore").text("1PScore:" + onePlayerScore);
+            $("#2Pscore").text("2PScore:" + twoPlayerScore);
+
+        } else {
+            $("#1Pscore").text("Score:" + onePlayerScore);
+        }
     });
 }
 
@@ -276,6 +429,8 @@ function start() {
     loop();
     $(document).ready(function () {
         $("#startbutton").addClass("started");
+        $("#2pstartbutton").addClass("started");
+
     });
 
 }

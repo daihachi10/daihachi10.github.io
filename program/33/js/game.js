@@ -241,7 +241,7 @@ function fpsCount() {
     // textSize(16);
     // textAlign(RIGHT,TOP)
     // text(fps.toFixed(2), 512, 0);
-    if (frameCount % 60 == 0) {
+    if (frameCount % 5 == 0) {
         $(document).ready(function () {
             $("#fps").text("fps:" + fps.toFixed(2));
         });

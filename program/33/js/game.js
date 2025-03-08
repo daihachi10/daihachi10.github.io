@@ -237,12 +237,24 @@ function drawScore() {
 
 function fpsCount() {
     fps = frameRate();
+    if (frameCount > 10) {
+
+        if (fps < minFps) {
+            minFps = fps;
+        }
+
+        if (fps > maxFps) {
+            maxFps = fps;
+        }
+    }
+
+
     // fill(0);
     // textSize(16);
     // textAlign(RIGHT,TOP)
     // text(fps.toFixed(2), 512, 0);
     $(document).ready(function () {
-        $("#fps").text("fps:" + fps.toFixed(0));
+        $("#fps").text("fps:" + fps.toFixed(0) + " " + minFps.toFixed(1) + "/" + maxFps.toFixed(1));
 
         if (fps < 50) {
             $("#fps").addClass("red");

@@ -30,7 +30,7 @@ var keydownfunc = function (event) {
         case 39: // →
         case 40: // ↓
             event.preventDefault();
-            console.log(code);
+            // console.log(code);
     }
 }
 

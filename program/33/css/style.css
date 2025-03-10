@@ -23,7 +23,11 @@
 }
 
 .top {
-    margin-left: 60px;
+    margin: 0 0 5px 65px !important;
+}
+
+.control {
+    margin-bottom: 10px;
 }
 
 .controlbuttom {
@@ -32,10 +36,21 @@
 
 .controlbutton,
 .controlbuttonbuttom {
-    min-width: 60px !important;
+    min-width: 55px !important;
 }
 
 .controlbuttonbuttom {
     margin-top: 0px !important;
+    margin-left: 5px;
+}
 
+.hidden {
+    display: none;
+}
+
+
+@media (max-width: 800px) {
+    .top {
+        margin-left: 0px;
+    }
 }

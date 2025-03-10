@@ -504,6 +504,7 @@ function start() {
         $("#startbutton").addClass("started");
         $("#2pstartbutton").addClass("started");
 
+        if (!is2Players) {$("#control").removeClass("hidden");}
     });
 
     if (is2Players) {

@@ -122,6 +122,10 @@ ul li {
     margin-right: 60px;
 }
 
+.shop-menu.hidden {
+    display:none;
+}
+
 .shop-menu-inner {
     position: sticky;
     top: 30px;

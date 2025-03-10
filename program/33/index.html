@@ -21,14 +21,16 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap');
     </style>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="../common/script.js"></script>
-        <script src="https://daihachi10.github.io/common/script.js"></script><meta name="theme-color" content="#1DB31D" />
+    <script src="https://daihachi10.github.io/common/script.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
 </head>
 
 <body>
 
-<div id="loading"></div>
+    <div id="loading"></div>
 
     <div class="progress"></div>
     <!-- headerここから -->
@@ -62,6 +64,16 @@
                         <a href="https://github.com/daihachi10/daihachi10.github.io/blob/main/program/33/js/game.js"
                             target="_blank">VIEW
                             CODE</a>
+
+                        <div class="control">
+                            <a onclick="topButton()" class="controlbutton top">↑</a>
+                            <div class="controlbuttom">
+                                <a onclick="leftButton()" class="controlbuttonbuttom">←</a>
+                                <a onclick="bottomButton()" class="controlbuttonbuttom">↓</a>
+                                <a onclick="rightButton()" class="controlbuttonbuttom">→</a>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="item-group recommended">

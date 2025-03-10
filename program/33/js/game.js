@@ -40,6 +40,11 @@ let fps = 0;
 
 let appleImage;
 
+let controlLeft = false;
+let controlTop = false;
+let controlRight = false;
+let controlBottom = false;
+
 function preload() {
     appleImage = loadImage('image/apple.png');
 
@@ -126,7 +131,7 @@ function onePleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-    if (keys['a']) {
+    if (keys['a'] || controlLeft) {
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "left";
 
@@ -138,7 +143,7 @@ function onePleyerJudgment() {
         }
     }
 
-    if (keys['w']) {
+    if (keys['w'] || controlTop) {
 
         if (onePlayerX % gridSize <= miss) {
             onePlayerDirection = "top";
@@ -151,7 +156,7 @@ function onePleyerJudgment() {
         }
     }
 
-    if (keys['d']) {
+    if (keys['d'] || controlRight) {
 
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "right";
@@ -164,7 +169,7 @@ function onePleyerJudgment() {
         }
     }
 
-    if (keys['s']) {
+    if (keys['s'] || controlBottom) {
 
         if (onePlayerX % gridSize <= miss) {
             onePlayerDirection = "bottom";
@@ -177,60 +182,60 @@ function onePleyerJudgment() {
         }
     }
 
-//
-//
-//     // console.log(onePlayerY % gridSize);
-//     if (key === "ArrowLeft" || key === "a") {
-//         //left
-//         if (onePlayerY % gridSize <= miss) {
-//             onePlayerDirection = "left";
-//
-//             if (onePlayerY % gridSize > standardRevision) {
-//                 onePlayerY -= revision;
-//             } else if (onePlayerY % gridSize < standardRevision) {
-//                 onePlayerY += revision;
-//             }
-//         }
-//     }
-//
-//     if (key === "ArrowUp" || key === "w") {
-//         //top
-//         if (onePlayerX % gridSize <= miss) {
-//             onePlayerDirection = "top";
-//
-//             if (onePlayerX % gridSize > standardRevision) {
-//                 onePlayerX -= revision;
-//             } else if (onePlayerY % gridSize < standardRevision) {
-//                 onePlayerX += revision;
-//             }
-//         }
-//     }
-//
-//     if (key === "ArrowRight" || key === "d") {
-//         //right
-//         if (onePlayerY % gridSize <= miss) {
-//             onePlayerDirection = "right";
-//
-//             if (onePlayerY % gridSize > standardRevision) {
-//                 onePlayerY -= revision;
-//             } else if (onePlayerY % gridSize < standardRevision) {
-//                 onePlayerY += revision;
-//             }
-//         }
-//     }
-//
-//     if (key === "ArrowDown" || key === "s") {
-//         //bottom
-//         if (onePlayerX % gridSize <= miss) {
-//             onePlayerDirection = "bottom";
-//
-//             if (onePlayerX % gridSize > standardRevision) {
-//                 onePlayerX -= revision;
-//             } else if (onePlayerY % gridSize < standardRevision) {
-//                 onePlayerX += revision;
-//             }
-//         }
-//     }
+    //
+    //
+    //     // console.log(onePlayerY % gridSize);
+    //     if (key === "ArrowLeft" || key === "a") {
+    //         //left
+    //         if (onePlayerY % gridSize <= miss) {
+    //             onePlayerDirection = "left";
+    //
+    //             if (onePlayerY % gridSize > standardRevision) {
+    //                 onePlayerY -= revision;
+    //             } else if (onePlayerY % gridSize < standardRevision) {
+    //                 onePlayerY += revision;
+    //             }
+    //         }
+    //     }
+    //
+    //     if (key === "ArrowUp" || key === "w") {
+    //         //top
+    //         if (onePlayerX % gridSize <= miss) {
+    //             onePlayerDirection = "top";
+    //
+    //             if (onePlayerX % gridSize > standardRevision) {
+    //                 onePlayerX -= revision;
+    //             } else if (onePlayerY % gridSize < standardRevision) {
+    //                 onePlayerX += revision;
+    //             }
+    //         }
+    //     }
+    //
+    //     if (key === "ArrowRight" || key === "d") {
+    //         //right
+    //         if (onePlayerY % gridSize <= miss) {
+    //             onePlayerDirection = "right";
+    //
+    //             if (onePlayerY % gridSize > standardRevision) {
+    //                 onePlayerY -= revision;
+    //             } else if (onePlayerY % gridSize < standardRevision) {
+    //                 onePlayerY += revision;
+    //             }
+    //         }
+    //     }
+    //
+    //     if (key === "ArrowDown" || key === "s") {
+    //         //bottom
+    //         if (onePlayerX % gridSize <= miss) {
+    //             onePlayerDirection = "bottom";
+    //
+    //             if (onePlayerX % gridSize > standardRevision) {
+    //                 onePlayerX -= revision;
+    //             } else if (onePlayerY % gridSize < standardRevision) {
+    //                 onePlayerX += revision;
+    //             }
+    //         }
+    //     }
 }
 
 function onePlayerSpan(x, y) {
@@ -506,4 +511,33 @@ function start() {
         twoPlayerX = +gridSize;
     }
 
+}
+
+
+function topButton() {
+    controlTop = true;
+    setTimeout(function () {
+        controlTop = false
+    }, 150);
+}
+
+function bottomButton() {
+    controlBottom = true;
+    setTimeout(function () {
+        controlBottom = false
+    }, 150);
+}
+
+function leftButton() {
+    controlLeft = true;
+    setTimeout(function () {
+        controlLeft = false
+    }, 150);
+}
+
+function rightButton() {
+    controlRight = true;
+    setTimeout(function () {
+        controlRight = false
+    }, 150);
 }

@@ -21,3 +21,21 @@
 .started{
     display: none !important;
 }
+
+.top {
+    margin-left: 60px;
+}
+
+.controlbuttom {
+    display: flex;
+}
+
+.controlbutton,
+.controlbuttonbuttom {
+    min-width: 60px !important;
+}
+
+.controlbuttonbuttom {
+    margin-top: 0px !important;
+
+}

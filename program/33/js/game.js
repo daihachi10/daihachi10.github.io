@@ -131,7 +131,7 @@ function onePleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-    if (keys['a'] || controlLeft) {
+    if (keys['a'] || keys['ArrowLeft'] || controlLeft) {
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "left";
 
@@ -143,7 +143,7 @@ function onePleyerJudgment() {
         }
     }
 
-    if (keys['w'] || controlTop) {
+    if (keys['w'] || keys['ArrowUp'] || controlTop) {
 
         if (onePlayerX % gridSize <= miss) {
             onePlayerDirection = "top";
@@ -156,7 +156,7 @@ function onePleyerJudgment() {
         }
     }
 
-    if (keys['d'] || controlRight) {
+    if (keys['d'] || keys['ArrowRight'] || controlRight) {
 
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "right";
@@ -169,7 +169,7 @@ function onePleyerJudgment() {
         }
     }
 
-    if (keys['s'] || controlBottom) {
+    if (keys['s'] || keys['ArrowDown'] || controlBottom) {
 
         if (onePlayerX % gridSize <= miss) {
             onePlayerDirection = "bottom";

@@ -238,7 +238,17 @@ function onePleyerGame() {
         onePlayerGameOver = true
         $("#GameOver").addClass("gameover");
 
-        // if (is2Players) { gameOver() }
+        if (is2Players) { gameOver()
+            setTimeout(function () {
+                onePlayerX = 128
+                onePlayerY = 128
+                onePlayerGameOver = false
+                
+
+            }, 5000);
+
+
+         }
 
     }
 
@@ -355,6 +365,17 @@ function twoPleyerGame() {
         towPlayerGameOver = true
         $("#GameOver").addClass("gameover");
         // gameOver()
+        if (is2Players) { gameOver()
+            setTimeout(function () {
+                twoPlayerX = 128
+                twoPlayerY = 128
+                twoPlayerGameOver = false
+                
+
+            }, 5000);
+
+
+         }
     }
 
 }

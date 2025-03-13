@@ -134,7 +134,6 @@ function onePleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-    if(!onePlayerGameOver){
 
     if (keys['a'] || keys['ArrowLeft'] || controlLeft) {
         if (onePlayerY % gridSize <= miss) {
@@ -186,7 +185,7 @@ function onePleyerJudgment() {
             }
         }
     }
-}}
+}
 
 function onePlayerSpan(x, y) {
     let size = 7;
@@ -209,6 +208,8 @@ function onePlayerClone() {
 }
 
 function onePleyerMove(i) {
+    if(!onePlayerGameOver){
+
     switch (i) {
         case "left":
             onePlayerX -= onePlayerSpeed;
@@ -229,7 +230,7 @@ function onePleyerMove(i) {
 
     onePlayerOldPlayerX.push(onePlayerX);
     onePlayerOldPlayerY.push(onePlayerY);
-}
+}}
 
 function onePleyerGame() {
     // console.log(onePlayerY)
@@ -322,6 +323,8 @@ function twoPleyerClone() {
 }
 
 function twoPleyerMove(i) {
+    if(!towPlayerGameOver){
+
     switch (i) {
         case "left":
             twoPlayerX -= twoPlayerSpeed;
@@ -342,7 +345,7 @@ function twoPleyerMove(i) {
 
     twoPlayerOldPlayerX.push(twoPlayerX);
     twoPlayerOldPlayerY.push(twoPlayerY);
-}
+}}
 
 function twoPleyerGame() {
     // console.log(twoPlayerY)

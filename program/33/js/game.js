@@ -45,6 +45,9 @@ let controlTop = false;
 let controlRight = false;
 let controlBottom = false;
 
+let onePlayerGameOver = false;
+let towPlayerGameOver = false;
+
 function preload() {
     appleImage = loadImage('image/apple.png');
 
@@ -131,6 +134,8 @@ function onePleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
+    if(!onePlayerGameOver){
+
     if (keys['a'] || keys['ArrowLeft'] || controlLeft) {
         if (onePlayerY % gridSize <= miss) {
             onePlayerDirection = "left";
@@ -181,62 +186,7 @@ function onePleyerJudgment() {
             }
         }
     }
-
-    //
-    //
-    //     // console.log(onePlayerY % gridSize);
-    //     if (key === "ArrowLeft" || key === "a") {
-    //         //left
-    //         if (onePlayerY % gridSize <= miss) {
-    //             onePlayerDirection = "left";
-    //
-    //             if (onePlayerY % gridSize > standardRevision) {
-    //                 onePlayerY -= revision;
-    //             } else if (onePlayerY % gridSize < standardRevision) {
-    //                 onePlayerY += revision;
-    //             }
-    //         }
-    //     }
-    //
-    //     if (key === "ArrowUp" || key === "w") {
-    //         //top
-    //         if (onePlayerX % gridSize <= miss) {
-    //             onePlayerDirection = "top";
-    //
-    //             if (onePlayerX % gridSize > standardRevision) {
-    //                 onePlayerX -= revision;
-    //             } else if (onePlayerY % gridSize < standardRevision) {
-    //                 onePlayerX += revision;
-    //             }
-    //         }
-    //     }
-    //
-    //     if (key === "ArrowRight" || key === "d") {
-    //         //right
-    //         if (onePlayerY % gridSize <= miss) {
-    //             onePlayerDirection = "right";
-    //
-    //             if (onePlayerY % gridSize > standardRevision) {
-    //                 onePlayerY -= revision;
-    //             } else if (onePlayerY % gridSize < standardRevision) {
-    //                 onePlayerY += revision;
-    //             }
-    //         }
-    //     }
-    //
-    //     if (key === "ArrowDown" || key === "s") {
-    //         //bottom
-    //         if (onePlayerX % gridSize <= miss) {
-    //             onePlayerDirection = "bottom";
-    //
-    //             if (onePlayerX % gridSize > standardRevision) {
-    //                 onePlayerX -= revision;
-    //             } else if (onePlayerY % gridSize < standardRevision) {
-    //                 onePlayerX += revision;
-    //             }
-    //         }
-    //     }
-}
+}}
 
 function onePlayerSpan(x, y) {
     let size = 7;
@@ -284,7 +234,9 @@ function onePleyerMove(i) {
 function onePleyerGame() {
     // console.log(onePlayerY)
     if (onePlayerX >= 512 || onePlayerX <= 0 - 10 || onePlayerY >= 512 || onePlayerY <= 0 - gridSize) {
-        gameOver()
+        onePlayerGameOver = true
+        if (is2Players) { gameOver() }
+
     }
 
 }
@@ -295,7 +247,7 @@ function twoPleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-
+    if (!towPlayerGameOver) { 
     if (keys['j']) {
         if (twoPlayerY % gridSize <= miss) {
             twoPlayerDirection = "left";
@@ -347,7 +299,7 @@ function twoPleyerJudgment() {
         }
 
     }
-}
+}}
 
 function twoPlayerSpan(x, y) {
     let size = 7;
@@ -395,6 +347,7 @@ function twoPleyerMove(i) {
 function twoPleyerGame() {
     // console.log(twoPlayerY)
     if (twoPlayerX >= 512 || twoPlayerX <= 0 - 10 || twoPlayerY >= 512 || twoPlayerY <= 0 - gridSize) {
+        towPlayerGameOver = true
         gameOver()
     }
 
@@ -504,7 +457,7 @@ function start() {
         $("#startbutton").addClass("started");
         $("#2pstartbutton").addClass("started");
 
-        if (!is2Players) {$("#control").removeClass("hidden");}
+        if (!is2Players) { $("#control").removeClass("hidden"); }
     });
 
     if (is2Players) {

@@ -236,6 +236,8 @@ function onePleyerGame() {
     // console.log(onePlayerY)
     if (onePlayerX >= 512 || onePlayerX <= 0 - 10 || onePlayerY >= 512 || onePlayerY <= 0 - gridSize) {
         onePlayerGameOver = true
+        $("#GameOver").addClass("gameover");
+
         // if (is2Players) { gameOver() }
 
     }
@@ -351,6 +353,7 @@ function twoPleyerGame() {
     // console.log(twoPlayerY)
     if (twoPlayerX >= 512 || twoPlayerX <= 0 - 10 || twoPlayerY >= 512 || twoPlayerY <= 0 - gridSize) {
         towPlayerGameOver = true
+        $("#GameOver").addClass("gameover");
         // gameOver()
     }
 

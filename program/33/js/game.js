@@ -48,6 +48,10 @@ let controlBottom = false;
 let onePlayerGameOver = false;
 let twoPlayerGameOver = false;
 
+let twoRespanTime = 5;
+let oneRespanTime = 5;
+
+
 function preload() {
     appleImage = loadImage('image/apple.png');
 
@@ -364,19 +368,32 @@ function twoPleyerGame() {
         twoPlayerGameOver = true
         $("#GameOver").addClass("gameover");
         // gameOver()
+
         if (is2Players) {
-            twoPlayerX = 256
-            twoPlayerY = 256
-            twoPlayerGameOver = false
+            twoRespanTime = 5;
+            for (let i = 0;i > 5; i ++){
 
-            twoPlayerDirection = 0;
-            twoPlayerSpeed = 4; //4
-            twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
-            twoPlayerY = 512 / 2 - 17;
-            twoPlayerOldPlayerX = [twoPlayerX];
-            twoPlayerOldPlayerY = [twoPlayerY];
+                setTimeout(function () {
+                    twoRespanTime--;
+                }, 1000);
+            }
 
+            if (is2Players) {
+                twoPlayerX = 256
+                twoPlayerY = 256
+                twoPlayerGameOver = false
+    
+                twoPlayerDirection = 0;
+                twoPlayerSpeed = 4; //4
+                twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
+                twoPlayerY = 512 / 2 - 17;
+                twoPlayerOldPlayerX = [twoPlayerX];
+                twoPlayerOldPlayerY = [twoPlayerY];
+    
+            }
         }
+
+        
     }
 
 }

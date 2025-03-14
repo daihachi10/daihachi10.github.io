@@ -374,12 +374,9 @@ function twoPleyerGame() {
             twoPlayerY = 256;
 
             twoRespanTime = 5;
-            for (let i = 0; i > 5; i++) {
-
                 setTimeout(function () {
-                    twoRespanTime--;
-                }, 1000);
-            }
+                    twoRespanTime = 0;
+                }, 5000);
 
             if (twoRespanTime == 0) {
 

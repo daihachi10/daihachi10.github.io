@@ -457,7 +457,7 @@ function drawScore() {
         if (is2Players) {
 
             if (!onePlayerGameOver) { $("#1Pscore").text("1PScore:" + onePlayerScore); } else { $("#1Pscore").text("1P:" + oneRespanTime); }
-            if (!twoPlayerGameOver) { $("#1Pscore").text("2PScore:" + twoPlayerScore); } else { $("#2Pscore").text("2P:" + twoRespanTime); }
+            if (!twoPlayerGameOver) { $("#2Pscore").text("2PScore:" + twoPlayerScore); } else { $("#2Pscore").text("2P:" + twoRespanTime); }
 
         } else {
 

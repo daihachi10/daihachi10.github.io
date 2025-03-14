@@ -111,6 +111,9 @@ function draw() {
 
     drawScore();
     fpsCount();
+
+    twoRespanTime--;
+
 }
 
 function keyPressed() {
@@ -370,24 +373,27 @@ function twoPleyerGame() {
         // gameOver()
 
         if (is2Players) {
-            twoPlayerX = 256;
-            twoPlayerY = 256;
+            
 
             twoRespanTime--;
 
             if (twoRespanTime <= 0) {
-            twoPlayerGameOver = false
+                twoPlayerX = 256;
+                twoPlayerY = 256;
 
-            twoPlayerDirection = 0;
-            twoPlayerSpeed = 4; //4
-            twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
-            twoPlayerY = 512 / 2 - 17;
-            twoPlayerOldPlayerX = [twoPlayerX];
-            twoPlayerOldPlayerY = [twoPlayerY];
-            
-            twoRespanTime = 300;
-            // }
-        }}
+                twoPlayerGameOver = false
+
+                twoPlayerDirection = 0;
+                twoPlayerSpeed = 4; //4
+                twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
+                twoPlayerY = 512 / 2 - 17;
+                twoPlayerOldPlayerX = [twoPlayerX];
+                twoPlayerOldPlayerY = [twoPlayerY];
+
+                twoRespanTime = 300;
+                // }
+            }
+        }
 
 
     }

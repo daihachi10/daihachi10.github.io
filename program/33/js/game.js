@@ -81,40 +81,28 @@ function draw() {
 
     onePleyerJudgment();
 
-    if (is2Players) {
-        twoPleyerJudgment();
-    }
+    if (is2Players) { twoPleyerJudgment(); }
 
     onePlayerClone();
 
-    if (is2Players) {
-        twoPleyerClone();
-    }
+    if (is2Players) { twoPleyerClone(); }
 
     onePlayerSpan(onePlayerX, onePlayerY);
 
-    if (is2Players) {
-        twoPlayerSpan(twoPlayerX, twoPlayerY);
-    }
+    if (is2Players) { twoPlayerSpan(twoPlayerX, twoPlayerY); }
 
     onePleyerMove(onePlayerDirection);
 
-    if (is2Players) {
-        twoPleyerMove(twoPlayerDirection);
-    }
+    if (is2Players) { twoPleyerMove(twoPlayerDirection); }
 
     onePleyerGame();
 
-    if (is2Players) {
-        twoPleyerGame();
-    }
+    if (is2Players) { twoPleyerGame(); }
 
     drawScore();
     fpsCount();
-    if(twoPlayerGameOver){
-
-        twoRespanTime--;
-    }
+    if (twoPlayerGameOver) { twoRespanTime--; }
+    if (onePlayerGameOver) { oneRespanTime--; }
 }
 
 function keyPressed() {
@@ -246,13 +234,28 @@ function onePleyerGame() {
     if (onePlayerX >= 512 || onePlayerX <= 0 - 10 || onePlayerY >= 512 || onePlayerY <= 0 - gridSize) {
         onePlayerGameOver = true
         $("#GameOver").addClass("gameover");
+        // gameOver()
 
         if (is2Players) {
-            onePlayerX = 256
-            onePlayerY = 256
-            onePlayerGameOver = false
 
 
+            // twoRespanTime--;
+
+            if (oneRespanTime <= 0) {
+                onePlayerX = 256;
+                onePlayerY = 256;
+
+                onePlayerGameOver = false
+
+                onePlayerDirection = 0;
+                onePlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
+                onePlayerY = 512 / 2 - 17;
+                onePlayerOldPlayerX = [twoPlayerX];
+                onePlayerOldPlayerY = [twoPlayerY];
+
+                oneRespanTime = 300;
+                // }
+            }
         }
 
     }
@@ -374,7 +377,7 @@ function twoPleyerGame() {
         // gameOver()
 
         if (is2Players) {
-            
+
 
             // twoRespanTime--;
 
@@ -385,7 +388,6 @@ function twoPleyerGame() {
                 twoPlayerGameOver = false
 
                 twoPlayerDirection = 0;
-                twoPlayerSpeed = 4; //4
                 twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
                 twoPlayerY = 512 / 2 - 17;
                 twoPlayerOldPlayerX = [twoPlayerX];

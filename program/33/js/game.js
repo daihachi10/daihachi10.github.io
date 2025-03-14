@@ -254,65 +254,11 @@ function onePlayerSpan(x, y) {
     rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
 }
 
-function twoPleyerJudgment() {
+function twoPlayerSpan(x, y) {
     if (is2Players) {
-        let miss = 7;
-        let revision = 1;
-        let standardRevision = 0.5;
-
-        if (!twoPlayerGameOver) {
-            if (keys['j']) {
-                if (twoPlayerY % gridSize <= miss) {
-                    twoPlayerDirection = "left";
-
-                    if (twoPlayerY % gridSize > standardRevision) {
-                        twoPlayerY -= revision;
-                    } else if (twoPlayerY % gridSize < standardRevision) {
-                        twoPlayerY += revision;
-                    }
-                }
-            }
-
-            if (keys['i']) {
-
-                if (twoPlayerX % gridSize <= miss) {
-                    twoPlayerDirection = "top";
-
-                    if (twoPlayerX % gridSize > standardRevision) {
-                        twoPlayerX -= revision;
-                    } else if (twoPlayerY % gridSize < standardRevision) {
-                        twoPlayerX += revision;
-                    }
-                }
-            }
-
-            if (keys['l']) {
-
-                if (twoPlayerY % gridSize <= miss) {
-                    twoPlayerDirection = "right";
-
-                    if (twoPlayerY % gridSize > standardRevision) {
-                        twoPlayerY -= revision;
-                    } else if (twoPlayerY % gridSize < standardRevision) {
-                        twoPlayerY += revision;
-                    }
-                }
-            }
-
-            if (keys['k']) {
-
-                if (twoPlayerX % gridSize <= miss) {
-                    twoPlayerDirection = "bottom";
-
-                    if (twoPlayerX % gridSize > standardRevision) {
-                        twoPlayerX -= revision;
-                    } else if (twoPlayerY % gridSize < standardRevision) {
-                        twoPlayerX += revision;
-                    }
-                }
-
-            }
-        }
+        let size = 7;
+        fill(twoPlayerColor);
+        rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
     }
 }
 
@@ -465,12 +411,6 @@ function gameOver() {
     textAlign(CENTER);
     text("GameOver", width / 2, height / 2);
     noLoop();
-
-    $(document).ready(function () {
-        // $("#GameOver").text("リスタート");
-        $("#GameOver").addClass("gameover");
-
-    });
 }
 
 function drawScore() {
@@ -533,8 +473,10 @@ function start() {
     $(document).ready(function () {
         $("#startbutton").addClass("started");
         $("#2pstartbutton").addClass("started");
-
+        $("#item-text").addClass("hidden");
+        $("#GameOver").addClass("gameover");
         if (!is2Players) { $("#control").removeClass("hidden"); }
+
     });
 
     if (is2Players) {
@@ -594,6 +536,8 @@ function onePlayerRespan() {
 
     }
 }
+
+
 
 function twoPlayerRespan() {
     if (twoPlayerGameOver) {

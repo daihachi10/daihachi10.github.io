@@ -46,7 +46,7 @@ let controlRight = false;
 let controlBottom = false;
 
 let onePlayerGameOver = false;
-let towPlayerGameOver = false;
+let twoPlayerGameOver = false;
 
 function preload() {
     appleImage = loadImage('image/apple.png');
@@ -208,29 +208,30 @@ function onePlayerClone() {
 }
 
 function onePleyerMove(i) {
-    if(!onePlayerGameOver){
+    if (!onePlayerGameOver) {
 
-    switch (i) {
-        case "left":
-            onePlayerX -= onePlayerSpeed;
-            break;
+        switch (i) {
+            case "left":
+                onePlayerX -= onePlayerSpeed;
+                break;
 
-        case "right":
-            onePlayerX += onePlayerSpeed;
-            break;
+            case "right":
+                onePlayerX += onePlayerSpeed;
+                break;
 
-        case "top":
-            onePlayerY -= onePlayerSpeed;
-            break;
+            case "top":
+                onePlayerY -= onePlayerSpeed;
+                break;
 
-        case "bottom":
-            onePlayerY += onePlayerSpeed;
-            break;
+            case "bottom":
+                onePlayerY += onePlayerSpeed;
+                break;
+        }
+
+        onePlayerOldPlayerX.push(onePlayerX);
+        onePlayerOldPlayerY.push(onePlayerY);
     }
-
-    onePlayerOldPlayerX.push(onePlayerX);
-    onePlayerOldPlayerY.push(onePlayerY);
-}}
+}
 
 function onePleyerGame() {
     // console.log(onePlayerY)
@@ -238,17 +239,13 @@ function onePleyerGame() {
         onePlayerGameOver = true
         $("#GameOver").addClass("gameover");
 
-        if (is2Players) { 
-            setTimeout(function () {
-                onePlayerX = 128
-                onePlayerY = 128
-                onePlayerGameOver = false
-                
-
-            }, 5000);
+        if (is2Players) {
+            onePlayerX = 256
+            onePlayerY = 256
+            onePlayerGameOver = false
 
 
-         }
+        }
 
     }
 
@@ -260,59 +257,60 @@ function twoPleyerJudgment() {
     let revision = 1;
     let standardRevision = 0.5;
 
-    if (!towPlayerGameOver) { 
-    if (keys['j']) {
-        if (twoPlayerY % gridSize <= miss) {
-            twoPlayerDirection = "left";
+    if (!twoPlayerGameOver) {
+        if (keys['j']) {
+            if (twoPlayerY % gridSize <= miss) {
+                twoPlayerDirection = "left";
 
-            if (twoPlayerY % gridSize > standardRevision) {
-                twoPlayerY -= revision;
-            } else if (twoPlayerY % gridSize < standardRevision) {
-                twoPlayerY += revision;
-            }
-        }
-    }
-
-    if (keys['i']) {
-
-        if (twoPlayerX % gridSize <= miss) {
-            twoPlayerDirection = "top";
-
-            if (twoPlayerX % gridSize > standardRevision) {
-                twoPlayerX -= revision;
-            } else if (twoPlayerY % gridSize < standardRevision) {
-                twoPlayerX += revision;
-            }
-        }
-    }
-
-    if (keys['l']) {
-
-        if (twoPlayerY % gridSize <= miss) {
-            twoPlayerDirection = "right";
-
-            if (twoPlayerY % gridSize > standardRevision) {
-                twoPlayerY -= revision;
-            } else if (twoPlayerY % gridSize < standardRevision) {
-                twoPlayerY += revision;
-            }
-        }
-    }
-
-    if (keys['k']) {
-
-        if (twoPlayerX % gridSize <= miss) {
-            twoPlayerDirection = "bottom";
-
-            if (twoPlayerX % gridSize > standardRevision) {
-                twoPlayerX -= revision;
-            } else if (twoPlayerY % gridSize < standardRevision) {
-                twoPlayerX += revision;
+                if (twoPlayerY % gridSize > standardRevision) {
+                    twoPlayerY -= revision;
+                } else if (twoPlayerY % gridSize < standardRevision) {
+                    twoPlayerY += revision;
+                }
             }
         }
 
+        if (keys['i']) {
+
+            if (twoPlayerX % gridSize <= miss) {
+                twoPlayerDirection = "top";
+
+                if (twoPlayerX % gridSize > standardRevision) {
+                    twoPlayerX -= revision;
+                } else if (twoPlayerY % gridSize < standardRevision) {
+                    twoPlayerX += revision;
+                }
+            }
+        }
+
+        if (keys['l']) {
+
+            if (twoPlayerY % gridSize <= miss) {
+                twoPlayerDirection = "right";
+
+                if (twoPlayerY % gridSize > standardRevision) {
+                    twoPlayerY -= revision;
+                } else if (twoPlayerY % gridSize < standardRevision) {
+                    twoPlayerY += revision;
+                }
+            }
+        }
+
+        if (keys['k']) {
+
+            if (twoPlayerX % gridSize <= miss) {
+                twoPlayerDirection = "bottom";
+
+                if (twoPlayerX % gridSize > standardRevision) {
+                    twoPlayerX -= revision;
+                } else if (twoPlayerY % gridSize < standardRevision) {
+                    twoPlayerX += revision;
+                }
+            }
+
+        }
     }
-}}
+}
 
 function twoPlayerSpan(x, y) {
     let size = 7;
@@ -335,48 +333,50 @@ function twoPleyerClone() {
 }
 
 function twoPleyerMove(i) {
-    if(!towPlayerGameOver){
+    if (!twoPlayerGameOver) {
 
-    switch (i) {
-        case "left":
-            twoPlayerX -= twoPlayerSpeed;
-            break;
+        switch (i) {
+            case "left":
+                twoPlayerX -= twoPlayerSpeed;
+                break;
 
-        case "right":
-            twoPlayerX += twoPlayerSpeed;
-            break;
+            case "right":
+                twoPlayerX += twoPlayerSpeed;
+                break;
 
-        case "top":
-            twoPlayerY -= twoPlayerSpeed;
-            break;
+            case "top":
+                twoPlayerY -= twoPlayerSpeed;
+                break;
 
-        case "bottom":
-            twoPlayerY += twoPlayerSpeed;
-            break;
+            case "bottom":
+                twoPlayerY += twoPlayerSpeed;
+                break;
+        }
+
+        twoPlayerOldPlayerX.push(twoPlayerX);
+        twoPlayerOldPlayerY.push(twoPlayerY);
     }
-
-    twoPlayerOldPlayerX.push(twoPlayerX);
-    twoPlayerOldPlayerY.push(twoPlayerY);
-}}
+}
 
 function twoPleyerGame() {
     // console.log(twoPlayerY)
     if (twoPlayerX >= 512 || twoPlayerX <= 0 - 10 || twoPlayerY >= 512 || twoPlayerY <= 0 - gridSize) {
-        towPlayerGameOver = true
+        twoPlayerGameOver = true
         $("#GameOver").addClass("gameover");
         // gameOver()
         if (is2Players) {
-            setTimeout(function () {
-                twoPlayerX = 128
-                twoPlayerY = 128
-                twoPlayerGameOver = false
-                
+            twoPlayerX = 256
+            twoPlayerY = 256
+            twoPlayerGameOver = false
 
+            twoPlayerDirection = 0;
+            twoPlayerSpeed = 4; //4
+            twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
+            twoPlayerY = 512 / 2 - 17;
+            twoPlayerOldPlayerX = [twoPlayerX];
+            twoPlayerOldPlayerY = [twoPlayerY];
 
-            }, 5000);
-
-
-         }
+        }
     }
 
 }

@@ -111,9 +111,10 @@ function draw() {
 
     drawScore();
     fpsCount();
+    if(twoPlayerGameOver){
 
-    twoRespanTime--;
-
+        twoRespanTime--;
+    }
 }
 
 function keyPressed() {
@@ -375,7 +376,7 @@ function twoPleyerGame() {
         if (is2Players) {
             
 
-            twoRespanTime--;
+            // twoRespanTime--;
 
             if (twoRespanTime <= 0) {
                 twoPlayerX = 256;

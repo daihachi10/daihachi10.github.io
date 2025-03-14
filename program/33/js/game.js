@@ -48,8 +48,8 @@ let controlBottom = false;
 let onePlayerGameOver = false;
 let twoPlayerGameOver = false;
 
-let twoRespanTime = 5;
-let oneRespanTime = 5;
+let oneRespanTime = 300;
+let twoRespanTime = 300;
 
 
 function preload() {
@@ -373,24 +373,21 @@ function twoPleyerGame() {
             twoPlayerX = 256;
             twoPlayerY = 256;
 
-            // twoRespanTime = 5;
-            //     setTimeout(function () {
-            //         twoRespanTime = 0;
-            //     }, 5000);
+            twoRespanTime--;
 
-            // if (twoRespanTime == 0) {
+            if (twoRespanTime <= 0) {
+            twoPlayerGameOver = false
 
-                twoPlayerGameOver = false
-
-                twoPlayerDirection = 0;
-                twoPlayerSpeed = 4; //4
-                twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
-                twoPlayerY = 512 / 2 - 17;
-                twoPlayerOldPlayerX = [twoPlayerX];
-                twoPlayerOldPlayerY = [twoPlayerY];
-
+            twoPlayerDirection = 0;
+            twoPlayerSpeed = 4; //4
+            twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
+            twoPlayerY = 512 / 2 - 17;
+            twoPlayerOldPlayerX = [twoPlayerX];
+            twoPlayerOldPlayerY = [twoPlayerY];
+            
+            twoRespanTime = 300;
             // }
-        }
+        }}
 
 
     }

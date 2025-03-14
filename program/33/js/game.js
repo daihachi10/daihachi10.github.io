@@ -373,12 +373,12 @@ function twoPleyerGame() {
             twoPlayerX = 256;
             twoPlayerY = 256;
 
-            twoRespanTime = 5;
-                setTimeout(function () {
-                    twoRespanTime = 0;
-                }, 5000);
+            // twoRespanTime = 5;
+            //     setTimeout(function () {
+            //         twoRespanTime = 0;
+            //     }, 5000);
 
-            if (twoRespanTime == 0) {
+            // if (twoRespanTime == 0) {
 
                 twoPlayerGameOver = false
 
@@ -389,7 +389,7 @@ function twoPleyerGame() {
                 twoPlayerOldPlayerX = [twoPlayerX];
                 twoPlayerOldPlayerY = [twoPlayerY];
 
-            }
+            // }
         }
 
 

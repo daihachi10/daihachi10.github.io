@@ -242,16 +242,13 @@ function onePleyerGame() {
             // twoRespanTime--;
 
             if (oneRespanTime <= 0) {
-                onePlayerX = 256;
-                onePlayerY = 256;
-
                 onePlayerGameOver = false
 
                 onePlayerDirection = 0;
-                onePlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
+                onePlayerX = 512 / 2 - 17 - gridSize * 3; // width / 2 - 間隔 / 2
                 onePlayerY = 512 / 2 - 17;
-                onePlayerOldPlayerX = [twoPlayerX];
-                onePlayerOldPlayerY = [twoPlayerY];
+                onePlayerOldPlayerX = [onePlayerX];
+                onePlayerOldPlayerY = [onePlayerY];
 
                 oneRespanTime = 300;
                 // }
@@ -458,12 +455,16 @@ function drawScore() {
 
     $(document).ready(function () {
         if (is2Players) {
-            $("#1Pscore").text("1PScore:" + onePlayerScore);
-            $("#2Pscore").text("2PScore:" + twoPlayerScore);
+
+            if (!onePlayerGameOver) { $("#1Pscore").text("1PScore:" + onePlayerScore); } else { $("#1Pscore").text("1P:" + oneRespanTime); }
+            if (!twoPlayerGameOver) { $("#1Pscore").text("2PScore:" + onePlayerScore); } else { $("#2Pscore").text("2P:" + twoRespanTime); }
 
         } else {
+            
             $("#1Pscore").text("Score:" + onePlayerScore);
         }
+
+
     });
 }
 

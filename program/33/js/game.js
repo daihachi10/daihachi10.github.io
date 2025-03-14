@@ -370,30 +370,32 @@ function twoPleyerGame() {
         // gameOver()
 
         if (is2Players) {
+            twoPlayerX = 256;
+            twoPlayerY = 256;
+
             twoRespanTime = 5;
-            for (let i = 0;i > 5; i ++){
+            for (let i = 0; i > 5; i++) {
 
                 setTimeout(function () {
                     twoRespanTime--;
                 }, 1000);
             }
 
-            if (is2Players) {
-                twoPlayerX = 256
-                twoPlayerY = 256
+            if (twoRespanTime == 0) {
+
                 twoPlayerGameOver = false
-    
+
                 twoPlayerDirection = 0;
                 twoPlayerSpeed = 4; //4
                 twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
                 twoPlayerY = 512 / 2 - 17;
                 twoPlayerOldPlayerX = [twoPlayerX];
                 twoPlayerOldPlayerY = [twoPlayerY];
-    
+
             }
         }
 
-        
+
     }
 
 }

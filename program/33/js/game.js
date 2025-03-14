@@ -458,8 +458,8 @@ function drawScore() {
 
     $(document).ready(function () {
         if (is2Players) {
-            showTwoRespanTime = oneRespanTime / 60;
             showOneRespanTime = oneRespanTime / 60;
+            showTwoRespanTime = twoRespanTime / 60;
 
 
 

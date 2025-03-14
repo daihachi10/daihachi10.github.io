@@ -75,7 +75,6 @@ function setup() {
 
 function draw() {
     background("#abd55b");
-
     drawLine();
     appleSpan(appleX, appleY);
 
@@ -101,6 +100,7 @@ function draw() {
 
     drawScore();
     fpsCount();
+
     if (twoPlayerGameOver) { twoRespanTime--; }
     if (onePlayerGameOver) { oneRespanTime--; }
 }

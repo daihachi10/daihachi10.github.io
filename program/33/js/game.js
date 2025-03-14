@@ -51,6 +51,9 @@ let twoPlayerGameOver = false;
 let oneRespanTime = 300;
 let twoRespanTime = 300;
 
+let showOneRespanTime = 300;
+let showTwoRespanTime = 300;
+
 
 function preload() {
     appleImage = loadImage('image/apple.png');
@@ -455,9 +458,13 @@ function drawScore() {
 
     $(document).ready(function () {
         if (is2Players) {
+            showTwoRespanTime = oneRespanTime / 60;
+            showOneRespanTime = oneRespanTime / 60;
 
-            if (!onePlayerGameOver) { $("#1Pscore").text("1PScore:" + onePlayerScore); } else { $("#1Pscore").text("1P:" + oneRespanTime); }
-            if (!twoPlayerGameOver) { $("#2Pscore").text("2PScore:" + twoPlayerScore); } else { $("#2Pscore").text("2P:" + twoRespanTime); }
+
+
+            if (!onePlayerGameOver) { $("#1Pscore").text("1PScore:" + onePlayerScore); } else { $("#1Pscore").text("1P:" + showOneRespanTime.toFixed(2)); }
+            if (!twoPlayerGameOver) { $("#2Pscore").text("2PScore:" + twoPlayerScore); } else { $("#2Pscore").text("2P:" + showTwoRespanTime.toFixed(2)); }
 
         } else {
 

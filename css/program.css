@@ -123,6 +123,27 @@ body {
     display: none;
 }
 
+.renormalize {
+    text-align: center;
+    max-width: 450px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.renormalizename {
+    margin-right: 10px;
+}
+
+#adoption {
+    background-color: var(--sub-color);
+    border: none;
+    padding: 5px 10px 5px 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 60px;
+}
+
 @media (max-width: 800px) {
     .item-list {
         margin-top: 45px;
@@ -137,4 +158,3 @@ body {
         transform: scale(1.1);
     }
 }
-

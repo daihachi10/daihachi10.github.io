@@ -119,6 +119,10 @@ body {
     vertical-align: bottom;
 }
 
+.hidden {
+    display: none;
+}
+
 @media (max-width: 800px) {
     .item-list {
         margin-top: 45px;

@@ -32,11 +32,11 @@
         <p data-aos="fade-up" data-aos-delay="200">プログラム一覧</p>
     </div>
 
-    <label><input type="checkbox" name="fruits" value="ゲーム" checked id="gameCheckbox">ゲーム</label>
-    <label><input type="checkbox" name="fruits" value="ゲーム" checked id="toolCheckbox">ツール</label>
-    <label><input type="checkbox" name="fruits" value="ゲーム" checked id="animationCheckbox">アニメーション</label>
-    <label><input type="checkbox" name="fruits" value="ゲーム" checked id="othersCheckbox">others</label>
-
+    <label><input type="checkbox" name="ゲーム" value="ゲーム" checked id="gameCheckbox">ゲーム</label>
+    <label><input type="checkbox" name="ツール" value="ツール" checked id="toolCheckbox">ツール</label>
+    <label><input type="checkbox" name="アニメーション" value="アニメーション" checked id="animationCheckbox">アニメーション</label>
+    <label><input type="checkbox" name="others" value="others" checked id="othersCheckbox">その他</label>
+    <button type="button" name="adoption" id="adoption">適用</button>
     <ul class="item-list">
         <li class="gameprogram">
             <a href="./program/33/">
@@ -54,7 +54,7 @@
                             </svg></span>
                     </span></dt>
                         <dd data-aos="fade-up" data-aos-delay="150">ヘビゲームの再現をしました。りんごを食べると体が伸び、自分の身体に触れないようにりんごを食べるゲームです。</dd>
-                    </div></dl>
+                    </dl>
             </a>
         </li>
 
@@ -72,7 +72,7 @@
                     </div></dl>
             </a>
         </li>
-        <li>
+        <li class="othersprogram">
             <a href="./program/30/">
                 <div data-aos="fade-up">
                     <img src="./images/program-img/img-item30.webp" alt="figma" loading="lazy">
@@ -102,7 +102,7 @@
         </li>
 
 
-        <li>
+        <li class="othersprogram">
             <a href="./program/16/index.html">
                 <div data-aos="fade-up">
                     <img src="./images/program-img/img-item16-02.webp" alt="自作パソコン" loading="lazy">
@@ -398,6 +398,41 @@
 <!-- footerここから -->
 <footer class="footer"></footer>
 <script src="./js/toggle-menu.js"></script>
+<script>
+    $("#adoption").click(function(){
+        if ($("#gameCheckbox").prop("checked")) {
+            $(".gameprogram").removeClass("hidden");
+
+        } else {
+            $(".gameprogram").addClass("hidden");
+
+        }
+
+        if ($("#toolCheckbox").prop("checked")) {
+            $(".toolprogram").removeClass("hidden");
+
+        } else {
+            $(".toolprogram").addClass("hidden");
+
+        }
+
+        if ($("#animationCheckbox").prop("checked")) {
+            $(".animationprogram").removeClass("hidden");
+
+        } else {
+            $(".animationprogram").addClass("hidden");
+
+        }
+
+        if ($("#othersCheckbox").prop("checked")) {
+            $(".othersprogram").removeClass("hidden");
+
+        } else {
+            $(".othersprogram").addClass("hidden");
+            
+        }
+    });
+</script>
 <script>
 
 </script>

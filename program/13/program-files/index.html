@@ -9,14 +9,14 @@
   <title>大乱闘</title>
   <style>
     body {
-      color: #ff5283;
+      color: #ffffff;
       font-family: sans-serif;
       overflow: hidden;
       margin: 0;
       padding: 0;
     }
     :root, body.is-fullscreen {
-      background-color: #ffffff;
+      background-color: #000000;
     }
     [hidden] {
       display: none !important;
@@ -46,7 +46,7 @@
       cursor: default;
       user-select: none;
       -webkit-user-select: none;
-      background-color: #ffffff;
+      background-color: #000000;
     }
     #launch {
       background-color: rgba(0, 0, 0, 0.7);
@@ -111,10 +111,10 @@
       border-radius: 4px;
     }
     .control-button-highlight:hover {
-      background: #ff528326;
+      background: #ff4c4c26;
     }
     .control-button-highlight.active {
-      background: #ff528359;
+      background: #ff4c4c59;
     }
     .fullscreen-button {
       background: white;
@@ -132,7 +132,7 @@
       cursor: auto;
     }
     .sc-monitor-root[data-opcode^="data_"] .sc-monitor-value-color {
-      background-color: #000000;
+      background-color: #ff8c1a;
     }
     .sc-monitor-row-value-outer {
       background-color: #fc662c;
@@ -142,9 +142,8 @@
     }
     
   </style>
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#000000">
   
-<meta name="theme-color" content="#1DB31D" />
 </head>
 <body>
   <div id="app"></div>
@@ -161,7 +160,7 @@
 
   <div id="loading" class="screen">
     <noscript>Enable JavaScript</noscript>
-    <h1 class="loading-text">loadings</h1>
+    
     
     <div class="progress-bar-outer"><div class="progress-bar-inner" id="loading-inner"></div></div>
   </div>
@@ -222,7 +221,7 @@
       };
 
       scaffolding.setUsername("player####".replace(/#/g, () => Math.floor(Math.random() * 10)));
-      scaffolding.setAccentColor("#ff5283");
+      scaffolding.setAccentColor("#ff4c4c");
 
       try {
         scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "1084336973"));
@@ -307,7 +306,7 @@
         };
         xhr.onerror = () => {
           if (location.protocol === 'file:') {
-            reject(new Error('Zip environment must be used from a website, not from a file URL.'));
+            reject(new Error('Zip environment must be used on a website, not on a local file. To fix this error, use the "Plain HTML" environment instead.'));
           } else {
             reject(new Error('Request to load project data failed.'));
           }
@@ -329,7 +328,7 @@
       await scaffolding.loadProject(projectData);
       setProgress(1);
       loadingScreen.hidden = true;
-      if (false) {
+      if (true) {
         scaffolding.start();
       } else {
         launchScreen.hidden = false;

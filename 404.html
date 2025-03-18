@@ -61,6 +61,10 @@
         .homebutton:hover {
             background-color: var(--sub-hover-color);
         }
+
+        #url {
+            padding: 10px 0 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -610,9 +614,18 @@
 </g>
 </svg>
     <h1>404 Not Found</h1>
-    <p class="text" >お探しのページは見つかりませんでした。</p>
+    <p class="text" >お探しのページは見つかりませんでした:</p>
+    <p id="url"></p>
     <a class="homebutton" href="/">ホームに戻る</a>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#url').text(window.location.href);
+    });
+
+
+</script>
 
 <footer class="footer"></footer>
 

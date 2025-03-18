@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <title>daihachi official website</title>
+    <meta name="description" content="daihachiの公式サイト">
+    <meta name="viewport" content="width=device-width">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/common.css" rel="stylesheet">
+    <link href="./css/loading.css" rel="stylesheet">
+    <script src="./js/loading.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!--        <script src="https://daihachi10.github.io/common/script.js"></script>-->
+    <script src="./common/script.js"></script>
+
+    <meta name="theme-color" content="#1DB31D" />
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             text-align: center;
-            padding: 50px;
+            /*padding: 50px;*/
         }
         .container {
             background: white;
@@ -17,32 +30,42 @@
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
+            text-align: center;
+
+            margin: 20px 0 30px 0;
         }
         h1 {
-            font-size: 72px;
+            text-align: center;
+
+            font-size: 40px;
             margin: 0;
             color: #ff6b6b;
         }
-        p {
+        .text {
+            text-align: center;
+            padding-top: 5px;
             font-size: 18px;
             color: #0b1429;
         }
-        a {
+
+        .homebutton {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
             text-decoration: none;
             color: #0b1429;
-            background-color: #4480fb;
-            border-radius: 5px;
+            background-color: var(--sub-color);
+            border-radius: 50px;
             transition: 0.3s;
         }
-        a:hover {
-            background-color: #0056b3;
+        .homebutton:hover {
+            background-color: var(--sub-hover-color);
         }
     </style>
 </head>
 <body>
+<header class="header"></header>
+
 <div class="container">
     <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -140,7 +163,7 @@
 			c-0.518,15.118,11.36,27.839,26.479,28.357c7.326,0.245,14.311-2.368,19.669-7.377c5.353-5.004,8.439-11.788,8.689-19.102
 			c0.518-15.118-11.361-27.84-26.479-28.358C337.323,147.126,337.005,147.12,336.69,147.12z"/>
 		<g>
-			<polygon style="fill:#E0E0E0;" points="383.439,105.323 376.265,103.397 374.339,96.224 377.148,93.415 380.111,99.551 
+			<polygon style="fill:#E0E0E0;" points="383.439,105.323 376.265,103.397 374.339,96.224 377.148,93.415 380.111,99.551
 				386.247,102.515 			"/>
 			<path style="fill:#E0E0E0;" d="M383.884,100.521c1.307-1.307,1.307-3.437,0-4.744c-1.307-1.307-3.427-1.297-4.734,0.01
 				l3.568-5.353l4.786,2.419l1.049,5.029L383.884,100.521z"/>
@@ -149,7 +172,7 @@
 				C382.7,99.576,384.82,99.586,386.127,98.279z"/>
 		</g>
 		<g>
-			<polygon style="fill:#E0E0E0;" points="90.221,296.708 94.07,295.674 95.104,291.825 93.597,290.318 92.007,293.611 
+			<polygon style="fill:#E0E0E0;" points="90.221,296.708 94.07,295.674 95.104,291.825 93.597,290.318 92.007,293.611
 				88.714,295.201 			"/>
 			<path style="fill:#E0E0E0;" d="M89.982,294.131c-0.701-0.701-0.701-1.844,0-2.546c0.701-0.701,1.839-0.696,2.54,0.005
 				l-1.915-2.873l-2.568,1.298l-0.563,2.698L89.982,294.131z"/>
@@ -162,7 +185,7 @@
 				l-3.195-3.195c-0.832-0.832-2.193-0.832-3.025,0l0,0C75.531,83.469,75.531,84.831,76.363,85.662z"/>
 			<path style="fill:#E0E0E0;" d="M74.112,77.705c2.462-0.884,5.131,0.272,5.961,2.583c0.83,2.311-0.493,4.901-2.955,5.786
 				c-2.462,0.884-5.131-0.272-5.961-2.583C70.327,81.18,71.65,78.59,74.112,77.705z"/>
-			
+
 				<rect x="74.93" y="76.839" transform="matrix(-0.338 -0.9411 0.9411 -0.338 24.1067 180.7352)" style="fill:#F0F0F0;" width="1.37" height="10.102"/>
 		</g>
 	</g>
@@ -558,7 +581,7 @@
 			c-0.002,0.001-0.375,0.19-0.521,1.86c-0.146,1.683,0.16,2.823,0.934,3.484c0.176,0.15,0.376,0.276,0.599,0.379
 			c0.283-0.313,0.476-0.663,0.543-1.028c0.268-1.449-0.422-3.571-1.196-4.43C93.665,406.443,93.536,406.401,93.508,406.401z"/>
 		<g>
-			<polygon style="fill:#263238;" points="228.873,423.978 231.583,419.278 228.873,414.578 225.972,414.578 227.611,419.278 
+			<polygon style="fill:#263238;" points="228.873,423.978 231.583,419.278 228.873,414.578 225.972,414.578 227.611,419.278
 				225.972,423.978 			"/>
 			<path style="fill:#263238;" d="M226.163,421.728c-1.35,0-2.45-1.1-2.45-2.45c0-1.35,1.1-2.44,2.45-2.44l-4.608-0.922
 				l-1.222,3.721l2.056,3.139L226.163,421.728z"/>
@@ -567,7 +590,7 @@
 				C226.287,420.628,225.197,421.728,223.847,421.728z"/>
 		</g>
 		<g>
-			<polygon style="fill:#407BFF;" points="417.889,414.265 415.877,410.774 417.889,407.284 420.044,407.284 418.827,410.775 
+			<polygon style="fill:#407BFF;" points="417.889,414.265 415.877,410.774 417.889,407.284 420.044,407.284 418.827,410.775
 				420.044,414.265 			"/>
 			<path style="fill:#407BFF;" d="M419.902,412.594c1.003,0,1.82-0.817,1.82-1.82c0-1.002-0.817-1.812-1.82-1.812l3.422-0.685
 				l0.908,2.764l-1.527,2.331L419.902,412.594z"/>
@@ -580,15 +603,18 @@
 				h-4.518c-1.177,0-2.139,0.963-2.139,2.139l0,0C340.809,417.936,341.771,418.898,342.948,418.898z"/>
 			<path style="fill:#407BFF;" d="M335.73,414.863c1.116-2.366,3.82-3.435,6.042-2.388c2.221,1.047,3.117,3.814,2.002,6.18
 				s-3.82,3.435-6.041,2.388C335.51,419.996,334.614,417.229,335.73,414.863z"/>
-			
+
 				<rect x="339.066" y="411.708" transform="matrix(-0.9045 -0.4265 0.4265 -0.9045 469.3328 938.6096)" style="fill:#263238;" width="1.37" height="10.102"/>
 		</g>
 	</g>
 </g>
 </svg>
-
-    <p>お探しのページは見つかりませんでした。</p>
-    <a href="/">ホームに戻る</a>
+    <h1>404 Not Found</h1>
+    <p class="text" >お探しのページは見つかりませんでした。</p>
+    <a class="homebutton" href="/">ホームに戻る</a>
 </div>
+
+<footer class="footer"></footer>
+
 </body>
 </html>

@@ -63,7 +63,13 @@
         }
 
         #url {
-            padding: 10px 0 10px 0;
+            margin-top: 20px;
+            padding: 5px 3px 2px 3px;
+            max-width: 360px;
+            overflow-x: scroll;
+            text-align: center;
+            border: 1px solid var(--theme-color);
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -615,7 +621,7 @@
 </svg>
     <h1>404 Not Found</h1>
     <p class="text" >お探しのページは見つかりませんでした:</p>
-    <p id="url"></p>
+    <nobr><p id="url"></p></nobr>
     <a class="homebutton" href="/">ホームに戻る</a>
 </div>
 

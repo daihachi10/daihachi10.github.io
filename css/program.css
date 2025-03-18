@@ -144,6 +144,16 @@ body {
     width: 60px;
 }
 
+.check:hover {
+    background: #fff;
+
+    box-shadow:
+        0 0 5px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(0, 0, 0, 0.1),
+        0 0 40px rgba(0, 0, 0, 0.05);
+}
+
 @media (max-width: 800px) {
     .item-list {
         margin-top: 45px;

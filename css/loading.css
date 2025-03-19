@@ -165,3 +165,8 @@
     margin-left: auto;
     margin-top: 60vh;
 }
+
+.video{
+    height: 80vh;
+    margin:auto 0 auto 0;
+}

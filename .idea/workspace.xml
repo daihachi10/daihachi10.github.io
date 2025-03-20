@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage">
-      <change afterPath="$PROJECT_DIR$/program/common/image/game.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/common/image/keyboard.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/common/image/new.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/program/common/image/tool.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/program/common/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/program/common/sidebar.html" afterDir="false" />
-    </list>
+    <list default="true" id="039540ad-5e98-49ee-9aba-7c5b9fc6110e" name="変更" comment="homepage" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -180,7 +173,7 @@
       <workItem from="1742220610530" duration="313000" />
       <workItem from="1742251317452" duration="726000" />
       <workItem from="1742286195781" duration="6529000" />
-      <workItem from="1742383156204" duration="979000" />
+      <workItem from="1742383156204" duration="1814000" />
     </task>
     <task id="LOCAL-00001" summary="変更">
       <option name="closed" value="true" />

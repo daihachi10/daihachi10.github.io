@@ -32,6 +32,14 @@ a {
 .header {
     background-color: var(--background-color);
     opacity: 100;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    top: 0;
+}
+
+main {
+    margin-top: 65px;
 }
 
 .header-inner a,
@@ -85,7 +93,8 @@ img {
 }
 
 .header-inner {
-    max-width: 1200px;
+    /* max-width: 1200px; */
+    max-width: 1600px;
     height: 65px;
     margin-left: auto;
     margin-right: auto;

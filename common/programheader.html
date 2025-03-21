@@ -1,15 +1,50 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/common.css">
 
+<style>
+    .logobox {
+        max-width: 900px;
+    }
+
+    .header-logo {
+        width: 35px;
+    }
+
+    .header-logo img {
+        width: auto;
+        height: 35px;
+        vertical-align: bottom;
+        margin-right: 1px;
+
+        object-fit: contain; 
+    }
+
+    .logo-text {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgba(140, 140, 140, 0.7);
+    }
+
+    .program-link {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgba(29, 179, 29, 0.7);
+        width: 210px;
+    }
+</style>
 
 <div class="header-inner">
-    <a data-aos="fade-down" data-aos-delay="200" class="header-logo" style="width: 35px;" href="https://daihachi10.github.io/">
-        <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="logo"
-            style="width: 35px;height: 35px; vertical-align:bottom; margin-bottom:5px;margin-right: 1px;">
+    <div class="logobox">
+        <a data-aos="fade-down" data-aos-delay="200" class="header-logo"
+            href="https://daihachi10.github.io/">
+            <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="logo">
         </a>
-        <span data-aos="fade-right" data-aos-delay="300" class="logo-text" style="font-size: 30px;font-weight: bold;color:rgba(140, 140, 140,0.7);">/</span>
-        <a data-aos="fade-right" data-aos-delay="500" href="https://daihachi10.github.io/program.html" style="font-size: 30px;font-weight: bold;color:rgba(29, 179, 29, 0.7);width: 210px;">
-        PROGRAM</a>
+        <a data-aos="fade-right" data-aos-delay="300" class="logo-text">/</a>
+        <a data-aos="fade-right" data-aos-delay="500" href="https://daihachi10.github.io/program.html"
+            class="program-link">
+            PROGRAM</a>
+    </div>
+
     <button class="toggle-menu-button"></button>
     <div class="header-site-menu">
         <nav class="site-menu">
@@ -17,12 +52,12 @@
                 <li data-aos="fade-down" data-aos-delay="600"><a
                         href="https://daihachi10.github.io/install.html">INSTALL
                         APP</a></li>
-                <li data-aos="fade-down" data-aos-delay="750"><a href="https://daihachi10.github.io/program.html">MY
-                        PROGRAM</a></li>
-                <li data-aos="fade-down" data-aos-delay="900"><a
-                        href="https://daihachi10.github.io/en.html">ENGLISH</a></li>
-                <li data-aos="fade-down" data-aos-delay="1050"><a onclick="openColorPicker()"><span
-                            class="color" id="colorchange">COLOR CHANGE</span></a></li>
+                <!-- <li data-aos="fade-down" data-aos-delay="750"><a href="https://daihachi10.github.io/program.html">MY
+                        PROGRAM</a></li> -->
+                <!-- <li data-aos="fade-down" data-aos-delay="900"><a href="https://daihachi10.github.io/en.html">ENGLISH</a>
+                </li> -->
+                <li data-aos="fade-down" data-aos-delay="1050"><a onclick="openColorPicker()"><span class="color"
+                            id="colorchange">COLOR CHANGE</span></a></li>
 
                 <li data-aos="fade-down" data-aos-delay="1200"><a href="https://daihachi10.github.io/account/"><span
                             class="username">LOGIN / SIGNUP</span></a></li>

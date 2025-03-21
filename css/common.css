@@ -105,7 +105,7 @@ img {
 .header-logo {
     /*font-family: "Caveat", cursive;*/
     /*font-family: 'Poppins', sans-serif;*/
-    font-family: 'Montserrat','LINE Seed Sans', sans-serif;
+    font-family: 'Montserrat', 'LINE Seed Sans', sans-serif;
     font-size: 50px;
     /*font-weight: bold;*/
     font-weight: 600;
@@ -146,7 +146,7 @@ img {
     font-weight: bold;
     display: block;
     margin-top: 90px;
- animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers;
+    animation: 0.2s cubic-bezier(.27, .73, .74, .44) footer-logo-nothovers;
     padding-left: 50px !important;
     padding-right: 50px !important;
 }
@@ -197,8 +197,13 @@ img {
 /*}*/
 
 .loginiframe {
+    z-index: 1;
     width: 400px;
-    height: 690px;
+    height: 610px;
+    position: fixed;
+    /* 画面全体に固定 */
+    top: 90px;
+    right: 0;
 }
 
 @media (max-width: 800px) {

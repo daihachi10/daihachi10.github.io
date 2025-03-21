@@ -20,7 +20,7 @@
 
     <style>
         body {
-            background-image:none;
+            background-image: none;
         }
     </style>
 
@@ -37,25 +37,31 @@
     <main class="main">
         <div class="login-box">
 
-            <h2 class="logintext">LOGIN / SIGNUP</h2>
-            <p>Email or UserName</p>
-            <input type="email" name="email" id="email" placeholder="Email or UserName">
-
+            <h2 class="logintext">SIGNUP</h2>
+            <p>Email</p>
+            <input type="email" name="email" id="email" placeholder="Email">
+            <!--
             <p>Password</p>
             <input type="password" name="password" id="password" placeholder="Password">
             <label for="showpassword" class="showpasswordlabel">
                 <input type="checkbox" name="showpassword" id="showpassword">
                 <span class="showpassword">Show Password</span>
-            </label>
+            </label> -->
 
-            <button style="display: block" class="loginbutton" onclick="login()">
-                LOG IN
+            <button style="display: block" class="loginbutton" onclick="next()">
+                NEXT
             </button>
             <div class="link-box">
-                <a href="" class="forgot">ForgotPassword?</a>
-                <a href="./signup.html" class="signup">SignUP</a>
+                <!-- <a href="" class="forgot">ForgotPassword?</a> -->
+                <a href="./signup.html" class="signup">login</a>
             </div>
 
+            <script>
+                function next() {
+                    window.location.href = "./signup.html";
+                }
+
+            </script>
 
         </div>
     </main>

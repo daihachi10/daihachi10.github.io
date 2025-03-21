@@ -15,12 +15,15 @@ document.addEventListener("click", function (event) {
     AOS.init();
 
 });
+window.addEventListener('load', function () {
+    for (let i = 0; i < 500; i++) {
+        setTimeout(function () {
+            AOS.init();
+        }, 5);
+    }
+});
 
-for (let i = 0; i < 500; i++) {
-    setTimeout(function () {
-        AOS.init();
-    }, 500);
-}
+
 
 window.onload = function () {
     window.addEventListener('keydown', keydownfunc, true);

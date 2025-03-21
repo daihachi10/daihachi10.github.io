@@ -23,6 +23,24 @@ window.addEventListener('load', function () {
     }
 });
 
+window.onload = function() {
+    
+    for (let i = 0; i < 500; i++) {
+        setTimeout(function () {
+            AOS.init();
+        }, 5);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    for (let i = 0; i < 500; i++) {
+        setTimeout(function () {
+            AOS.init();
+        }, 5);
+    }
+  });
+  
+  
 
 
 window.onload = function () {

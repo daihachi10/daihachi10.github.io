@@ -19,7 +19,7 @@ window.addEventListener('load', function () {
     for (let i = 0; i < 500; i++) {
         setTimeout(function () {
             AOS.init();
-        }, 5);
+        }, 600);
     }
 });
 
@@ -28,7 +28,7 @@ window.onload = function() {
     for (let i = 0; i < 500; i++) {
         setTimeout(function () {
             AOS.init();
-        }, 5);
+        }, 600);
     }
   };
 
@@ -36,7 +36,7 @@ window.onload = function() {
     for (let i = 0; i < 500; i++) {
         setTimeout(function () {
             AOS.init();
-        }, 5);
+        }, 600);
     }
   });
   

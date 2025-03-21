@@ -1,0 +1,84 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* Tailwindのbg-gray-100相当 */
+    padding: 1rem; /* Tailwindのp-4相当 */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.5rem; /* Tailwindのrounded-lg相当 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Tailwindのshadow-md相当 */
+}
+
+.search-container {
+    display: flex;
+    margin-bottom: 1.5rem; /* Tailwindのmb-6相当 */
+}
+
+#search-input {
+    flex-grow: 1;
+    border-top-left-radius: 0.375rem; /* Tailwindのrounded-l-md相当 */
+    border-bottom-left-radius: 0.375rem; /* Tailwindのrounded-l-md相当 */
+    border: 1px solid #d1d5db; /* Tailwindのborder-gray-300相当 */
+    padding: 0.5rem; /* Tailwindのp-2相当 */
+    focus: outline-none;
+    focus: ring-2;
+    focus: ring-blue-500;
+    focus: border-blue-500;
+}
+
+#search-button {
+    background-color: #3b82f6; /* Tailwindのbg-blue-500相当 */
+    color: #fff;
+    border-top-right-radius: 0.375rem; /* Tailwindのrounded-r-md相当 */
+    border-bottom-right-radius: 0.375rem; /* Tailwindのrounded-r-md相当 */
+    padding: 0.5rem; /* Tailwindのp-2相当 */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* ホバー時の色の変化を滑らかにする */
+    border: none;
+    focus: outline-none;
+    focus: ring-2;
+    focus: ring-blue-500;
+    focus: ring-opacity-50;
+}
+
+#search-button:hover {
+    background-color: #2563eb; /* Tailwindのhover:bg-blue-600相当 */
+}
+
+#results-container {
+    margin-top: 1.5rem; /* Tailwindのmt-6相当 */
+}
+
+#results-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    space-y: 0.75rem; /* Tailwindのspace-y-3相当 */
+}
+
+#results-list li {
+    background-color: #f9fafb; /* Tailwindのbg-gray-50相当 */
+    border-left: 4px solid #3b82f6; /* Tailwindのborder-l-4とborder-blue-500相当 */
+    padding: 0.5rem; /* Tailwindのp-2相当 */
+    border-radius: 0.375rem; /* Tailwindのrounded-md相当 */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Tailwindのshadow-sm相当 */
+}
+
+#results-list li a {
+    color: #3b82f6; /* Tailwindのtext-blue-600相当 */
+    text-decoration: none;
+    font-weight: 500; /* Tailwindのfont-medium相当 */
+}
+
+#results-list li a:hover {
+    color: #1e40af; /* Tailwindのhover:text-blue-800相当 */
+}
+
+#no-results {
+    color: #6b7280; /* Tailwindのtext-gray-500相当 */
+    display: none;
+}

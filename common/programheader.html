@@ -1,0 +1,56 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/common.css">
+
+
+<div class="header-inner">
+    <a data-aos="fade-down" data-aos-delay="200" class="header-logo" style="width: 35px;" href="https://daihachi10.github.io/">
+        <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="logo"
+            style="width: 35px;height: 35px; vertical-align:bottom; margin-bottom:5px;margin-right: 1px;">
+        </a>
+        <span class="logo-text" style="font-size: 30px;font-weight: bold;color:rgba(140, 140, 140,0.7);">/</span>
+        <a href="https://daihachi10.github.io/program.html" style="font-size: 30px;font-weight: bold;color:rgba(29, 179, 29, 0.7);width: 210px;">
+        PROGRAM</a>
+    <button class="toggle-menu-button"></button>
+    <div class="header-site-menu">
+        <nav class="site-menu">
+            <ul>
+                <li data-aos="fade-down" data-aos-delay="600"><a
+                        href="https://daihachi10.github.io/install.html">INSTALL
+                        APP</a></li>
+                <li data-aos="fade-down" data-aos-delay="750"><a href="https://daihachi10.github.io/program.html">MY
+                        PROGRAM</a></li>
+                <li data-aos="fade-down" data-aos-delay="900"><a
+                        href="https://daihachi10.github.io/en.html">ENGLISH</a></li>
+                <li data-aos="fade-down" data-aos-delay="1050"><a onclick="openColorPicker()"><span
+                            class="color" id="colorchange">COLOR CHANGE</span></a></li>
+
+                <li data-aos="fade-down" data-aos-delay="1200"><a href="https://daihachi10.github.io/account/"><span
+                            class="username">LOGIN / SIGNUP</span></a></li>
+
+
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+
+
+
+    window.onload = function () {
+        AOS.init();
+
+        const params = new URLSearchParams(window.location.search);
+        const urlUser = params.get('user');
+        let user = null;
+        user = localStorage.getItem('user');
+        if (user) {
+            const usernameElements = document.querySelectorAll('span.username');
+            usernameElements.forEach(function (element) {
+                element.textContent = 'Hi ' + user + '!';
+            });
+        }
+    }
+</script>

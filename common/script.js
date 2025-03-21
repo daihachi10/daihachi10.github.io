@@ -2,7 +2,6 @@ $(function () {
     $(".footer").load("https://daihachi10.github.io/common/footer.html");
     $("#loading").load("https://daihachi10.github.io/common/loading.html");
     $(".header").load("https://daihachi10.github.io/common/header.html");
-    $(".header").load("https://daihachi10.github.io/common/header.html");
 
     $.get("https://daihachi10.github.io/common/color.html", function(data){
         $("body").prepend(data); // 先頭に追加する場合

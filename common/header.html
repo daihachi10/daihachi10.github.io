@@ -1,7 +1,6 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/common.css">
 
-
 <div class="header-inner">
     <a data-aos="fade-down" data-aos-delay="200" class="header-logo" href="https://daihachi10.github.io/">
         <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="logo"
@@ -12,6 +11,9 @@
     <div class="header-site-menu">
         <nav class="site-menu">
             <ul>
+                <li data-aos="fade-down" data-aos-delay="450"><a href="https://daihachi10.github.io/search.html" style="margin-right: 5px;">search</a><input type="text" id="searchQuery" name="searchQuery" style="padding: 10px; font-size: 16px; border: 1.2px solid #ccc; border-radius: 10px; width: 130px;height: 18px;">
+                    <!-- <button onclick="goToSearchPage()" style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;height: 20px;">検索</button> -->
+                    </li>
                 <li data-aos="fade-down" data-aos-delay="600"><a
                         href="https://daihachi10.github.io/install.html">INSTALL
                         APP</a></li>
@@ -51,4 +53,27 @@
             });
         }
     }
+
+    function goToSearchPage() {
+            // テキストボックスの値を取得
+            var query = document.getElementById("searchQuery").value;
+
+            // 値が空でないか確認
+            if (query.trim() !== "") {
+                // 新しいURLを生成
+                var newUrl = "https://daihachi10.github.io/search.html?query=" + encodeURIComponent(query);
+
+                // 新しいURLに移動
+                window.location.href = newUrl;
+            } else {
+                alert("検索する文字を入力してください。"); // 空の場合は警告を表示
+            }
+        }
+
+    // Enterキーが押された時の処理
+    document.getElementById("searchQuery").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                goToSearchPage(); // 検索ページへ移動する関数を呼び出す
+            }
+        });
 </script>

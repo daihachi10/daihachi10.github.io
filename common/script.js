@@ -57,3 +57,19 @@ document.addEventListener('keydown', function(event) {
         event.preventDefault();
     }
 });
+
+function goToSearchPage() {
+    // テキストボックスの値を取得
+    var query = document.getElementById("searchQuery").value;
+
+    // 値が空でないか確認
+    if (query.trim() !== "") {
+        // 新しいURLを生成
+        var newUrl = "https://daihachi10.github.io/search.html?query=" + encodeURIComponent(query);
+
+        // 新しいURLに移動
+        window.location.href = newUrl;
+    } else {
+        alert("検索する文字を入力してください。"); // 空の場合は警告を表示
+    }
+}

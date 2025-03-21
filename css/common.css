@@ -196,6 +196,10 @@ img {
 /*    border-radius: 6px; !* 背景も角丸に *!*/
 /*}*/
 
+.loginiframe {
+    width: 400px;
+    height: 690px;
+}
 
 @media (max-width: 800px) {
     .site-menu ul {

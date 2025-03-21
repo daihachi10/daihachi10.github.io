@@ -75,7 +75,7 @@ header {
 
 /* ヘッダーの中の文字 */
 .header-inner {
-    /*max-width: 1200px;*/
+    /*max-width: 1600px;*/
     height: 110px;
     margin-left: auto;
     margin-right: auto;
@@ -149,7 +149,7 @@ body.dark #default-header {
 
 .first-view-text {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 40px;
@@ -166,7 +166,7 @@ body.dark #default-header {
 }
 
 .lead {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 60px auto;
 }
 

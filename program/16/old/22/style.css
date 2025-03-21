@@ -103,7 +103,7 @@ header {
 
 
 .header-inner {
-    max-width: 1200px;
+    max-width: 1600px;
     height: 110px;
     margin-left: auto;
     margin-right: auto;
@@ -119,7 +119,7 @@ header {
 }
 
 #animation-header-inner {
-    max-width: 1200px;
+    max-width: 1600px;
     height: 50px;
     margin-left: auto;
     margin-right: auto;
@@ -424,7 +424,7 @@ img {
 
 .first-view-text {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 40px;
@@ -441,7 +441,7 @@ img {
 }
 
 .lead {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 60px auto;
 }
 

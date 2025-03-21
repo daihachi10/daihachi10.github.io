@@ -32,16 +32,6 @@ window.onload = function() {
     }
   };
 
-  document.addEventListener('DOMContentLoaded', function() {
-    for (let i = 0; i < 500; i++) {
-        setTimeout(function () {
-            AOS.init();
-        }, 600);
-    }
-  });
-  
-  
-
 
 window.onload = function () {
     window.addEventListener('keydown', keydownfunc, true);

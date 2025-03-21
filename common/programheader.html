@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="../css/common.css">
 
 <style>
+    .header-inner {
+        max-width: 1200px;
+    }
+
     .logobox {
         max-width: 900px;
     }
@@ -27,13 +31,13 @@
     .program-link {
         font-size: 30px;
         font-weight: bold;
-        color: rgba(29, 179, 29, 0.9); /* 初期色を0.9に設定 */
+        color: rgba(29, 179, 29, 1);
         width: 210px;
-        animation: program-link-color-change-normal 0.3s ease forwards; /* 通常時のアニメーションを適用 */
+        animation: program-link-color-change-normal 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards; /* 通常時のアニメーションを適用 */
     }
 
     .program-link:hover {
-        animation: program-link-color-change-hover 0.3s ease forwards; /* ホバー時のアニメーションを適用 */
+        animation: program-link-color-change-hover 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards; /* ホバー時のアニメーションを適用 */
     }
 
     /* キーフレームアニメーションの定義 */
@@ -42,13 +46,13 @@
             color: rgba(29, 179, 29, 0.6); /* ホバー後の色から開始 */
         }
         100% {
-            color: rgba(29, 179, 29, 0.9); /* 通常時の色 */
+            color: rgba(29, 179, 29, 1); /* 通常時の色 */
         }
     }
 
     @keyframes program-link-color-change-hover {
         0% {
-            color: rgba(29, 179, 29, 0.9); /* 通常時の色から開始 */
+            color: rgba(29, 179, 29, 1); /* 通常時の色から開始 */
         }
         100% {
             color: rgba(29, 179, 29, 0.6); /* ホバー時の色 */

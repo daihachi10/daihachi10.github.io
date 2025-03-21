@@ -199,11 +199,12 @@ img {
 .loginiframe {
     z-index: 1;
     width: 400px;
-    height: 610px;
+    height: 460px;
     position: fixed;
     /* 画面全体に固定 */
     top: 90px;
     right: 0;
+    border-radius: 30px;
 }
 
 @media (max-width: 800px) {

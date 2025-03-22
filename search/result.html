@@ -1,214 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>daihachiサイト内検索</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <link rel="stylesheet" href="../css/search.css"> -->
-    <!-- <link rel="stylesheet" href="../css/common.css"> -->
-    <style>
-        body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    transition: background-color 0.5s ease;
-}
-
-.container {
-    max-width: 800px;
-    width: 95%;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 0.75rem;
-    box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 7px -3px rgba(0, 0, 0, 0.07);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.container:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.2), 0 4px 8px -4px rgba(0, 0, 0, 0.1);
-}
-
-.search-container {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 2rem;
-    width: 100%;
-    max-width: 320px;
-}
-
-#search-input {
-    flex: 1;
-    padding: 0.75rem;
-    border-radius: 0.5rem 0 0 0.5rem;
-    border: 2px solid #e0e0e0;
-    outline: none;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-#search-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-#search-input::placeholder {
-    color: #a0a0a0;
-    font-weight: 400;
-}
-
-#search-input-suggestions {
-    position: absolute;
-    z-index: 10;
-    background-color: #fff;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    margin-top: 2.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    /* display: none; */
-    list-style: none;
-    padding: 0.75rem 0;
-    max-height: 250px;
-    overflow-y: auto;
-    word-wrap: break-word;
-    left: 0;
-    width: 320px;
-    opacity: 0;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
-    max-height: 0;
-}
-
-#search-input-suggestions.show {
-    display: block;
-    opacity: 1;
-    max-height: 250px;
-}
-
-
-#search-input-suggestions li {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#search-input-suggestions li:hover {
-    background-color: #f0f0f0;
-    color: #2d3748;
-}
-
-#search-button {
-    background-color: #3b82f6;
-    color: #fff;
-    border-radius: 0 0.5rem 0.5rem 0;
-    padding: 0.75rem 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#search-button:hover {
-    background-color: #2563eb;
-    transform: translateY(-0.125rem);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-#search-button:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
-#results-container {
-    margin-top: 2rem;
-}
-
-#results-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    space-y: 1.25rem;
-}
-
-#results-list li {
-    background-color: #f9fafb;
-    border-left: 4px solid #3b82f6;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-    cursor: pointer; /* カーソルをポインターに変更 */
-}
-
-#results-list li:hover {
-    background-color: #fff;
-    transform: translateX(0.25rem);
-    border-color: #60a5fa;
-}
-
-#results-list li a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-#results-list li a:hover {
-    color: #1e40af;
-}
-
-#no-results {
-    color: #6b7280;
-    display: none;
-    font-size: 1.1rem;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 0.5rem;
-    background-color: #f9fafb;
-    border: 1px solid #d1d5db;
-    margin-top: 1.25rem;
-}
-    </style>
-</head>
-<body class="bg-gray-100 p-4">
+    <link rel="stylesheet" href="../css/result.css">
+    <link rel="stylesheet" href="../css/common.css" />
+    <style></style>
+  </head>
+  <body class="bg-gray-100 p-4">
     <div class="container">
-        <h1 class="logo text-3xl font-semibold text-blue-600 text-center mb-6">daihachi</h1>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="検索キーワードを入力してください...">
-            <ul id="search-input-suggestions"></ul>
-            <button id="search-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-            </button>
+        <div class="top-box">
+
+            <div class="logo-box">
+                <a
+                href="../index.html"
+                class="logo text-3xl font-semibold text-blue-600 text-center mb-6"
+                >
+                daihachi
+            </a>
+            <div class="search-container ">
+                <input
+                type="text"
+                class="original-box-shadow"
+                id="search-input"
+                placeholder="検索キーワードを入力してください..."
+                />
+                <ul id="search-input-suggestions"></ul>
+            </div>
         </div>
-        <div id="results-container" class="mt-8">
-            <h2 class="text-xl font-semibold text-gray-700 mb-4">検索結果:</h2>
-            <ul id="results-list">
-            </ul>
-            <p id="no-results">該当する結果はありませんでした。</p>
-        </div>
+            
+      </div>
+      <div id="results-container" class="mt-8">
+        <!-- <h2 class="text-xl font-semibold text-gray-700 mb-4">検索結果:</h2> -->
+         <br>
+        <ul id="results-list"></ul>
+        <p id="no-results">該当する結果はありませんでした。</p>
+      </div>
     </div>
     <script src="./text.js"></script>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

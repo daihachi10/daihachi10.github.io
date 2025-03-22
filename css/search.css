@@ -1,3 +1,4 @@
+color: var(--theme-color);
 .original-box-shadow {
     display: flex;
     align-items: center;
@@ -44,9 +45,9 @@
     border: #333 solid 1px;
 }
 .search-input-suggestions-box {
-    margin:5px auto 15px auto;
+    margin:5px auto 50px auto;
     width: 75vw;
-    height:45px;
+    height:100%;
     border-radius: 50px;
     max-width: 800px;
     padding-left: 10px;
@@ -57,8 +58,8 @@
 }
 
 li {
-    padding-top: 2.5px;
-    padding-bottom: 2.5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 li:hover {

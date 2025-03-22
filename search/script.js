@@ -135,9 +135,7 @@ $(document).ready(function() {
           const extract = pages[pageId].extract;
           if (extract) {
             // 取得した情報を特定の ID を持つ <p> タグに出力
-            $('#wiki-info').html(extract);
-          } else {
-            $('#wiki-info').text('該当する情報が見つかりませんでした。');
+            $('#wiki-info').html(extract + "wikipedia");
           }
           return; // 最初のページの結果のみを表示
         }

@@ -65,7 +65,7 @@ function goToSearchPage() {
     // 値が空でないか確認
     if (query.trim() !== "") {
         // 新しいURLを生成
-        var newUrl = "https://daihachi10.github.io/search.html?query=" + encodeURIComponent(query);
+        var newUrl = "https://daihachi10.github.io/result?query=" + encodeURIComponent(query);
 
         // 新しいURLに移動
         window.location.href = newUrl;

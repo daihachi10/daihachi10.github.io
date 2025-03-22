@@ -11,10 +11,27 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../css/result.css">
     <link rel="stylesheet" href="../css/common.css" />
-    <style></style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+            const inputElement = document.getElementById('search-input');
+
+            // ページ読み込み時にinput要素にフォーカスを設定
+            inputElement.focus();
+
+            // '/'キーが押された時にinput要素にフォーカスを設定
+            document.addEventListener('keydown', (event) => {
+                if (event.key === '/') {
+                    event.preventDefault(); // デフォルトのブラウザ動作を防止
+                    inputElement.focus();
+                }
+            });
+        });
+    </script>
   </head>
   <body class="bg-gray-100 p-4">
     <div class="container">
+      
+
         <div class="top-box">
 
             <div class="logo-box">
@@ -34,14 +51,18 @@
                 <ul id="search-input-suggestions"></ul>
             </div>
         </div>
-            
       </div>
       <div id="results-container" class="mt-8">
         <!-- <h2 class="text-xl font-semibold text-gray-700 mb-4">検索結果:</h2> -->
-         <br>
+        <br>
         <ul id="results-list"></ul>
         <p id="no-results">該当する結果はありませんでした。</p>
       </div>
+      <div class="wiki-box">
+
+        <p id="wiki-info"></p>
+      </div>
+      
     </div>
     <script src="./text.js"></script>
     <script src="./script.js"></script>

@@ -25,18 +25,19 @@ $(document).ready(function () {
         const listItem = $("<li>");
         listItem.html(`
           <a class="link" href="${item.url}">
+          <img class="icon" src="../assets/img/icon-192x192.png">
           <span class="user">daihachi</span>
           <br>
           <span class="url">${item.url}</span>
           <br>
+          <img class="image" src="${item.img}" class="img">
           <span class="title">${item.title}</span></a>
           <p class= "description">${item.description}</p>
-          
           `);
-        listItem.on("click", function () {
-          // リストアイテム全体をクリック可能にする
-          window.location.href = item.url;
-        });
+        // listItem.on("click", function () {
+        //   // リストアイテム全体をクリック可能にする
+        //   window.location.href = item.url;
+        // });
         resultsList.append(listItem);
         resultsFound = true;
       }
@@ -100,6 +101,7 @@ $(document).ready(function () {
     if (event.key === "Enter") {
       const query = searchInput.val().toLowerCase();
       performSearch(query);
+      window.location.href = `./result.html?query=${query}`;
     }
   });
 
@@ -109,5 +111,42 @@ $(document).ready(function () {
   if (queryParam) {
     searchInput.val(queryParam);
     performSearch(queryParam.toLowerCase());
+  }
+});
+
+
+
+$(document).ready(function() {
+  // URLパラメータから 'query' の値を取得
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('query');
+
+  if (query) {
+    // Wikipedia API の URL を構築
+    const apiUrl = `https://ja.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${encodeURIComponent(query)}&exintro=true&origin=*`;
+
+    // Wikipedia API にリクエストを送信
+    $.ajax({
+      url: apiUrl,
+      dataType: 'json',
+      success: function(data) {
+        const pages = data.query.pages;
+        for (const pageId in pages) {
+          const extract = pages[pageId].extract;
+          if (extract) {
+            // 取得した情報を特定の ID を持つ <p> タグに出力
+            $('#wiki-info').html(extract);
+          } else {
+            $('#wiki-info').text('該当する情報が見つかりませんでした。');
+          }
+          return; // 最初のページの結果のみを表示
+        }
+      },
+      error: function() {
+        $('#wiki-info').text('情報の取得に失敗しました。');
+      }
+    });
+  } else {
+    $('#wiki-info').text('URLにクエリパラメータがありません。');
   }
 });

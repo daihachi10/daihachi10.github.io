@@ -368,7 +368,7 @@ img {
     }
 }
 
-@keyframes slide-animation-02 {
+@keyframes slide-animation {
     0% {
         opacity: 0;
     }
@@ -630,7 +630,7 @@ lead a {
 @media (max-width:800px) {
     .first-view {
         height: calc(100vh - 20vh);
-        /* background-image: url(../images/index/bg-main-sp-02.webp); */
+        /* background-image: url(../images/index/bg-main-sp.webp); */
     }
 
     .first-view-text {

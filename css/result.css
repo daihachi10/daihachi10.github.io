@@ -10,7 +10,6 @@
   height: 90px;
   background-color: #fff;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
-
 }
 
 .logo {
@@ -38,7 +37,7 @@
 }
 
 #results-container {
-    padding-top: 100px
+  padding-top: 100px;
 }
 
 .search-input-suggestions-box {
@@ -56,21 +55,27 @@
 }
 
 li {
-  padding-top: 5px;
-  padding-bottom: 45px;
+  /* padding-top: 30px; */
+  /* padding-bottom: 45px; */
   padding-left: 100px;
+  margin-bottom: 80px;
 }
 
-li:hover {
+a:hover {
   cursor: pointer;
 }
 
 .url {
   color: #666;
+  display: block;
+  width: 30vw;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .description {
   color: #666;
+  line-height: 1.25;
 }
 
 .url,
@@ -83,21 +88,86 @@ li:hover {
 }
 
 .title {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 0px;
+  padding-bottom: 15px;
   display: block;
   text-decoration: underline;
   color: #2b8aff;
   font-size: 20px;
 }
 
+.icon {
+  margin: 1px 7px 0 0;
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  background-color: #eee;
+  border-radius: 50px;
+  float: left;
+}
+
+.image {
+  margin-top: 8px;
+  width: 120px;
+  height: 120px;
+  float: right;
+  margin-right: 50%;
+  border-radius: 15px;
+  border: none;
+  background-color: #eee;
+}
+
+.wiki-box {
+  z-index: 1;
+  width: 30vw;
+  height: 70vh;
+  position: fixed;
+  top: 130px;
+  right: 50px;
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
 @media (max-width: 800px) {
-    .logo {
-        display: none;
-    }
- 
-    
-    #search-input {
-        margin-left: 100px;
-      }
+  .logo {
+    display: none;
+  }
+
+  #search-input {
+    margin-left: 40px;
+    margin-right: 40px;
+    width: calc(100% - 80px);
+  }
+
+  li {
+    padding-left: 50px;
+  }
+
+  .url {
+    display: block;
+    width: 30vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .image {
+    width: 70px;
+    height: 70px;
+    margin: 0 10% 70px 10px;
+    /* margin-right: 10%; */
+    /* margin-bottom: 70px; */
+  }
+
+  .wiki-box {
+    margin: 0px auto 50px auto;
+    z-index: -1;
+    width: calc(100% - 100px);
+    height: 20vh;
+    display: block;
+    position: relative;
+    top: 0;
+    right: 0px;
+    line-height: 1.5;
+    overflow-y: auto;
+  }
 }

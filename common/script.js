@@ -57,23 +57,23 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-function goToSearchPage() {
-  // テキストボックスの値を取得
-  var query = document.getElementById("searchQuery").value;
+// function goToSearchPage() {
+//   // テキストボックスの値を取得
+//   var query = document.getElementById("header-searchQuery").value;
 
-  // 値が空でないか確認
-  if (query.trim() !== "") {
-    // 新しいURLを生成
-    var newUrl =
-      "https://daihachi10.github.io/result.html?query=" +
-      encodeURIComponent(query);
+//   // 値が空でないか確認
+//   if (query.trim() !== "") {
+//     // 新しいURLを生成
+//     var newUrl =
+//       "https://daihachi10.github.io/result.html?query=" +
+//       encodeURIComponent(query);
 
-    // 新しいURLに移動
-    window.location.href = newUrl;
-  } else {
-    alert("検索する文字を入力してください。"); // 空の場合は警告を表示
-  }
-}
+//     // 新しいURLに移動
+//     window.location.href = newUrl;
+//   } else {
+//     alert("検索する文字を入力してください。"); // 空の場合は警告を表示
+//   }
+// }
 
 const imagelist = [
   "https://daihachi10.github.io/images/usericons/01.webp",

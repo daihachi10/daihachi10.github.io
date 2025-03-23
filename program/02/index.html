@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>PROGRAM | daihachi official website</title>
-    <meta name="description" content="daihachiのプログラムがプレイができるサイトです。">
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <meta
+      name="description"
+      content="daihachiのプログラムがプレイができるサイトです。"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
     <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
-    <link href="../../css/common.css" rel="stylesheet">
-    <link href="../../css/details.css" rel="stylesheet">
+    <link href="../../css/common.css" rel="stylesheet" />
+    <link href="../../css/details.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" href="./css/progress.css">
-    <link href="../../css/loading.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/progress.css" />
+    <link href="../../css/loading.css" rel="stylesheet" />
     <script src="../../js/loading.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="../common/script.js"></script>
-    <script src="https://daihachi10.github.io/common/program.js"></script>
-<meta name="theme-color" content="#1DB31D" />
-</head>
+    <script src="/../../common/program.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
 
-<body>
-
-
-
-<div id="loading"></div>
+  <body>
+    <div id="loading"></div>
 
     <div class="progress"></div>
     <!-- headerここから -->
@@ -35,35 +38,38 @@
 
     <!-- mainここから -->
     <main class="main">
-        <div class="title">
-            <h1>PASSWORD GENERATOR</h1>
-            <p>パスワード生成機</p>
-        </div>
-        <div class="shop-contents">
-            <div class="shop-item">
-                <h2>PASSWORD GENERATOR</h2>
-                <div class="item-area">
-                    <div id="p5-canvas-container"></div>
-                    <div class="about-item">
-                        <p class="item-text">
-                            大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。<br>生成開始ボタンをクリックして生成を開始します。
-                        </p>
+      <div class="title">
+        <h1>PASSWORD GENERATOR</h1>
+        <p>パスワード生成機</p>
+      </div>
+      <div class="shop-contents">
+        <div class="shop-item">
+          <h2>PASSWORD GENERATOR</h2>
+          <div class="item-area">
+            <div id="p5-canvas-container"></div>
+            <div class="about-item">
+              <p class="item-text">
+                大文字、小文字、数字を含む強力なパスワードをランダムで生成します。よいパスワードが思いつかないときに。<br />生成開始ボタンをクリックして生成を開始します。
+              </p>
 
-                        <p class="item-text">
-                            <br>STARTボタンを押すと開始します。
-                        </p>
-                        <button class="start" onclick="programStart()">START/RESET</button>
-                        <a href="https://editor.p5js.org/daihachi10sub/sketches/RjiUk-K13/" target="_blank">VIEW
-                            CODE</a>
-                    </div>
-                </div>
-                <div class="item-group recommended">
-                    <h2>RECOMMENDED</h2>
-                    <ul class="item-list"></ul>
-                </div>
+              <p class="item-text"><br />STARTボタンを押すと開始します。</p>
+              <button class="start" onclick="programStart()">
+                START/RESET
+              </button>
+              <a
+                href="https://editor.p5js.org/daihachi10sub/sketches/RjiUk-K13/"
+                target="_blank"
+                >VIEW CODE</a
+              >
             </div>
-            <aside id="sidebar" class="shop-menu"></aside>
+          </div>
+          <div class="item-group recommended">
+            <h2>RECOMMENDED</h2>
+            <ul class="item-list"></ul>
+          </div>
         </div>
+        <aside id="sidebar" class="shop-menu"></aside>
+      </div>
     </main>
     <!-- mainここまで -->
 
@@ -71,6 +77,5 @@
     <footer class="footer"></footer>
     <!-- footerここまで -->
     <script src=".//js/sketch.js"></script>
-</body>
-
+  </body>
 </html>

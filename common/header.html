@@ -3,7 +3,6 @@
 
 <link rel="stylesheet" href="../css/common.css" />
 
-
 <div class="header-inner">
   <a
     data-aos="fade-down"
@@ -20,6 +19,7 @@
         vertical-align: bottom;
         margin-bottom: 5px;
         margin-right: 1px;
+        vertical-align: middle;
       "
     /><span class="logo-text" style="font-size: 30px; font-weight: bold"
       >aihachi</span
@@ -44,32 +44,31 @@
         </li>
 
         <li data-aos="fade-down" data-aos-delay="1200">
-          <a href="https://daihachi10.github.io/account/"
-            >
-            <img class="header-icon" src="https://daihachi10.github.io/images/usericons/11.webp" alt="icon" />
-            
-            </a
-            >
+          <a href="https://daihachi10.github.io/account/">
+            <img
+              class="header-icon"
+              src="https://daihachi10.github.io/images/usericons/11.webp"
+              alt="icon"
+            />
+          </a>
         </li>
-    </ul>
-</nav>
-</div>
+      </ul>
+    </nav>
+  </div>
 </div>
 <div class="header-search-box" data-aos="fade-down" data-aos-delay="1400">
   <a
     href="https://daihachi10.github.io/search/"
-    style="padding-left: 5px; max-width: 1200px;"
-    id="search-text"
+    style="padding-left: 5px; max-width: 1200px"
+    id="header-search-text"
     >search</a
   >
-  <input type="text" id="searchQuery" name="searchQuery"/>
+  <input type="text" id="header-searchQuery" name="searchQuery" />
 </div>
 
 <!--<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>-->
 <script>
   window.onload = function () {
-    
-
     const params = new URLSearchParams(window.location.search);
     const urlUser = params.get("user");
     let user = null;

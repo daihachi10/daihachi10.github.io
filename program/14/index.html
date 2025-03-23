@@ -1,180 +1,210 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
     <title>NOTEPAD | daihachi offical website</title>
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
-    <link href="../../css/common.css" rel="stylesheet">
-    <link href="../../css/loading.css" rel="stylesheet">
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    <link href="../../css/common.css" rel="stylesheet" />
+    <link href="../../css/loading.css" rel="stylesheet" />
     <script src="../../js/loading.js"></script>
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet" />
     <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="../common/script.js"></script>
-        <script src="https://daihachi10.github.io/common/program.js"></script><meta name="theme-color" content="#1DB31D" />
-</head>
+    <script src="/../../common/program.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
 
-
-
-<body>
-
-
-<div id="loading"></div>
-
+  <body>
+    <div id="loading"></div>
 
     <div class="progress"></div>
     <!-- headerここから -->
     <header class="header">
-        <div class="header-inner">
-            <a class="header-logo" href="../../index.html">
-
-                <p>daihachi</p>
-            </a>
-            <button class="toggle-menu-button"></button>
-            <div class="header-site-menu">
-                <nav class="site-menu">
-                    <ul>
-                        <li><a href="../../install.html">INSTALL APP</a></li>
-                        <li><a href="../../program.html">MY PROGRAM</a></li>
-                        <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
-                                target="_blank">ENGLISH</a></li>
-                        <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
-                                target="_blank">HIRAGANA</a></li>
-                        <!--
+      <div class="header-inner">
+        <a class="header-logo" href="../../index.html">
+          <p>daihachi</p>
+        </a>
+        <button class="toggle-menu-button"></button>
+        <div class="header-site-menu">
+          <nav class="site-menu">
+            <ul>
+              <li><a href="../../install.html">INSTALL APP</a></li>
+              <li><a href="../../program.html">MY PROGRAM</a></li>
+              <li>
+                <a
+                  href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+                  target="_blank"
+                  >ENGLISH</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
+                  target="_blank"
+                  >HIRAGANA</a
+                >
+              </li>
+              <!--
                                     <li><a href="https://www.youtube.com/channel/UCv92oIWF2kjqRTV0EyIGjOA"
                                         target="_blank">YOUTUBE</a></li>
                                         -->
-                    </ul>
-                </nav>
-            </div>
+            </ul>
+          </nav>
         </div>
+      </div>
     </header>
     <!-- headerここまで -->
     <div class="setumei" contenteditable="true">
-        <h1 class="reset">タイトル</h1>
-        <p>本文</p>
+      <h1 class="reset">タイトル</h1>
+      <p>本文</p>
     </div>
 
     <div class="buttons">
-        <button onclick="saveTextFile()" class="button">.txtとして保存</button>
-        <button onclick="save()" class="button">一時的に保存</button>
-        <button onclick="copyText()" class="button">コピー</button>
-        <!-- <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;"> -->
-        <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;" multiple>
-        <button onclick="imageAlert()" class="button">画像をアップロード</button>
-        <button onclick="reset()" class="button">リセット</button>
+      <button onclick="saveTextFile()" class="button">.txtとして保存</button>
+      <button onclick="save()" class="button">一時的に保存</button>
+      <button onclick="copyText()" class="button">コピー</button>
+      <!-- <input type="file" id="imageUpload" accept="image/*" onchange="insertImage()" style="display:none;"> -->
+      <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        onchange="insertImage()"
+        style="display: none"
+        multiple
+      />
+      <button onclick="imageAlert()" class="button">画像をアップロード</button>
+      <button onclick="reset()" class="button">リセット</button>
     </div>
 
     <!-- footerここから -->
     <footer class="footer">
-        <nav class="site-menu">
-            <ul>
-                <li><a href="../../install.html">INSTALL APP</a></li>
-                <li><a href="../../program.html">MY PROGRAM</a></li>
-                <li><a href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
-                       target="_blank">ENGLISH</a></li>
-                <li><a href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io" target="_blank">HIRAGANA</a>
-                </li>
-            </ul>
-        </nav>
-        <a class="footer-logo" href="../../index.html">
-            <p> daihachi </p>
-        </a>
-        <p class="copyright"><small>&copy;daihachi</small></p>
+      <nav class="site-menu">
+        <ul>
+          <li><a href="../../install.html">INSTALL APP</a></li>
+          <li><a href="../../program.html">MY PROGRAM</a></li>
+          <li>
+            <a
+              href="https://daihachi10-github-io.translate.goog/index.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja"
+              target="_blank"
+              >ENGLISH</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://trans.hiragana.jp/ruby/https://daihachi10.github.io"
+              target="_blank"
+              >HIRAGANA</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <a class="footer-logo" href="../../index.html">
+        <p>daihachi</p>
+      </a>
+      <p class="copyright"><small>&copy;daihachi</small></p>
     </footer>
     <!-- footerここまで -->
 
-
     <script>
-        function reset() {
-            localStorage.clear();
-            window.location.reload();
+      function reset() {
+        localStorage.clear();
+        window.location.reload();
+      }
+
+      // Load saved content on page load
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedContent = localStorage.getItem("notepadContent");
+        if (savedContent) {
+          document.querySelector(".setumei").innerHTML = savedContent;
         }
+      });
 
+      // Save content automatically to localStorage on input
+      function save() {
+        alert(
+          "保存されました。\nこのタブ（ブラウザ）を閉じても問題ありません。"
+        );
+      }
 
-        // Load saved content on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedContent = localStorage.getItem('notepadContent');
-            if (savedContent) {
-                document.querySelector('.setumei').innerHTML = savedContent;
-            }
+      document.querySelector(".setumei").addEventListener("input", () => {
+        const content = document.querySelector(".setumei").innerHTML;
+        localStorage.setItem("notepadContent", content);
+      });
+
+      // Add spaces when Tab is pressed
+      document
+        .querySelector(".setumei")
+        .addEventListener("keydown", (event) => {
+          if (event.key === "Tab") {
+            event.preventDefault();
+            document.execCommand("insertText", false, "      ");
+          }
         });
 
-        // Save content automatically to localStorage on input
-        function save() {
-            alert("保存されました。\nこのタブ（ブラウザ）を閉じても問題ありません。");
+      // Save text as a .txt file
+      function saveTextFile() {
+        const content = document.querySelector(".setumei").innerText;
+        const blob = new Blob([content], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "daihachi offical websiteから保存されたファイル.txt";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
 
+      // Copy text to clipboard
+      function copyText() {
+        const content = document.querySelector(".setumei").innerText;
+        navigator.clipboard
+          .writeText(content)
+          .then(() => alert("テキストがコピーされました"))
+          .catch((error) => console.error("コピーに失敗しました:", error));
+      }
+
+      // Insert image at the end of the editable div
+      function imageAlert() {
+        if (
+          confirm(
+            "画像をアップロードすることもできますが、\n高容量(約5MB)だと保存できない場合があります。"
+          )
+        ) {
+          document.getElementById("imageUpload").click();
+        } else {
         }
+      }
 
-        document.querySelector('.setumei').addEventListener('input', () => {
-            const content = document.querySelector('.setumei').innerHTML;
-            localStorage.setItem('notepadContent', content);
+      function insertImage() {
+        const fileInput = document.getElementById("imageUpload");
+        const files = fileInput.files;
+
+        Array.from(files).forEach((file) => {
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              const img = document.createElement("img");
+              img.src = event.target.result;
+              img.style.maxWidth = "30%";
+              img.style.height = "auto";
+
+              // Append image to the contenteditable div
+              document.querySelector(".setumei").appendChild(img);
+
+              // Save the updated content to localStorage
+              const content = document.querySelector(".setumei").innerHTML;
+              localStorage.setItem("notepadContent", content);
+            };
+
+            reader.readAsDataURL(file);
+          }
         });
-
-        // Add spaces when Tab is pressed
-        document.querySelector('.setumei').addEventListener('keydown', (event) => {
-            if (event.key === 'Tab') {
-                event.preventDefault();
-                document.execCommand('insertText', false, '      ');
-            }
-        });
-
-        // Save text as a .txt file
-        function saveTextFile() {
-            const content = document.querySelector('.setumei').innerText;
-            const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'daihachi offical websiteから保存されたファイル.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        // Copy text to clipboard
-        function copyText() {
-            const content = document.querySelector('.setumei').innerText;
-            navigator.clipboard.writeText(content)
-                .then(() => alert("テキストがコピーされました"))
-                .catch((error) => console.error("コピーに失敗しました:", error));
-        }
-
-        // Insert image at the end of the editable div
-        function imageAlert() {
-            if (confirm('画像をアップロードすることもできますが、\n高容量(約5MB)だと保存できない場合があります。')) {
-                document.getElementById('imageUpload').click()
-            } else {
-            }
-        }
-
-        function insertImage() {
-            const fileInput = document.getElementById('imageUpload');
-            const files = fileInput.files;
-
-            Array.from(files).forEach(file => {
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const img = document.createElement('img');
-                        img.src = event.target.result;
-                        img.style.maxWidth = '30%';
-                        img.style.height = 'auto';
-
-                        // Append image to the contenteditable div
-                        document.querySelector('.setumei').appendChild(img);
-
-                        // Save the updated content to localStorage
-                        const content = document.querySelector('.setumei').innerHTML;
-                        localStorage.setItem('notepadContent', content);
-                    };
-
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
+      }
     </script>
-</body>
-
+  </body>
 </html>

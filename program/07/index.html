@@ -1,75 +1,90 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>PROGRAM | daihachi official website</title>
-    <meta name="description" content="daihachiのプログラムがプレイができるサイトです。">
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+    <meta
+      name="description"
+      content="daihachiのプログラムがプレイができるサイトです。"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
     <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
-    <link href="../../css/common.css" rel="stylesheet">
-    <link href="../../css/details.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="../../css/common.css" rel="stylesheet" />
+    <link href="../../css/details.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="../common/script.js"></script>
-        <script src="https://daihachi10.github.io/common/program.js"></script><meta name="theme-color" content="#1DB31D" />
-</head>
+    <script src="/../../common/program.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
 
+  <body>
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header"></header>
+    <!-- headerここまで -->
 
-<body>
-
-
-<div class="progress"></div>
-<!-- headerここから -->
-<header class="header"></header>
-<!-- headerここまで -->
-
-<!-- mainここから -->
-<main class="main">
-    <div class="title">
+    <!-- mainここから -->
+    <main class="main">
+      <div class="title">
         <h1>Geometry Dash Minecraft version</h1>
         <p>ジオメトリーダッシュ Minecraft版</p>
-    </div>
-    <div class="shop-contents">
+      </div>
+      <div class="shop-contents">
         <div class="shop-item">
-            <h2>Geometry Dash Minecraft version</h2>
-            <div class="item-area">
-                <div id="p5-canvas-container"></div>
-                <!--                    <iframe class="turbowarp" src="https://turbowarp.org/749885914/embed" width="482" height="412"-->
-                <!--                        allowtransparency="true" frameborder="0" pause="true" scrolling="no" allowfullscreen></iframe>-->
-                <iframe src="./program-files/index.html" width="480" height="360" allowtransparency="true"
-                        frameborder="0"
-                        scrolling="no" allowfullscreen></iframe>
-                <div class="about-item">
-                    <p class="item-text">
-                        ジオメトリーダッシュのマイクラ版！
-                        矢印上・スペースキー・タップで操作できます（ジャンプ）
-                    </p>
+          <h2>Geometry Dash Minecraft version</h2>
+          <div class="item-area">
+            <div id="p5-canvas-container"></div>
+            <!--                    <iframe class="turbowarp" src="https://turbowarp.org/749885914/embed" width="482" height="412"-->
+            <!--                        allowtransparency="true" frameborder="0" pause="true" scrolling="no" allowfullscreen></iframe>-->
+            <iframe
+              src="./program-files/index.html"
+              width="480"
+              height="360"
+              allowtransparency="true"
+              frameborder="0"
+              scrolling="no"
+              allowfullscreen
+            ></iframe>
+            <div class="about-item">
+              <p class="item-text">
+                ジオメトリーダッシュのマイクラ版！
+                矢印上・スペースキー・タップで操作できます（ジャンプ）
+              </p>
 
-                    <a href="https://scratch.mit.edu/projects/749885914/editor/" target="_blank">VIEW
-                        CODE</a>
-                </div>
+              <a
+                href="https://scratch.mit.edu/projects/749885914/editor/"
+                target="_blank"
+                >VIEW CODE</a
+              >
             </div>
-            <div class="item-group recommended">
-                <h2>RECOMMENDED</h2>
-                <ul class="item-list"></ul>
-            </div>
+          </div>
+          <div class="item-group recommended">
+            <h2>RECOMMENDED</h2>
+            <ul class="item-list"></ul>
+          </div>
         </div>
         <aside id="sidebar" class="shop-menu"></aside>
-    </div>
-</main>
-<!-- mainここまで -->
+      </div>
+    </main>
+    <!-- mainここまで -->
 
-<!-- footerここから -->
-<footer class="footer"></footer>
-<!-- footerここまで -->
-<script src=".//js/sketch.js"></script>
-</body>
-
+    <!-- footerここから -->
+    <footer class="footer"></footer>
+    <!-- footerここまで -->
+    <script src=".//js/sketch.js"></script>
+  </body>
 </html>

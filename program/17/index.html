@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html lang="jp">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YouTube Video Player</title>
-    <style>
-    </style>
+    <style></style>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
-        <script src="https://daihachi10.github.io/common/program.js"></script><meta name="theme-color" content="#1DB31D" />
-</head>
+    <script src="/../../common/program.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
 
-<body>
-
-
-
+  <body>
     <div class="input-container">
-        <h1>YouTube Video Player</h1>
-        <p>Enter a YouTube URL to display the video:</p>
-        <input type="text" id="youtube-url" placeholder="Enter YouTube URL">
-        <button onclick="loadVideo()">Load Video</button>
+      <h1>YouTube Video Player</h1>
+      <p>Enter a YouTube URL to display the video:</p>
+      <input type="text" id="youtube-url" placeholder="Enter YouTube URL" />
+      <button onclick="loadVideo()">Load Video</button>
     </div>
 
     <div class="video-container">
-        <iframe id="video-player" src="" title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe
+        id="video-player"
+        src=""
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
     </div>
 
     <script>
-        function extractVideoId(url) {
-            const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-            const match = url.match(regex);
-            return match ? match[1] : null;
+      function extractVideoId(url) {
+        const regex =
+          /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+      }
+
+      function loadVideo() {
+        const input = document.getElementById("youtube-url");
+        const videoId = extractVideoId(input.value);
+
+        if (videoId) {
+          const iframe = document.getElementById("video-player");
+          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+          document.querySelector(".input-container").style.display = "none";
+          document.querySelector(".video-container").style.display = "block";
+        } else {
+          alert("Invalid YouTube URL. Please enter a valid URL.");
         }
+      }
 
-        function loadVideo() {
-            const input = document.getElementById("youtube-url");
-            const videoId = extractVideoId(input.value);
-
-            if (videoId) {
-                const iframe = document.getElementById("video-player");
-                iframe.src = `https://www.youtube.com/embed/${videoId}`;
-                document.querySelector(".input-container").style.display = "none";
-                document.querySelector(".video-container").style.display = "block";
-            } else {
-                alert("Invalid YouTube URL. Please enter a valid URL.");
-            }
+      // Hide video and show input field when Esc is pressed
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const iframe = document.getElementById("video-player");
+          iframe.src = ""; // Stop the video
+          document.querySelector(".video-container").style.display = "none";
+          document.querySelector(".input-container").style.display = "block";
         }
-
-        // Hide video and show input field when Esc is pressed
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") {
-                const iframe = document.getElementById("video-player");
-                iframe.src = ""; // Stop the video
-                document.querySelector(".video-container").style.display = "none";
-                document.querySelector(".input-container").style.display = "block";
-            }
-        });
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

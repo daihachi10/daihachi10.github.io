@@ -39,9 +39,14 @@
 
         <a href="../program.html" id="program" class="link">プログラム</a>
       </div>
-      <a href="../account/index.html" class="icon-box">
-        <img class="icon" src="../assets/img/icon-192x192.png" />
-      </a>
+      <div class="right">
+        <a href="../account/index.html" class="icon-box">
+          <img class="icon" src="../assets/img/icon-192x192.png" />
+        </a>
+        <a href="../program.html" class="apps-box">
+          <img class="apps" src="../images/apps.svg" alt="apps" />
+        </a>
+      </div>
     </div>
     <div class="container">
       <div class="logo-box">
@@ -169,7 +174,6 @@
       });
 
       const listItem = $(".icon-box");
-      
 
       const randomIndex = Math.floor(Math.random() * imagelist.length);
       const randomImage = imagelist[randomIndex];

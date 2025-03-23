@@ -1,4 +1,3 @@
-color: var(--theme-color);
 .original-box-shadow {
   display: flex;
   align-items: center;
@@ -90,6 +89,27 @@ li:hover {
   background-color: #eee;
   border-radius: 50px;
   float: right;
+}
+
+.apps {
+  margin-right: 30px;
+  margin-top: 15px;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 50px;
+  float: left;
+  transition-duration: 0.5s;
+  transition-timing-function: var(--tranditon-animation);
+}
+
+.apps:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 800px) {

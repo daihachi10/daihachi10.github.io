@@ -138,7 +138,6 @@ $(document).ready(function() {
             $('#wiki-info').html(extract + "wikipedia");
             $('.wiki-box').addClass("show");
           } else {
-            $('#wiki-info').text("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             $('.wiki-box').addClass("hidden");
           }
           return; // 最初のページの結果のみを表示

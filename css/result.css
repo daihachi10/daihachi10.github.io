@@ -142,13 +142,7 @@ ul .icon {
   display: none;
 }
 
-.show {
-  display: block;
-}
 
-.hidden {
-  display: none;
-}
 
 @media (max-width: 800px) {
   .logo {
@@ -168,6 +162,14 @@ ul .icon {
     background-color: #eee;
     border-radius: 50px;
     float: right;
+  }
+  .wiki-box.show {
+    display: block;
+  }
+  
+  .wiki-box.hidden {
+    /* display: none; */
+    height: 0px;
   }
 
   #results-container {

@@ -38,7 +38,7 @@ a {
 }
 
 main {
-  margin-top: 120px;
+  margin-top: 65px;
 }
 
 .header-inner a,
@@ -249,7 +249,7 @@ img {
 }
 
 #header-searchQuery {
-  width: 60vw;
+  width: 180px;
 }
 
 #program-header-searchQuery {

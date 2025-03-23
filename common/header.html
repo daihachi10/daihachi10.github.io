@@ -30,6 +30,21 @@
     <nav class="site-menu">
       <ul>
         <li data-aos="fade-down" data-aos-delay="600">
+          <div
+            class="header-search-box"
+            data-aos="fade-down"
+            data-aos-delay="1400"
+          >
+            <a
+              href="https://daihachi10.github.io/search/"
+              style="padding-left: 5px; max-width: 1200px"
+              id="header-search-text"
+              >search</a
+            >
+            <input type="text" id="header-searchQuery" name="searchQuery" />
+          </div>
+        </li>
+        <li data-aos="fade-down" data-aos-delay="600">
           <a href="https://daihachi10.github.io/install.html">INSTALL APP</a>
         </li>
         <li data-aos="fade-down" data-aos-delay="750">
@@ -55,15 +70,6 @@
       </ul>
     </nav>
   </div>
-</div>
-<div class="header-search-box" data-aos="fade-down" data-aos-delay="1400">
-  <a
-    href="https://daihachi10.github.io/search/"
-    style="padding-left: 5px; max-width: 1200px"
-    id="header-search-text"
-    >search</a
-  >
-  <input type="text" id="header-searchQuery" name="searchQuery" />
 </div>
 
 <!--<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>-->
@@ -101,7 +107,7 @@
 
   // Enterキーが押された時の処理
   document
-    .getElementById("searchQuery")
+    .getElementById("header-searchQuery")
     .addEventListener("keypress", function (event) {
       if (event.key === "Enter") {
         goToSearchPage(); // 検索ページへ移動する関数を呼び出す

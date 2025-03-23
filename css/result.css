@@ -96,7 +96,7 @@ a:hover {
   font-size: 20px;
 }
 
-.icon {
+.author-icon {
   margin: 1px 7px 0 0;
   width: 30px;
   height: 30px;
@@ -142,8 +142,6 @@ ul .icon {
   display: none;
 }
 
-
-
 @media (max-width: 800px) {
   .logo {
     display: none;
@@ -166,7 +164,7 @@ ul .icon {
   .wiki-box.show {
     display: block;
   }
-  
+
   .wiki-box.hidden {
     /* display: none; */
     height: 0px;
@@ -202,7 +200,7 @@ ul .icon {
     width: calc(100% - 100px);
     height: 40vh;
     display: block;
-    position:static;
+    position: static;
     line-height: 1.5;
     overflow-y: auto;
   }

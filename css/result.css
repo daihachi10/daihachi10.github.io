@@ -142,6 +142,14 @@ ul .icon {
   display: none;
 }
 
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 @media (max-width: 800px) {
   .logo {
     display: none;
@@ -149,8 +157,21 @@ ul .icon {
 
   #search-input {
     margin-left: 40px;
-    margin-right: 40px;
-    width: calc(100% - 80px);
+    /* margin-right: 40px; */
+    width: calc(100% - 130px);
+  }
+  .icon {
+    margin-right: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+    background-color: #eee;
+    border-radius: 50px;
+    float: right;
+  }
+
+  #results-container {
+    padding-top: 0;
   }
 
   li {
@@ -173,14 +194,13 @@ ul .icon {
   }
 
   .wiki-box {
-    margin: 0px auto 50px auto;
+    margin: 0px auto 10px auto;
+    padding-top: 110px;
     z-index: -1;
     width: calc(100% - 100px);
-    height: 20vh;
+    height: 40vh;
     display: block;
-    position: relative;
-    top: 0;
-    right: 0px;
+    position:static;
     line-height: 1.5;
     overflow-y: auto;
   }

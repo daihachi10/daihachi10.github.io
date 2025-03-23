@@ -52,21 +52,22 @@
           </div>
         </div>
       </div>
+      <div class="wiki-box">
+        <p id="wiki-info"></p>
+      </div>
       <div id="results-container" class="mt-8">
         <!-- <h2 class="text-xl font-semibold text-gray-700 mb-4">検索結果:</h2> -->
         <br />
         <ul id="results-list"></ul>
         <p id="no-results">該当する結果はありませんでした。</p>
       </div>
-      <div class="wiki-box">
-        <p id="wiki-info"></p>
-      </div>
+      
     </div>
     <script src="./text.js"></script>
     <script src="./script.js"></script>
     <script>
       const icon = $("#icon-box");
-      
+
       const randomIndex = Math.floor(Math.random() * imagelist.length);
       const randomImage = imagelist[randomIndex];
       icon.html(`<img class="icon" src="${randomImage}" />`);

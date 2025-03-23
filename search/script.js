@@ -136,6 +136,10 @@ $(document).ready(function() {
           if (extract) {
             // 取得した情報を特定の ID を持つ <p> タグに出力
             $('#wiki-info').html(extract + "wikipedia");
+            $('.wiki-box').addClass("show");
+          } else {
+            $('#wiki-info').text("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            $('.wiki-box').addClass("hidden");
           }
           return; // 最初のページの結果のみを表示
         }

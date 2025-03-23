@@ -209,11 +209,11 @@ img {
   border-radius: 30px;
 }
 
-.search-box {
+.header-search-box {
   text-align: center;
   margin: 0px 0 10px 0;
 }
-.icon {
+.header-icon {
     margin-right: 50px;
     width: 50px;
     height: 50px;
@@ -223,17 +223,17 @@ img {
     position:fixed;
 }
 
-#search-text {
+#header-search-text {
     color: var(--sub-hover-color);
     font-size: 23px;
     font-weight: bold ;
 }
 
-#searchQuery {
+#header-searchQuery {
   padding: 10px;
   font-size: 16px;
   border: 1.2px solid #ccc;
-  border-radius: 10px;
+  border-radius: 50px;
   width: 60vw;
   height: 25px;
 }

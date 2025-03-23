@@ -65,3 +65,35 @@ li {
 li:hover {
     cursor: pointer;
 }
+
+.top-box{
+    margin-top: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left,
+.right {
+    margin-top: 20px;
+}
+
+.link {
+    padding-left: 30px;
+}
+
+.url {
+    color: #666;
+}
+
+.icon {
+    margin-right: 50px;
+    margin-top: 20px;
+    width: 30px;
+    height: 30px;
+    padding: 1px;
+    background-color: #eee;
+    border-radius: 50px;
+    float: right;
+}

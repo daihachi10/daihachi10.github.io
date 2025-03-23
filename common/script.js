@@ -73,3 +73,23 @@ function goToSearchPage() {
         alert("検索する文字を入力してください。"); // 空の場合は警告を表示
     }
 }
+
+const imagelist = [
+    "https://daihachi10.github.io/images/usericons/01.webp",
+    "https://daihachi10.github.io/images/usericons/02.webp",
+    "https://daihachi10.github.io/images/usericons/03.webp",
+    "https://daihachi10.github.io/images/usericons/04.webp",
+    "https://daihachi10.github.io/images/usericons/05.webp",
+    "https://daihachi10.github.io/images/usericons/06.webp",
+    "https://daihachi10.github.io/images/usericons/07.webp",
+    "https://daihachi10.github.io/images/usericons/08.webp",
+    "https://daihachi10.github.io/images/usericons/09.webp",
+    "https://daihachi10.github.io/images/usericons/10.webp",
+    "https://daihachi10.github.io/images/usericons/11.webp",
+  ];
+
+  const icon = $("#icon-box");
+
+  const randomIndex = Math.floor(Math.random() * imagelist.length);
+  const randomImage = imagelist[randomIndex];
+  icon.html(`<img class="icon" src="${randomImage}" />`);

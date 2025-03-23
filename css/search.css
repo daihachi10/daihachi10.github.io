@@ -85,9 +85,9 @@ li:hover {
 .icon {
     margin-right: 50px;
     margin-top: 10px;
-    width: 60px;
-    height: auto;
-    padding: 1px;
+    width: 50px;
+    height: 50px;
+    padding: 3px;
     background-color: #eee;
     border-radius: 50px;
     float: right;

@@ -461,3 +461,18 @@ const data = [
     img: "../images/program-img/img-item.webp",
   },
 ];
+
+
+const imagelist = [
+  "../images/usericons/01.webp",
+  "../images/usericons/02.webp",
+  "../images/usericons/03.webp",
+  "../images/usericons/04.webp",
+  "../images/usericons/05.webp",
+  "../images/usericons/06.webp",
+  "../images/usericons/07.webp",
+  "../images/usericons/08.webp",
+  "../images/usericons/09.webp",
+  "../images/usericons/10.webp",
+  "../images/usericons/11.webp",
+];

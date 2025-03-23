@@ -1,8 +1,8 @@
 $(function () {
   $(".footer").load("https://daihachi10.github.io/common/footer.html");
   $("#loading").load("https://daihachi10.github.io/common/loading.html");
-  // $(".header").load("https://daihachi10.github.io/common/programheader.html");
-  $(".header").load("../../common/programheader.html");
+  $(".header").load("https://daihachi10.github.io/common/programheader.html");
+  //   $(".header").load("../../common/programheader.html");
 
   $("#login").load("https://daihachi10.github.io/account/iframe.html");
 

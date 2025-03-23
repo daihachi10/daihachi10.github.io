@@ -58,8 +58,8 @@
 }
 
 * {
-  transition-duration: 1s;
-  transition-timing-function: var(--transition-animation);
+  /* transition-duration: 1s;
+  transition-timing-function: var(--transition-animation); */
 }
 
 @media (prefers-color-scheme: dark) {

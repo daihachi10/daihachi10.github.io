@@ -13,32 +13,35 @@
     <link rel="stylesheet" href="../css/common.css" />
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const inputElement = document.getElementById('search-input');
+      document.addEventListener("DOMContentLoaded", () => {
+        const inputElement = document.getElementById("search-input");
 
-            // ページ読み込み時にinput要素にフォーカスを設定
+        // ページ読み込み時にinput要素にフォーカスを設定
+        inputElement.focus();
+
+        // '/'キーが押された時にinput要素にフォーカスを設定
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "/") {
+            event.preventDefault(); // デフォルトのブラウザ動作を防止
             inputElement.focus();
-
-            // '/'キーが押された時にinput要素にフォーカスを設定
-            document.addEventListener('keydown', (event) => {
-                if (event.key === '/') {
-                    event.preventDefault(); // デフォルトのブラウザ動作を防止
-                    inputElement.focus();
-                }
-            });
+          }
         });
+      });
     </script>
   </head>
   <body class="bg-gray-100 p-4">
     <div class="top-box">
       <div class="left">
-        <a href="../index.html#about" id="about" class="link">daihachiについて</a>
-        <a href="" id="install" class="link">インストール</a>
-      
-        <a href="" id="program" class="link">プログラム</a>
-      </div>
-      <img class="icon" src="../assets/img/icon-192x192.png">
+        <a href="../index.html#about" id="about" class="link"
+          >daihachiについて</a
+        >
+        <a href="../install.html" id="install" class="link">インストール</a>
 
+        <a href="../program.html" id="program" class="link">プログラム</a>
+      </div>
+      <a href="../account/index.html">
+        <img class="icon" src="../assets/img/icon-192x192.png" />
+      </a>
     </div>
     <div class="container">
       <div class="logo-box">

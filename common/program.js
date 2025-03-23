@@ -13,13 +13,13 @@ $(function () {
 document.addEventListener("click", function (event) {
     // クリックされたときの処理
     console.log("クリックされました！", event.clientX, event.clientY);
-    AOS.init();
+    
 
 });
 
 for (let i = 0; i < 500; i++) {
     setTimeout(function () {
-        AOS.init();
+        
     }, 500);
 }
 

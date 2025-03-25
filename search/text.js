@@ -462,7 +462,6 @@ const data = [
   },
 ];
 
-
 const imagelist = [
   "../images/usericons/01.webp",
   "../images/usericons/02.webp",

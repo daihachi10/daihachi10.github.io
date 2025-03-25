@@ -49,23 +49,29 @@
   <body>
     <div class="ui">
       <select id="modeSelector">
-        <option value="training">Training</option>
-        <option value="inference">Inference</option>
+        <option value="training">学習</option>
+        <option value="inference">推論（実行）</option>
       </select>
       <input id="numCarsInput" type="number" value="10" min="1" />
-      <button id="startButton">Start</button><br />
+      <button id="startButton">スタート</button><br />
       <input id="speedSlider" type="range" min="1" max="50" value="1" /><br />
-      <input id="gpuToggle" type="checkbox" checked /> Use GPU<br />
+      <input id="gpuToggle" type="checkbox" /> Use GPU<br />
       <input id="drawModeToggle" type="checkbox" checked /> Draw Mode<br />
-      <input id="initialAngleInput" type="number" step="0.1" value="0" />
-      <button id="resetRoadBtn">Reset Road</button><br />
+      <input
+        style="display: none"
+        id="initialAngleInput"
+        type="number"
+        step="0.1"
+        value="0"
+      />
+      <button id="resetRoadBtn">道をリセット</button><br />
       <textarea
         id="dataArea"
         placeholder="学習データをここに保存/読み込み"
       ></textarea
       ><br />
-      <button id="saveBtn">Save Data</button>
-      <button id="loadBtn">Load Data</button>
+      <button id="saveBtn">セーブ</button>
+      <button id="loadBtn">ロード</button>
       <div id="fpsDisplay">FPS: 0</div>
     </div>
 

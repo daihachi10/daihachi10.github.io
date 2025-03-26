@@ -1,0 +1,315 @@
+@charset "utf-8"
+
+@import url('./cursor.css')
+
+@import url('./fonts.css')
+
+@import url('defolt.css')
+
+/* body {
+ *    font-family: 'Montserrat', 'Noto Sans JP','Noto Color Emoji', sans-serif;
+ *}
+
+.title
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin-top: 60px
+
+  h1
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+    font-size: 32px
+    font-weight: bold
+
+  p
+    font-size: 14px
+    margin-top: 15px
+
+.shop-contents
+  width: 1080px
+  max-width: 90%
+  margin-top: 75px
+  margin-left: auto
+  margin-right: auto
+  display: flex
+  justify-content: space-between
+  flex-direction: row-reverse
+
+.shop-item
+  flex-grow: 1
+  max-width: 765px
+
+  h2
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+    font-size: 22px
+    font-weight: bold
+    line-height: 30px
+
+    &::after
+      content: ''
+      display: block
+      width: 36px
+      height: 3px
+      background-color: var(--text-color)
+      margin-top: 20px
+
+.item-list
+  margin-top: 25px
+  display: grid
+  grid-template-columns: repeat(auto-fit, 220px)
+  column-gap: 50px
+  row-gap: 40px
+
+  .img-box
+    overflow: hidden
+
+  img
+    transition-duration: 0.2s
+    width: 100%
+
+  a
+    display: block
+    transition-duration: 0.2s
+
+  img:hover
+    transform: scale(1.3)
+
+  dl
+    margin-top: 20px
+
+  dt
+    font-weight: bold
+
+ul
+  .now
+    color: #ff5283
+    font-weight: bold
+
+    /* color: #1571c2;
+
+  li
+    padding-top: 5px
+
+.item-list dd
+  font-size: 13px
+  line-height: 20px
+  margin-top: 10px
+
+.shop-menu
+  ul a:hover
+    color: #ff5283
+    text-decoration: underline
+
+  /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+  flex-shrink: 0
+  margin-right: 60px
+
+  &.hidden
+    display: none
+
+.shop-menu-inner
+  position: sticky
+  top: 110px
+  left: 0
+  right: 0
+
+  h2
+    font-size: 18px
+    font-weight: bold
+
+  ul
+    list-style-type: disc
+    margin-top: 20px
+    margin-left: 20px
+
+  li
+    font-size: 14px
+    margin-top: 15px
+
+.item-area
+  margin-top: 20px
+  display: flex
+
+  img
+    z-index: 10
+    width: 50%
+    max-width: 380px
+
+.about-item
+  margin-left: 30px
+
+  .item-text
+    font-size: 14px
+    line-height: 26px
+
+  .item-price
+    font-weight: bold
+    margin-top: 20px
+
+  a, .start, .settings, .gui
+    display: inline-block
+    min-width: 180px
+    line-height: 48px
+    border-radius: 24px
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+    font-size: 14px
+    text-align: center
+    margin-top: 35px
+    border: none
+    outline: none
+
+    /* cursor: pointer;
+
+.open
+  background-color: #ededed
+  user-select: none
+  display: inline-block
+  min-width: 180px
+  line-height: 48px
+  border-radius: 24px
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+  font-size: 14px
+  text-align: center
+  margin-top: 35px
+  border: none
+  outline: none
+
+  /*     cursor: pointer;
+
+.about-item
+  a, .start, .settings
+    /* animation: hover 0.7s ease forwards;
+    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards
+
+  a:hover, .start:hover, .settings:hover
+    /* animation: nothover 0.7s ease forwards;
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards
+
+  .gui
+    /* background-color: rgba(255, 82, 131, 0.6);
+    /* animation: guinothover 0.2s ease forwards;
+    animation: guinothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards
+
+    &:hover
+      /* background-color: rgba(255, 82, 131, 0.3);
+      /* animation: guihover 0.2s ease forwards;
+      animation: guihover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards
+
+@keyframes hover
+  0%
+    background-color: var(--sub-hover-color)
+
+  100%
+    background-color: var(--sub-color)
+
+@keyframes nothover
+  0%
+    background-color: var(--sub-color)
+
+  100%
+    background-color: var(--sub-hover-color)
+
+@keyframes guihover
+  0%
+    background-color: rgba(255, 82, 131, 0.6)
+
+  100%
+    background-color: rgba(255, 82, 131, 0.3)
+
+@keyframes guinothover
+  0%
+    background-color: rgba(255, 82, 131, 0.3)
+
+  100%
+    background-color: rgba(255, 82, 131, 0.6)
+
+.recommended
+  margin-top: 60px
+
+.footer
+  margin-top: 100px
+
+.hot, .game, .new
+  padding-left: 10px
+  font-size: 13px
+  font-weight: bold
+
+.hot
+  color: #ff0000
+
+.game, .new
+  color: #ff0000b3
+
+.fire, .new-image
+  width: 13px !important
+  height: 13px !important
+  vertical-align: bottom
+
+.game-icon, .tool-icon, .Keyboard-icon
+  fill: var(--sub-color)
+  width: 14px
+  height: 14px
+  vertical-align: bottom
+  margin-right: 7px
+
+@media (max-width: 800px)
+  .shop-contents
+    display: block
+    max-width: 100%
+    margin-top: 60px
+
+  .shop-item
+    max-width: 540px
+    margin-left: auto
+    margin-right: auto
+    padding-left: 20px
+    padding-right: 20px
+
+  .item-list
+    grid-template-columns: repeat(2, 1fr)
+    column-gap: 35px
+    padding-bottom: 100px
+
+  .shop-menu
+    background-color: #f8f8f8
+    padding-top: 50px
+    padding-bottom: 50px
+    margin-top: 60px
+    margin-right: 0
+
+  .shop-menu-inner
+    max-width: 540px
+    margin-left: auto
+    margin-right: auto
+    padding-left: 20px
+    padding-right: 20px
+
+  .item-area
+    display: block
+
+    img
+      width: 100%
+      max-width: 100%
+
+  .about-item
+    margin-top: 20px
+    margin-left: 0
+
+    a, .start, .settings, #backgroundreset, #varreset
+      width: 100%
+      color: #000000
+
+    #speedup
+      width: 100%
+
+    #nextpattern, #backpattern
+      width: 46.2%
+
+    #nextpattern
+      margin-left: 15px
+
+    #backpattern
+      margin-right: 15px
+
+  .footer
+    margin-top: 0

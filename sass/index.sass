@@ -1,0 +1,253 @@
+﻿@charset "utf-8"
+
+@import url('defolt.css')
+
+@import url('./cursor.css')
+
+/*:root {
+/*    !*--bg-myprogram: #fafafa;*!
+/*    !*--bg-about:#ebebeb;*!
+
+/*    --bg-myprogramm: #003a28;
+/*    --bg-about: #013525;
+
+/*}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+
+body
+  overflow-x: hidden
+
+.first-view
+  height: calc(100vh - 65px)
+  background-image: url(../images/index/bg-main-02.webp)
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: cover
+  display: flex
+  align-items: center
+  overflow-x: hidden
+
+.first-view-text
+  width: 100%
+
+  /* max-width: 1600px;
+  max-width: 1600px
+  margin-left: auto
+  margin-right: auto
+  padding-left: 40px
+  padding-bottom: 80px
+  color: #ffffff
+  font-weight: bold
+  text-shadow: 7px 7px 15px rgba(0, 0, 0, 1)
+
+  h1
+    /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+    font-size: 56px
+    line-height: 72px
+
+.lead
+  max-width: 1600px
+  margin: 60px auto
+
+.leadbox
+  background-color: var(--bg-about)
+  padding-top: 40px
+  padding-bottom: 40px
+
+.lead
+  p
+    line-height: 2
+    text-align: center
+
+  h2
+    font-size: 22px
+    font-weight: bold
+    text-align: center
+    padding-bottom: 50px
+
+    &::after
+      content: ''
+      display: block
+      width: 36px
+      height: 3px
+      background-color: var(--text-color)
+      margin-top: 20px
+      margin-left: auto
+      margin-right: auto
+
+.link-button-area
+  text-align: center
+  margin-top: 40px
+  margin-bottom: 40px
+
+.link-button
+  /* background-color: #ff5283;
+  display: inline-block
+  min-width: 180px
+  line-height: 48px
+  border-radius: 24px
+
+  /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-size: 14px
+
+  /* animation: hover 0.7s ease forwards;
+  animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards
+
+  &:hover
+    /* animation: nothover 0.7s ease forwards;
+    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards
+
+/* .link-button:hover {
+ *    background-color: #bf1948;
+ *}
+
+@keyframes hover
+  0%
+    background-color: var(--sub-hover-color)
+
+  100%
+    background-color: var(--sub-color)
+
+@keyframes nothover
+  0%
+    background-color: var(--sub-color)
+
+  100%
+    background-color: var(--sub-hover-color)
+
+.recommended
+  background-color: var(--bg-myprogram)
+  padding-bottom: 55px
+
+  h2
+    font-size: 22px
+    font-weight: bold
+    text-align: center
+
+    &::after
+      content: ''
+      display: block
+      width: 36px
+      height: 3px
+      background-color: var(--text-color)
+      margin-top: 20px
+      margin-left: auto
+      margin-right: auto
+
+.copyright2
+  background-color: var(--bg-myprogram)
+  margin-right: auto
+  padding-bottom: 40px
+
+  p
+    text-align: right
+    margin-right: 10px
+
+.item-list
+  display: flex
+  padding-top: 40px
+  padding-bottom: 10px
+  padding-left: 60px
+  padding-right: 60px
+  overflow: scroll
+  overflow-y: hidden
+
+  li
+    flex-shrink: 0
+    width: 260px
+    margin-left: 75px
+
+.li-image-box
+
+.item-list
+  li:first-child
+    margin-left: 0
+
+  img
+    width: 260px
+    height: 260px
+    transition: transform 0.3s ease-in-out
+
+    &:hover
+      transform: scale(1.2)
+
+.li-image-box
+  width: 260px
+  height: 260px
+  overflow: hidden
+
+  /* margin-left: 75px;
+
+.moreprograms-imgase
+  border-radius: 20px
+  transition: transform 0.3s ease-in-out
+
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4)
+
+  &:hover
+    transform: scale(1.2)
+
+.item-list
+  dl
+    margin-top: 20px
+
+  dt
+    font-weight: bold
+
+  dd
+    font-size: 13px
+    line-height: 20px
+    margin-top: 10px
+
+  .price
+    font-weight: bold
+    margin-top: 15px
+
+.hot, .game
+  padding-left: 3px
+  font-size: 10px
+  font-weight: bold
+
+.hot
+  color: #ff0000
+
+.game
+  color: rgba(255, 0, 0, 0.7)
+
+.fire, .new-image
+  width: 13px !important
+  height: 13px !important
+  vertical-align: bottom
+
+@media (max-width: 800px)
+  .first-view
+    height: calc(100vh - 50vh)
+    background-image: url(../images/index/bg-main-sp-02.webp)
+
+  .first-view-text
+    padding-top: 60px
+    padding-left: 20px
+
+    h1
+      font-size: 36px
+      line-height: 48px
+
+    p
+      font-size: 14px
+      margin-top: 15px
+
+  .lead
+    padding-left: 20px
+    padding-right: 20px
+
+    p
+      text-align: left
+
+  .item-list li
+    width: 220px
+    margin-right: 30px
+
+  .loginiframe
+    display: none

@@ -1,0 +1,111 @@
+.original-box-shadow
+  display: flex
+  align-items: center
+  justify-content: center
+  color: #333333
+  font-size: 30px
+  width: 300px
+  height: 100px
+  border-radius: 3px
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35)
+
+.logo-box
+  margin-top: 20vh
+
+.logo
+  text-align: center
+  font-size: 7vw
+  display: block
+  font-weight: 700
+  color: var(--theme-color)
+
+  &:hover
+    text-decoration: underline
+
+.search-container
+  margin-top: 5vh
+  text-align: center
+
+#search-input
+  margin-left: auto
+  margin-right: auto
+  width: 75vw
+  height: 45px
+  border-radius: 50px
+  max-width: 800px
+  padding-left: 10px
+  font-size: 20px
+  border: #333 solid 1px
+
+.search-input-suggestions-box
+  margin: 5px auto 50px auto
+  width: 75vw
+  height: 100%
+  border-radius: 50px
+  max-width: 800px
+  padding-left: 10px
+
+#search-input-suggestions
+  text-align: left
+
+li
+  padding-top: 5px
+  padding-bottom: 5px
+
+  &:hover
+    cursor: pointer
+
+.top-box
+  margin-top: 10px
+  font-size: 12px
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.link
+  padding-left: 30px
+
+.url
+  color: #666
+
+.icon
+  margin-right: 50px
+  margin-top: 10px
+  width: 50px
+  height: 50px
+  padding: 3px
+  background-color: #eee
+  border-radius: 50px
+  float: right
+
+.apps
+  margin-right: 30px
+  margin-top: 15px
+  width: 40px
+  height: 40px
+  padding: 5px
+  border-radius: 50px
+  float: left
+  transition-duration: 0.5s
+  transition-timing-function: var(--transition-animation)
+
+  &:hover
+    cursor: pointer
+    background-color: #eee
+
+a:hover
+  text-decoration: underline
+
+@media (max-width: 800px)
+  .icon
+    margin-right: 20px
+    margin-top: 10px
+    width: 40px
+    height: 40px
+    padding: 2.5px
+    background-color: #eee
+    border-radius: 50px
+    float: right
+
+  #about, #install, #program
+    display: none

@@ -1,0 +1,180 @@
+.original-box-shadow
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35)
+
+.top-box
+  padding-top: 20px
+  position: fixed
+  display: block
+  width: 100%
+  height: 90px
+  background-color: var(--background-color)
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15)
+
+.logo
+  padding-left: 100px
+  font-weight: bold
+  font-size: 45px
+  color: var(--theme-color)
+  display: block
+  float: left
+
+#search-input
+  margin-left: 60px
+  width: 50vw
+  height: 45px
+  border-radius: 50px
+  max-width: 800px
+  padding-left: 10px
+  font-size: 20px
+  border: #333 solid 1px
+
+#results-list
+  display: block
+
+#results-container
+  padding-top: 100px
+
+.search-input-suggestions-box
+  margin: 5px auto 50px auto
+  width: 75vw
+  height: 100%
+  border-radius: 50px
+  max-width: 800px
+  padding-left: 10px
+
+#search-input-suggestions
+  text-align: left
+  display: none !important
+
+li
+  /* padding-top: 30px;
+  /* padding-bottom: 45px;
+  padding-left: 100px
+  margin-bottom: 80px
+
+a:hover
+  cursor: pointer
+
+.url
+  display: block
+  width: 30vw
+  overflow-x: auto
+  overflow-y: hidden
+
+.description
+  color: var(--result-details-text-color)
+  line-height: 1.25
+
+.url, .user
+  font-size: 15px
+  color: var(--result-details-text-color)
+
+.link:hover
+  text-decoration: underline
+
+.title
+  padding-top: 0px
+  padding-bottom: 15px
+  display: block
+  text-decoration: underline
+  color: #2b8aff
+  font-size: 20px
+
+.author-icon
+  margin: 1px 7px 0 0
+  width: 30px
+  height: 30px
+  padding: 1px
+  background-color: #eee
+  border-radius: 50px
+  float: left
+
+.image
+  margin-top: 8px
+  width: 120px
+  height: 120px
+  float: right
+  margin-right: 50%
+  border-radius: 15px
+  border: none
+  background-color: #eee
+
+.wiki-box
+  z-index: 1
+  width: 30vw
+  height: 70vh
+  position: fixed
+  top: 130px
+  right: 50px
+  line-height: 1.5
+  overflow-y: auto
+
+.icon
+  margin-right: 50px
+  width: 50px
+  height: 50px
+  padding: 3px
+  background-color: #eee
+  border-radius: 50px
+  float: right
+
+ul .icon
+  display: none
+
+@media (max-width: 800px)
+  .logo
+    display: none
+
+  #search-input
+    margin-left: 40px
+
+    /* margin-right: 40px;
+    width: calc(100% - 130px)
+
+  .icon
+    margin-right: 20px
+    width: 50px
+    height: 50px
+    padding: 3px
+    background-color: #eee
+    border-radius: 50px
+    float: right
+
+  .wiki-box
+    &.show
+      display: block
+
+    &.hidden
+      /* display: none;
+      height: 0px
+
+  #results-container
+    padding-top: 0
+
+  li
+    padding-left: 50px
+
+  .url
+    display: block
+    width: 30vw
+    overflow-x: hidden
+    overflow-y: hidden
+
+  .image
+    width: 70px
+    height: 70px
+    margin: 0 10% 70px 10px
+
+    /* margin-right: 10%;
+    /* margin-bottom: 70px;
+
+  .wiki-box
+    margin: 0px auto 10px auto
+    padding-top: 110px
+    z-index: -1
+    width: calc(100% - 100px)
+    height: 40vh
+    display: block
+    position: static
+    line-height: 1.5
+    overflow-y: auto

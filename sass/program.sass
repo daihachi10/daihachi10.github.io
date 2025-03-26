@@ -1,0 +1,144 @@
+@charset "utf-8"
+
+@import url('./cursor.css')
+
+@import url('./fonts.css')
+
+@import url(defolt.css)
+
+body
+  font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+
+.item-list li
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)
+
+  img
+    width: 240px
+    height: 240px
+
+  &:hover
+    transform: scale(1.2)
+
+.title
+  height: 310px
+
+  /* background-image: url(../images/menu/bg-main.jpg);
+  background-color: var(--theme-color)
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: cover
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  color: #ffffff
+  text-shadow: 1px 1px 10px #4b2c14
+
+  h1
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+    font-size: 32px
+    font-weight: bold
+
+  p
+    font-size: 14px
+    margin-top: 15px
+
+.item-list
+  width: 930px
+  max-width: 90%
+  margin-top: 75px
+  margin-left: auto
+  margin-right: auto
+  display: grid
+  grid-template-columns: repeat(auto-fit, 240px)
+  column-gap: 95px
+  row-gap: 70px
+  justify-content: center
+
+  dl
+    margin-top: 20px
+
+  dt
+    font-weight: bold
+
+  dd
+    font-size: 13px
+    line-height: 20px
+    margin-top: 10px
+
+  .price
+    font-weight: bold
+    margin-top: 15px
+
+  li
+    position: relative
+
+  .item-label
+    position: absolute
+    top: 0
+    left: calc(100% + 18px)
+    font-size: 10px
+    white-space: nowrap
+    transform-origin: top left
+    transform: rotate(90deg)
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif
+
+.footer
+  margin-top: 100px
+
+.hot, .game
+  padding-left: 3px
+  font-size: 10px
+  font-weight: bold
+
+.hot
+  color: #ff0000
+
+.game
+  color: rgba(255, 0, 0, 0.7)
+
+.fire
+  width: 13px !important
+  height: 13px !important
+  vertical-align: bottom
+
+.hidden
+  display: none
+
+.renormalize
+  text-align: center
+  max-width: 450px
+  margin-top: 10px
+  margin-left: auto
+  margin-right: auto
+
+.renormalizename
+  margin-right: 10px
+
+#adoption
+  background-color: var(--sub-color)
+  border: none
+  padding: 5px 10px 5px 10px
+  margin-top: 10px
+  border-radius: 10px
+  width: 60px
+
+.check
+  width: 20px
+  height: 20px
+  vertical-align: middle
+
+  &:hover
+    background: #fff
+    box-shadow: 0 0 5px rgba(69, 112, 255, 0.6), 0 0 10px rgba(69, 112, 255, 0.5), 0 0 20px rgba(69, 112, 255, 0.4), 0 0 40px rgba(69, 112, 255, 0.3), 0 0 80px rgba(69, 112, 255, 0.1)
+
+@media (max-width: 800px)
+  .item-list
+    margin-top: 45px
+    row-gap: 40px
+
+    li
+      transition: transform 0.3s ease
+
+      &:hover
+        transform: scale(1.1)

@@ -1,0 +1,33 @@
+#page-animate
+  &::before
+    content: ''
+    position: fixed
+    top: 0
+    width: 100%
+    height: 100%
+    background-color: #e3e3e3
+    z-index: 9999
+    pointer-events: none
+    right: 100%
+    -webkit-transition: right 0.8s cubic-bezier(0.4, 0, 0.2, 1)
+    transition: right 0.8s cubic-bezier(0.4, 0, 0.2, 1)
+
+  &::after
+    content: ''
+    position: fixed
+    top: 0
+    width: 100%
+    height: 100%
+    background-color: #e3e3e3
+    z-index: 9999
+    pointer-events: none
+    left: 100%
+    -webkit-transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1)
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1)
+
+  &.is-slide-in::before
+    right: 0
+
+  &.is-slide::after
+    left: 0
+

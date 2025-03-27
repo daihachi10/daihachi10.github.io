@@ -8,11 +8,15 @@ let mode = "+"; //計算のモード
 let isModeRandom = true; //モードをランダムにするかどうか
 let max = 20; //ランダムな数字の最大値
 let ansewrHint = ""; //答え
+let isStartClicked = false;
+
 function setup() {
+  noLoop();
+
   createCanvas(200, 200);
-  next();
   textAlign(CENTER, CENTER);
   textFont("line");
+  next();
 }
 
 function draw() {
@@ -93,7 +97,7 @@ function game() {
 
 function keyPressed() {
   if (keyCode === BACKSPACE) {
-    answer.pop();
+    answer.splice(0);
   } else {
     answer.push(key);
   }
@@ -123,7 +127,7 @@ function keyPressed() {
 function answerAdd(i) {
   console.log(i);
   if (i === "BACKSPACE") {
-    answer.pop();
+    answer.splice(0);
   } else {
     answer.push(i);
   }
@@ -147,4 +151,51 @@ function answerAdd(i) {
   }
 
   i = "";
+}
+
+function changeMode(i) {
+  mode = i;
+  alert("モードを" + i + "に変更しました。");
+}
+
+function changeMax() {
+  max = prompt("最大値を入力してください");
+  alert("最大値を" + max + "に変更しました。");
+}
+
+function changeModeRandom() {
+  switch (isModeRandom) {
+    case true:
+      isModeRandom = false;
+      alert("モードを固定に変更しました。");
+      break;
+
+    case false:
+      isModeRandom = true;
+      alert("モードをランダムに変更しました。");
+      break;
+  }
+}
+
+function gameStart() {
+  if (!isStartClicked) {
+    textSize(30);
+    textAlign(CENTER, CENTER);
+    fill("#425bff");
+    stroke("#fff");
+    strokeWeight(20);
+    text("ここを\nクリック\nしてください", 100, 100);
+    noStroke();
+    fill("#000");
+  }
+  setTimeout(function () {
+    isStartClicked = true;
+  }, 10);
+}
+
+function mouseClicked() {
+  if (isStartClicked && 0 < mouseX < 200 && 0 < mouseY < 200) {
+    loop();
+    console.log(mouseX + "," + mouseY);
+  }
 }

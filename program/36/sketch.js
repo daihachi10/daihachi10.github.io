@@ -60,12 +60,11 @@ function drawText() {
   text(conversion, width / 2, 100 + 50);
   textSize(20);
   text(ansewrHint, width / 2, 100 - 30);
-  textSize(20);
+  textSize(15);
   textAlign(LEFT, TOP);
-  text("正解数: " + correct, 10, 10);
+  text("TIME: " + time.toFixed(3), 10, 10);
+  text("正解数: " + correct, 10, 30);
 
-  textAlign(RIGHT, TOP);
-  text("TIME: " + time.toFixed(3), width, 10);
   time -= 1 / 60;
 }
 

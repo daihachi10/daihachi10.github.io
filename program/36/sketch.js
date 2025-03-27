@@ -13,7 +13,7 @@ let isStartClicked = false;
 function setup() {
   noLoop();
 
-  createCanvas(200, 200);
+  createCanvas(400, 200);
   textAlign(CENTER, CENTER);
   textFont("line");
   next();

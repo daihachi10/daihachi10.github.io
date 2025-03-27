@@ -9,36 +9,53 @@
     <style>
       .box {
         z-index: 1;
-        width: 85px;
-        height: 150px;
+        width: 255px;
+        height: 250px;
         position: fixed;
         top: 15px;
         left: 210px;
         line-height: 1.5;
         overflow-y: auto;
       }
+
+      @font-face {
+        font-family: "line";
+        src: url("https://daihachi10.github.io/css/fonts/LINESeedJP.woff2")
+          format("woff2");
+      }
+
+      * {
+        font: "line";
+      }
+
+      .button {
+        width:60px;
+        height:40px;
+        margin: 5px;
+        font-size: 20px;
+      }
     </style>
   </head>
   <body>
     <main>
       <div class="box">
-        <button onclick="answerAdd('ENTER')">ENTER</button>
+        <button class="button" onclick="answerAdd('ENTER')">答え</button class="button">
         <br />
-        <button onclick="answerAdd('7')">7</button>
-        <button onclick="answerAdd('8')">8</button>
-        <button onclick="answerAdd('9')">9</button>
+        <button class="button" onclick="answerAdd('7')">7</button class="button">
+        <button class="button" onclick="answerAdd('8')">8</button class="button">
+        <button class="button" onclick="answerAdd('9')">9</button class="button">
         <br />
-        <button onclick="answerAdd('4')">4</button>
-        <button onclick="answerAdd('5')">5</button>
-        <button onclick="answerAdd('6')">6</button>
+        <button class="button" onclick="answerAdd('4')">4</button class="button">
+        <button class="button" onclick="answerAdd('5')">5</button class="button">
+        <button class="button" onclick="answerAdd('6')">6</button class="button">
         <br />
-        <button onclick="answerAdd('1')">1</button>
-        <button onclick="answerAdd('2')">2</button>
-        <button onclick="answerAdd('3')">3</button>
+        <button class="button" onclick="answerAdd('1')">1</button class="button">
+        <button class="button" onclick="answerAdd('2')">2</button class="button">
+        <button class="button" onclick="answerAdd('3')">3</button class="button">
         <br />
-        <button onclick="answerAdd('-')">-</button>
-        <button onclick="answerAdd('0')">0</button>
-        <button onclick="answerAdd('BACKSPACE')">←</button>
+        <button class="button" onclick="answerAdd('-')">-</button class="button">
+        <button class="button" onclick="answerAdd('0')">0</button class="button">
+        <button class="button" onclick="answerAdd('BACKSPACE')">←</button class="button">
       </div>
     </main>
     <script src="sketch.js"></script>

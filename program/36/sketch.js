@@ -12,6 +12,7 @@ function setup() {
   createCanvas(200, 200);
   next();
   textAlign(CENTER, CENTER);
+  textFont("line");
 }
 
 function draw() {

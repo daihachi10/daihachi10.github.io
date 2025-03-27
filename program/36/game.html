@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+    <title>game</title>
+    <style>
+      .box {
+        z-index: 1;
+        width: 85px;
+        height: 150px;
+        position: fixed;
+        top: 15px;
+        left: 210px;
+        line-height: 1.5;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="box">
+        <button onclick="answerAdd('ENTER')">ENTER</button>
+        <br />
+        <button onclick="answerAdd('7')">7</button>
+        <button onclick="answerAdd('8')">8</button>
+        <button onclick="answerAdd('9')">9</button>
+        <br />
+        <button onclick="answerAdd('4')">4</button>
+        <button onclick="answerAdd('5')">5</button>
+        <button onclick="answerAdd('6')">6</button>
+        <br />
+        <button onclick="answerAdd('1')">1</button>
+        <button onclick="answerAdd('2')">2</button>
+        <button onclick="answerAdd('3')">3</button>
+        <br />
+        <button onclick="answerAdd('-')">-</button>
+        <button onclick="answerAdd('0')">0</button>
+        <button onclick="answerAdd('BACKSPACE')">←</button>
+      </div>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
+</html>

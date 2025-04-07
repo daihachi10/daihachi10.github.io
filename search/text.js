@@ -1,5 +1,17 @@
 const data = [
   {
+    title: "計算ゲーム",
+    url: "https://daihachi10.github.io/program/34/index.html",
+    description: "計算ゲームです。",
+    img: "../images/program-img/img-item35.webp",
+  },
+  {
+    title: "AI自動運転＆学習（AI）",
+    url: "https://daihachi10.github.io/program/34/index.html",
+    description: "道路を描いてAIによる学習で自動運転をします。",
+    img: "../images/program-img/img-item34.webp",
+  },
+  {
     title: "ヘビゲーム",
     url: "https://daihachi10.github.io/program/33/index.html",
     description:

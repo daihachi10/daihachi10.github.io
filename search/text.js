@@ -1,7 +1,7 @@
 const data = [
   {
     title: "計算ゲーム",
-    url: "https://daihachi10.github.io/program/34/index.html",
+    url: "https://daihachi10.github.io/program/35/index.html",
     description: "計算ゲームです。",
     img: "../images/program-img/img-item35.webp",
   },

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="JP">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tetris</title>
-<link rel="stylesheet" href="../../css/defolt.css">
-<style>
-    body {
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tetris</title>
+    <link rel="stylesheet" href="../../css/defolt.css" />
+    <style>
+      body {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -13,101 +14,69 @@
         height: 100vh;
         background-color: transparent;
         margin: 0;
-    }
-
-    canvas {
+      }
+      canvas {
         border: 1px solid #fff;
         margin-bottom: 10px;
-    }
-
-    #controls {
+      }
+      #controls {
         display: flex;
         justify-content: center;
         gap: 10px;
-    }
-
-    button {
+        margin-bottom: 10px;
+      }
+      button {
         width: 50px;
         height: 50px;
-
-        /* padding: 10px 15px; */
-        /* font-size: 26px; */
         cursor: pointer;
-        border-style: none;
-    }
-
-    .startbutton,
-    .colorbutton {
+        border: none;
+        background-color: #eee;
+        border-radius: 4px;
+      }
+      /* STARTボタン */
+      .startbutton {
         position: absolute;
+        top: 200px;
         width: 200px;
         height: 50px;
-        margin-bottom: 300px;
         background-color: var(--sub-color);
         border-radius: 25px;
         color: #000;
-    }
-
-
-    .startbutton {
-        top: 200px;
-    }
-
-    .colorbutton {
-        top: 260px;
-    }
-
-    .started {
+      }
+      .started {
         display: none;
-    }
-</style>
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ゲームキャンバス -->
+    <canvas id="tetris" width="240" height="400"></canvas>
 
+    <!-- STARTボタン -->
+    <button class="startbutton" onclick="gameStart()">START</button>
 
-<canvas id="tetris" width="240" height="400"></canvas>
+    <!-- スクリプト読み込み -->
+    <script src="script.js"></script>
+    <script>
+      // キー操作で意図しないスクロールを防止
+      window.addEventListener(
+        "keydown",
+        function (event) {
+          const code = event.keyCode;
+          if ([32, 37, 38, 39, 40].includes(code)) {
+            event.preventDefault();
+          }
+        },
+        { passive: false }
+      );
 
-<button class="startbutton" onclick="gameStart()">START</button>
-<!--<button class="colorbutton" onclick="colorSettings()">COLOR</button>-->
-
-
-<div id="controls">
-    <button onclick="playerMove(-1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-        </svg></button>
-    <button onclick="playerRotate(1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path
-                d="M204-318q-22-38-33-78t-11-82q0-134 93-228t227-94h7l-64-64 56-56 160 160-160 160-56-56 64-64h-7q-100 0-170 70.5T240-478q0 26 6 51t18 49l-60 60ZM481-40 321-200l160-160 56 56-64 64h7q100 0 170-70.5T720-482q0-26-6-51t-18-49l60-60q22 38 33 78t11 82q0 134-93 228t-227 94h-7l64 64-56 56Z" />
-        </svg></button>
-    <button onclick="playerMove(1)"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
-        </svg></button>
-    <button onclick="playerDrop()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z" />
-        </svg></button>
-    <button onclick="playerDropInstant()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-            width="24px" fill="#000">
-            <path d="M160-120v-80h640v80H160Zm320-160L280-480l56-56 104 104v-408h80v408l104-104 56 56-200 200Z" />
-        </svg></button>
-</div>
-<script src="script.js"></script>
-<script>
-    window.onload = function() {
-        window.addEventListener('keydown', keydownfunc, true);
-    }
-
-    var keydownfunc = function( event ) {
-        var code = event.keyCode;
-        switch(code) {
-            case 32:
-            case 37: // ←
-            case 38: // ↑
-            case 39: // →
-            case 40: // ↓
-                event.preventDefault();
-                console.log(code);
-        }
-    }
-
-</script>
+      // モバイル用ホールドボタン
+      document
+        .getElementById("holdButton")
+        .addEventListener("touchstart", function (e) {
+          e.preventDefault();
+          holdCurrentPiece(); // script.js 側の関数
+        });
+    </script>
+  </body>
+</html>

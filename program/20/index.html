@@ -49,6 +49,7 @@
     ></script>
     <script src="../common/script.js"></script>
     <script src="/../../common/program.js"></script>
+    <link rel="stylesheet" href="./popup/style.css" />
     <meta name="theme-color" content="#1DB31D" />
   </head>
 
@@ -108,7 +109,7 @@
               <iframe
                 src="iframe.html"
                 frameborder="0"
-                style="height: 470px"
+                style="height: 470px; width: 560px"
                 allowtransparency="true"
               ></iframe>
             </div>
@@ -119,7 +120,7 @@
               <a href="https://tetris.com/" target="blank">公式サイト</a>
               <p class="item-text"></p>
               <a
-                href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/16/script.js"
+                href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/20/script.js"
                 target="_blank"
                 >VIEW CODE</a
               >
@@ -132,6 +133,22 @@
         </div>
         <aside id="sidebar" class="shop-menu"></aside>
       </div>
+
+      <div id="popup" class="popup hidden">
+        <div class="popup-content">
+          <button id="close-btn" class="close-btn" onclick="closePopup()">
+            &times;
+          </button>
+          <p class="newrelease">New Release!</p>
+          <p class="text">
+            <span style="color: #f54278">ホールド機能</span>を追加!
+          </p>
+          <p class="setumei">"C"キーでホールドできます</p>
+          <div style="width: 500px"></div>
+        </div>
+
+        <style></style>
+      </div>
     </main>
     <!-- mainここまで -->
 
@@ -139,8 +156,7 @@
     <footer class="footer"></footer>
     <!-- footerここまで -->
     <script src="./js/noscroll.js"></script>
-
-    <script src="./js/popup.js"></script>
+    <script src="./popup/script.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {

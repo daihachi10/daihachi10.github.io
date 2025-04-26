@@ -1,0 +1,61 @@
+/* 画面全体じゃなくて、右下固定にする */
+.popup {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* 最初は非表示 */
+.hidden {
+  opacity: 0;
+  transform: translateX(100%) scale(0.9);
+  pointer-events: none;
+}
+
+/* ポップアップ中身 */
+.popup-content {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+/* バツボタン */
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* 開くボタン */
+.open-btn {
+  margin: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #4f46e5;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.open-btn:hover {
+  background: #4338ca;
+}
+
+.newrelease {
+  color: #f54278;
+  font-weight: 800;
+  font-size: 35px;
+  padding-bottom: 30px;
+}

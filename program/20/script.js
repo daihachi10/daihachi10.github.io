@@ -192,7 +192,8 @@ function draw() {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    window.location.reload();
+    // window.location.reload();
+    noLoop();
   }
   if (event.key === "Enter") {
     gameStart();

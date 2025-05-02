@@ -1,262 +1,243 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>PROGRAM | daihachi official website</title>
-    <meta
-      name="description"
-      content="daihachiのプログラムがプレイができるサイトです。"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
-    <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
-    <link href="../../css/common.css" rel="stylesheet" />
-    <link href="../../css/details.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link href="../../css/loading.css" rel="stylesheet" />
-    <script src="../../js/loading.js"></script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
-    </style>
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        /* overflow: hidden; */
-        /*background: linear-gradient(to bottom, #0b1429, #005bff);*/
-      }
+<head>
+  <meta charset="UTF-8" />
+  <title>PROGRAM | daihachi official website</title>
+  <meta name="description" content="daihachiのプログラムがプレイができるサイトです。" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+  <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
+  <link href="../../css/common.css" rel="stylesheet" />
+  <link href="../../css/details.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link href="../../css/loading.css" rel="stylesheet" />
+  <script src="../../js/loading.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
+  </style>
 
-      canvas {
-        position: fixed;
-        /* 固定位置 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        /* ユーザーの操作を無効化 */
-        z-index: -1;
-        /* 背景に配置 */
-      }
-    </style>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="../common/script.js"></script>
-    <script src="/../../common/program.js"></script>
-    <link rel="stylesheet" href="./popup/style.css" />
-    <meta name="theme-color" content="#1DB31D" />
-  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* overflow: hidden; */
+      /*background: linear-gradient(to bottom, #0b1429, #005bff);*/
+    }
 
-  <body>
-    <div id="loading"></div>
+    canvas {
+      position: fixed;
+      /* 固定位置 */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      /* ユーザーの操作を無効化 */
+      z-index: -1;
+      /* 背景に配置 */
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="../common/script.js"></script>
+  <script src="/../../common/program.js"></script>
+  <link rel="stylesheet" href="./popup/style.css" />
+  <meta name="theme-color" content="#1DB31D" />
+</head>
 
-    <div class="progress"></div>
-    <!-- headerここから -->
-    <header class="header">
-      <div class="header-inner">
-        <a
-          data-aos="fade-down"
-          data-aos-delay="200"
-          class="header-logo"
-          href="./index.html"
-        >
-          <p>daihachi</p>
-        </a>
-        <button class="toggle-menu-button"></button>
-        <div class="header-site-menu">
-          <nav class="site-menu">
-            <ul>
-              <li data-aos="fade-down" data-aos-delay="600">
-                <a href="./install.html">INSTALL APP</a>
-              </li>
-              <li data-aos="fade-down" data-aos-delay="800">
-                <a href="./program.html">MY PROGRAM</a>
-              </li>
-              <li data-aos="fade-down" data-aos-delay="1000">
-                <a href="en.html" target="_blank">ENGLISH</a>
-              </li>
-              <li data-aos="fade-down" data-aos-delay="1200">
-                <a href="../../account/"
-                  ><span class="username">LOGIN / SIGNUP</span></a
-                >
-              </li>
-            </ul>
-          </nav>
-        </div>
+<body>
+  <div id="loading"></div>
+
+  <div class="progress"></div>
+  <!-- headerここから -->
+  <header class="header">
+    <div class="header-inner">
+      <a data-aos="fade-down" data-aos-delay="200" class="header-logo" href="./index.html">
+        <p>daihachi</p>
+      </a>
+      <button class="toggle-menu-button"></button>
+      <div class="header-site-menu">
+        <nav class="site-menu">
+          <ul>
+            <li data-aos="fade-down" data-aos-delay="600">
+              <a href="./install.html">INSTALL APP</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="800">
+              <a href="./program.html">MY PROGRAM</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="1000">
+              <a href="en.html" target="_blank">ENGLISH</a>
+            </li>
+            <li data-aos="fade-down" data-aos-delay="1200">
+              <a href="../../account/"><span class="username">LOGIN / SIGNUP</span></a>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </header>
-    <!-- headerここまで -->
+    </div>
+  </header>
+  <!-- headerここまで -->
 
-    <!--    <canvas id="snowCanvas"></canvas>-->
+  <!--    <canvas id="snowCanvas"></canvas>-->
 
-    <!-- mainここから -->
-    <main class="main">
-      <div class="title">
-        <h1>TETRIS</h1>
-        <p>テトリス</p>
-      </div>
-      <div class="shop-contents">
-        <div class="shop-item">
-          <h2>TETRIS</h2>
-          <div class="item-area">
-            <div id="p5-canvas-container">
-              <iframe
-                src="iframe.html"
-                frameborder="0"
-                style="height: 470px; width: 560px"
-                allowtransparency="true"
-              ></iframe>
-            </div>
-            <div class="about-item">
-              <p class="item-text">
-                シンプルなテトリス風のゲームです。<br />ENTERキーまたはスタートボタンでスタート<br />ESCキーでリスタート
-              </p>
-              <a href="https://tetris.com/" target="blank">公式サイト</a>
-              <p class="item-text"></p>
-              <a
-                href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/20/script.js"
-                target="_blank"
-                >VIEW CODE</a
-              >
-            </div>
+  <!-- mainここから -->
+  <main class="main">
+    <div class="title">
+      <h1>TETRIS</h1>
+      <p>テトリス</p>
+    </div>
+    <div class="shop-contents">
+      <div class="shop-item">
+        <h2>TETRIS</h2>
+        <div class="item-area">
+          <div id="p5-canvas-container">
+            <iframe src="iframe.html" frameborder="0" style="height: 470px; width: 560px"
+              allowtransparency="true"></iframe>
           </div>
-          <div class="item-group recommended">
-            <h2>RECOMMENDED</h2>
-            <ul class="item-list"></ul>
+          <div class="about-item">
+            <p class="item-text">
+              シンプルなテトリス風のゲームです。<br />ENTERキーまたはスタートボタンでスタート<br />ESCキーでリスタート
+            </p>
+            <a href="https://tetris.com/" target="blank">公式サイト</a>
+            <p class="item-text"></p>
+            <a href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/20/script.js"
+              target="_blank">VIEW CODE</a>
           </div>
         </div>
-        <aside id="sidebar" class="shop-menu"></aside>
-      </div>
-
-      <div id="popup" class="popup hidden">
-        <div class="popup-content">
-          <button id="close-btn" class="close-btn" onclick="closePopup()">
-            &times;
-          </button>
-          <p class="newrelease">New Release!</p>
-          <p class="text">
-            <span style="color: #f54278">ホールド機能</span>を追加!
-          </p>
-          <p class="setumei">"C"キーでホールドできます</p>
-          <div style="width: 500px"></div>
+        <div class="item-group recommended">
+          <h2>RECOMMENDED</h2>
+          <ul class="item-list"></ul>
         </div>
-
-        <style></style>
       </div>
-    </main>
-    <!-- mainここまで -->
+      <aside id="sidebar" class="shop-menu"></aside>
+    </div>
 
-    <!-- footerここから -->
-    <footer class="footer"></footer>
-    <!-- footerここまで -->
-    <script src="./js/noscroll.js"></script>
-    <script src="./popup/script.js"></script>
+    <div id="popup" class="popup hidden">
+      <div class="popup-content">
+        <button id="close-btn" class="close-btn" onclick="closePopup()">
+          &times;
+        </button>
+        <p class="newrelease">New Release!</p>
+        <p class="text">
+          <span style="color: #f54278">ESCキー</span>でゲームを<span style="color: #f54278">一時停止</span>できます！
+        </p>
+        <div style="width: 500px"></div>
+      </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const params = new URLSearchParams(window.location.search);
-        const urlUser = params.get("user");
-        let user = null;
-        user = localStorage.getItem("user");
-        if (user) {
-          const usernameElements = document.querySelectorAll("span.username");
-          usernameElements.forEach(function (element) {
-            element.textContent = "Hi " + user + "!";
-          });
+      <style></style>
+    </div>
+  </main>
+  <!-- mainここまで -->
+
+  <!-- footerここから -->
+  <footer class="footer"></footer>
+  <!-- footerここまで -->
+  <script src="./js/noscroll.js"></script>
+  <script src="./popup/script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      const urlUser = params.get("user");
+      let user = null;
+      user = localStorage.getItem("user");
+      if (user) {
+        const usernameElements = document.querySelectorAll("span.username");
+        usernameElements.forEach(function (element) {
+          element.textContent = "Hi " + user + "!";
+        });
+      }
+    });
+  </script>
+
+  <script>
+    window.onload = function () {
+      window.addEventListener("keydown", keydownfunc, true);
+    };
+
+    var keydownfunc = function (event) {
+      var code = event.keyCode;
+      switch (code) {
+        case 32:
+        case 37: // ←
+        case 38: // ↑
+        case 39: // →
+        case 40: // ↓
+          event.preventDefault();
+          console.log(code);
+      }
+    };
+  </script>
+
+  <script>
+    const canvas = document.getElementById("snowCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const snowflakes = [];
+
+    class Snowflake {
+      constructor(x, y, radius, speed) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.speed = speed;
+        this.wind = Math.random() * 1 - 0.5;
+      }
+
+      update() {
+        this.y += this.speed;
+        this.x += this.wind;
+
+        if (this.y > canvas.height) {
+          this.y = -this.radius;
+          this.x = Math.random() * canvas.width;
         }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+
+    function createSnowflakes(count) {
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const radius = Math.random() * 3 + 1;
+        const speed = Math.random() * 2 + 0.5;
+        snowflakes.push(new Snowflake(x, y, radius, speed));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      snowflakes.forEach((snowflake) => {
+        snowflake.update();
+        snowflake.draw();
       });
-    </script>
+      requestAnimationFrame(animate);
+    }
 
-    <script>
-      window.onload = function () {
-        window.addEventListener("keydown", keydownfunc, true);
-      };
+    createSnowflakes(200);
+    animate();
 
-      var keydownfunc = function (event) {
-        var code = event.keyCode;
-        switch (code) {
-          case 32:
-          case 37: // ←
-          case 38: // ↑
-          case 39: // →
-          case 40: // ↓
-            event.preventDefault();
-            console.log(code);
-        }
-      };
-    </script>
-
-    <script>
-      const canvas = document.getElementById("snowCanvas");
-      const ctx = canvas.getContext("2d");
-
+    window.addEventListener("resize", () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
-      const snowflakes = [];
-
-      class Snowflake {
-        constructor(x, y, radius, speed) {
-          this.x = x;
-          this.y = y;
-          this.radius = radius;
-          this.speed = speed;
-          this.wind = Math.random() * 1 - 0.5;
-        }
-
-        update() {
-          this.y += this.speed;
-          this.x += this.wind;
-
-          if (this.y > canvas.height) {
-            this.y = -this.radius;
-            this.x = Math.random() * canvas.width;
-          }
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          ctx.fillStyle = "white";
-          ctx.fill();
-          ctx.closePath();
-        }
-      }
-
-      function createSnowflakes(count) {
-        for (let i = 0; i < count; i++) {
-          const x = Math.random() * canvas.width;
-          const y = Math.random() * canvas.height;
-          const radius = Math.random() * 3 + 1;
-          const speed = Math.random() * 2 + 0.5;
-          snowflakes.push(new Snowflake(x, y, radius, speed));
-        }
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        snowflakes.forEach((snowflake) => {
-          snowflake.update();
-          snowflake.draw();
-        });
-        requestAnimationFrame(animate);
-      }
-
+      snowflakes.length = 0;
       createSnowflakes(200);
-      animate();
+    });
+  </script>
+</body>
 
-      window.addEventListener("resize", () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        snowflakes.length = 0;
-        createSnowflakes(200);
-      });
-    </script>
-  </body>
 </html>

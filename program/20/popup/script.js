@@ -1,9 +1,9 @@
 const popup = document.getElementById("popup");
 const openBtn = document.getElementById("open-btn");
 const closeBtn = document.getElementById("close-btn");
-let popupClosed = localStorage.getItem("popupClosed");
+let popupClosed = localStorage.getItem("popupClosed2");
 setTimeout(function () {
-  if (!popupClosed == true) {
+  if (!popupClosed2 == true) {
     popup.classList.remove("hidden");
   }
 }, 500);
@@ -18,5 +18,5 @@ closeBtn.addEventListener("click", () => {
 
 function closePopup() {
   popup.classList.add("hidden");
-  localStorage.setItem("popupClosed", "true");
+  localStorage.setItem("popupClosed2", "true");
 }

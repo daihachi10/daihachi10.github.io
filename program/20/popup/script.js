@@ -6,10 +6,6 @@ setTimeout(function () {
     popup.classList.remove("hidden");
 }, 500);
 
-openBtn.addEventListener("click", () => {
-  popup.classList.remove("hidden");
-});
-
 closeBtn.addEventListener("click", () => {
   popup.classList.add("hidden");
 });

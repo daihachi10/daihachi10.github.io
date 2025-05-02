@@ -194,10 +194,13 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     // window.location.reload();
     noLoop();
+    start = false
   }
   if (event.key === "Enter") {
     gameStart();
     loop();
+
+    start = true
   }
   if (event.key === "c" || event.key === "C") {
     holdCurrentPiece();

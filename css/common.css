@@ -4,18 +4,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("./cursor.css");
 @import url("./fonts.css");
+
 ::selection {
   color: #fff;
   background-color: #06c755;
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -37,7 +41,8 @@ main {
   margin-top: 65px;
 }
 
-.header-inner a, .footer a {
+.header-inner a,
+.footer a {
   /* display: inline-block; */
   position: relative;
   overflow: hidden;
@@ -45,7 +50,8 @@ main {
   text-decoration: none;
 }
 
-.header-inner a:after, .footer a:after {
+.header-inner a:after,
+.footer a:after {
   position: absolute;
   bottom: 10px;
   left: 0;
@@ -67,7 +73,8 @@ main {
   margin-bottom: -1px;
 }
 
-.header-inner li a:hover:after, .footer li a:hover:after {
+.header-inner li a:hover:after,
+.footer li a:hover:after {
   transform: translate(0, 0);
 }
 
@@ -125,10 +132,12 @@ img {
 .site-menu ul {
   display: flex;
 }
+
 .site-menu ul li {
   margin-left: 20px;
   margin-right: 20px;
 }
+
 .site-menu ul li a {
   display: inline-block;
   /*または、inline, inline-flexなど */
@@ -230,7 +239,8 @@ img {
   font-weight: bold;
 }
 
-#header-searchQuery, #program-header-searchQuery {
+#header-searchQuery,
+#program-header-searchQuery {
   padding: 10px;
   font-size: 16px;
   border: 1.2px solid #ccc;
@@ -246,14 +256,24 @@ img {
   width: 300px;
 }
 
+.link-text {
+  color: #ff5283;
+}
+
+.link-text:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 800px) {
   .site-menu ul {
     display: block;
     text-align: center;
   }
+
   .site-menu li {
     margin-top: 20px;
   }
+
   .header {
     position: fixed;
     /*         position:sticky; */
@@ -265,22 +285,27 @@ img {
     z-index: 10;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   }
+
   .header-inner {
     padding-left: 20px;
     padding-right: 20px;
     height: 100%;
     position: relative;
   }
+
   .header-inner li a:after {
     background-color: #fff;
   }
+
   .header-logo {
     font-size: 30px;
     width: 100px;
   }
+
   .logo-text {
     display: none;
   }
+
   .header-site-menu {
     position: absolute;
     top: 100%;
@@ -292,9 +317,11 @@ img {
     padding-bottom: 50px;
     display: none;
   }
+
   .header-site-menu.is-show {
     display: block;
   }
+
   .toggle-menu-button {
     display: block;
     width: 44px;
@@ -309,16 +336,20 @@ img {
     outline: none;
     cursor: pointer;
   }
+
   .main {
     padding-top: 50px;
   }
+
   .footer-logo {
     font-size: 60px;
     margin-top: 60px;
   }
+
   .copyright {
     margin-top: 50px;
   }
+
   .main {
     overflow-x: scroll;
   }

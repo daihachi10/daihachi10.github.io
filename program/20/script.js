@@ -1,6 +1,137 @@
+let downKey = "ArrowDown";
+let leftKey = "ArrowLeft";
+let rightKey = "ArrowRight";
+let upKey = "ArrowUp";
+let holdKey = "C";
+let hardDropKey = " ";
+
+let inDownKey = "ArrowDown";
+let inLeftKey = "ArrowLeft";
+let inRightKey = "ArrowRight";
+let inUpKey = "ArrowUp";
+let inHoldKey = "C";
+let inHardDropKey = " ";
+let isSaving = false;
+
 document.addEventListener("dblclick", (e) => e.preventDefault(), {
   passive: false,
 });
+
+if (localStorage.getItem("isSaving")) {
+  const keySettings = JSON.parse(localStorage.getItem("keySettings"));
+  downKey = keySettings[0];
+  leftKey = keySettings[1];
+  rightKey = keySettings[2];
+  upKey = keySettings[3];
+  holdKey = keySettings[4];
+  hardDropKey = keySettings[5];
+}
+
+alert(
+  '"↑"に割り当てるキー: ' +
+    upKey +
+    "\n" +
+    '"↓"に割り当てるキー: ' +
+    downKey +
+    "\n" +
+    '"←"に割り当てるキー: ' +
+    leftKey +
+    "\n" +
+    '"→"に割り当てるキー: ' +
+    rightKey +
+    "\n" +
+    '"ホールド"に割り当てるキー: ' +
+    holdKey +
+    "\n" +
+    '"ハードドロップ"に割り当てるキー: ' +
+    hardDropKey +
+    "　　空欄:スペースキー"
+);
+
+function keyChange() {
+  inUpKey = prompt(
+    '"↑"に割り当てるキーを設定してください 1/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま'
+  );
+  inDownKey = prompt(
+    '"↓"に割り当てるキーを設定してください 2/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
+  );
+  inLeftKey = prompt(
+    '"←"に割り当てるキーを設定してください 3/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
+  );
+  inRightKey = prompt(
+    '"→"に割り当てるキーを設定してください 4/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
+  );
+  inHoldKey = prompt(
+    '"ホールド"に割り当てるキーを設定してください 5/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
+  );
+  inHardDropKey = prompt(
+    '"ハードドロップ"に割り当てるキーを設定してください 6/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
+  );
+
+  if (inUpKey !== null) {
+    upKey = inUpKey;
+  }
+
+  if (inDownKey !== null) {
+    downKey = inDownKey;
+  }
+
+  if (inLeftKey !== null) {
+    leftKey = inLeftKey;
+  }
+
+  if (inRightKey !== null) {
+    rightKey = inRightKey;
+  }
+
+  if (inHoldKey !== null) {
+    holdKey = inHoldKey;
+  }
+
+  if (inHardDropKey !== null) {
+    hardDropKey = inHardDropKey;
+  }
+
+  alert(
+    '"↑"に割り当てるキー: ' +
+      upKey +
+      "\n" +
+      '"↓"に割り当てるキー: ' +
+      downKey +
+      "\n" +
+      '"←"に割り当てるキー: ' +
+      leftKey +
+      "\n" +
+      '"→"に割り当てるキー: ' +
+      rightKey +
+      "\n" +
+      '"ホールド"に割り当てるキー: ' +
+      holdKey +
+      "\n" +
+      '"ハードドロップ"に割り当てるキー: ' +
+      hardDropKey +
+      "　　空欄:スペースキー"
+  );
+
+  isSaving = prompt("キー配置を保存しますか？y / n");
+  if (isSaving == "y") {
+    const keySettings = [
+      downKey,
+      leftKey,
+      rightKey,
+      upKey,
+      holdKey,
+      hardDropKey,
+    ];
+    localStorage.setItem("keySettings", JSON.stringify(keySettings));
+    localStorage.setItem("isSaving", "true");
+    alert("保存しました");
+  } else {
+    alert("保存されませんでした");
+    localStorage.setItem("isSaving", "false");
+  }
+  gameStart();
+}
 
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
@@ -132,21 +263,33 @@ function drawGrid() {
 }
 
 let start = false;
+let reset = false;
+let key;
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     // window.location.reload();
     // noLoop();
-    start = false
+    start = false;
+    reset = true;
   }
   if (event.key === "Enter") {
     gameStart();
     loop();
 
-    start = true
+    start = true;
   }
-  if (event.key === "c" || event.key === "C") {
+  if (event.key === holdKey) {
     holdCurrentPiece();
+  }
+
+  console.log(reset);
+
+  if (event.key === "Escape" && reset == true) {
+    window.location.reload();
+  } else {
+    key = event.key;
+    reset = false;
   }
 });
 
@@ -154,6 +297,9 @@ function gameStart() {
   start = true;
   const elements = document.querySelectorAll(".startbutton");
   elements.forEach((element) => element.classList.add("started"));
+
+  const elements2 = document.querySelectorAll(".keychangebutton");
+  elements2.forEach((element) => element.classList.add("started"));
 }
 
 // ====== ホールド機能 ======
@@ -207,8 +353,6 @@ function draw() {
     }
   }
 }
-
-
 
 // document
 //   .getElementById("holdButton")
@@ -363,16 +507,18 @@ function update(time = 0) {
 }
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowLeft" || event.key === "a") {
-    playerMove(-1);
-  } else if (event.key === "ArrowRight" || event.key === "d") {
-    playerMove(1);
-  } else if (event.key === "ArrowDown" || event.key === "s") {
-    playerDrop();
-  } else if (event.key === " " || event.key === "　") {
-    playerDropInstant();
-  } else if (event.key === "ArrowUp" || event.key === "w") {
-    playerRotate(1);
+  if (start) {
+    if (event.key === leftKey) {
+      playerMove(-1);
+    } else if (event.key === rightKey) {
+      playerMove(1);
+    } else if (event.key === downKey) {
+      playerDrop();
+    } else if (event.key === hardDropKey) {
+      playerDropInstant();
+    } else if (event.key === upKey) {
+      playerRotate(1);
+    }
   }
 });
 

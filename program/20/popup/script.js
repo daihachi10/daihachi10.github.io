@@ -3,7 +3,7 @@ const openBtn = document.getElementById("open-btn");
 const closeBtn = document.getElementById("close-btn");
 let popupClosed = localStorage.getItem("popupClosed2");
 setTimeout(function () {
-    popup.classList.remove("hidden");
+  popup.classList.remove("hidden");
 }, 500);
 
 closeBtn.addEventListener("click", () => {

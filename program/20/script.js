@@ -2,7 +2,7 @@ let downKey = "ArrowDown";
 let leftKey = "ArrowLeft";
 let rightKey = "ArrowRight";
 let upKey = "ArrowUp";
-let holdKey = "C";
+let holdKey = "c";
 let hardDropKey = " ";
 
 let inDownKey = "ArrowDown";
@@ -26,27 +26,6 @@ if (localStorage.getItem("isSaving")) {
   holdKey = keySettings[4];
   hardDropKey = keySettings[5];
 }
-
-alert(
-  '"↑"に割り当てるキー: ' +
-    upKey +
-    "\n" +
-    '"↓"に割り当てるキー: ' +
-    downKey +
-    "\n" +
-    '"←"に割り当てるキー: ' +
-    leftKey +
-    "\n" +
-    '"→"に割り当てるキー: ' +
-    rightKey +
-    "\n" +
-    '"ホールド"に割り当てるキー: ' +
-    holdKey +
-    "\n" +
-    '"ハードドロップ"に割り当てるキー: ' +
-    hardDropKey +
-    "　　空欄:スペースキー"
-);
 
 function keyChange() {
   inUpKey = prompt(
@@ -92,27 +71,6 @@ function keyChange() {
     hardDropKey = inHardDropKey;
   }
 
-  alert(
-    '"↑"に割り当てるキー: ' +
-      upKey +
-      "\n" +
-      '"↓"に割り当てるキー: ' +
-      downKey +
-      "\n" +
-      '"←"に割り当てるキー: ' +
-      leftKey +
-      "\n" +
-      '"→"に割り当てるキー: ' +
-      rightKey +
-      "\n" +
-      '"ホールド"に割り当てるキー: ' +
-      holdKey +
-      "\n" +
-      '"ハードドロップ"に割り当てるキー: ' +
-      hardDropKey +
-      "　　空欄:スペースキー"
-  );
-
   isSaving = prompt("キー配置を保存しますか？y / n");
   if (isSaving == "y") {
     const keySettings = [
@@ -130,6 +88,19 @@ function keyChange() {
     alert("保存されませんでした");
     localStorage.setItem("isSaving", "false");
   }
+  gameStart();
+}
+
+function keyChangeReset() {
+  downKey = "ArrowDown";
+  leftKey = "ArrowLeft";
+  rightKey = "ArrowRight";
+  upKey = "ArrowUp";
+  holdKey = "C";
+  hardDropKey = " ";
+  alert("キー設定を初期化しました");
+  localStorage.setItem("isSaving", "false");
+  localStorage.removeItem("keySettings");
   gameStart();
 }
 
@@ -263,7 +234,7 @@ function drawGrid() {
 }
 
 let start = false;
-let reset = false;
+let reset = 0;
 let key;
 
 document.addEventListener("keydown", (event) => {
@@ -271,7 +242,7 @@ document.addEventListener("keydown", (event) => {
     // window.location.reload();
     // noLoop();
     start = false;
-    reset = true;
+    reset += 1;
   }
   if (event.key === "Enter") {
     gameStart();
@@ -285,11 +256,11 @@ document.addEventListener("keydown", (event) => {
 
   console.log(reset);
 
-  if (event.key === "Escape" && reset == true) {
-    window.location.reload();
+  if (event.key === "Escape" && reset == 10) {
+    // window.location.reload();
   } else {
     key = event.key;
-    reset = false;
+    reset = 0;
   }
 });
 
@@ -300,6 +271,9 @@ function gameStart() {
 
   const elements2 = document.querySelectorAll(".keychangebutton");
   elements2.forEach((element) => element.classList.add("started"));
+
+  const elements3 = document.querySelectorAll(".keychangeresetbutton");
+  elements3.forEach((element) => element.classList.add("started"));
 }
 
 // ====== ホールド機能 ======

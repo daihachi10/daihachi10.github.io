@@ -35,7 +35,8 @@
       }
       /* STARTボタン */
       .startbutton,
-      .keychangebutton {
+      .keychangebutton,
+      .keychangeresetbutton {
         position: absolute;
         top: 200px;
         background-color: var(--sub-color);
@@ -53,6 +54,12 @@
         height: 50px;
       }
 
+      .keychangeresetbutton {
+        top: 370px;
+        width: 150px;
+        height: 50px;
+      }
+
       .started {
         display: none;
       }
@@ -66,6 +73,9 @@
     <button class="startbutton" onclick="gameStart()">START</button>
     <button class="keychangebutton" onclick="keyChange()">
       キー配置を変更
+    </button>
+    <button class="keychangeresetbutton" onclick="keyChangeReset()">
+      キー配置をリセット
     </button>
 
     <!-- スクリプト読み込み -->

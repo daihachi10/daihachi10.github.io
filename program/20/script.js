@@ -17,6 +17,14 @@ document.addEventListener("dblclick", (e) => e.preventDefault(), {
   passive: false,
 });
 
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    if (e.repeat) {
+      window.location.reload();
+    }
+  }
+});
+
 if (localStorage.getItem("isSaving")) {
   const keySettings = JSON.parse(localStorage.getItem("keySettings"));
   downKey = keySettings[0];
@@ -29,7 +37,7 @@ if (localStorage.getItem("isSaving")) {
 
 function keyChange() {
   inUpKey = prompt(
-    '"↑"に割り当てるキーを設定してください 1/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま'
+    '"回転"に割り当てるキーを設定してください 1/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま'
   );
   inDownKey = prompt(
     '"↓"に割り当てるキーを設定してください 2/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
@@ -49,26 +57,38 @@ function keyChange() {
 
   if (inUpKey !== null) {
     upKey = inUpKey;
+  } else {
+    upKey = "ArrowUp";
   }
 
   if (inDownKey !== null) {
     downKey = inDownKey;
+  } else {
+    downKey = "ArrowDown";
   }
 
   if (inLeftKey !== null) {
     leftKey = inLeftKey;
+  } else {
+    leftKey = "ArrowLeft";
   }
 
   if (inRightKey !== null) {
     rightKey = inRightKey;
+  } else {
+    rightKey = "ArrowRight";
   }
 
   if (inHoldKey !== null) {
     holdKey = inHoldKey;
+  } else {
+    holdKey = "c";
   }
 
   if (inHardDropKey !== null) {
     hardDropKey = inHardDropKey;
+  } else {
+    hardDropKey = " ";
   }
 
   isSaving = prompt("キー配置を保存しますか？y / n");
@@ -88,7 +108,27 @@ function keyChange() {
     alert("保存されませんでした");
     localStorage.setItem("isSaving", "false");
   }
-  gameStart();
+
+  alert(
+    '"↑"に割り当てるキー: ' +
+      upKey +
+      "\n" +
+      '"↓"に割り当てるキー: ' +
+      downKey +
+      "\n" +
+      '"←"に割り当てるキー: ' +
+      leftKey +
+      "\n" +
+      '"→"に割り当てるキー: ' +
+      rightKey +
+      "\n" +
+      '"ホールド"に割り当てるキー: ' +
+      holdKey +
+      "\n" +
+      '"ハードドロップ"に割り当てるキー: ' +
+      hardDropKey +
+      "　　空欄:スペースキー"
+  );
 }
 
 function keyChangeReset() {
@@ -98,10 +138,30 @@ function keyChangeReset() {
   upKey = "ArrowUp";
   holdKey = "C";
   hardDropKey = " ";
-  alert("キー設定を初期化しました");
   localStorage.setItem("isSaving", "false");
   localStorage.removeItem("keySettings");
-  gameStart();
+
+  alert("キー設定を初期化しました");
+  alert(
+    '"↑"に割り当てるキー: ' +
+      upKey +
+      "\n" +
+      '"↓"に割り当てるキー: ' +
+      downKey +
+      "\n" +
+      '"←"に割り当てるキー: ' +
+      leftKey +
+      "\n" +
+      '"→"に割り当てるキー: ' +
+      rightKey +
+      "\n" +
+      '"ホールド"に割り当てるキー: ' +
+      holdKey +
+      "\n" +
+      '"ハードドロップ"に割り当てるキー: ' +
+      hardDropKey +
+      "　　空欄:スペースキー"
+  );
 }
 
 const canvas = document.getElementById("tetris");
@@ -239,10 +299,7 @@ let key;
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    // window.location.reload();
-    // noLoop();
-    start = false;
-    reset += 1;
+    start = !start;
   }
   if (event.key === "Enter") {
     gameStart();

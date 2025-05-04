@@ -1,56 +1,63 @@
 #fps {
-    /* font-size: 10px; */
+  /* font-size: 10px; */
 }
 
-.score{
-    font-size: 30px !important;
+.score {
+  font-size: 30px !important;
 }
 
 .red {
-    color: #f00;
+  color: #f00;
 }
 
 #GameOver {
-    display: none;
+  display: none;
 }
 
 #GameOver.gameover {
-    display: block;
+  display: block;
 }
 
-.started{
-    display: none !important;
+.started {
+  display: none !important;
 }
 
 .top {
-    margin: 0 0 5px 65px !important;
+  margin: 0 0 5px 65px !important;
 }
 
 .control {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .controlbuttom {
-    display: flex;
+  display: flex;
 }
 
 .controlbutton,
 .controlbuttonbuttom {
-    min-width: 55px !important;
+  min-width: 55px !important;
 }
 
 .controlbuttonbuttom {
-    margin-top: 0px !important;
-    margin-left: 5px;
+  margin-top: 0px !important;
+  margin-left: 5px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
+.one-player {
+  color: #4878de;
+}
+
+.two-player {
+  color: #fdc52e;
+}
 
 @media (max-width: 800px) {
-    .top {
-        margin-left: 0px;
-    }
+  .top {
+    margin-left: 0px;
+  }
 }

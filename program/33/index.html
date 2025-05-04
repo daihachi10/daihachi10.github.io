@@ -1,97 +1,116 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>PROGRAM | daihachi official website</title>
+    <meta
+      name="description"
+      content="daihachiのプログラムがプレイができるサイトです。"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    <script>
+      let isUseColorChange = false;
+    </script>
+    <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet" />
+    <link href="../../css/details.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link href="../../css/loading.css" rel="stylesheet" />
+    <script src="../../js/loading.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../common/script.js"></script>
+    <script src="/../../common/program.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>PROGRAM | daihachi official website</title>
-  <meta name="description" content="daihachiのプログラムがプレイができるサイトです。" />
-  <meta name="viewport" content="width=device-width" />
-  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
-  <script>
-    let isUseColorChange = false;
-  </script>
-  <script src="../.https://daihachi10.github.io/js/toggle-menu.js"></script>
-  <link href="../../css/common.css" rel="stylesheet" />
-  <link href="../../css/details.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="./css/style.css" />
-  <link href="../../css/loading.css" rel="stylesheet" />
-  <script src="../../js/loading.js"></script>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
-  </style>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="../common/script.js"></script>
-  <script src="/../../common/program.js"></script>
-  <meta name="theme-color" content="#1DB31D" />
-</head>
+  <body>
+    <div id="loading"></div>
 
-<body>
-  <div id="loading"></div>
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header"></header>
+    <!-- headerここまで -->
 
-  <div class="progress"></div>
-  <!-- headerここから -->
-  <header class="header"></header>
-  <!-- headerここまで -->
-
-  <!-- mainここから -->
-  <main class="main">
-    <div class="title">
-      <h1>SnakeGame</h1>
-      <p>ヘビゲーム</p>
-    </div>
-    <div class="shop-contents">
-      <div class="shop-item">
-        <h2>SnakeGame</h2>
-        <div class="item-area">
-          <div id="p5-canvas-container" style="
-            width: 1000px;
-            text-align: center;
-            padding-top: 200px;">
-            <p>非公開に設定されています。</p>
-            <a href="../../program.html" class="link-text">プログラム一覧に戻る</a>
-          </div>
-          <div class="about-item">
-            <div id="control" class="control hidden">
-              <a onclick="topButton()" class="controlbutton top">↑</a>
-              <div class="controlbuttom">
-                <a onclick="leftButton()" class="controlbuttonbuttom">←</a>
-                <a onclick="bottomButton()" class="controlbuttonbuttom">↓</a>
-                <a onclick="rightButton()" class="controlbuttonbuttom">→</a>
-              </div>
-            </div>
-            <p id="item-text" class="item-text">
-              ヘビゲームの再現をしました。りんごを食べると体が伸び、自分の身体に触れるとゲームオーバーです。
-            </p>
-            <p id="fps"></p>
-            <p id="1Pscore" class="score"></p>
-            <p id="2Pscore" class="score"></p>
-
-            <a onclick="start()" id="startbutton">1Playerスタート</a>
-            <a onclick="start();is2Players = true" id="2pstartbutton">2Playersスタート</a>
-            <a href="" id="GameOver">リスタート</a>
-            <a href="https://g.co/kgs/" target="blank">Googleヘビゲーム</a>
-            <p class="item-text"></p>
-            <a href="https://github.com/daihachi10/daihachi10.github.io/blob/main/program/33/js/game.js"
-              target="_blank">VIEW CODE</a>
-          </div>
-        </div>
-        <div class="item-group recommended">
-          <h2>RECOMMENDED</h2>
-          <ul class="item-list"></ul>
-        </div>
+    <!-- mainここから -->
+    <main class="main">
+      <div class="title">
+        <h1>SnakeGame</h1>
+        <p>ヘビゲーム</p>
       </div>
-      <aside id="sidebar" class="shop-menu"></aside>
-    </div>
-  </main>
-  <!-- mainここまで -->
+      <div class="shop-contents">
+        <div class="shop-item">
+          <h2>SnakeGame</h2>
+          <div class="item-area">
+            <div
+              id="p5-canvas-container"
+              style="width: 1000px; text-align: center; padding-top: 200px"
+            >
+              <p>非公開に設定されています。</p>
+              <a href="../../program.html" class="link-text"
+                >プログラム一覧に戻る</a
+              >
+            </div>
+            <!--p5-canvas-container-->
+            <div class="about-item">
+              <div id="control" class="control hidden">
+                <a onclick="topButton()" class="controlbutton top">↑</a>
+                <div class="controlbuttom">
+                  <a onclick="leftButton()" class="controlbuttonbuttom">←</a>
+                  <a onclick="bottomButton()" class="controlbuttonbuttom">↓</a>
+                  <a onclick="rightButton()" class="controlbuttonbuttom">→</a>
+                </div>
+              </div>
+              <p id="item-text" class="item-text">
+                ヘビゲームの再現をしました。りんごを食べると体が伸び、自分の身体に触れるとゲームオーバーです。
+              </p>
+              <p id="fps"></p>
+              <p id="1Pscore" class="score one-player"></p>
+              <p id="2Pscore" class="score two-player"></p>
 
-  <!-- footerここから -->
-  <footer class="footer"></footer>
-  <!-- footerここまで -->
-  <!-- <script src="./js/game.js"></script> -->
-</body>
+              <a onclick="start()" id="startbutton">1Playerスタート</a>
+              <a onclick="start();is2Players = true" id="2pstartbutton"
+                >2Playersスタート</a
+              >
+              <a href="" id="GameOver">リスタート</a>
+              <a href="https://g.co/kgs/" target="blank">Googleヘビゲーム</a>
+              <p class="item-text"></p>
+              <a
+                href="https://github.com/daihachi10/daihachi10.github.io/blob/main/program/33/js/game.js"
+                target="_blank"
+                >VIEW CODE</a
+              >
+            </div>
+          </div>
+          <div class="item-group recommended">
+            <h2>RECOMMENDED</h2>
+            <ul class="item-list"></ul>
+          </div>
+        </div>
+        <aside id="sidebar" class="shop-menu"></aside>
+      </div>
+    </main>
+    <!-- mainここまで -->
 
+    <!-- footerここから -->
+    <footer class="footer"></footer>
+    <!-- footerここまで -->
+    <!-- <script src="./js/game.js"></script> -->
+    <script>
+      function access() {
+        $(".programbox").each(function (index) {
+          // $(this).attr("id", "p5-canvas-container");
+        });
+      }
+    </script>
+  </body>
 </html>

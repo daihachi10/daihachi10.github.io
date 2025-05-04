@@ -55,37 +55,37 @@ function keyChange() {
     '"ハードドロップ"に割り当てるキーを設定してください 6/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
   );
 
-  if (inUpKey !== null) {
+  if (inUpKey !== "") {
     upKey = inUpKey;
   } else {
     upKey = "ArrowUp";
   }
 
-  if (inDownKey !== null) {
+  if (inDownKey !== "") {
     downKey = inDownKey;
   } else {
     downKey = "ArrowDown";
   }
 
-  if (inLeftKey !== null) {
+  if (inLeftKey !== "") {
     leftKey = inLeftKey;
   } else {
     leftKey = "ArrowLeft";
   }
 
-  if (inRightKey !== null) {
+  if (inRightKey !== "") {
     rightKey = inRightKey;
   } else {
     rightKey = "ArrowRight";
   }
 
-  if (inHoldKey !== null) {
+  if (inHoldKey !== "") {
     holdKey = inHoldKey;
   } else {
     holdKey = "c";
   }
 
-  if (inHardDropKey !== null) {
+  if (inHardDropKey !== "") {
     hardDropKey = inHardDropKey;
   } else {
     hardDropKey = " ";

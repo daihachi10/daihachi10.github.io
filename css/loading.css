@@ -14,7 +14,7 @@
   z-index: 1000;
 }
 
-.spinner {
+/* .spinner {
   width: 50px;
   height: 50px;
   border: 5px solid #ccc;
@@ -31,14 +31,15 @@
   100% {
     transform: rotate(360deg);
   }
-}
+} */
 /* 読み込み完了後のコンテンツ表示 */
 #content {
   padding: 20px;
   text-align: center;
 }
 
-.loading-overlay, .loading-logo {
+.loading-overlay,
+.loading-logo {
   position: fixed;
   /* 常に画面に表示されるように */
   top: 0;
@@ -93,7 +94,8 @@
 }
 
 @keyframes growShrink {
-  0%, 100% {
+  0%,
+  100% {
     transform: scaleY(1);
   }
   50% {
@@ -101,7 +103,8 @@
   }
 }
 @keyframes blink {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -111,7 +114,7 @@
 .loader-top {
   height: 8px;
   width: 100vw;
-  --c:no-repeat linear-gradient(var(--theme-color) 0 0);
+  --c: no-repeat linear-gradient(var(--theme-color) 0 0);
   background: var(--c), var(--c), rgba(29, 179, 29, 0.24);
   background-size: 60% 100%;
   animation: l16 3s infinite;
@@ -129,35 +132,83 @@
   }
 }
 /* HTML: <div class="loader"></div> */
-.loader {
+/* .loader {
   width: 50px;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 8px solid var(--theme-color);
   animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
-}
+} */
 
 @keyframes l20-1 {
   0% {
     clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
   }
   12.5% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+    clip-path: polygon(
+      50% 50%,
+      0 0,
+      50% 0%,
+      100% 0%,
+      100% 0%,
+      100% 0%,
+      100% 0%
+    );
   }
   25% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+    clip-path: polygon(
+      50% 50%,
+      0 0,
+      50% 0%,
+      100% 0%,
+      100% 100%,
+      100% 100%,
+      100% 100%
+    );
   }
   50% {
-    clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+    clip-path: polygon(
+      50% 50%,
+      0 0,
+      50% 0%,
+      100% 0%,
+      100% 100%,
+      50% 100%,
+      0% 100%
+    );
   }
   62.5% {
-    clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+    clip-path: polygon(
+      50% 50%,
+      100% 0,
+      100% 0%,
+      100% 0%,
+      100% 100%,
+      50% 100%,
+      0% 100%
+    );
   }
   75% {
-    clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+    clip-path: polygon(
+      50% 50%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      50% 100%,
+      0% 100%
+    );
   }
   100% {
-    clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+    clip-path: polygon(
+      50% 50%,
+      50% 100%,
+      50% 100%,
+      50% 100%,
+      50% 100%,
+      50% 100%,
+      0% 100%
+    );
   }
 }
 @keyframes l20-2 {

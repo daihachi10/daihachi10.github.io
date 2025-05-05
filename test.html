@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .loader-container {
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 20px;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0;
+      }
+
+      .progress {
+        width: 0%;
+        height: 100%;
+        background-color: #4caf50;
+        transition: width 0.3s ease;
+      }
+
+      .status-text {
+        color: #666;
+        font-size: 14px;
+        margin: 5px 0;
+        min-height: 20px;
+      }
+    </style>
+
+    <!-- テスト用CSS -->
+    <!-- <link rel="stylesheet" href="https://example.com/dummy.css"> -->
+  </head>
+  <body>
+    <div class="loader-container">
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <div id="percent">0%</div>
+      <div id="status" class="status-text">リソースを検出中...</div>
+    </div>
+
+    <!-- テスト用画像 -->
+    <img
+      src="https://daihachi10.github.io/images/program-img/img-item01.webp"
+    />
+    <img
+      src="https://daihachi10.github.io/images/program-img/img-item02.webp"
+    />
+    <img
+      src="https://daihachi10.github.io/images/program-img/img-item03.webp"
+    />
+    <img
+      src="https://daihachi10.github.io/images/program-img/img-item04.webp"
+    />
+    <img
+      src="https://daihachi10.github.io/images/program-img/img-item05.webp"
+    />
+
+    <script>
+      (function () {
+        const resources = [];
+        let loadedCount = 0;
+        let totalResources = 0;
+
+        // リソース検出関数
+        function detectResources() {
+          // 画像の検出
+          document.querySelectorAll("img").forEach((img) => {
+            // 既に読み込み完了している画像も追跡対象に含める
+            resources.push({
+              element: img,
+              type: "画像",
+              src: img.src,
+              loaded: img.complete,
+            });
+
+            // 既に読み込み済みの場合はカウントを増やす
+            if (img.complete) {
+              loadedCount++;
+            }
+          });
+
+          // CSSの検出
+          document
+            .querySelectorAll('link[rel="stylesheet"]')
+            .forEach((link) => {
+              resources.push({
+                element: link,
+                type: "CSS",
+                src: link.href,
+                loaded: false, // CSSのロード状態の初期値
+              });
+            });
+
+          // スクリプトの検出
+          document.querySelectorAll("script[src]").forEach((script) => {
+            resources.push({
+              element: script,
+              type: "スクリプト",
+              src: script.src,
+              loaded: script.complete || script.readyState === "complete",
+            });
+
+            // 既に読み込み済みの場合はカウントを増やす
+            if (script.complete || script.readyState === "complete") {
+              loadedCount++;
+            }
+          });
+
+          totalResources = resources.length;
+          if (totalResources === 0) {
+            updateProgress(100, "すべてのリソースが読み込み済み");
+            return;
+          }
+
+          // 進捗の初期更新
+          updateProgress(
+            Math.round((loadedCount / totalResources) * 100),
+            `検出されたリソース: ${totalResources}件、既に読み込み済み: ${loadedCount}件`
+          );
+
+          // 未読み込みのリソースがあれば監視を開始
+          if (loadedCount < totalResources) {
+            monitorResources();
+          } else {
+            // すべてのリソースが既に読み込み済みの場合
+            updateProgress(100, "すべてのリソースの読み込みが完了しました");
+          }
+        }
+
+        // リソース監視関数
+        function monitorResources() {
+          resources.forEach((res) => {
+            // 既に読み込み済みのリソースはスキップ
+            if (res.loaded) return;
+
+            const handleLoad = () => {
+              if (!res.loaded) {
+                // 重複カウント防止
+                loadedCount++;
+                res.loaded = true;
+                updateProgress(
+                  Math.round((loadedCount / totalResources) * 100),
+                  `${res.type}を読み込み完了: ${res.src.split("/").pop()}`
+                );
+              }
+              res.element.removeEventListener("load", handleLoad);
+              res.element.removeEventListener("error", handleError);
+            };
+
+            const handleError = () => {
+              if (!res.loaded) {
+                // 重複カウント防止
+                loadedCount++;
+                res.loaded = true;
+                updateProgress(
+                  Math.round((loadedCount / totalResources) * 100),
+                  `${res.type}の読み込みエラー: ${res.src.split("/").pop()}`
+                );
+              }
+              res.element.removeEventListener("load", handleLoad);
+              res.element.removeEventListener("error", handleError);
+            };
+
+            res.element.addEventListener("load", handleLoad);
+            res.element.addEventListener("error", handleError);
+          });
+        }
+
+        // 進捗更新関数
+        function updateProgress(percent, message) {
+          const progressBar = document.getElementById("progress");
+          const percentText = document.getElementById("percent");
+          const statusText = document.getElementById("status");
+
+          progressBar.style.width = percent + "%";
+          percentText.textContent = percent + "%";
+
+          if (message) {
+            statusText.textContent = message;
+          }
+
+          if (percent === 100) {
+            statusText.textContent = "すべてのリソースの読み込みが完了しました";
+          }
+        }
+
+        // DOM読み込み後に実行
+        document.addEventListener("DOMContentLoaded", detectResources);
+      })();
+    </script>
+  </body>
+</html>

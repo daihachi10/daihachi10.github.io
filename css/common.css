@@ -81,7 +81,7 @@ main {
 .header-inner li a {
   overflow: hidden; /* 1つ目にシャドウを隠す */
   color: transparent; /* テキスト本体は透明にする */
-  font-size: 60px;
+  /* font-size: 60px; */
   /*
    影の設定
    1つ目：Y方向の位置にマイナスに設定してテキスト本体の上に配置、ぼかしなし

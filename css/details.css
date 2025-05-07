@@ -147,18 +147,11 @@ ul li {
   font-weight: bold;
   margin-top: 20px;
 }
-/* .about-item a, .about-item .start, .about-item .settings, .about-item .gui {
+.about-item a, .about-item .start, .about-item .settings, .about-item .gui {
   display: inline-block;
-  min-width: 180px;
-  line-height: 48px;
-  border-radius: 24px;
-  font-family: "Montserrat", "Noto Sans JP", sans-serif;
-  font-size: 14px;
   text-align: center;
   margin-top: 35px;
-  border: none;
-  outline: none;
-} */
+}
 
 .open {
   background-color: #ededed;

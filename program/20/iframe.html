@@ -1,105 +1,130 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tetris</title>
-    <link rel="stylesheet" href="../../css/defolt.css" />
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: transparent;
-        margin: 0;
-      }
-      canvas {
-        border: 1px solid #fff;
-        margin-bottom: 10px;
-      }
-      #controls {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-      button {
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        border: none;
-        background-color: #eee;
-        border-radius: 4px;
-      }
-      /* STARTボタン */
-      .startbutton,
-      .keychangebutton,
-      .keychangeresetbutton {
-        position: absolute;
-        top: 200px;
-        background-color: var(--sub-color);
-        border-radius: 25px;
-        color: #000;
-      }
-      .startbutton {
-        top: 200px;
-        width: 200px;
-        height: 50px;
-      }
-      .keychangebutton {
-        top: 300px;
-        width: 150px;
-        height: 50px;
-      }
 
-      .keychangeresetbutton {
-        top: 370px;
-        width: 150px;
-        height: 50px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tetris</title>
+  <link rel="stylesheet" href="../../css/defolt.css" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: transparent;
+      margin: 0;
+    }
 
-      .started {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- ゲームキャンバス -->
-    <canvas id="tetris" width="240" height="400"></canvas>
+    canvas {
+      border: 1px solid #fff;
+      margin-bottom: 10px;
+    }
 
-    <!-- STARTボタン -->
-    <button class="startbutton" onclick="gameStart()">START</button>
-    <button class="keychangebutton" onclick="keyChange()">
-      キー配置を変更
-    </button>
-    <button class="keychangeresetbutton" onclick="keyChangeReset()">
-      キー配置をリセット
-    </button>
+    #controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-    <!-- スクリプト読み込み -->
-    <script src="script.js"></script>
-    <script>
-      // キー操作で意図しないスクロールを防止
-      window.addEventListener(
-        "keydown",
-        function (event) {
-          const code = event.keyCode;
-          if ([32, 37, 38, 39, 40].includes(code)) {
-            event.preventDefault();
-          }
-        },
-        { passive: false }
-      );
+    button {
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      border: none;
+      background-color: #eee;
+      border-radius: 4px;
+    }
 
-      // モバイル用ホールドボタン
-      document
-        .getElementById("holdButton")
-        .addEventListener("touchstart", function (e) {
-          e.preventDefault();
-          holdCurrentPiece(); // script.js 側の関数
-        });
-    </script>
-  </body>
+    /* STARTボタン */
+    .startbutton,
+    .keychangebutton,
+    .keychangeresetbutton {
+      position: absolute;
+      top: 200px;
+      background-color: var(--sub-color);
+      border-radius: 25px;
+      color: #000;
+
+
+
+      /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif; */
+      font-size: 14px;
+      /* animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
+      border: 2px solid var(--sub-color);
+      transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+    }
+
+    .startbutton:hover,
+    .keychangebutton:hover,
+    .keychangeresetbutton:hover {
+      background: var(--background-color);
+      color: var(--text-color);
+      border-radius: 0px;
+    }
+
+    .startbutton {
+      top: 200px;
+      width: 200px;
+      height: 50px;
+    }
+
+    .keychangebutton {
+      top: 300px;
+      width: 150px;
+      height: 50px;
+    }
+
+    .keychangeresetbutton {
+      top: 370px;
+      width: 150px;
+      height: 50px;
+    }
+
+    .started {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ゲームキャンバス -->
+  <canvas id="tetris" width="240" height="400"></canvas>
+
+  <!-- STARTボタン -->
+  <button class="startbutton" onclick="gameStart()">START</button>
+  <button class="keychangebutton" onclick="keyChange()">
+    キー配置を変更
+  </button>
+  <button class="keychangeresetbutton" onclick="keyChangeReset()">
+    キー配置をリセット
+  </button>
+
+  <!-- スクリプト読み込み -->
+  <script src="script.js"></script>
+  <script>
+    // キー操作で意図しないスクロールを防止
+    window.addEventListener(
+      "keydown",
+      function (event) {
+        const code = event.keyCode;
+        if ([32, 37, 38, 39, 40].includes(code)) {
+          event.preventDefault();
+        }
+      },
+      { passive: false }
+    );
+
+    // モバイル用ホールドボタン
+    document
+      .getElementById("holdButton")
+      .addEventListener("touchstart", function (e) {
+        e.preventDefault();
+        holdCurrentPiece(); // script.js 側の関数
+      });
+  </script>
+</body>
+
 </html>

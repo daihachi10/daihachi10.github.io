@@ -122,12 +122,12 @@ body {
 }
 
 #adoption {
-  background-color: var(--sub-color);
-  border: none;
+  /* background-color: var(--sub-color); */
+  /* border: none; */
   padding: 5px 10px 5px 10px;
   margin-top: 10px;
-  border-radius: 10px;
-  width: 60px;
+  /* border-radius: 10px;
+  width: 60px; */
 }
 
 .check {

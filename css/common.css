@@ -311,6 +311,7 @@ img {
   /* animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
   background: var(--background-color);
   color: var(--text-color);
+  border-radius: 0px;
 }
 
 /* .link-button:hover {
@@ -410,9 +411,9 @@ img {
     cursor: pointer;
   }
 
-  .main {
+  /* .main {
     padding-top: 50px;
-  }
+  } */
 
   .footer-logo {
     font-size: 60px;

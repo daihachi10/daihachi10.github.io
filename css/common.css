@@ -64,7 +64,7 @@ main {
 
 .header-inner li a:after {
   background-color: rgba(255, 213, 41, 0.76);
-  margin-bottom: -5px;
+  /* margin-bottom: -5px; */
   z-index: -1;
 }
 

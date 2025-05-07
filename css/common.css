@@ -286,7 +286,7 @@ img {
 
 
 .link-button {
-  /* background-color: #ff5283; */
+  background-color: var(--sub-color);
   display: inline-block;
   min-width: 180px;
   line-height: 48px;
@@ -295,7 +295,9 @@ img {
   font-size: 14px;
   /* animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
   border: 2px solid var(--sub-color);
+  transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
 }
+
 .link-button:hover {
   /* animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
   background: #fff;

@@ -79,7 +79,8 @@ main {
 } */
 
 
-.header-inner li a:hover {
+.header-inner li a:hover,
+.site-menu li a:hover {
   animation: text-blur 0.5s;
 }
 

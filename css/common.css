@@ -284,6 +284,45 @@ img {
   text-decoration: underline;
 }
 
+
+.link-button {
+  /* background-color: #ff5283; */
+  display: inline-block;
+  min-width: 180px;
+  line-height: 48px;
+  border-radius: 24px;
+  /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif; */
+  font-size: 14px;
+  /* animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
+  border: 2px solid var(--sub-color);
+}
+.link-button:hover {
+  /* animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
+  background: #fff;
+  color: var(--text-color);
+}
+
+/* .link-button:hover {
+ * *    background-color: #bf1948;
+ * *} */
+@keyframes hover {
+  0% {
+    background-color: var(--sub-hover-color);
+  }
+  100% {
+    background-color: var(--sub-color);
+  }
+}
+@keyframes nothover {
+  0% {
+    background-color: var(--sub-color);
+  }
+  100% {
+    background-color: var(--sub-hover-color);
+  }
+}
+
+
 @media (max-width: 800px) {
   .site-menu ul {
     display: block;

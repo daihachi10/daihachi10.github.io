@@ -88,9 +88,12 @@ main {
   0% {
     filter: blur(0);
   }
+
   50% {
-    filter: blur(4px); /* ぼかしの強さ */
+    filter: blur(4px);
+    /* ぼかしの強さ */
   }
+
   100% {
     filter: blur(0);
   }
@@ -285,7 +288,10 @@ img {
 }
 
 
-.link-button {
+.link-button,
+.about-item a,
+.about-item .start,
+.about-item .settings {
   background-color: var(--sub-color);
   display: inline-block;
   min-width: 180px;
@@ -298,9 +304,12 @@ img {
   transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
-.link-button:hover {
+.link-button:hover,
+.about-item a:hover,
+.about-item .start:hover,
+.about-item .settings:hover {
   /* animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
-  background: #fff;
+  background: var(--background-color);
   color: var(--text-color);
 }
 
@@ -311,14 +320,17 @@ img {
   0% {
     background-color: var(--sub-hover-color);
   }
+
   100% {
     background-color: var(--sub-color);
   }
 }
+
 @keyframes nothover {
   0% {
     background-color: var(--sub-color);
   }
+
   100% {
     background-color: var(--sub-hover-color);
   }

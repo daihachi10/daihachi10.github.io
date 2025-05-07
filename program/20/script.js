@@ -4,6 +4,7 @@ let rightKey = "ArrowRight";
 let upKey = "ArrowUp";
 let holdKey = "c";
 let hardDropKey = " ";
+let gyakukaiten = "z";
 
 let inDownKey = "ArrowDown";
 let inLeftKey = "ArrowLeft";
@@ -11,6 +12,7 @@ let inRightKey = "ArrowRight";
 let inUpKey = "ArrowUp";
 let inHoldKey = "C";
 let inHardDropKey = " ";
+let inGyakukaiten = "z"
 let isSaving = false;
 
 document.addEventListener("dblclick", (e) => e.preventDefault(), {
@@ -33,11 +35,15 @@ if (localStorage.getItem("isSaving")) {
   upKey = keySettings[3];
   holdKey = keySettings[4];
   hardDropKey = keySettings[5];
+  gyakukaiten = keySettings[6];
 }
 
 function keyChange() {
   inUpKey = prompt(
     '"回転"に割り当てるキーを設定してください 1/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま'
+  );
+  inGyakukaiten = prompt(
+    '"逆回転"に割り当てるキーを設定してください 1/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま'
   );
   inDownKey = prompt(
     '"↓"に割り当てるキーを設定してください 2/6: \n キー:a-z,　矢印キー:例ArrowRight,　デフォルト空欄のまま,'
@@ -59,6 +65,12 @@ function keyChange() {
     upKey = inUpKey;
   } else {
     upKey = "ArrowUp";
+  }
+
+  if (inGyakukaiten !== "" || inGyakukaiten !== null) {
+    gyakukaiten = inGyakukaiten;
+  } else {
+    gyakukaiten = "z";
   }
 
   if (inDownKey !== "" || inDownKey !== null) {
@@ -100,6 +112,7 @@ function keyChange() {
       upKey,
       holdKey,
       hardDropKey,
+      gyakukaiten
     ];
     localStorage.setItem("keySettings", JSON.stringify(keySettings));
     localStorage.setItem("isSaving", "true");
@@ -110,24 +123,27 @@ function keyChange() {
   }
 
   alert(
-    '"↑"に割り当てるキー: ' +
-      upKey +
-      "\n" +
-      '"↓"に割り当てるキー: ' +
-      downKey +
-      "\n" +
-      '"←"に割り当てるキー: ' +
-      leftKey +
-      "\n" +
-      '"→"に割り当てるキー: ' +
-      rightKey +
-      "\n" +
-      '"ホールド"に割り当てるキー: ' +
-      holdKey +
-      "\n" +
-      '"ハードドロップ"に割り当てるキー: ' +
-      hardDropKey +
-      "　　空欄:スペースキー"
+    '"回転"に割り当てるキー: ' +
+    upKey +
+    "\n" +
+    '"逆回転"に割り当てるキー: ' +
+    gyakukaiten +
+    "\n" +
+    '"↓"に割り当てるキー: ' +
+    downKey +
+    "\n" +
+    '"←"に割り当てるキー: ' +
+    leftKey +
+    "\n" +
+    '"→"に割り当てるキー: ' +
+    rightKey +
+    "\n" +
+    '"ホールド"に割り当てるキー: ' +
+    holdKey +
+    "\n" +
+    '"ハードドロップ"に割り当てるキー: ' +
+    hardDropKey +
+    "　　空欄:スペースキー"
   );
 }
 
@@ -138,29 +154,33 @@ function keyChangeReset() {
   upKey = "ArrowUp";
   holdKey = "C";
   hardDropKey = " ";
+  gyakukaiten = "z";
   localStorage.setItem("isSaving", "false");
   localStorage.removeItem("keySettings");
 
   alert("キー設定を初期化しました");
   alert(
-    '"↑"に割り当てるキー: ' +
-      upKey +
-      "\n" +
-      '"↓"に割り当てるキー: ' +
-      downKey +
-      "\n" +
-      '"←"に割り当てるキー: ' +
-      leftKey +
-      "\n" +
-      '"→"に割り当てるキー: ' +
-      rightKey +
-      "\n" +
-      '"ホールド"に割り当てるキー: ' +
-      holdKey +
-      "\n" +
-      '"ハードドロップ"に割り当てるキー: ' +
-      hardDropKey +
-      "　　空欄:スペースキー"
+    '"回転"に割り当てるキー: ' +
+    upKey +
+    "\n" +
+    '"逆回転"に割り当てるキー: ' +
+    gyakukaiten +
+    "\n" +
+    '"↓"に割り当てるキー: ' +
+    downKey +
+    "\n" +
+    '"←"に割り当てるキー: ' +
+    leftKey +
+    "\n" +
+    '"→"に割り当てるキー: ' +
+    rightKey +
+    "\n" +
+    '"ホールド"に割り当てるキー: ' +
+    holdKey +
+    "\n" +
+    '"ハードドロップ"に割り当てるキー: ' +
+    hardDropKey +
+    "　　空欄:スペースキー"
   );
 }
 
@@ -549,6 +569,8 @@ document.addEventListener("keydown", (event) => {
       playerDropInstant();
     } else if (event.key === upKey) {
       playerRotate(1);
+    } else if (event.key === gyakukaiten) {
+      playerRotate(-1);
     }
   }
 });

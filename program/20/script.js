@@ -199,18 +199,29 @@ document.body.appendChild(holdCanvas);
 const gameConfig = {
   blockSize: 20,
   speed: 1000,
-  backgroundColor: "#f8f8f8",
+  backgroundColor: "#fff",
   gridColor: "#787878",
   lineWidth: 0.005,
+  // colors: [
+  //   null,
+  //   "#dc2171",
+  //   "#ff708f",
+  //   "#ffb5cf",
+  //   "#a6c7ff",
+  //   "#7397e6",
+  //   "#3e69b3",
+  //   "#003f83",
+  // ],
+
   colors: [
     null,
-    "#dc2171",
-    "#ff708f",
-    "#ffb5cf",
-    "#a6c7ff",
-    "#7397e6",
-    "#3e69b3",
-    "#003f83",
+    "#7721d0",
+    "#f7d104",
+    "#f86b25",
+    "#3e84f7",
+    "#6acde4",
+    "#3cad69",
+    "#f2222b",
   ],
   dropInterval: 1000,
   restartButtonText: "Restart",
@@ -219,7 +230,7 @@ const gameConfig = {
 
 context.scale(gameConfig.blockSize, gameConfig.blockSize);
 
-const arena = createMatrix(12, 20);
+const arena = createMatrix(10, 20);
 
 const player = {
   pos: { x: 0, y: 0 },
@@ -255,15 +266,15 @@ function createPiece(type) {
     ];
   } else if (type === "L") {
     return [
-      [0, 3, 0],
-      [0, 3, 0],
-      [0, 3, 3],
+      [0, 0, 0],
+      [0, 0, 3],
+      [3, 3, 3],
     ];
   } else if (type === "J") {
     return [
-      [0, 4, 0],
-      [0, 4, 0],
-      [4, 4, 0],
+      [0, 0, 0],
+      [4, 0, 0],
+      [4, 4, 4],
     ];
   } else if (type === "I") {
     return [
@@ -306,7 +317,7 @@ function drawMatrix(matrix, offset, ctx = context, blockSize = 1) {
 function drawGrid() {
   context.strokeStyle = gameConfig.gridColor;
   context.lineWidth = gameConfig.lineWidth;
-  for (let x = 0; x < canvas.width / gameConfig.blockSize; x++) {
+  for (let x = 0; x < canvas.width / gameConfig.blockSize - 2; x++) {
     for (let y = 0; y < canvas.height / gameConfig.blockSize; y++) {
       context.strokeRect(x, y, 1, 1);
     }
@@ -530,7 +541,7 @@ function drawProjection() {
     projectionPos.y++;
   }
   projectionPos.y--;
-  context.fillStyle = "rgba(0, 0, 0, 0.3)";
+  context.fillStyle = "rgba(0, 0, 0, 0.5)";
   player.matrix.forEach((row, y) => {
     row.forEach((value, x) => {
       if (value !== 0) {

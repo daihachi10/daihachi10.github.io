@@ -12,7 +12,7 @@ let inRightKey = "ArrowRight";
 let inUpKey = "ArrowUp";
 let inHoldKey = "C";
 let inHardDropKey = " ";
-let inGyakukaiten = "z"
+let inGyakukaiten = "z";
 let isSaving = false;
 
 document.addEventListener("dblclick", (e) => e.preventDefault(), {
@@ -112,7 +112,7 @@ function keyChange() {
       upKey,
       holdKey,
       hardDropKey,
-      gyakukaiten
+      gyakukaiten,
     ];
     localStorage.setItem("keySettings", JSON.stringify(keySettings));
     localStorage.setItem("isSaving", "true");
@@ -124,26 +124,26 @@ function keyChange() {
 
   alert(
     '"回転"に割り当てるキー: ' +
-    upKey +
-    "\n" +
-    '"逆回転"に割り当てるキー: ' +
-    gyakukaiten +
-    "\n" +
-    '"↓"に割り当てるキー: ' +
-    downKey +
-    "\n" +
-    '"←"に割り当てるキー: ' +
-    leftKey +
-    "\n" +
-    '"→"に割り当てるキー: ' +
-    rightKey +
-    "\n" +
-    '"ホールド"に割り当てるキー: ' +
-    holdKey +
-    "\n" +
-    '"ハードドロップ"に割り当てるキー: ' +
-    hardDropKey +
-    "　　空欄:スペースキー"
+      upKey +
+      "\n" +
+      '"逆回転"に割り当てるキー: ' +
+      gyakukaiten +
+      "\n" +
+      '"↓"に割り当てるキー: ' +
+      downKey +
+      "\n" +
+      '"←"に割り当てるキー: ' +
+      leftKey +
+      "\n" +
+      '"→"に割り当てるキー: ' +
+      rightKey +
+      "\n" +
+      '"ホールド"に割り当てるキー: ' +
+      holdKey +
+      "\n" +
+      '"ハードドロップ"に割り当てるキー: ' +
+      hardDropKey +
+      "　　空欄:スペースキー"
   );
 }
 
@@ -161,30 +161,30 @@ function keyChangeReset() {
   alert("キー設定を初期化しました");
   alert(
     '"回転"に割り当てるキー: ' +
-    upKey +
-    "\n" +
-    '"逆回転"に割り当てるキー: ' +
-    gyakukaiten +
-    "\n" +
-    '"↓"に割り当てるキー: ' +
-    downKey +
-    "\n" +
-    '"←"に割り当てるキー: ' +
-    leftKey +
-    "\n" +
-    '"→"に割り当てるキー: ' +
-    rightKey +
-    "\n" +
-    '"ホールド"に割り当てるキー: ' +
-    holdKey +
-    "\n" +
-    '"ハードドロップ"に割り当てるキー: ' +
-    hardDropKey +
-    "　　空欄:スペースキー"
+      upKey +
+      "\n" +
+      '"逆回転"に割り当てるキー: ' +
+      gyakukaiten +
+      "\n" +
+      '"↓"に割り当てるキー: ' +
+      downKey +
+      "\n" +
+      '"←"に割り当てるキー: ' +
+      leftKey +
+      "\n" +
+      '"→"に割り当てるキー: ' +
+      rightKey +
+      "\n" +
+      '"ホールド"に割り当てるキー: ' +
+      holdKey +
+      "\n" +
+      '"ハードドロップ"に割り当てるキー: ' +
+      hardDropKey +
+      "　　空欄:スペースキー"
   );
 }
 
-const canvas = document.getElementById("tetris");
+const canvas = document.getElementById("tetr");
 const context = canvas.getContext("2d");
 const holdCanvas = document.createElement("canvas"); // ホールド用キャンバス
 const holdContext = holdCanvas.getContext("2d");

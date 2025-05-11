@@ -1,40 +1,37 @@
 /* CSS変数 */
 :root {
-    --sub-color: #ff5283;
-    --sub-hover-color: #bf1948;
-    --theme-color: #3a5e98;
-    --loading-text-color: #000;
+  --sub-color: #ff5283;
+  --sub-hover-color: #bf1948;
+  --theme-color: #3a5e98;
+  --loading-text-color: #000;
 
-    --transition-duration: 1s;
+  --transition-duration: 1s;
 
-    --bg-color-light-header: rgba(255, 255, 255, 1);
-    --bg-color-dark-header: rgba(32, 33, 36, 1);
+  --bg-color-light-header: rgba(255, 255, 255, 1);
+  --bg-color-dark-header: rgba(32, 33, 36, 1);
 
+  --bg-color-light-animation-header: rgba(255, 255, 255, 0.7);
+  --bg-color-dark-animation-header: rgba(0, 0, 0, 0.7);
 
-    --bg-color-light-animation-header: rgba(255, 255, 255, 0.7);
-    --bg-color-dark-animation-header: rgba(0, 0, 0, 0.7);
+  --header-text-color-dark: #fff;
 
-    --header-text-color-dark: #fff;
+  --bg-color-light-loading: #fafafa;
+  --bg-color-dark-loading: #2f3133;
 
-    --bg-color-light-loading: #fafafa;
-    --bg-color-dark-loading: #2f3133;
+  --bg-color-light-scrollbar: #f0f0f0;
+  --bg-color-dark-scrollbar: #7a7a7a;
 
-    --bg-color-light-scrollbar: #f0f0f0;
-    --bg-color-dark-scrollbar: #7a7a7a;
+  --text-color-light: #000000;
+  --text-color-dark: #ffffff;
 
-    --text-color-light: #000000;
-    --text-color-dark: #ffffff;
+  --bg-color-light-leadbox: #fafafa;
+  --bg-color-dark-leadbox: #202124;
 
-    --bg-color-light-leadbox: #fafafa;
-    --bg-color-dark-leadbox: #202124;
+  --bg-color-light-recommended: #ebebeb;
+  --bg-color-dark-recommended: #202124;
 
-    --bg-color-light-recommended: #ebebeb;
-    --bg-color-dark-recommended: #202124;
-
-    --bg-color-light-toumeibox: rgba(255, 255, 255, 0.9);
-    --bg-color-dark-toumeibox: rgba(32, 33, 36, 0.5);
-
-
+  --bg-color-light-toumeibox: rgba(255, 255, 255, 0.9);
+  --bg-color-dark-toumeibox: rgba(32, 33, 36, 0.5);
 }
 
 /*defolt dark color #1a1a1a*/
@@ -48,50 +45,51 @@
 
 */
 
-.light-item, body.dark .dark-item {
-    display: block;
+.light-item,
+body.dark .dark-item {
+  display: block;
 }
 
-.dark-item, body.dark .light-item {
-    display: none;
+.dark-item,
+body.dark .light-item {
+  display: none;
 }
-
 
 /* 文字選択したときの色 */
 ::selection {
-    color: #fff;
-    background-color: var(--sub-color);
+  color: #fff;
+  background-color: var(--sub-color);
 }
 
 /* リセット */
 *,
 ::before,
 ::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 /* ベース要素 */
 body {
-    /*cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;*/
-    /*cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.png'), auto;*/
-    cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.png'), auto;
-    /*cursor: none;*/
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
-    font-size: 16px;
-    line-height: 1;
+  /*cursor: url('https://daihachi10.github.io/program/16/images/cursor.svg') 16 16, auto;*/
+  /*cursor: url('https://daihachi10.github.io/program/16/images/normal-cursor.png'), auto;*/
+  cursor: url("https://daihachi10.github.io/program/16/images/normal-cursor.png"),
+    auto;
+  /*cursor: none;*/
+  font-family: "Montserrat", "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  line-height: 1;
 
-
-    color: var(--text-color-light);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  color: var(--text-color-light);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 /* リアルな影 */
 .shadow {
-    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
@@ -99,333 +97,334 @@ body {
     100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
-
 body.dark {
-    color: var(--text-color-dark);
+  color: var(--text-color-dark);
 }
-
 
 /* スクロールバー全体のスタイル */
 ::-webkit-scrollbar {
-    width: 12px; /* 横スクロールバーの幅 */
-    height: 12px; /* 縦スクロールバーの高さ */
+  width: 12px; /* 横スクロールバーの幅 */
+  height: 12px; /* 縦スクロールバーの高さ */
 }
 
 /* スクロールバーのスライダー部分 */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--theme-color); /* スライダーの色 */
-    border-radius: 6px; /* 角丸の半径 */
-    border: 3px solid transparent; /* スライダー周りのスペース */
-    background-clip: content-box; /* スライダーの内側だけ色を適用 */
+  background-color: var(--theme-color); /* スライダーの色 */
+  border-radius: 6px; /* 角丸の半径 */
+  border: 3px solid transparent; /* スライダー周りのスペース */
+  background-clip: content-box; /* スライダーの内側だけ色を適用 */
 }
 
 /* スクロールバーの背景 */
 ::-webkit-scrollbar-track {
-    border-radius: 6px; /* 背景も角丸に */
-    background-color: var(--bg-color-light-scrollbar);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  border-radius: 6px; /* 背景も角丸に */
+  background-color: var(--bg-color-light-scrollbar);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 /* ダークモードのときのスクロールバー */
 body.dark ::-webkit-scrollbar-track {
-    background-color: var(--bg-color-dark-scrollbar);
+  background-color: var(--bg-color-dark-scrollbar);
 }
 
 /* aタグの色と下線を消す */
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto; /* リンクのカーソル */
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto; /* リンクのカーソル */
 }
 
 /* リストの点消す */
 ul,
 ol {
-    list-style: none;
+  list-style: none;
 }
 
 /* ヘッダー */
 header {
-    position: fixed;
-    z-index: 2000;
-    width: 100%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    user-select: none;
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  user-select: none;
 }
 
 #default-header {
-    background-color: var(--bg-color-light-header);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  background-color: var(--bg-color-light-header);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 /* ダークモードのときのヘッダー */
 body.dark #default-header {
-    background-color: var(--bg-color-dark-header);
+  background-color: var(--bg-color-dark-header);
 }
 
 #default-header {
-    transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 #default-header.hidden {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* スクロールするとでてくるヘッダー */
 #animated-header {
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
-    height: 50px;
-    background-color: var(--bg-color-light-animation-header);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+  height: 50px;
+  background-color: var(--bg-color-light-animation-header);
 }
 
 /* ダークモードのときのスクロールするとでてくるヘッダー */
 body.dark #animated-header {
-    background-color: var(--bg-color-dark-animation-header);
+  background-color: var(--bg-color-dark-animation-header);
 }
 
 #animated-header.visible {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* ヘッダーの中の文字 */
 .header-inner {
-    /*max-width: 1600px;*/
-    height: 110px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* color: #1571c2; */
-    /* color: #3b6930; */
-    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
-    color: var(--theme-color);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  /*max-width: 1600px;*/
+  height: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* color: #1571c2; */
+  /* color: #3b6930; */
+  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+  color: var(--theme-color);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark .header-inner {
-    color: var(--header-text-color-dark);
+  color: var(--header-text-color-dark);
 }
 
 #animation-header-inner {
-    /*max-width: 1600px;*/
-    height: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* color: #1571c2; */
-    /*color: var(--theme-color);*/
-    /* color: #3b6930; */
-    /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
+  /*max-width: 1600px;*/
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* color: #1571c2; */
+  /*color: var(--theme-color);*/
+  /* color: #3b6930; */
+  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .toggle-menu-button {
-    display: none;
+  display: none;
 }
 
 .header-logo {
-    font-size: 30px;
-    font-weight: bold;
-    display: block;
-    width: 200px;
-    animation: 0.2s forwards header-logo-nothovers;
-    /* color: #1571c2; */
-    /*color: var(--theme-color);*/
-    /* color: #3b6930; */
+  font-size: 30px;
+  font-weight: bold;
+  display: block;
+  width: 200px;
+  animation: 0.2s forwards header-logo-nothovers;
+  /* color: #1571c2; */
+  /*color: var(--theme-color);*/
+  /* color: #3b6930; */
 }
-
 
 .header-logo:hover {
-    color: #1571c2;
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+  color: #1571c2;
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto;
 }
-
 
 /* フッター */
 .footer {
-    color: #ffffff;
-    /*background-color: var(--theme-color);*/
-    padding-top: 30px;
-    padding-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--theme-color);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  color: #ffffff;
+  /*background-color: var(--theme-color);*/
+  padding-top: 30px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--theme-color);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 /* ダークモードのときのfooter */
 body.dark .footer {
-    background-color: var(--bg-color-dark-header);
+  background-color: var(--bg-color-dark-header);
 }
 
 /* デフォルトでotherboxを隠す */
 .otherbox {
-    display: none;
+  display: none;
 }
 
 /* otherbox表示 */
 .otherdisplay {
-    display: block;
-    z-index: 1000;
-    position: fixed;
-    right: 80px;
-    top: -5px;
-    width: 350px;
-    height: 500px;
-    border-radius: 5px;
-    background-color: var(--bg-color-light-header);
-    transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
+  display: block;
+  z-index: 1000;
+  position: fixed;
+  right: 80px;
+  top: -5px;
+  width: 350px;
+  height: 500px;
+  border-radius: 5px;
+  background-color: var(--bg-color-light-header);
+  transition: background-color var(--transition-duration),
+    fill var(--transition-duration), color var(--transition-duration);
 }
 
 body.dark .otherdisplay {
-    background-color: var(--bg-color-dark-header);
+  background-color: var(--bg-color-dark-header);
 }
 
 /*ヘッダーのotherの文字の右の矢印*/
 .othericon {
-    fill: var(--theme-color);
-    transition: background-color var(--transition-duration), fill var(--transition-duration), color var(--transition-duration);
+  fill: var(--theme-color);
+  transition: background-color var(--transition-duration),
+    fill var(--transition-duration), color var(--transition-duration);
 }
 
 body.dark .othericon {
-    fill: #fff;
+  fill: #fff;
 }
 
 .othernav {
-    text-align: center;
-    font-weight: bold;
+  text-align: center;
+  font-weight: bold;
 }
 
 .other li {
-    padding-top: 40px;
+  padding-top: 40px;
 
-    color: var(--theme-color);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  color: var(--theme-color);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark .other li {
-    color: var(--header-text-color-dark);
+  color: var(--header-text-color-dark);
 }
 
-
 .footer-logo {
-    font-size: 70px;
-    font-weight: bold;
-    display: block;
-    margin-top: 90px;
+  font-size: 70px;
+  font-weight: bold;
+  display: block;
+  margin-top: 90px;
 }
 
 .copyright {
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 90px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 90px;
 }
 
 .footer-logo:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto;
 }
 
 .reset:hover {
-    /* visibility: visible; */
-    opacity: 1;
-
+  /* visibility: visible; */
+  opacity: 1;
 }
 
 .reset p {
-    text-align: center;
+  text-align: center;
 }
 
 /*t.jsの中央の線を消す*/
 del {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .reset {
-    padding: 5px;
-    /* display: none; */
-    /* visibility: hidden; */
-    opacity: 0;
+  padding: 5px;
+  /* display: none; */
+  /* visibility: hidden; */
+  opacity: 0;
 }
 
 .header-inner a,
 .footer a {
-    display: inline-block;
-    position: relative;
-    overflow: hidden;
-    /* color: #fff; */
-    text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  /* color: #fff; */
+  text-decoration: none;
 }
 
 /* プログレスバー */
 #progress {
-    z-index: 8002;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0.1em;
-    background-color: var(--sub-color);
-    transform-origin: 0 50%;
-    animation: grow-progress auto linear;
-    animation-timeline: scroll();
+  z-index: 8002;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: var(--sub-color);
+  transform-origin: 0 50%;
+  animation: grow-progress auto linear;
+  animation-timeline: scroll();
 }
 
 @keyframes grow-progress {
-    0% {
-        transform: scaleX(0);
-    }
+  0% {
+    transform: scaleX(0);
+  }
 
-    100% {
-        transform: scaleX(1);
-    }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
-
 .site-menu ul {
-    display: flex;
+  display: flex;
 }
 
 .site-menu ul li {
-    margin-left: 20px;
-    margin-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .site-menu ul li a {
-    font-weight: bold;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    /* padding-left: 2px; */
-    /* margin-left: 10px; */
-    animation: notshadowhover 0.5s ease-in-out forwards;
-    border-radius: 50px;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* padding-left: 2px; */
+  /* margin-left: 10px; */
+  animation: notshadowhover 0.5s ease-in-out forwards;
+  border-radius: 50px;
 
-    padding-left: 6px;
-    padding-right: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .site-menu ul li a:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
-    /* animation: shadowhover 0.5s ease-in-out forwards; */
-
-
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto;
+  /* animation: shadowhover 0.5s ease-in-out forwards; */
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
-
 
 /*
 .footer-logo:hover {
@@ -454,255 +453,257 @@ img {
 
 /* スマホ・タブレット */
 @media (max-width: 1000px) {
-    .site-menu ul {
-        display: block;
-        text-align: center;
-    }
+  .site-menu ul {
+    display: block;
+    text-align: center;
+  }
 
-    .site-menu li {
-        margin-top: 20px;
-    }
+  .site-menu li {
+    margin-top: 20px;
+  }
 
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: #ffffff;
-        height: 50px;
-        z-index: 2000;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    }
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    height: 50px;
+    z-index: 2000;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
 
-    .header-inner li a:after {
-        background-color: #fff;
-    }
+  .header-inner li a:after {
+    background-color: #fff;
+  }
 
-    .header-inner {
-        padding-left: 20px;
-        padding-right: 20px;
-        height: 100%;
-        position: relative;
-    }
+  .header-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100%;
+    position: relative;
+  }
 
-    .header-logo {
-        font-size: 20px;
-        width: 100px;
-    }
+  .header-logo {
+    font-size: 20px;
+    width: 100px;
+  }
 
-    .header-site-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        color: #ffffff;
-        background-color: rgba(21, 113, 194, 0.9);
-        padding-top: 30px;
-        padding-bottom: 50px;
-        display: none;
-    }
+  .header-site-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    background-color: rgba(21, 113, 194, 0.9);
+    padding-top: 30px;
+    padding-bottom: 50px;
+    display: none;
+  }
 
-    .header-site-menu.is-show {
-        display: block;
-    }
+  .header-site-menu.is-show {
+    display: block;
+  }
 
-    .toggle-menu-button {
-        display: block;
-        width: 44px;
-        height: 34px;
-        background-image: url(https://daihachi10.github.io/program/16/images/icon-menu-light.svg);
-        background-size: 50%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-color: transparent;
-        border: none;
-        border-radius: 0;
-        outline: none;
-        cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
-    }
+  .toggle-menu-button {
+    display: block;
+    width: 44px;
+    height: 34px;
+    background-image: url(https://daihachi10.github.io/program/16/images/icon-menu-light.svg);
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+      auto;
+  }
 
-    body.dark .toggle-menu-button {
-        background-image: url(https://daihachi10.github.io/program/16/images/icon-menu-dark.svg);
-    }
+  body.dark .toggle-menu-button {
+    background-image: url(https://daihachi10.github.io/program/16/images/icon-menu-dark.svg);
+  }
 
-    .main {
-        padding-top: 50px;
-    }
+  .main {
+    padding-top: 50px;
+  }
 
-    .footer-logo {
-        font-size: 50px;
-        margin-top: 60px;
-    }
+  .footer-logo {
+    font-size: 50px;
+    margin-top: 60px;
+  }
 
-    .copyright {
-        margin-top: 50px;
-    }
+  .copyright {
+    margin-top: 50px;
+  }
 }
-
 
 /*画像*/
 .first-view {
-    height: calc(100vh - 110px + 120px);
-    /* + 120px*/
-    /* background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp); */
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    display: flex;
-    align-items: center;
+  height: calc(100vh - 110px + 120px);
+  /* + 120px*/
+  /* background-image: url(https://daihachi10.github.io/program/16/images/IMG_0023.webp); */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
 }
 
 @keyframes slide-animation-01 {
-    0% {
-        opacity: 1;
-        transform: scale(1.0);
-    }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-    30% {
-        opacity: 1;
-    }
+  30% {
+    opacity: 1;
+  }
 
-    40% {
-        opacity: 0;
-        transform: scale(1.15);
-    }
+  40% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
 
-    90% {
-        opacity: 0
-    }
+  90% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-        transform: scale(1.0);
-    }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes slide-animation-02 {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    30% {
-        opacity: 0;
-        transform: scale(1.1);
-    }
+  30% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
 
-    40% {
-        opacity: 1;
-    }
+  40% {
+    opacity: 1;
+  }
 
-    60% {
-        opacity: 1;
-    }
+  60% {
+    opacity: 1;
+  }
 
-    70% {
-        opacity: 0;
-        transform: scale(1.0);
-    }
+  70% {
+    opacity: 0;
+    transform: scale(1);
+  }
 
-    100% {
-        opacity: 0;
-    }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes slide-animation-03 {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    60% {
-        opacity: 0;
-        transform: scale(1.0);
-    }
+  60% {
+    opacity: 0;
+    transform: scale(1);
+  }
 
-    70% {
-        opacity: 1;
-    }
+  70% {
+    opacity: 1;
+  }
 
-    90% {
-        opacity: 1;
-    }
+  90% {
+    opacity: 1;
+  }
 
-    100% {
-        opacity: 0;
-        transform: scale(1.1);
-    }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
 }
 
 /* first-view-text box */
 .first-view-text {
-    width: 100%;
-    /*max-width: 1600px;*/
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 40px;
-    padding-bottom: 80px;
-    color: #fff;
-    font-weight: bold;
-    /*text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);*/
+  width: 100%;
+  /*max-width: 1600px;*/
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40px;
+  padding-bottom: 80px;
+  color: #fff;
+  font-weight: bold;
+  /*text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);*/
 }
 
 .first-view-text h1 {
-    font-size: 56px;
-    line-height: 72px;
+  font-size: 56px;
+  line-height: 72px;
 }
 
 .lead {
-    /*max-width: 1600px;*/
-    margin: 60px auto;
+  /*max-width: 1600px;*/
+  margin: 60px auto;
 }
 
 lead a {
-    color: #1571c2 !important;
+  color: #1571c2 !important;
 }
 
 .lead a:hover {
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto;
 }
 
 /* About */
 .leadbox {
-    /*background-color: #fafafa;*/
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: var(--bg-color-light-leadbox);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  /*background-color: #fafafa;*/
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: var(--bg-color-light-leadbox);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark .leadbox {
-    background-color: var(--bg-color-dark-leadbox);
+  background-color: var(--bg-color-dark-leadbox);
 }
 
 .lead p {
-    line-height: 2;
-    text-align: center;
+  line-height: 2;
+  text-align: center;
 }
 
 .lead h2 {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
-    padding-bottom: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 50px;
 }
 
 .link-button-area {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .link-button {
-    /* background-color: var(--sub-color); */
-    display: inline-block;
-    min-width: 180px;
-    line-height: 48px;
-    border-radius: 24px;
-    font-size: 14px;
-    /* animation: hover 0.7s ease forwards; */
-    animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  /* background-color: var(--sub-color); */
+  display: inline-block;
+  min-width: 180px;
+  line-height: 48px;
+  border-radius: 24px;
+  font-size: 14px;
+  /* animation: hover 0.7s ease forwards; */
+  animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
-    /* 影 */
-    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  /* 影 */
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
@@ -715,166 +716,160 @@ body.dark .leadbox {
 } */
 
 .link-button:hover {
-    /* animation: nothover 0.7s ease forwards; */
-    animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-
+  /* animation: nothover 0.7s ease forwards; */
+  animation: nothover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes hover {
-    0% {
-        background-color: var(--sub-hover-color);
+  0% {
+    background-color: var(--sub-hover-color);
+  }
 
-    }
-
-    100% {
-        background-color: var(--sub-color);
-    }
+  100% {
+    background-color: var(--sub-color);
+  }
 }
 
 @keyframes nothover {
-    0% {
+  0% {
+    background-color: var(--sub-color);
+  }
 
-        background-color: var(--sub-color);
-    }
-
-    100% {
-
-        background-color: var(--sub-hover-color);
-    }
+  100% {
+    background-color: var(--sub-hover-color);
+  }
 }
 
 /* パーツリスト */
 .recommended {
-    padding-top: 30px;
-    /* background-color: #fafafa; */
-    /*background-color: #ebebeb;*/
-    padding-bottom: 55px;
-    background-color: var(--bg-color-light-recommended);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  padding-top: 30px;
+  /* background-color: #fafafa; */
+  /*background-color: #ebebeb;*/
+  padding-bottom: 55px;
+  background-color: var(--bg-color-light-recommended);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark .recommended {
-    background-color: var(--bg-color-dark-recommended);
+  background-color: var(--bg-color-dark-recommended);
 }
 
 .recommended h2 {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .item-image {
-    height: 130px;
+  height: 130px;
 }
 
 #ssd-image {
-    margin-bottom: 55px;
+  margin-bottom: 55px;
 }
 
 .copyright2 {
-    background-color: #fafafa;
-    margin-right: auto;
-    padding-bottom: 40px;
+  background-color: #fafafa;
+  margin-right: auto;
+  padding-bottom: 40px;
 }
 
 .copyright2 p {
-    text-align: right;
-    margin-right: 10px;
+  text-align: right;
+  margin-right: 10px;
 }
 
 .item-list {
-    display: flex;
-    padding-top: 60px;
-    padding-bottom: 50px;
-    padding-left: 60px;
-    padding-right: 60px;
-    overflow: auto;
+  display: flex;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  padding-left: 60px;
+  padding-right: 60px;
+  overflow: auto;
 }
 
 .item-list li {
-    flex-shrink: 0;
-    width: 260px;
-    margin-left: 75px;
+  flex-shrink: 0;
+  width: 260px;
+  margin-left: 75px;
 }
 
 .item-list li:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 
 .item-list li {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .item-list li:hover {
-    transform: scale(1.3);
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+  transform: scale(1.3);
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto;
 }
 
-
 .item-list dl {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .item-list dt {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .item-list dd {
-    font-size: 13px;
-    line-height: 20px;
-    margin-top: 10px;
+  font-size: 13px;
+  line-height: 20px;
+  margin-top: 10px;
 }
 
 .item-list .price {
-    font-weight: bold;
-    margin-top: 15px;
+  font-weight: bold;
+  margin-top: 15px;
 }
-
 
 /* TOPに戻る */
 .back-to-top {
-    /* display: none; */
+  /* display: none; */
 
-    z-index: 1000;
-    position: fixed;
-    right: 30px;
-    bottom: 80px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    background: #e33969;
-    animation: notdownhover 0.5s ease-in-out forwards;
+  z-index: 1000;
+  position: fixed;
+  right: 30px;
+  bottom: 80px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  background: #e33969;
+  animation: notdownhover 0.5s ease-in-out forwards;
 
-    cursor: url('https://daihachi10.github.io/program/16/images/cursor-link.png'), auto;
+  cursor: url("https://daihachi10.github.io/program/16/images/cursor-link.png"),
+    auto;
 }
 
 .back-to-top:hover {
-    animation: downhover 0.5s ease-in-out forwards;
-
-
+  animation: downhover 0.5s ease-in-out forwards;
 }
 
 .back-to-top a {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    height: 100%;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .back-to-top a:before {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    transform: rotate(-45deg);
-    border-top: solid 2px #000;
-    border-right: solid 2px #000;
-    content: "";
-    transform: rotate(-45deg) translate(-17%, -50%);
-    top: 50%;
-    left: 50%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(-45deg);
+  border-top: solid 2px #000;
+  border-right: solid 2px #000;
+  content: "";
+  transform: rotate(-45deg) translate(-17%, -50%);
+  top: 50%;
+  left: 50%;
 }
-
 
 /*アニメーション
 firefox対応してない、、
@@ -885,15 +880,15 @@ https://caniuse.com/?search=animation-range
 */
 
 @keyframes scroll-anim {
-    from {
-        opacity: 0;
-        scale: 0.9;
-    }
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
 
-    to {
-        opacity: 1;
-        scale: 1;
-    }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
 }
 
 /*ページアニメーション
@@ -921,22 +916,22 @@ https://caniuse.com/?search=animation-range
 .picture,
     /* .jisaku iframe, */
 .jisaku {
-    width: 930px;
-    max-width: 90%;
-    /*background-color: #f8f8f8;*/
-    padding: 50px 60px;
-    margin-top: 55px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 80px;
+  width: 930px;
+  max-width: 90%;
+  /*background-color: #f8f8f8;*/
+  padding: 50px 60px;
+  margin-top: 55px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 80px;
 }
 
 .movie h2,
 .picture h2,
 .jisaku h2 {
-    font-size: 22px;
-    font-weight: bold;
-    text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* h2の下の線 */
@@ -945,17 +940,18 @@ https://caniuse.com/?search=animation-range
 .movie h2::after,
 .picture h2::after,
 .jisaku h2::after {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 3px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #000;
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #000;
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 
-    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
@@ -968,171 +964,168 @@ body.dark .recommended h2::after,
 body.dark .movie h2::after,
 body.dark .picture h2::after,
 body.dark .jisaku h2::after {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 .movie img,
 .jisaku iframe {
-    display: block;
-    width: 100%;
-    height: 456px;
-    margin-top: 30px;
+  display: block;
+  width: 100%;
+  height: 456px;
+  margin-top: 30px;
 }
 
 .jisaku iframe {
-    height: 600px;
+  height: 600px;
 }
-
 
 .movie p,
 .picture p,
 .jisaku p {
-    font-size: 15px;
-    line-height: 28px;
-    margin-top: 20px;
+  font-size: 15px;
+  line-height: 28px;
+  margin-top: 20px;
 }
 
 #youtubeVideo {
-    display: none;
+  display: none;
 }
 
 #youtubeVideo.hide {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 #youtubeVideo.hide {
-    display: block;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1999;
+  display: block;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1999;
 }
 
 #youtubeVideo.hide iframe {
-    top: 50%;
-    left: 50%;
+  top: 50%;
+  left: 50%;
 
-    width: 80%;
-    height: 80%;
+  width: 80%;
+  height: 80%;
 }
 
 #youtubeVideo.hide .clouse {
-    left: calc(100vh - 200px);
-    top: 50%;
-    left: 50%;
+  left: calc(100vh - 200px);
+  top: 50%;
+  left: 50%;
 }
 
 /* スマホ・タブレット */
 @media (max-width: 1000px) {
-    .movie {
-        width: 500px;
-        padding: 30px 25px;
-    }
+  .movie {
+    width: 500px;
+    padding: 30px 25px;
+  }
 
-    .movie iframe {
-        height: 240px;
-    }
+  .movie iframe {
+    height: 240px;
+  }
 }
 
 #image-slider {
-    margin-top: 55px;
+  margin-top: 55px;
 }
 
 .splide__slide img {
-    margin-left: 10px;
-    margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .splide-image {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .scroll {
-    color: #000;
-    font-weight: bold;
-    z-index: 1000;
-    /* position: fixed; */
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: 200px;
-    width: 200px;
-    height: 60px;
-    border-radius: 50px;
-    cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png), auto;
-    background-color: rgb(255, 82, 131, 0.5);
-    animation: notdownhover 0.5s ease-in-out forwards;
-    border: 1px solid;
+  color: #000;
+  font-weight: bold;
+  z-index: 1000;
+  /* position: fixed; */
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 200px;
+  width: 200px;
+  height: 60px;
+  border-radius: 50px;
+  cursor: url(https://daihachi10.github.io/program/16/images/cursor-link.png),
+    auto;
+  background-color: rgb(255, 82, 131, 0.5);
+  animation: notdownhover 0.5s ease-in-out forwards;
+  border: 1px solid;
 }
 
 .scroll p {
-    padding-top: 10px;
-    text-align: center;
+  padding-top: 10px;
+  text-align: center;
 }
 
 .scroll img {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .scroll:hover {
-    animation: downhover 0.5s ease-in-out forwards;
+  animation: downhover 0.5s ease-in-out forwards;
 }
 
 @keyframes shadowhover {
-    0% {
-        box-shadow: 0 0 0 0;
-    }
+  0% {
+    box-shadow: 0 0 0 0;
+  }
 
-    100% {
-        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
-    }
+  100% {
+    box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+  }
 }
 
 @keyframes notshadowhover {
-    0% {
-        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
-    }
+  0% {
+    box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+  }
 
-    100% {
-        box-shadow: 0 0 0 0;
-    }
+  100% {
+    box-shadow: 0 0 0 0;
+  }
 }
 
-
 @keyframes downhover {
-    0% {
-        box-shadow: 0 0 0 0;
-        background-color: rgb(255, 255, 255, 0.7);
-    }
+  0% {
+    box-shadow: 0 0 0 0;
+    background-color: rgb(255, 255, 255, 0.7);
+  }
 
-    100% {
-        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
-        background-color: rgb(255, 82, 131, 1);
-    }
+  100% {
+    box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+    background-color: rgb(255, 82, 131, 1);
+  }
 }
 
 @keyframes notdownhover {
-    0% {
-        box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
-        background-color: rgb(255, 82, 131, 1);
-    }
+  0% {
+    box-shadow: 0 0 20px 0 rgba(207, 234, 255, 255);
+    background-color: rgb(255, 82, 131, 1);
+  }
 
-    100% {
-        box-shadow: 0 0 0 0;
-        background-color: rgb(255, 255, 255, 0.7);
-    }
+  100% {
+    box-shadow: 0 0 0 0;
+    background-color: rgb(255, 255, 255, 0.7);
+  }
 }
-
 
 /* 点滅 */
 /* .scroll:not(:hover) {
@@ -1140,827 +1133,809 @@ body.dark .jisaku h2::after {
 } */
 
 @keyframes blink {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
-
 
 /* アニメーション */
 .appear {
-    transform-origin: center top;
-    animation: show 1s both;
+  transform-origin: center top;
+  animation: show 1s both;
 }
 
 span.appear {
-    display: inline-block;
+  display: inline-block;
 }
 
 .d1 {
-    animation-delay: 7s;
+  animation-delay: 7s;
 }
 
 .d2 {
-    animation-delay: 7.7s;
+  animation-delay: 7.7s;
 }
 
 .d3 {
-    animation-delay: 9s;
+  animation-delay: 9s;
 }
 
 .d4 {
-    animation-delay: 10s;
+  animation-delay: 10s;
 }
 
-
 @keyframes show {
-    0% {
-        transform: translate(0, 2em);
-        opacity: 0;
-        text-shadow: 0 0 0 var(--sub-color);
-    }
+  0% {
+    transform: translate(0, 2em);
+    opacity: 0;
+    text-shadow: 0 0 0 var(--sub-color);
+  }
 
-    50% {
-        text-shadow: 0 0 0.5em var(--sub-color);
-    }
+  50% {
+    text-shadow: 0 0 0.5em var(--sub-color);
+  }
 
-    100% {
-        transform: translate(0, 0);
-        opacity: 1;
-        text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);
-
-
-    }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 10);
+  }
 }
 
 .text {
-    display: inline-block;
-    transform-origin: center top;
-    opacity: 0;
-    transform: translate(0, 2em);
+  display: inline-block;
+  transform-origin: center top;
+  opacity: 0;
+  transform: translate(0, 2em);
 }
 
 .a1 {
-    animation-delay: 0s;
+  animation-delay: 0s;
 }
 
 .a2 {
-    animation-delay: 0.7s;
+  animation-delay: 0.7s;
 }
 
 .a3 {
-    animation-delay: 1.4s;
+  animation-delay: 1.4s;
 }
 
 .a4 {
-    animation-delay: 2.1s;
+  animation-delay: 2.1s;
 }
 
 .a5 {
-    animation-delay: 2.8s;
+  animation-delay: 2.8s;
 }
 
 .a6 {
-    animation-delay: 3.5s;
+  animation-delay: 3.5s;
 }
-
 
 #loading,
 #firstvideo {
-    display: grid;
-    place-items: center;
-    color: #fff;
-    position: fixed;
-    inset: 0;
-    font-size: 2rem;
-    z-index: 2147483647;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  position: fixed;
+  inset: 0;
+  font-size: 2rem;
+  z-index: 2147483647;
 }
 
 #loading {
-    animation: loading 0.3s ease-in-out forwards;
-
+  animation: loading 0.3s ease-in-out forwards;
 }
 
 #loadings {
-    background-color: var(--bg-color-light-loading);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  background-color: var(--bg-color-light-loading);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark #loadings {
-    background-color: var(--bg-color-dark-loading);
+  background-color: var(--bg-color-dark-loading);
 }
 
 #firstvideo {
-    /* animation: loading 0.3s ease-in-out forwards; */
-    background-color: #fff;
+  /* animation: loading 0.3s ease-in-out forwards; */
+  background-color: #fff;
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 #loading.loaded {
-    animation: loaded 0.3s ease-in-out forwards;
-    pointer-events: none;
-    /* display: none; */
+  animation: loaded 0.3s ease-in-out forwards;
+  pointer-events: none;
+  /* display: none; */
 }
 
 #firstvideo.end {
-    animation: loaded 0.6s ease-in-out forwards;
-    pointer-events: none;
-    /* display: none; */
+  animation: loaded 0.6s ease-in-out forwards;
+  pointer-events: none;
+  /* display: none; */
 }
 
-
-#loading .tetris iframe {
-    height: 550px;
-    /* width: 650px; */
+#loading .tetr iframe {
+  height: 550px;
+  /* width: 650px; */
 }
 
-#loading .tetris #newtab,
-#loading .tetris #close {
-    font-size: 18px;
-    text-align: center;
-    display: block;
-    margin-top: 10px;
-    color: #000;
+#loading .tetr #newtab,
+#loading .tetr #close {
+  font-size: 18px;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+  color: #000;
 }
 
 .clousebox {
-    padding: 40px;
+  padding: 40px;
 }
 
 @keyframes loaded {
-    0% {
-        /* background-color: rgba(40, 40, 40, 1); */
-        background-color: rgba(255, 255, 255, 1);
-        opacity: 1;
+  0% {
+    /* background-color: rgba(40, 40, 40, 1); */
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+  }
 
-    }
-
-    100% {
-        /* background-color: rgba(40, 40, 40, 0); */
-        background-color: rgba(255, 255, 255, 0);
-        opacity: 0;
-    }
+  100% {
+    /* background-color: rgba(40, 40, 40, 0); */
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0;
+  }
 }
 
 @keyframes loading {
-    0% {
-        /* background-color: rgba(40, 40, 40, 0); */
-        background-color: rgba(255, 255, 255, 0);
-        opacity: 0;
+  0% {
+    /* background-color: rgba(40, 40, 40, 0); */
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0;
+  }
 
-    }
-
-    100% {
-        /* background-color: rgba(40, 40, 40, 1); */
-        background-color: rgba(255, 255, 255, 1);
-        opacity: 1;
-    }
+  100% {
+    /* background-color: rgba(40, 40, 40, 1); */
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+  }
 }
-
 
 /* HTML: <div class="loader"></div> */
 .loader {
-    width: 40px;
-    aspect-ratio: 1;
-    position: relative;
+  width: 40px;
+  aspect-ratio: 1;
+  position: relative;
 }
 
 .loader:before,
 .loader:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: -8px 0 0 -8px;
-    width: 16px;
-    aspect-ratio: 1;
-    background: var(--sub-color);
-    animation: l1-1 2s infinite,
-    l1-2 .5s infinite;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: -8px 0 0 -8px;
+  width: 16px;
+  aspect-ratio: 1;
+  background: var(--sub-color);
+  animation: l1-1 2s infinite, l1-2 0.5s infinite;
 }
 
 .loader:after {
-    background: var(--sub-color);
-    animation-delay: -1s, 0s;
+  background: var(--sub-color);
+  animation-delay: -1s, 0s;
 }
 
 @keyframes l1-1 {
-    0% {
-        top: 0;
-        left: 0
-    }
+  0% {
+    top: 0;
+    left: 0;
+  }
 
-    25% {
-        top: 100%;
-        left: 0
-    }
+  25% {
+    top: 100%;
+    left: 0;
+  }
 
-    50% {
-        top: 100%;
-        left: 100%
-    }
+  50% {
+    top: 100%;
+    left: 100%;
+  }
 
-    75% {
-        top: 0;
-        left: 100%
-    }
+  75% {
+    top: 0;
+    left: 100%;
+  }
 
-    100% {
-        top: 0;
-        left: 0
-    }
+  100% {
+    top: 0;
+    left: 0;
+  }
 }
 
 @keyframes l1-2 {
-
-    80%,
-    100% {
-        transform: rotate(0.5turn)
-    }
+  80%,
+  100% {
+    transform: rotate(0.5turn);
+  }
 }
-
 
 /* HTML: <div class="loader"></div> */
 .loader-text {
-    --w: 10ch;
-    font-size: 30px;
-    line-height: 1.2em;
-    letter-spacing: var(--w);
-    width: var(--w);
-    overflow: hidden;
-    white-space: nowrap;
-    color: #000;
-    animation: l17 2s infinite;
+  --w: 10ch;
+  font-size: 30px;
+  line-height: 1.2em;
+  letter-spacing: var(--w);
+  width: var(--w);
+  overflow: hidden;
+  white-space: nowrap;
+  color: #000;
+  animation: l17 2s infinite;
 }
 
 .loader-text:before {
-    content: "Loading...";
+  content: "Loading...";
 }
-
 
 .header-logo:hover,
 .fkooter-logo:hover {
-    /* color: #1571c2; */
-    cursor: pointer;
-    background: linear-gradient(90deg, #4158D0, #C850C0 30%, #FFCC70);
-    background: -webkit-linear-gradient(0deg, #4158D0, #C850C0 30%, #FFCC70);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+  /* color: #1571c2; */
+  cursor: pointer;
+  background: linear-gradient(90deg, #4158d0, #c850c0 30%, #ffcc70);
+  background: -webkit-linear-gradient(0deg, #4158d0, #c850c0 30%, #ffcc70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header-site-menu.is-show {
-    display: block;
-    position: fixed;
-    /*fixedで固定*/
-    right: 0;
-    top: 50px;
+  display: block;
+  position: fixed;
+  /*fixedで固定*/
+  right: 0;
+  top: 50px;
 }
 
 .samune {
-    margin-top: 50px;
-    background-image: url(https://daihachi10.github.io/program/16/images/samune.webp);
-    background-size: cover;
-    width: 100%;
-    height: 520px;
+  margin-top: 50px;
+  background-image: url(https://daihachi10.github.io/program/16/images/samune.webp);
+  background-size: cover;
+  width: 100%;
+  height: 520px;
 }
 
 @keyframes scrooll-animation-mobile {
+  0%,
+  100% {
+    background-color: rgb(255, 255, 255, 0.7);
+  }
 
-    0%,
-    100% {
-        background-color: rgb(255, 255, 255, 0.7);
-    }
-
-    50% {
-        background-color: rgb(255, 82, 131, 0.5);
-    }
+  50% {
+    background-color: rgb(255, 82, 131, 0.5);
+  }
 }
 
 /* loading */
 @keyframes l17 {
-    0% {
-        text-shadow: calc(0 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-1 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-2 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-3 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  0% {
+    text-shadow: calc(0 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-1 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-2 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-3 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    4% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-2 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-3 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  4% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-2 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-3 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    8% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-3 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  8% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-3 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    12% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  12% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    16% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  16% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    20% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  20% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    24% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  24% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    28% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  28% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    32% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) 0 var(--loading-text-color),
-        calc(-8 * var(--w)) -1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  32% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) 0 var(--loading-text-color),
+      calc(-8 * var(--w)) -1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    36% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) 0 var(--loading-text-color),
-        calc(-8 * var(--w)) 0 var(--loading-text-color),
-        calc(-9 * var(--w)) -1.2em var(--loading-text-color)
-    }
+  36% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) 0 var(--loading-text-color),
+      calc(-8 * var(--w)) 0 var(--loading-text-color),
+      calc(-9 * var(--w)) -1.2em var(--loading-text-color);
+  }
 
-    40%,
-    60% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) 0 var(--loading-text-color),
-        calc(-8 * var(--w)) 0 var(--loading-text-color),
-        calc(-9 * var(--w)) 0 var(--loading-text-color)
-    }
+  40%,
+  60% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) 0 var(--loading-text-color),
+      calc(-8 * var(--w)) 0 var(--loading-text-color),
+      calc(-9 * var(--w)) 0 var(--loading-text-color);
+  }
 
-    64% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) 0 var(--loading-text-color),
-        calc(-8 * var(--w)) 0 var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  64% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) 0 var(--loading-text-color),
+      calc(-8 * var(--w)) 0 var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    68% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) 0 var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  68% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) 0 var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    72% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 0 var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  72% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 0 var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
+  76% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 0 var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    76% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 0 var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  80% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 0 var(--loading-text-color),
+      calc(-5 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    80% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 0 var(--loading-text-color),
-        calc(-5 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  84% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 0 var(--loading-text-color),
+      calc(-4 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    84% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 0 var(--loading-text-color),
-        calc(-4 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  88% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 0 var(--loading-text-color),
+      calc(-3 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    88% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 0 var(--loading-text-color),
-        calc(-3 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  92% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 0 var(--loading-text-color),
+      calc(-2 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-3 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    92% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 0 var(--loading-text-color),
-        calc(-2 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-3 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
+  96% {
+    text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
+      calc(-1 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-2 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-3 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 
-    96% {
-        text-shadow: calc(0 * var(--w)) 0 var(--loading-text-color),
-        calc(-1 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-2 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-3 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
-
-    100% {
-        text-shadow: calc(0 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-1 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-2 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-3 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-4 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-5 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-6 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-7 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-8 * var(--w)) 1.2em var(--loading-text-color),
-        calc(-9 * var(--w)) 1.2em var(--loading-text-color)
-    }
-
+  100% {
+    text-shadow: calc(0 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-1 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-2 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-3 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-4 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-5 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-6 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-7 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-8 * var(--w)) 1.2em var(--loading-text-color),
+      calc(-9 * var(--w)) 1.2em var(--loading-text-color);
+  }
 }
 
 .first-view-video-iframe {
-    position: absolute;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    width: 177.77777778vh;
-    height: 56.25vw;
-    min-height: 100%;
-    min-width: 100%;
-    filter: brightness(85%);
-    filter: saturate(90%);
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  width: 177.77777778vh;
+  height: 56.25vw;
+  min-height: 100%;
+  min-width: 100%;
+  filter: brightness(85%);
+  filter: saturate(90%);
 }
 
 .first-view-video-area {
-    position: fixed;
-    z-index: -1;
-    height: 100% !important;
-    width: 100% !important;
+  position: fixed;
+  z-index: -1;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .video-container {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
 }
 
 video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dot-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1); /* 半透明の黒背景 */
-    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 1px, transparent 1px);
-    background-size: 4px 4px; /* 点の間隔を調整 */
-    pointer-events: none; /* ユーザーの操作を無効化 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1); /* 半透明の黒背景 */
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.3) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px; /* 点の間隔を調整 */
+  pointer-events: none; /* ユーザーの操作を無効化 */
 }
 
-
 .toumeibox {
-    /*background-color: rgba(255, 255, 255, 0.9);*/
-    padding-bottom: 10px;
-    /* padding-top: 10px; */
-    border-radius: 20px;
-    width: 70vw;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
-    box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  /*background-color: rgba(255, 255, 255, 0.9);*/
+  padding-bottom: 10px;
+  /* padding-top: 10px; */
+  border-radius: 20px;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
     100px 100px 80px rgba(0, 0, 0, 0.07);
-    background-color: var(--bg-color-light-toumeibox);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
-
+  background-color: var(--bg-color-light-toumeibox);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark .toumeibox {
-    background-color: var(--bg-color-dark-toumeibox);
-
+  background-color: var(--bg-color-dark-toumeibox);
 }
 
 .safari {
-    width: 100%;
-    /*position: sticky;*/
-    /*top: 60px;!*自分が固定したい位置*!*/
-    /*z-index: 250;*/
+  width: 100%;
+  /*position: sticky;*/
+  /*top: 60px;!*自分が固定したい位置*!*/
+  /*z-index: 250;*/
 }
 
 .mackdockbox {
-    text-align: center;
-    /*height: 90vh;*/
-    /*overflow-y: scroll;*/
-
+  text-align: center;
+  /*height: 90vh;*/
+  /*overflow-y: scroll;*/
 }
 
 .macdock {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 
-    position: sticky;
-    bottom: 10px;
-    z-index: 250;
-
-
+  position: sticky;
+  bottom: 10px;
+  z-index: 250;
 }
 
-
-.cursor, .cursor-follower {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 2147483647;
-    transform: translate(-50%, -50%);
-    transition: transform 0.2s ease-out;
+.cursor,
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483647;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
 }
 
 .cursor {
-    background-color: #dfdfdf; /*333*/
-    mix-blend-mode: difference;
+  background-color: #dfdfdf; /*333*/
+  mix-blend-mode: difference;
 }
 
 .cursor-follower {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.1);
-    transition: transform 0.1s ease-out;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease-out;
 }
 
 .logo-slider {
-    border-radius: 50px;
-    width: 70vw;
-    overflow: hidden;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: var(--bg-color-light-toumeibox);
-    transition: background-color var(--transition-duration), color var(--transition-duration);
+  border-radius: 50px;
+  width: 70vw;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-color-light-toumeibox);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 body.dark .logo-slider {
-    background-color: var(--bg-color-dark-toumeibox);
-
+  background-color: var(--bg-color-dark-toumeibox);
 }
 
 .logo-track {
-    display: flex;
-    animation: scroll 35s linear infinite;
+  display: flex;
+  animation: scroll 35s linear infinite;
 }
 
 .logo-track img,
 .logo-track a {
-    /*width: 150px;*/
-    height: 50px;
+  /*width: 150px;*/
+  height: 50px;
 
-    text-align: center;
-    padding: 20px 0;
+  text-align: center;
+  padding: 20px 0;
 
-    margin-right: 60px;
-    flex-shrink: 0;
+  margin-right: 60px;
+  flex-shrink: 0;
 }
 
 /* アニメーション */
 @keyframes scroll {
-    0% {
-        transform: translateX(140%);
-    }
+  0% {
+    transform: translateX(140%);
+  }
 
-    100% {
-        transform: translateX(-160%);
-    }
+  100% {
+    transform: translateX(-160%);
+  }
 }
 
 /* ホバー時に停止 */
 .logo-slider:hover .logo-track {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 /* スマホ・タブレット */
 @media (max-width: 1000px) {
-    .first-view {
-        height: calc(100vh - 50vh);
-    }
+  .first-view {
+    height: calc(100vh - 50vh);
+  }
 
-    .first-view-text {
-        padding-top: 60px;
-        padding-left: 20px;
-    }
+  .first-view-text {
+    padding-top: 60px;
+    padding-left: 20px;
+  }
 
-    .first-view-text h1 {
-        font-size: 36px;
-        line-height: 48px;
-    }
+  .first-view-text h1 {
+    font-size: 36px;
+    line-height: 48px;
+  }
 
-    .first-view-text p {
-        font-size: 14px;
-        margin-top: 15px;
-    }
+  .first-view-text p {
+    font-size: 14px;
+    margin-top: 15px;
+  }
 
-    .scroll {
-        bottom: 100px;
-        width: 200px;
-        height: 60px;
-        animation: scrooll-animation-mobile 4s linear infinite;
-    }
+  .scroll {
+    bottom: 100px;
+    width: 200px;
+    height: 60px;
+    animation: scrooll-animation-mobile 4s linear infinite;
+  }
 
-    .lead {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  .lead {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-    .lead p {
-        text-align: left;
-    }
+  .lead p {
+    text-align: left;
+  }
 
-    .item-list li {
-        width: 220px;
-        margin-left: 30px;
-    }
+  .item-list li {
+    width: 220px;
+    margin-left: 30px;
+  }
 
-    .samune {
-        margin-top: 50px;
-        background-image: url(https://daihachi10.github.io/program/16/images/samune.webp);
-        background-size: cover;
-        width: 100%;
-        height: 210px;
-    }
+  .samune {
+    margin-top: 50px;
+    background-image: url(https://daihachi10.github.io/program/16/images/samune.webp);
+    background-size: cover;
+    width: 100%;
+    height: 210px;
+  }
 
-    #youtubeVideo.hide iframe {
-        top: 50%;
-        left: 50%;
+  #youtubeVideo.hide iframe {
+    top: 50%;
+    left: 50%;
 
-        width: 80%;
-        height: 300px;
-    }
+    width: 80%;
+    height: 300px;
+  }
 
-    .toumeibox {
-        border-radius: 5px;
-        width: 90vw;
-    }
+  .toumeibox {
+    border-radius: 5px;
+    width: 90vw;
+  }
 
-    .logo-slider {
-        border-radius: 0px;
-        width: 100%;
-    }
+  .logo-slider {
+    border-radius: 0px;
+    width: 100%;
+  }
 }

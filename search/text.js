@@ -47,24 +47,24 @@ const data = [
     img: "../images/program-img/img-item25.webp",
   },
   {
-    title: "TETRIS",
+    title: "tetr",
     url: "https://daihachi10.github.io/program/20/index.html",
     description:
-      "シンプルなテトリス風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",
+      "シンプルなテト風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",
     img: "../images/program-img/img-item20.webp",
   },
   {
-    title: "テトリス",
+    title: "テト",
     url: "https://daihachi10.github.io/program/20/index.html",
     description:
-      "シンプルなテトリス風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",
+      "シンプルなテト風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",
     img: "../images/program-img/img-item20.webp",
   },
   {
     title: "落ち物パズル",
     url: "https://daihachi10.github.io/program/20/index.html",
     description:
-      "シンプルなテトリス風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",
+      "シンプルなテト風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",
     img: "../images/program-img/img-item20.webp",
   },
   {

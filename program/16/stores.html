@@ -1,6 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
-<!--
+  <!--
 
 できれば全画面表示で見て下さい！！
 
@@ -15,285 +15,394 @@ https://caniuse.com/?search=animation-range
 
 -->
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
     <title>読み込み中</title>
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="BuildPC Introduction"/>
-    <meta name="description" content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです"/>
+    <meta name="title" content="BuildPC Introduction" />
+    <meta
+      name="description"
+      content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです"
+    />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://daihachi10.github.io/"/>
-    <meta property="og:title" content="BuildPC Introduction"/>
-    <meta property="og:description"
-          content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです"/>
-    <meta property="og:image" content="https://daihachi10.github.io/program/16/images/image-18.webp"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://daihachi10.github.io/" />
+    <meta property="og:title" content="BuildPC Introduction" />
+    <meta
+      property="og:description"
+      content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです"
+    />
+    <meta
+      property="og:image"
+      content="https://daihachi10.github.io/program/16/images/image-18.webp"
+    />
 
     <!--     Twitter-->
-    <meta property="twitter:card" content="summary_large_image"/>
-    <meta property="twitter:url" content="https://daihachi10.github.io/"/>
-    <meta property="twitter:title" content="BuildPC Introduction"/>
-    <meta property="twitter:description"
-          content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです"/>
-    <meta property="twitter:image" content="https://daihachi10.github.io/program/16/images/image-18.webp"/>
-<meta name="theme-color" content="#1DB31D" />
-</head>
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://daihachi10.github.io/" />
+    <meta property="twitter:title" content="BuildPC Introduction" />
+    <meta
+      property="twitter:description"
+      content="自作パソコンのパーツ・メリットデメリット・などを詳しく紹介しているサイトです"
+    />
+    <meta
+      property="twitter:image"
+      content="https://daihachi10.github.io/program/16/images/image-18.webp"
+    />
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
 
-<body class="light">
+  <body class="light">
+    <!--読み込み中-->
+    <div id="loading"></div>
 
-<!--読み込み中-->
-<div id="loading"></div>
-
-<!-- headerここから -->
-<header id="default-header">
-    <div class="header-inner">
-
+    <!-- headerここから -->
+    <header id="default-header">
+      <div class="header-inner">
         <a class="header-logo" href="index.html?video=skip">
-            <div style="display: flex;">
-                <p class="logo-jp" style="margin:auto 0;">BuildPC</p>
-            </div>
+          <div style="display: flex">
+            <p class="logo-jp" style="margin: auto 0">BuildPC</p>
+          </div>
         </a>
 
         <button class="toggle-menu-button"></button>
         <div class="header-site-menu">
-            <nav class="site-menu">
-                <ul id="step1">
-                    <li><a href="index.html?video=skip#2" id="step2">ABOUT</a></li>
-                    <li><a href="index.html?video=skip#3" id="step3">PARTS LIST</a></li>
-                    <li><a href="index.html?video=skip#4" id="step4">MOVIE</a></li>
-                    <li><a href="index.html?video=skip#5" id="step6">HOW TO BUILD</a></li>
-                    <li><a onclick="other()">
-                        <svg class="othericon" style="vertical-align: center;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                            <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
-                        </svg>
-                        <!--                        <svg class="othericon" style="vertical-align: top;"-->
-                        <!--                             xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960"-->
-                        <!--                             width="24px">-->
-                        <!--                            <path d="M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z"/>-->
-                        <!--                        </svg>-->
-                    </a></li>
+          <nav class="site-menu">
+            <ul id="step1">
+              <li><a href="index.html?video=skip#2" id="step2">ABOUT</a></li>
+              <li>
+                <a href="index.html?video=skip#3" id="step3">PARTS LIST</a>
+              </li>
+              <li><a href="index.html?video=skip#4" id="step4">MOVIE</a></li>
+              <li>
+                <a href="index.html?video=skip#5" id="step6">HOW TO BUILD</a>
+              </li>
+              <li>
+                <a onclick="other()">
+                  <svg
+                    class="othericon"
+                    style="vertical-align: center"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                  >
+                    <path
+                      d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
+                    />
+                  </svg>
+                  <!--                        <svg class="othericon" style="vertical-align: top;"-->
+                  <!--                             xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960"-->
+                  <!--                             width="24px">-->
+                  <!--                            <path d="M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z"/>-->
+                  <!--                        </svg>-->
+                </a>
+              </li>
 
-                    <!--                        <li class="light-item"><a onclick="theme()">DARK</a></li>-->
-                    <!--                        <li class="dark-item"><a onclick="theme()">LIGHT</a></li>-->
-                    <!--                        <li><a href="https://daihachi10.github.io/program/16/index.html?video=skip" style="color: index.html#3b3b3b">JP</a> <a>/</a> <a href="https://daihachi10.github.io/program/16/en.html?video=skip" style="color: index.html#fff">EN</a></li>-->
-                </ul>
-            </nav>
+              <!--                        <li class="light-item"><a onclick="theme()">DARK</a></li>-->
+              <!--                        <li class="dark-item"><a onclick="theme()">LIGHT</a></li>-->
+              <!--                        <li><a href="https://daihachi10.github.io/program/16/index.html?video=skip" style="color: index.html#3b3b3b">JP</a> <a>/</a> <a href="https://daihachi10.github.io/program/16/en.html?video=skip" style="color: index.html#fff">EN</a></li>-->
+            </ul>
+          </nav>
         </div>
-    </div>
-</header>
-<!-- headerここまで -->
+      </div>
+    </header>
+    <!-- headerここまで -->
 
-<!-- アニメーションheaderここから -->
-<header id="animated-header" class="hidden">
-    <div class="header-inner" id="animation-header-inner">
+    <!-- アニメーションheaderここから -->
+    <header id="animated-header" class="hidden">
+      <div class="header-inner" id="animation-header-inner">
         <a class="header-logo" onclick="pageTop()">
-            <p>BuildPC</p>
+          <p>BuildPC</p>
         </a>
         <div class="header-site-menu">
-            <nav class="site-menu">
-                <ul>
-                    <li><a href="index.html?video=skip#2">ABOUT</a></li>
-                    <li><a href="index.html?video=skip#3">PARTS LIST</a></li>
-                    <li><a href="index.html?video=skip#4">MOVIE</a></li>
-                    <li><a href="index.html?video=skip#5">HOW TO BUILD</a></li>
-                    <li><a onclick="other()">
-                        <svg class="othericon" style="vertical-align: center;" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                            <path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/>
-                        </svg>
-                        <!--                        <svg class="othericon" style="vertical-align: top;"-->
-                        <!--                             xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960"-->
-                        <!--                             width="24px">-->
-                        <!--                            <path d="M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z"/>-->
-                        <!--                        </svg>-->
-                    </a></li>
+          <nav class="site-menu">
+            <ul>
+              <li><a href="index.html?video=skip#2">ABOUT</a></li>
+              <li><a href="index.html?video=skip#3">PARTS LIST</a></li>
+              <li><a href="index.html?video=skip#4">MOVIE</a></li>
+              <li><a href="index.html?video=skip#5">HOW TO BUILD</a></li>
+              <li>
+                <a onclick="other()">
+                  <svg
+                    class="othericon"
+                    style="vertical-align: center"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                  >
+                    <path
+                      d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
+                    />
+                  </svg>
+                  <!--                        <svg class="othericon" style="vertical-align: top;"-->
+                  <!--                             xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960"-->
+                  <!--                             width="24px">-->
+                  <!--                            <path d="M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z"/>-->
+                  <!--                        </svg>-->
+                </a>
+              </li>
 
-
-                    <!--                        <li class="light-item"><a onclick="theme()">DARK</a></li>-->
-                    <!--                        <li class="dark-item"><a onclick="theme()">LIGHT</a></li>-->
-                    <!--                        <li><a href="https://daihachi10.github.io/program/16/index.html?video=skip" style="color: #3b3b3b">JP</a> <a>/</a> <a href="https://daihachi10.github.io/program/16/en.html?video=skip" style="color: #fff">EN</a></li>-->
-                </ul>
-            </nav>
+              <!--                        <li class="light-item"><a onclick="theme()">DARK</a></li>-->
+              <!--                        <li class="dark-item"><a onclick="theme()">LIGHT</a></li>-->
+              <!--                        <li><a href="https://daihachi10.github.io/program/16/index.html?video=skip" style="color: #3b3b3b">JP</a> <a>/</a> <a href="https://daihachi10.github.io/program/16/en.html?video=skip" style="color: #fff">EN</a></li>-->
+            </ul>
+          </nav>
         </div>
-    </div>
-</header>
-<!-- アニメーションheaderここまで -->
+      </div>
+    </header>
+    <!-- アニメーションheaderここまで -->
 
-
-<!--  その他  -->
-<div class="otherbox" id="otherbox">
-    <nav class="othernav">
+    <!--  その他  -->
+    <div class="otherbox" id="otherbox">
+      <nav class="othernav">
         <ul class="other">
-            <li style="padding-top: 140px"><a href="index.html?video=skip#6" onclick="notOther()">PICTURE</a></li>
-            <li><a href="">RECOMMENDED STORES</a></li>
-            <li class="light-item otherli"><a onclick="theme();notOther()">DARK</a></li>
-            <li class="dark-item otherli"><a onclick="theme();notOther()">LIGHT</a></li>
-            <li><a onclick="sound();notOther()">SOUND</a></li>
-            <li class="otherli lang">
-                <a href="https://daihachi10.github.io/program/16/index.html?video=skip?video=skip">JP</a>
-                <a>/</a>
-                <a href="https://daihachi10.github.io/program/16/en.html?video=skip">EN</a>
-                <a>/</a>
-                <a href="https://daihachi10.github.io/program/16/ja.html?video=skip">日本語</a>
-            </li>
-            <li><a onclick="notOther()">
-                <svg class="othericon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-                </svg>
-            </a></li>
+          <li style="padding-top: 140px">
+            <a href="index.html?video=skip#6" onclick="notOther()">PICTURE</a>
+          </li>
+          <li><a href="">RECOMMENDED STORES</a></li>
+          <li class="light-item otherli">
+            <a onclick="theme();notOther()">DARK</a>
+          </li>
+          <li class="dark-item otherli">
+            <a onclick="theme();notOther()">LIGHT</a>
+          </li>
+          <li><a onclick="sound();notOther()">SOUND</a></li>
+          <li class="otherli lang">
+            <a
+              href="https://daihachi10.github.io/program/16/index.html?video=skip?video=skip"
+              >JP</a
+            >
+            <a>/</a>
+            <a href="https://daihachi10.github.io/program/16/en.html?video=skip"
+              >EN</a
+            >
+            <a>/</a>
+            <a href="https://daihachi10.github.io/program/16/ja.html?video=skip"
+              >日本語</a
+            >
+          </li>
+          <li>
+            <a onclick="notOther()">
+              <svg
+                class="othericon"
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+              >
+                <path
+                  d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+                />
+              </svg>
+            </a>
+          </li>
         </ul>
-    </nav>
-</div>
+      </nav>
+    </div>
 
+    <!-- プログレスバー -->
+    <!--<div id="progress"></div>-->
 
-<!-- プログレスバー -->
-<!--<div id="progress"></div>-->
+    <!-- cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-<!-- cursor -->
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
-
-<!-- ファーストビュー -->
-<div class="first-view-video" style="position: relative;">
-    <div class="first-view-video-area">
+    <!-- ファーストビュー -->
+    <div class="first-view-video" style="position: relative">
+      <div class="first-view-video-area">
         <video class="first-view-video-iframe" muted autoplay loop>
-            <source src="https://daihachi10.github.io/program/16/images/first-view-video.mp4" type="video/mp4">
-            <img src="https://daihachi10.github.io/program/16/images/yoko/image-16.webp" alt="background-image">
+          <source
+            src="https://daihachi10.github.io/program/16/images/first-view-video.mp4"
+            type="video/mp4"
+          />
+          <img
+            src="https://daihachi10.github.io/program/16/images/yoko/image-16.webp"
+            alt="background-image"
+          />
         </video>
         <div class="dot-overlay"></div>
+      </div>
     </div>
-</div>
 
-<!-- mainここから -->
-<main class="main">
-    <!-- おすすめのショップ   -->
-    <div class="recommended">
-        <h2 style="margin-top: 160px;">
-            <span>RECOMMENDED</span>
-            <span>STORES</span>
+    <!-- mainここから -->
+    <main class="main">
+      <!-- おすすめのショップ   -->
+      <div class="recommended">
+        <h2 style="margin-top: 160px">
+          <span>RECOMMENDED</span>
+          <span>STORES</span>
         </h2>
         <div class="js-scrollable">
-            <ul class="item-list">
-                <li class="Ttext" >
-                    <a href="https://daihachi10.github.io/program/16/link?url=https://shop.tsukumo.co.jp/parts"
-                       target="_blank" >
-                        <iframe class="shadow" src="https://www.google.com/maps/embed?pb=!4v1733826767039!6m8!1m7!1sWC2EAxKbtwZ7F66Q-7gz3w!2m2!1d35.69905489690414!2d139.7702589022184!3f146.15663962192312!4f6.662512555926881!5f0.7820865974627469" width="280" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <dl style="padding-bottom: 70px !important;">
-                            <dt>TSUKUMO</dt>
-                        </dl>
-                    </a>
-                </li>
+          <ul class="item-list">
+            <li class="Ttext">
+              <a
+                href="https://daihachi10.github.io/program/16/link?url=https://shop.tsukumo.co.jp/parts"
+                target="_blank"
+              >
+                <iframe
+                  class="shadow"
+                  src="https://www.google.com/maps/embed?pb=!4v1733826767039!6m8!1m7!1sWC2EAxKbtwZ7F66Q-7gz3w!2m2!1d35.69905489690414!2d139.7702589022184!3f146.15663962192312!4f6.662512555926881!5f0.7820865974627469"
+                  width="280"
+                  height="240"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <dl style="padding-bottom: 70px !important">
+                  <dt>TSUKUMO</dt>
+                </dl>
+              </a>
+            </li>
 
-                <li class="Ttext">
-                    <a href="https://daihachi10.github.io/program/16/link?url=https://www.amazon.co.jp/s?k=PCパーツ"
-                       target="_blank">
-                        <iframe class="shadow" src="https://www.google.com/maps/embed?pb=!4v1733827046424!6m8!1m7!1s1TnQAPh6ypXVvSGRw99LvQ!2m2!1d35.70056380887326!2d139.7708855737274!3f268.75385582266773!4f1.673418062109974!5f0.7820865974627469" width="280" height="240" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <dl style="padding-bottom: 70px !important;">
-                            <dt>DOSPARA</dt>
-                        </dl>
-                    </a>
-                </li>
-            </ul>
+            <li class="Ttext">
+              <a
+                href="https://daihachi10.github.io/program/16/link?url=https://www.amazon.co.jp/s?k=PCパーツ"
+                target="_blank"
+              >
+                <iframe
+                  class="shadow"
+                  src="https://www.google.com/maps/embed?pb=!4v1733827046424!6m8!1m7!1s1TnQAPh6ypXVvSGRw99LvQ!2m2!1d35.70056380887326!2d139.7708855737274!3f268.75385582266773!4f1.673418062109974!5f0.7820865974627469"
+                  width="280"
+                  height="240"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <dl style="padding-bottom: 70px !important">
+                  <dt>DOSPARA</dt>
+                </dl>
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <!--  なみなみ  -->
+      <svg
+        class="light-item"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 152"
+      >
+        <path
+          fill="#ebebeb"
+          fill-opacity="1"
+          d="M0,96L30,112C60,128,120,160,180,149.3C240,139,300,85,360,69.3C420,53,480,75,540,74.7C600,75,660,53,720,42.7C780,32,840,32,900,48C960,64,1020,96,1080,101.3C1140,107,1200,85,1260,80C1320,75,1380,85,1410,90.7L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"
+        ></path>
+      </svg>
+      <svg
+        class="dark-item"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 152"
+      >
+        <path
+          fill="#202124"
+          fill-opacity="1"
+          d="M0,96L30,112C60,128,120,160,180,149.3C240,139,300,85,360,69.3C420,53,480,75,540,74.7C600,75,660,53,720,42.7C780,32,840,32,900,48C960,64,1020,96,1080,101.3C1140,107,1200,85,1260,80C1320,75,1380,85,1410,90.7L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z"
+        ></path>
+      </svg>
+
+      <!--  ちょっと(画面の40%)動画見えるように空白  -->
+      <div class="movie-section" style="height: 40vh"></div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- TOPに戻る -->
+    <div class="back-to-top">
+      <a onclick="pageTop()"></a>
     </div>
 
-    <!--  なみなみ  -->
-    <svg class="light-item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 152">
-        <path fill="#ebebeb" fill-opacity="1"
-              d="M0,96L30,112C60,128,120,160,180,149.3C240,139,300,85,360,69.3C420,53,480,75,540,74.7C600,75,660,53,720,42.7C780,32,840,32,900,48C960,64,1020,96,1080,101.3C1140,107,1200,85,1260,80C1320,75,1380,85,1410,90.7L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
-        </path>
-    </svg>
-    <svg class="dark-item" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 152">
-        <path fill="#202124" fill-opacity="1"
-              d="M0,96L30,112C60,128,120,160,180,149.3C240,139,300,85,360,69.3C420,53,480,75,540,74.7C600,75,660,53,720,42.7C780,32,840,32,900,48C960,64,1020,96,1080,101.3C1140,107,1200,85,1260,80C1320,75,1380,85,1410,90.7L1440,96L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z">
-        </path>
-    </svg>
-
-    <!--  ちょっと(画面の40%)動画見えるように空白  -->
-    <div class="movie-section" style="height:40vh;"></div>
-
-</main>
-<!-- mainここまで -->
-
-<!-- TOPに戻る -->
-<div class="back-to-top">
-    <a onclick="pageTop()"></a>
-</div>
-
-<!-- footerここから -->
-<footer class="footer">
-    <nav class="site-menu">
+    <!-- footerここから -->
+    <footer class="footer">
+      <nav class="site-menu">
         <ul>
-            <li><a href="index.html?video=skip#2">ABOUT</a></li>
-            <li><a href="index.html?video=skip#3">PARTS LIST</a></li>
-            <li><a href="index.html?video=skip#4">MOVIE</a></li>
-            <li><a href="index.html?video=skip#5">HOW TO BUILD</a></li>
-            <li><a href="index.html?video=skip#6">PICTURE</a></li>
-            <!-- <li><a onclick="other()">OTHER<svg class="othericon" style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="24px"><path d="M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z"/></svg></a></li>-->
-            <!-- <li class="light-item"><a onclick="theme()">DARK</a></li>-->
-            <!-- <li class="dark-item"><a onclick="theme()">LIGHT</a></li>-->
-            <!-- <li><a href="https://daihachi10.github.io/program/16/index.html?video=skip" style="color: #3b3b3b">JP</a> <a>/</a> <a href="https://daihachi10.github.io/program/16/en.html?video=skip" style="color: #fff">EN</a></li>-->
+          <li><a href="index.html?video=skip#2">ABOUT</a></li>
+          <li><a href="index.html?video=skip#3">PARTS LIST</a></li>
+          <li><a href="index.html?video=skip#4">MOVIE</a></li>
+          <li><a href="index.html?video=skip#5">HOW TO BUILD</a></li>
+          <li><a href="index.html?video=skip#6">PICTURE</a></li>
+          <!-- <li><a onclick="other()">OTHER<svg class="othericon" style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" height="14px" viewBox="0 -960 960 960" width="24px"><path d="M200-200v-400h80v264l464-464 56 56-464 464h264v80H200Z"/></svg></a></li>-->
+          <!-- <li class="light-item"><a onclick="theme()">DARK</a></li>-->
+          <!-- <li class="dark-item"><a onclick="theme()">LIGHT</a></li>-->
+          <!-- <li><a href="https://daihachi10.github.io/program/16/index.html?video=skip" style="color: #3b3b3b">JP</a> <a>/</a> <a href="https://daihachi10.github.io/program/16/en.html?video=skip" style="color: #fff">EN</a></li>-->
         </ul>
-    </nav>
-    <a class="footer-logo" onclick="pageTop()">
+      </nav>
+      <a class="footer-logo" onclick="pageTop()">
         <p>buildPC</p>
-    </a>
-    <div class="reset">
-
-        <p><a onclick="reset()">LocalStorage Reset</a><br><br>
-            <a onclick="tetris()">tetris</a>
+      </a>
+      <div class="reset">
+        <p>
+          <a onclick="reset()">LocalStorage Reset</a><br /><br />
+          <a onclick="tetr()">tetr</a>
         </p>
-    </div>
+      </div>
 
-    <p class="copyright">
+      <p class="copyright">
         <small>
-            <a href="https://daihachi10.github.io/" target="_blank">
-                &copy;daihachi
-            </a>
+          <a href="https://daihachi10.github.io/" target="_blank">
+            &copy;daihachi
+          </a>
         </small>
-    </p>
+      </p>
+    </footer>
+    <!-- footerここまで -->
 
-</footer>
-<!-- footerここまで -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@100..900&display=swap");
+    </style>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@100..900&display=swap');
-</style>
+    <link
+      rel="stylesheet"
+      href="https://daihachi10.github.io/css/loading.css"
+    />
+    <script src="https://daihachi10.github.io/js/loading.js"></script>
 
-<link rel="stylesheet" href="https://daihachi10.github.io/css/loading.css">
-<script src="https://daihachi10.github.io/js/loading.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
 
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/mntn-dev/t.js/t.min.js"></script>
+    <!-- p5.js -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>-->
+    <!--<script src="https://cdnjslllll.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>-->
 
-<!-- p5.js -->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.min.js"></script>-->
-<!--<script src="https://cdnjslllll.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>-->
+    <!-- driver.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
 
-<!-- driver.js -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
-<script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <!-- Splide.js -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
-<!-- Splide.js -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <!-- GSAP.js -->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>-->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>-->
 
-<!-- GSAP.js -->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>-->
+    <!-- ChatBOT -->
+    <chat-bot
+      platform_id="c63eec0b-f814-4b8b-8754-f04165332a13"
+      user_id="6480d800-c3af-4c93-8e4e-db7a577cb40b"
+      chatbot_id="a12438eb-54ea-452f-82ed-55c3775a8784"
+      ><a
+        href="https://www.chatsimple.ai/?utm_source=widget&utm_medium=referral"
+        >chatsimple</a
+      ></chat-bot
+    >
+    <script src="https://cdn.chatsimple.ai/chat-bot-loader.js" defer></script>
 
-<!-- ChatBOT -->
-<chat-bot platform_id="c63eec0b-f814-4b8b-8754-f04165332a13" user_id="6480d800-c3af-4c93-8e4e-db7a577cb40b"
-          chatbot_id="a12438eb-54ea-452f-82ed-55c3775a8784"><a
-        href="https://www.chatsimple.ai/?utm_source=widget&utm_medium=referral">chatsimple</a></chat-bot>
-<script src="https://cdn.chatsimple.ai/chat-bot-loader.js" defer></script>
-
-<script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>

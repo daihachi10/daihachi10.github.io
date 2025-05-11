@@ -17,7 +17,7 @@ Build pc parts introduce
 Youtube Video Player
 18ない
 使用パーツ一覧(PDF)
-TETRIS
+tetr
 パックマン
 HUB
 HUB拡張機能

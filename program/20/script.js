@@ -443,7 +443,7 @@ function playerDrop() {
     player.pos.y--;
     merge(arena, player);
     playerReset();
-    arenaSweep();
+    // arenaSweep();
   }
   dropCounter = 0;
 }
@@ -455,7 +455,7 @@ function playerDropInstant() {
   player.pos.y--;
   merge(arena, player);
   playerReset();
-  arenaSweep();
+  // arenaSweep();
   dropCounter = 0;
 }
 

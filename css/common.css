@@ -306,7 +306,19 @@ img {
 .about-item .link-button,
 .about-item a,
 .about-item .start,
-.about-item .settings .link-button:hover,
+.about-item .settings {
+  background-color: var(--sub-color);
+  display: inline-block;
+  min-width: 270px;
+  line-height: 48px;
+  border-radius: 35px;
+  /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif; */
+  font-size: 14px;
+  /* animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
+  border: 2px solid var(--sub-color);
+  transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1);
+}
+.link-button:hover,
 .about-item a:hover,
 .about-item .start:hover,
 .about-item .settings:hover {

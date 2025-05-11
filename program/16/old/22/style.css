@@ -1065,13 +1065,13 @@ span.appear {
   /* display: none; */
 }
 
-#loading .tetr iframe {
+#loading .TETR iframe {
   height: 550px;
   /* width: 650px; */
 }
 
-#loading .tetr #newtab,
-#loading .tetr #close {
+#loading .TETR #newtab,
+#loading .TETR #close {
   font-size: 18px;
   text-align: center;
   display: block;

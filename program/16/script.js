@@ -156,11 +156,11 @@ function reset() {
   location.reload();
 }
 
-function tetr() {
+function TETR() {
   loading.classList.remove("loaded");
 }
 
-function nottetr() {
+function notTETR() {
   loading.classList.add("loaded");
 }
 

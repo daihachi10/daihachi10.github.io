@@ -47,7 +47,7 @@ const data = [
     img: "../images/program-img/img-item25.webp",
   },
   {
-    title: "tetr",
+    title: "TETR",
     url: "https://daihachi10.github.io/program/20/index.html",
     description:
       "シンプルなテト風のゲームです。<br>ENTERキーまたはスタートボタンでスタート",

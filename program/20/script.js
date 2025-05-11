@@ -184,7 +184,7 @@ function keyChangeReset() {
   );
 }
 
-const canvas = document.getElementById("tetr");
+const canvas = document.getElementById("TETR");
 const context = canvas.getContext("2d");
 const holdCanvas = document.createElement("canvas"); // ホールド用キャンバス
 const holdContext = holdCanvas.getContext("2d");

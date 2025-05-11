@@ -147,10 +147,14 @@ ul li {
   font-weight: bold;
   margin-top: 20px;
 }
-.about-item a, .about-item .start, .about-item .settings, .about-item .gui {
+.about-item a,
+.about-item .start,
+.about-item .settings,
+.about-item .gui {
   display: inline-block;
   text-align: center;
   margin-top: 35px;
+  color: var(--text-color);
 }
 
 .open {
@@ -222,7 +226,9 @@ ul li {
   margin-top: 100px;
 }
 
-.hot, .game, .new {
+.hot,
+.game,
+.new {
   padding-left: 10px;
   font-size: 13px;
   font-weight: bold;
@@ -232,17 +238,21 @@ ul li {
   color: #ff0000;
 }
 
-.game, .new {
+.game,
+.new {
   color: rgba(255, 0, 0, 0.7019607843);
 }
 
-.fire, .new-image {
+.fire,
+.new-image {
   width: 13px !important;
   height: 13px !important;
   vertical-align: bottom;
 }
 
-.game-icon, .tool-icon, .Keyboard-icon {
+.game-icon,
+.tool-icon,
+.Keyboard-icon {
   fill: var(--sub-color);
   width: 14px;
   height: 14px;
@@ -293,14 +303,19 @@ ul li {
     margin-top: 20px;
     margin-left: 0;
   }
-  .about-item a, .about-item .start, .about-item .settings, .about-item #backgroundreset, .about-item #varreset {
+  .about-item a,
+  .about-item .start,
+  .about-item .settings,
+  .about-item #backgroundreset,
+  .about-item #varreset {
     width: 100%;
     color: #000000;
   }
   .about-item #speedup {
     width: 100%;
   }
-  .about-item #nextpattern, .about-item #backpattern {
+  .about-item #nextpattern,
+  .about-item #backpattern {
     width: 46.2%;
   }
   .about-item #nextpattern {

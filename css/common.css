@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 @import url(defolt.css);
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Color+Emoji&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -16,6 +16,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1); */
 }
 
 ul,
@@ -78,7 +79,6 @@ main {
   transform: translate(0, 0);
 } */
 
-
 .header-inner li a:hover,
 .site-menu li a:hover {
   animation: text-blur 0.5s;
@@ -99,8 +99,6 @@ main {
     filter: blur(0);
   }
 }
-
-
 
 body {
   /* font-family: sans-serif; */
@@ -222,7 +220,8 @@ img {
   border-radius: 6px;
   /* 背景も角丸に */
   background-color: var(--bg-color-light-scrollbar);
-  transition: background-color var(--transition-duration), color var(--transition-duration);
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 
 /*html { */
@@ -288,7 +287,6 @@ img {
   text-decoration: underline;
 }
 
-
 .link-button,
 .about-item a,
 .about-item .start,
@@ -302,10 +300,13 @@ img {
   font-size: 14px;
   /* animation: hover 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; */
   border: 2px solid var(--sub-color);
-  transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+  transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1);
 }
 
-.link-button:hover,
+.about-item .link-button,
+.about-item a,
+.about-item .start,
+.about-item .settings .link-button:hover,
 .about-item a:hover,
 .about-item .start:hover,
 .about-item .settings:hover {
@@ -337,7 +338,6 @@ img {
     background-color: var(--sub-hover-color);
   }
 }
-
 
 @media (max-width: 800px) {
   .site-menu ul {

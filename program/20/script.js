@@ -530,6 +530,7 @@ function arenaSweep() {
       }
     }
     const row = arena.splice(y, 1)[0].fill(0);
+    player.score++
     arena.unshift(row);
     ++y;
   }

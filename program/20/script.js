@@ -15,6 +15,9 @@ let inHardDropKey = " ";
 let inGyakukaiten = "z";
 let isSaving = false;
 
+// const scoreElement = document.querySelector("p").innerText = "新しいテキスト";
+
+
 document.addEventListener("dblclick", (e) => e.preventDefault(), {
   passive: false,
 });
@@ -481,6 +484,8 @@ function playerReset() {
   if (collide(arena, player)) {
     arena.forEach((row) => row.fill(0));
     player.score = 0;
+     document.getElementById("score").innerText = "Score:" + player.score + "(Line)";
+
   }
 }
 
@@ -531,6 +536,8 @@ function arenaSweep() {
     }
     const row = arena.splice(y, 1)[0].fill(0);
     player.score++
+     document.getElementById("score").innerText = "Score:" + player.score + "(Line)";
+
     arena.unshift(row);
     ++y;
   }
@@ -589,6 +596,8 @@ document.addEventListener("keydown", (event) => {
 
 function restartGame() {
   player.score = 0;
+     document.getElementById("score").innerText = "Score:" + player.score + "(Line)";
+
   restartButton.style.display = "none";
   arena.forEach((row) => row.fill(0));
   playerReset();

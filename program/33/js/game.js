@@ -51,6 +51,10 @@ let twoRespanTime = 300;
 let showOneRespanTime = 300;
 let showTwoRespanTime = 300;
 
+let countdown = 60; // カウントダウン秒数
+let startTime;
+let displayTime;
+
 function preload() {
   appleImage = loadImage("image/apple.png");
 }
@@ -66,8 +70,10 @@ function setup() {
   appleX = 240;
   appleY = random(512);
 
-  lastTime = millis(); // プログラム開始時の時間を保存
+  startTime = millis(); // 開始時刻を記録
 
+
+  
   noLoop();
 }
 
@@ -101,6 +107,8 @@ function draw() {
 
   onePlayerRespan();
   twoPlayerRespan();
+
+  timer();
 }
 
 function keyPressed() {
@@ -557,5 +565,26 @@ function twoPlayerRespan() {
         // }
       }
     }
+  }
+}
+
+
+function timer() {
+  // 経過時間（秒）を小数で計算
+  let elapsed = (millis() - startTime) / 1000;
+  let remaining = max(0, countdown - elapsed);
+
+  // 小数第1位まで表示
+  displayTime = remaining.toFixed(1);
+
+  $("#time").text("残り時間:" + displayTime + "秒");
+
+
+  textAlign(CENTER, CENTER);
+  textSize(48);
+  if (remaining <= 0) {
+    fill(200, 0, 0);
+    text("タイムアップ！", width / 2, height / 2 + 60);
+    noLoop(); // 終了後は停止
   }
 }

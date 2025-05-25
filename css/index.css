@@ -216,6 +216,10 @@ body {
     width: 220px;
     margin-right: 30px;
   }
+
+.first-view-text-p {
+  padding-top: 10px;
+}
   .loginiframe {
     display: none;
   }

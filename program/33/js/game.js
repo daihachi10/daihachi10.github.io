@@ -70,10 +70,6 @@ function setup() {
   appleX = 240;
   appleY = random(512);
 
-  startTime = millis(); // 開始時刻を記録
-
-
-  
   noLoop();
 }
 
@@ -479,6 +475,7 @@ function fpsCount() {
 
 function start() {
   loop();
+  startTime = millis(); // 開始時刻を記録
   $(document).ready(function () {
     $("#startbutton").addClass("started");
     $("#2pstartbutton").addClass("started");
@@ -568,7 +565,6 @@ function twoPlayerRespan() {
   }
 }
 
-
 function timer() {
   // 経過時間（秒）を小数で計算
   let elapsed = (millis() - startTime) / 1000;
@@ -578,7 +574,6 @@ function timer() {
   displayTime = remaining.toFixed(1);
 
   $("#time").text("残り時間:" + displayTime + "秒");
-
 
   textAlign(CENTER, CENTER);
   textSize(48);

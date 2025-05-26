@@ -14,7 +14,7 @@ let onePlayerColor = "#4674e1";
 let onePlayerOldPlayerX = [onePlayerX];
 let onePlayerOldPlayerY = [onePlayerY];
 
-let onePlayerScore = 0;
+let onePlayerScore = 0; //0
 
 let twoPlayerDirection = 0;
 let twoPlayerSpeed = 4; //4
@@ -54,6 +54,8 @@ let showTwoRespanTime = 300;
 let countdown = 60; // カウントダウン秒数
 let startTime;
 let displayTime;
+
+let surinuke = false;
 
 function preload() {
   appleImage = loadImage("image/apple.png");
@@ -105,6 +107,8 @@ function draw() {
   twoPlayerRespan();
 
   timer();
+
+  gameSystem();
 }
 
 function keyPressed() {
@@ -179,6 +183,59 @@ function onePleyerJudgment() {
       }
     }
   }
+
+  //自分の体
+  // onePlayerX =
+  // onePlayerOldPlayerX[onePlayerOldPlayerX.length - i];
+  // onePlayerOldPlayerY[onePlayerOldPlayerY.length - i];
+
+  // for (let i = 0; i < onePlayerScore + 20; i++) {
+  //   let size = 7;
+  //   let x = onePlayerOldPlayerX[onePlayerOldPlayerX.length - i];
+  //   let y = onePlayerOldPlayerY[onePlayerOldPlayerY.length - i];
+  //   let judX;
+  //   let judY;
+  //   let jud = 10;
+
+  //   // fill("#ff0000");
+  //   // rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
+  //   fill("#00ffff");
+
+  //   switch (onePlayerDirection) {
+  //     case "top":
+  //       judX = 0;
+  //       judY = jud;
+  //       break;
+  //     case "bottom":
+  //       judX = 0;
+  //       judY = jud * 2;
+  //       break;
+  //     case "left":
+  //       judX = -jud * 2;
+  //       judY = 0;
+  //       break;
+  //     case "right":
+  //       judX = jud;
+  //       judY = 0;
+  //       break;
+  //   }
+
+  //   rect(
+  //     onePlayerX + gridSize - size + judX,
+  //     onePlayerY + gridSize - size + judY,
+  //     size,
+  //     size
+  //   );
+  //   fill("#ff0000");
+  //   rect(onePlayerX + size, onePlayerY + size, size, size);
+  //   // rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
+
+  //   console.log(onePlayerDirection);
+
+  //   if (x + size == onePlayerX && y + size == onePlayerY) {
+  //     console.log("AAAAAAAAAA");
+  //   }
+  // }
 }
 
 function twoPleyerJudgment() {
@@ -339,9 +396,24 @@ function onePleyerGame() {
     onePlayerY >= 512 ||
     onePlayerY <= 0 - gridSize
   ) {
-    onePlayerGameOver = true;
-    $("#GameOver").addClass("gameover");
-    // gameOver()
+    if (!surinuke) {
+      onePlayerGameOver = true;
+      $("#GameOver").addClass("gameover");
+      // gameOver()
+    } else {
+      if (onePlayerX >= 512) {
+        onePlayerX = 0;
+      }
+      if (onePlayerX <= 0 - 10) {
+        onePlayerX = 511;
+      }
+      if (onePlayerY >= 512) {
+        onePlayerY = 1 - gridSize;
+      }
+      if (onePlayerY <= 0 - gridSize) {
+        onePlayerY = 511;
+      }
+    }
   }
 }
 
@@ -565,13 +637,29 @@ function twoPlayerRespan() {
   }
 }
 
+function random(min, max) {
+  Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomNumber;
+}
+
+function gameSystem() {
+  // let min = 0;
+  // let max = 9;
+  // let randomNumber = random(min, max);
+  // if (displayTime == 50) {
+  //   surinuke = true;
+  // }
+  // if (surinuke) {
+  // }
+}
+
 function timer() {
   // 経過時間（秒）を小数で計算
   let elapsed = (millis() - startTime) / 1000;
   let remaining = max(0, countdown - elapsed);
 
   // 小数第1位まで表示
-  displayTime = remaining.toFixed(1);
+  displayTime = remaining.toFixed(2);
 
   $("#time").text("残り時間:" + displayTime + "秒");
 

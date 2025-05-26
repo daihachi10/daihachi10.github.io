@@ -56,6 +56,10 @@
   color: #fdc52e;
 }
 
+.time {
+  font-size: 20px;
+}
+
 @media (max-width: 800px) {
   .top {
     margin-left: 0px;

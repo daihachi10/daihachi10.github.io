@@ -55,10 +55,16 @@ let countdown = 60; // カウントダウン秒数
 let startTime;
 let displayTime;
 
-let surinuke = false;
+let isSurinuke = false;
+
+let appleSounds;
+
+let timeLimit = true;
 
 function preload() {
   appleImage = loadImage("image/apple.png");
+
+  appleSounds = loadSound("./sounds/apple.mp3");
 }
 
 function setup() {
@@ -396,7 +402,7 @@ function onePleyerGame() {
     onePlayerY >= 512 ||
     onePlayerY <= 0 - gridSize
   ) {
-    if (!surinuke) {
+    if (!isSurinuke) {
       onePlayerGameOver = true;
       $("#GameOver").addClass("gameover");
       // gameOver()
@@ -445,6 +451,7 @@ function appleSpan(x, y) {
     onePlayerY - appleY > -detection
   ) {
     onePlayerScore++;
+    appleSounds.play();
     if (onePlayerScore % 2 === 0) {
       onePlayerSpeed += 0.25;
     }
@@ -647,9 +654,9 @@ function gameSystem() {
   // let max = 9;
   // let randomNumber = random(min, max);
   // if (displayTime == 50) {
-  //   surinuke = true;
+  //   isSurinuke = true;
   // }
-  // if (surinuke) {
+  // if (isSurinuke) {
   // }
 }
 
@@ -665,9 +672,22 @@ function timer() {
 
   textAlign(CENTER, CENTER);
   textSize(48);
-  if (remaining <= 0) {
+  if (remaining <= 0 && timeLimit) {
     fill(200, 0, 0);
-    text("タイムアップ！", width / 2, height / 2 + 60);
+
+    text("タイムアップ！", width / 2, height / 2);
+
+    fill("#fff");
+    rect(width / 2 - 80, height / 2 + 50, 160, 80);
+
+    textSize(24);
+    if (is2Players) {
+      fill(onePlayerColor);
+      text("1PScore:" + onePlayerScore, width / 2, height / 2 + 75);
+      fill(twoPlayerColor);
+      text("2PScore:" + twoPlayerScore, width / 2, height / 2 + 105);
+    }
+
     noLoop(); // 終了後は停止
   }
 }

@@ -95,4 +95,8 @@
   .top {
     margin-left: 0px;
   }
+
+  .about-item {
+    max-width: 512px;
+  }
 }

@@ -327,7 +327,7 @@ img {
 .about-item .settings {
   background-color: var(--sub-color);
   display: inline-block;
-  min-width: 270px;
+  min-width: 240px;
   line-height: 48px;
   border-radius: 35px;
   /* font-family: 'Montserrat', 'Noto Sans JP', sans-serif; */

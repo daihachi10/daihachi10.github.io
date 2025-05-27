@@ -88,8 +88,10 @@
     </li>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const container = document.getElementById("item-list");
-        container.classList.add("loaded");
+        const element = document.querySelector(".item-list");
+        if (element) {
+          element.classList.add("loaded");
+        }
       });
 
       // const images = document.querySelectorAll("img.images");

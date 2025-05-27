@@ -63,7 +63,22 @@
 #p5-canvas-container {
   width: 512px;
   height: 512px;
+  background-size: 512px;
+  border-radius: 6px;
+  animation: shimmer 1.5s infinite;
+}
 
+.skeleton {
+  background-size: 600px;
+  border-radius: 6px;
+  height: 25.6px;
+  width: 300px;
+  margin-bottom: 12px;
+  animation: shimmer2 1.5s infinite;
+}
+
+#p5-canvas-container,
+.skeleton {
   background-color: #e2e2e2;
   background-image: linear-gradient(
     90deg,
@@ -71,24 +86,35 @@
     #f5f5f5 40px,
     #e2e2e2 80px
   );
-  background-size: 512px;
   animation: shimmer 1.5s infinite;
-  border-radius: 6px;
-  margin-bottom: 12px;
   color: transparent;
 }
 
 @keyframes shimmer {
   0% {
-    background-position: -512px 0;
+    background-position: -600px 0;
   }
   100% {
-    background-position: 512px 0;
+    background-position: 600px 0;
+  }
+}
+@keyframes shimmer2 {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
   }
 }
 
 .about-item {
   max-width: 240px;
+}
+
+.loaded {
+  background: none;
+  animation: none;
+  color: inherit;
 }
 
 @media (max-width: 800px) {

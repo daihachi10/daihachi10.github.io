@@ -66,7 +66,7 @@ const timeButton = document.getElementById('timebutton')
 
 surinukeButton.addEventListener('click', function () { isSurinuke = true });
 
-surinukeButton.addEventListener('click', function () {
+timeButton.addEventListener('click', function () {
   countdown = prompt("時間を入力してください",countdown)
 });
 

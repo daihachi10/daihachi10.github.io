@@ -61,6 +61,16 @@ let appleSounds;
 
 let timeLimit = true;
 
+const surinukeButton = document.getElementById('surinukebutton');
+const timeButton = document.getElementById('timebutton')
+
+surinukeButton.addEventListener('click', function () { isSurinuke = true });
+
+timeButton.addEventListener('click', function () {
+  countdown = prompt("時間を入力してください",countdown)
+});
+
+
 function preload() {
   appleImage = loadImage("image/apple.png");
 
@@ -534,11 +544,11 @@ function fpsCount() {
   $(document).ready(function () {
     $("#fps").text(
       "fps:" +
-        fps.toFixed(0) +
-        " " +
-        minFps.toFixed(1) +
-        "/" +
-        maxFps.toFixed(1)
+      fps.toFixed(0) +
+      " " +
+      minFps.toFixed(1) +
+      "/" +
+      maxFps.toFixed(1)
     );
 
     if (fps < 45) {
@@ -691,3 +701,4 @@ function timer() {
     noLoop(); // 終了後は停止
   }
 }
+

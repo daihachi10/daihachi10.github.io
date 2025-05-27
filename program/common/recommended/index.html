@@ -29,7 +29,7 @@
           <img
             src="https://daihachi10.github.io/images/program-img/img-item25.webp"
             alt="ボール拾いゲーム"
-            class="images"
+            class="images imagehidden"
           />
         </div>
         <dl>
@@ -46,7 +46,7 @@
           <img
             src="https://daihachi10.github.io/images/program-img/img-item20-02.webp"
             alt="テト"
-            class="images"
+            class="images imagehidden"
           />
         </div>
 
@@ -62,7 +62,7 @@
           <img
             src="https://daihachi10.github.io/images/program-img/img-item15-02.webp"
             alt="寿司タイピング"
-            class="images"
+            class="images imagehidden"
           />
         </div>
 
@@ -81,35 +81,10 @@
           <img
             src="https://daihachi10.github.io/images/program-img/moreprograms.webp"
             alt="もっと"
-            class="images"
+            class="images imagehidden"
           />
         </div>
       </a>
     </li>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const element = document.querySelector(".item-list");
-        if (element) {
-          element.classList.add("loaded");
-        }
-      });
-
-      // const images = document.querySelectorAll("img.images");
-      // images.forEach((img) => {
-      //   if (img.complete && img.naturalWidth !== 0) {
-      //     loadedCount++;
-      //   } else {
-      //     img.onload = () => {
-      //       loadedCount++;
-      //       if (loadedCount === images.length) {
-      //         console.log("すべての画像が読み込まれました！");
-      //       }
-      //     };
-      //     img.onerror = () => {
-      //       console.error("読み込み失敗:", img.src);
-      //     };
-      //   }
-      // });
-    </script>
   </body>
 </html>

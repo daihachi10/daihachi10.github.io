@@ -1,0 +1,27 @@
+iframe {
+  min-width: 500px;
+}
+
+.about-item {
+  width: 270px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+  /*background: linear-gradient(to bottom, #0b1429, #005bff);*/
+}
+
+canvas {
+  position: fixed;
+  /* 固定位置 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* ユーザーの操作を無効化 */
+  z-index: -1;
+  /* 背景に配置 */
+}

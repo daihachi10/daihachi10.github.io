@@ -20,28 +20,6 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
     </style>
-
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        /* overflow: hidden; */
-        /*background: linear-gradient(to bottom, #0b1429, #005bff);*/
-      }
-
-      canvas {
-        position: fixed;
-        /* 固定位置 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        /* ユーザーの操作を無効化 */
-        z-index: -1;
-        /* 背景に配置 */
-      }
-    </style>
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -51,6 +29,7 @@
     <script src="/../../common/program.js"></script>
     <link rel="stylesheet" href="./popup/style.css" />
     <meta name="theme-color" content="#1DB31D" />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -153,7 +132,7 @@
         <aside id="sidebar" class="shop-menu"></aside>
       </div>
 
-      <div id="popup" class="popup hidden">
+      <!-- <div id="popup" class="popup hidden">
         <div class="popup-content">
           <button id="close-btn" class="close-btn" onclick="closePopup()">
             &times;
@@ -165,9 +144,7 @@
           </p>
           <div style="width: 500px"></div>
         </div>
-
-        <style></style>
-      </div>
+      </div> -->
     </main>
     <!-- mainここまで -->
 

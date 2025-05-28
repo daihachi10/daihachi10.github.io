@@ -146,30 +146,11 @@
             console.log(
               `5秒経過しました。パラメータ 'url' の値 (${redirectUrl}) にリダイレクトします。`
             );
-            try {
-              // URLが妥当かどうかの簡易チェック（不正な形式ならエラーが発生）
-              new URL(redirectUrl); // この行は検証のため
-
-              // リダイレクト実行 (window.location.replace の方が履歴に残りません)
-              window.location.replace(
-                "https://daihachi10.github.io/program/" + redirectUrl
-              );
-              // もし履歴に残したい場合はこちら:
-              // window.location.href = redirectUrl;
-            } catch (e) {
-              console.error(
-                "指定されたリダイレクト先のURLが無効です:",
-                redirectUrl,
-                e
-              );
-              // ここでユーザーにエラーメッセージを表示するなどの処理も可能です
-            }
-          } else {
-            console.log(
-              "リダイレクト先のURLパラメータ 'url' が見つからないか、空です。リダイレクトは行いません。"
+            window.location.replace(
+              "https://daihachi10.github.io/program/" + redirectUrl
             );
           }
-        }, 3500); // 5000ミリ秒 = 5秒
+        }, 1200); // 5000ミリ秒 = 5秒
       });
     </script>
     <script></script>

@@ -124,20 +124,20 @@
       // <head>要素の最後にscriptタグを追加
       document.head.appendChild(script);
     }
-    const isPassword = localStorage.getItem(password)
-    if (ispassword == true) {
-      loadScript("./js/game.js");
+    loadScript("./js/game.js");
+    // const isPassword = localStorage.getItem(password)
+    // if (ispassword == true) {
 
-    } else {
+    // } else {
 
-      const password = window.prompt("パスワードを入力してください");
-      if (password === "daihachi10") {
-        loadScript("./js/game.js");
-        localStorage.setItem(password, true)
-      } else {
-        window.location.href = "https://daihachi10.github.io/program";
-      }
-    }
+    //   const password = window.prompt("パスワードを入力してください");
+    //   if (password === "daihachi10") {
+    //     loadScript("./js/game.js");
+    //     localStorage.setItem(password, true)
+    //   } else {
+    //     window.location.href = "https://daihachi10.github.io/program";
+    //   }
+    // }
   </script>
   <script></script>
 </body>

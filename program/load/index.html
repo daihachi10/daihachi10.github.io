@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>PROGRAM | daihachi official website</title>
+    <meta
+      name="description"
+      content="daihachiのプログラムがプレイができるサイトです。"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    <script>
+      let isUseColorChange = false;
+    </script>
+    <script src="https://daihachi10.github.io/js/toggle-menu.js"></script>
+    <link href="../../css/common.css" rel="stylesheet" />
+    <link href="../../css/details.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link href="../../css/loading.css" rel="stylesheet" />
+    <script src="../../js/loading.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="../common/script.js"></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("sidebar");
+
+        for (let i = 0; i < 28; i++) {
+          const div = document.createElement("div");
+          div.className = "skeleton"; // クラス名を指定
+          container.appendChild(div);
+        }
+
+        window.addEventListener("load", () => {
+          console.log("window.load event fired"); // イベント発火確認
+
+          const element = document.querySelector(".item-list");
+          const images = document.querySelectorAll(".imagehidden"); // 変数名を複数形に (NodeListなので)
+
+          console.log("Found .item-list:", element);
+          console.log("Found .imagehidden elements:", images); // NodeList自体をログに出力
+          console.log("Number of .imagehidden elements:", images.length); // 要素の数を出力
+
+          if (element) {
+            element.classList.add("loaded");
+            console.log(".item-listにloadedクラスを追加しました");
+          } else {
+            console.log(".item-listが見つかりませんでした");
+          }
+
+          if (images.length > 0) {
+            images.forEach((el) => {
+              console.log("Processing element:", el); // 対象要素をログに出力
+              el.classList.remove("imagehidden");
+              console.log(
+                "Removed .imagehidden. Current classes:",
+                el.className
+              ); // 削除後のクラス名を確認
+            });
+          } else {
+            console.log(
+              ".imagehiddenクラスを持つ要素が見つかりませんでした at window.load"
+            );
+          }
+        });
+
+        // DOMContentLoadedの直後にも確認（比較のため）
+        console.log(
+          "DOMContentLoaded - Number of .imagehidden elements:",
+          document.querySelectorAll(".imagehidden").length
+        );
+      });
+    </script>
+    <script></script>
+    <script src="/../../common/program.js"></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
+
+  <body>
+    <!-- <div id="loading"></div> -->
+
+    <div class="progress"></div>
+    <!-- headerここから -->
+    <header class="header"></header>
+    <!-- headerここまで -->
+
+    <!-- mainここから -->
+    <main class="main">
+      <div class="title">
+        <div class="skeleton h1"></div>
+        <div class="skeleton p"></div>
+      </div>
+      <div class="shop-contents">
+        <div class="shop-item">
+          <div class="skeleton h2"></div>
+          <div class="item-area">
+            <div id="p5-canvas-container"></div>
+            <div class="about-item">
+              <div class="skeleton setumei"></div>
+              <div class="skeleton setumei"></div>
+              <div class="skeleton setumei"></div>
+              <div class="skeleton setumei"></div>
+              <div class="skeleton setumei"></div>
+              <div class="skeleton setumei"></div>
+              <div class="skeleton setumei"></div>
+            </div>
+          </div>
+          <div class="item-group recommended">
+            <div class="skeleton recommendedtext"></div>
+            <div class="skeleton recommendeditem"></div>
+            <div class="skeleton recommendeditem"></div>
+            <div class="skeleton recommendeditem"></div>
+            <div class="skeleton recommendeditem"></div>
+          </div>
+        </div>
+        <aside id="sidebar" class="shop-menu"></aside>
+      </div>
+    </main>
+    <!-- mainここまで -->
+
+    <!-- footerここから -->
+    <footer class="footer"></footer>
+    <!-- footerここまで -->
+    <!-- <script src="./js/game.js"></script> -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 5秒後に実行する処理
+        setTimeout(function () {
+          // 現在のページのURLからクエリパラメータを取得
+          const searchParams = new URLSearchParams(window.location.search);
+
+          // 'url' パラメータの値を取得
+          const redirectUrl = searchParams.get("url");
+
+          // 'url' パラメータが存在し、かつ空でない場合
+          if (redirectUrl && redirectUrl.trim() !== "") {
+            console.log(
+              `5秒経過しました。パラメータ 'url' の値 (${redirectUrl}) にリダイレクトします。`
+            );
+            window.location.replace(
+              "https://daihachi10.github.io/program/" + redirectUrl
+            );
+          }
+        }, 700); // 5000ミリ秒 = 5秒
+      });
+    </script>
+    <script></script>
+  </body>
+</html>

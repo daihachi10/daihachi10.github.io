@@ -131,10 +131,6 @@
   float: left;
 }
 
-.recommendeditembox {
-  float: none;
-}
-
 @media (max-width: 800px) {
   .top {
     margin-left: 0px;

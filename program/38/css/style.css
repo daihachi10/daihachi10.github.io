@@ -1,0 +1,146 @@
+#fps {
+  /* font-size: 10px; */
+}
+
+.score {
+  font-size: 30px !important;
+}
+
+.red {
+  color: #f00;
+}
+
+#GameOver {
+  display: none;
+}
+
+#GameOver.gameover {
+  display: block;
+}
+
+.started {
+  display: none !important;
+}
+
+.top {
+  margin: 0 0 5px 65px !important;
+}
+
+.control {
+  margin-bottom: 10px;
+}
+
+.controlbuttom {
+  display: flex;
+}
+
+.controlbutton,
+.controlbuttonbuttom {
+  min-width: 55px !important;
+}
+
+.controlbuttonbuttom {
+  margin-top: 0px !important;
+  margin-left: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.one-player {
+  color: #4878de;
+}
+
+.two-player {
+  color: #fdc52e;
+}
+
+.time {
+  font-size: 20px;
+}
+
+.about-item {
+  max-width: 240px;
+}
+
+#p5-canvas-container {
+  width: 512px;
+  height: 512px;
+  background-size: 512px;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  background-image: linear-gradient(
+    90deg,
+    #e2e2e2 0px,
+    #f1f1f1 40px,
+    #e2e2e2 80px
+  );
+  animation: shimmer 1.5s infinite;
+  /* animation: shimmer2 0.4s infinite alternate; */
+
+  color: transparent;
+}
+
+.skeleton {
+  background-size: 512px;
+  border-radius: 20px;
+  background-color: #e2e2e2;
+  background-image: linear-gradient(
+    90deg,
+    #e2e2e2 0px,
+    #f1f1f1 40px,
+    #e2e2e2 80px
+  );
+  animation: shimmer 1.5s infinite;
+  /* animation: shimmer2 0.4s infinite alternate; */
+
+  color: transparent;
+}
+
+.setumei {
+  width: 300px;
+  height: 23px;
+  margin-bottom: 10px;
+}
+
+.h1 {
+  width: 250px;
+  height: 35px;
+}
+
+.p {
+  width: 170px;
+  height: 23px;
+}
+
+.h2 {
+  width: 250px;
+  height: 25px;
+}
+
+.recommendedtext {
+  width: 280px;
+  height: 30px;
+}
+
+.recommendeditem {
+  width: 200px;
+  height: 200px;
+  margin: 24px 20px 10px 0px;
+  float: left;
+}
+
+.recommendeditembox {
+  float: none;
+}
+
+@media (max-width: 800px) {
+  .top {
+    margin-left: 0px;
+  }
+
+  .about-item {
+    max-width: 512px;
+  }
+}

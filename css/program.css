@@ -85,7 +85,8 @@ body {
   margin-top: 100px;
 }
 
-.hot, .game {
+.hot,
+.game {
   padding-left: 3px;
   font-size: 10px;
   font-weight: bold;
@@ -137,7 +138,9 @@ body {
 }
 .check:hover {
   background: #fff;
-  box-shadow: 0 0 5px rgba(69, 112, 255, 0.6), 0 0 10px rgba(69, 112, 255, 0.5), 0 0 20px rgba(69, 112, 255, 0.4), 0 0 40px rgba(69, 112, 255, 0.3), 0 0 80px rgba(69, 112, 255, 0.1);
+  box-shadow: 0 0 5px rgba(69, 112, 255, 0.6), 0 0 10px rgba(69, 112, 255, 0.5),
+    0 0 20px rgba(69, 112, 255, 0.4), 0 0 40px rgba(69, 112, 255, 0.3),
+    0 0 80px rgba(69, 112, 255, 0.1);
 }
 
 @media (max-width: 800px) {

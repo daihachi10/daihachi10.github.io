@@ -8,6 +8,7 @@ function hidden() {
 }
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("sidebar");
+  const images = document.querySelectorAll(".imagehidden"); // 変数名を複数形に (NodeListなので)
 
   for (let i = 0; i < 28; i++) {
     const div = document.createElement("div");

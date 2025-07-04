@@ -1,299 +1,294 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>二次方程式チャレンジ</title>
     <!-- p5.jsライブラリの読み込み -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
-
+    
     <!-- Google Fontsの読み込み -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- CSSスタイル -->
     <style>
-      /* 基本的なリセットとページ全体のスタイル */
-      body {
-        margin: 0;
-        font-family: "Noto Sans JP", sans-serif;
-        background-color: #f0f4f8; /* 明るい背景色 */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        color: #333;
-      }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
 
-      /* メインのコンテナ（カードデザイン） */
-      .main-container {
-        background-color: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-        padding: 30px 40px;
-        text-align: center;
-        width: 90%;
-        max-width: 550px;
-        transition: transform 0.2s ease-in-out;
-      }
-
-      .main-container:hover {
-        transform: translateY(-5px);
-      }
-
-      /* メインタイトル */
-      h1 {
-        color: #1e3a8a; /* 濃い青 */
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-      }
-
-      /* p5.jsキャンバスを囲むコンテナ */
-      #canvas-container {
-        margin: 20px 0;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      }
-
-      /* 回答入力フォームのスタイル */
-      #answer-form {
-        margin-top: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px; /* 要素間の隙間 */
-        flex-wrap: wrap; /* 画面が狭い時に折り返す */
-      }
-
-      #answer-form span {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #333;
-      }
-
-      #answer-form input {
-        width: 60px;
-        height: 45px;
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 700;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        transition: border-color 0.3s, box-shadow 0.3s;
-      }
-
-      #answer-form input:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-      }
-
-      #answer-form button {
-        background: linear-gradient(45deg, #3b82f6, #2563eb);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 12px 25px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        font-family: "Noto Sans JP", sans-serif;
-        cursor: pointer;
-        transition: background 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-      }
-
-      #answer-form button:hover {
-        background: linear-gradient(45deg, #2563eb, #1e3a8a);
-        transform: translateY(-2px);
-      }
-
-      /* スマートフォン向けのレスポンシブ対応 */
-      @media (max-width: 600px) {
         .main-container {
-          padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            text-align: center;
+            width: 90%;
+            max-width: 550px;
         }
+        
         h1 {
-          font-size: 1.8rem;
+            color: #1e3a8a;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main-container">
-      <h1>二次方程式チャレンジ</h1>
-      <div id="canvas-container"></div>
+        
+        #canvas-container {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            /* キャンバス自体にカーソルをポインターにする */
+            cursor: pointer;
+        }
 
-      <div id="answer-form">
-        <span>x =</span>
-        <input type="text" id="ans1" inputmode="numeric" />
-        <span>,</span>
-        <input type="text" id="ans2" inputmode="numeric" />
-        <button id="submit-button">答えを確認</button>
-      </div>
+        #answer-form {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #answer-form span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        #answer-form input {
+            width: 60px;
+            height: 45px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #answer-form input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        @media (max-width: 600px) {
+            .main-container { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>二次方程式チャレンジ</h1>
+        <div id="canvas-container"></div>
+        
+        <div id="answer-form">
+            <span>x =</span>
+            <input type="text" id="ans1" inputmode="numeric">
+            <span>,</span>
+            <input type="text" id="ans2" inputmode="numeric">
+        </div>
     </div>
 
     <!-- p5.js スケッチ -->
     <script>
-      let currentQuiz;
-      let score = 0;
-      let ans1Input, ans2Input;
+        let currentQuiz;
+        let score = 0;
+        let ans1Input, ans2Input;
+        
+        // --- 新しい変数 ---
+        let submitButton, hintButton; // ボタンの位置情報を管理
+        let showHint = false; // 途中式表示のフラグ
 
-      function setup() {
-        let canvas = createCanvas(500, 350);
-        canvas.parent("canvas-container");
+        function setup() {
+            let canvas = createCanvas(500, 350);
+            canvas.parent('canvas-container');
 
-        ans1Input = select("#ans1");
-        ans2Input = select("#ans2");
-        let submitButton = select("#submit-button");
-        submitButton.mousePressed(handleAnswerSubmit);
+            ans1Input = select('#ans1');
+            ans2Input = select('#ans2');
 
-        generateNewQuiz();
-      }
-
-      function draw() {
-        background(255);
-        displayQuiz();
-        displayScoreAndLevel();
-        displayGuideOnCanvas();
-      }
-
-      function handleAnswerSubmit() {
-        const val1 = ans1Input.value();
-        const val2 = ans2Input.value();
-        if (val1.trim() === "" || val2.trim() === "") {
-          alert("エラー: 解を2つとも入力してください。");
-          return;
-        }
-        const userAns1 = Number(val1);
-        const userAns2 = Number(val2);
-        if (isNaN(userAns1) || isNaN(userAns2)) {
-          alert("エラー: 数値を入力してください。");
-          return;
-        }
-        checkAnswer(userAns1, userAns2);
-      }
-
-      function checkAnswer(userAns1, userAns2) {
-        const userAnswers = [userAns1, userAns2].sort((a, b) => a - b);
-        const isCorrect =
-          userAnswers[0] === currentQuiz.answerValues[0] &&
-          userAnswers[1] === currentQuiz.answerValues[1];
-
-        if (isCorrect) {
-          alert("正解！素晴らしい！");
-          score++;
-          generateNewQuiz();
-          ans1Input.value("");
-          ans2Input.value("");
-        } else {
-          alert("不正解です。もう一度考えてみましょう。");
-        }
-      }
-
-      function getDifficultyLevel() {
-        if (score <= 2) return 1;
-        if (score <= 5) return 2;
-        if (score <= 9) return 3;
-        return 4;
-      }
-
-      function generateNewQuiz() {
-        const level = getDifficultyLevel();
-        let x1,
-          x2,
-          a = 1;
-        switch (level) {
-          case 1:
-            x1 = floor(random(1, 6));
-            do {
-              x2 = floor(random(1, 6));
-            } while (x1 === x2);
-            break;
-          case 2:
-            x1 = floor(random(1, 9));
-            x2 = floor(random(-8, 0));
-            break;
-          case 3:
-            x1 = floor(random(-12, 13));
-            if (x1 === 0) x1 = 13;
-            do {
-              x2 = floor(random(-12, 13));
-              if (x2 === 0) x2 = -13;
-            } while (x1 === x2);
-            break;
-          case 4:
-            a = floor(random(2, 5));
-            x1 = floor(random(1, 7));
-            x2 = floor(random(-6, 0));
-            break;
-        }
-        let coeffB = -a * (x1 + x2);
-        let coeffC = a * (x1 * x2);
-
-        let equation = a === 1 ? "x² " : `${a}x² `;
-        if (coeffB > 0) {
-          equation += `+ ${coeffB}x `;
-        } else if (coeffB < 0) {
-          equation += `- ${-coeffB}x `;
+            // キャンバス上のボタンの位置とサイズを定義
+            submitButton = { x: width - 150, y: height - 60, w: 130, h: 40, label: '答えを確認' };
+            hintButton = { x: width - 150, y: height - 110, w: 130, h: 40, label: '途中式を見る' };
+            
+            generateNewQuiz();
         }
 
-        // ★★★ エラー箇所を修正しました ★★★
-        if (coeffC > 0) {
-          equation += `+ ${coeffC} = 0`;
-        } else if (coeffC < 0) {
-          equation += `- ${-coeffC} = 0`;
-        } // "cC" -> "coeffC" に修正
-        else {
-          equation += "= 0";
+        function draw() {
+            background(255); 
+            displayQuiz();
+            displayScoreAndLevel();
+            
+            // ボタンを描画
+            drawButton(submitButton);
+            drawButton(hintButton);
+            
+            // 途中式表示フラグがtrueなら、途中式を描画
+            if (showHint) {
+                displayHint();
+            }
         }
 
-        currentQuiz = {
-          level: level,
-          question: `次の二次方程式を解きなさい。`,
-          equationText: equation,
-          answerValues: [x1, x2].sort((a, b) => a - b),
-        };
-      }
+        // --- クリック処理 ---
+        function mousePressed() {
+            // 「答えを確認」ボタンが押されたか判定
+            if (isMouseOver(submitButton)) {
+                handleAnswerSubmit();
+            }
+            // 「途中式を見る」ボタンが押されたか判定
+            if (isMouseOver(hintButton)) {
+                showHint = !showHint; // 表示・非表示を切り替え
+            }
+        }
+        
+        // マウスがボタンの上にあるか判定するヘルパー関数
+        function isMouseOver(button) {
+            return mouseX > button.x && mouseX < button.x + button.w &&
+                   mouseY > button.y && mouseY < button.y + button.h;
+        }
 
-      function displayQuiz() {
-        fill(50);
-        noStroke();
-        textSize(20);
-        textAlign(CENTER, TOP);
-        text(currentQuiz.question, width / 2, 80);
+        // --- ボタン描画関数 ---
+        function drawButton(button) {
+            push(); // スタイル設定を一時的に変更
+            if (isMouseOver(button)) {
+                fill(200, 220, 255); // ホバー時の色
+            } else {
+                fill(240); // 通常の色
+            }
+            stroke(150);
+            strokeWeight(1.5);
+            rect(button.x, button.y, button.w, button.h, 8); // 角丸の四角形
 
-        textSize(36);
-        textAlign(CENTER, CENTER);
-        fill(20, 40, 80);
-        text(currentQuiz.equationText, width / 2, height / 2);
-      }
+            noStroke();
+            fill(50);
+            textSize(16);
+            textAlign(CENTER, CENTER);
+            text(button.label, button.x + button.w / 2, button.y + button.h / 2);
+            pop(); // スタイル設定を元に戻す
+        }
 
-      function displayScoreAndLevel() {
-        fill(0, 100, 0);
-        textSize(18);
-        textAlign(LEFT, TOP);
-        text(`正解数: ${score}`, 20, 20);
-        fill(139, 0, 0);
-        textAlign(RIGHT, TOP);
-        text(`難易度レベル: ${currentQuiz.level}`, width - 20, 20);
-      }
+        // --- 途中式表示関数 ---
+        function displayHint() {
+            const { a, b, c } = currentQuiz.coefficients;
+            const d = b * b - 4 * a * c; // 判別式 D = b^2 - 4ac
 
-      function displayGuideOnCanvas() {
-        fill(120);
-        textSize(14);
-        textAlign(CENTER, BOTTOM);
-        text(
-          "下のボックスに答えを入力して「答えを確認」ボタンを押してね！",
-          width / 2,
-          height - 20
-        );
-      }
+            push();
+            // 半透明の背景
+            fill(0, 0, 0, 150);
+            noStroke();
+            rect(0, 0, width, height);
+            
+            // テキスト表示用の白い背景
+            fill(255);
+            rect(50, 80, width - 100, height - 160, 10);
+
+            // テキストの描画
+            fill(0);
+            textAlign(LEFT, TOP);
+            textSize(18);
+            
+            let hintText = `解の公式: x = (-b ± √b²-4ac) / 2a\n\n`;
+            hintText += `a=${a}, b=${b}, c=${c} を代入すると...\n\n`;
+            hintText += `x = (-(${b}) ± √(${b})² - 4*${a}*${c})) / (2*${a})\n\n`;
+            hintText += `x = (${-b} ± √${d}) / ${2*a}\n\n`;
+            hintText += `x = (${-b} ± ${sqrt(d)}) / ${2*a}\n\n`;
+            hintText += `答え: x = ${currentQuiz.answerValues.join(', ')}`;
+            
+            text(hintText, 70, 100);
+            
+            textSize(12);
+            fill(100);
+            text("もう一度ボタンを押すか、次の問題に進むと閉じます。", 70, height - 110);
+            pop();
+        }
+        
+        function handleAnswerSubmit() {
+            const val1 = ans1Input.value();
+            const val2 = ans2Input.value();
+            if (val1.trim() === '' || val2.trim() === '') {
+                alert("エラー: 解を2つとも入力してください。"); return;
+            }
+            const userAns1 = Number(val1);
+            const userAns2 = Number(val2);
+            if (isNaN(userAns1) || isNaN(userAns2)) {
+                alert("エラー: 数値を入力してください。"); return;
+            }
+            checkAnswer(userAns1, userAns2);
+        }
+        
+        function checkAnswer(userAns1, userAns2) {
+            const userAnswers = [userAns1, userAns2].sort((a, b) => a - b);
+            const isCorrect = userAnswers[0] === currentQuiz.answerValues[0] && userAnswers[1] === currentQuiz.answerValues[1];
+            
+            if (isCorrect) {
+                alert("正解！素晴らしい！");
+                score++;
+                generateNewQuiz();
+                ans1Input.value('');
+                ans2Input.value('');
+            } else {
+                alert("不正解です。もう一度考えてみましょう。");
+            }
+        }
+        
+        function getDifficultyLevel() {
+            if (score <= 2) return 1; if (score <= 5) return 2; if (score <= 9) return 3; return 4;
+        }
+
+        function generateNewQuiz() {
+            showHint = false; // 新しい問題になったらヒントを非表示にする
+            const level = getDifficultyLevel();
+            let x1, x2, a = 1;
+            // ... (問題生成ロジックは同じ)
+            switch (level) {
+                case 1: x1 = floor(random(1, 6)); do { x2 = floor(random(1, 6)); } while (x1 === x2); break;
+                case 2: x1 = floor(random(1, 9)); x2 = floor(random(-8, 0)); break;
+                case 3: x1 = floor(random(-12, 13)); if (x1 === 0) x1 = 13; do { x2 = floor(random(-12, 13)); if (x2 === 0) x2 = -13; } while (x1 === x2); break;
+                case 4: a = floor(random(2, 5)); x1 = floor(random(1, 7)); x2 = floor(random(-6, 0)); break;
+            }
+            let coeffB = -a * (x1 + x2);
+            let coeffC = a * (x1 * x2);
+            
+            let equation = (a === 1) ? "x² " : `${a}x² `;
+            if (coeffB > 0) { equation += `+ ${coeffB}x `; } else if (coeffB < 0) { equation += `- ${-coeffB}x `; }
+            if (coeffC > 0) { equation += `+ ${coeffC} = 0`; } else if (coeffC < 0) { equation += `- ${-coeffC} = 0`; } else { equation += "= 0"; }
+
+            currentQuiz = {
+                level: level,
+                question: `次の二次方程式を解きなさい。`,
+                equationText: equation,
+                answerValues: [x1, x2].sort((a, b) => a - b),
+                // 途中式表示用に係数を保存
+                coefficients: { a: a, b: coeffB, c: coeffC }
+            };
+        }
+
+        function displayQuiz() {
+            fill(50); noStroke();
+            textSize(20); textAlign(CENTER, TOP);
+            text(currentQuiz.question, width / 2, 80);
+            textSize(36); textAlign(CENTER, CENTER);
+            fill(20, 40, 80);
+            text(currentQuiz.equationText, width / 2, height / 2 - 30); // 少し上に移動
+        }
+
+        function displayScoreAndLevel() {
+            fill(0, 100, 0); textSize(18);
+            textAlign(LEFT, TOP); text(`正解数: ${score}`, 20, 20);
+            fill(139, 0, 0); textAlign(RIGHT, TOP); text(`難易度レベル: ${currentQuiz.level}`, width - 20, 20);
+        }
     </script>
-  </body>
+</body>
 </html>

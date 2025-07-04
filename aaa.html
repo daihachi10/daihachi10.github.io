@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>二次方程式チャレンジ</title>
+    <!-- p5.jsライブラリの読み込み -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+
+    <!-- Google Fontsの読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSSスタイル -->
+    <style>
+      /* 基本的なリセットとページ全体のスタイル */
+      body {
+        margin: 0;
+        font-family: "Noto Sans JP", sans-serif;
+        background-color: #f0f4f8; /* 明るい背景色 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #333;
+      }
+
+      /* メインのコンテナ（カードデザイン） */
+      .main-container {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px 40px;
+        text-align: center;
+        width: 90%;
+        max-width: 550px;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .main-container:hover {
+        transform: translateY(-5px);
+      }
+
+      /* メインタイトル */
+      h1 {
+        color: #1e3a8a; /* 濃い青 */
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+      }
+
+      /* p5.jsキャンバスを囲むコンテナ */
+      #canvas-container {
+        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      /* 回答入力フォームのスタイル */
+      #answer-form {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px; /* 要素間の隙間 */
+        flex-wrap: wrap; /* 画面が狭い時に折り返す */
+      }
+
+      #answer-form span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #333;
+      }
+
+      #answer-form input {
+        width: 60px;
+        height: 45px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      #answer-form input:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      }
+
+      #answer-form button {
+        background: linear-gradient(45deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-family: "Noto Sans JP", sans-serif;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+      }
+
+      #answer-form button:hover {
+        background: linear-gradient(45deg, #2563eb, #1e3a8a);
+        transform: translateY(-2px);
+      }
+
+      /* スマートフォン向けのレスポンシブ対応 */
+      @media (max-width: 600px) {
+        .main-container {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>二次方程式チャレンジ</h1>
+      <div id="canvas-container"></div>
+
+      <div id="answer-form">
+        <span>x =</span>
+        <input type="text" id="ans1" inputmode="numeric" />
+        <span>,</span>
+        <input type="text" id="ans2" inputmode="numeric" />
+        <button id="submit-button">答えを確認</button>
+      </div>
+    </div>
+
+    <!-- p5.js スケッチ -->
+    <script>
+      let currentQuiz;
+      let score = 0;
+      let ans1Input, ans2Input;
+
+      function setup() {
+        let canvas = createCanvas(500, 350);
+        canvas.parent("canvas-container");
+
+        ans1Input = select("#ans1");
+        ans2Input = select("#ans2");
+        let submitButton = select("#submit-button");
+        submitButton.mousePressed(handleAnswerSubmit);
+
+        generateNewQuiz();
+      }
+
+      function draw() {
+        background(255);
+        displayQuiz();
+        displayScoreAndLevel();
+        displayGuideOnCanvas();
+      }
+
+      function handleAnswerSubmit() {
+        const val1 = ans1Input.value();
+        const val2 = ans2Input.value();
+        if (val1.trim() === "" || val2.trim() === "") {
+          alert("エラー: 解を2つとも入力してください。");
+          return;
+        }
+        const userAns1 = Number(val1);
+        const userAns2 = Number(val2);
+        if (isNaN(userAns1) || isNaN(userAns2)) {
+          alert("エラー: 数値を入力してください。");
+          return;
+        }
+        checkAnswer(userAns1, userAns2);
+      }
+
+      function checkAnswer(userAns1, userAns2) {
+        const userAnswers = [userAns1, userAns2].sort((a, b) => a - b);
+        const isCorrect =
+          userAnswers[0] === currentQuiz.answerValues[0] &&
+          userAnswers[1] === currentQuiz.answerValues[1];
+
+        if (isCorrect) {
+          alert("正解！素晴らしい！");
+          score++;
+          generateNewQuiz();
+          ans1Input.value("");
+          ans2Input.value("");
+        } else {
+          alert("不正解です。もう一度考えてみましょう。");
+        }
+      }
+
+      function getDifficultyLevel() {
+        if (score <= 2) return 1;
+        if (score <= 5) return 2;
+        if (score <= 9) return 3;
+        return 4;
+      }
+
+      function generateNewQuiz() {
+        const level = getDifficultyLevel();
+        let x1,
+          x2,
+          a = 1;
+        switch (level) {
+          case 1:
+            x1 = floor(random(1, 6));
+            do {
+              x2 = floor(random(1, 6));
+            } while (x1 === x2);
+            break;
+          case 2:
+            x1 = floor(random(1, 9));
+            x2 = floor(random(-8, 0));
+            break;
+          case 3:
+            x1 = floor(random(-12, 13));
+            if (x1 === 0) x1 = 13;
+            do {
+              x2 = floor(random(-12, 13));
+              if (x2 === 0) x2 = -13;
+            } while (x1 === x2);
+            break;
+          case 4:
+            a = floor(random(2, 5));
+            x1 = floor(random(1, 7));
+            x2 = floor(random(-6, 0));
+            break;
+        }
+        let coeffB = -a * (x1 + x2);
+        let coeffC = a * (x1 * x2);
+
+        let equation = a === 1 ? "x² " : `${a}x² `;
+        if (coeffB > 0) {
+          equation += `+ ${coeffB}x `;
+        } else if (coeffB < 0) {
+          equation += `- ${-coeffB}x `;
+        }
+
+        // ★★★ エラー箇所を修正しました ★★★
+        if (coeffC > 0) {
+          equation += `+ ${coeffC} = 0`;
+        } else if (coeffC < 0) {
+          equation += `- ${-coeffC} = 0`;
+        } // "cC" -> "coeffC" に修正
+        else {
+          equation += "= 0";
+        }
+
+        currentQuiz = {
+          level: level,
+          question: `次の二次方程式を解きなさい。`,
+          equationText: equation,
+          answerValues: [x1, x2].sort((a, b) => a - b),
+        };
+      }
+
+      function displayQuiz() {
+        fill(50);
+        noStroke();
+        textSize(20);
+        textAlign(CENTER, TOP);
+        text(currentQuiz.question, width / 2, 80);
+
+        textSize(36);
+        textAlign(CENTER, CENTER);
+        fill(20, 40, 80);
+        text(currentQuiz.equationText, width / 2, height / 2);
+      }
+
+      function displayScoreAndLevel() {
+        fill(0, 100, 0);
+        textSize(18);
+        textAlign(LEFT, TOP);
+        text(`正解数: ${score}`, 20, 20);
+        fill(139, 0, 0);
+        textAlign(RIGHT, TOP);
+        text(`難易度レベル: ${currentQuiz.level}`, width - 20, 20);
+      }
+
+      function displayGuideOnCanvas() {
+        fill(120);
+        textSize(14);
+        textAlign(CENTER, BOTTOM);
+        text(
+          "下のボックスに答えを入力して「答えを確認」ボタンを押してね！",
+          width / 2,
+          height - 20
+        );
+      }
+    </script>
+  </body>
+</html>

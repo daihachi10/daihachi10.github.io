@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monkeytype Clone</title>
+
+    <!-- Google Fonts (Roboto Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-mode="time">
+    <!-- デフォルトは時間モード -->
+    <div class="container">
+      <!-- テスト中の統計情報 -->
+      <div id="stats" class="hidden">
+        <div id="timer"></div>
+        <div id="wpm"></div>
+      </div>
+
+      <!-- 見えないinput要素でキー入力を受け取る -->
+      <input type="text" id="hidden-input" autofocus />
+
+      <!-- 単語が表示されるエリア -->
+      <div id="words-container" class="unfocused"></div>
+
+      <!-- 結果表示エリア -->
+      <div id="results" class="hidden">
+        <h2>結果</h2>
+        <div class="result-grid">
+          <div class="result-item">
+            <div class="result-label">wpm</div>
+            <div class="result-value" id="result-wpm">0</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">acc</div>
+            <div class="result-value" id="result-accuracy">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- フッターエリア -->
+      <footer id="footer">
+        <div id="footer-buttons">
+          <button id="zen-button">zen</button>
+          <select id="theme-select">
+            <option value="olivia">Olivia</option>
+            <option value="default">Monkeytype</option>
+            <option value="dracula">Dracula</option>
+            <option value="aurora">Aurora</option>
+            <option value="serika">Serika</option>
+            <option value="sakura">Sakura</option>
+          </select>
+        </div>
+        <div id="restart-prompt"><kbd>esc</kbd> - restart</div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -59,15 +59,22 @@ body.focus-mode-on {
 /* フォーカスモード時のコンテナスタイル */
 .focus-mode-on .container {
   max-width: 80vw;
-  height: 80vh !important;
+  height: 80vh;
   box-shadow: 0 15px 40px var(--shadow-color-medium);
+}
+
+/* 右上のボタングループ */
+.top-right-buttons {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  z-index: 20;
 }
 
 /* フォーカス切り替えボタン */
 .focus-toggle-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -78,7 +85,6 @@ body.focus-mode-on {
   justify-content: center;
   align-items: center;
   padding: 0;
-  z-index: 20;
   transition: all 0.3s ease;
 }
 .focus-toggle-btn:hover {
@@ -192,22 +198,39 @@ h1 {
 
 /* モード選択 */
 .mode-selector {
+  position: relative;
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: 8px;
   overflow: hidden;
+  -webkit-user-select: none; /* テキスト選択を無効化 */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.mode-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-primary-light);
+  border-radius: 7px; /* 少し内側に入るように */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
 }
 .mode-btn {
+  position: relative; /* ハイライトより手前に表示 */
+  z-index: 1;
   flex: 1;
   padding: 10px;
   border: none;
-  background-color: var(--color-bg-alt);
+  background-color: transparent; /* 背景は透明に */
   cursor: pointer;
   font-size: 0.9rem;
   color: var(--color-text-secondary);
-  transition: background-color 0.3s;
+  transition: color 0.3s;
 }
 .mode-btn:not(:last-child) {
   border-right: 1px solid var(--color-border);
@@ -396,7 +419,16 @@ button:active {
 }
 
 .focus-mode-on .roulette-wheel .number {
-  width: 160px;
+  /* 拡大時に数字をさらに外側へ */
+  width: 185px;
+}
+
+.focus-mode-on .roulette-wheel .number span {
+  /* 拡大時は背景を消して、文字に影をつけて見やすくする */
+  background-color: transparent;
+  color: var(--color-white);
+  font-size: 1.1rem; /* 少し大きくする */
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
 }
 
 /* カード選択モード */

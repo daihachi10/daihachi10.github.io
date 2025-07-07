@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 :root {
   /* *     --sub-color: #ff5283;
   * *     --sub-hover-color: #bf1948;
@@ -38,17 +38,22 @@
   * *--bg-video:#fffdd1; */
   /*--sub-color: #b7282e; */
   /*--sub-hover-color: #992228; */
-  --sub-color:#fec701;
-  --theme-color:#1db31d;
-  --sub-hover-color:rgb(191, 151, 0);
+  --sub-color: #fec701;
+  --theme-color: #1db31d;
+  --sub-hover-color: rgb(191, 151, 0);
   /*--theme-color: #60b49f; */
-  --background-color:#fff;
-  --text-color:#324139;
+  --background-color: #fff;
+  --bg-myprogram: #fff;
+  --bg-about: #fff;
+  --bg-video: #fff;
+  --text-color: #324139;
+  --header-background-color: #ffffff;
+  /*   
   --bg-myprogram:#fafafa;
   --bg-about:#ebebeb;
-  --bg-video:#f8f8f8;
-  --transition-animation:cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  --result-details-text-color:#666;
+  --bg-video:#f8f8f8; */
+  --transition-animation: cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --result-details-text-color: #666;
 }
 
 * {
@@ -58,14 +63,15 @@
 
 @media (prefers-color-scheme: dark) {
   body:not(.light-mode) {
-    --background-color:#414141;
-    --text-color:#eee;
-    --bg-myprogram:#333333;
-    --bg-about:#2e2e2e;
-    --bg-video:#48544d;
-    --theme-color:#199119;
-    --sub-color:#9c7a00;
-    --sub-hover-color:#614c00;
-    --result-details-text-color:#bcbcbc;
+    --header-background-color: #414141;
+    --background-color: #414141;
+    --text-color: #eee;
+    --bg-myprogram: #333333;
+    --bg-about: #2e2e2e;
+    --bg-video: #48544d;
+    --theme-color: #199119;
+    --sub-color: #9c7a00;
+    --sub-hover-color: #614c00;
+    --result-details-text-color: #bcbcbc;
   }
 }

@@ -1,4 +1,4 @@
-@import url("defolt.css");
+﻿@import url("defolt.css");
 @import url("./cursor.css");
 /*:root { */
 /*    !*--bg-myprogram: #fafafa;*! */
@@ -12,7 +12,7 @@ body {
 }
 
 .first-view {
-  height: calc(100vh - 65px);
+  height: 40vh;
   background-image: url(../images/index/bg-main-02.webp);
   background-repeat: no-repeat;
   background-position: center center;
@@ -24,8 +24,7 @@ body {
 
 .first-view-text {
   width: 100%;
-  /* max-width: 1600px; */
-  max-width: 1600px;
+  max-width: 95vw;
   margin-left: auto;
   margin-right: auto;
   padding-left: 40px;
@@ -41,7 +40,7 @@ body {
 }
 
 .lead {
-  max-width: 1600px;
+  max-width: 95vw;
   margin: 60px auto;
 }
 
@@ -81,6 +80,9 @@ body {
 .recommended {
   background-color: var(--bg-myprogram);
   padding-bottom: 55px;
+  max-width: 95vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 .recommended h2 {
   font-size: 22px;
@@ -112,8 +114,8 @@ body {
   display: flex;
   padding-top: 40px;
   padding-bottom: 10px;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
   overflow: scroll;
   overflow-y: hidden;
 }
@@ -168,7 +170,8 @@ body {
   margin-top: 15px;
 }
 
-.hot, .game {
+.hot,
+.game {
   padding-left: 3px;
   font-size: 10px;
   font-weight: bold;
@@ -182,7 +185,8 @@ body {
   color: rgba(255, 0, 0, 0.7);
 }
 
-.fire, .new-image {
+.fire,
+.new-image {
   width: 13px !important;
   height: 13px !important;
   vertical-align: bottom;
@@ -217,9 +221,9 @@ body {
     margin-right: 30px;
   }
 
-.first-view-text-p {
-  padding-top: 10px;
-}
+  .first-view-text-p {
+    padding-top: 10px;
+  }
   .loginiframe {
     display: none;
   }

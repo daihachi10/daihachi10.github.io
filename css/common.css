@@ -48,7 +48,7 @@ a {
 }
 
 .header {
-  background-color: var(--background-color);
+  background-color: var(--header-background-color);
   opacity: 100;
   position: fixed;
   width: 100%;
@@ -131,8 +131,7 @@ img {
 }
 
 .header-inner {
-  /* max-width: 1600px; */
-  max-width: 1600px;
+  max-width: 95vw;
   height: 65px;
   margin-left: auto;
   margin-right: auto;
@@ -193,7 +192,7 @@ img {
   padding-bottom: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .footer-logo {

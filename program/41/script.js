@@ -32,11 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- テーマ切り替え処理 ---
   const themes = [
-    { name: 'Blue', color: '#1a73e8' },
-    { name: 'Green', color: '#1e8e3e' },
-    { name: 'Red', color: '#d93025' },
-    { name: 'Purple', color: '#8e44ad' },
-    { name: 'Orange', color: '#f0932b' },
+    { name: "Blue", color: "#1a73e8" },
+    { name: "Green", color: "#1e8e3e" },
+    { name: "Red", color: "#d93025" },
+    { name: "Purple", color: "#8e44ad" },
+    { name: "Orange", color: "#f0932b" },
   ];
   let currentThemeIndex = 0;
 
@@ -45,17 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
     let r = parseInt(result[1], 16) / 255;
     let g = parseInt(result[2], 16) / 255;
     let b = parseInt(result[3], 16) / 255;
-    const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
+    const max = Math.max(r, g, b),
+      min = Math.min(r, g, b);
+    let h,
+      s,
+      l = (max + min) / 2;
     if (max === min) {
       h = s = 0; // achromatic
     } else {
       const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
       switch (max) {
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
       }
       h /= 6;
     }
@@ -68,23 +77,43 @@ document.addEventListener("DOMContentLoaded", () => {
     const c = (1 - Math.abs(2 * l - 1)) * s;
     const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
     const m = l - c / 2;
-    let r = 0, g = 0, b = 0;
+    let r = 0,
+      g = 0,
+      b = 0;
     if (0 <= h && h < 60) {
-      r = c; g = x; b = 0;
+      r = c;
+      g = x;
+      b = 0;
     } else if (60 <= h && h < 120) {
-      r = x; g = c; b = 0;
+      r = x;
+      g = c;
+      b = 0;
     } else if (120 <= h && h < 180) {
-      r = 0; g = c; b = x;
+      r = 0;
+      g = c;
+      b = x;
     } else if (180 <= h && h < 240) {
-      r = 0; g = x; b = c;
+      r = 0;
+      g = x;
+      b = c;
     } else if (240 <= h && h < 300) {
-      r = x; g = 0; b = c;
+      r = x;
+      g = 0;
+      b = c;
     } else if (300 <= h && h < 360) {
-      r = c; g = 0; b = x;
+      r = c;
+      g = 0;
+      b = x;
     }
-    r = Math.round((r + m) * 255).toString(16).padStart(2, '0');
-    g = Math.round((g + m) * 255).toString(16).padStart(2, '0');
-    b = Math.round((b + m) * 255).toString(16).padStart(2, '0');
+    r = Math.round((r + m) * 255)
+      .toString(16)
+      .padStart(2, "0");
+    g = Math.round((g + m) * 255)
+      .toString(16)
+      .padStart(2, "0");
+    b = Math.round((b + m) * 255)
+      .toString(16)
+      .padStart(2, "0");
     return `#${r}${g}${b}`;
   };
 
@@ -92,10 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const hsl = hexToHsl(color);
     const root = document.documentElement;
 
-    root.style.setProperty('--color-primary', color);
-    root.style.setProperty('--color-primary-dark', hslToHex(hsl.h, hsl.s, hsl.l - 10));
-    root.style.setProperty('--color-primary-light', hslToHex(hsl.h, hsl.s, hsl.l + 85));
-    root.style.setProperty('--color-primary-disabled', hslToHex(hsl.h, hsl.s, hsl.l + 30));
+    root.style.setProperty("--color-primary", color);
+    root.style.setProperty(
+      "--color-primary-dark",
+      hslToHex(hsl.h, hsl.s, hsl.l - 10)
+    );
+    root.style.setProperty(
+      "--color-primary-light",
+      hslToHex(hsl.h, hsl.s, hsl.l + 85)
+    );
+    root.style.setProperty(
+      "--color-primary-disabled",
+      hslToHex(hsl.h, hsl.s, hsl.l + 30)
+    );
   };
 
   themeToggleButton.addEventListener("click", () => {
@@ -152,8 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
     maxNumInput.disabled = disabled;
     noDuplicatesCheckbox.disabled = disabled;
     // ★★★ 抽選中はフォーカスボタンとテーマボタンも無効化 ★★★
-    focusToggleButton.disabled = disabled;
-    themeToggleButton.disabled = disabled;
+    // focusToggleButton.disabled = disabled;
+    // themeToggleButton.disabled = disabled;
   };
 
   // --- モード切り替え ---
@@ -176,7 +214,9 @@ document.addEventListener("DOMContentLoaded", () => {
     currentMode = mode;
 
     // ハイライトの位置を更新
-    const activeButton = document.querySelector(`.mode-btn[data-mode="${mode}"]`);
+    const activeButton = document.querySelector(
+      `.mode-btn[data-mode="${mode}"]`
+    );
     modeHighlight.style.width = `${activeButton.offsetWidth}px`;
     modeHighlight.style.transform = `translateX(${activeButton.offsetLeft}px)`;
 
@@ -204,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // クリックでモード切替
-  modeButtons.forEach(btn => {
+  modeButtons.forEach((btn) => {
     btn.addEventListener("click", () => setActiveMode(btn.dataset.mode));
   });
 
@@ -217,17 +257,17 @@ document.addEventListener("DOMContentLoaded", () => {
     isDragging = true;
     startX = e.pageX || e.touches[0].pageX;
     currentDragMode = currentMode;
-    modeSelector.style.cursor = 'grabbing';
+    modeSelector.style.cursor = "grabbing";
   };
 
   const handleDragMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX || e.touches[0].pageX;
-    const walk = (x - startX);
+    const walk = x - startX;
     const buttonWidth = modeButtons[0].offsetWidth;
 
-    const modeOrder = Array.from(modeButtons).map(btn => btn.dataset.mode);
+    const modeOrder = Array.from(modeButtons).map((btn) => btn.dataset.mode);
     const currentIndex = modeOrder.indexOf(currentDragMode);
 
     if (walk > buttonWidth / 2 && currentIndex < modeOrder.length - 1) {
@@ -241,26 +281,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const handleDragEnd = () => {
     isDragging = false;
-    modeSelector.style.cursor = 'grab';
+    modeSelector.style.cursor = "grab";
   };
 
-  modeSelector.addEventListener('mousedown', handleDragStart);
-  modeSelector.addEventListener('touchstart', handleDragStart);
-  modeSelector.addEventListener('mousemove', handleDragMove);
-  modeSelector.addEventListener('touchmove', handleDragMove);
-  modeSelector.addEventListener('mouseup', handleDragEnd);
-  modeSelector.addEventListener('touchend', handleDragEnd);
-  modeSelector.addEventListener('mouseleave', handleDragEnd);
+  modeSelector.addEventListener("mousedown", handleDragStart);
+  modeSelector.addEventListener("touchstart", handleDragStart);
+  modeSelector.addEventListener("mousemove", handleDragMove);
+  modeSelector.addEventListener("touchmove", handleDragMove);
+  modeSelector.addEventListener("mouseup", handleDragEnd);
+  modeSelector.addEventListener("touchend", handleDragEnd);
+  modeSelector.addEventListener("mouseleave", handleDragEnd);
 
   // 初期ハイライト位置を設定
-  window.addEventListener('load', () => {
-      setTimeout(() => {
-          const activeButton = document.querySelector('.mode-btn.active');
-          if(activeButton) {
-              modeHighlight.style.width = `${activeButton.offsetWidth}px`;
-              modeHighlight.style.transform = `translateX(${activeButton.offsetLeft}px)`;
-          }
-      }, 50); // DOM描画が安定するのを待つ
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const activeButton = document.querySelector(".mode-btn.active");
+      if (activeButton) {
+        modeHighlight.style.width = `${activeButton.offsetWidth}px`;
+        modeHighlight.style.transform = `translateX(${activeButton.offsetLeft}px)`;
+      }
+    }, 50); // DOM描画が安定するのを待つ
   });
 
   // --- スタートボタン処理 ---
@@ -442,5 +482,19 @@ document.addEventListener("DOMContentLoaded", () => {
     availableCards = [];
     startButton.textContent =
       currentMode === "card" ? "カードを準備" : "スタート！";
+  });
+});
+
+$(function () {
+  $(".footer").load("https://daihachi10.github.io/common/footer.html");
+  $("#loading").load("https://daihachi10.github.io/common/loading.html");
+  $(".header").load("https://daihachi10.github.io/common/header.html");
+  $(".header").load("./common/header.html");
+
+  // $("#login").load("./account/iframe.html");
+
+  $.get("https://daihachi10.github.io/common/color.html", function (data) {
+    $("body").prepend(data); // 先頭に追加する場合
+    // $("body").append(data); // 末尾に追加する場合は、こちらを使用
   });
 });

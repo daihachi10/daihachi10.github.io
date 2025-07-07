@@ -203,7 +203,7 @@ h1 {
   justify-content: center;
   margin-bottom: 20px;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   overflow: hidden;
   -webkit-user-select: none; /* テキスト選択を無効化 */
   -moz-user-select: none;
@@ -271,7 +271,7 @@ input[type="checkbox"] {
   margin-bottom: 25px;
 }
 button {
-  padding: 12px 25px;
+  padding: 20px 35px;
   font-size: 1.1rem;
   font-weight: bold;
   border: none;
@@ -538,6 +538,10 @@ button:active {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
+  -webkit-user-select: none; /* テキスト選択を無効化 */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #result-overlay:not(.hidden) {
   opacity: 1;
@@ -574,4 +578,13 @@ button:active {
 }
 .focus-mode-on #roulette-mode-area {
   margin-top: 120px;
+}
+
+.focus-mode-on #result-display {
+  padding-top: 200px;
+  font-size: 20rem;
+}
+
+body {
+  overflow: hidden;
 }

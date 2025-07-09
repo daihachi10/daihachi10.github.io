@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini & マルコフ連鎖 AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gemini & マルコフ連鎖 AI</h1>
+
+        <div class="api-section">
+            <h2>Step 1: Gemini APIで文章を生成</h2>
+            <p>お持ちのGoogle AI APIキーと、生成したい文章の指示（プロンプト）を入力してください。</p>
+            <input type="password" id="apiKey" placeholder="ここにGemini APIキーを入力">
+            <textarea id="prompt" rows="3" placeholder="例: 「夏の終わりの切ない気持ち」をテーマにした短い詩を書いてください"></textarea>
+            <button id="geminiBtn">Geminiから文章を取得</button>
+            <div id="geminiStatus"></div>
+        </div>
+
+        <div class="markov-section">
+            <h2>Step 2: マルコフ連鎖で新しい文章を生成</h2>
+            <p>Geminiが生成した文章（または手動で入力した文章）を使って、マルコフ連鎖による新しい文章を生成します。</p>
+            <textarea id="inputText" rows="10" placeholder="ここにGeminiが生成した文章が表示されます..."></textarea>
+            <button id="generateBtn">マルコフ連鎖で生成</button>
+            
+            <h3>生成された文章</h3>
+            <div id="outputText"></div>
+            
+            <h3 class="probability-title">単語の遷移確率</h3>
+            <div id="probabilityOutput"></div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

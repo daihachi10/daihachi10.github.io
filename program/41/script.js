@@ -28,6 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModalBtn = document.getElementById("close-modal-btn");
   const volumeSlider = document.getElementById("volume-slider");
 
+  // プロファイル関連の要素
+  const profilesContainer = document.getElementById("profiles-container");
+  const contextMenu = document.getElementById("profile-context-menu");
+
+  // --- 状態管理 ---
+  let profiles = [];
+  let activeProfileId = null;
+  let contextMenuVisible = false;
+  let contextTargetProfileId = null;
+
   // 音声関連のセットアップ
   const sounds = {
     simpleTick: new Audio("./sounds/simple_tick.mp3"),
@@ -61,6 +71,173 @@ document.addEventListener("DOMContentLoaded", () => {
     Object.values(sounds).forEach((sound) => {
       sound.volume = newVolume;
     });
+  });
+
+  // --- プロファイル処理 ---
+  const MAX_PROFILES = 5;
+
+  const saveProfiles = () => {
+    localStorage.setItem("rouletteProfiles", JSON.stringify(profiles));
+    localStorage.setItem("activeProfileId", activeProfileId);
+  };
+
+  const loadProfiles = () => {
+    const savedProfiles = localStorage.getItem("rouletteProfiles");
+    const savedActiveId = localStorage.getItem("activeProfileId");
+    if (savedProfiles) {
+      profiles = JSON.parse(savedProfiles);
+      activeProfileId = savedActiveId ? parseInt(savedActiveId) : (profiles.length > 0 ? profiles[0].id : null);
+    } else {
+      // デフォルトプロファイル
+      profiles = [{ id: 1, name: "デフォルト", min: 1, max: 35 }];
+      activeProfileId = 1;
+    }
+    const activeProfile = profiles.find(p => p.id === activeProfileId);
+    if (activeProfile) {
+      minNumInput.value = activeProfile.min;
+      maxNumInput.value = activeProfile.max;
+    }
+    renderProfiles();
+  };
+
+  const renderProfiles = () => {
+    profilesContainer.innerHTML = "";
+    profiles.forEach(profile => {
+      const profileEl = document.createElement("div");
+      profileEl.className = `profile-item ${profile.id === activeProfileId ? 'active' : ''}`;
+      profileEl.dataset.id = profile.id;
+      profileEl.innerHTML = `
+        <span class="profile-name">${profile.name}</span>
+        <button class="delete-profile-btn" data-id="${profile.id}">&times;</button>
+      `;
+      profileEl.addEventListener("click", () => switchProfile(profile.id));
+      profileEl.addEventListener("contextmenu", (e) => showContextMenu(e, profile.id));
+      profileEl.querySelector('.delete-profile-btn').addEventListener('click', (e) => {
+        e.stopPropagation(); // 親要素のクリックイベントを発火させない
+        deleteProfile(profile.id);
+      });
+      profilesContainer.appendChild(profileEl);
+    });
+
+    if (profiles.length < MAX_PROFILES) {
+      const addBtn = document.createElement("button");
+      addBtn.id = "add-profile-btn";
+      addBtn.textContent = "+ 追加";
+      addBtn.addEventListener("click", addProfile);
+      profilesContainer.appendChild(addBtn);
+    }
+  };
+
+  const addProfile = () => {
+    const newName = prompt("新しいプロファイル名を入力してください:", `プロファイル ${profiles.length + 1}`);
+    if (newName && newName.trim() !== "") {
+      const newProfile = {
+        id: Date.now(), // ユニークなIDを生成
+        name: newName.trim(),
+        min: parseInt(minNumInput.value),
+        max: parseInt(maxNumInput.value)
+      };
+      profiles.push(newProfile);
+      activeProfileId = newProfile.id;
+      saveProfiles();
+      renderProfiles();
+      switchProfile(newProfile.id);
+    }
+  };
+
+  const deleteProfile = (id) => {
+    if (profiles.length <= 1) {
+      alert("最後のプロファイルは削除できません。");
+      return;
+    }
+    if (confirm("本当にこのプロファイルを削除しますか？")) {
+      profiles = profiles.filter(p => p.id !== id);
+      if (activeProfileId === id) {
+        activeProfileId = profiles.length > 0 ? profiles[0].id : null;
+        if (activeProfileId) {
+          const activeProfile = profiles.find(p => p.id === activeProfileId);
+          minNumInput.value = activeProfile.min;
+          maxNumInput.value = activeProfile.max;
+        }
+      }
+      saveProfiles();
+      renderProfiles();
+    }
+  };
+
+  const switchProfile = (id) => {
+    activeProfileId = id;
+    const profile = profiles.find(p => p.id === id);
+    if (profile) {
+      minNumInput.value = profile.min;
+      maxNumInput.value = profile.max;
+      saveProfiles();
+      renderProfiles();
+      resetButton.click(); // プロファイル切り替え時にリセット
+    }
+  };
+
+  minNumInput.addEventListener('change', updateActiveProfileRange);
+  maxNumInput.addEventListener('change', updateActiveProfileRange);
+
+  function updateActiveProfileRange() {
+    const profile = profiles.find(p => p.id === activeProfileId);
+    if (profile) {
+      profile.min = parseInt(minNumInput.value);
+      profile.max = parseInt(maxNumInput.value);
+      saveProfiles();
+    }
+  }
+
+  // 初期化
+  loadProfiles();
+
+  // --- コンテキストメニュー処理 ---
+  const showContextMenu = (e, profileId) => {
+    e.preventDefault();
+    contextTargetProfileId = profileId;
+    contextMenu.style.top = `${e.clientY}px`;
+    contextMenu.style.left = `${e.clientX}px`;
+    contextMenu.classList.add("visible");
+    contextMenuVisible = true;
+  };
+
+  const hideContextMenu = () => {
+    if (contextMenuVisible) {
+      contextMenu.classList.remove("visible");
+      contextMenuVisible = false;
+    }
+  };
+
+  window.addEventListener("click", hideContextMenu);
+
+  contextMenu.addEventListener("click", (e) => {
+    const action = e.target.dataset.action;
+    if (!action || !contextTargetProfileId) return;
+
+    const profile = profiles.find(p => p.id === contextTargetProfileId);
+    if (!profile) return;
+
+    switch (action) {
+      case "load":
+        switchProfile(contextTargetProfileId);
+        break;
+      case "save":
+        profile.min = parseInt(minNumInput.value);
+        profile.max = parseInt(maxNumInput.value);
+        saveProfiles();
+        alert(`プロファイル「${profile.name}」に現在の範囲を保存しました。`);
+        break;
+      case "rename":
+        const newName = prompt("新しいプロファイル名を入力してください:", profile.name);
+        if (newName && newName.trim() !== "") {
+          profile.name = newName.trim();
+          saveProfiles();
+          renderProfiles();
+        }
+        break;
+    }
+    hideContextMenu();
   });
 
   const playSound = (sound) => {
@@ -424,13 +601,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       clearTimeout(rouletteSpinTimeoutId);
 
-      rouletteWheel.style.transition = "none";
+      rouletteWheel.style.transition = "transform 1.5s cubic-bezier(0.2, 0.95, 0.3, 1)";
       rouletteWheel.style.transform = `rotate(${currentRouletteFinalTargetAngle}deg)`;
 
       setTimeout(() => {
         rouletteWheel.style.transition =
           "transform 5s cubic-bezier(0.1, 0.8, 0.2, 1)";
-      }, 50);
+      }, 1500);
 
       showResultPopup(currentRouletteResultNumber);
       addToHistory(currentRouletteResultNumber);
@@ -464,6 +641,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 各モードの実行関数 ---
   const startSimpleMode = (numbers) => {
     resultDisplay.classList.remove("zoom");
+    // アニメーションを再トリガーするために少し待つ
+    void resultDisplay.offsetWidth;
+
     const spinInterval = setInterval(() => {
       resultDisplay.textContent =
         numbers[Math.floor(Math.random() * numbers.length)];
@@ -497,7 +677,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "#bdb2ff",
       "#ffc6ff",
     ];
-    let gradient = "conic-gradient(";
+    // グラデーションの開始点をポインターの位置（真上）に合わせ、セグメントの中心に数字が来るように調整
+    const gradientStartAngle = 270 - segmentAngle / 2;
+    let gradient = `conic-gradient(from ${gradientStartAngle}deg, `;
     rouletteWheel.innerHTML = "";
 
     for (let i = 0; i < totalNumbers; i++) {

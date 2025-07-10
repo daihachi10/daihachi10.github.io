@@ -139,16 +139,26 @@
         <h2>設定</h2>
         <div class="setting-item">
           <label for="volume-slider">効果音の音量</label>
-          <input
-            type="range"
-            id="volume-slider"
-            min="0"
-            max="1"
-            step="0.1"
-            value="0.4"
-          />
+          <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.4">
         </div>
+
+        <hr>
+
+        <div class="profiles-section">
+          <h3>プロファイル</h3>
+          <div id="profiles-container">
+            <!-- プロファイルがここにJSで生成されます -->
+          </div>
+        </div>
+
       </div>
+    </div>
+
+    <!-- プロファイル用カスタムコンテキストメニュー -->
+    <div id="profile-context-menu">
+      <div class="context-menu-item" data-action="load">読み込み</div>
+      <div class="context-menu-item" data-action="save">現在の範囲を保存</div>
+      <div class="context-menu-item" data-action="rename">名前の変更</div>
     </div>
 
     <script src="script.js"></script>

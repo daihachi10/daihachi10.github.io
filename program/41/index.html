@@ -27,6 +27,17 @@
             />
           </svg>
         </button>
+        <button id="settings-btn" class="focus-toggle-btn" title="設定">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M200-160v-280h-80v-80h240v80h-80v280h-80Zm0-440v-200h80v200h-80Zm160 0v-80h80v-120h80v120h80v80H360Zm80 440v-360h80v360h-80Zm240 0v-120h-80v-80h240v80h-80v120h-80Zm0-280v-360h80v360h-80Z"
+            />
+          </svg>
+        </button>
         <button
           id="focus-toggle-btn"
           class="focus-toggle-btn"
@@ -120,6 +131,26 @@
     <div id="result-overlay" class="hidden">
       <div id="result-popup"></div>
     </div>
+
+    <!-- 設定モーダル -->
+    <div id="settings-modal" class="hidden">
+      <div class="modal-content">
+        <button id="close-modal-btn" class="close-btn">&times;</button>
+        <h2>設定</h2>
+        <div class="setting-item">
+          <label for="volume-slider">効果音の音量</label>
+          <input
+            type="range"
+            id="volume-slider"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.4"
+          />
+        </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

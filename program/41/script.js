@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const themeToggleButton = document.getElementById("theme-toggle-btn");
   const focusToggleButton = document.getElementById("focus-toggle-btn");
-  const profileNameDisplay = document.getElementById("profile-name-display");
   const minNumInput = document.getElementById("min-number");
   const maxNumInput = document.getElementById("max-number");
   const noDuplicatesCheckbox = document.getElementById("no-duplicates");
@@ -86,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- プロファイル処理 ---
-  const MAX_PROFILES = 50;
+  const MAX_PROFILES = 5;
 
   const saveProfiles = () => {
     localStorage.setItem("rouletteProfiles", JSON.stringify(profiles));
@@ -112,10 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (activeProfile) {
       minNumInput.value = activeProfile.min;
       maxNumInput.value = activeProfile.max;
-      noDuplicatesCheckbox.checked = activeProfile.noDuplicates || false;
     }
     renderProfiles();
-    updateProfileNameDisplay();
   };
 
   const renderProfiles = () => {
@@ -163,10 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
         name: newName.trim(),
         min: parseInt(minNumInput.value),
         max: parseInt(maxNumInput.value),
-<<<<<<< HEAD
-=======
-        noDuplicates: noDuplicatesCheckbox.checked,
->>>>>>> b453634fbb545d558d203ee973add78e3eec38b2
       };
       profiles.push(newProfile);
       activeProfileId = newProfile.id;
@@ -189,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const activeProfile = profiles.find((p) => p.id === activeProfileId);
           minNumInput.value = activeProfile.min;
           maxNumInput.value = activeProfile.max;
-          noDuplicatesCheckbox.checked = activeProfile.noDuplicates || false;
         }
       }
       saveProfiles();
@@ -203,27 +195,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (profile) {
       minNumInput.value = profile.min;
       maxNumInput.value = profile.max;
-      noDuplicatesCheckbox.checked = profile.noDuplicates || false;
       saveProfiles();
       renderProfiles();
-      updateProfileNameDisplay();
       resetButton.click(); // プロファイル切り替え時にリセット
     }
   };
 
   minNumInput.addEventListener("change", updateActiveProfileRange);
   maxNumInput.addEventListener("change", updateActiveProfileRange);
-<<<<<<< HEAD
-=======
-  noDuplicatesCheckbox.addEventListener("change", updateActiveProfileRange);
->>>>>>> b453634fbb545d558d203ee973add78e3eec38b2
 
   function updateActiveProfileRange() {
     const profile = profiles.find((p) => p.id === activeProfileId);
     if (profile) {
       profile.min = parseInt(minNumInput.value);
       profile.max = parseInt(maxNumInput.value);
-      profile.noDuplicates = noDuplicatesCheckbox.checked;
       saveProfiles();
     }
   }
@@ -248,15 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const updateProfileNameDisplay = () => {
-    const activeProfile = profiles.find((p) => p.id === activeProfileId);
-    if (activeProfile) {
-      profileNameDisplay.textContent = activeProfile.name;
-    } else {
-      profileNameDisplay.textContent = "";
-    }
-  };
-
   window.addEventListener("click", hideContextMenu);
 
   contextMenu.addEventListener("click", (e) => {
@@ -273,7 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
       case "save":
         profile.min = parseInt(minNumInput.value);
         profile.max = parseInt(maxNumInput.value);
-        profile.noDuplicates = noDuplicatesCheckbox.checked;
         saveProfiles();
         alert(`プロファイル「${profile.name}」に現在の範囲を保存しました。`);
         break;

@@ -3,123 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ルーレット | daihachi</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    <title>リダイレクト中</title>
   </head>
-  <!-- ★★★ 初期クラスを追加 ★★★ -->
-  <body class="focus-mode-off">
-    <div class="container">
-      <!-- ★★★ フォーカスモード切り替えボタンを追加 ★★★ -->
-      <div class="top-right-buttons">
-        <button
-          id="theme-toggle-btn"
-          class="focus-toggle-btn"
-          title="テーマカラー切り替え"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="currentColor"
-          >
-            <path
-              d="M346-140 100-386q-10-10-15-22t-5-25q0-13 5-25t15-22l230-229-106-106 62-65 400 400q10 10 14.5 22t4.5 25q0 13-4.5 25T686-386L440-140q-10 10-22 15t-25 5q-13 0-25-5t-22-15Zm47-506L179-432h428L393-646Zm399 526q-36 0-61-25.5T706-208q0-27 13.5-51t30.5-47l42-54 44 54q16 23 30 47t14 51q0 37-26 62.5T792-120Z"
-            />
-          </svg>
-        </button>
-        <button
-          id="focus-toggle-btn"
-          class="focus-toggle-btn"
-          title="フォーカスモード切り替え"
-        >
-          <svg
-            class="icon-expand"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="currentColor"
-          >
-            <path
-              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
-            />
-          </svg>
-          <svg
-            class="icon-shrink"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-          >
-            <path
-              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
-            />
-          </svg>
-        </button>
-      </div>
-
-      <h1 class="main-title">ルーレット</h1>
-
-      <!-- モード選択タブ -->
-      <div class="mode-selector control-panel">
-        <div class="mode-highlight"></div>
-        <button class="mode-btn active" data-mode="simple">シンプル</button>
-        <button class="mode-btn" data-mode="roulette">ルーレット</button>
-        <button class="mode-btn" data-mode="card">カード選択</button>
-      </div>
-
-      <!-- 設定エリア -->
-      <div class="settings control-panel">
-        <label for="min-number">範囲:</label>
-        <input type="number" id="min-number" value="1" />
-        <span>～</span>
-        <input type="number" id="max-number" value="35" />
-      </div>
-
-      <div class="options control-panel">
-        <input type="checkbox" id="no-duplicates" checked />
-        <label for="no-duplicates">一度引いた数字は出ない (重複なし)</label>
-      </div>
-
-      <div class="buttons">
-        <button id="start-button">スタート！</button>
-        <button id="reset-button">リセット</button>
-      </div>
-
-      <!-- 各モードの表示エリア -->
-      <div class="game-area">
-        <!-- シンプルモード -->
-        <div id="simple-mode-area" class="mode-content active">
-          <p>結果は...</p>
-          <div id="result-display" class="result-box">?</div>
-        </div>
-
-        <!-- ルーレットモード -->
-        <div id="roulette-mode-area" class="mode-content">
-          <div class="roulette-container">
-            <div class="roulette-pointer"></div>
-            <div class="roulette-wheel">
-              <!-- JSで数字がここに生成されます -->
-            </div>
-          </div>
-        </div>
-
-        <!-- カード選択モード -->
-        <div id="card-mode-area" class="mode-content">
-          <p id="card-message">スタートボタンを押してカードを準備</p>
-          <div class="card-grid">
-            <!-- JSでカードがここに生成されます -->
-          </div>
-        </div>
-      </div>
-
-      <div class="history-area control-panel">
-        <ul id="history-list">
-          <!-- ここに引いた数字の履歴が追加されます -->
-        </ul>
-      </div>
-    </div>
-
-    <!-- 結果表示用オーバーレイ -->
-    <div id="result-overlay" class="hidden">
-      <div id="result-popup"></div>
-    </div>
-    <script src="script.js"></script>
+  <body>
+    <p>新しいページに移動しています。</p>
+    <script>
+      setTimeout(function () {
+        window.location.replace(
+          "https://daihachi10.github.io/program/41/index.html"
+        );
+      }, 1000); // 1000ミリ秒 = 1秒
+    </script>
   </body>
 </html>

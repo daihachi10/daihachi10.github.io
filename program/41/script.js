@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("start-button");
   const resetButton = document.getElementById("reset-button");
   const historyList = document.getElementById("history-list");
+  const resetLocalStorageBtn = document.getElementById(
+    "reset-local-storage-btn"
+  );
+  const localReset = document.getElementById("local-reset-button");
 
   // モード関連の要素
   const modeSelector = document.querySelector(".mode-selector");
@@ -51,6 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
     sound.volume = 0.4;
   });
 
+  resetLocalStorageBtn.addEventListener("click", () => {
+    if (confirm("本当にすべての設定とプロファイルをリセットしますか？")) {
+      localStorage.clear();
+      window.location.reload();
+    }
+  });
+
   // --- 設定モーダルの処理 ---
   settingsBtn.addEventListener("click", () => {
     settingsModal.classList.remove("hidden");
@@ -86,13 +97,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedActiveId = localStorage.getItem("activeProfileId");
     if (savedProfiles) {
       profiles = JSON.parse(savedProfiles);
-      activeProfileId = savedActiveId ? parseInt(savedActiveId) : (profiles.length > 0 ? profiles[0].id : null);
+      activeProfileId = savedActiveId
+        ? parseInt(savedActiveId)
+        : profiles.length > 0
+        ? profiles[0].id
+        : null;
     } else {
       // デフォルトプロファイル
       profiles = [{ id: 1, name: "デフォルト", min: 1, max: 35 }];
       activeProfileId = 1;
     }
-    const activeProfile = profiles.find(p => p.id === activeProfileId);
+    const activeProfile = profiles.find((p) => p.id === activeProfileId);
     if (activeProfile) {
       minNumInput.value = activeProfile.min;
       maxNumInput.value = activeProfile.max;
@@ -102,20 +117,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const renderProfiles = () => {
     profilesContainer.innerHTML = "";
-    profiles.forEach(profile => {
+    profiles.forEach((profile) => {
       const profileEl = document.createElement("div");
-      profileEl.className = `profile-item ${profile.id === activeProfileId ? 'active' : ''}`;
+      profileEl.className = `profile-item ${
+        profile.id === activeProfileId ? "active" : ""
+      }`;
       profileEl.dataset.id = profile.id;
       profileEl.innerHTML = `
         <span class="profile-name">${profile.name}</span>
         <button class="delete-profile-btn" data-id="${profile.id}">&times;</button>
       `;
       profileEl.addEventListener("click", () => switchProfile(profile.id));
-      profileEl.addEventListener("contextmenu", (e) => showContextMenu(e, profile.id));
-      profileEl.querySelector('.delete-profile-btn').addEventListener('click', (e) => {
-        e.stopPropagation(); // 親要素のクリックイベントを発火させない
-        deleteProfile(profile.id);
-      });
+      profileEl.addEventListener("contextmenu", (e) =>
+        showContextMenu(e, profile.id)
+      );
+      profileEl
+        .querySelector(".delete-profile-btn")
+        .addEventListener("click", (e) => {
+          e.stopPropagation(); // 親要素のクリックイベントを発火させない
+          deleteProfile(profile.id);
+        });
       profilesContainer.appendChild(profileEl);
     });
 
@@ -129,13 +150,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const addProfile = () => {
-    const newName = prompt("新しいプロファイル名を入力してください:", `プロファイル ${profiles.length + 1}`);
+    const newName = prompt(
+      "新しいプロファイル名を入力してください:",
+      `プロファイル ${profiles.length + 1}`
+    );
     if (newName && newName.trim() !== "") {
       const newProfile = {
         id: Date.now(), // ユニークなIDを生成
         name: newName.trim(),
         min: parseInt(minNumInput.value),
-        max: parseInt(maxNumInput.value)
+        max: parseInt(maxNumInput.value),
       };
       profiles.push(newProfile);
       activeProfileId = newProfile.id;
@@ -151,11 +175,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     if (confirm("本当にこのプロファイルを削除しますか？")) {
-      profiles = profiles.filter(p => p.id !== id);
+      profiles = profiles.filter((p) => p.id !== id);
       if (activeProfileId === id) {
         activeProfileId = profiles.length > 0 ? profiles[0].id : null;
         if (activeProfileId) {
-          const activeProfile = profiles.find(p => p.id === activeProfileId);
+          const activeProfile = profiles.find((p) => p.id === activeProfileId);
           minNumInput.value = activeProfile.min;
           maxNumInput.value = activeProfile.max;
         }
@@ -167,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const switchProfile = (id) => {
     activeProfileId = id;
-    const profile = profiles.find(p => p.id === id);
+    const profile = profiles.find((p) => p.id === id);
     if (profile) {
       minNumInput.value = profile.min;
       maxNumInput.value = profile.max;
@@ -177,11 +201,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  minNumInput.addEventListener('change', updateActiveProfileRange);
-  maxNumInput.addEventListener('change', updateActiveProfileRange);
+  minNumInput.addEventListener("change", updateActiveProfileRange);
+  maxNumInput.addEventListener("change", updateActiveProfileRange);
 
   function updateActiveProfileRange() {
-    const profile = profiles.find(p => p.id === activeProfileId);
+    const profile = profiles.find((p) => p.id === activeProfileId);
     if (profile) {
       profile.min = parseInt(minNumInput.value);
       profile.max = parseInt(maxNumInput.value);
@@ -215,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const action = e.target.dataset.action;
     if (!action || !contextTargetProfileId) return;
 
-    const profile = profiles.find(p => p.id === contextTargetProfileId);
+    const profile = profiles.find((p) => p.id === contextTargetProfileId);
     if (!profile) return;
 
     switch (action) {
@@ -229,7 +253,10 @@ document.addEventListener("DOMContentLoaded", () => {
         alert(`プロファイル「${profile.name}」に現在の範囲を保存しました。`);
         break;
       case "rename":
-        const newName = prompt("新しいプロファイル名を入力してください:", profile.name);
+        const newName = prompt(
+          "新しいプロファイル名を入力してください:",
+          profile.name
+        );
         if (newName && newName.trim() !== "") {
           profile.name = newName.trim();
           saveProfiles();
@@ -601,7 +628,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       clearTimeout(rouletteSpinTimeoutId);
 
-      rouletteWheel.style.transition = "transform 1.5s cubic-bezier(0.2, 0.95, 0.3, 1)";
+      rouletteWheel.style.transition =
+        "transform 1.5s cubic-bezier(0.2, 0.95, 0.3, 1)";
       rouletteWheel.style.transform = `rotate(${currentRouletteFinalTargetAngle}deg)`;
 
       setTimeout(() => {
@@ -816,16 +844,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     stopRouletteAudio();
-  });
-});
-
-$(function () {
-  $(".footer").load("https://daihachi10.github.io/common/footer.html");
-  $("#loading").load("https://daihachi10.github.io/common/loading.html");
-  $(".header").load("https://daihachi10.github.io/common/header.html");
-  $(".header").load("./common/header.html");
-
-  $.get("https://daihachi10.github.io/common/color.html", function (data) {
-    $("body").prepend(data);
   });
 });

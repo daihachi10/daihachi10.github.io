@@ -76,17 +76,7 @@
       </div>
 
       <!-- 設定エリア -->
-      <div class="settings control-panel">
-        <label for="min-number">範囲:</label>
-        <input type="number" id="min-number" value="1" />
-        <span>～</span>
-        <input type="number" id="max-number" value="35" />
-      </div>
-
-      <div class="options control-panel">
-        <input type="checkbox" id="no-duplicates" checked />
-        <label for="no-duplicates">一度引いた数字は出ない (重複なし)</label>
-      </div>
+      <div class="settings control-panel"></div>
 
       <div class="buttons">
         <button id="start-button">スタート！</button>
@@ -139,10 +129,26 @@
         <h2>設定</h2>
         <div class="setting-item">
           <label for="volume-slider">効果音の音量</label>
-          <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.4">
+          <input
+            type="range"
+            id="volume-slider"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.4"
+          />
         </div>
 
-        <hr>
+        <hr />
+        <label for="min-number">範囲:</label>
+        <input type="number" id="min-number" value="1" />
+        <span>～</span>
+        <input type="number" id="max-number" value="35" />
+        <div class="options control-panel">
+          <input type="checkbox" id="no-duplicates" checked />
+          <label for="no-duplicates">一度引いた数字は出ない (重複なし)</label>
+        </div>
+        <hr />
 
         <div class="profiles-section">
           <h3>プロファイル</h3>
@@ -150,7 +156,10 @@
             <!-- プロファイルがここにJSで生成されます -->
           </div>
         </div>
-
+        <hr />
+        <button id="reset-local-storage-btn">
+          ローカルに保存した設定をリセット
+        </button>
       </div>
     </div>
 

@@ -1,65 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>お問い合わせフォーム</title>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<meta name="theme-color" content="#1DB31D" />
-</head>
-<body>
+  <head>
+    <title>お問い合わせフォーム</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta name="theme-color" content="#1DB31D" />
+  </head>
+  <body>
+    <!-- admax -->
+    <script src="https://adm.shinobi.jp/s/f7c6a890a215abc5be6e817ec33bc234"></script>
+    <!-- admax -->
 
+    <h1>お問い合わせフォーム</h1>
+    <form id="contactForm">
+      <label for="requirement">要件:</label>
+      <input
+        type="text"
+        id="requirement"
+        name="requirement"
+        required
+      /><br /><br />
 
-  <h1>お問い合わせフォーム</h1>
-  <form id="contactForm">
-    <label for="requirement">要件:</label>
-    <input type="text" id="requirement" name="requirement" required><br><br>
-    
-    <label for="email">メールアドレス:</label>
-    <input type="email" id="email" name="email" required><br><br>
-    
-    <label for="message">本文:</label>
-    <textarea id="message" name="message" required></textarea><br><br>
-    
-    <div class="g-recaptcha" data-sitekey="6LdEQD0oAAAAAItJ4o11u2_3R8hQafD-5pFL7smv"></div><br>
-    
-    <button type="submit">送信</button>
-  </form>
+      <label for="email">メールアドレス:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
 
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      var response = grecaptcha.getResponse();
-      if (response.length == 0) {
-        alert('reCAPTCHAを確認してください');
-        return;
-      }
-      
-      var formData = {
-        requirement: document.getElementById('requirement').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value,
-        recaptcha: response
-      };
-      
-      fetch('https://script.google.com/macros/s/AKfycbzkNv8WPhnvIxmYiBlzt7jrBW9njVL5Y4TlqoM8eNHWqnfCZNEhGfyvXw8nNR8rvbwI/exec', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.result === 'success') {
-          alert('送信が成功しました');
-        } else {
-          alert('送信に失敗しました');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-    });
-  </script>
-</body>
+      <label for="message">本文:</label>
+      <textarea id="message" name="message" required></textarea><br /><br />
+
+      <div
+        class="g-recaptcha"
+        data-sitekey="6LdEQD0oAAAAAItJ4o11u2_3R8hQafD-5pFL7smv"
+      ></div>
+      <br />
+
+      <button type="submit">送信</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var response = grecaptcha.getResponse();
+          if (response.length == 0) {
+            alert("reCAPTCHAを確認してください");
+            return;
+          }
+
+          var formData = {
+            requirement: document.getElementById("requirement").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value,
+            recaptcha: response,
+          };
+
+          fetch(
+            "https://script.google.com/macros/s/AKfycbzkNv8WPhnvIxmYiBlzt7jrBW9njVL5Y4TlqoM8eNHWqnfCZNEhGfyvXw8nNR8rvbwI/exec",
+            {
+              method: "POST",
+              body: JSON.stringify(formData),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.result === "success") {
+                alert("送信が成功しました");
+              } else {
+                alert("送信に失敗しました");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+    </script>
+  </body>
 </html>

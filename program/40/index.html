@@ -1,196 +1,394 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gemini CLI - Your AI Coding Partner</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- admax -->
+    <script src="https://adm.shinobi.jp/s/f7c6a890a215abc5be6e817ec33bc234"></script>
+    <!-- admax -->
 
     <header class="hero">
-        <div class="hero-background"></div>
-        <div class="hero-content">
-            <div class="lang-switcher">
-                <button id="lang-jp">JP</button>
-                <span>/</span>
-                <button id="lang-en">EN</button>
-            </div>
-            <h1 class="main-title"></h1>
-            <p class="subtitle" data-en="Unlock the power of AI, right in your terminal." data-jp="ターミナルから、AIの力を最大限に引き出す。">ターミナルから、AIの力を最大限に引き出す。</p>
+      <div class="hero-background"></div>
+      <div class="hero-content">
+        <div class="lang-switcher">
+          <button id="lang-jp">JP</button>
+          <span>/</span>
+          <button id="lang-en">EN</button>
         </div>
+        <h1 class="main-title"></h1>
+        <p
+          class="subtitle"
+          data-en="Unlock the power of AI, right in your terminal."
+          data-jp="ターミナルから、AIの力を最大限に引き出す。"
+        >
+          ターミナルから、AIの力を最大限に引き出す。
+        </p>
+      </div>
     </header>
 
     <main>
-        <section class="features">
-            <h2 class="section-title"><span data-en="Core Features" data-jp="主な特徴">主な特徴</span></h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🧠</div>
-                        <h3 data-en="Intelligent Code Comprehension" data-jp="インテリジェントなコード理解">インテリジェントなコード理解</h3>
-                        <div class="expand-icon">+</div>
-                    </div>
-                    <div class="feature-content">
-                        <p data-en="Deeply understands the context of your code to provide accurate refactoring and bug fixes." data-jp="コードの文脈を深く理解し、的確なリファクタリングやバグ修正を提案します。">コードの文脈を深く理解し、的確なリファクタリングやバグ修正を提案します。</p>
-                        <p class="feature-detail" data-en="Leverages advanced AI models to analyze code structure, identify patterns, and suggest contextually relevant improvements. It can help with complex refactoring tasks, bug detection, and even generate new code snippets based on your intent." data-jp="高度なAIモデルを活用し、コード構造を分析し、パターンを特定し、文脈に応じた改善を提案します。複雑なリファクタリング作業、バグ検出、さらには意図に基づいた新しいコードスニペットの生成にも役立ちます。">高度なAIモデルを活用し、コード構造を分析し、パターンを特定し、文脈に応じた改善を提案します。複雑なリファクタリング作業、バグ検出、さらには意図に基づいた新しいコードスニペットの生成にも役立ちます。</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🛠️</div>
-                        <h3 data-en="Seamless Tool Integration" data-jp="シームレスなツール連携">シームレスなツール連携</h3>
-                        <div class="expand-icon">+</div>
-                    </div>
-                    <div class="feature-content">
-                        <p data-en="Integrates smoothly with existing tools like Git and the file system, without disrupting your workflow." data-jp="Gitやファイルシステムなど、既存のツールとスムーズに連携し、開発フローを妨げません。">Gitやファイルシステムなど、既存のツールとスムーズに連携し、開発フローを妨げません。</p>
-                        <p class="feature-detail" data-en="Works directly within your terminal, interacting with your local file system, Git repositories, and other command-line tools. This ensures a natural and efficient development experience without switching contexts." data-jp="ターミナル内で直接動作し、ローカルファイルシステム、Gitリポジトリ、その他のコマンドラインツールと連携します。これにより、コンテキストを切り替えることなく、自然で効率的な開発体験を保証します。">ターミナル内で直接動作し、ローカルファイルシステム、Gitリポジトリ、その他のコマンドラインツールと連携します。これにより、コンテキストを切り替えることなく、自然で効率的な開発体験を保証します。</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🛡️</div>
-                        <h3 data-en="Safe Command Execution" data-jp="安全なコマンド実行">安全なコマンド実行</h3>
-                        <div class="expand-icon">+</div>
-                    </div>
-                    <div class="feature-content">
-                        <p data-en="Ensures safety by explaining the purpose and impact of commands and obtaining user approval before execution." data-jp="実行前にコマンドの目的と影響を説明し、ユーザーの承認を得ることで安全性を確保します。">実行前にコマンドの目的と影響を説明し、ユーザーの承認を得ることで安全性を確保します。</p>
-                        <p class="feature-detail" data-en="Before executing any command, Gemini CLI provides a clear explanation of what the command does and its potential effects. You always have the final say, preventing unintended modifications to your system or codebase." data-jp="コマンドを実行する前に、Gemini CLIはコマンドの機能と潜在的な影響を明確に説明します。常に最終決定権はあなたにあり、システムやコードベースへの意図しない変更を防ぎます。">コマンドを実行する前に、Gemini CLIはコマンドの機能と潜在的な影響を明確に説明します。常に最終決定権はあなたにあり、システムやコードベースへの意図しない変更を防ぎます。</p>
-                    </div>
-                </div>
-                 <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🌐</div>
-                        <h3 data-en="Multi-Language Support" data-jp="マルチ言語対応">マルチ言語対応</h3>
-                        <div class="expand-icon">+</div>
-                    </div>
-                    <div class="feature-content">
-                        <p data-en="Supports a wide range of programming languages, including Python, JavaScript, Go, and Java." data-jp="Python, JavaScript, Go, Javaなど、様々なプログラミング言語に対応しています。">Python, JavaScript, Go, Javaなど、様々なプログラミング言語に対応しています。</p>
-                        <p class="feature-detail" data-en="Whether you're working with Python scripts, JavaScript applications, Go services, or Java projects, Gemini CLI adapts to your language of choice, providing relevant assistance and code generation across different ecosystems." data-jp="Pythonスクリプト、JavaScriptアプリケーション、Goサービス、Javaプロジェクトなど、どの言語で作業していても、Gemini CLIは選択した言語に適応し、さまざまなエコシステムで関連する支援とコード生成を提供します。">Pythonスクリプト、JavaScriptアプリケーション、Goサービス、Javaプロジェクトなど、どの言語で作業していても、Gemini CLIは選択した言語に適応し、さまざまなエコシステムで関連する支援とコード生成を提供します。</p>
-                    </div>
-                </div>
-                 <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">⚙️</div>
-                        <h3 data-en="High Customizability" data-jp="高いカスタマイズ性">高いカスタマイズ性</h3>
-                        <div class="expand-icon">+</div>
-                    </div>
-                    <div class="feature-content">
-                        <p data-en="Optimize for your workflow by setting up aliases and custom prompts." data-jp="エイリアスやカスタムプロンプトを設定し、自分のワークフローに最適化できます。">エイリアスやカスタムプロンプトを設定し、自分のワークフローに最適化できます。</p>
-                        <p class="feature-detail" data-en="Tailor Gemini CLI to your specific needs. Define custom aliases for frequently used commands, create personalized prompts for specific coding tasks, and integrate it seamlessly into your existing development environment." data-jp="Gemini CLIをあなたの特定のニーズに合わせて調整します。頻繁に使用するコマンドのカスタムエイリアスを定義し、特定のコーディングタスク用のパーソナライズされたプロンプトを作成し、既存の開発環境にシームレスに統合します。">Gemini CLIをあなたの特定のニーズに合わせて調整します。頻繁に使用するコマンドのカスタムエイリアスを定義し、特定のコーディングタスク用のパーソナライズされたプロンプトを作成し、既存の開発環境にシームレスに統合します。</p>
-                    </div>
-                </div>
-                 <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">💡</div>
-                        <h3 data-en="Proactive Suggestions" data-jp="能動的な提案">能動的な提案</h3>
-                        <div class="expand-icon">+</div>
-                    </div>
-                    <div class="feature-content">
-                        <p data-en="Analyzes your code and proactively suggests improvements to make your code better." data-jp="コードを分析し、改善点をプロアクティブに提案。あなたのコードをより良くします。">コードを分析し、改善点をプロアクティブに提案。あなたのコードをより良くします。</p>
-                        <p class="feature-detail" data-en="Beyond responding to direct commands, Gemini CLI actively monitors your codebase for potential optimizations, security vulnerabilities, or stylistic inconsistencies. It provides actionable recommendations to enhance code quality and maintainability." data-jp="直接的なコマンドへの応答だけでなく、Gemini CLIはコードベースを積極的に監視し、潜在的な最適化、セキュリティ脆弱性、またはスタイルの不整合を検出します。コードの品質と保守性を向上させるための実用的な推奨事項を提供します。">直接的なコマンドへの応答だけでなく、Gemini CLIはコードベースを積極的に監視し、潜在的な最適化、セキュリティ脆弱性、またはスタイルの不整合を検出します。コードの品質と保守性を向上させるための実用的な推奨事項を提供します。</p>
-                    </div>
-                </div>
+      <section class="features">
+        <h2 class="section-title">
+          <span data-en="Core Features" data-jp="主な特徴">主な特徴</span>
+        </h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-header">
+              <div class="feature-icon">🧠</div>
+              <h3
+                data-en="Intelligent Code Comprehension"
+                data-jp="インテリジェントなコード理解"
+              >
+                インテリジェントなコード理解
+              </h3>
+              <div class="expand-icon">+</div>
             </div>
-        </section>
-
-        <section class="how-to-use">
-            <h2 class="section-title"><span data-en="How to Use" data-jp="基本的な使い方">基本的な使い方</span></h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-en="1. Ask a question" data-jp="1. 質問する">1. 質問する</h3>
-                        <p data-en-full="Request a task in natural language, like {command}." data-jp-full="{command} のように、自然言語でタスクを依頼します。">
-                            <span class="inline-code" data-en-command="gemini &quot;show me the current git status&quot;" data-jp-command="gemini &quot;show me the current git status&quot;">gemini &quot;show me the current git status&quot;</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-en="2. Review the proposal" data-jp="2. 提案を確認する">2. 提案を確認する</h3>
-                        <p data-en-full="Gemini suggests a command to execute (e.g., {command}) and its explanation." data-jp-full="Geminiは実行するコマンドの候補（例: {command}）と、その説明を提示します。">
-                            <span class="inline-code" data-en-command="git status" data-jp-command="git status">git status</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-en="3. Approve and execute" data-jp="3. 承認して実行する">3. 承認して実行する</h3>
-                        <p data-en="Confirm the suggested command is safe and appropriate, then approve it to run." data-jp="提案されたコマンドが安全で適切であることを確認し、承認するとコマンドが実行されます。">提案されたコマンドが安全で適切であることを確認し、承認するとコマンドが実行されます。</p>
-                    </div>
-                </div>
-                 <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3 data-en="4. Get the result" data-jp="4. 結果を得る">4. 結果を得る</h3>
-                        <p data-en="The command's output is displayed in the terminal, and you can continue the conversation if needed." data-jp="コマンドの実行結果がターミナルに表示され、必要に応じて次の対話を続けられます。">コマンドの実行結果がターミナルに表示され、必要に応じて次の対話を続けられます。</p>
-                    </div>
-                </div>
+            <div class="feature-content">
+              <p
+                data-en="Deeply understands the context of your code to provide accurate refactoring and bug fixes."
+                data-jp="コードの文脈を深く理解し、的確なリファクタリングやバグ修正を提案します。"
+              >
+                コードの文脈を深く理解し、的確なリファクタリングやバグ修正を提案します。
+              </p>
+              <p
+                class="feature-detail"
+                data-en="Leverages advanced AI models to analyze code structure, identify patterns, and suggest contextually relevant improvements. It can help with complex refactoring tasks, bug detection, and even generate new code snippets based on your intent."
+                data-jp="高度なAIモデルを活用し、コード構造を分析し、パターンを特定し、文脈に応じた改善を提案します。複雑なリファクタリング作業、バグ検出、さらには意図に基づいた新しいコードスニペットの生成にも役立ちます。"
+              >
+                高度なAIモデルを活用し、コード構造を分析し、パターンを特定し、文脈に応じた改善を提案します。複雑なリファクタリング作業、バグ検出、さらには意図に基づいた新しいコードスニペットの生成にも役立ちます。
+              </p>
             </div>
-        </section>
-
-        <section class="demo">
-            <h2 class="section-title"><span data-en="Interactive Demo" data-jp="インタラクティブデモ">インタラクティブデモ</span></h2>
-            <div class="cli-window">
-                <div class="cli-header">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                </div>
-                <div class="cli-body">
-                    <p><span class="prompt">$</span> <span id="cli-command"></span></p>
-                    <div id="cli-output"></div>
-                </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-header">
+              <div class="feature-icon">🛠️</div>
+              <h3
+                data-en="Seamless Tool Integration"
+                data-jp="シームレスなツール連携"
+              >
+                シームレスなツール連携
+              </h3>
+              <div class="expand-icon">+</div>
             </div>
-        </section>
-
-        <section class="faq">
-            <h2 class="section-title"><span data-en="FAQ" data-jp="FAQ">FAQ</span></h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4 data-en="Is Gemini CLI free?" data-jp="Gemini CLIは無料ですか？">Gemini CLIは無料ですか？</h4>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Yes, Gemini CLI is an open-source project and is free to use. You may need an API key from Google AI Platform to use it." data-jp="はい、Gemini CLIはオープンソースプロジェクトであり、無料で使用できます。利用にはGoogle AI PlatformのAPIキーが必要になる場合があります。">はい、Gemini CLIはオープンソースプロジェクトであり、無料で使用できます。利用にはGoogle AI PlatformのAPIキーが必要になる場合があります。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h4 data-en="Which OS does it run on?" data-jp="どのOSで動作しますか？">どのOSで動作しますか？</h4>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="It supports major operating systems like Windows, macOS, and Linux. Please see the documentation for detailed requirements." data-jp="Windows, macOS, Linuxの主要なOSに対応しています。詳細な要件はドキュメントをご覧ください。">Windows, macOS, Linuxの主要なOSに対応しています。詳細な要件はドキュメントをご覧ください。</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <div class="faq-question">
-                        <h4 data-en="Can I use it offline?" data-jp="オフラインでも使用できますか？">オフラインでも使用できますか？</h4>
-                        <div class="faq-icon">+</div>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Basic file operations are possible, but an internet connection is required to use AI-powered features like code generation and analysis." data-jp="基本的なファイル操作などは可能ですが、AIによるコード生成や分析機能を利用するにはインターネット接続が必要です。">基本的なファイル操作などは可能ですが、AIによるコード生成や分析機能を利用するにはインターネット接続が必要です。</p>
-                    </div>
-                </div>
+            <div class="feature-content">
+              <p
+                data-en="Integrates smoothly with existing tools like Git and the file system, without disrupting your workflow."
+                data-jp="Gitやファイルシステムなど、既存のツールとスムーズに連携し、開発フローを妨げません。"
+              >
+                Gitやファイルシステムなど、既存のツールとスムーズに連携し、開発フローを妨げません。
+              </p>
+              <p
+                class="feature-detail"
+                data-en="Works directly within your terminal, interacting with your local file system, Git repositories, and other command-line tools. This ensures a natural and efficient development experience without switching contexts."
+                data-jp="ターミナル内で直接動作し、ローカルファイルシステム、Gitリポジトリ、その他のコマンドラインツールと連携します。これにより、コンテキストを切り替えることなく、自然で効率的な開発体験を保証します。"
+              >
+                ターミナル内で直接動作し、ローカルファイルシステム、Gitリポジトリ、その他のコマンドラインツールと連携します。これにより、コンテキストを切り替えることなく、自然で効率的な開発体験を保証します。
+              </p>
             </div>
-        </section>
+          </div>
+          <div class="feature-card">
+            <div class="feature-header">
+              <div class="feature-icon">🛡️</div>
+              <h3 data-en="Safe Command Execution" data-jp="安全なコマンド実行">
+                安全なコマンド実行
+              </h3>
+              <div class="expand-icon">+</div>
+            </div>
+            <div class="feature-content">
+              <p
+                data-en="Ensures safety by explaining the purpose and impact of commands and obtaining user approval before execution."
+                data-jp="実行前にコマンドの目的と影響を説明し、ユーザーの承認を得ることで安全性を確保します。"
+              >
+                実行前にコマンドの目的と影響を説明し、ユーザーの承認を得ることで安全性を確保します。
+              </p>
+              <p
+                class="feature-detail"
+                data-en="Before executing any command, Gemini CLI provides a clear explanation of what the command does and its potential effects. You always have the final say, preventing unintended modifications to your system or codebase."
+                data-jp="コマンドを実行する前に、Gemini CLIはコマンドの機能と潜在的な影響を明確に説明します。常に最終決定権はあなたにあり、システムやコードベースへの意図しない変更を防ぎます。"
+              >
+                コマンドを実行する前に、Gemini
+                CLIはコマンドの機能と潜在的な影響を明確に説明します。常に最終決定権はあなたにあり、システムやコードベースへの意図しない変更を防ぎます。
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-header">
+              <div class="feature-icon">🌐</div>
+              <h3 data-en="Multi-Language Support" data-jp="マルチ言語対応">
+                マルチ言語対応
+              </h3>
+              <div class="expand-icon">+</div>
+            </div>
+            <div class="feature-content">
+              <p
+                data-en="Supports a wide range of programming languages, including Python, JavaScript, Go, and Java."
+                data-jp="Python, JavaScript, Go, Javaなど、様々なプログラミング言語に対応しています。"
+              >
+                Python, JavaScript, Go,
+                Javaなど、様々なプログラミング言語に対応しています。
+              </p>
+              <p
+                class="feature-detail"
+                data-en="Whether you're working with Python scripts, JavaScript applications, Go services, or Java projects, Gemini CLI adapts to your language of choice, providing relevant assistance and code generation across different ecosystems."
+                data-jp="Pythonスクリプト、JavaScriptアプリケーション、Goサービス、Javaプロジェクトなど、どの言語で作業していても、Gemini CLIは選択した言語に適応し、さまざまなエコシステムで関連する支援とコード生成を提供します。"
+              >
+                Pythonスクリプト、JavaScriptアプリケーション、Goサービス、Javaプロジェクトなど、どの言語で作業していても、Gemini
+                CLIは選択した言語に適応し、さまざまなエコシステムで関連する支援とコード生成を提供します。
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-header">
+              <div class="feature-icon">⚙️</div>
+              <h3 data-en="High Customizability" data-jp="高いカスタマイズ性">
+                高いカスタマイズ性
+              </h3>
+              <div class="expand-icon">+</div>
+            </div>
+            <div class="feature-content">
+              <p
+                data-en="Optimize for your workflow by setting up aliases and custom prompts."
+                data-jp="エイリアスやカスタムプロンプトを設定し、自分のワークフローに最適化できます。"
+              >
+                エイリアスやカスタムプロンプトを設定し、自分のワークフローに最適化できます。
+              </p>
+              <p
+                class="feature-detail"
+                data-en="Tailor Gemini CLI to your specific needs. Define custom aliases for frequently used commands, create personalized prompts for specific coding tasks, and integrate it seamlessly into your existing development environment."
+                data-jp="Gemini CLIをあなたの特定のニーズに合わせて調整します。頻繁に使用するコマンドのカスタムエイリアスを定義し、特定のコーディングタスク用のパーソナライズされたプロンプトを作成し、既存の開発環境にシームレスに統合します。"
+              >
+                Gemini
+                CLIをあなたの特定のニーズに合わせて調整します。頻繁に使用するコマンドのカスタムエイリアスを定義し、特定のコーディングタスク用のパーソナライズされたプロンプトを作成し、既存の開発環境にシームレスに統合します。
+              </p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-header">
+              <div class="feature-icon">💡</div>
+              <h3 data-en="Proactive Suggestions" data-jp="能動的な提案">
+                能動的な提案
+              </h3>
+              <div class="expand-icon">+</div>
+            </div>
+            <div class="feature-content">
+              <p
+                data-en="Analyzes your code and proactively suggests improvements to make your code better."
+                data-jp="コードを分析し、改善点をプロアクティブに提案。あなたのコードをより良くします。"
+              >
+                コードを分析し、改善点をプロアクティブに提案。あなたのコードをより良くします。
+              </p>
+              <p
+                class="feature-detail"
+                data-en="Beyond responding to direct commands, Gemini CLI actively monitors your codebase for potential optimizations, security vulnerabilities, or stylistic inconsistencies. It provides actionable recommendations to enhance code quality and maintainability."
+                data-jp="直接的なコマンドへの応答だけでなく、Gemini CLIはコードベースを積極的に監視し、潜在的な最適化、セキュリティ脆弱性、またはスタイルの不整合を検出します。コードの品質と保守性を向上させるための実用的な推奨事項を提供します。"
+              >
+                直接的なコマンドへの応答だけでなく、Gemini
+                CLIはコードベースを積極的に監視し、潜在的な最適化、セキュリティ脆弱性、またはスタイルの不整合を検出します。コードの品質と保守性を向上させるための実用的な推奨事項を提供します。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section class="cta">
-            <h2 class="section-title"><span data-en="Get Started Now" data-jp="今すぐ始めよう">今すぐ始めよう</span></h2>
-            <p data-en="Take your development experience to the next level by adopting Gemini CLI." data-jp="Gemini CLIを導入して、開発体験を次のレベルへ。">Gemini CLIを導入して、開発体験を次のレベルへ。</p>
-            <a href="./docs.html" class="cta-button" data-en="View Documentation" data-jp="ドキュメントを見る">ドキュメントを見る</a>
-        </section>
+      <section class="how-to-use">
+        <h2 class="section-title">
+          <span data-en="How to Use" data-jp="基本的な使い方"
+            >基本的な使い方</span
+          >
+        </h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3 data-en="1. Ask a question" data-jp="1. 質問する">
+                1. 質問する
+              </h3>
+              <p
+                data-en-full="Request a task in natural language, like {command}."
+                data-jp-full="{command} のように、自然言語でタスクを依頼します。"
+              >
+                <span
+                  class="inline-code"
+                  data-en-command='gemini "show me the current git status"'
+                  data-jp-command='gemini "show me the current git status"'
+                  >gemini &quot;show me the current git status&quot;</span
+                >
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3 data-en="2. Review the proposal" data-jp="2. 提案を確認する">
+                2. 提案を確認する
+              </h3>
+              <p
+                data-en-full="Gemini suggests a command to execute (e.g., {command}) and its explanation."
+                data-jp-full="Geminiは実行するコマンドの候補（例: {command}）と、その説明を提示します。"
+              >
+                <span
+                  class="inline-code"
+                  data-en-command="git status"
+                  data-jp-command="git status"
+                  >git status</span
+                >
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3
+                data-en="3. Approve and execute"
+                data-jp="3. 承認して実行する"
+              >
+                3. 承認して実行する
+              </h3>
+              <p
+                data-en="Confirm the suggested command is safe and appropriate, then approve it to run."
+                data-jp="提案されたコマンドが安全で適切であることを確認し、承認するとコマンドが実行されます。"
+              >
+                提案されたコマンドが安全で適切であることを確認し、承認するとコマンドが実行されます。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <h3 data-en="4. Get the result" data-jp="4. 結果を得る">
+                4. 結果を得る
+              </h3>
+              <p
+                data-en="The command's output is displayed in the terminal, and you can continue the conversation if needed."
+                data-jp="コマンドの実行結果がターミナルに表示され、必要に応じて次の対話を続けられます。"
+              >
+                コマンドの実行結果がターミナルに表示され、必要に応じて次の対話を続けられます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo">
+        <h2 class="section-title">
+          <span data-en="Interactive Demo" data-jp="インタラクティブデモ"
+            >インタラクティブデモ</span
+          >
+        </h2>
+        <div class="cli-window">
+          <div class="cli-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="cli-body">
+            <p><span class="prompt">$</span> <span id="cli-command"></span></p>
+            <div id="cli-output"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq">
+        <h2 class="section-title">
+          <span data-en="FAQ" data-jp="FAQ">FAQ</span>
+        </h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4
+                data-en="Is Gemini CLI free?"
+                data-jp="Gemini CLIは無料ですか？"
+              >
+                Gemini CLIは無料ですか？
+              </h4>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p
+                data-en="Yes, Gemini CLI is an open-source project and is free to use. You may need an API key from Google AI Platform to use it."
+                data-jp="はい、Gemini CLIはオープンソースプロジェクトであり、無料で使用できます。利用にはGoogle AI PlatformのAPIキーが必要になる場合があります。"
+              >
+                はい、Gemini
+                CLIはオープンソースプロジェクトであり、無料で使用できます。利用にはGoogle
+                AI PlatformのAPIキーが必要になる場合があります。
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4
+                data-en="Which OS does it run on?"
+                data-jp="どのOSで動作しますか？"
+              >
+                どのOSで動作しますか？
+              </h4>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p
+                data-en="It supports major operating systems like Windows, macOS, and Linux. Please see the documentation for detailed requirements."
+                data-jp="Windows, macOS, Linuxの主要なOSに対応しています。詳細な要件はドキュメントをご覧ください。"
+              >
+                Windows, macOS,
+                Linuxの主要なOSに対応しています。詳細な要件はドキュメントをご覧ください。
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <h4
+                data-en="Can I use it offline?"
+                data-jp="オフラインでも使用できますか？"
+              >
+                オフラインでも使用できますか？
+              </h4>
+              <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+              <p
+                data-en="Basic file operations are possible, but an internet connection is required to use AI-powered features like code generation and analysis."
+                data-jp="基本的なファイル操作などは可能ですが、AIによるコード生成や分析機能を利用するにはインターネット接続が必要です。"
+              >
+                基本的なファイル操作などは可能ですが、AIによるコード生成や分析機能を利用するにはインターネット接続が必要です。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <h2 class="section-title">
+          <span data-en="Get Started Now" data-jp="今すぐ始めよう"
+            >今すぐ始めよう</span
+          >
+        </h2>
+        <p
+          data-en="Take your development experience to the next level by adopting Gemini CLI."
+          data-jp="Gemini CLIを導入して、開発体験を次のレベルへ。"
+        >
+          Gemini CLIを導入して、開発体験を次のレベルへ。
+        </p>
+        <a
+          href="./docs.html"
+          class="cta-button"
+          data-en="View Documentation"
+          data-jp="ドキュメントを見る"
+          >ドキュメントを見る</a
+        >
+      </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Gemini CLI Showcase. All Rights Reserved.</p>
+      <p>&copy; 2024 Gemini CLI Showcase. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

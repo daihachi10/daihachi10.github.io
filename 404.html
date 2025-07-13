@@ -1,108 +1,109 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>daihachi official website</title>
-    <meta name="description" content="daihachiの公式サイト">
-    <meta name="viewport" content="width=device-width">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico">
-    <link href="./css/index.css" rel="stylesheet">
-    <link href="./css/common.css" rel="stylesheet">
-    <link href="./css/loading.css" rel="stylesheet">
+    <meta name="description" content="daihachiの公式サイト" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    <link href="./css/index.css" rel="stylesheet" />
+    <link href="./css/common.css" rel="stylesheet" />
+    <link href="./css/loading.css" rel="stylesheet" />
     <script src="./js/loading.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <!--        <script src="https://daihachi10.github.io/common/script.js"></script>-->
     <script src="./common/script.js"></script>
 
     <meta name="theme-color" content="#1DB31D" />
     <style>
-        body {
-            background-color: #f4f4f4;
-            text-align: center;
-            /*padding: 50px;*/
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            text-align: center;
+      body {
+        background-color: #f4f4f4;
+        text-align: center;
+        /*padding: 50px;*/
+      }
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        text-align: center;
 
-            margin: 20px 0 30px 0;
-        }
-        h1 {
-            text-align: center;
+        margin: 20px 0 30px 0;
+      }
+      h1 {
+        text-align: center;
 
-            font-size: 40px;
-            margin: 0;
-            color: #ff6b6b;
-        }
-        .text {
-            text-align: center;
-            padding-top: 5px;
-            font-size: 18px;
-            color: #0b1429;
-        }
+        font-size: 40px;
+        margin: 0;
+        color: #ff6b6b;
+      }
+      .text {
+        text-align: center;
+        padding-top: 5px;
+        font-size: 18px;
+        color: #0b1429;
+      }
 
-        .homebutton {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #0b1429;
-            background-color: var(--sub-color);
-            border-radius: 50px;
-            transition: 0.3s;
-        }
-        .homebutton:hover {
-            background-color: var(--sub-hover-color);
-        }
+      .homebutton {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #0b1429;
+        background-color: var(--sub-color);
+        border-radius: 50px;
+        transition: 0.3s;
+      }
+      .homebutton:hover {
+        background-color: var(--sub-hover-color);
+      }
 
-        #url {
-            margin-top: 20px;
-            padding: 5px 3px 2px 3px;
-            max-width: 360px;
-            overflow-x: scroll;
-            text-align: center;
-            border: 1px solid var(--theme-color);
-            border-radius: 10px;
-        }
+      #url {
+        margin-top: 20px;
+        padding: 5px 3px 2px 3px;
+        max-width: 360px;
+        overflow-x: scroll;
+        text-align: center;
+        border: 1px solid var(--theme-color);
+        border-radius: 10px;
+      }
 
-        svg {
-            height: 250px;
-        }
+      svg {
+        height: 250px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- admax -->
+    <script src="https://adm.shinobi.jp/s/f7c6a890a215abc5be6e817ec33bc234"></script>
+    <!-- admax -->
 
+    <header class="header"></header>
 
-<header class="header"></header>
+    <div class="container">
+      <?xml version="1.0" encoding="utf-8"?>
+      <!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 
-<div class="container">
-    <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+      <img src="./assets/img/404.svg" alt="404" />
 
-	<img src="./assets/img/404.svg" alt="404">
+      <h1>404 Not Found</h1>
+      <p class="text">お探しのページは見つかりませんでした:</p>
+      <nobr><p id="url"></p></nobr>
+      <a class="homebutton" href="/">ホームに戻る</a>
+    </div>
 
-    <h1>404 Not Found</h1>
-    <p class="text" >お探しのページは見つかりませんでした:</p>
-    <nobr><p id="url"></p></nobr>
-    <a class="homebutton" href="/">ホームに戻る</a>
-</div>
+    <script>
+      $(document).ready(function () {
+        $("#url").text(window.location.href);
+      });
+    </script>
 
-<script>
-    $(document).ready(function(){
-        $('#url').text(window.location.href);
-    });
-
-
-</script>
-
-<footer class="footer"></footer>
-
-</body>
+    <footer class="footer"></footer>
+  </body>
 </html>

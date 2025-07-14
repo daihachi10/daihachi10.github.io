@@ -57,7 +57,7 @@
 
 .item-list {
   margin-top: 25px;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: repeat(auto-fit, 220px);
   column-gap: 50px;
   row-gap: 40px;
@@ -295,29 +295,28 @@ ul li {
   height: 24px;
   width: 300px;
   margin-bottom: 12px;
-
 }
 
 .item-list:not(.loaded) {
   background-size: 765px;
   border-radius: 40px;
   margin-bottom: 12px;
-
 }
 
 .item-list:not(.loaded),
 .skeleton {
   background-color: #e2e2e2;
-  background-image: linear-gradient(90deg,
-      #e3e3e3 0px,
-      #f1f1f1 40px,
-      #e3e3e3 80px);
+  background-image: linear-gradient(
+    90deg,
+    #e3e3e3 0px,
+    #f1f1f1 40px,
+    #e3e3e3 80px
+  );
   animation: shimmer 1.5s infinite;
   /* animation: shimmer2 0.4s infinite alternate; */
 
   color: transparent;
 }
-
 
 .imagehidden {
   display: none;

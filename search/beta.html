@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>daihachiサイト内検索</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Noto+Sans+JP:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="../pagefind/pagefind-ui.css" rel="stylesheet" />
+
+    <style>
+      /* --- 全体のレイアウト設定 --- */
+      body {
+        margin: 0;
+        /* Googleが使用するフォントファミリーに近い設定 */
+        font-family: "Noto Sans JP", "Roboto", Arial, sans-serif;
+        background-color: #ffffff; /* 背景は白 */
+      }
+
+      /* ページ全体を少し狭めて中央寄せ */
+      .page-wrapper {
+        padding: 1.5rem 2rem;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      /* --- ヘッダーと検索バー --- */
+      .search-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #dfe1e5;
+        padding-bottom: 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.75rem;
+        font-weight: 500;
+        color: #4285f4; /* Googleの青 */
+        text-decoration: none;
+        margin-right: 2rem;
+      }
+
+      .search-container {
+        flex-grow: 1;
+      }
+
+      /* --- Pagefind UIのGoogle風カスタマイズ --- */
+
+      /* 検索バーのラッパー */
+      .pagefind-ui__search-wrapper {
+        position: relative;
+      }
+
+      /* 検索入力欄のアイコン */
+      .pagefind-ui__search-wrapper::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 1.25rem;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%239aa0a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>')
+          no-repeat center center;
+        background-size: contain;
+        opacity: 0.8;
+      }
+
+      /* 【修正点】検索入力欄 */
+      .pagefind-ui__search-input {
+        width: 100%;
+        font-size: 1rem;
+        border: 1px solid #dfe1e5;
+        background-color: #fff;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08);
+        border-radius: 9999px; /* 完全に丸くする */
+        padding: 0.8rem 1.5rem;
+        /* アイコンと被らないように左のpaddingを多めに取る */
+        padding-left: 3.5rem;
+        transition: box-shadow 0.2s;
+      }
+
+      /* 入力欄にフォーカスした時 */
+      .pagefind-ui__search-input:focus {
+        box-shadow: 0 1px 8px rgba(32, 33, 36, 0.18);
+        outline: none;
+      }
+
+      /* クリアボタンの位置調整 */
+      .pagefind-ui__search-clear {
+        right: 1.25rem !important;
+      }
+
+      /* --- 【修正点】検索結果の表示 --- */
+      .pagefind-ui__result {
+        border: none; /* カードの枠線を消す */
+        background-color: transparent; /* 背景も透明に */
+        padding: 1.5rem 0; /* 結果ごとの上下の余白 */
+        border-bottom: 1px solid #dfe1e5; /* 結果ごとの区切り線 */
+      }
+      .pagefind-ui__result:last-child {
+        border-bottom: none; /* 最後の結果の線は消す */
+      }
+
+      /* 結果のリンク部分 */
+      .pagefind-ui__result-link {
+        text-decoration: none;
+      }
+
+      /* 結果のサブコンテンツ（画像のURLなど） */
+      .pagefind-ui__result-meta {
+        font-size: 0.875rem;
+        color: #202124; /* GoogleのURLの色に近いグレー */
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Pagefindが自動で付ける画像のスタイルをリセット */
+      .pagefind-ui__result-image {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+        border-radius: 9999px; /* アイコンを丸くする */
+      }
+
+      /* 結果のタイトル */
+      .pagefind-ui__result-title {
+        font-size: 1.25rem; /* 20px */
+        font-weight: 400;
+        color: #1a0dab; /* Googleのリンク色 */
+        margin: 0;
+        margin-bottom: 4px;
+      }
+      .pagefind-ui__result-title:hover {
+        text-decoration: underline;
+      }
+
+      /* 結果の抜粋文 */
+      .pagefind-ui__result-excerpt {
+        font-size: 0.875rem; /* 14px */
+        color: #4d5156; /* Googleの説明文の色 */
+        line-height: 1.57;
+      }
+
+      /* 検索キーワードのハイライト */
+      mark,
+      .pagefind-ui__result-title mark,
+      .pagefind-ui__result-excerpt mark {
+        background-color: transparent;
+        color: inherit;
+        font-weight: 600; /* 太字にするだけ */
+      }
+
+      /* 「次を読む」ボタン */
+      .pagefind-ui__results-area .pagefind-ui__load-more {
+        margin-top: 2rem;
+        text-align: center;
+      }
+      .pagefind-ui__load-more_button {
+        background-color: #f8f9fa;
+        color: #3c4043;
+        border: 1px solid #f8f9fa;
+        border-radius: 4px;
+        padding: 10px 16px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .pagefind-ui__load-more_button:hover {
+        border-color: #dadce0;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <header class="search-header">
+        <a href="../index.html" class="logo">daihachi</a>
+        <div id="search" class="search-container"></div>
+      </header>
+
+      <main id="results"></main>
+    </div>
+
+    <script src="../pagefind/pagefind-ui.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const ui = new PagefindUI({
+          element: "#search",
+          resultsContainer: "#results",
+          showSubResults: true,
+          showImages: true /* ★アイコン表示のためにtrueに */,
+          showEmptyFilters: false,
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryParam = urlParams.get("query");
+        if (queryParam) {
+          ui.triggerSearch(queryParam);
+        }
+      });
+    </script>
+  </body>
+</html>

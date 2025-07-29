@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useMemo } from 'react';
+
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { motion } from 'framer-motion';
-import './style.css';
+import { motion, AnimatePresence, useSpring, useTransform } from 'framer-motion';
+import Notification from './Notification';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -10,6 +12,8 @@ function App() {
   const [newTaskName, setNewTaskName] = useState('');
 
   const taskPrice = 50;
+
+  const total = useSpring(0, { damping: 20, stiffness: 100 });
 
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem('okozukai_tasks')) || [];
@@ -24,7 +28,10 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('okozukai_history', JSON.stringify(history));
+    total.set(calculateTotal());
   }, [history]);
+
+  const roundedTotal = useTransform(total, (value) => Math.round(value));
 
   const handleAddTask = () => {
     if (newTaskName && !tasks.includes(newTaskName)) {
@@ -33,18 +40,34 @@ function App() {
     }
   };
 
+  const [notification, setNotification] = useState('');
+
   const handleRecordTask = (taskName) => {
     const today = new Date().toISOString().slice(0, 10);
     setHistory([...history, { task: taskName, date: today }]);
+    setNotification(`「${taskName}」を記録しました！`);
+
+    // Flash effect on calendar
+    const dateCell = document.querySelector(`.fc-day[data-date='${today}']`);
+    if (dateCell) {
+      dateCell.classList.add('event-added');
+      setTimeout(() => {
+        dateCell.classList.remove('event-added');
+      }, 1000);
+    }
+
+    setTimeout(() => {
+      setNotification('');
+    }, 3000);
   };
 
-  const getCalendarEvents = () => {
+  const calendarEvents = useMemo(() => {
     return history.map((item) => ({
       title: item.task,
       start: item.date,
       allDay: true,
     }));
-  };
+  }, [history]);
 
   const calculateTotal = () => {
     const now = new Date();
@@ -61,21 +84,27 @@ function App() {
 
   return (
     <div className="container">
+      <Notification message={notification} />
       <h1>おこづかい帳</h1>
       <div className="main-layout">
         <div className="controls">
           <h2>お手伝いリスト</h2>
           <div className="task-buttons">
-            {tasks.map((task) => (
-              <motion.button
-                key={task}
-                onClick={() => handleRecordTask(task)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {task}
-              </motion.button>
-            ))}
+            <AnimatePresence>
+              {tasks.map((task) => (
+                <motion.button
+                  key={task}
+                  onClick={() => handleRecordTask(task)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                >
+                  {task}
+                </motion.button>
+              ))}
+            </AnimatePresence>
           </div>
           <hr />
           <h3>お手伝いを追加する</h3>
@@ -85,7 +114,13 @@ function App() {
             onChange={(e) => setNewTaskName(e.target.value)}
             placeholder="お手伝いの名前"
           />
-          <button onClick={handleAddTask}>追加</button>
+          <motion.button 
+            onClick={handleAddTask}
+            whileTap={{ scale: 0.9, rotate: [0, -5, 5, -5, 0] }}
+            transition={{ duration: 0.3 }}
+          >
+            追加
+          </motion.button>
         </div>
         <div className="main-content">
           <FullCalendar
@@ -97,10 +132,10 @@ function App() {
               center: 'title',
               right: ''
             }}
-            events={getCalendarEvents()}
+            events={calendarEvents}
           />
           <div className="total-amount">
-            今月の合計: <span>{calculateTotal()}</span> 円
+            今月の合計: <motion.span>{roundedTotal}</motion.span> 円
           </div>
         </div>
       </div>

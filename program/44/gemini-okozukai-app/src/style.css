@@ -1,0 +1,128 @@
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #1d3557;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.main-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.controls {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.controls h2, .controls h3 {
+    color: #457b9d;
+    border-bottom: 2px solid #a8dadc;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.task-buttons button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #457b9d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.task-buttons button:hover {
+    background-color: #1d3557;
+}
+
+.controls input[type="text"] {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.controls button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #d62828;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.total-amount {
+    text-align: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #1d3557;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 25px 0;
+}
+
+/* FullCalendar custom styles */
+.fc {
+    max-width: 100%;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.75em;
+    color: #1d3557;
+}
+
+.fc .fc-button {
+    background-color: #457b9d;
+    border: none;
+}
+
+.fc .fc-button:hover {
+    background-color: #1d3557;
+}
+
+.fc-daygrid-day.fc-day-today {
+    background-color: #a8dadc;
+}

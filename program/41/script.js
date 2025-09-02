@@ -25,6 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardMessage = document.getElementById("card-message");
   const resultOverlay = document.getElementById("result-overlay");
   const resultPopup = document.getElementById("result-popup");
+  const resultTimerDisplay = document.getElementById("result-timer-display"); // 結果表示タイマー要素
+
+  // タイマーモード関連の要素
+  const timerMinutesInput = document.getElementById("timer-minutes");
+  const timerSecondsInput = document.getElementById("timer-seconds");
+  const timerDisplayMode = document.getElementById("timer-display-mode");
+  const timerStartBtn = document.getElementById("timer-start-btn");
+  const timerPauseBtn = document.getElementById("timer-pause-btn");
+  const timerResetBtn = document.getElementById("timer-reset-btn");
 
   // 設定モーダル関連の要素
   const settingsBtn = document.getElementById("settings-btn");
@@ -296,6 +305,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let rouletteSpinTimeoutId = null;
   let currentRouletteResultNumber = null;
   let currentRouletteFinalTargetAngle = 0;
+  let countdownInterval = null; // タイマーのインターバルID
+
+  // タイマーモード用の状態
+  let timerModeInterval = null;
+  let timerModeTimeLeft = 0;
+  let timerModeIsRunning = false;
 
   // ★ ルーレット音声用の状態管理オブジェクト
   let rouletteAudioContext = {
@@ -447,12 +462,12 @@ document.addEventListener("DOMContentLoaded", () => {
     historyList.prepend(historyItem);
   };
 
-  const showResultPopup = (number) => {
+  const showResultPopup = (number, duration = 1.5) => {
     resultPopup.textContent = number;
     resultOverlay.classList.remove("hidden");
-    setTimeout(() => {
+    startResultCountdown(duration, resultTimerDisplay, () => {
       resultOverlay.classList.add("hidden");
-    }, 1500);
+    });
   };
 
   const setControlsDisabled = (disabled) => {
@@ -460,6 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
     minNumInput.disabled = disabled;
     maxNumInput.disabled = disabled;
     noDuplicatesCheckbox.disabled = disabled;
+    startButton.disabled = disabled; // スタートボタンも無効化
   };
 
   // --- モード切り替え ---
@@ -471,6 +487,27 @@ document.addEventListener("DOMContentLoaded", () => {
       cardGrid.innerHTML = "";
       availableCards = [];
     }
+
+    // 既存のゲームモード用ボタンの表示/非表示を切り替える
+    const gameButtons = document.querySelector(".buttons");
+    if (mode === "timer") {
+      gameButtons.classList.add("hidden");
+      // タイマーモードの初期化
+      timerMinutesInput.value = 0;
+      timerSecondsInput.value = 0;
+      timerModeTimeLeft = 0;
+      updateTimerDisplay();
+      timerPauseBtn.disabled = true;
+      timerResetBtn.disabled = true;
+      timerMinutesInput.disabled = false;
+      timerSecondsInput.disabled = false;
+      timerStartBtn.textContent = "スタート";
+      clearInterval(timerModeInterval);
+      timerModeIsRunning = false;
+    } else {
+      gameButtons.classList.remove("hidden");
+    }
+
     currentMode = mode;
     const activeButton = document.querySelector(
       `.mode-btn[data-mode="${mode}"]`
@@ -637,7 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "transform 5s cubic-bezier(0.1, 0.8, 0.2, 1)";
       }, 1500);
 
-      showResultPopup(currentRouletteResultNumber);
+      showResultPopup(currentRouletteResultNumber, 3); // 結果表示タイマーを3秒に設定
       addToHistory(currentRouletteResultNumber);
       setControlsDisabled(false);
       startButton.textContent = "スタート！";
@@ -654,6 +691,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     setControlsDisabled(true);
+    body.classList.add("focus-mode-on");
+    body.classList.remove("focus-mode-off");
+
     switch (currentMode) {
       case "simple":
         startSimpleMode(availableNumbers);
@@ -661,9 +701,10 @@ document.addEventListener("DOMContentLoaded", () => {
       case "roulette":
         startRouletteMode(availableNumbers);
         break;
+      case "card":
+        startCardMode(availableNumbers);
+        break;
     }
-    body.classList.add("focus-mode-on");
-    body.classList.remove("focus-mode-off");
   });
 
   // --- 各モードの実行関数 ---
@@ -844,5 +885,89 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     stopRouletteAudio();
+
+    // タイマーを停止・非表示
+    if (countdownInterval) clearInterval(countdownInterval);
+    if (resultCountdownInterval) clearInterval(resultCountdownInterval);
+    resultTimerDisplay.classList.add("hidden");
   });
+
+  // ★★★ タイマーモードのロジック ★★★
+  const updateTimerDisplay = () => {
+    const minutes = Math.floor(timerModeTimeLeft / 60);
+    const seconds = timerModeTimeLeft % 60;
+    timerDisplayMode.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  };
+
+  const startTimerMode = () => {
+    if (timerModeIsRunning) return;
+    timerModeIsRunning = true;
+    timerStartBtn.textContent = "再開";
+    timerPauseBtn.disabled = false;
+    timerResetBtn.disabled = false;
+    timerMinutesInput.disabled = true;
+    timerSecondsInput.disabled = true;
+
+    timerModeInterval = setInterval(() => {
+      if (timerModeTimeLeft <= 0) {
+        clearInterval(timerModeInterval);
+        timerModeIsRunning = false;
+        timerStartBtn.textContent = "スタート";
+        timerPauseBtn.disabled = true;
+        alert("時間になりました！");
+        // タイマー終了時の処理
+      } else {
+        timerModeTimeLeft--;
+        updateTimerDisplay();
+      }
+    }, 1000);
+  };
+
+  const pauseTimerMode = () => {
+    clearInterval(timerModeInterval);
+    timerModeIsRunning = false;
+    timerStartBtn.textContent = "再開";
+  };
+
+  const resetTimerMode = () => {
+    clearInterval(timerModeInterval);
+    timerModeIsRunning = false;
+    timerModeTimeLeft = parseInt(timerMinutesInput.value || '0') * 60 + parseInt(timerSecondsInput.value || '0');
+    updateTimerDisplay();
+    timerStartBtn.textContent = "スタート";
+    timerPauseBtn.disabled = true;
+    timerResetBtn.disabled = true;
+    timerMinutesInput.disabled = false;
+    timerSecondsInput.disabled = false;
+  };
+
+  // タイマーモードのイベントリスナー
+  timerMinutesInput.addEventListener("input", () => {
+    timerModeTimeLeft = parseInt(timerMinutesInput.value || '0') * 60 + parseInt(timerSecondsInput.value || '0');
+    updateTimerDisplay();
+  });
+  timerSecondsInput.addEventListener("input", () => {
+    timerModeTimeLeft = parseInt(timerMinutesInput.value || '0') * 60 + parseInt(timerSecondsInput.value || '0');
+    updateTimerDisplay();
+  });
+  timerStartBtn.addEventListener("click", startTimerMode);
+  timerPauseBtn.addEventListener("click", pauseTimerMode);
+  timerResetBtn.addEventListener("click", resetTimerMode);
+
+  // 初期表示
+  resetTimerMode();
 });
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+  "touchend",
+  function (event) {
+    const now = new Date().getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault(); // ダブルタップと判断して拡大を防止
+    }
+    lastTouchEnd = now;
+  },
+  false
+);

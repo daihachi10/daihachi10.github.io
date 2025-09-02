@@ -74,6 +74,7 @@
         <button class="mode-btn active" data-mode="simple">シンプル</button>
         <button class="mode-btn" data-mode="roulette">ルーレット</button>
         <button class="mode-btn" data-mode="card">カード選択</button>
+        <button class="mode-btn" data-mode="timer">タイマー</button>
       </div>
 
       <!-- 設定エリア -->
@@ -108,6 +109,21 @@
             <!-- JSでカードがここに生成されます -->
           </div>
         </div>
+
+        <!-- タイマーモード -->
+        <div id="timer-mode-area" class="mode-content">
+          <div class="timer-input-group">
+            <input type="number" id="timer-minutes" value="0" min="0" max="59" />
+            <span>:</span>
+            <input type="number" id="timer-seconds" value="0" min="0" max="59" />
+          </div>
+          <div id="timer-display-mode" class="timer-display-mode">00:00</div>
+          <div class="timer-controls">
+            <button id="timer-start-btn">スタート</button>
+            <button id="timer-pause-btn">一時停止</button>
+            <button id="timer-reset-btn">リセット</button>
+          </div>
+        </div>
       </div>
 
       <div class="history-area control-panel">
@@ -120,6 +136,7 @@
     <!-- 結果表示用オーバーレイ -->
     <div id="result-overlay" class="hidden">
       <div id="result-popup"></div>
+      <div id="result-timer-display" class="result-timer-display"></div> <!-- 結果表示までのタイマーを追加 -->
     </div>
 
     <!-- 設定モーダル -->

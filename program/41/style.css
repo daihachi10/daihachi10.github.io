@@ -629,10 +629,37 @@ button:active {
   border-radius: 12px;
   box-shadow: 0 8px 25px var(--shadow-color-medium);
   width: 90%;
-  max-width: 400px;
+  max-width: 728px;
   position: relative;
   transform: scale(0.9);
   transition: transform 0.3s ease;
+}
+.adbox {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.ad-text {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+#close-ad-btn {
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background-color: var(--color-bg-secondary);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.hidden.adbox {
+  display: none !important;
 }
 #settings-modal:not(.hidden) .modal-content {
   transform: scale(1);

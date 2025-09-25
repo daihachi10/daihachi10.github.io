@@ -46,6 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const profilesContainer = document.getElementById("profiles-container");
   const contextMenu = document.getElementById("profile-context-menu");
 
+  // ad
+  const adCloseBtn = document.getElementById("close-ad-btn");
+  const adBanner = document.getElementById("adbox");
+
+  adCloseBtn.addEventListener("click", () => {
+    adBanner.classList.add("hidden");
+  });
+
   // --- 状態管理 ---
   let profiles = [];
   let activeProfileId = null;

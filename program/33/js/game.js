@@ -61,6 +61,17 @@ let appleSounds;
 
 let timeLimit = true;
 
+// ランダムワープ関連の変数
+let randomSurinukeActive = false;
+let surinukeStartTime = 0;
+let surinukeDuration = 20;
+let nextSurinukeTime = 0;
+let showSurinukeNotification = false;
+let notificationMessage = "";
+let notificationAlpha = 0;
+let notificationFadeIn = true;
+let showWarning = false;
+
 const surinukeButton = document.getElementById("surinukebutton");
 const timeButton = document.getElementById("timebutton");
 
@@ -88,6 +99,9 @@ function setup() {
   noStroke();
   appleX = 240;
   appleY = random(512);
+
+  // 次のワープタイミングを設定（10〜40秒後）
+  nextSurinukeTime = millis() + random(10000, 40000);
 
   noLoop();
 }
@@ -126,6 +140,113 @@ function draw() {
   timer();
 
   gameSystem();
+
+  // ランダムワープシステム
+  handleRandomSurinuke();
+
+  // ワープ通知の表示
+  drawSurinukeNotification();
+}
+
+function handleRandomSurinuke() {
+  // ゲームが開始されていて、手動ワープが有効でない場合のみ動作
+  if (startTime && !isSurinuke) {
+    let currentTime = millis();
+
+    // ランダムワープを開始
+    if (!randomSurinukeActive && currentTime >= nextSurinukeTime) {
+      randomSurinukeActive = true;
+      surinukeStartTime = currentTime;
+
+      // 通知を表示
+      showSurinukeNotification = true;
+      notificationMessage = "ワープモード開始！";
+      notificationAlpha = 0;
+      notificationFadeIn = true;
+      showWarning = false;
+
+      // 次のワープタイミングを設定（終了後20〜50秒後）
+      nextSurinukeTime =
+        currentTime + surinukeDuration * 1000 + random(20000, 50000);
+    }
+
+    // ワープ中の処理
+    if (randomSurinukeActive) {
+      let elapsed = (currentTime - surinukeStartTime) / 1000;
+      let remaining = surinukeDuration - elapsed;
+
+      // 終了5秒前に警告を表示
+      if (remaining <= 5 && remaining > 0 && !showWarning) {
+        showWarning = true;
+        showSurinukeNotification = true;
+        notificationMessage = "ワープモード終了まで5秒！";
+        notificationAlpha = 0;
+        notificationFadeIn = true;
+      }
+
+      // ワープ終了
+      if (remaining <= 0) {
+        randomSurinukeActive = false;
+        showWarning = false;
+      }
+    }
+  }
+}
+
+function drawSurinukeNotification() {
+  if (showSurinukeNotification) {
+    push();
+
+    // フェードイン/フェードアウト効果
+    if (notificationFadeIn) {
+      notificationAlpha += 5;
+      if (notificationAlpha >= 200) {
+        notificationAlpha = 200;
+        notificationFadeIn = false;
+        // 2秒後にフェードアウト開始
+        setTimeout(() => {
+          showSurinukeNotification = false;
+        }, 2000);
+      }
+    }
+
+    // 背景の半透明ボックス
+    fill(0, 0, 0, notificationAlpha * 0.7);
+    rectMode(CENTER);
+    rect(width / 2, height / 2 - 100, 300, 60, 10);
+
+    // テキスト
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    fill(255, 255, 255, notificationAlpha);
+    text(notificationMessage, width / 2, height / 2 - 100);
+
+    pop();
+  }
+
+  // ワープ中の常時表示インジケーター
+  if (randomSurinukeActive) {
+    push();
+    let elapsed = (millis() - surinukeStartTime) / 1000;
+    let remaining = max(0, surinukeDuration - elapsed);
+
+    // 画面上部にインジケーター表示
+    fill(0, 0, 0, 150);
+    rect(10, 10, 150, 30, 5);
+
+    textAlign(LEFT, CENTER);
+    textSize(14);
+
+    // 残り時間によって色を変える
+    if (remaining <= 5) {
+      fill(255, 100, 100);
+    } else {
+      fill(100, 255, 100);
+    }
+
+    text("ワープ: " + remaining.toFixed(1) + "秒", 20, 25);
+    pop();
+  }
 }
 
 function keyPressed() {
@@ -200,59 +321,6 @@ function onePleyerJudgment() {
       }
     }
   }
-
-  //自分の体
-  // onePlayerX =
-  // onePlayerOldPlayerX[onePlayerOldPlayerX.length - i];
-  // onePlayerOldPlayerY[onePlayerOldPlayerY.length - i];
-
-  // for (let i = 0; i < onePlayerScore + 20; i++) {
-  //   let size = 7;
-  //   let x = onePlayerOldPlayerX[onePlayerOldPlayerX.length - i];
-  //   let y = onePlayerOldPlayerY[onePlayerOldPlayerY.length - i];
-  //   let judX;
-  //   let judY;
-  //   let jud = 10;
-
-  //   // fill("#ff0000");
-  //   // rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
-  //   fill("#00ffff");
-
-  //   switch (onePlayerDirection) {
-  //     case "top":
-  //       judX = 0;
-  //       judY = jud;
-  //       break;
-  //     case "bottom":
-  //       judX = 0;
-  //       judY = jud * 2;
-  //       break;
-  //     case "left":
-  //       judX = -jud * 2;
-  //       judY = 0;
-  //       break;
-  //     case "right":
-  //       judX = jud;
-  //       judY = 0;
-  //       break;
-  //   }
-
-  //   rect(
-  //     onePlayerX + gridSize - size + judX,
-  //     onePlayerY + gridSize - size + judY,
-  //     size,
-  //     size
-  //   );
-  //   fill("#ff0000");
-  //   rect(onePlayerX + size, onePlayerY + size, size, size);
-  //   // rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
-
-  //   console.log(onePlayerDirection);
-
-  //   if (x + size == onePlayerX && y + size == onePlayerY) {
-  //     console.log("AAAAAAAAAA");
-  //   }
-  // }
 }
 
 function twoPleyerJudgment() {
@@ -413,7 +481,8 @@ function onePleyerGame() {
     onePlayerY >= 512 ||
     onePlayerY <= 0 - gridSize
   ) {
-    if (!isSurinuke) {
+    // 手動ワープまたはランダムワープが有効な場合
+    if (!isSurinuke && !randomSurinukeActive) {
       onePlayerGameOver = true;
       $("#GameOver").addClass("gameover");
       // gameOver()
@@ -443,7 +512,8 @@ function twoPleyerGame() {
       twoPlayerY >= 512 ||
       twoPlayerY <= 0 - gridSize
     ) {
-      if (!isSurinuke) {
+      // 手動ワープまたはランダムワープが有効な場合
+      if (!isSurinuke && !randomSurinukeActive) {
         twoPlayerGameOver = true;
         $("#GameOver").addClass("gameover");
         // gameOver()
@@ -493,6 +563,7 @@ function appleSpan(x, y) {
     twoPlayerY - appleY > -detection
   ) {
     twoPlayerScore++;
+    appleSounds.play();
     if (twoPlayerScore % 2 === 0) {
       twoPlayerSpeed += 0.25;
     }
@@ -554,10 +625,6 @@ function fpsCount() {
     }
   }
 
-  // fill(0);
-  // textSize(16);
-  // textAlign(RIGHT,TOP)
-  // text(fps.toFixed(2), 512, 0);
   $(document).ready(function () {
     $("#fps").text(
       "fps:" +
@@ -574,9 +641,6 @@ function fpsCount() {
       $("#fps").removeClass("red");
     }
   });
-
-  // if (frameCount % 5 == 0) {
-  // }
 }
 
 function start() {
@@ -637,11 +701,8 @@ function onePlayerRespan() {
         onePlayerDirection = 0;
         onePlayerX = 512 / 2 - 17 - gridSize * 3; // width / 2 - 間隔 / 2
         onePlayerY = 512 / 2 - 17;
-        // onePlayerOldPlayerX = [onePlayerX];
-        // onePlayerOldPlayerY = [onePlayerY];
 
         oneRespanTime = 300;
-        // }
       }
     }
   }
@@ -661,30 +722,20 @@ function twoPlayerRespan() {
         twoPlayerDirection = 0;
         twoPlayerX = 512 / 2 - 17 + gridSize * 3; // width / 2 - 間隔 / 2
         twoPlayerY = 512 / 2 - 17;
-        // twoPlayerOldPlayerX = [twoPlayerX];
-        // twoPlayerOldPlayerY = [twoPlayerY];
 
         twoRespanTime = 300;
-        // }
       }
     }
   }
 }
 
 function random(min, max) {
-  Math.floor(Math.random() * (max - min + 1)) + min;
+  let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   return randomNumber;
 }
 
 function gameSystem() {
-  // let min = 0;
-  // let max = 9;
-  // let randomNumber = random(min, max);
-  // if (displayTime == 50) {
-  //   isSurinuke = true;
-  // }
-  // if (isSurinuke) {
-  // }
+  // 既存のgameSystem関数の内容
 }
 
 function timer() {

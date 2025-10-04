@@ -1,0 +1,127 @@
+/* 基本設定 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* スクロール禁止 */
+  background-color: #333; /* 背景色 */
+  color: #fff;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+  -webkit-user-select: none; /* テキスト選択を無効化 */
+  user-select: none;
+}
+
+/* ゲーム画面の配置 */
+#game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* p5.jsのキャンバスコンテナ */
+#p5-canvas-container {
+  width: 512px;
+  height: 512px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* スコアや時間の表示 */
+#info-display {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.score {
+  font-size: 24px !important;
+}
+.one-player {
+  color: #4878de;
+}
+.two-player {
+  color: #fdc52e;
+}
+
+/* スタート・ゲームオーバー画面 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.menu-content {
+  background-color: #444;
+  padding: 30px 50px;
+  border-radius: 15px;
+}
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 40px;
+  color: #f00;
+}
+
+/* メニューボタン */
+.menu-button {
+  display: inline-block;
+  padding: 15px 30px;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu-button:hover {
+  background-color: #0056b3;
+}
+
+/* 操作ボタン */
+#controls {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.control-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.control-button {
+  width: 70px;
+  height: 70px;
+  font-size: 32px;
+  color: #fff;
+  background-color: rgba(80, 80, 80, 0.8);
+  border: 2px solid #ccc;
+  border-radius: 50%; /* 丸いボタン */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.control-button:active {
+  background-color: rgba(120, 120, 120, 0.8);
+}

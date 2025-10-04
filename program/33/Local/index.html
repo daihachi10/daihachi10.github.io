@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>スネークゲーム</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <div id="info-display">
+        <p id="1Pscore" class="score one-player"></p>
+        <p id="2Pscore" class="score two-player"></p>
+        <p id="time" class="time"></p>
+      </div>
+      <div id="p5-canvas-container"></div>
+    </div>
+
+    <div id="start-menu" class="overlay">
+      <div class="menu-content">
+        <h1>スネークゲーム</h1>
+        <button onclick="start1P()" class="menu-button">1人でプレイ</button>
+        <button onclick="start2P()" class="menu-button">2人でプレイ</button>
+      </div>
+    </div>
+
+    <div id="game-over-screen" class="overlay" style="display: none">
+      <div class="menu-content">
+        <h2>ゲームオーバー</h2>
+        <a href="" class="menu-button">もう一度プレイ</a>
+      </div>
+    </div>
+
+    <div id="controls" style="display: none">
+      <div class="control-row">
+        <button
+          ontouchstart="topButton()"
+          onclick="topButton()"
+          class="control-button"
+        >
+          ▲
+        </button>
+      </div>
+      <div class="control-row">
+        <button
+          ontouchstart="leftButton()"
+          onclick="leftButton()"
+          class="control-button"
+        >
+          ◀
+        </button>
+        <button
+          ontouchstart="bottomButton()"
+          onclick="bottomButton()"
+          class="control-button"
+        >
+          ▼
+        </button>
+        <button
+          ontouchstart="rightButton()"
+          onclick="rightButton()"
+          class="control-button"
+        >
+          ▶
+        </button>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/p5.js"></script>
+    <script src="./js/p5.sound.min.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>

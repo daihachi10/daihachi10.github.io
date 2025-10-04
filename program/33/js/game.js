@@ -64,13 +64,17 @@ let timeLimit = true;
 // ランダムワープ関連の変数
 let randomSurinukeActive = false;
 let surinukeStartTime = 0;
-let surinukeDuration = 20;
+let surinukeDuration = 15; // 10秒間
 let nextSurinukeTime = 0;
 let showSurinukeNotification = false;
 let notificationMessage = "";
 let notificationAlpha = 0;
 let notificationFadeIn = true;
 let showWarning = false;
+
+// ポップアップアニメーション用
+let popupScale = 0;
+let popupRotation = 0;
 
 const surinukeButton = document.getElementById("surinukebutton");
 const timeButton = document.getElementById("timebutton");
@@ -101,7 +105,8 @@ function setup() {
   appleY = random(512);
 
   // 次のワープタイミングを設定（10〜40秒後）
-  nextSurinukeTime = millis() + random(10000, 40000);
+  // nextSurinukeTime = millis() + random(10000, 20000);
+  nextSurinukeTime = millis();
 
   noLoop();
 }
@@ -114,6 +119,9 @@ function draw() {
   onePleyerJudgment();
 
   twoPleyerJudgment();
+
+  // ゲームパッドの入力を処理
+  handleGamepads();
 
   onePlayerClone();
 
@@ -148,6 +156,146 @@ function draw() {
   drawSurinukeNotification();
 }
 
+function handleGamepads() {
+  const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+  const deadzone = 0.5;
+
+  // helper: 十字キー判定（buttonsがある場合）と軸でのフォールバックを統一して返す
+  function readDirectionFromPad(gp) {
+    if (!gp) return null;
+
+    // ボタンによるD-Pad（標準的）
+    const btnUp = gp.buttons[12] && gp.buttons[12].pressed;
+    const btnDown = gp.buttons[13] && gp.buttons[13].pressed;
+    const btnLeft = gp.buttons[14] && gp.buttons[14].pressed;
+    const btnRight = gp.buttons[15] && gp.buttons[15].pressed;
+
+    // アナログスティック（左スティック優先、なければ右スティック）
+    const axes = gp.axes || [];
+    const lStickX = axes.length > 0 ? axes[0] : 0;
+    const lStickY = axes.length > 1 ? axes[1] : 0;
+    const rStickX = axes.length > 2 ? axes[2] : 0;
+    const rStickY = axes.length > 3 ? axes[3] : 0;
+
+    // 一部コントローラー（特にPCドライバなしの時）ではD-Padが軸にマップされることがある。
+    // その場合は軸の値から判定する（左右/上下それぞれ）。
+    // まずボタン判定があればそれを優先。
+    if (btnLeft || btnRight || btnUp || btnDown) {
+      return {
+        left: !!btnLeft,
+        right: !!btnRight,
+        up: !!btnUp,
+        down: !!btnDown,
+      };
+    }
+
+    // 軸判定：左スティックが有効ならそれを使う。なければ右スティック。
+    const useX = Math.abs(lStickX) > Math.abs(rStickX) ? lStickX : rStickX;
+    const useY = Math.abs(lStickY) > Math.abs(rStickY) ? lStickY : rStickY;
+
+    return {
+      left: useX < -deadzone,
+      right: useX > deadzone,
+      up: useY < -deadzone,
+      down: useY > deadzone,
+    };
+  }
+
+  // --- プレイヤー1（従来の処理） ---
+  const gp1 = gamepads[0];
+  if (gp1) {
+    const dpad = readDirectionFromPad(gp1);
+    const stickX = (gp1.axes && gp1.axes[0]) || 0;
+    const stickY = (gp1.axes && gp1.axes[1]) || 0;
+
+    const dpadLeft = dpad && dpad.left;
+    const dpadRight = dpad && dpad.right;
+    const dpadUp = dpad && dpad.up;
+    const dpadDown = dpad && dpad.down;
+
+    if (dpadLeft || stickX < -deadzone) {
+      if (onePlayerY % gridSize <= 7) onePlayerDirection = "left";
+    } else if (dpadRight || stickX > deadzone) {
+      if (onePlayerY % gridSize <= 7) onePlayerDirection = "right";
+    } else if (dpadUp || stickY < -deadzone) {
+      if (onePlayerX % gridSize <= 7) onePlayerDirection = "top";
+    } else if (dpadDown || stickY > deadzone) {
+      if (onePlayerX % gridSize <= 7) onePlayerDirection = "bottom";
+    }
+  }
+
+  // --- プレイヤー2: is2Players が true のとき、接続されている gamepad の中から 2P 用を自動で探す ---
+  if (is2Players) {
+    // 優先ルール：
+    // 1) index 1 の gamepad が存在すればまずそれを 2P に使う
+    // 2) もし index 1 が無ければ、id に "Pro" か "Pro Controller" を含むものを探す
+    // 3) それも無ければ、index 0 以外の最初の接続済み gamepad を使う
+    let gp2 = null;
+    if (gamepads[1]) gp2 = gamepads[1];
+    if (!gp2) {
+      // id に "Pro" を含むものを探す（Nintendo Pro Controller 対策）
+      for (let i = 0; i < gamepads.length; i++) {
+        const g = gamepads[i];
+        if (g && g.connected && g.id && /pro/i.test(g.id)) {
+          // 既に gp1 を使っている場合は別のものを選ぶ
+          if (!gp1 || g.index !== gp1.index) {
+            gp2 = g;
+            break;
+          }
+        }
+      }
+    }
+    if (!gp2) {
+      // 上の条件で見つからなければ index 0 以外の最初の接続済み gamepad を選ぶ
+      for (let i = 0; i < gamepads.length; i++) {
+        const g = gamepads[i];
+        if (g && g.connected && (!gp1 || g.index !== gp1.index)) {
+          gp2 = g;
+          break;
+        }
+      }
+    }
+
+    // gp2 が見つかったら入力を読み取る
+    if (gp2) {
+      const dpad = readDirectionFromPad(gp2);
+
+      // ABXY は環境によってボタン番号が異なることがあるが、標準配置をまず試す
+      const btnA = gp2.buttons[0] && gp2.buttons[0].pressed;
+      const btnB = gp2.buttons[1] && gp2.buttons[1].pressed;
+      const btnX = gp2.buttons[2] && gp2.buttons[2].pressed;
+      const btnY = gp2.buttons[3] && gp2.buttons[3].pressed;
+
+      const dpadLeft = dpad && dpad.left;
+      const dpadRight = dpad && dpad.right;
+      const dpadUp = dpad && dpad.up;
+      const dpadDown = dpad && dpad.down;
+
+      // スティックのフォールバック
+      const lStickX = (gp2.axes && gp2.axes[0]) || 0;
+      const lStickY = (gp2.axes && gp2.axes[1]) || 0;
+      const rStickX = (gp2.axes && gp2.axes[2]) || 0;
+      const rStickY = (gp2.axes && gp2.axes[3]) || 0;
+
+      // 決定ロジック（複数ソースを OR で扱う）
+      if (dpadLeft || btnX || lStickX < -deadzone || rStickX < -deadzone) {
+        if (twoPlayerY % gridSize <= 7) twoPlayerDirection = "left";
+      } else if (
+        dpadRight ||
+        btnB ||
+        lStickX > deadzone ||
+        rStickX > deadzone
+      ) {
+        if (twoPlayerY % gridSize <= 7) twoPlayerDirection = "right";
+      } else if (dpadUp || btnY || lStickY < -deadzone || rStickY < -deadzone) {
+        if (twoPlayerX % gridSize <= 7) twoPlayerDirection = "top";
+      } else if (dpadDown || btnA || lStickY > deadzone || rStickY > deadzone) {
+        if (twoPlayerX % gridSize <= 7) twoPlayerDirection = "bottom";
+      }
+    } // end if (gp2)
+  } // end if is2Players
+}
+
 function handleRandomSurinuke() {
   // ゲームが開始されていて、手動ワープが有効でない場合のみ動作
   if (startTime && !isSurinuke) {
@@ -161,13 +309,14 @@ function handleRandomSurinuke() {
       // 通知を表示
       showSurinukeNotification = true;
       notificationMessage = "ワープモード開始！";
-      notificationAlpha = 0;
+      notificationAlpha = 5;
       notificationFadeIn = true;
       showWarning = false;
+      popupScale = 0;
 
       // 次のワープタイミングを設定（終了後20〜50秒後）
       nextSurinukeTime =
-        currentTime + surinukeDuration * 1000 + random(20000, 50000);
+        currentTime + surinukeDuration * 1000 + random(20000, 30000);
     }
 
     // ワープ中の処理
@@ -176,12 +325,13 @@ function handleRandomSurinuke() {
       let remaining = surinukeDuration - elapsed;
 
       // 終了5秒前に警告を表示
-      if (remaining <= 5 && remaining > 0 && !showWarning) {
+      if (remaining <= 3 && remaining > 0 && !showWarning) {
         showWarning = true;
         showSurinukeNotification = true;
-        notificationMessage = "ワープモード終了まで5秒！";
-        notificationAlpha = 0;
+        notificationMessage = "ワープモード終了まで3秒！";
+        notificationAlpha = 5;
         notificationFadeIn = true;
+        popupScale = 0;
       }
 
       // ワープ終了
@@ -197,11 +347,13 @@ function drawSurinukeNotification() {
   if (showSurinukeNotification) {
     push();
 
-    // フェードイン/フェードアウト効果
+    // フェードイン/フェードアウト効果とスケールアニメーション
     if (notificationFadeIn) {
-      notificationAlpha += 5;
-      if (notificationAlpha >= 200) {
-        notificationAlpha = 200;
+      notificationAlpha += 8;
+      popupScale = min(popupScale + 0.08, 1.2);
+
+      if (notificationAlpha >= 255) {
+        notificationAlpha = 255;
         notificationFadeIn = false;
         // 2秒後にフェードアウト開始
         setTimeout(() => {
@@ -210,41 +362,110 @@ function drawSurinukeNotification() {
       }
     }
 
-    // 背景の半透明ボックス
-    fill(0, 0, 0, notificationAlpha * 0.7);
-    rectMode(CENTER);
-    rect(width / 2, height / 2 - 100, 300, 60, 10);
+    // バウンス効果
+    if (popupScale > 1) {
+      popupScale = max(1, popupScale - 0.02);
+    }
 
-    // テキスト
+    // モダンなポップアップデザイン
+    push();
+    translate(width / 2, height / 2 - 100);
+    scale(popupScale);
+
+    // グラデーション効果のための複数レイヤー
+    // 外側のグロー効果
+    for (let i = 3; i > 0; i--) {
+      if (showWarning) {
+        fill(255, 50, 50, notificationAlpha * 0.1 * i);
+      } else {
+        fill(100, 255, 200, notificationAlpha * 0.1 * i);
+      }
+      rectMode(CENTER);
+      rect(0, 0, 320 + i * 20, 80 + i * 10, 20);
+    }
+
+    // メインボックス（グラデーション背景）
+    if (showWarning) {
+      // 警告時：赤系グラデーション
+      fill(220, 30, 50, 100);
+    } else {
+      // 通常時：青緑系グラデーション
+      fill(30, 150, 200, 100);
+    }
+    rect(0, 0, 320, 80, 15);
+
+    // 内側のハイライト
+    fill(255, 255, 255, 70);
+    rect(0, -25, 300, 30, 10);
+
+    // テキストエフェクト
     textAlign(CENTER, CENTER);
-    textSize(24);
+
+    // テキストの影
+    fill(0, 0, 0, notificationAlpha * 0.5);
+    textSize(26);
+    text(notificationMessage, 2, 2);
+
+    // メインテキスト
     fill(255, 255, 255, notificationAlpha);
-    text(notificationMessage, width / 2, height / 2 - 100);
+    textSize(26);
+    textStyle(BOLD);
+    text(notificationMessage, 0, 0);
+    textStyle(NORMAL);
+
+    // アイコン的な装飾
 
     pop();
+    pop();
   }
-
-  // ワープ中の常時表示インジケーター
+  // randomSurinukeActive = true;
+  // ワープ中の常時表示インジケーター（改善版）
   if (randomSurinukeActive) {
     push();
     let elapsed = (millis() - surinukeStartTime) / 1000;
     let remaining = max(0, surinukeDuration - elapsed);
+    let progress = elapsed / surinukeDuration;
 
-    // 画面上部にインジケーター表示
-    fill(0, 0, 0, 150);
-    rect(10, 10, 150, 30, 5);
+    // ゲージの背景
+    fill(0, 0, 0, 50);
+    rect(10, 10, 200, 40, 10);
 
-    textAlign(LEFT, CENTER);
-    textSize(14);
-
-    // 残り時間によって色を変える
+    // プログレスバー
     if (remaining <= 5) {
-      fill(255, 100, 100);
+      // 警告色のグラデーション
+      fill(255, 50 + sin(frameCount * 0.2) * 50, 50, 150);
     } else {
-      fill(100, 255, 100);
+      // 通常色のグラデーション
+      fill(50, 200 + sin(frameCount * 0.1) * 55, 150, 150);
     }
+    rect(15, 15, 190 * (1 - progress), 30, 8);
 
-    text("ワープ: " + remaining.toFixed(1) + "秒", 20, 25);
+    // 光の効果
+    fill(255, 255, 255, 100);
+    rect(15, 15, 190 * (1 - progress), 10, 5);
+
+    // テキスト
+    textAlign(LEFT, CENTER);
+    textSize(16);
+    textStyle(BOLD);
+
+    // メインテキスト
+    fill(255, 255, 255, 200);
+    text("ワープ: " + remaining.toFixed(2) + "秒", 70, 30);
+    textStyle(NORMAL);
+
+    // アイコンアニメーション
+    push();
+    translate(35, 30);
+    rotate(frameCount * 0.1);
+    stroke(255, 255, 255);
+    strokeWeight(2);
+    noFill();
+    for (let i = 0; i < 4; i++) {
+      arc(0, 0, 15, 15, i * HALF_PI, i * HALF_PI + QUARTER_PI);
+    }
+    pop();
+
     pop();
   }
 }
@@ -412,7 +633,7 @@ function twoPleyerClone() {
     for (let i = 0; i < twoPlayerScore + 20; i++) {
       let size = 7;
       let x = twoPlayerOldPlayerX[twoPlayerOldPlayerX.length - i];
-      let y = twoPlayerOldPlayerY[twoPlayerOldPlayerX.length - i];
+      let y = twoPlayerOldPlayerY[twoPlayerOldPlayerY.length - i];
       fill(twoPlayerColor);
 
       rect(x + size, y + size, gridSize - size * 2, gridSize - size * 2);
@@ -598,9 +819,9 @@ function drawScore() {
       showTwoRespanTime = twoRespanTime / 60;
 
       if (!onePlayerGameOver) {
-        $("#1Pscore").text("1PScore:" + onePlayerScore);
+        $("#1Pscore").text("BlueScore:" + onePlayerScore);
       } else {
-        $("#1Pscore").text("1P:" + showOneRespanTime.toFixed(2));
+        $("#1Pscore").text("Blue:" + showOneRespanTime.toFixed(2));
       }
       if (!twoPlayerGameOver) {
         $("#2Pscore").text("2PScore:" + twoPlayerScore);
@@ -748,23 +969,157 @@ function timer() {
 
   $("#time").text("残り時間:" + displayTime + "秒");
 
-  textAlign(CENTER, CENTER);
-  textSize(48);
+  // タイムアップ時のモダンなポップアップ表示
   if (remaining <= 0 && timeLimit) {
-    fill(200, 0, 0);
+    // 背景の暗転効果
+    fill(0, 0, 0, 150);
+    rect(0, 0, width, height);
 
-    text("タイムアップ！", width / 2, height / 2);
+    push();
+    translate(width / 2, height / 2);
 
-    fill("#fff");
-    rect(width / 2 - 80, height / 2 + 50, 160, 80);
+    // アニメーション用の値
+    let pulse = sin(frameCount * 0.05) * 5;
+
+    // 外側のグロー効果
+    for (let i = 5; i > 0; i--) {
+      fill(255, 100, 100, 20 * i);
+      rectMode(CENTER);
+      rect(0, 0, 320 + i * 15 + pulse, 200 + i * 10 + pulse, 25);
+    }
+
+    // メインポップアップボックス
+    // グラデーション背景（暗い赤から明るい赤へ）
+    fill(180, 20, 40);
+    rect(0, 0, 320, 200, 20);
+
+    // 内側のハイライト効果
+    fill(255, 255, 255, 20);
+    rect(0, -70, 280, 50, 15);
+
+    // タイトル部分の装飾ライン
+    stroke(255, 100, 100);
+    strokeWeight(2);
+    line(-100, -40, -20, -40);
+    line(20, -40, 100, -40);
+    noStroke();
+
+    // "タイムアップ！"テキスト
+    textAlign(CENTER, CENTER);
+
+    // テキストの影
+    fill(0, 0, 0, 100);
+    textSize(42);
+    textStyle(BOLD);
+    text("TIME UP!", 3, -53);
+
+    // メインタイトル
+    fill(255, 255, 255);
+    textSize(42);
+    text("TIME UP!", 0, -55);
+
+    // 装飾的な時計アイコン
+    push();
+    translate(-130, -55);
+    stroke(255, 200, 100);
+    strokeWeight(3);
+    noFill();
+    circle(0, 0, 30);
+    line(0, 0, 0, -10);
+    line(0, 0, 7, 5);
+    pop();
+
+    // スコア表示部分
+    // スコアボックスの背景
+    fill(0, 0, 0, 50);
+    rect(0, 35, 260, 100, 15);
 
     textSize(24);
+    textStyle(NORMAL);
+
     if (is2Players) {
+      // 2プレイヤーモードのスコア表示
+      // Player 1
+      push();
+      translate(-65, 10);
+
+      // プレイヤー1のカラーボックス
       fill(onePlayerColor);
-      text("1PScore:" + onePlayerScore, width / 2, height / 2 + 75);
+      rect(0, 0, 100, 35, 10);
+      fill(255, 255, 255, 30);
+      rect(0, -10, 90, 15, 5);
+
+      fill(255);
+      textSize(20);
+      text("1P", 0, 0);
+      pop();
+
+      // Player 1 スコア
+      fill(255, 255, 255);
+      textSize(28);
+      textStyle(BOLD);
+      text(onePlayerScore, -65, 45);
+
+      // Player 2
+      push();
+      translate(65, 10);
+
+      // プレイヤー2のカラーボックス
       fill(twoPlayerColor);
-      text("2PScore:" + twoPlayerScore, width / 2, height / 2 + 105);
+      rect(0, 0, 100, 35, 10);
+      fill(255, 255, 255, 30);
+      rect(0, -10, 90, 15, 5);
+
+      fill(255);
+      textSize(20);
+      text("2P", 0, 0);
+      pop();
+
+      // Player 2 スコア
+      fill(255, 255, 255);
+      textSize(28);
+      textStyle(BOLD);
+      text(twoPlayerScore, 65, 45);
+
+      // VS表示
+      textSize(16);
+      textStyle(NORMAL);
+      fill(255, 200, 100);
+      text("VS", 0, 45);
+
+      // 勝者の表示
+      textSize(18);
+      fill(255, 255, 100);
+      if (onePlayerScore > twoPlayerScore) {
+        text("🏆 Player 1 Win! 🏆", 0, 75);
+      } else if (twoPlayerScore > onePlayerScore) {
+        text("🏆 Player 2 Win! 🏆", 0, 75);
+      } else {
+        text("⭐ Draw! ⭐", 0, 75);
+      }
+    } else {
+      // 1プレイヤーモードのスコア表示
+      fill(255, 255, 100);
+      textSize(22);
+      text("FINAL SCORE", 0, 15);
+
+      // スコアの数値
+      fill(255, 255, 255);
+      textSize(48);
+      textStyle(BOLD);
+      text(onePlayerScore, 0, 55);
+
+      // 星の評価
+      textSize(24);
+      let stars = "";
+      if (onePlayerScore >= 50) stars = "⭐⭐⭐";
+      else if (onePlayerScore >= 30) stars = "⭐⭐";
+      else if (onePlayerScore >= 10) stars = "⭐";
+      text(stars, 0, 85);
     }
+
+    textStyle(NORMAL);
+    pop();
 
     noLoop(); // 終了後は停止
   }

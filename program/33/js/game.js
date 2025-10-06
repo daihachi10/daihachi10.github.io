@@ -105,8 +105,8 @@ function setup() {
   appleY = random(512);
 
   // 次のワープタイミングを設定（10〜40秒後）
-  // nextSurinukeTime = millis() + random(10000, 20000);
-  nextSurinukeTime = millis();
+  nextSurinukeTime = millis() + random(10000, 20000);
+  // nextSurinukeTime = millis();
 
   noLoop();
 }

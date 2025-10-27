@@ -495,7 +495,7 @@ function onePleyerJudgment() {
   let revision = 1;
   let standardRevision = 0.5;
 
-  if (keys["a"] || keys["ArrowLeft"] || controlLeft) {
+  if (keys["a"] || controlLeft) {
     if (onePlayerY % gridSize <= miss) {
       onePlayerDirection = "left";
 
@@ -507,7 +507,7 @@ function onePleyerJudgment() {
     }
   }
 
-  if (keys["w"] || keys["ArrowUp"] || controlTop) {
+  if (keys["w"]|| controlTop) {
     if (onePlayerX % gridSize <= miss) {
       onePlayerDirection = "top";
 
@@ -519,7 +519,7 @@ function onePleyerJudgment() {
     }
   }
 
-  if (keys["d"] || keys["ArrowRight"] || controlRight) {
+  if (keys["d"] || controlRight) {
     if (onePlayerY % gridSize <= miss) {
       onePlayerDirection = "right";
 
@@ -531,7 +531,7 @@ function onePleyerJudgment() {
     }
   }
 
-  if (keys["s"] || keys["ArrowDown"] || controlBottom) {
+  if (keys["s"] || controlBottom) {
     if (onePlayerX % gridSize <= miss) {
       onePlayerDirection = "bottom";
 
@@ -551,7 +551,7 @@ function twoPleyerJudgment() {
     let standardRevision = 0.5;
 
     if (!twoPlayerGameOver) {
-      if (keys["j"]) {
+      if (keys["ArrowLeft"]) {
         if (twoPlayerY % gridSize <= miss) {
           twoPlayerDirection = "left";
 
@@ -563,7 +563,7 @@ function twoPleyerJudgment() {
         }
       }
 
-      if (keys["i"]) {
+      if (keys["ArrowUp"]) {
         if (twoPlayerX % gridSize <= miss) {
           twoPlayerDirection = "top";
 
@@ -575,7 +575,7 @@ function twoPleyerJudgment() {
         }
       }
 
-      if (keys["l"]) {
+      if (keys["ArrowRight"]) {
         if (twoPlayerY % gridSize <= miss) {
           twoPlayerDirection = "right";
 
@@ -587,7 +587,7 @@ function twoPleyerJudgment() {
         }
       }
 
-      if (keys["k"]) {
+      if (keys["ArrowDown"]) {
         if (twoPlayerX % gridSize <= miss) {
           twoPlayerDirection = "bottom";
 

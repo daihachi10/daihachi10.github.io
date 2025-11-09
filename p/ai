@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS マルコフ連鎖 予測変換デモ（設定機能つき）</title>
+    <!-- Tailwind CSSを読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Interフォントを読み込み */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            overscroll-behavior: none; /* スクロールの跳ね返りを防ぐ */
+        }
+        /* テキスト表示エリアのスタイル */
+        #text-display {
+            min-height: 100px; /* 最小の高さを設定 */
+            line-height: 1.6; /* 行間 */
+            word-break: break-all; /* 単語の途中でも改行する */
+        }
+
+        /* --- 変更点: 横スクロールのためのスタイル --- */
+        #prediction-buttons {
+            display: flex;
+            flex-wrap: nowrap; /* 折り返さない */
+            overflow-x: auto; /* 横スクロールを有効にする */
+            padding-bottom: 16px; /* スクロールバーのための余白 */
+            height: 80px; /* 高さを固定 */
+            align-items: center; /* ボタンの縦位置を中央に */
+            min-height: 0; /* min-h-[60px] をリセット */
+        }
+
+        /* スクロールバーを細く、目立たなくする (オプション) */
+        #prediction-buttons::-webkit-scrollbar {
+            height: 8px;
+        }
+        #prediction-buttons::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        #prediction-buttons::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        #prediction-buttons::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+        /* --- 変更点ここまで --- */
+
+        /* 予測ボタンのスタイル */
+        .prediction-button {
+            transition: all 0.2s ease-in-out;
+            white-space: nowrap; /* ボタン内のテキストが改行しないように */
+            flex-shrink: 0; /* ボタンが縮まないようにする */
+            display: inline-flex; /* 内部の要素を横並びにするため */
+            align-items: baseline; /* テキストとパーセンテージのベースラインを揃える */
+        }
+        .prediction-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-lg bg-white rounded-lg shadow-xl p-6">
+        <h1 class="text-2xl font-bold text-center text-gray-800 mb-4">
+            マルコフ連鎖 予測変換
+        </h1>
+        <p class="text-center text-gray-600 mb-6">
+            AIの設定やテーマを選んで、文章が生成される様子を観察してみましょう。
+        </p>
+        
+        <!-- テキスト表示エリア -->
+        <div id="text-display-container" class="w-full mb-6">
+            <div
+                id="text-display" 
+                class="w-full bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-inner text-xl text-gray-800 text-left"
+            >
+                <!-- JavaScriptによってテキストがここに追加されます -->
+            </div>
+        </div>
+
+        <!-- 予測ボタンコンテナ (CSSの変更を適用) -->
+        <div id="prediction-buttons" class="gap-2">
+            <!-- JavaScriptによってボタンがここに追加されます -->
+        </div>
+
+        <!-- 自動生成 制御ボタン -->
+        <div class="w-full mt-2 grid grid-cols-2 gap-4"> <!-- mt-6 から mt-2 に変更 -->
+            <button id="start-auto-button" class="bg-green-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50">
+                自動生成開始
+            </button>
+            <button id="pause-auto-button" class="bg-yellow-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-yellow-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50 disabled:opacity-50" disabled>
+                一時停止
+            </button>
+        </div>
+
+        <!-- 設定UI -->
+        <div class="w-full mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3 text-center">設定</h3>
+            
+            <!-- AIモデル選択 -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    AIモデル (記憶力):
+                </label>
+                <fieldset class="flex justify-start gap-x-6">
+                    <div class="flex items-center">
+                        <input type="radio" id="model-1gram" name="model-type" value="1gram" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                        <label for="model-1gram" class="ml-2 block text-sm text-gray-900">
+                            1-gram (低)
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="model-2gram" name="model-type" value="2gram" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" checked>
+                        <label for="model-2gram" class="ml-2 block text-sm text-gray-900">
+                            2-gram (高)
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <!-- 自動生成速度選択 -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    自動生成速度:
+                </label>
+                <fieldset class="flex justify-start gap-x-6">
+                    <div class="flex items-center">
+                        <input type="radio" id="speed-slow" name="auto-speed" value="500" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500" checked>
+                        <label for="speed-slow" class="ml-2 block text-sm text-gray-900">
+                            ゆっくり (0.5秒)
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="speed-fast" name="auto-speed" value="10" class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500">
+                        <label for="speed-fast" class="ml-2 block text-sm text-gray-900">
+                            最速 (0.01秒)
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <!-- 設定UIここまで -->
+
+
+        <!-- テーマ選択UI -->
+        <div class="w-full mt-6">
+            <label for="theme-selector" class="block text-sm font-medium text-gray-700 mb-2">
+                テーマの切り替え:
+            </label>
+            <select id="theme-selector" class="w-full bg-white border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="default" selected>デフォルト (日常会話)</option>
+                <option value="fantasy">ファンタジー風</option>
+                <option value="sf">SF風</option>
+            </select>
+        </div>
+
+        <!-- リセットボタン -->
+        <button id="reset-button" class="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            リセット
+        </button>
+    </div>
+
+    <script>
+        // --- マルコフ連鎖ロジック ---
+
+        let transitions = {}; // 遷移テーブル (モデル構築時に中身が作られる)
+
+        // --- 3種類のコーパスを定義 (前回と同じ増強版) ---
+        const corpus_default = [
+            "こんにちは", "私 の 名前 は ペンギン です", "ペンギン は 空 を 飛べない", "よろしく お願いします", "今日 は 良い 天気 です ね", "何 を します か", "ご飯 は 何 を 食べます か", "私 は パン を 食べます", "おはよう ございます", "こんばんは", "さようなら", "ありがとう ございます", "ごめんなさい", "はじめまして", "どうぞ よろしく", "今日 の 朝ごはん は パン と コーヒー です", "朝ごはん は ご飯 と 味噌汁 と 焼き魚 を 食べました", "昼ごはん は うどん を 食べます", "夜ごはん は 何 に します か", "美味しい カレーライス が 食べたい です", "お風呂 に 入って さっぱり します", "そろそろ 寝る 時間 です", "おやすみなさい", "明日 は 晴れ に なる でしょう", "明日 は 雨 が 降る かもしれない ので 傘 を 持っていきます", "今日 は とても 寒い です ね", "今日 は 暑い ので 水分補給 を しましょう", "鉛筆 と 消しゴム を 貸してください", "ノート に 漢字 を 書きます", "私 は 毎日 本 を 読みます", "図書館 で 面白い 本 を 借りました", "きれいな 絵 を 描きます", "大きな 声 で 歌 を 歌います", "静かな 音楽 を 聞く のが 好き です", "ピアノ で クラシック の 曲 を 弾きます", "朝 早く 学校 に 行きます", "放課後 は 友達 と 遊びます", "広い 公園 で 遊びます", "滑り台 を 滑って 楽しかった です", "私 は 猫 が 好き です", "犬 と 散歩 に 行く のが 日課 です", "鳥 が 空 を 自由に 飛んでいます", "水槽 の 中 で 魚 が 泳いでいます", "海 は 広くて 青い です", "週末 に 山 に 登ります", "赤い 車 が 走っています", "毎朝 電車 に 乗って 会社 に 行きます", "バス に 乗って 街 に 出かけます", "飛行機 は とても 速い です", "いつか 大きな 船 に 乗ってみたい です", "毎日 日本語 を 勉強 します", "数字 を 1 から 10 まで 数えます", "いち に さん よん ご ろく なな はち きゅう じゅう", "スーパー で りんご を ひとつ ください", "みかん は 甘くて 美味しい です", "バナナ も 好き です", "赤い いちご が 食べたい", "健康 の ために 野菜 も 食べます", "喉 が 渇いた ので お水 を 飲みます", "温かい お茶 が 好き です", "コーヒー は 少し 苦い です", "学校 の 宿題 を します", "家 で ゆっくり テレビ を 見ます", "面白い ゲーム を します", "週末 は 家族 と 出かけます", "デパート へ 買い物 に 行きます", "話題 の 映画 を 見たい です", "食事 の 前 に 手 を 洗います", "外 から 帰ったら うがい を します", "昨日 から 少し 風邪 を ひきました", "念のため 病院 に 行きます", "お医者さん に もらった 薬 を 飲みます", "今日 は 一日 ゆっくり 休みます", "友達 に 電話 を かけます", "スマートフォン で メール を 送ります", "旅行 の 思い出 の 写真 を 撮ります", "庭 に きれいな 花 が 咲きました", "公園 の 桜 が とても きれい です", "近所 の 公園 を 散歩 します", "夏休み に 海 で 泳ぎます", "日本 の 夏 は とても 暑い です", "シベリア の 冬 は 凍えるほど 寒い です", "春 が 一番 好き な 季節 です", "秋 は 涼しくて 過ごしやすい です", "お 誕生日 おめでとう ございます", "素敵な プレゼント を もらいました", "みんな で 大きな ケーキ を 食べます", "それ を 聞いて とても 嬉しい です", "大切 な もの を 無くして 少し 悲しい です", "次 は もっと 頑張ります", "私 は 日本 に 住んでいます", "東京 は とても 大きな 街 です", "来年 こそ 京都 に 行きたい です", "美味しい 寿司 を 食べたこと が あります か", "熱々 の ラーメン が 好き です", "もう お腹 が 空きました", "冷たい 飲み物 で 喉 が 渇きました", "一日中 歩いた ので 少し 疲れました", "すみません 駅 は どこ です か", "窓口 で 新幹線 の 切符 を 買います", "趣味 は 音楽鑑賞 と 読書 です", "私 は プログラミング を 学ぶ のが 楽しい です", "この コンピューター は 非常に 高速 で 動作 します", "インターネット は 便利 ですが 注意 も 必要 です", "人工知능 の 技術 は 日々 進歩 しています", "最新 の スマートフォン は 機能 が たくさん あります", "昨日 観た 映画 は とても 感動的 でした", "彼 の スピーチ は 多くの 人々 に 勇気 を 与えました", "努力 は 必ずしも 報われる とは 限らない が 成長 に つながる", "新しい レシピ に 挑戦 して 美味しい 料理 を 作りました", "この 問題 の 解決策 を 見つける のは 難しい", "会議 の 資料 を 作成 する 必要 が あります", "彼 は チーム の リーダー として 素晴らしい 働き を しています", "月曜日 の 朝 は いつも 少し 眠い です", "金曜日 の 夜 は 友達 と 食事 に 行く 予定 です", "地球 は 太陽 の 周り を 回っています", "水 は 摂氏 0度 で 凍り 100度 で 沸騰 します", "光合成 は 植物 が 太陽 の エネルギー を 使って 栄養 を 作る 仕組み です", "宇宙 には 未知 の 惑星 が たくさん ある でしょう", "深い 海 の 底 には まだ 見たこと のない 生物 が いる かもしれない", "歴史 を 学ぶ ことは 未来 を 考える 上で 重要 です", "江戸時代 の 日本 は 鎖国 を していました", "フランス革命 は 世界 の 歴史 に 大きな 影響 を 与えました", "ピラミッド は 古代 エジプト の 王 の 墓 です", "経済 の 動向 を 注意深く 見守る 必要 が あります", "新しい ビジネス を 始める のは 簡単 ではありません", "健康的な 食事 と 適度な 運動 が 大切 です", "十分な 睡眠 を とる ことで 疲れ が 取れます", "ストレス を 感じたら 深呼吸 を して リラックス しましょう", "困った とき は お互い様 です", "小さな 親切 が 大きな 喜び に つながる こと が あります", "夢 を 持ち 続ける ことが 成功 へ の 第一歩 です", "失敗 を 恐れずに 何度でも 挑戦 してください", "あなた の 意見 を 聞かせて ください", "この 機械 の 使い方 が よく 分かりません", "もう一度 ゆっくり 説明 していただけます か", "その 考え は とても 素晴らしい と 思います", "私 は あなた の 成功 を 心から 願っています", "電車 が 遅れて いる ため 会議 に 遅刻 する かもしれない", "この 仕事 は 締め切り が 迫っています", "新しい プロジェクト が 始まる ので とても 忙しい です", "集中力 が 途切れて しまいました", "少し 休憩 を 入れて 気分転換 します", "森 の 中 を 歩くと 心 が 落ち着きます", "川 の せせらぎ の 音 が 聞こえます", "満月 の 夜 は とても 明るい です", "遠く で 雷 が 鳴っています", "虹 が 出ている のを 見つけました", "雪 が 降ると 世界 が 真っ白 に なります", "彼 の 言葉 の 真意 が 分からず 困惑 しています", "ようやく 問題 の 根本的な 原因 が 分かりました", "私たち は もっと 効率的に 働く 方法 を 見つける べき です", "その ニュース を 聞いて 彼女 は 驚き を 隠せなかった", "彼ら は 長い 議論 の 末 ようやく 合意 に 達した",
+            "私 は ラーメン が 好き です", "私 は 寿司 も 好き です", "私 は 猫 よりも 犬 が 好き です", "私 は 走る のが 速い です", "私 は あなた の 意見 に 賛成 です", "ペンギン は 寒い ところ に 住んでいます", "ペンギン は よちよち 歩きます", "ペンギン は 魚 を 食べます", "ペンギン は とても かわいい です", "ペンギン の 赤ちゃん は ふわふわ です", "今日 は 学校 が 休み です", "今日 は 家族 と 買い物 に 行きます", "今日 は とても 忙しい 一日 でした", "今日 は 早く 寝ます", "今日 は 何曜日 です か", "昨日 は 何 を しました か", "昨日 は 映画 を 見ました", "昨日 は 勉強 を しませんでした", "明日 は テスト が あります", "明日 は 友達 と 約束 が あります", "明日 は 早起き しなければ なりません", "彼 は とても 親切な 人 です", "彼 は 宿題 を 忘れました", "彼 は サッカー が 上手 です", "彼 は 私 の 友達 です", "彼女 は 新しい ドレス を 着ています", "彼女 は 歌 が 上手 です", "彼女 は 先生 に 質問 しました", "彼女 は 怒っている かもしれない", "それ は とても 良い 考え です", "それ は 私 の 傘 です", "それ は 少し 難しい 問題 です", "それ は 秘密 です", "それ は 信じられません", "これ は 何 です か", "これ は 私 の お気に入り の 本 です", "これ は 食べられます か", "これ は あなた に あげます", "あれ は 誰 の カバン です か", "あれ は 有名な 建物 です", "あれ は とても 高い です", "美味しい もの が 食べたい", "美味しい ケーキ を 作りました", "美味しい ラーメン屋 を 知っています か", "楽しい 時間 は あっという間 です", "楽しい ゲーム を 発見 しました", "楽しい 週末 を 過ごしました", "旅行 は とても 楽しかった です", "嬉しい 知らせ が 届きました", "あなた に 会えて 嬉しい です", "テスト で 満点 を とって 嬉しい です", "悲しい 映画 を 見て 泣きました", "ペット が いなくなって 悲しい です", "その 話 を 聞いて 悲しい 気持ち に なりました", "仕事 が 終わらなくて 忙しい です", "今週 は ずっと 忙しい です", "忙しい ので 後で 電話 します", "寒い 日 は 家 で ゆっくり したい です", "寒い ので セーター を 着ます", "寒い のに アイス を 食べます", "暑い 日 は プール に 入りたい です", "暑い ので エアコン を つけます", "日本 の 夏 は 蒸し暑い です", "雨 が 降って きました", "雨 が 止んだら 散歩 に 行きましょう", "傘 を 持って きましたが 雨 は 降りませんでした", "雪 が 積もって 電車 が 止まりました", "雪だるま を 作って 遊びました", "風 が 強い ので 気をつけて ください", "風 が 気持ちいい です", "台風 が 近づいて います", "電車 が 遅延 しています", "電車 に 間に合わない かもしれない", "バス は 満員 でした", "飛行機 の 予約 を しました", "車 を 運転 する のが 好き です", "自転車 で 学校 に 通っています", "本 を 読む のは 楽しい です", "本 を 3冊 借りました", "この 本 は 難しくて 読めません", "映画 を 見る のが 趣味 です", "映画館 は 満席 でした", "家 で 映画 を 見る のも 好き です", "音楽 を 聞きながら 勉強 します", "どんな 音楽 が 好き です か", "ライブ に 行く のが 楽しみ です", "ゲーム が やめられません", "最新 の ゲーム を 買いました", "友達 と オンラインゲーム を します", "スポーツ を する のは 体 に 良い です", "サッカー の 試合 を 見ます", "野球 の チーム に 入っています", "バスケットボール が 上手 に なりたい です", "宿題 が たくさん あって 大変 です", "宿題 は 明日 やります", "夏休み の 宿題 が 終わりません", "勉強 しないと いけません", "英語 の 勉強 を 頑張っています", "数学 の テスト は 難しかった です", "歴史 の 授業 は 面白い です", "理科 の 実験 は 楽しい です", "お腹 が 空いた ので 何か 食べたい", "お腹 が いっぱい で もう 食べられません", "喉 が 渇いた ので ジュース を 飲みます", "眠い ので コーヒー を 飲みました", "眠くて 目 が 開けられません", "もう 寝る 時間 なので おやすみなさい", "朝寝坊 して 遅刻 しました", "目覚まし時計 を 止めました", "きれいな 写真 を 撮りたい です", "きれいな 海 で 泳ぎたい です", "部屋 を きれいに 掃除 しました", "新しい 服 を 買いました", "新しい スマートフォン が 欲しい です", "新しい 友達 が できました", "犬 が 嬉しそうに 尻尾 を 振っています", "猫 が 日向ぼっこ を しています", "鳥 の さえずり が 聞こえます", "魚 が 気持ちよさそうに 泳いでいます", "花 に 水 を やります", "桜 が 満開 です", "山 が 紅葉 で きれい です", "海 の 向こう に 何が ある のだろう", "電話番号 を 教えて ください", "メールアドレス を 交換 しました", "後で LINE します", "会議 の 時間 が 変更 に なりました", "会議 の 準備 を しなければ なりません", "レポート の 締め切り は 明日 です", "レポート が なかなか 書けません", "駅前 の カフェ で 待ち合わせ しましょう", "カフェ で ゆっくり 本 を 読みたい です", "レストラン の 予約 を しました", "美味しい イタリアン の レストラン を 知っています", "コンビニ で お弁当 を 買いました", "スーパー は 今日 特売日 です", "銀行 で お金 を おろします", "郵便局 で 手紙 を 出します", "病院 の 予約 を 変更 します", "薬局 で 薬 を もらいました", "髪 を 切り に 美容院 に 行きます", "公園 で 鳩 に 餌 を やります", "図書館 は 静かで 落ち着きます", "博物館 で 歴史 を 学びます", "美術館 で 有名な 絵 を 見ました"
+        ];
+        
+        // ファンタジー風コーパス (増強)
+        const corpus_fantasy = [
+            "勇者 は 伝説 の 剣 を 手 に 入れた", "魔王 が 世界 を 闇 に 染めよう と している", "エルフ は 森 の 奥深く で 静かに 暮らしている", "強力な 魔法 の 呪文 を 唱える", "王様 は 勇者 に 旅 の 支度 を 命じた", "ドラゴン が 炎 を 吐いて 村 を 襲った", "姫 は 邪悪な 魔法使い に 捕らわれた", "古い 地図 には 宝 の 場所 が 記されている", "一行 は 険しい 山 を 越えて 旅 を 続けた", "魔法 の 森 には 不思議な 生き物 が 住んでいる", "ドワーフ は 頑丈な 鎧 を 作る のが 得意 だ", "ゴブリン の 群れ が 突然 現れた", "伝説 の 勇者 の 血 を 引く 者", "彼 は 炎 の 魔法 を 使う ことができる", "王女 の 涙 が 呪い を 解いた", "騎士団 が 城 を 守る ために 戦う", "酒場 で 仲間 を 集める ことにした", "アンデッド の 軍勢 が 墓地 から 蘇る", "賢者 は すべて の 真実 を 知っている", "古代 の 遺跡 には 強力な アーティファクト が 眠っている", "空飛ぶ 船 で 大陸 を 移動 する", "彼 の 目 は 魔法 の 力 で 青く 輝いていた", "呪文 の 詠唱 が 始まり 地面 が 揺れた", "巨大な 城 の 門 が ゆっくりと 開く", "王都 は 多くの 冒険者 で 賑わっている", "彼 は 闇 の 力 に 魅入られて しまった", "聖なる 泉 の 水 が 傷 を 癒す", "この 剣 には 古代 の ルーン文字 が 刻まれている", "魔導書 に 記された 禁断 の 魔法", "妖精 の 女王 が 彼ら に 試練 を 与えた", "オーガ の こん棒 を 華麗 に かわす", "見習い 魔法使い は まだ 火の玉 しか 出せない", "世界樹 の 葉 が 病 を 治す という", "王宮 の 舞踏会 に 招かれた", "盗賊 は 素早く 宝箱 の 鍵 を 開けた", "ゴーレム が 宝物庫 を 守っている", "リッチー は 不死 の 王 として 君臨 している", "勇者 の 仲間 は 戦士 と 僧侶 と 魔法使い だ", "最後の戦い が 今 始まろう と している", "平和な 世界 を 取り戻す ために 旅立つ", "彼 の 剣技 は まさに 神業 だった", "魔王 の 城 は 険しい 山 の 頂上 に ある", "グリフォン に 乗って 空 を 飛ぶ", "この 森 は 迷いやすく 抜け出す のは 困難 だ", "洞窟 の 奥 で 眠る ドラゴン を 起こしてしまった", "商人 は 珍しい アイテム を 売っている", "神殿 で 女神 の 啓示 を 受けた", "彼 は 偉大な 英雄 として 語り継が れるだろう", "闇 の ギルド が 暗躍 している", "世界 の 運命 は 彼ら の 手 に 委ねられた", "勇者 は 剣 を 構えた", "勇者 は 魔法 を 唱えた", "勇者 は 仲間 を 守った", "勇者 は 魔王 を 倒す 旅 に 出た", "勇者 は 宿屋 で 一休み した", "魔王 は 高笑い した", "魔王 は 闇 の 軍勢 を 呼び寄せた", "魔王 は 勇者 の 前 に 立ちはだかった", "魔王 の 攻撃 を ギリギリ で かわした", "姫 は 塔 の 上 で 助け を 待っている", "姫 は 王国 の 未来 を 憂いている", "姫 は 聖なる 力 を 秘めている", "魔法使い は 新しい 呪文 を 研究 している", "魔法使い は ファイアボール を 放った", "魔法使い は 仲間 を 回復 させた", "魔法使い は 知識 が 豊富 だ", "戦士 は 大きな 斧 を 振り回す", "戦士 は 仲間 の 盾 と なる", "戦士 は 猪突猛進 だ", "僧侶 は 回復魔法 を 使える", "僧侶 は 神 に 祈り を 捧げた", "僧侶 は アンデッド が 苦手 だ", "エルフ の 弓 は 百発百中 だ", "エルフ は 人間 を 信用 していない", "エルフ は 長い 寿命 を 持つ", "ドワーフ は 頑固だ が 頼り に なる", "ドワーフ は ビール が 大好き だ", "ドワーフ は 地下 の 都市 に 住んでいる", "ドラゴン は 財宝 を 守っている", "ドラゴン の 鱗 は 鋼 より 硬い", "ドラゴン の 弱点 は 逆鱗 だ", "スライム は 最弱 の モンスター だ", "スライム は 合体 して 大きくなる", "スライム は 酸 で 攻撃 してくる", "ゴブリン は 集団 で 襲ってくる", "ゴブリン は 宝箱 が 好き だ", "ゴブリン は あまり 賢くない", "王様 は 褒美 として 金貨 を 与えた", "王様 は 隣国 との 戦争 を 決意 した", "王様 は 病 に 倒れた", "森 には 薬草 が たくさん 生えている", "森 で 迷子 に なってしまった", "深い 森 には 魔物 が 住む という", "洞窟 は 暗くて 湿っている", "洞窟 の 奥 に 宝箱 を 見つけた", "洞窟 には スケルトン が いた", "伝説 の 武器 は 世界 の どこか に 隠されている", "伝説 の 防具 は 竜 の 巣 に ある", "魔法 の アイテム は 高値 で 取引 される", "体力回復 の ポーション を 飲んだ", "毒消し草 が 必要 だ", "世界 を 救う のは あなた しか いない", "冒険 の 書 に 記録 した", "レベルアップ して 新しい スキル を 覚えた", "パーティー を 組んで ダンジョン に 挑戦 する", "クエスト を 受注 した", "街 の 人々 を 助けて 評判 を 上げた", "呪い の アイテム を 装備 してしまった", "教会 で 呪い を 解いてもらった", "船 を 手に入れて 新しい 大陸 を 目指す", "空 を 飛ぶ 魔法 を 習得 した", "彼 は 剣士 として の 才能 が ある", "彼女 は 治癒魔法 の 天才 だ", "古代文明 の 謎 を 解き明かす", "予言 の 書 には 未来 が 書かれている", "城 の 地下牢 に 捕らえられた", "仲間 の 助け で 脱出 に 成功 した", "裏切り者 は 誰 だ", "物語 は まだ 始まったばかり だ"
+        ];
+        
+        // SF風コーパス (増強)
+        const corpus_sf = [
+            "宇宙船 は 光速 を 超えて 未知 の 星系 へ と 向かった", "AI が 反乱 を 起こし 人類 に 宣戦布告 した", "惑星 開発用 の アンドロイド が 暴走 した", "銀河連邦 との ファーストコンタクト に 成功 した", "彼 は サイボーグ 手術 を 受けて 強靭な 体 を 手 に 入れた", "ワープ航法 の 実験 が 失敗 して 亜空間 に 飛ばされた", "エイリアン の 侵略 が 始まり 地球 は 危機 に 瀕している", "都市 は 高度な テクノロジー によって 管理 されている", "ホログラム の 映像 が 空中 に 浮かび上がる", "レーザー銃 が 標準装備 されている", "人類 は 新たな 居住地 を 求めて 宇宙 を 旅 する", "コールドスリープ から 目覚めたら 100年 が 経過 していた", "この ロボット は 人間 の 感情 を 学習 できる", "巨大な 宇宙ステーション が 地球 の 軌道上 に 建設 された", "彼 の 記憶 は 違法な データチップ によって 改ざん されていた", "反乱軍 は 帝国 の 圧政 に 立ち向かう", "謎 の 信号 が 宇宙 の 果て から 送られてきた", "パワードスーツ を 装着 して 戦場 に 赴く", "この 惑星 は 呼吸 可能な 大気 を 持っている", "タイムマシン が 完成 したが 過去 を 変えては ならない", "遺伝子操作 によって 生まれた 新人類", "エネルギーシールド が 敵 の 攻撃 を 防いだ", "AI は 論理的な 判断 を 下す が 感情 を 理解 できない", "宇宙海賊 が 輸送船 を 襲撃 した", "テラフォーミング計画 が 進行中 だ", "都市 の 上空 を エアカー が 飛び交う", "サイバー空間 で の 情報戦 が 始まった", "クローン技術 の 是非 が 問われている", "アンドロイド は 自分 の 存在 に 疑問 を 持ち始めた", "超能力 に 目覚めた 少年 が 政府 に 追われる", "ブラックホール に 飲み込まれたら どうなる のだろう", "量子コンピューター が 複雑な 計算 を 一瞬 で 終えた", "人工重力 が 宇宙船 の 中 で 快適な 生活 を 可能 に する", "トランスポーター で 瞬間移動 する", "ナノマシン が 体内 の 病気 を 治療 する", "彼ら は 未知 の ウイルス に 感染 した", "ミュータント が 地下深くに コミュニティ を 作っている", "この 宇宙船 の エネルギー源 は 反物質 エンジン だ", "エイリアン の 言語 を 解読 するのは 困難 を 極める", "銀河 の 中心 には 巨大な 謎 が 隠されている", "AI に 支配 された ディストピア な 未来", "レプリカント は 人間 と 見分け が つかない", "スペースデブリ が 宇宙船 に 衝突 した", "彼 は 伝説 の エースパイロット だ", "惑星間 の 貿易 が 盛んに 行われている", "ダイソン球 の 建設 が 計画 されている", "人類 の 進化 は 宇宙 へ と 向かう", "サイバネティクス技術 が 彼 の 失われた 腕 を 再現 した", "自我 を 持つ AI と 人間 の 共存 は 可能なのか", "時間旅行 が 引き起こした パラドックス", "AI は 人類 の 最良 の パートナー だ", "AI は すべて の ネットワーク を 掌握 した", "AI は 人間 の 創造性 を 超える ことができる か", "AI は 感情 を 持つ ように なる だろう か", "宇宙船 は ワープドライブ を 起動 した", "宇宙船 は 未知 の 信号 を 受信 した", "宇宙船 の クルー は コールドスリープ に 入った", "宇宙船 の AI が 異常 を 検知 した", "アンドロイド は 人間 の 命令 に 忠実 だ", "アンドロイド は 労働力 として 酷使 されている", "アンドロイド は 権利 を 主張 し始めた", "アンドロイド は 人間 を 憎んでいる", "エイリアン は 友好的 な 態度 を 示した", "エイリアン は テレパシー で 会話 する", "エイリアン の 科学技術 は 人類 を はるかに 凌駕 している", "エイリアン の 宇宙船 が 大気圏 に 突入 した", "サイボーグ は 身体能力 が 飛躍的に 向上 した", "サイボーグ は メンテナンス が 必要 だ", "サイボーグ は 自身 の アイデンティティ に 悩んでいる", "反乱軍 の 基地 は 小惑星帯 に 隠されている", "反乱軍 は ゲリラ戦 を 展開 する", "反乱軍 は 帝国 の 最終兵器 の 設計図 を 盗んだ", "帝国軍 の ストームトルーパー が 迫ってくる", "帝国 の 皇帝 は 冷酷非道 な 独裁者 だ", "帝国 は 銀河 の ほとんど を 支配下 に 置いている", "レーザーソード で 激しい 戦い を 繰り広げる", "レーザー銃 が 火花 を 散らす", "ブラスター の 射撃 を かわす", "ホログラム 会議 が 行われている", "ホログラム の アイドル が 歌っている", "都市 の ネオン が ホログラム広告 を 映し出す", "タイムパラドックス を 回避 しなければ ならない", "過去 に 戻って 歴史 を 変えよう と する 者 が いる", "未来 から 来た エージェント が 警告 を 発した", "サイバー空間 に ダイブ する", "ハッカー が 巨大企業 の データ を 盗み出した", "電脳ウイルス が システム を ダウン させた", "量子テレポート が 実用化 された", "遺伝子操作 は 倫理的な 問題 を 抱えている", "デザイナーベビー が 社会問題 と なっている", "人類 は もはや 肉体 を 必要 と しない かもしれない", "意識 だけ が データ として 存在 する 世界", "仮想現実 が 現実世界 よりも 魅力的 に なった", "人々 は VRゴーグル を 外さなくなった", "この 惑星 の 環境 は 人類 にとって 過酷 だ", "テラフォーミング には 数百年 かかるだろう", "新しい 惑星 で 新しい 文明 を 築く", "宇宙エレベーター の 建設 が 始まった"
+        ];
+        
+        // --- グローバル変数 ---
+        let currentCorpus = corpus_default; // 初期状態はデフォルト
+        
+        // 設定用変数
+        let currentModelType = '2gram'; // '1gram' or '2gram'
+        let autoGenerationSpeed = 500; // 500ms or 10ms
+
+        // 状態変数をモデルごとに分離
+        const START_SYMBOL = "^"; // 文頭記号
+        let currentState_1gram = START_SYMBOL;
+        let currentState_2gram = [START_SYMBOL, START_SYMBOL];
+        
+        let currentText = "";   // 表示用のテキスト全体を保持する
+        
+        // 自動生成用のタイマーIDと状態
+        let autoIntervalId = null;
+        let isAutoRunning = false;
+        
+        // --- DOM要素の取得 ---
+        const textDisplay = document.getElementById('text-display');
+        const predictionButtonsContainer = document.getElementById('prediction-buttons');
+        const resetButton = document.getElementById('reset-button');
+        const startAutoButton = document.getElementById('start-auto-button');
+        const pauseAutoButton = document.getElementById('pause-auto-button');
+        const themeSelector = document.getElementById('theme-selector'); // 復活
+        // 設定UIのDOM
+        const model1gram = document.getElementById('model-1gram');
+        const model2gram = document.getElementById('model-2gram');
+        const speedSlow = document.getElementById('speed-slow');
+        const speedFast = document.getElementById('speed-fast');
+
+        // --- モデル構築ロジック (2種類) ---
+
+        // 1-gram: モデル構築
+        function buildModel_1gram(corpusData) {
+            transitions = {};
+            for (const text of corpusData) {
+                const words = text.split(' '); 
+                let prevWord = START_SYMBOL;
+
+                for (let i = 0; i < words.length; i++) {
+                    const currentWord = words[i].trim();
+                    if (currentWord === "") continue; 
+                    if (!transitions[prevWord]) {
+                        transitions[prevWord] = {};
+                    }
+                    if (!transitions[prevWord][currentWord]) {
+                        transitions[prevWord][currentWord] = 0;
+                    }
+                    transitions[prevWord][currentWord]++;
+                    prevWord = currentWord;
+                }
+            }
+        }
+
+        // 2-gram: モデル構築
+        function buildModel_2gram(corpusData) {
+            transitions = {};
+            for (const text of corpusData) {
+                const words = text.split(' '); 
+                let prevWords = [START_SYMBOL, START_SYMBOL];
+
+                for (let i = 0; i < words.length; i++) {
+                    const currentWord = words[i].trim();
+                    if (currentWord === "") continue; 
+
+                    const stateKey = prevWords.join(" "); 
+
+                    if (!transitions[stateKey]) {
+                        transitions[stateKey] = {};
+                    }
+                    if (!transitions[stateKey][currentWord]) {
+                        transitions[stateKey][currentWord] = 0;
+                    }
+                    transitions[stateKey][currentWord]++;
+                    
+                    prevWords.shift(); 
+                    prevWords.push(currentWord); 
+                }
+            }
+        }
+
+        // --- 予測ロジック (2種類) (パーセンテージ計算を追加) ---
+
+        // 1-gram: 予測取得
+        function getPredictions_1gram() {
+            const nextWords = transitions[currentState_1gram];
+            if (!nextWords) return [];
+            
+            // 変更点: 確率を計算する
+            const sortedPredictions = Object.entries(nextWords).sort((a, b) => b[1] - a[1]);
+            const totalCount = sortedPredictions.reduce((sum, entry) => sum + entry[1], 0);
+            if (totalCount === 0) return [];
+            
+            const predictionsWithPercentage = sortedPredictions.map(entry => ({
+                word: entry[0],
+                percentage: (entry[1] / totalCount) * 100
+            }));
+            
+            // 変更点: slice(0, 7) を削除
+            return predictionsWithPercentage;
+        }
+
+        // 2-gram: 予測取得
+        function getPredictions_2gram() {
+            const stateKey = currentState_2gram.join(" ");
+            const nextWords = transitions[stateKey];
+            if (!nextWords) return [];
+
+            // 変更点: 確率を計算する
+            const sortedPredictions = Object.entries(nextWords).sort((a, b) => b[1] - a[1]);
+            const totalCount = sortedPredictions.reduce((sum, entry) => sum + entry[1], 0);
+            if (totalCount === 0) return [];
+
+            const predictionsWithPercentage = sortedPredictions.map(entry => ({
+                word: entry[0],
+                percentage: (entry[1] / totalCount) * 100
+            }));
+
+            // 変更点: slice(0, 7) を削除
+            return predictionsWithPercentage;
+        }
+        
+        // --- ラッパー関数 (選択中のモデルに応じて分岐) ---
+
+        // 現在のモデル設定に応じて、適切なモデル構築関数を呼ぶ
+        function buildCurrentModel(corpusData) { // 引数を受け取る
+            if (currentModelType === '1gram') {
+                buildModel_1gram(corpusData); 
+            } else {
+                buildModel_2gram(corpusData); 
+            }
+        }
+        
+        // 現在のモデル設定に応じて、適切な予測取得関数を呼ぶ
+        function getCurrentPredictions() {
+            if (currentModelType === '1gram') {
+                return getPredictions_1gram();
+            } else {
+                return getPredictions_2gram();
+            }
+        }
+
+        // 3. 予測ボタンのUIを更新する (パーセンテージ表示に対応)
+        function updatePredictionButtons() {
+            predictionButtonsContainer.innerHTML = ""; 
+            const predictions = getCurrentPredictions(); // {word, percentage} の配列
+
+            predictions.forEach(item => {
+                const button = document.createElement('button');
+                // 変更点: ボタンの内部構造
+                button.className = "prediction-button bg-gray-200 text-gray-800 py-2 px-4 rounded-lg shadow-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 text-sm";
+                
+                // 内部に単語とパーセンテージ用のSPANを作成
+                const wordSpan = document.createElement('span');
+                wordSpan.className = "font-semibold";
+                wordSpan.textContent = item.word;
+                
+                const percentSpan = document.createElement('span');
+                percentSpan.className = "text-xs text-gray-600 ml-1.5"; // 少しマージン
+                percentSpan.textContent = `${item.percentage.toFixed(0)}%`; // 小数点以下を四捨五入
+                
+                button.appendChild(wordSpan);
+                button.appendChild(percentSpan);
+                
+                button.addEventListener('click', () => {
+                    pauseAutoGeneration(false); 
+                    handlePredictionClick(item.word); // クリック時は単語だけを渡す
+                });
+                
+                predictionButtonsContainer.appendChild(button);
+            });
+        }
+
+        // 4. 予測ボタンがクリックされた時の処理
+        function handlePredictionClick(word) {
+            currentText += word + " "; 
+            textDisplay.textContent = currentText;
+
+            // モデルに応じて状態変数を更新
+            if (currentModelType === '1gram') {
+                currentState_1gram = word;
+            } else {
+                currentState_2gram.shift();
+                currentState_2gram.push(word);
+            }
+            
+            updatePredictionButtons();
+        }
+
+        // 5. リセット処理
+        function resetText() {
+            pauseAutoGeneration(false); // 実行中のタイマーを止める（isFinished = false）
+            currentText = ""; 
+            textDisplay.textContent = currentText; 
+            
+            // 両方の状態を文頭に戻す
+            currentState_1gram = START_SYMBOL;
+            currentState_2gram = [START_SYMBOL, START_SYMBOL]; 
+            
+            updatePredictionButtons(); 
+
+            // ボタンのUIをリセット
+            startAutoButton.textContent = "自動生成開始";
+            startAutoButton.disabled = false;
+            pauseAutoButton.disabled = true;
+        }
+
+        // --- 自動生成関連の関数 ---
+
+        // 6. 自動生成の1ステップを実行する関数
+        function handleAutoStep() {
+            const predictions = getCurrentPredictions(); 
+
+            if (predictions.length === 0) {
+                // 予測が尽きたら、「完了」として停止する
+                pauseAutoGeneration(true); // 'true' は 'isFinished' を示す
+                return;
+            }
+            
+            // 常にランダムモード
+            const randomWord = predictions[Math.floor(Math.random() * predictions.length)].word; // .word を追加
+            
+            handlePredictionClick(randomWord);
+        }
+
+        // 7. 自動生成を開始（または再開）する関数
+        function startAutoGeneration() {
+            if (isAutoRunning) return; 
+
+            // もしテキストが入力済みで、かつ予測候補がない（行き止まり）状態なら、
+            // ユーザーが「自動生成開始」ボタンを押したこのタイミングでリセットする
+            if (currentText !== "" && getCurrentPredictions().length === 0) {
+                resetText();
+            }
+
+            isAutoRunning = true;
+            autoIntervalId = setInterval(handleAutoStep, autoGenerationSpeed); 
+
+            startAutoButton.textContent = "自動生成中...";
+            startAutoButton.disabled = true;
+            pauseAutoButton.disabled = false;
+        }
+
+        // 8. 自動生成を一時停止する関数
+        // 'isFinished' (完了)フラグを受け取る
+        function pauseAutoGeneration(isFinished = false) {
+            if (!isAutoRunning) return; // 既に停止していれば何もしない
+
+            clearInterval(autoIntervalId);
+            autoIntervalId = null;
+            isAutoRunning = false;
+
+            if (isFinished) {
+                // 完了した場合は「自動生成開始」に戻す
+                startAutoButton.textContent = "自動生成開始";
+                startAutoButton.disabled = false;
+                pauseAutoButton.disabled = true;
+            } else {
+                // ユーザーによる一時停止の場合は「再開」
+                startAutoButton.textContent = "再開";
+                startAutoButton.disabled = false;
+                pauseAutoButton.disabled = true;
+            }
+        }
+        
+        // --- 設定変更時のハンドラ ---
+        
+        // テーマ変更処理 (復活)
+        function handleThemeChange() {
+            const selectedTheme = themeSelector.value;
+            
+            if (selectedTheme === 'fantasy') {
+                currentCorpus = corpus_fantasy;
+            } else if (selectedTheme === 'sf') {
+                currentCorpus = corpus_sf;
+            } else {
+                currentCorpus = corpus_default;
+            }
+            
+            buildCurrentModel(currentCorpus); // 選択されたコーパスでモデルを再構築
+            resetText();
+        }
+
+        // AIモデル変更処理
+        function handleModelChange() {
+            currentModelType = model1gram.checked ? '1gram' : '2gram';
+            buildCurrentModel(currentCorpus); // 現在選択中のコーパスでモデルを再構築
+            resetText(); // UIをリセット
+        }
+        
+        // 自動生成速度変更処理
+        function handleSpeedChange() {
+            autoGenerationSpeed = parseInt(speedSlow.checked ? speedSlow.value : speedFast.value, 10);
+
+            // もし自動生成が実行中なら、新しい速度で再スタートする
+            if (isAutoRunning) {
+                pauseAutoGeneration(false); // 一時停止
+                startAutoGeneration(); // 新しい速度で開始
+            }
+        }
+
+        // --- 初期化処理 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            buildCurrentModel(currentCorpus); // 初期コーパス(default)でビルド
+            resetText();
+            
+            // リスナー設定
+            resetButton.addEventListener('click', resetText);
+            startAutoButton.addEventListener('click', startAutoGeneration);
+            pauseAutoButton.addEventListener('click', () => pauseAutoGeneration(false)); // ユーザーのクリックは常に「一時停止」
+            themeSelector.addEventListener('change', handleThemeChange); // 復活
+            
+            // 設定UIのリスナー
+            model1gram.addEventListener('change', handleModelChange);
+            model2gram.addEventListener('change', handleModelChange);
+            speedSlow.addEventListener('change', handleSpeedChange);
+            speedFast.addEventListener('change', handleSpeedChange);
+        });
+
+    </script>
+
+</body>
+</html>
+
+

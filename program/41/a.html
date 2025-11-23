@@ -1,4 +1,268 @@
-document.addEventListener("DOMContentLoaded", () => {
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ルーレット | daihachi</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    
+  </head>
+  <!-- ★★★ 初期クラスを追加 ★★★ -->
+  <body class="focus-mode-off">
+    <div class="container">
+      <!-- ★★★ フォーカスモード切り替えボタンを追加 ★★★ -->
+      <div class="top-right-buttons">
+        <span id="profile-name-display" class="profile-name-display"></span>
+        <button
+          id="theme-toggle-btn"
+          class="focus-toggle-btn"
+          title="テーマカラー切り替え"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M346-140 100-386q-10-10-15-22t-5-25q0-13 5-25t15-22l230-229-106-106 62-65 400 400q10 10 14.5 22t4.5 25q0 13-4.5 25T686-386L440-140q-10 10-22 15t-25 5q-13 0-25-5t-22-15Zm47-506L179-432h428L393-646Zm399 526q-36 0-61-25.5T706-208q0-27 13.5-51t30.5-47l42-54 44 54q16 23 30 47t14 51q0 37-26 62.5T792-120Z"
+            />
+          </svg>
+        </button>
+        <button id="settings-btn" class="focus-toggle-btn" title="設定">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M200-160v-280h-80v-80h240v80h-80v280h-80Zm0-440v-200h80v200h-80Zm160 0v-80h80v-120h80v120h80v80H360Zm80 440v-360h80v360h-80Zm240 0v-120h-80v-80h240v80h-80v120h-80Zm0-280v-360h80v360h-80Z"
+            />
+          </svg>
+        </button>
+        <button
+          id="focus-toggle-btn"
+          class="focus-toggle-btn"
+          title="フォーカスモード切り替え"
+        >
+          <svg
+            class="icon-expand"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
+            />
+          </svg>
+          <svg
+            class="icon-shrink"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+          >
+            <path
+              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <h1 class="main-title">ルーレット</h1>
+
+      <!-- モード選択タブ -->
+      <div class="mode-selector control-panel">
+        <div class="mode-highlight"></div>
+        <button class="mode-btn active" data-mode="simple">シンプル</button>
+        <button class="mode-btn" data-mode="roulette">ルーレット</button>
+        <button class="mode-btn" data-mode="card">カード選択</button>
+        <!-- <button class="mode-btn" data-mode="timer">タイマー</button> -->
+      </div>
+
+      <!-- 設定エリア -->
+      <div class="settings control-panel"></div>
+      <div class="buttons">
+        <button id="start-button">スタート！</button>
+        <button id="reset-button">リセット</button>
+      </div>
+
+      <!-- 各モードの表示エリア -->
+      <div class="game-area">
+        <!-- シンプルモード -->
+        <div id="simple-mode-area" class="mode-content active">
+          <p>結果は...</p>
+          <div id="result-display" class="result-box">?</div>
+        </div>
+
+        <!-- ルーレットモード -->
+        <div id="roulette-mode-area" class="mode-content">
+          <div class="roulette-container">
+            <div class="roulette-pointer"></div>
+            <div class="roulette-wheel">
+              <!-- JSで数字がここに生成されます -->
+            </div>
+          </div>
+        </div>
+
+        <!-- カード選択モード -->
+        <div id="card-mode-area" class="mode-content">
+          <p id="card-message">スタートボタンを押してカードを準備</p>
+          <div class="card-grid">
+            <!-- JSでカードがここに生成されます -->
+          </div>
+        </div>
+
+        <!-- タイマーモード -->
+        <div id="timer-mode-area" class="mode-content">
+          <div class="timer-input-group">
+            <input
+              type="number"
+              id="timer-minutes"
+              value="0"
+              min="0"
+              max="59"
+            />
+            <span>:</span>
+            <input
+              type="number"
+              id="timer-seconds"
+              value="0"
+              min="0"
+              max="59"
+            />
+          </div>
+          <div id="timer-display-mode" class="timer-display-mode">00:00</div>
+          <div class="timer-controls">
+            <button id="timer-start-btn">スタート</button>
+            <button id="timer-pause-btn">一時停止</button>
+            <button id="timer-reset-btn">リセット</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="history-area control-panel">
+        <ul id="history-list">
+          <!-- ここに引いた数字の履歴が追加されます -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- 結果表示用オーバーレイ -->
+    <div id="result-overlay" class="hidden">
+      <div id="result-popup"></div>
+      <div id="result-timer-display" class="result-timer-display"></div>
+      <!-- 結果表示までのタイマーを追加 -->
+    </div>
+
+    <!-- 設定モーダル -->
+    <div id="settings-modal" class="hidden">
+      <div class="modal-content">
+        <button id="close-modal-btn" class="close-btn">&times;</button>
+        <h2>設定</h2>
+        <div class="setting-item">
+          <label for="volume-slider">効果音の音量</label>
+          <input
+            type="range"
+            id="volume-slider"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.4"
+          />
+        </div>
+
+        <hr />
+        <label for="min-number">範囲:</label>
+        <input type="number" id="min-number" value="1" />
+        <span>～</span>
+        <input type="number" id="max-number" value="35" />
+
+        <!-- ★★★ 除外設定の入力欄を追加 ★★★ -->
+        <div style="margin-top: 15px">
+          <label
+            for="exclude-numbers"
+            style="display: block; margin-bottom: 5px"
+            >除外する番号 (カンマ区切り):</label
+          >
+          <input
+            type="text"
+            id="exclude-numbers"
+            placeholder="例: 4, 15, 22"
+            style="
+              width: 95%;
+              padding: 8px;
+              border-radius: 5px;
+              border: 1px solid var(--color-border);
+            "
+          />
+        </div>
+
+        <!-- ★★★ 名前でルーレットする設定（最小限のUI）★★★ -->
+        <div style="margin-top: 15px;">
+          <label style="display:block; margin-bottom:6px;">
+            <input type="checkbox" id="use-names-checkbox" />
+            名前でルーレットする
+          </label>
+          <textarea
+            id="names-list"
+            placeholder="名前を改行区切りで入力してください。"
+            style="width:95%; height:80px; padding:8px; border-radius:5px; border:1px solid var(--color-border);"
+          ></textarea>
+        </div>
+
+        <div class="options control-panel">
+          <input type="checkbox" id="no-duplicates" checked />
+          <label for="no-duplicates">一度引いた数字は出ない (重複なし)</label>
+        </div>
+        <hr />
+
+        <div class="profiles-section">
+          <h3>プロファイル</h3>
+          <div id="profiles-container">
+            <!-- プロファイルがここにJSで生成されます -->
+          </div>
+        </div>
+        <hr />
+        <button id="reset-local-storage-btn">
+          ローカルに保存した設定をリセット
+        </button>
+        <a href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/41" class="github-open-button" target="_blank">Githubで開く<svg id="open-in-new-tab-icon" xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg></a>
+
+        <div class="adbox" id="adbox">
+          <hr />
+          <span class="ad-text">広告</span>
+          <button id="close-ad-btn">×</button>
+          <!-- admax -->
+          <div
+            class="admax-ads"
+            data-admax-id="cfc35a98056c136d0b6a6ea4ced854dc"
+            style="display: inline-block; width: 728px; height: 90px"
+          ></div>
+          <script type="text/javascript">
+            (admaxads = window.admaxads || []).push({
+              admax_id: "cfc35a98056c136d0b6a6ea4ced854dc",
+              type: "banner",
+            });
+          </script>
+          <script
+            type="text/javascript"
+            charset="utf-8"
+            src="https://adm.shinobi.jp/st/t.js"
+            async
+          ></script>
+          <!-- admax -->
+        </div>
+      </div>
+    </div>
+
+    <!-- プロファイル用カスタムコンテキストメニュー -->
+    <div id="profile-context-menu">
+      <div class="context-menu-item" data-action="load">読み込み</div>
+      <div class="context-menu-item" data-action="save">現在の範囲を保存</div>
+      <div class="context-menu-item" data-action="rename">名前の変更</div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
   // HTML要素の取得
   const body = document.body;
   const themeToggleButton = document.getElementById("theme-toggle-btn");
@@ -14,6 +278,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "reset-local-storage-btn"
   );
   const localReset = document.getElementById("local-reset-button");
+
+  // --- 新しく追加した要素 ---
+  const useNamesCheckbox = document.getElementById("use-names-checkbox");
+  const namesListInput = document.getElementById("names-list");
 
   // モード関連の要素
   const modeSelector = document.querySelector(".mode-selector");
@@ -333,13 +601,13 @@ document.addEventListener("DOMContentLoaded", () => {
     angleSinceLastTick: 0,
     segmentAngle: 0,
     lastTickTimestamp: 0,
-    minTimeBetweenTicks: 50, // 音を鳴らす最小間隔(ms)。50ms = 1秒間に最大20回
+    minTimeBetweenTicks: 100, // 音を鳴らす最小間隔(ms)。50ms = 1秒間に最大20回
   };
 
   // --- テーマ切り替え処理 ---
   const themes = [
     { name: "Blue", color: "#1a73e8" },
-    { name: "momo", color: "#ff00b3ff" },
+    { name: "Pink", color: "#ff007b"},
     { name: "Green", color: "#1e8e3e" },
     { name: "Red", color: "#d93025" },
     { name: "Purple", color: "#8e44ad" },
@@ -454,8 +722,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- 共通関数 ---
-  // ★★★ getAvailableNumbers を更新 ★★★
+  // ★★★ getAvailableNumbers を更新（名前モードをサポート） ★★★
   const getAvailableNumbers = () => {
+    // まず名前モードが有効なら名前リストを返す（重複設定やdrawnチェックは適用）
+    if (useNamesCheckbox.checked) {
+      const raw = namesListInput.value || "";
+      // カンマまたは改行で分割してトリム、空白を除去
+      const names = raw
+        .split(/,|\n/)
+        .map((s) => s.trim())
+        .filter((s) => s !== "");
+      // 一意化（ユーザーが重複を入れてても表示上は一度だけ）
+      const uniqueNames = Array.from(new Set(names));
+      // 適用: 重複なしが有効でかつ既に引かれているものは除外
+      const available = uniqueNames.filter((name) => {
+        if (noDuplicatesCheckbox.checked && drawnNumbers.includes(name)) {
+          return false;
+        }
+        return true;
+      });
+      if (available.length === 0) {
+        return [];
+      }
+      return available;
+    }
+
+    // 数値モードの既存処理
     const min = parseInt(minNumInput.value);
     const max = parseInt(maxNumInput.value);
     if (isNaN(min) || isNaN(max) || min >= max) {
@@ -503,6 +795,9 @@ document.addEventListener("DOMContentLoaded", () => {
     excludeNumbersInput.disabled = disabled; // ★ 除外設定も無効化
     noDuplicatesCheckbox.disabled = disabled;
     startButton.disabled = disabled; // スタートボタンも無効化
+    // 名前モードの設定は編集できると混乱を招くため、無効化
+    useNamesCheckbox.disabled = disabled;
+    namesListInput.disabled = disabled;
   };
 
   // --- モード切り替え ---
@@ -749,11 +1044,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   };
 
+  // ★★★ startRouletteMode を names にも対応するように修正 ★★★
   const startRouletteMode = (numbers) => {
-    const min = parseInt(minNumInput.value);
-    const max = parseInt(maxNumInput.value);
-    // 注意: ルーレットの見た目は除外設定を反映しません。抽選結果のみ反映されます。
-    const totalNumbersOnWheel = max - min + 1;
+    // numbers は getAvailableNumbers() で返された配列（数値または名前）
+    const totalNumbersOnWheel = numbers.length;
     const segmentAngle = 360 / totalNumbersOnWheel;
 
     const colors = [
@@ -771,7 +1065,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rouletteWheel.innerHTML = "";
 
     for (let i = 0; i < totalNumbersOnWheel; i++) {
-      const num = i + min;
+      const label = numbers[i];
       gradient += `${colors[i % colors.length]} ${i * segmentAngle}deg ${
         (i + 1) * segmentAngle
       }deg`;
@@ -783,12 +1077,12 @@ document.addEventListener("DOMContentLoaded", () => {
         i * segmentAngle + segmentAngle / 2
       }deg)`;
 
-      if (noDuplicatesCheckbox.checked && drawnNumbers.includes(num)) {
+      if (noDuplicatesCheckbox.checked && drawnNumbers.includes(label)) {
         numberDiv.classList.add("drawn");
       }
 
       const span = document.createElement("span");
-      span.textContent = num;
+      span.textContent = label;
       numberDiv.appendChild(span);
       rouletteWheel.appendChild(numberDiv);
     }
@@ -797,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const currentAngle = ((rotationDegree % 360) + 360) % 360;
     const resultNumber = numbers[Math.floor(Math.random() * numbers.length)];
-    const resultIndexOnWheel = resultNumber - min;
+    const resultIndexOnWheel = numbers.indexOf(resultNumber);
 
     const randomOffset = (Math.random() - 0.5) * segmentAngle * 0.75;
     const targetSegmentCenterAngle =
@@ -859,8 +1153,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultNumber = parseInt(clickedCard.dataset.number);
     playSound(sounds.cardFlip);
     clickedCard.classList.add("flipped");
-    addToHistory(resultNumber);
-    availableCards.splice(availableCards.indexOf(resultNumber), 1);
+    // dataset から取った値は文字列の場合があるため、ここでは元の availableCards に一致する型の値として扱う
+    const resultValue = isNaN(resultNumber)
+      ? clickedCard.dataset.number
+      : resultNumber;
+    addToHistory(resultValue);
+    const idx = availableCards.indexOf(resultValue);
+    if (idx !== -1) availableCards.splice(idx, 1);
     if (availableCards.length === 0) {
       cardMessage.textContent = "すべてのカードを引きました！";
       cardGameActive = false;
@@ -1000,3 +1299,9 @@ document.addEventListener(
   },
   false
 );
+
+
+
+    </script>
+  </body>
+</html>

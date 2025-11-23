@@ -248,7 +248,7 @@ h1 {
   left: 0;
   height: 100%;
   background-color: var(--color-primary-light);
-  border-radius: 7px; /* 少し内側に入るように */
+  /* border-radius: 7px; */
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
@@ -264,9 +264,9 @@ h1 {
   color: var(--color-text-secondary);
   transition: color 0.3s;
 }
-.mode-btn:not(:last-child) {
+/* .mode-btn:not(:last-child) {
   border-right: 1px solid var(--color-border);
-}
+} */
 .mode-btn.active {
   /* background-color: var(--color-primary-light); */
   /* color: var(--color-primary); */

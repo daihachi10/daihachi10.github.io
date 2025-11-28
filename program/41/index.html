@@ -1169,7 +1169,10 @@
           ></textarea>
         </div>
 
-        <div class="options control-panel" style="margin-top: 20px;display: none;">
+        <div
+          class="options control-panel"
+          style="margin-top: 20px; display: none"
+        >
           <input type="checkbox" id="no-duplicates" checked />
           <label for="no-duplicates">一度引いた数字(または名前)は出ない</label>
         </div>
@@ -1191,7 +1194,7 @@
           <input
             type="file"
             id="import-file-input"
-            accept=".txt"
+            accept=".json"
             style="display: none"
           />
         </div>
@@ -1218,7 +1221,7 @@
           <h3>新着情報</h3>
           <div class="news-item">
             <div class="news-header">
-              <span class="news-version">V0.3.2</span>
+              <span class="news-version">V0.4</span>
               <span class="news-title">プロファイルの保存機能強化</span>
             </div>
             <div class="news-detail">
@@ -1493,16 +1496,18 @@
           toggleSettingsDisplay(); // 表示状態を更新
           renderProfiles();
         };
-
+        
         // プロファイルエクスポート関数
         const exportProfile = (profile) => {
           // JSONデータを作成
           const exportData = JSON.stringify(profile, null, 2);
-          const blob = new Blob([exportData], { type: "text/plain" });
+          // typeを application/json に変更
+          const blob = new Blob([exportData], { type: "application/json" });
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = url;
-          a.download = `${profile.name}.txt`; // ファイル名はプロファイル名.txt
+          // 拡張子を .json に変更
+          a.download = `${profile.name}.json`; 
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);

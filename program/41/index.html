@@ -51,7 +51,7 @@
         transition: background-color 0.5s ease;
       }
 
-      .hidden {
+      .hidden-force {
         display: none !important;
       }
 
@@ -1435,8 +1435,8 @@
 
     <!-- プロファイル用カスタムコンテキストメニュー -->
     <div id="profile-context-menu">
-      <div class="context-menu-item hidden" data-action="load">読み込み</div>
-      <div class="context-menu-item hidden" data-action="save">現在の設定を保存</div>
+      <div class="context-menu-item hidden-force" data-action="load">読み込み</div>
+      <div class="context-menu-item hidden-force" data-action="save">現在の設定を保存</div>
       <!-- エクスポートメニューを追加 -->
       <div class="context-menu-item" data-action="export">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z"/></svg>

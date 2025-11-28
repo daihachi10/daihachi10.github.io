@@ -759,15 +759,18 @@
         display: none;
       }
       .folder-arrow {
-        font-size: 0.8rem;
-        transition: transform 0.2s;
-        display: inline-block;
-        width: 16px;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        color: var(--color-text-secondary);
+        margin-right: 2px;
       }
-      .folder-content.collapsed + .folder-arrow,
-      .collapsed .folder-arrow {
-        transform: rotate(-90deg);
+      .folder-arrow svg {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
       }
 
       /* アイコン */
@@ -978,17 +981,17 @@
         margin-top: 25px;
         text-align: left;
       }
+
+      .news-box {
+        height: 140px;
+        overflow-y: scroll;
+      }
+
       .news-section h3 {
         margin-bottom: 10px;
         font-size: 1.1rem;
         color: var(--color-text-primary);
       }
-
-      .news-box {
-        height: 100px;
-        overflow-y: scroll;
-      }
-
       .news-item {
         border: 1px solid var(--color-border);
         border-radius: 12px;
@@ -1440,7 +1443,7 @@
         エクスポート
       </div>
       <div class="context-menu-item" data-action="rename">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M563-491q73-54 114-118.5T718-738q0-32-10.5-47T679-800q-47 0-83 79.5T560-541q0 14 .5 26.5T563-491ZM120-120v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM136-280l-56-56 64-64-64-64 56-56 64 64 64-64 56 56-64 64 64 64-56 56-64-64-64 64Zm482-40q-30 0-55-11.5T520-369q-25 14-51.5 25T414-322l-28-75q28-10 53.5-21.5T489-443q-5-22-7.5-48t-2.5-56q0-144 57-238.5T679-880q52 0 85 38.5T797-734q0 86-54.5 170T591-413q7 7 14.5 10.5T621-399q26 0 60.5-33t62.5-87l73 34q-7 17-11 41t1 42q10-5 23.5-17t27.5-30l63 49q-26 36-60 58t-63 22q-21 0-37.5-12.5T733-371q-28 25-57 38t-58 13Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M563-491q73-54 114-118.5T718-738q0-32-10.5-47T679-800q-47 0-83 79.5T560-541q0 14 .5 26.5T563-491ZM120-120v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM136-280l-56-56 64-64-64-64 56-56 64 64 64-64 56 56-64 64 64-56 56-64-64-64 64Zm482-40q-30 0-55-11.5T520-369q-25 14-51.5 25T414-322l-28-75q28-10 53.5-21.5T489-443q-5-22-7.5-48t-2.5-56q0-144 57-238.5T679-880q52 0 85 38.5T797-734q0 86-54.5 170T591-413q7 7 14.5 10.5T621-399q26 0 60.5-33t62.5-87l73 34q-7 17-11 41t1 42q10-5 23.5-17t27.5-30l63 49q-26 36-60 58t-63 22q-21 0-37.5-12.5T733-371q-28 25-57 38t-58 13Z"/></svg>
         名前の変更
       </div>
       <div
@@ -1731,11 +1734,15 @@
           if (item.type === "folder") {
             el.classList.add("folder-item");
 
+            const arrowIcon = item.isCollapsed 
+              ? `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M400-280v-400l200 200-200 200Z"/></svg>`
+              : `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-360 280-560h400L480-360Z"/></svg>`;
+
             // ヘッダー
             const header = document.createElement("div");
             header.className = "folder-header";
             header.innerHTML = `
-              <span class="folder-arrow">${item.isCollapsed ? "▶" : "▼"}</span>
+              <span class="folder-arrow">${arrowIcon}</span>
               <svg class="icon-folder" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
               <span class="folder-name">${item.name}</span>
             `;

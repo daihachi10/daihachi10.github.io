@@ -30,6 +30,10 @@
         --overlay-bg: rgba(0, 0, 0, 0.6);
         --roulette-number-bg: rgba(255, 255, 255, 0.8);
         --radius: 50px;
+
+        /* Drag & Drop specific colors */
+        --drag-dest-highlight: #cce5ff;
+        --drag-line-color: #1a73e8;
       }
 
       /* 基本スタイル */
@@ -45,6 +49,10 @@
         padding: 20px;
         box-sizing: border-box;
         transition: background-color 0.5s ease;
+      }
+
+      .hidden {
+        display: none !important;
       }
 
       .home {
@@ -627,7 +635,9 @@
         border-radius: var(--radius);
         cursor: pointer;
         transition: background-color 0.3s, transform 0.1s;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-left: auto;
         margin-right: 0;
       }
@@ -642,13 +652,15 @@
         position: absolute;
         top: 10px;
         right: 15px;
-        font-size: 2rem;
         color: var(--color-text-secondary);
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
         line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .setting-item {
         display: flex;
@@ -663,25 +675,39 @@
         width: 60%;
       }
 
-      /* プロファイルセクション */
+      /* =========================================
+         プロファイル・フォルダ管理セクション (NEW)
+         ========================================= */
       .profiles-section {
         margin-top: 20px;
-      }
-      .profiles-section h3 {
-        margin-bottom: 15px;
-        color: var(--color-text-primary);
         text-align: left;
       }
-      #profiles-container {
-        display: flex; /* 横並びに */
-        flex-wrap: wrap; /* 折り返し */
-        gap: 10px; /* アイテム間の隙間 */
+      .profiles-section h3 {
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
       }
+
+      /* ツリー表示用コンテナ */
+      #profiles-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-height: 50px;
+        padding-bottom: 20px;
+      }
+
+      /* アイテム（プロファイル・フォルダ共通） */
+      .tree-item {
+        position: relative;
+        user-select: none;
+      }
+
+      /* プロファイルアイテム */
       .profile-item {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 12px;
+        padding: 10px 12px;
         background-color: var(--color-bg-alt);
         border: 1px solid var(--color-border);
         border-radius: var(--radius);
@@ -700,41 +726,151 @@
         flex-grow: 1;
       }
 
-      /* プロファイル操作ボタンの共通スタイル */
-      .profile-item .delete-profile-btn,
-      .profile-item .export-profile-btn {
+      /* フォルダアイテム */
+      .folder-item {
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        background-color: #fcfcfc;
+        margin-bottom: 5px;
+        overflow: hidden;
+      }
+      .folder-header {
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        background-color: #eaeaea;
+        cursor: pointer;
+        font-weight: bold;
+        color: var(--color-neutral-dark);
+        gap: 8px;
+      }
+      .folder-header:hover {
+        background-color: #dcdcdc;
+      }
+      .folder-content {
+        padding: 5px 5px 5px 20px; /* 左側にインデント */
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-height: 10px; /* ドロップ領域確保 */
+        background-color: #f9f9f9;
+      }
+      .folder-content.collapsed {
+        display: none;
+      }
+      .folder-arrow {
+        font-size: 0.8rem;
+        transition: transform 0.2s;
+        display: inline-block;
+        width: 16px;
+        text-align: center;
+      }
+      .folder-content.collapsed + .folder-arrow,
+      .collapsed .folder-arrow {
+        transform: rotate(-90deg);
+      }
+
+      /* アイコン */
+      .icon-folder,
+      .icon-profile {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+        color: var(--color-text-secondary);
+      }
+      .folder-header .icon-folder {
+        color: #ffca28; /* Folder Color */
+      }
+
+      /* DnD Visual Feedback */
+      .drag-over-folder {
+        background-color: var(--drag-dest-highlight) !important;
+        border: 2px dashed var(--color-primary) !important;
+      }
+      .drag-over-top {
+        border-top: 3px solid var(--drag-line-color) !important;
+      }
+      .drag-over-bottom {
+        border-bottom: 3px solid var(--drag-line-color) !important;
+      }
+      .tree-item.dragging {
+        opacity: 0.5;
+      }
+
+      /* アクションボタン（ツリー内の3点リーダー） */
+      .item-actions {
+        margin-left: auto;
+        display: flex;
+        gap: 5px;
+      }
+      .action-btn {
         background: none;
         border: none;
         color: var(--color-text-secondary);
         cursor: pointer;
-        padding: 2px;
-        font-size: 1rem;
-        line-height: 1;
-        opacity: 0.5;
-        transition: opacity 0.2s;
+        padding: 4px;
+        border-radius: 20px;
+        opacity: 0.6;
+        transition: opacity 0.2s, background-color 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .profile-item:hover .delete-profile-btn,
-      .profile-item:hover .export-profile-btn {
+      .tree-item:hover .action-btn,
+      .folder-header:hover .action-btn {
         opacity: 1;
       }
-      .profile-item .export-profile-btn svg {
-        width: 18px;
-        height: 18px;
-        fill: currentColor;
+      .action-btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
       }
 
-      #add-profile-btn {
-        padding: 8px 12px;
+      /* 新規追加ボタン（ドロップダウン） */
+      .add-menu-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-top: 10px;
+      }
+      #add-btn-trigger {
+        padding: 8px 16px;
         font-size: 0.9rem;
         background-color: var(--color-bg-secondary);
         border: 1px dashed var(--color-border);
         color: var(--color-text-secondary);
+        border-radius: var(--radius);
+        cursor: pointer;
       }
-      #add-profile-btn:hover {
+      #add-btn-trigger:hover {
         background-color: var(--color-bg-secondary-hover);
+      }
+      .add-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: none;
+        z-index: 100;
+        min-width: 220px;
+        overflow: hidden;
+      }
+      .add-dropdown.visible {
+        display: block;
+      }
+      .add-option {
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-align: left;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .add-option:hover {
+        background-color: var(--color-primary-light);
+        color: var(--color-primary);
       }
 
       /* プロファイル用カスタムコンテキストメニュー */
@@ -820,10 +956,11 @@
         font-size: 1rem;
         margin-left: 10px;
         transition: background-color 0.3s, transform 0.1s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
-      /* #import-profile-btn:hover {
-        background-color: var(--color-primary-disabled);
-      } */
 
       .github-open-button {
         padding-left: 15px;
@@ -846,6 +983,12 @@
         font-size: 1.1rem;
         color: var(--color-text-primary);
       }
+
+      .news-box {
+        height: 100px;
+        overflow-y: scroll;
+      }
+
       .news-item {
         border: 1px solid var(--color-border);
         border-radius: 12px;
@@ -1100,7 +1243,7 @@
     <!-- 設定モーダル -->
     <div id="settings-modal" class="hidden">
       <div class="modal-content">
-        <button id="close-modal-btn" class="close-btn">&times;</button>
+        <button id="close-modal-btn" class="close-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
         <h2>設定</h2>
         <div class="setting-item">
           <label for="volume-slider">効果音の音量</label>
@@ -1109,8 +1252,8 @@
             id="volume-slider"
             min="0"
             max="1"
-            step="0.1"
-            value="0.4"
+            step="0.0001"
+            value="0.05"
           />
         </div>
 
@@ -1178,19 +1321,52 @@
         </div>
         <hr />
 
+        <!-- ★★★ プロファイル・フォルダ管理セクション ★★★ -->
         <div class="profiles-section">
-          <h3>プロファイル</h3>
+          <h3>プロファイルとフォルダ</h3>
 
           <div id="profiles-container">
-            <!-- プロファイルがここにJSで生成されます -->
+            <!-- JSでツリー生成 -->
+          </div>
+
+          <div class="add-menu-wrapper">
+            <button id="add-btn-trigger">+ 追加</button>
+            <div id="add-dropdown" class="add-dropdown">
+              <div class="add-option" data-action="add-profile">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"
+                  />
+                </svg>
+                プロファイルを追加
+              </div>
+              <div class="add-option" data-action="add-folder">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"
+                  />
+                </svg>
+                フォルダを追加
+              </div>
+            </div>
           </div>
         </div>
+
         <div>
-          <!-- <button id="reset-local-storage-btn">
-            ローカルに保存した設定をリセット
-          </button> -->
           <!-- インポートボタンと隠しファイル入力 -->
-          <button id="import-profile-btn">インポート</button>
+          <button id="import-profile-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-80 200-360l56-57 184 184v-287h80v287l184-183 56 56L480-80Zm-40-520v-120h80v120h-80Zm0-200v-80h80v80h-80Z"/></svg>インポート</button>
           <input
             type="file"
             id="import-file-input"
@@ -1198,42 +1374,39 @@
             style="display: none"
           />
         </div>
-        <!-- <hr />
-
-        <a
-          href="https://github.com/daihachi10/daihachi10.github.io/tree/main/program/41"
-          class="github-open-button"
-          target="_blank"
-          >Githubで開く<svg
-            id="open-in-new-tab-icon"
-            xmlns="http://www.w3.org/2000/svg"
-            height="16px"
-            viewBox="0 -960 960 960"
-            width="16px"
-          >
-            <path
-              d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-            /></svg
-        ></a> -->
         <hr />
+
         <!-- ★★★ 新着情報セクション ★★★ -->
         <div class="news-section">
           <h3>新着情報</h3>
-          <div class="news-item">
-            <div class="news-header">
-              <span class="news-version">V0.4</span>
-              <span class="news-title">プロファイルの保存機能強化</span>
+          <div class="news-box">
+
+            <div class="news-item">
+              <div class="news-header">
+                <span class="news-version">V0.3</span>
+                <span class="news-title">フォルダ機能とドラッグ＆ドロップ</span>
+              </div>
+              <div class="news-detail">
+                プロファイルをフォルダで整理できるようになりました。ドラッグ＆ドロップで並べ替えやフォルダへの移動が可能です。
+              </div>
             </div>
-            <div class="news-detail">
-              名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。
+            <div class="news-item">
+              <div class="news-header">
+                <span class="news-version">V0.2</span>
+                <span class="news-title">プロファイルの保存機能強化</span>
+              </div>
+              <div class="news-detail">
+                名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。
+              </div>
             </div>
+
           </div>
         </div>
 
         <div class="adbox" id="adbox">
           <hr />
           <span class="ad-text">広告</span>
-          <button id="close-ad-btn">×</button>
+          <button id="close-ad-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
           <!-- admax -->
           <div
             class="admax-ads"
@@ -1259,11 +1432,35 @@
 
     <!-- プロファイル用カスタムコンテキストメニュー -->
     <div id="profile-context-menu">
-      <div class="context-menu-item" data-action="load">読み込み</div>
-      <div class="context-menu-item" data-action="save">現在の設定を保存</div>
+      <div class="context-menu-item hidden" data-action="load">読み込み</div>
+      <div class="context-menu-item hidden" data-action="save">現在の設定を保存</div>
       <!-- エクスポートメニューを追加 -->
-      <div class="context-menu-item" data-action="export">エクスポート</div>
-      <div class="context-menu-item" data-action="rename">名前の変更</div>
+      <div class="context-menu-item" data-action="export">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z"/></svg>
+        エクスポート
+      </div>
+      <div class="context-menu-item" data-action="rename">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M563-491q73-54 114-118.5T718-738q0-32-10.5-47T679-800q-47 0-83 79.5T560-541q0 14 .5 26.5T563-491ZM120-120v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM136-280l-56-56 64-64-64-64 56-56 64 64 64-64 56 56-64 64 64 64-56 56-64-64-64 64Zm482-40q-30 0-55-11.5T520-369q-25 14-51.5 25T414-322l-28-75q28-10 53.5-21.5T489-443q-5-22-7.5-48t-2.5-56q0-144 57-238.5T679-880q52 0 85 38.5T797-734q0 86-54.5 170T591-413q7 7 14.5 10.5T621-399q26 0 60.5-33t62.5-87l73 34q-7 17-11 41t1 42q10-5 23.5-17t27.5-30l63 49q-26 36-60 58t-63 22q-21 0-37.5-12.5T733-371q-28 25-57 38t-58 13Z"/></svg>
+        名前の変更
+      </div>
+      <div
+        class="context-menu-item"
+        data-action="delete"
+        style="color: #e94560"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="currentColor"
+        >
+          <path
+            d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"
+          />
+        </svg>
+        削除
+      </div>
     </div>
 
     <script>
@@ -1279,9 +1476,9 @@
         const startButton = document.getElementById("start-button");
         const resetButton = document.getElementById("reset-button");
         const historyList = document.getElementById("history-list");
-        /* const resetLocalStorageBtn = document.getElementById(
-          "reset-local-storage-btn"
-        ); */
+        const profileNameDisplay = document.getElementById(
+          "profile-name-display"
+        );
 
         // --- 新しく追加した要素 ---
         const useNamesCheckbox = document.getElementById("use-names-checkbox");
@@ -1326,9 +1523,11 @@
         const closeModalBtn = document.getElementById("close-modal-btn");
         const volumeSlider = document.getElementById("volume-slider");
 
-        // プロファイル関連の要素
+        // プロファイル関連の要素 (New)
         const profilesContainer = document.getElementById("profiles-container");
         const contextMenu = document.getElementById("profile-context-menu");
+        const addBtnTrigger = document.getElementById("add-btn-trigger");
+        const addDropdown = document.getElementById("add-dropdown");
 
         // ad
         const adCloseBtn = document.getElementById("close-ad-btn");
@@ -1352,10 +1551,10 @@
         };
 
         // --- 状態管理 ---
-        let profiles = [];
+        let items = []; // プロファイルとフォルダの統合リスト
         let activeProfileId = null;
-        let contextMenuVisible = false;
-        let contextTargetProfileId = null;
+        let contextTargetId = null; // コンテキストメニューの対象ID
+        let draggingId = null; // DnD中のアイテムID
 
         // 音声関連のセットアップ
         const sounds = {
@@ -1368,65 +1567,6 @@
 
         Object.values(sounds).forEach((sound) => {
           sound.volume = 0.4;
-        });
-        /*
-        resetLocalStorageBtn.addEventListener("click", () => {
-          if (confirm("本当にすべての設定とプロファイルをリセットしますか？")) {
-            localStorage.clear();
-            window.location.reload();
-          }
-        });
-        */
-        // インポート機能の実装
-        importProfileBtn.addEventListener("click", () => {
-          importFileInput.click();
-        });
-
-        importFileInput.addEventListener("change", (e) => {
-          const file = e.target.files[0];
-          if (!file) return;
-
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            try {
-              const importedData = JSON.parse(event.target.result);
-
-              // データの簡易バリデーション (必須フィールドがあるか)
-              if (!importedData.name) {
-                alert("無効なプロファイルデータです。");
-                return;
-              }
-
-              // 新しいIDを生成して追加
-              const newProfile = {
-                ...importedData,
-                id: Date.now(), // IDの衝突を防ぐため新規生成
-              };
-
-              // 同じ名前がある場合は (インポート) を付与
-              let baseName = newProfile.name;
-              let counter = 1;
-              while (profiles.some((p) => p.name === newProfile.name)) {
-                newProfile.name = `${baseName} (インポート ${counter})`;
-                counter++;
-              }
-
-              profiles.push(newProfile);
-              activeProfileId = newProfile.id;
-              saveProfiles();
-              renderProfiles();
-              switchProfile(newProfile.id);
-              alert(`プロファイル「${newProfile.name}」をインポートしました。`);
-            } catch (error) {
-              console.error(error);
-              alert(
-                "ファイルの読み込みに失敗しました。正しい形式のファイルか確認してください。"
-              );
-            }
-            // inputの値をリセットして同じファイルを再選択できるようにする
-            importFileInput.value = "";
-          };
-          reader.readAsText(file);
         });
 
         // --- 設定モーダルの処理 ---
@@ -1451,269 +1591,614 @@
           });
         });
 
-        // --- プロファイル処理 ---
-        const MAX_PROFILES = 5;
+        // ============================================
+        // プロファイル・フォルダ管理ロジック (統合)
+        // ============================================
 
-        const saveProfiles = () => {
-          localStorage.setItem("rouletteProfiles", JSON.stringify(profiles));
+        const saveItems = () => {
+          localStorage.setItem("rouletteItems", JSON.stringify(items));
           localStorage.setItem("activeProfileId", activeProfileId);
         };
 
-        const loadProfiles = () => {
-          const savedProfiles = localStorage.getItem("rouletteProfiles");
+        const loadItems = () => {
+          const savedItems = localStorage.getItem("rouletteItems");
+          // 古い形式からの移行用
+          const savedOldProfiles = localStorage.getItem("rouletteProfiles");
           const savedActiveId = localStorage.getItem("activeProfileId");
-          if (savedProfiles) {
-            profiles = JSON.parse(savedProfiles);
-            activeProfileId = savedActiveId
-              ? parseInt(savedActiveId)
-              : profiles.length > 0
-              ? profiles[0].id
-              : null;
-          } else {
-            // デフォルトプロファイル
-            profiles = [
+
+          if (savedItems) {
+            try {
+              let parsed = JSON.parse(savedItems);
+              // データ整合性チェック・補完
+              items = parsed.map((item) => {
+                if (!item.type) item.type = "profile"; // デフォルト
+                if (item.parentId === undefined) item.parentId = null;
+                if (item.type === "folder" && item.isCollapsed === undefined)
+                  item.isCollapsed = false;
+                return item;
+              });
+            } catch (e) {
+              console.error("Data Load Error", e);
+              items = [];
+            }
+          } else if (savedOldProfiles) {
+            // 古いデータ形式(単なるプロファイル配列)からの移行
+            try {
+              const oldProfiles = JSON.parse(savedOldProfiles);
+              items = oldProfiles.map((p) => ({
+                ...p,
+                type: "profile",
+                parentId: null,
+              }));
+              localStorage.removeItem("rouletteProfiles"); // 移行後は削除
+            } catch (e) {
+              items = [];
+            }
+          }
+
+          // データが無い場合のデフォルト
+          if (items.length === 0) {
+            items = [
               {
-                id: 1,
+                id: Date.now(),
+                type: "profile",
                 name: "デフォルト",
                 min: 1,
                 max: 35,
                 exclude: "",
                 useNames: false,
                 names: "",
+                parentId: null,
               },
             ];
-            activeProfileId = 1;
           }
-          const activeProfile = profiles.find((p) => p.id === activeProfileId);
-          if (activeProfile) {
-            minNumInput.value = activeProfile.min;
-            maxNumInput.value = activeProfile.max;
-            excludeNumbersInput.value = activeProfile.exclude || "";
-            // プロファイルから名前設定を読み込み
-            useNamesCheckbox.checked = activeProfile.useNames === true;
-            namesListInput.value = activeProfile.names || "";
-          }
-          toggleSettingsDisplay(); // 表示状態を更新
-          renderProfiles();
-        };
-        
-        // プロファイルエクスポート関数
-        const exportProfile = (profile) => {
-          // JSONデータを作成
-          const exportData = JSON.stringify(profile, null, 2);
-          // typeを application/json に変更
-          const blob = new Blob([exportData], { type: "application/json" });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          // 拡張子を .json に変更
-          a.download = `${profile.name}.json`; 
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        };
 
-        const renderProfiles = () => {
-          profilesContainer.innerHTML = "";
-          profiles.forEach((profile) => {
-            const profileEl = document.createElement("div");
-            profileEl.className = `profile-item ${
-              profile.id === activeProfileId ? "active" : ""
-            }`;
-            profileEl.dataset.id = profile.id;
-            // SVGアイコン入りのダウンロードボタンを追加
-            profileEl.innerHTML = `
-        <span class="profile-name">${profile.name}</span>
-        <button class="export-profile-btn" title="エクスポート" data-id="${profile.id}">
-           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-80v-80h640v80H160Zm320-160L200-600h160v-280h240v280h160L480-240Zm0-130 116-150h-76v-280h-80v280h-76l116 150Zm0-150Z"/></svg>
-        </button>
-        <button class="delete-profile-btn" data-id="${profile.id}">&times;</button>
-      `;
-            profileEl.addEventListener("click", () =>
-              switchProfile(profile.id)
-            );
-            profileEl.addEventListener("contextmenu", (e) =>
-              showContextMenu(e, profile.id)
-            );
-
-            // 削除ボタンのイベントリスナー
-            profileEl
-              .querySelector(".delete-profile-btn")
-              .addEventListener("click", (e) => {
-                e.stopPropagation(); // 親要素のクリックイベントを発火させない
-                deleteProfile(profile.id);
-              });
-
-            // エクスポートボタンのイベントリスナー
-            profileEl
-              .querySelector(".export-profile-btn")
-              .addEventListener("click", (e) => {
-                e.stopPropagation();
-                exportProfile(profile);
-              });
-
-            profilesContainer.appendChild(profileEl);
-          });
-
-          if (profiles.length < MAX_PROFILES) {
-            const addBtn = document.createElement("button");
-            addBtn.id = "add-profile-btn";
-            addBtn.textContent = "+ 追加";
-            addBtn.addEventListener("click", addProfile);
-            profilesContainer.appendChild(addBtn);
-          }
-        };
-
-        const addProfile = () => {
-          const newName = prompt(
-            "新しいプロファイル名を入力してください:",
-            `プロファイル ${profiles.length + 1}`
-          );
-          if (newName && newName.trim() !== "") {
-            const newProfile = {
-              id: Date.now(), // ユニークなIDを生成
-              name: newName.trim(),
-              min: parseInt(minNumInput.value),
-              max: parseInt(maxNumInput.value),
-              exclude: excludeNumbersInput.value,
-              useNames: useNamesCheckbox.checked, // 現在のチェック状態
-              names: namesListInput.value, // 現在の名前リスト
-            };
-            profiles.push(newProfile);
-            activeProfileId = newProfile.id;
-            saveProfiles();
-            renderProfiles();
-            switchProfile(newProfile.id);
-          }
-        };
-
-        const deleteProfile = (id) => {
-          if (profiles.length <= 1) {
-            alert("最後のプロファイルは削除できません。");
-            return;
-          }
-          if (confirm("本当にこのプロファイルを削除しますか？")) {
-            profiles = profiles.filter((p) => p.id !== id);
-            if (activeProfileId === id) {
-              activeProfileId = profiles.length > 0 ? profiles[0].id : null;
-              if (activeProfileId) {
-                switchProfile(activeProfileId);
-              }
+          if (savedActiveId) {
+            activeProfileId = parseInt(savedActiveId);
+            // 存在確認
+            if (
+              !items.find(
+                (i) => i.id === activeProfileId && i.type === "profile"
+              )
+            ) {
+              const firstProfile = items.find((i) => i.type === "profile");
+              activeProfileId = firstProfile ? firstProfile.id : null;
             }
-            saveProfiles();
-            renderProfiles();
+          } else {
+            const firstProfile = items.find((i) => i.type === "profile");
+            activeProfileId = firstProfile ? firstProfile.id : null;
           }
+
+          applyActiveProfileToInputs();
+          renderTree();
         };
 
-        const switchProfile = (id) => {
-          activeProfileId = id;
-          const profile = profiles.find((p) => p.id === id);
+        const applyActiveProfileToInputs = () => {
+          const profile = items.find((p) => p.id === activeProfileId);
           if (profile) {
-            // プロファイルの値を入力フォームにセット
             minNumInput.value = profile.min;
             maxNumInput.value = profile.max;
             excludeNumbersInput.value = profile.exclude || "";
-            // 名前設定も復元
             useNamesCheckbox.checked = profile.useNames === true;
             namesListInput.value = profile.names || "";
-
-            toggleSettingsDisplay(); // UI切り替え
-            saveProfiles();
-            renderProfiles();
-            resetButton.click(); // プロファイル切り替え時にリセット
+            profileNameDisplay.textContent = profile.name;
           }
+          toggleSettingsDisplay();
         };
 
-        // プロファイル更新関数（入力イベントで発火）
-        function updateActiveProfile() {
-          const profile = profiles.find((p) => p.id === activeProfileId);
+        const updateActiveProfileData = () => {
+          const profile = items.find((p) => p.id === activeProfileId);
           if (profile) {
             profile.min = parseInt(minNumInput.value);
             profile.max = parseInt(maxNumInput.value);
             profile.exclude = excludeNumbersInput.value;
-            // 名前設定も保存
             profile.useNames = useNamesCheckbox.checked;
             profile.names = namesListInput.value;
-            saveProfiles();
+            saveItems();
           }
-          // UIの切り替えも行う
           toggleSettingsDisplay();
+        };
+
+        // イベントリスナー (入力変更時即保存)
+        minNumInput.addEventListener("change", updateActiveProfileData);
+        maxNumInput.addEventListener("change", updateActiveProfileData);
+        excludeNumbersInput.addEventListener("change", updateActiveProfileData);
+        useNamesCheckbox.addEventListener("change", updateActiveProfileData);
+        namesListInput.addEventListener("input", updateActiveProfileData);
+
+        // --- ツリー描画ロジック ---
+
+        // 親IDに基づいてアイテムをフィルタリング
+        const getChildren = (parentId) => {
+          return items.filter((item) => item.parentId === parentId);
+        };
+
+        // アイテム作成（再帰的）
+        const createTreeItemElement = (item) => {
+          const el = document.createElement("div");
+          el.className = "tree-item";
+          el.draggable = true;
+          el.dataset.id = item.id;
+          el.dataset.type = item.type;
+
+          // Drag & Drop Events
+          el.addEventListener("dragstart", handleDragStart);
+          el.addEventListener("dragover", handleDragOver);
+          el.addEventListener("dragleave", handleDragLeave);
+          el.addEventListener("drop", handleDrop);
+          el.addEventListener("dragend", handleDragEnd);
+
+          if (item.type === "folder") {
+            el.classList.add("folder-item");
+
+            // ヘッダー
+            const header = document.createElement("div");
+            header.className = "folder-header";
+            header.innerHTML = `
+              <span class="folder-arrow">${item.isCollapsed ? "▶" : "▼"}</span>
+              <svg class="icon-folder" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
+              <span class="folder-name">${item.name}</span>
+            `;
+
+            // アクションボタン
+            const actions = document.createElement("div");
+            actions.className = "item-actions";
+            // MOREアイコン
+            actions.innerHTML = `<button class="action-btn menu-btn" title="メニュー"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg></button>`;
+            header.appendChild(actions);
+
+            // コンテキストメニュー用イベント
+            header.addEventListener("contextmenu", (e) =>
+              showContextMenu(e, item.id)
+            );
+            actions
+              .querySelector(".menu-btn")
+              .addEventListener("click", (e) => {
+                e.stopPropagation();
+                const rect = e.target.getBoundingClientRect();
+                showContextMenu(
+                  {
+                    clientX: rect.left,
+                    clientY: rect.bottom,
+                    preventDefault: () => {},
+                  },
+                  item.id
+                );
+              });
+
+            // フォルダ開閉クリック
+            header.addEventListener("click", (e) => {
+              if (e.target.closest(".action-btn")) return;
+              item.isCollapsed = !item.isCollapsed;
+              saveItems();
+              renderTree();
+            });
+
+            el.appendChild(header);
+
+            // コンテンツエリア（子要素）
+            const content = document.createElement("div");
+            content.className = `folder-content ${
+              item.isCollapsed ? "collapsed" : ""
+            }`;
+            content.dataset.folderId = item.id; // ドロップ判定用
+
+            const children = getChildren(item.id);
+            children.forEach((child) => {
+              content.appendChild(createTreeItemElement(child));
+            });
+            el.appendChild(content);
+          } else {
+            // プロファイル
+            el.classList.add("profile-item");
+            if (item.id === activeProfileId) el.classList.add("active");
+
+            el.innerHTML = `
+              <svg class="icon-profile" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+              <span class="profile-name" style="flex-grow:1">${item.name}</span>
+              <div class="item-actions">
+                <button class="action-btn menu-btn"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"/></svg></button>
+              </div>
+            `;
+
+            el.addEventListener("click", () => switchProfile(item.id));
+            el.addEventListener("contextmenu", (e) =>
+              showContextMenu(e, item.id)
+            );
+            el.querySelector(".menu-btn").addEventListener("click", (e) => {
+              e.stopPropagation();
+              const rect = e.target.getBoundingClientRect();
+              showContextMenu(
+                {
+                  clientX: rect.left,
+                  clientY: rect.bottom,
+                  preventDefault: () => {},
+                },
+                item.id
+              );
+            });
+          }
+
+          return el;
+        };
+
+        const renderTree = () => {
+          profilesContainer.innerHTML = "";
+          // ルート要素（parentId が null）を取得
+          const roots = getChildren(null);
+          roots.forEach((item) => {
+            profilesContainer.appendChild(createTreeItemElement(item));
+          });
+        };
+
+        // --- Drag & Drop Handlers ---
+
+        function handleDragStart(e) {
+          e.stopPropagation(); // 親要素のドラッグ発火を防ぐ
+          draggingId = parseInt(this.dataset.id);
+          this.classList.add("dragging");
+          e.dataTransfer.effectAllowed = "move";
+          e.dataTransfer.setData("text/plain", draggingId);
         }
 
-        // イベントリスナー
-        minNumInput.addEventListener("change", updateActiveProfile);
-        maxNumInput.addEventListener("change", updateActiveProfile);
-        excludeNumbersInput.addEventListener("change", updateActiveProfile);
+        function handleDragOver(e) {
+          e.preventDefault(); // ドロップを許可
+          e.stopPropagation();
+          e.dataTransfer.dropEffect = "move";
 
-        // 名前モード切り替えと入力も即時保存
-        useNamesCheckbox.addEventListener("change", updateActiveProfile);
-        // テキストエリアは input イベントで即時反映
-        namesListInput.addEventListener("input", updateActiveProfile);
+          const targetEl = e.currentTarget; // イベントハンドラが設定されている要素（tree-item）
+          const targetId = parseInt(targetEl.dataset.id);
+          const targetType = targetEl.dataset.type;
 
-        // 初期化
-        loadProfiles();
+          // 自分自身へのドロップは無視
+          if (draggingId === targetId) return;
+
+          const rect = targetEl.getBoundingClientRect();
+          const relY = e.clientY - rect.top;
+          const height = rect.height;
+
+          // 初期化
+          targetEl.classList.remove(
+            "drag-over-top",
+            "drag-over-bottom",
+            "drag-over-folder"
+          );
+
+          // フォルダへの格納判定 (フォルダの上部・下部以外の中央付近、かつフォルダが開いているかターゲット自体)
+          if (targetType === "folder") {
+            // フォルダのヘッダー部分に乗っているか、中身か
+            if (relY < 10) {
+              targetEl.classList.add("drag-over-top"); // 並べ替え（上）
+            } else if (
+              relY > height - 10 &&
+              targetEl.classList.contains("folder-item") &&
+              targetEl
+                .querySelector(".folder-content")
+                .classList.contains("collapsed")
+            ) {
+              // 折りたたまれているフォルダの下側
+              targetEl.classList.add("drag-over-bottom");
+            } else {
+              // フォルダの中に入れる
+              targetEl.classList.add("drag-over-folder");
+            }
+          } else {
+            // プロファイルの場合は上下のみ
+            if (relY < height / 2) {
+              targetEl.classList.add("drag-over-top");
+            } else {
+              targetEl.classList.add("drag-over-bottom");
+            }
+          }
+        }
+
+        function handleDragLeave(e) {
+          e.currentTarget.classList.remove(
+            "drag-over-top",
+            "drag-over-bottom",
+            "drag-over-folder"
+          );
+        }
+
+        function handleDrop(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetEl = e.currentTarget;
+          targetEl.classList.remove(
+            "drag-over-top",
+            "drag-over-bottom",
+            "drag-over-folder"
+          );
+
+          const targetId = parseInt(targetEl.dataset.id);
+          if (draggingId === targetId) return;
+
+          const draggingItem = items.find((i) => i.id === draggingId);
+          const targetItem = items.find((i) => i.id === targetId);
+          if (!draggingItem || !targetItem) return;
+
+          const rect = targetEl.getBoundingClientRect();
+          const relY = e.clientY - rect.top;
+
+          let newParentId = targetItem.parentId;
+
+          // 現在の配列からドラッグ項目を一時削除（後で挿入）
+          const currentIndex = items.findIndex((i) => i.id === draggingId);
+          items.splice(currentIndex, 1);
+
+          // ターゲットの位置を再計算
+          let targetIndex = items.findIndex((i) => i.id === targetId);
+
+          if (
+            targetItem.type === "folder" &&
+            relY >= 10 &&
+            !(relY > rect.height - 10 && items[targetIndex].isCollapsed)
+          ) {
+            // フォルダの中に入れる
+            draggingItem.parentId = targetItem.id;
+            targetItem.isCollapsed = false;
+            // フォルダの直後に挿入 (配列上)
+            items.splice(targetIndex + 1, 0, draggingItem);
+          } else {
+            // 並べ替え（同じ階層）
+            draggingItem.parentId = targetItem.parentId;
+
+            if (relY < rect.height / 2) {
+              // 上に挿入
+              items.splice(targetIndex, 0, draggingItem);
+            } else {
+              // 下に挿入
+              items.splice(targetIndex + 1, 0, draggingItem);
+            }
+          }
+
+          saveItems();
+          renderTree();
+        }
+
+        function handleDragEnd(e) {
+          this.classList.remove("dragging");
+          document.querySelectorAll(".tree-item").forEach((el) => {
+            el.classList.remove(
+              "drag-over-top",
+              "drag-over-bottom",
+              "drag-over-folder"
+            );
+          });
+          draggingId = null;
+        }
+
+        // ルートエリアへのドロップ（フォルダから出す）
+        profilesContainer.addEventListener("dragover", (e) => {
+          e.preventDefault();
+        });
+        profilesContainer.addEventListener("drop", (e) => {
+          // コンテナ自体にドロップされた場合（アイテム上ではない）
+          if (e.target === profilesContainer && draggingId) {
+            e.preventDefault();
+            const itemIndex = items.findIndex((i) => i.id === draggingId);
+            if (itemIndex > -1) {
+              const item = items[itemIndex];
+              item.parentId = null; // ルートへ
+              items.splice(itemIndex, 1);
+              items.push(item); // 末尾へ
+              saveItems();
+              renderTree();
+            }
+          }
+        });
+
+        // --- 追加メニュー ---
+        addBtnTrigger.addEventListener("click", (e) => {
+          e.stopPropagation();
+          addDropdown.classList.toggle("visible");
+        });
+        window.addEventListener("click", () => {
+          addDropdown.classList.remove("visible");
+          if (contextMenu.classList.contains("visible")) {
+            contextMenu.classList.remove("visible");
+            contextTargetId = null;
+          }
+        });
+
+        addDropdown.addEventListener("click", (e) => {
+          const action = e.target.closest(".add-option")?.dataset.action;
+          if (action === "add-profile") {
+            addNewItem("profile");
+          } else if (action === "add-folder") {
+            addNewItem("folder");
+          }
+        });
+
+        const addNewItem = (type) => {
+          const name = prompt(
+            type === "profile" ? "プロファイル名:" : "フォルダ名:",
+            type === "profile" ? "新規プロファイル" : "新規フォルダ"
+          );
+          if (!name || name.trim() === "") return;
+
+          const newItem = {
+            id: Date.now(),
+            type: type,
+            name: name.trim(),
+            parentId: null, // ルートに追加
+          };
+
+          if (type === "profile") {
+            newItem.min = 1;
+            newItem.max = 35;
+            newItem.exclude = "";
+            newItem.useNames = false;
+            newItem.names = "";
+          } else {
+            newItem.isCollapsed = false;
+          }
+
+          items.push(newItem);
+          if (type === "profile") {
+            activeProfileId = newItem.id;
+            applyActiveProfileToInputs();
+          }
+          saveItems();
+          renderTree();
+        };
+
+        const switchProfile = (id) => {
+          activeProfileId = id;
+          applyActiveProfileToInputs();
+          saveItems();
+          renderTree(); // ハイライト更新
+          resetButton.click(); // プロファイル切り替え時にリセット
+        };
 
         // --- コンテキストメニュー処理 ---
-        const showContextMenu = (e, profileId) => {
+        const showContextMenu = (e, id) => {
           e.preventDefault();
-          contextTargetProfileId = profileId;
+          contextTargetId = id;
+          const item = items.find((i) => i.id === id);
+          if (!item) return;
+
+          // メニュー項目の表示制御
+          const loadBtn = contextMenu.querySelector('[data-action="load"]');
+          const saveBtn = contextMenu.querySelector('[data-action="save"]');
+          const exportBtn = contextMenu.querySelector('[data-action="export"]');
+
+          if (item.type === "folder") {
+            loadBtn.style.display = "none";
+            saveBtn.style.display = "none";
+            exportBtn.style.display = "none"; // フォルダのエクスポートは未実装
+          } else {
+            loadBtn.style.display = "flex";
+            saveBtn.style.display = "flex";
+            exportBtn.style.display = "flex";
+          }
+
           contextMenu.style.top = `${e.clientY}px`;
           contextMenu.style.left = `${e.clientX}px`;
           contextMenu.classList.add("visible");
-          contextMenuVisible = true;
         };
-
-        const hideContextMenu = () => {
-          if (contextMenuVisible) {
-            contextMenu.classList.remove("visible");
-            contextMenuVisible = false;
-          }
-        };
-
-        window.addEventListener("click", hideContextMenu);
 
         contextMenu.addEventListener("click", (e) => {
-          const action = e.target.dataset.action;
-          if (!action || !contextTargetProfileId) return;
+          const action = e.target.closest(".context-menu-item")?.dataset.action;
+          if (!action || !contextTargetId) return;
 
-          const profile = profiles.find((p) => p.id === contextTargetProfileId);
-          if (!profile) return;
+          const item = items.find((i) => i.id === contextTargetId);
+          if (!item) return;
 
-          switch (action) {
-            case "load":
-              switchProfile(contextTargetProfileId);
-              break;
-            case "save":
-              // 現在の入力値をプロファイルに保存
-              profile.min = parseInt(minNumInput.value);
-              profile.max = parseInt(maxNumInput.value);
-              profile.exclude = excludeNumbersInput.value;
-              profile.useNames = useNamesCheckbox.checked;
-              profile.names = namesListInput.value;
-              saveProfiles();
-              alert(
-                `プロファイル「${profile.name}」に現在の設定を保存しました。`
-              );
-              break;
-            case "export": // エクスポート機能
-              exportProfile(profile);
-              break;
-
-            case "rename":
-              const newName = prompt(
-                "新しいプロファイル名を入力してください:",
-                profile.name
-              );
-              if (newName && newName.trim() !== "") {
-                profile.name = newName.trim();
-                saveProfiles();
-                renderProfiles();
+          if (action === "load") {
+            switchProfile(item.id);
+          } else if (action === "save") {
+            updateActiveProfileData(); // 現在の入力を保存
+            item.min = parseInt(minNumInput.value);
+            item.max = parseInt(maxNumInput.value);
+            item.exclude = excludeNumbersInput.value;
+            item.useNames = useNamesCheckbox.checked;
+            item.names = namesListInput.value;
+            saveItems();
+            alert(`${item.name} に現在の設定を保存しました。`);
+          } else if (action === "rename") {
+            const newName = prompt("新しい名前:", item.name);
+            if (newName && newName.trim() !== "") {
+              item.name = newName.trim();
+              if (item.id === activeProfileId)
+                profileNameDisplay.textContent = item.name;
+              saveItems();
+              renderTree();
+            }
+          } else if (action === "export") {
+            const exportData = JSON.stringify(item, null, 2);
+            const blob = new Blob([exportData], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${item.name}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          } else if (action === "delete") {
+            if (
+              confirm(
+                `本当に「${item.name}」を削除しますか？\n(フォルダの場合、中身も削除されます)`
+              )
+            ) {
+              // 再帰的に削除対象IDを収集
+              const idsToDelete = [item.id];
+              if (item.type === "folder") {
+                const collectChildren = (pid) => {
+                  const children = items.filter((i) => i.parentId === pid);
+                  children.forEach((c) => {
+                    idsToDelete.push(c.id);
+                    if (c.type === "folder") collectChildren(c.id);
+                  });
+                };
+                collectChildren(item.id);
               }
-              break;
+
+              items = items.filter((i) => !idsToDelete.includes(i.id));
+
+              // アクティブなものが消えた場合
+              if (idsToDelete.includes(activeProfileId)) {
+                const next = items.find((i) => i.type === "profile");
+                activeProfileId = next ? next.id : null;
+                if (activeProfileId) switchProfile(activeProfileId);
+                else {
+                  // 全部消えたらデフォルト作成
+                  loadItems();
+                }
+              }
+              saveItems();
+              renderTree();
+            }
           }
-          hideContextMenu();
         });
+
+        // インポート処理
+        importProfileBtn.addEventListener("click", () =>
+          importFileInput.click()
+        );
+        importFileInput.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            try {
+              const data = JSON.parse(ev.target.result);
+              if (!data.name) throw new Error("Invalid format");
+
+              // ID衝突回避
+              data.id = Date.now();
+              data.parentId = null; // ルートにインポート
+              // 名前重複回避
+              let baseName = data.name;
+              let c = 1;
+              while (items.some((i) => i.name === data.name)) {
+                data.name = `${baseName} (${c++})`;
+              }
+
+              items.push(data);
+              saveItems();
+              renderTree();
+
+              if (data.type === "profile") {
+                switchProfile(data.id);
+              }
+              alert(`インポートしました: ${data.name}`);
+            } catch (err) {
+              console.error(err);
+              alert("読み込みに失敗しました。");
+            }
+            importFileInput.value = "";
+          };
+          reader.readAsText(file);
+        });
+
+        // 初期化
+        loadItems();
+
+        // ============================================
+        // ゲームロジック (既存維持・バグ修正)
+        // ============================================
 
         const playSound = (sound) => {
           const audio = sound.cloneNode();
@@ -1746,9 +2231,6 @@
         let rouletteSpinTimeoutId = null;
         let currentRouletteResultNumber = null;
         let currentRouletteFinalTargetAngle = 0;
-        let countdownInterval = null;
-
-        // タイマーモード用の状態
         let timerModeInterval = null;
         let timerModeTimeLeft = 0;
         let timerModeIsRunning = false;
@@ -1763,7 +2245,7 @@
           minTimeBetweenTicks: 100,
         };
 
-        // --- テーマ切り替え処理 ---
+        // --- テーマ切り替え処理 (復活) ---
         const themes = [
           { name: "Blue", color: "#1a73e8" },
           { name: "Pink", color: "#ff007b" },
@@ -1875,6 +2357,7 @@
         });
         applyTheme(themes[currentThemeIndex].color);
 
+        // --- フォーカスモード切り替え (復活) ---
         focusToggleButton.addEventListener("click", () => {
           body.classList.toggle("focus-mode-on");
           body.classList.toggle("focus-mode-off");
@@ -2015,18 +2498,19 @@
           btn.addEventListener("click", () => setActiveMode(btn.dataset.mode));
         });
 
-        let isDragging = false,
+        // モード選択のスワイプ/ドラッグロジック
+        let isDraggingMode = false,
           startX,
           currentDragMode;
-        const handleDragStart = (e) => {
-          isDragging = true;
+        const handleModeDragStart = (e) => {
+          isDraggingMode = true;
           startX = e.pageX || e.touches[0].pageX;
           currentDragMode = currentMode;
           modeSelector.style.cursor = "grabbing";
         };
-        const handleDragMove = (e) => {
-          if (!isDragging) return;
-          e.preventDefault();
+        const handleModeDragMove = (e) => {
+          if (!isDraggingMode) return;
+          // e.preventDefault(); // ツリーのDnDと競合する可能性があるので一旦コメントアウト
           const x = e.pageX || e.touches[0].pageX;
           const walk = x - startX;
           const buttonWidth = modeButtons[0].offsetWidth;
@@ -2036,23 +2520,23 @@
           const currentIndex = modeOrder.indexOf(currentDragMode);
           if (walk > buttonWidth / 2 && currentIndex < modeOrder.length - 1) {
             setActiveMode(modeOrder[currentIndex + 1]);
-            isDragging = false;
+            isDraggingMode = false;
           } else if (walk < -buttonWidth / 2 && currentIndex > 0) {
             setActiveMode(modeOrder[currentIndex - 1]);
-            isDragging = false;
+            isDraggingMode = false;
           }
         };
-        const handleDragEnd = () => {
-          isDragging = false;
+        const handleModeDragEnd = () => {
+          isDraggingMode = false;
           modeSelector.style.cursor = "grab";
         };
-        modeSelector.addEventListener("mousedown", handleDragStart);
-        modeSelector.addEventListener("touchstart", handleDragStart);
-        modeSelector.addEventListener("mousemove", handleDragMove);
-        modeSelector.addEventListener("touchmove", handleDragMove);
-        modeSelector.addEventListener("mouseup", handleDragEnd);
-        modeSelector.addEventListener("touchend", handleDragEnd);
-        modeSelector.addEventListener("mouseleave", handleDragEnd);
+        modeSelector.addEventListener("mousedown", handleModeDragStart);
+        modeSelector.addEventListener("touchstart", handleModeDragStart);
+        modeSelector.addEventListener("mousemove", handleModeDragMove);
+        modeSelector.addEventListener("touchmove", handleModeDragMove);
+        modeSelector.addEventListener("mouseup", handleModeDragEnd);
+        modeSelector.addEventListener("touchend", handleModeDragEnd);
+        modeSelector.addEventListener("mouseleave", handleModeDragEnd);
 
         window.addEventListener("load", () => {
           setTimeout(() => {
@@ -2384,6 +2868,7 @@
           }
 
           stopRouletteAudio();
+          body.classList.remove("focus-mode-on");
         });
 
         // タイマーモードのロジック

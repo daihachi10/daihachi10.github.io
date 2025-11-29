@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ルーレット | daihachi</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="focus-mode-off">
+    <!-- <a href="https://daihachi10.github.io" class="home"
+      ><span id="copy">&copy;</span>Daihachi</a
+    > -->
+    <div class="container">
+      <div class="top-right-buttons">
+        <span id="profile-name-display" class="profile-name-display"></span>
+        <button
+          id="theme-toggle-btn"
+          class="focus-toggle-btn"
+          title="テーマカラー切り替え"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M346-140 100-386q-10-10-15-22t-5-25q0-13 5-25t15-22l230-229-106-106 62-65 400 400q10 10 14.5 22t4.5 25q0 13-4.5 25T686-386L440-140q-10 10-22 15t-25 5q-13 0-25-5t-22-15Zm47-506L179-432h428L393-646Zm399 526q-36 0-61-25.5T706-208q0-27 13.5-51t30.5-47l42-54 44 54q16 23 30 47t14 51q0 37-26 62.5T792-120Z"
+            />
+          </svg>
+        </button>
+        <button id="settings-btn" class="focus-toggle-btn" title="設定">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M200-160v-280h-80v-80h240v80h-80v280h-80Zm0-440v-200h80v200h-80Zm160 0v-80h80v-120h80v120h80v80H360Zm80 440v-360h80v360h-80Zm240 0v-120h-80v-80h240v80h-80v120h-80Zm0-280v-360h80v360h-80Z"
+            />
+          </svg>
+        </button>
+        <button
+          id="focus-toggle-btn"
+          class="focus-toggle-btn"
+          title="フォーカスモード切り替え"
+        >
+          <svg
+            class="icon-expand"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+            fill="currentColor"
+          >
+            <path
+              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
+            />
+          </svg>
+          <svg
+            class="icon-shrink"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 -960 960 960"
+          >
+            <path
+              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <h1 class="main-title">ルーレット</h1>
+
+      <!-- モード選択タブ -->
+      <div class="mode-selector control-panel">
+        <div class="mode-highlight"></div>
+        <button class="mode-btn active" data-mode="simple">シンプル</button>
+        <button class="mode-btn" data-mode="roulette">ルーレット</button>
+        <button class="mode-btn" data-mode="card">カード選択</button>
+      </div>
+
+      <!-- 設定エリア -->
+      <div class="settings control-panel"></div>
+      <div class="buttons">
+        <button id="start-button">スタート！</button>
+        <button id="reset-button">リセット</button>
+      </div>
+
+      <!-- 各モードの表示エリア -->
+      <div class="game-area">
+        <!-- シンプルモード -->
+        <div id="simple-mode-area" class="mode-content active">
+          <p>結果は...</p>
+          <div id="result-display" class="result-box">?</div>
+        </div>
+
+        <!-- ルーレットモード -->
+        <div id="roulette-mode-area" class="mode-content">
+          <div class="roulette-container">
+            <div class="roulette-pointer"></div>
+            <div class="roulette-wheel">
+              <!-- JSで数字がここに生成されます -->
+            </div>
+          </div>
+        </div>
+
+        <!-- カード選択モード -->
+        <div id="card-mode-area" class="mode-content">
+          <p id="card-message">スタートボタンを押してカードを準備</p>
+          <div class="card-grid">
+            <!-- JSでカードがここに生成されます -->
+          </div>
+        </div>
+
+        <!-- タイマーモード -->
+        <div id="timer-mode-area" class="mode-content">
+          <div class="timer-input-group">
+            <input
+              type="number"
+              id="timer-minutes"
+              value="0"
+              min="0"
+              max="59"
+            />
+            <span>:</span>
+            <input
+              type="number"
+              id="timer-seconds"
+              value="0"
+              min="0"
+              max="59"
+            />
+          </div>
+          <div id="timer-display-mode" class="timer-display-mode">00:00</div>
+          <div class="timer-controls">
+            <button id="timer-start-btn">スタート</button>
+            <button id="timer-pause-btn">一時停止</button>
+            <button id="timer-reset-btn">リセット</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="history-area control-panel">
+        <ul id="history-list">
+          <!-- ここに引いた数字の履歴が追加されます -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- 結果表示用オーバーレイ -->
+    <div id="result-overlay" class="hidden">
+      <div id="result-popup"></div>
+      <div id="result-timer-display" class="result-timer-display"></div>
+    </div>
+
+    <!-- 設定モーダル -->
+    <div id="settings-modal" class="hidden">
+      <div class="modal-content">
+        <button id="close-modal-btn" class="close-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="currentColor"
+          >
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+            />
+          </svg>
+        </button>
+        <h2>設定</h2>
+        <div class="setting-item">
+          <label for="volume-slider">効果音の音量</label>
+          <input
+            type="range"
+            id="volume-slider"
+            min="0"
+            max="1"
+            step="0.0001"
+            value="0.05"
+          />
+        </div>
+
+        <hr />
+
+        <!-- モード切り替えスイッチ -->
+        <div style="margin-bottom: 15px">
+          <label style="cursor: pointer; font-weight: bold; font-size: 1.1rem">
+            <input type="checkbox" id="use-names-checkbox" />
+            名前でルーレットする
+          </label>
+        </div>
+
+        <!-- 数値モード用設定エリア (IDを追加してグループ化) -->
+        <div id="number-settings-container">
+          <div style="margin-bottom: 15px">
+            <label for="min-number">範囲:</label>
+            <input type="number" id="min-number" value="1" />
+            <span>～</span>
+            <input type="number" id="max-number" value="35" />
+          </div>
+
+          <div>
+            <label
+              for="exclude-numbers"
+              style="display: block; margin-bottom: 5px"
+              >除外する番号 (カンマ区切り):</label
+            >
+            <input
+              type="text"
+              id="exclude-numbers"
+              placeholder="例: 4, 15, 22"
+              style="
+                width: 95%;
+                padding: 8px;
+                border-radius: 5px;
+                border: 1px solid var(--color-border);
+              "
+            />
+          </div>
+        </div>
+
+        <!-- 名前モード用設定エリア (IDを追加してグループ化) -->
+        <div id="name-settings-container" style="display: none">
+          <textarea
+            id="names-list"
+            placeholder="名前を改行区切りで入力してください。"
+            style="
+              width: 95%;
+              height: 120px;
+              padding: 8px;
+              border-radius: 5px;
+              border: 1px solid var(--color-border);
+              margin-top: 5px;
+            "
+          ></textarea>
+        </div>
+
+        <div
+          class="options control-panel"
+          style="margin-top: 20px; display: none"
+        >
+          <input type="checkbox" id="no-duplicates" checked />
+          <label for="no-duplicates">一度引いた数字(または名前)は出ない</label>
+        </div>
+        <hr />
+
+        <!-- ★★★ プロファイル・フォルダ管理セクション ★★★ -->
+        <div class="profiles-section">
+          <h3>プロファイルとフォルダ</h3>
+
+          <div id="profiles-container">
+            <!-- JSでツリー生成 -->
+          </div>
+
+          <div class="add-menu-wrapper">
+            <button id="add-btn-trigger">+ 追加</button>
+            <div id="add-dropdown" class="add-dropdown">
+              <div class="add-option" data-action="add-profile">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"
+                  />
+                </svg>
+                プロファイルを追加
+              </div>
+              <div class="add-option" data-action="add-folder">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"
+                  />
+                </svg>
+                フォルダを追加
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- インポートボタンと隠しファイル入力 -->
+          <button id="import-profile-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="currentColor"
+            >
+              <path
+                d="M480-80 200-360l56-57 184 184v-287h80v287l184-183 56 56L480-80Zm-40-520v-120h80v120h-80Zm0-200v-80h80v80h-80Z"
+              /></svg
+            >インポート
+          </button>
+          <input
+            type="file"
+            id="import-file-input"
+            accept=".json"
+            style="display: none"
+          />
+        </div>
+        <hr />
+
+        <!-- ★★★ 新着情報セクション ★★★ -->
+        <div class="news-section">
+          <h3>新着情報</h3>
+          <div class="news-box">
+            <div class="news-item">
+              <div class="news-header">
+                <span class="news-version">V.0.0.3</span>
+                <span class="news-title">URLが変わりました</span>
+              </div>
+              <div class="news-detail">
+                <a href="https://roulettes.pages.dev/">https://roulettes.pages.dev/</a>   Github → Cloudflare
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-header">
+                <span class="news-version">V.0.0.2</span>
+                <span class="news-title">フォルダ機能とドラッグ＆ドロップ</span>
+              </div>
+              <div class="news-detail">
+                プロファイルをフォルダで整理できるようになりました。ドラッグ＆ドロップで並べ替えやフォルダへの移動が可能です。
+              </div>
+            </div>
+
+            <div class="news-item">
+              <div class="news-header">
+                <span class="news-version">V.0.0.1</span>
+                <span class="news-title">プロファイルの保存機能強化</span>
+              </div>
+              <div class="news-detail">
+                名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="adbox" id="adbox">
+          <hr />
+          <span class="ad-text">広告</span>
+          <button id="close-ad-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="currentColor"
+            >
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+              />
+            </svg>
+          </button>
+          <!-- admax -->
+          <div
+            class="admax-ads"
+            data-admax-id="cfc35a98056c136d0b6a6ea4ced854dc"
+            style="display: inline-block; width: 728px; height: 90px"
+          ></div>
+          <script type="text/javascript">
+            (admaxads = window.admaxads || []).push({
+              admax_id: "cfc35a98056c136d0b6a6ea4ced854dc",
+              type: "banner",
+            });
+          </script>
+          <script
+            type="text/javascript"
+            charset="utf-8"
+            src="https://adm.shinobi.jp/st/t.js"
+            async
+          ></script>
+          <!-- admax -->
+        </div>
+      </div>
+    </div>
+
+    <!-- プロファイル用カスタムコンテキストメニュー -->
+    <div id="profile-context-menu">
+      <div class="context-menu-item hidden-force" data-action="load">
+        読み込み
+      </div>
+      <div class="context-menu-item hidden-force" data-action="save">
+        現在の設定を保存
+      </div>
+      <!-- エクスポートメニューを追加 -->
+      <div class="context-menu-item" data-action="export">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="currentColor"
+        >
+          <path
+            d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z"
+          />
+        </svg>
+        エクスポート
+      </div>
+      <div class="context-menu-item" data-action="rename">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="currentColor"
+        >
+          <path
+            d="M563-491q73-54 114-118.5T718-738q0-32-10.5-47T679-800q-47 0-83 79.5T560-541q0 14 .5 26.5T563-491ZM120-120v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM136-280l-56-56 64-64-64-64 56-56 64 64 64-64 56 56-64 64 64-56 56-64-64-64 64Zm482-40q-30 0-55-11.5T520-369q-25 14-51.5 25T414-322l-28-75q28-10 53.5-21.5T489-443q-5-22-7.5-48t-2.5-56q0-144 57-238.5T679-880q52 0 85 38.5T797-734q0 86-54.5 170T591-413q7 7 14.5 10.5T621-399q26 0 60.5-33t62.5-87l73 34q-7 17-11 41t1 42q10-5 23.5-17t27.5-30l63 49q-26 36-60 58t-63 22q-21 0-37.5-12.5T733-371q-28 25-57 38t-58 13Z"
+          />
+        </svg>
+        名前の変更
+      </div>
+      <div
+        class="context-menu-item"
+        data-action="delete"
+        style="color: #e94560"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="currentColor"
+        >
+          <path
+            d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"
+          />
+        </svg>
+        削除
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

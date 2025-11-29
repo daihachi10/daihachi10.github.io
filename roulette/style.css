@@ -1008,10 +1008,17 @@ body {
 }
 
 .news-section h3 {
+  text-decoration: none;
   margin-bottom: 10px;
   font-size: 1.1rem;
   color: var(--color-text-primary);
 }
+
+.reload-link {
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
 .news-item {
   border: 1px solid var(--color-border);
   border-radius: 12px;

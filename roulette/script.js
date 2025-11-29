@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const settingsModal = document.getElementById("settings-modal");
   const closeModalBtn = document.getElementById("close-modal-btn");
   const volumeSlider = document.getElementById("volume-slider");
-  const spinDurationInput=document.getElementById("spin-duration"); 
+  const spinDurationInput = document.getElementById("spin-duration");
   const profilesContainer = document.getElementById("profiles-container");
   const contextMenu = document.getElementById("profile-context-menu");
   const addBtnTrigger = document.getElementById("add-btn-trigger");
@@ -1079,6 +1079,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fullRotations = 360 * (Math.floor(Math.random() * 4) + 5);
     const rotationAmount = fullRotations + rotationNeeded;
     rotationDegree += rotationAmount;
+    const duration = parseFloat(spinDurationInput.value) || 5;
+    rouletteWheel.style.transition = `transform ${duration}s cubic-bezier(.1,.8,.2,1)`;
     rouletteWheel.style.transform = `rotate(${rotationDegree}deg)`;
     startRouletteAudio(segmentAngle);
     startButton.textContent = "スキップ";
@@ -1090,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setControlsDisabled(!1);
       startButton.textContent = "スタート！";
       rouletteSpinTimeoutId = null;
-    }, 5100);
+    }, duration * 1100 + 100);
   };
   const startCardMode = (numbers) => {
     availableCards = [...numbers];

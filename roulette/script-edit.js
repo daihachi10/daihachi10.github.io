@@ -1,4 +1,17 @@
-      document.addEventListener("DOMContentLoaded", () => {
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then((registration) => {
+        // 登録成功
+        console.log('ServiceWorker registered');
+      }, (err) => {
+        // 登録失敗
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
         // HTML要素の取得
         const body = document.body;
         const themeToggleButton = document.getElementById("theme-toggle-btn");

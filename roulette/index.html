@@ -1746,33 +1746,36 @@ body {
           <div class="news-box">
             <div class="news-item">
               <div class="news-header">
-                <span class="news-version">V.0.0.4</span>
-                <span class="news-title">オフラインでアクセスできるようになりました</span>
+                <span class="news-version">V.0.2.1</span>
+                <span class="news-title">アプリのインストールでオフライン時のアクセスが可能に</span>
               </div>
               <div class="news-detail">
-                iPhone・iPadでオフライン時でもアクセスできるようになりました。
-                <a href="https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps" target="_blank">しくみ</a>
+                アプリのインストールでオフライン時でもアクセスできるようになりました。<a href="https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps" target="_blank">しくみ</a>
+                <button id="installButton" style="display: none;">アプリをインストール</button>
+                
               </div>
             </div>
 
             <div class="news-item">
               <div class="news-header">
-                <span class="news-version">V.0.0.3</span>
+                <span class="news-version">V.0.2.0</span>
                 <span class="news-title">URLが変わりました</span>
               </div>
               <div class="news-detail">
-                <a href="https://roulettes.pages.dev/"
+                <!-- <a href="https://roulettes.pages.dev/"
                   >https://roulettes.pages.dev/</a
                 >
-                <br>
+                <br> -->
                 Github → Cloudflare
                 自動でリダイレクトされます。
+                <br>
+                <a href="https://roulettes.pages.dev/">roulettes.pages.dev</a>にアクセスできない場合は今まで通りGithub Pagesで表示されます。
               </div>
             </div>
 
             <div class="news-item">
               <div class="news-header">
-                <span class="news-version">V.0.0.2</span>
+                <span class="news-version">V.0.1.1</span>
                 <span class="news-title">フォルダ機能とドラッグ＆ドロップ</span>
               </div>
               <div class="news-detail">
@@ -1782,11 +1785,11 @@ body {
 
             <div class="news-item">
               <div class="news-header">
-                <span class="news-version">V.0.0.1</span>
+                <span class="news-version">V.0.1.0</span>
                 <span class="news-title">プロファイルの保存機能強化</span>
               </div>
               <div class="news-detail">
-                名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。
+                名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。<a href="https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage" target="_blank">しくみ</a>
               </div>
             </div>
           </div>
@@ -1937,6 +1940,30 @@ body {
             "'Montserrat', 'NotoSansJP', sans-serif";
         });
       });
+
+      let deferredPrompt;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // イベントを保存
+        e.preventDefault();
+        deferredPrompt = e;
+        // インストールボタンを表示
+        document.getElementById('installButton').style.display = 'block';
+      });
+
+      document.getElementById('installButton').addEventListener('click', async () => {
+        if (deferredPrompt) {
+          // インストールプロンプトを表示
+          deferredPrompt.prompt();
+          // ユーザーの選択を待つ
+          const { outcome } = await deferredPrompt.userChoice;
+          if (outcome === 'accepted') {
+            console.log('ユーザーがインストールしました');
+          }
+          deferredPrompt = null;
+        }
+      });
+
     </script>
   </body>
 </html>

@@ -54,6 +54,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModalBtn = document.getElementById("close-modal-btn");
   const volumeSlider = document.getElementById("volume-slider");
   const spinDurationInput = document.getElementById("spin-duration");
+
+  // 1. ページ読み込み時に保存された設定があれば反映する
+  const savedSpinDuration = localStorage.getItem("roulette_spin_duration");
+  if (savedSpinDuration) {
+    spinDurationInput.value = savedSpinDuration;
+  }
+
+  // 2. 値が変更されたらローカルストレージに保存する (プロファイルとは無関係に保存)
+  spinDurationInput.addEventListener("change", () => {
+    localStorage.setItem("roulette_spin_duration", spinDurationInput.value);
+  });
   const profilesContainer = document.getElementById("profiles-container");
   const contextMenu = document.getElementById("profile-context-menu");
   const addBtnTrigger = document.getElementById("add-btn-trigger");
@@ -1079,7 +1090,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fullRotations = 360 * (Math.floor(Math.random() * 4) + 5);
     const rotationAmount = fullRotations + rotationNeeded;
     rotationDegree += rotationAmount;
-    const duration = parseFloat(spinDurationInput.value) || 5;
+    const duration = parseFloat(spinDurationInput.value + 1500) || 5;
     rouletteWheel.style.transition = `transform ${duration}s cubic-bezier(.1,.8,.2,1)`;
     rouletteWheel.style.transform = `rotate(${rotationDegree}deg)`;
     startRouletteAudio(segmentAngle);
@@ -1092,7 +1103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setControlsDisabled(!1);
       startButton.textContent = "スタート！";
       rouletteSpinTimeoutId = null;
-    }, duration * 1100 + 100);
+    }, duration * 1000 + 100);
   };
   const startCardMode = (numbers) => {
     availableCards = [...numbers];

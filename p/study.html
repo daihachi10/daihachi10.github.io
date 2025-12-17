@@ -22,6 +22,8 @@
         /* スクロールバーの調整など */
         body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f3f4f6; }
         .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+        .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -75,7 +77,7 @@
             return [storedValue, setValue];
         }
 
-        // ICSファイル生成ロジック (ライブラリを使わず手動生成)
+        // ICSファイル生成ロジック
         function generateICS(events) {
             const formatDate = (arr) => {
                 // arr = [YYYY, MM, DD, HH, mm] -> "YYYYMMDDTHHmm00"
@@ -88,7 +90,6 @@
             
             events.forEach(ev => {
                 const startTime = formatDate(ev.start);
-                // 終了時間の計算 (簡易的)
                 const startObj = new Date(ev.start[0], ev.start[1]-1, ev.start[2], ev.start[3], ev.start[4]);
                 const endObj = new Date(startObj.getTime() + ev.duration.minutes * 60000);
                 const formatEnd = (d) => 
@@ -112,7 +113,6 @@
 
         // --- 3. コンポーネント実装 ---
 
-        // Timer コンポーネント
         function Timer({ onSaveLog }) {
             const [seconds, setSeconds] = useState(0);
             const [isRunning, setIsRunning] = useState(false);
@@ -204,12 +204,10 @@
             );
         }
 
-        // Analytics コンポーネント (Chart.js 直接使用)
         function Analytics({ logs }) {
             const chartRef = useRef(null);
             const chartInstance = useRef(null);
 
-            // データ集計
             const reasonCounts = {};
             logs.forEach(log => {
                 log.interruptions.forEach(int => {
@@ -217,18 +215,14 @@
                 });
             });
 
-            // グラフ描画
             useEffect(() => {
                 if (!chartRef.current) return;
                 
-                // 既存のチャートがあれば破棄
                 if (chartInstance.current) {
                     chartInstance.current.destroy();
                 }
 
                 const ctx = chartRef.current.getContext('2d');
-                
-                // データがない場合の表示制御はJSX側で行うが、念のため空データ対応
                 const dataValues = Object.values(reasonCounts);
                 const labels = Object.keys(reasonCounts);
                 
@@ -291,7 +285,6 @@
             );
         }
 
-        // AIPlanner コンポーネント
         function AIPlanner({ apiKey }) {
             const [prompt, setPrompt] = useState('');
             const [loading, setLoading] = useState(false);
@@ -301,7 +294,6 @@
                 if (!apiKey) return alert('設定画面でAPIキーを入力してください');
                 setLoading(true);
                 
-                // 現在の日時情報をプロンプトに含める（翌日以降の計画を立てやすくする）
                 const today = new Date();
                 const dateInfo = `今日は${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日です。`;
 
@@ -316,21 +308,31 @@
                     ]
                 `;
 
+                // 修正箇所: モデル名を厳密に指定 (gemini-1.5-flash-001)
+                const modelName = "gemini-1.5-flash-001"; 
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+
                 try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    const res = await fetch(url, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             contents: [{ parts: [{ text: systemPrompt + "\nユーザー要望: " + prompt }] }]
                         })
                     });
+                    
                     const data = await res.json();
-                    if(data.error) throw new Error(data.error.message);
+                    
+                    // エラーハンドリング
+                    if(data.error) {
+                        console.error("Gemini API Error:", data.error);
+                        throw new Error(data.error.message);
+                    }
                     
                     const text = data.candidates[0].content.parts[0].text.replace(/```json|```/g, '').trim();
                     setResult(JSON.parse(text));
                 } catch (e) {
-                    alert('エラー: ' + e.message);
+                    alert('エラーが発生しました:\n' + e.message + '\n\n※APIキーが「Google AI Studio」で作成されたものか確認してください。');
                 } finally {
                     setLoading(false);
                 }
@@ -423,6 +425,7 @@
                                     <label className="block font-bold mb-2 text-sm text-gray-600">Gemini API Key</label>
                                     <input type="password" value={apiKey} onChange={e => setApiKey(e.target.value)} className="w-full p-3 border rounded-lg bg-gray-50 font-mono text-sm" placeholder="sk-..." />
                                     <p className="text-xs text-gray-400 mt-2">※キーはあなたのブラウザ内にのみ保存されます。サーバーには送信されません。</p>
+                                    <p className="text-xs text-blue-500 mt-1"><a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studioでキーを取得</a></p>
                                 </div>
                                 <div className="border-t pt-6">
                                     <button onClick={handleExport} className="bg-gray-100 text-gray-700 px-4 py-2 rounded hover:bg-gray-200 text-sm font-bold border">データバックアップ (JSON)</button>

@@ -1,0 +1,27 @@
+name: Notify Spreadsheet on push
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify GAS via curl
+        env:
+          GAS_URL: ${{ secrets.GAS_URL }}
+          SHEET_SECRET: ${{ secrets.SHEET_SECRET }}
+        run: |
+          # 小さめの JSON を送る。必要に応じて拡張してね。
+          PAYLOAD=$(jq -n \
+            --arg sha "${{ github.sha }}" \
+            --arg actor "${{ github.actor }}" \
+            --arg repo "${{ github.repository }}" \
+            --arg url "https://github.com/${{ github.repository }}/commit/${{ github.sha }}" \
+            '{type:"push", commit_sha:$sha, actor:$actor, repo:$repo, commit_url:$url, message:$sha}'
+          )
+          curl -s -X POST "https://script.google.com/macros/s/AKfycbxxYxfRdodqtkvJxzeueklMhZbY2Z_n0O8Mak4lbdETTEy-peNPOxnKZzPjyz16CQBc/exec" \
+            -H "Content-Type: application/json" \
+            -H "X-Secret: super-test-secret-123" \
+            -d "$PAYLOAD"

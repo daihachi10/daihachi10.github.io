@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可逆圧縮体験ラボ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- QR Code Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .pixel-font {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap; 
+            word-break: break-all;
+        }
+        .transition-all {
+            transition: all 0.2s ease;
+        }
+        .output-scroll {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .tab-active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: bold;
+        }
+        .restoring {
+            border: 2px solid #10b981;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        #qr-video {
+            width: 100%;
+            border-radius: 0.5rem;
+            background: #000;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-md mx-auto pb-10">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-indigo-700">可逆圧縮体験ラボ</h1>
+            <p class="text-sm text-gray-600">データの規則性を見つけて極限まで縮めよう</p>
+        </header>
+
+        <!-- 1. Data Preparation -->
+        <div class="card p-5 mb-4 border-t-4 border-orange-400">
+            <label class="block text-sm font-semibold text-gray-700 mb-2 font-bold">1. 実験データを準備</label>
+            <div class="flex border-b mb-4 text-xs">
+                <button onclick="switchGenTab('random')" id="tab-random" class="flex-1 py-2 tab-active">ランダム</button>
+                <button onclick="switchGenTab('classic')" id="tab-classic" class="flex-1 py-2">名作引用</button>
+                <button onclick="switchGenTab('qr')" id="tab-qr" class="flex-1 py-2 text-indigo-600">QR読取</button>
+            </div>
+            
+            <div id="gen-random" class="gen-content flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                    <input type="number" id="randomLength" value="200" min="1" class="flex-1 p-2 border rounded-lg outline-none focus:ring-2 focus:ring-orange-400" placeholder="文字数">
+                    <span class="text-xs text-gray-500">文字</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="generateRandom('chaos')" class="bg-orange-100 text-orange-700 text-[10px] font-bold py-2 rounded-lg border border-orange-200">バラバラ</button>
+                    <button onclick="generateRandom('pattern')" class="bg-green-100 text-green-700 text-[10px] font-bold py-2 rounded-lg border border-green-200">繰り返し</button>
+                </div>
+            </div>
+
+            <div id="gen-classic" class="gen-content hidden flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                    <input type="number" id="classicWordCount" value="50" min="1" class="flex-1 p-2 border rounded-lg outline-none focus:ring-2 focus:ring-orange-400" placeholder="単語数">
+                    <span class="text-xs text-gray-500">単語</span>
+                </div>
+                <button onclick="generateFromClassic()" class="bg-blue-100 text-blue-700 text-[10px] font-bold py-2 rounded-lg border border-blue-200">名作から引用する</button>
+            </div>
+
+            <!-- QR Reader Tab Content -->
+            <div id="gen-qr" class="gen-content hidden flex flex-col gap-3">
+                <p class="text-[10px] text-gray-500">他の人のQRコードをスキャンして復元します。</p>
+                <button id="startScanBtn" onclick="startQRScanner()" class="bg-indigo-600 text-white text-[10px] font-bold py-2 rounded-lg shadow">カメラを起動</button>
+                <div id="scannerContainer" class="hidden relative">
+                    <video id="qr-video" playsinline></video>
+                    <canvas id="qr-canvas" class="hidden"></canvas>
+                    <div class="absolute inset-0 border-2 border-indigo-400 opacity-50 pointer-events-none m-8 rounded-lg"></div>
+                    <button onclick="stopQRScanner()" class="mt-2 w-full text-[10px] text-red-500 font-bold">キャンセル</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Input Data -->
+        <div class="card p-5 mb-4">
+            <div class="flex justify-between mb-2">
+                <label class="text-sm font-semibold text-gray-700 font-bold">2. 入力データ</label>
+                <span id="inputSize" class="text-xs text-indigo-500 font-mono">0 bytes</span>
+            </div>
+            <textarea id="inputData" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-sm pixel-font output-scroll" rows="3" placeholder="データを入力...">APPLE PIE AND APPLE JUICE ARE DELICIOUS. APPLE IS RED.</textarea>
+            <div class="flex gap-2 mt-2">
+                <button onclick="preset('ABC  ABC  ABC  ABC')" class="text-[10px] bg-gray-200 px-2 py-1 rounded">空白リピート</button>
+                <button onclick="document.getElementById('inputData').value=''; updateInputSize();" class="text-[10px] bg-red-50 text-red-500 px-2 py-1 rounded ml-auto">消去</button>
+            </div>
+        </div>
+
+        <!-- 3. Algorithm -->
+        <div class="card p-5 mb-4">
+            <label class="block text-sm font-semibold text-gray-700 mb-3 font-bold">3. アルゴリズム選択</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+                <button onclick="setAlgo('rle')" id="btn-rle" class="algo-btn border-2 border-indigo-500 bg-indigo-50 p-3 rounded-xl text-center transition-all">
+                    <div class="font-bold">ランレングス</div>
+                    <div class="opacity-70 mt-1">連続を数える</div>
+                </button>
+                <button onclick="setAlgo('dictionary')" id="btn-dictionary" class="algo-btn border-2 border-transparent bg-gray-50 p-3 rounded-xl text-center transition-all">
+                    <div class="font-bold">マルチ辞書式</div>
+                    <div class="opacity-70 mt-1">何度も置換</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dictionary View -->
+        <div id="dictionarySection" class="hidden card p-5 mb-4 bg-indigo-900 text-white">
+            <label class="block text-xs font-bold mb-2 text-indigo-200 uppercase tracking-wider">作成された辞書一覧</label>
+            <div id="dictionaryList" class="flex flex-wrap gap-2 text-[10px] font-mono"></div>
+        </div>
+
+        <!-- 4. Result -->
+        <div class="card p-5 mb-4 border-b-4 border-indigo-600">
+            <div class="flex justify-between items-end mb-2">
+                <label class="text-sm font-semibold text-gray-700 font-bold">4. 圧縮結果</label>
+                <div id="stats" class="text-right">
+                    <span id="compressionRatio" class="text-2xl font-black text-green-600 italic">0%</span>
+                    <span id="outputSize" class="text-xs text-gray-500 block font-mono">0 bytes</span>
+                </div>
+            </div>
+            <div id="compressedOutput" class="w-full p-4 bg-gray-900 text-green-400 rounded-lg pixel-font text-sm output-scroll min-h-[80px] border-2 border-gray-700">
+                -
+            </div>
+            <div class="mt-4 flex flex-col gap-2">
+                <div class="flex gap-2">
+                    <button id="compressBtn" onclick="compress()" class="flex-[2] bg-indigo-600 text-white font-bold py-3 rounded-lg shadow-lg active:scale-95 transition-all">圧縮！</button>
+                    <button id="decompressBtn" onclick="startDecompression()" class="flex-1 bg-emerald-600 text-white font-bold py-3 rounded-lg shadow-lg active:scale-95 transition-all">復元</button>
+                </div>
+                <button onclick="showQRCodeModal()" class="w-full bg-white border-2 border-indigo-600 text-indigo-600 font-bold py-2 rounded-lg flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><line x1="7" y1="7" x2="7.01" y2="7"></line><line x1="17" y1="7" x2="17.01" y2="7"></line><line x1="7" y1="17" x2="7.01" y2="17"></line><line x1="17" y1="17" x2="17.01" y2="17"></line></svg>
+                    QRコードで共有
+                </button>
+            </div>
+        </div>
+
+        <!-- Animation Display -->
+        <div id="restoreDisplay" class="hidden card p-5 mb-4 bg-emerald-50 border-2 border-emerald-500">
+            <div class="flex justify-between items-center mb-2">
+                <label class="text-sm font-bold text-emerald-700">リアルタイム復元中...</label>
+                <span id="restoreProgress" class="text-xs font-bold text-emerald-600">0%</span>
+            </div>
+            <div class="w-full bg-emerald-200 rounded-full h-1.5 mb-4">
+                <div id="restoreProgressBar" class="bg-emerald-500 h-1.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <div id="restoreOutput" class="w-full p-4 bg-white text-gray-800 rounded-lg pixel-font text-sm min-h-[80px] border border-emerald-200 shadow-inner overflow-y-auto max-h-[150px]"></div>
+        </div>
+
+        <!-- Modal for QR Output -->
+        <div id="qrModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-[100]">
+            <div class="bg-white rounded-2xl p-6 w-full max-w-sm text-center">
+                <h3 class="font-bold text-lg mb-4">圧縮データのQRコード</h3>
+                <div id="qrcode" class="flex justify-center mb-4"></div>
+                <p class="text-xs text-gray-500 mb-4">これをスキャンすると、データを復元できます。</p>
+                <button onclick="closeQRModal()" class="w-full bg-gray-100 py-3 rounded-xl font-bold">とじる</button>
+            </div>
+        </div>
+
+        <div id="messageBox" class="hidden fixed top-10 left-1/2 -translate-x-1/2 z-[200] px-6 py-3 rounded-full shadow-2xl transition-all">
+            <p id="messageText" class="text-sm font-bold"></p>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = "";
+        let currentAlgo = 'rle';
+        let lastCompressed = "";
+        let currentDictionaries = [];
+        let isRestoring = false;
+        let qrScannerStream = null;
+
+        function switchGenTab(tab) {
+            document.querySelectorAll('.gen-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`gen-${tab}`).classList.remove('hidden');
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => btn.classList.remove('tab-active'));
+            document.getElementById(`tab-${tab}`).classList.add('tab-active');
+            if (tab !== 'qr') stopQRScanner();
+        }
+
+        // --- Data Generation ---
+        function generateRandom(type) {
+            const length = parseInt(document.getElementById('randomLength').value) || 200;
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+            let result = "";
+            if (type === 'chaos') {
+                for (let i = 0; i < length; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+            } else {
+                const patterns = ["APPLE ", "BANANA ", "CAT ", "DOG ", "HELLO "];
+                while (result.length < length) {
+                    let p = patterns[Math.floor(Math.random() * patterns.length)];
+                    let repeat = Math.floor(Math.random() * 3) + 1;
+                    for(let j=0; j<repeat && result.length < length; j++) result += p;
+                }
+                result = result.substring(0, length);
+            }
+            applyGeneratedData(result);
+        }
+
+        function generateFromClassic() {
+            const wordCountGoal = parseInt(document.getElementById('classicWordCount').value) || 50;
+            let source = classicTexts[Math.floor(Math.random() * classicTexts.length)];
+            let words = source.split(" ");
+            let resultWords = [];
+            while(resultWords.length < wordCountGoal) resultWords.push(words[resultWords.length % words.length]);
+            applyGeneratedData(resultWords.join(" "));
+            showMessage("名作から引用しました");
+        }
+
+        const classicTexts = ["It was the best of times...", "Call me Ishmael...", "Alice was beginning...", "The sky above the port...", "In a hole in the ground..."];
+
+        function applyGeneratedData(text) {
+            document.getElementById('inputData').value = text;
+            updateInputSize();
+            compress();
+            document.getElementById('restoreDisplay').classList.add('hidden');
+        }
+
+        function preset(text) { applyGeneratedData(text); }
+        function updateInputSize() {
+            const text = document.getElementById('inputData').value;
+            document.getElementById('inputSize').innerText = text.length + " bytes";
+        }
+
+        function setAlgo(algo) {
+            currentAlgo = algo;
+            document.querySelectorAll('.algo-btn').forEach(btn => {
+                btn.classList.remove('border-indigo-500', 'bg-indigo-50');
+                btn.classList.add('border-transparent', 'bg-gray-50');
+            });
+            document.getElementById(`btn-${algo}`).classList.add('border-indigo-500', 'bg-indigo-50');
+            document.getElementById('dictionarySection').classList.toggle('hidden', algo !== 'dictionary');
+            document.getElementById('restoreDisplay').classList.add('hidden');
+            compress();
+        }
+
+        // --- QR Functions ---
+
+        function showQRCodeModal() {
+            if (!lastCompressed || lastCompressed === "-") {
+                showMessage("圧縮データがありません", "red");
+                return;
+            }
+            const modal = document.getElementById('qrModal');
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = "";
+            
+            // 圧縮形式のフラグを先頭に付ける (R: RLE, D: Dictionary)
+            const prefix = currentAlgo === 'rle' ? 'R:' : 'D:';
+            const qrText = prefix + lastCompressed;
+
+            if (qrText.length > 2000) {
+                showMessage("データが大きすぎてQRコードにできません", "red");
+                return;
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            new QRCode(qrContainer, {
+                text: qrText,
+                width: 256,
+                height: 256,
+                correctLevel: QRCode.CorrectLevel.L
+            });
+        }
+
+        function closeQRModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        async function startQRScanner() {
+            const container = document.getElementById('scannerContainer');
+            const video = document.getElementById('qr-video');
+            const startBtn = document.getElementById('startScanBtn');
+            
+            try {
+                qrScannerStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                video.srcObject = qrScannerStream;
+                video.setAttribute("playsinline", true);
+                video.play();
+                
+                container.classList.remove('hidden');
+                startBtn.classList.add('hidden');
+                
+                requestAnimationFrame(tickScanner);
+            } catch (err) {
+                showMessage("カメラの起動に失敗しました", "red");
+            }
+        }
+
+        function stopQRScanner() {
+            const container = document.getElementById('scannerContainer');
+            const startBtn = document.getElementById('startScanBtn');
+            if (qrScannerStream) {
+                qrScannerStream.getTracks().forEach(track => track.stop());
+                qrScannerStream = null;
+            }
+            container.classList.add('hidden');
+            startBtn.classList.remove('hidden');
+        }
+
+        function tickScanner() {
+            const video = document.getElementById('qr-video');
+            const canvas = document.getElementById('qr-canvas');
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                canvas.height = video.videoHeight;
+                canvas.width = video.videoWidth;
+                const ctx = canvas.getContext("2d");
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                    inversionAttempts: "dontInvert",
+                });
+                
+                if (code) {
+                    handleQRResult(code.data);
+                    return;
+                }
+            }
+            if (qrScannerStream) requestAnimationFrame(tickScanner);
+        }
+
+        function handleQRResult(data) {
+            stopQRScanner();
+            if (data.startsWith('R:')) {
+                setAlgo('rle');
+                lastCompressed = data.substring(2);
+            } else if (data.startsWith('D:')) {
+                setAlgo('dictionary');
+                lastCompressed = data.substring(2);
+            } else {
+                showMessage("未対応のQRコードです", "red");
+                return;
+            }
+            
+            updateUI(lastCompressed);
+            showMessage("QRデータを読み込みました", "indigo");
+            // 少し待ってから復元アニメーション
+            setTimeout(startDecompression, 500);
+        }
+
+        // --- Algorithms ---
+
+        function rleCompress(text) {
+            if (!text) return "";
+            let result = "";
+            let count = 1;
+            for (let i = 0; i < text.length; i++) {
+                if (text[i] === text[i + 1] && count < 99) count++;
+                else { result += (count > 1 ? count : "") + text[i]; count = 1; }
+            }
+            return result;
+        }
+
+        function rleDecompress(text) {
+            let result = "";
+            let numStr = "";
+            for (let i = 0; i < text.length; i++) {
+                if (!isNaN(text[i]) && text[i] !== " " && text[i] !== "") numStr += text[i];
+                else {
+                    let count = numStr === "" ? 1 : parseInt(numStr);
+                    result += text[i].repeat(count);
+                    numStr = "";
+                }
+            }
+            return result;
+        }
+
+        const symbols = ["①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩","⑪","⑫","⑬","⑭","⑮"];
+
+        function multiDictionaryCompress(text) {
+            let currentText = text;
+            currentDictionaries = [];
+            let iterations = 0;
+            while (iterations < symbols.length) {
+                let counts = {};
+                for (let len = 3; len <= 8; len++) {
+                    for (let i = 0; i <= currentText.length - len; i++) {
+                        let p = currentText.substring(i, i + len);
+                        if (!p.includes("<") && !p.includes(">") && !symbols.includes(p)) counts[p] = (counts[p] || 0) + 1;
+                    }
+                }
+                let bestP = "";
+                let maxSaving = 0;
+                for (let p in counts) {
+                    let saving = (p.length - 1) * counts[p];
+                    if (saving > maxSaving && counts[p] >= 2) { maxSaving = saving; bestP = p; }
+                }
+                if (!bestP) break;
+                let sym = symbols[iterations];
+                currentDictionaries.push({ symbol: sym, pattern: bestP });
+                currentText = currentText.split(bestP).join(sym);
+                iterations++;
+            }
+            let dictHeader = currentDictionaries.map(d => `${d.symbol}:${d.pattern}`).join("|");
+            return dictHeader ? `<${dictHeader}>${currentText}` : currentText;
+        }
+
+        function multiDictionaryDecompress(text) {
+            if (!text.startsWith("<")) return text;
+            let headerEnd = text.indexOf(">");
+            if (headerEnd === -1) return text;
+            let header = text.substring(1, headerEnd);
+            let content = text.substring(headerEnd + 1);
+            let dicts = header.split("|").map(item => {
+                let parts = item.split(":");
+                return { symbol: parts[0], pattern: parts[1] };
+            });
+            for (let i = dicts.length - 1; i >= 0; i--) content = content.split(dicts[i].symbol).join(dicts[i].pattern);
+            return content;
+        }
+
+        async function startDecompression() {
+            if (isRestoring || !lastCompressed) return;
+            isRestoring = true;
+
+            const display = document.getElementById('restoreDisplay');
+            const output = document.getElementById('restoreOutput');
+            const pText = document.getElementById('restoreProgress');
+            const pBar = document.getElementById('restoreProgressBar');
+
+            display.classList.remove('hidden');
+            output.textContent = "";
+            output.classList.add('restoring');
+
+            let decodedFull = (currentAlgo === 'rle') ? rleDecompress(lastCompressed) : multiDictionaryDecompress(lastCompressed);
+
+            const totalLen = decodedFull.length;
+            for (let i = 0; i < totalLen; i++) {
+                output.textContent += decodedFull[i];
+                const percent = Math.floor(((i + 1) / totalLen) * 100);
+                pText.innerText = percent + "%";
+                pBar.style.width = percent + "%";
+                const delay = totalLen > 300 ? 1 : 10;
+                await new Promise(r => setTimeout(r, delay));
+                output.scrollTop = output.scrollHeight;
+            }
+
+            output.classList.remove('restoring');
+            isRestoring = false;
+            
+            // 入力データと一致するかチェック（QR経由の場合は入力データを上書き）
+            if (document.getElementById('inputData').value !== output.textContent) {
+                 if (confirm("スキャンしたデータで入力を上書きしますか？")) {
+                     document.getElementById('inputData').value = output.textContent;
+                     updateInputSize();
+                 }
+            }
+            showMessage("復元完了", "emerald");
+        }
+
+        function updateUI(result) {
+            const input = document.getElementById('inputData').value;
+            const outputEl = document.getElementById('compressedOutput');
+            const ratioEl = document.getElementById('compressionRatio');
+            const outputSizeEl = document.getElementById('outputSize');
+            const dictListEl = document.getElementById('dictionaryList');
+
+            outputEl.textContent = result;
+            outputSizeEl.innerText = result.length + " bytes";
+            const ratio = input.length > 0 ? Math.floor((1 - result.length / input.length) * 100) : 0;
+            
+            ratioEl.innerText = (result.length > input.length ? "増大" : ratio + "%");
+            ratioEl.className = `text-2xl font-black italic ${result.length > input.length ? 'text-red-500' : 'text-green-600'}`;
+
+            dictListEl.innerHTML = "";
+            if (currentAlgo === 'dictionary' && currentDictionaries.length > 0) {
+                currentDictionaries.forEach(d => {
+                    const span = document.createElement('span');
+                    span.className = "bg-indigo-700 px-2 py-1 rounded border border-indigo-500 font-mono text-[10px]";
+                    span.innerText = `${d.symbol}=${d.pattern.replace(/ /g, "␣")}`;
+                    dictListEl.appendChild(span);
+                });
+            }
+        }
+
+        function compress() {
+            const input = document.getElementById('inputData').value;
+            if (!input) { updateUI("-"); return; }
+            lastCompressed = (currentAlgo === 'rle') ? rleCompress(input) : multiDictionaryCompress(input);
+            updateUI(lastCompressed);
+        }
+
+        function showMessage(text, color = 'indigo') {
+            const box = document.getElementById('messageBox');
+            const msg = document.getElementById('messageText');
+            box.className = `fixed top-10 left-1/2 -translate-x-1/2 z-[200] px-6 py-3 rounded-full shadow-2xl transition-all bg-${color}-600 text-white`;
+            box.classList.remove('hidden');
+            msg.innerText = text;
+            setTimeout(() => box.classList.add('hidden'), 2000);
+        }
+
+        document.getElementById('inputData').addEventListener('input', () => {
+            updateInputSize();
+            compress();
+            document.getElementById('restoreDisplay').classList.add('hidden');
+        });
+
+        window.onload = () => { updateInputSize(); compress(); };
+    </script>
+</body>
+</html>
+

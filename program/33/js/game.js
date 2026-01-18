@@ -1124,3 +1124,37 @@ function timer() {
     noLoop(); // 終了後は停止
   }
 }
+
+// スマホのタップ操作を受け取る関数（p5.js標準関数）
+function touchStarted() {
+  // 2人プレイの時は何もしないで終了
+  if (is2Players) return;
+
+  // キャンバスの外側をタップした場合は無視する（誤作動防止）
+  if (mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height) return;
+
+  // プレイヤーから見たタップ位置の差を計算
+  let dx = mouseX - onePlayerX;
+  let dy = mouseY - onePlayerY;
+
+  // 横方向（X）と縦方向（Y）どちらの移動量が大きいかで方向を決定
+  if (Math.abs(dx) > Math.abs(dy)) {
+    // 横方向へのタップ
+    if (dx > 0) {
+      rightButton(); // 右へ (既存の関数を利用)
+    } else {
+      leftButton();  // 左へ (既存の関数を利用)
+    }
+  } else {
+    // 縦方向へのタップ
+    if (dy > 0) {
+      bottomButton(); // 下へ (p5.jsは下がプラス)
+    } else {
+      topButton();    // 上へ
+    }
+  }
+
+  // スマホでのダブルタップ拡大などを防ぐおまじない
+  return false;
+}
+

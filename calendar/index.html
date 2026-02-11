@@ -157,7 +157,6 @@
         <div id="installModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeInstallModal()"></div>
         
         <!-- モーダル本体 -->
-        <!-- タブレット以上でも崩れないよう、max-w-mdを設定し、高さを制限してスクロール可能に -->
         <div id="installModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
             
             <!-- モーダルヘッダー -->
@@ -172,18 +171,17 @@
             <div class="overflow-y-auto p-5 safe-bottom">
                 
                 <!-- 動画エリア -->
-                <!-- 縦長動画を想定し、max-hを設定して画面からはみ出さないように -->
                 <div class="relative w-full bg-gray-100 rounded-xl overflow-hidden mb-5 border border-gray-100 flex justify-center bg-black">
-                    <!-- スケルトン (読み込み中) -->
+                    <!-- スケルトン -->
                     <div id="videoSkeleton" class="absolute inset-0 bg-gray-200 animate-pulse flex flex-col items-center justify-center text-gray-400 z-10">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                         <span class="text-xs font-bold">Loading...</span>
                     </div>
-                    <!-- 動画 (最初はsrcなし) max-heightを指定して縦長でも全体が見えるように -->
+                    <!-- 動画 -->
                     <video id="tutorialVideo" class="w-full max-h-[60vh] object-contain opacity-0 transition-opacity duration-500" loop muted playsinline controls></video>
                 </div>
 
-                <!-- Android向け説明 (アコーディオン) -->
+                <!-- Android向け説明 -->
                 <div class="mt-2">
                     <details class="group bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
                         <summary class="flex justify-between items-center font-bold text-gray-600 p-4 cursor-pointer hover:bg-gray-100 transition-colors list-none">
@@ -211,7 +209,7 @@
     <script>
         // --- 設定・状態変数 ---
         const THEME_GREEN = '#1db31d';
-        let currentDate = new Date(2026, 1, 1); // 2026年2月
+        let currentDate = new Date(); // 今日の日付を初期値に設定
         let selectedDates = {};
         let currentMode = 'allDay';
         let isSharing = false;
@@ -568,4 +566,5 @@
     </script>
 </body>
 </html>
+
 

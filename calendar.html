@@ -209,7 +209,7 @@
                         const color = markers[mode].canvasColor;
                         
                         ctx.beginPath();
-                        const markY = y + 45; 
+                        const markY = y + 80; 
                         ctx.arc(x, markY, 14, 0, 2 * Math.PI);
                         ctx.lineWidth = 5;
                         ctx.strokeStyle = color;
@@ -232,7 +232,7 @@
                 ctx.fillStyle = '#ffffff';
                 ctx.font = '20px "Noto Sans JP", sans-serif';
                 ctx.textAlign = 'right';
-                ctx.fillText('daihachi.pages.dev', width - 40, height - 30);
+                ctx.fillText('daihachi.pages.dev/calendar', width - 40, height - 30);
                 
                 // シェア処理
                 try {

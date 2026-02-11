@@ -1,6 +1,6 @@
 {
-  "name": "空いている日を画像で共有",
-  "short_name": "空いている日",
+  "name": "あきリスト-空いている日を画像で共有",
+  "short_name": "あきリスト",
   "start_url": "./index.html",
   "display": "fullscreen",
   "background_color": "#ffffff",

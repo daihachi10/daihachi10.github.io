@@ -1,16 +1,66 @@
---sub-color: #da516aaf;
-  --sub-hover-color: #da516b;
-  --theme-color: #e985a0;
-  --first-view-color: rgba(255, 254, 232, 0.01);
-  --background-color: #fffee8;
-  --text-color: #605042;
-  --bg-myprogram: #fffee8;
-  --bg-about:#fffdda;
-  --bg-video:#fffdd1;
-/*
-  --sub-color: #b7282e;
-  --sub-hover-color: #992228;
-*/
+
+@charset "UTF-8";
+:root {
+  /* *     --sub-color: #ff5283;
+  * *     --sub-hover-color: #bf1948;
+  * *     --theme-color: #3a5e98;
+  * *     --background-color: #fff;
+  * *     --text-color: #000;
+  * *     --bg-myprogram: #fafafa;
+  * *     --bg-about:#ebebeb;
+  * *     --bg-video:#f8f8f8;
+  * * 
+  * *     --dark-pink-color: #ff5283;          
+  * *     --dark-pink-hover-color: #bf1948;    
+  * *     --dark-header-footer-color: #3a5e98; 
+  * *     --dark-background-color: #000;
+  * *     --dark-text-color: #fff;
+  * *     --dark-bg-myprogram: #fafafa;
+  * *     --dark-bg-about:#ebebeb;
+  * *     --dark-bg-video:#f8f8f8; */
+  /* クリスマス 
+  * *--background-color: #003a28;
+  * *--sub-color: #b7193a;
+  * *--sub-hover-color: #610d1d;
+  * *--theme-color: #b7193a;
+  * *--text-color: #fff;
+  * *--bg-myprogramm: #003a28;
+  * *--bg-about: #013525;
+  * *--bg-video: #003325; */
+  /* バレンタイン
+  * *--sub-color: #da516aaf;
+  * *--sub-hover-color: #da516b;
+  * *--theme-color: #e985a0;
+  * *--first-view-color: rgba(255, 254, 232, 0.01);
+  * *--background-color: #fffee8;
+  * *--text-color: #605042;
+  * *--bg-myprogram: #fffee8;
+  * *--bg-about:#fffdda;
+  * *--bg-video:#fffdd1; */
+  /*--sub-color: #b7282e; */
+  /*--sub-hover-color: #992228; */
+  --sub-color: #fec701;
+  --theme-color: #1db31d;
+  --sub-hover-color: rgb(191, 151, 0);
+  /*--theme-color: #60b49f; */
+  --background-color: #fff;
+  --bg-myprogram: #fff;
+  --bg-about: #fff;
+  --bg-video: #fff;
+  --text-color: #324139;
+  --header-background-color: #ffffff;
+  /*   
+  --bg-myprogram:#fafafa;
+  --bg-about:#ebebeb;
+  --bg-video:#f8f8f8; */
+  --transition-animation: cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --result-details-text-color: #666;
+}
+
+* {
+  /* transition-duration: 1s;
+  * *transition-timing-function: var(--transition-animation); */
+}
 
 @media (prefers-color-scheme: dark) {
   body:not(.light-mode) {

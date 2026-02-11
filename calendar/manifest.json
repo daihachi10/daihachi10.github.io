@@ -1,0 +1,20 @@
+{
+  "name": "空いている日を画像で共有",
+  "short_name": "空いている日",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "background_color": "#ffffff",
+  "theme_color": "#1db31d",
+  "icons": [
+    {
+      "src": "./icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

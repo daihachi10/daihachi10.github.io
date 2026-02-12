@@ -248,9 +248,9 @@
                 
                 <p class="text-sm text-gray-600 mb-4 text-center">よろしければ、このアプリを<br>お友達にも教えてあげてください！</p>
 
-                <!-- 広告エリア (300x250) 
+                <!-- 広告エリア (300x250) -->
                 <div class="mb-6 bg-gray-50 flex justify-center items-center overflow-hidden border border-gray-100 rounded-lg" style="width: 300px; height: 250px;">
-                    
+                    <!-- admax -->
                     <div class="admax-ads" data-admax-id="2ace92a3707051c590b93ec5c6aaf6b7" style="display:inline-block;"></div>
                     <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "2ace92a3707051c590b93ec5c6aaf6b7",type: "banner"});</script>
                     <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
@@ -363,7 +363,7 @@
 
         // --- サイトを共有する機能 ---
         function shareSite() {
-            const shareText = "あきリスト | 空いている日を画像で共有:https://x.gd/CalendarShare";
+            const shareText = "あきリスト | 空いている日を画像で共有:  https://daihachi.pages.dev/calendar?openExternalBrowser=1";
             if (navigator.share) {
                 navigator.share({
                     text: shareText
@@ -546,17 +546,11 @@
             ctx.fillStyle = THEME_GREEN;
             ctx.fillRect(0, 0, width, height);
 
-            // 2. タイトル
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '50px "Montserrat", "Noto Sans JP", sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('daihachi', width / 2, 80);
-
-            // 3. カード
+            // 2. カード (タイトル文字を削除してカードを上に詰める)
             const cardMargin = 40;
-            const cardTop = 150;
-            const cardHeight = height - 200;
+            const cardTop = 40; // 上の余白も左右と同じ40に設定
+            const bottomMargin = 80; // 下はURL文字があるので少し広めに
+            const cardHeight = height - cardTop - bottomMargin;
             const cardWidth = width - (cardMargin * 2);
             const cornerRadius = 40;
 
@@ -566,20 +560,20 @@
             ctx.fillStyle = '#ffffff';
             ctx.fill();
 
-            // 4. 年月
+            // 3. 年月
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth() + 1;
             ctx.fillStyle = '#333333';
-            ctx.font = 'bold 50px "Montserrat", "Noto Sans JP", sans-serif';
+            ctx.font = 'bold 60px "Montserrat", "Noto Sans JP", sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(`${year}年 ${month}月`, width / 2, cardTop + 80);
+            ctx.fillText(`${year}年 ${month}月`, width / 2, cardTop + 100);
 
-            // 5. 曜日
+            // 4. 曜日
             const days = ['日', '月', '火', '水', '木', '金', '土'];
             const gridMargin = 50; 
             const effectiveCardWidth = cardWidth - (gridMargin * 2);
             const colWidth = effectiveCardWidth / 7;
-            const headerY = cardTop + 160;
+            const headerY = cardTop + 200;
             
             ctx.font = 'bold 30px "Montserrat", "Noto Sans JP", sans-serif';
             days.forEach((day, index) => {
@@ -588,7 +582,7 @@
                 ctx.fillText(day, x, headerY);
             });
 
-            // 6. 日付
+            // 5. 日付
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const firstDay = new Date(year, month, 1).getDay();
             const totalSlots = firstDay + daysInMonth;
@@ -629,11 +623,11 @@
                 ctx.fillText(day, x, y);
             }
 
-            // 7. URL
+            // 6. URL
             ctx.fillStyle = '#ffffff';
-            ctx.font = '20px "Montserrat", "Noto Sans JP", sans-serif';
+            ctx.font = '24px "Montserrat", "Noto Sans JP", sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText('https://x.gd/CalendarShare', width - 40, height - 30);
+            ctx.fillText('https://x.gd/CalendarShare', width - cardMargin, height - 30);
 
             // シェア
             canvas.toBlob(async (blob) => {

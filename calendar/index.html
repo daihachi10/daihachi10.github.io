@@ -103,8 +103,8 @@
         </div>
     </div>
 
-    <!-- カレンダー本体エリア -->
-    <main class="flex-1 p-4 w-full max-w-4xl mx-auto flex flex-col min-h-0 z-10">
+    <!-- カレンダー本体エリア (スクロール対応) -->
+    <main class="flex-1 p-4 w-full max-w-4xl mx-auto flex flex-col min-h-0 z-10 overflow-y-auto">
         <!-- 曜日ヘッダー -->
         <div class="grid grid-cols-7 mb-2 text-center text-sm text-gray-400 shrink-0 font-medium">
             <div class="text-red-500">日</div>
@@ -116,9 +116,21 @@
             <div class="text-blue-500">土</div>
         </div>
         
-        <!-- 日付グリッド -->
-        <div id="calendarGrid" class="flex-1 bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 grid-rows-6 gap-0 border border-gray-100">
+        <!-- 日付グリッド (最小高さを指定してカレンダーが潰れないようにする) -->
+        <!-- 固定行クラス(grid-rows-6)を削除し、JSで動的に行を計算して均等に広げる -->
+        <div id="calendarGrid" class="flex-1 min-h-[350px] bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 gap-0 border border-gray-100">
             <!-- JSで動的に生成 -->
+        </div>
+
+        <!-- 広告エリア (320x50) -->
+        <div class="mt-4 flex justify-center shrink-0 min-h-[50px]">
+            <div class="w-[320px] h-[50px] flex items-center justify-center overflow-hidden">
+                <!-- admax -->
+                <div class="admax-ads" data-admax-id="5636fa032a26f3fac72efcee0ff3d316" style="display:inline-block;"></div>
+                <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "5636fa032a26f3fac72efcee0ff3d316",type: "banner"});</script>
+                <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+                <!-- admax -->
+            </div>
         </div>
     </main>
 
@@ -378,6 +390,11 @@
             const firstDay = new Date(year, month, 1).getDay();
             const today = new Date();
 
+            // 週数の計算をして行を均等にする
+            const totalSlots = firstDay + daysInMonth;
+            const weeks = Math.ceil(totalSlots / 7);
+            gridEl.style.gridTemplateRows = `repeat(${weeks}, minmax(0, 1fr))`;
+
             // 空白セル
             for (let i = 0; i < firstDay; i++) {
                 const empty = document.createElement('div');
@@ -400,25 +417,25 @@
 
                 // ボタン作成
                 const btn = document.createElement('button');
-                btn.className = "flex flex-col items-center justify-start relative w-full h-full py-2 tap-highlight-transparent group";
+                btn.className = "flex flex-col items-center justify-center relative w-full h-full tap-highlight-transparent group";
                 btn.style.webkitTapHighlightColor = "transparent";
                 btn.onclick = () => toggleDate(day);
 
                 // HTML構造
-                let markerHtml = `<div class="w-5 h-5 mb-1"></div>`; // プレースホルダー
+                let markerHtml = `<div class="w-5 h-5"></div>`; // プレースホルダー
                 
                 if (isSelected) {
                     const textColor = markers[mode].textClass.replace('text-white', 'text-gray-500');
                     const label = mode !== 'allDay' 
-                        ? `<span class="text-[9px] font-bold leading-none ${textColor}">${markers[mode].label}</span>`
+                        ? `<span class="text-[9px] font-bold leading-none mt-1 ${textColor}">${markers[mode].label}</span>`
                         : '';
                     
                     // アニメーションクラスを付けるか判定
                     const animClass = (day === animatingDay) ? 'animate-zoom-in' : '';
 
                     markerHtml = `
-                        <div class="flex flex-col items-center ${animClass}">
-                            <div class="w-5 h-5 rounded-full border-[3px] ${markers[mode].colorClass} bg-transparent box-border mb-1"></div>
+                        <div class="flex flex-col items-center justify-start ${animClass}">
+                            <div class="w-5 h-5 rounded-full border-[3px] ${markers[mode].colorClass} bg-transparent box-border"></div>
                             ${label}
                         </div>
                     `;
@@ -426,7 +443,7 @@
 
                 btn.innerHTML = `
                     <span class="text-xl font-light ${numColorClass}">${day}</span>
-                    <div class="flex-1 flex flex-col justify-center items-center w-full mt-2">
+                    <div class="h-8 flex flex-col justify-start items-center w-full mt-1">
                         ${markerHtml}
                     </div>
                 `;

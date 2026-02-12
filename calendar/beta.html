@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>あきリスト</title>
+    <title>あきリスト | 空いている日を画像で共有</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,6 +44,18 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="あきリスト">
     <link rel="apple-touch-icon" href="./icon-128.png">
+        
+    <meta property="og:title" content="あきリスト">
+    <meta name="description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta property="og:description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta property="og:image" content="https://daihachi.pages.dev/calendar/icon-512.png">
+    <meta property="og:url" content="https://daihachi.pages.dev/calendar/">
+    <meta property="og:type" content="website">
+        
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="あきリスト">
+    <meta name="twitter:description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta name="twitter:image" content="https://daihachi.pages.dev/calendar/icon-512.png">
 </head>
 <body class="bg-gray-50 text-gray-900 h-[100dvh] flex flex-col overflow-hidden select-none">
 
@@ -84,15 +96,15 @@
             <button id="prevMonth" class="p-2 hover:bg-gray-100 rounded-full text-gray-600 active:bg-gray-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
-            <span id="currentMonthLabel" class="text-xl font-bold text-gray-800 tracking-widest">2026年 2月</span>
+            <span id="currentMonthLabel" class="text-xl font-bold text-gray-800 tracking-widest"></span>
             <button id="nextMonth" class="p-2 hover:bg-gray-100 rounded-full text-gray-600 active:bg-gray-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
         </div>
     </div>
 
-    <!-- カレンダー本体エリア -->
-    <main class="flex-1 p-4 w-full max-w-4xl mx-auto flex flex-col min-h-0 z-10">
+    <!-- カレンダー本体エリア (スクロール対応) -->
+    <main class="flex-1 p-4 w-full max-w-4xl mx-auto flex flex-col min-h-0 z-10 overflow-y-auto">
         <!-- 曜日ヘッダー -->
         <div class="grid grid-cols-7 mb-2 text-center text-sm text-gray-400 shrink-0 font-medium">
             <div class="text-red-500">日</div>
@@ -104,9 +116,20 @@
             <div class="text-blue-500">土</div>
         </div>
         
-        <!-- 日付グリッド -->
-        <div id="calendarGrid" class="flex-1 bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 grid-rows-6 gap-0 border border-gray-100">
+        <!-- 日付グリッド (最小高さを指定してカレンダーが潰れないようにする) -->
+        <div id="calendarGrid" class="flex-1 min-h-[350px] bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 grid-rows-6 gap-0 border border-gray-100">
             <!-- JSで動的に生成 -->
+        </div>
+
+        <!-- 広告エリア (320x50) -->
+        <div class="mt-4 flex justify-center shrink-0 min-h-[50px]">
+            <div class="w-[320px] h-[50px] flex items-center justify-center overflow-hidden">
+                <!-- admax -->
+                <div class="admax-ads" data-admax-id="5636fa032a26f3fac72efcee0ff3d316" style="display:inline-block;"></div>
+                <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "5636fa032a26f3fac72efcee0ff3d316",type: "banner"});</script>
+                <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+                <!-- admax -->
+            </div>
         </div>
     </main>
 
@@ -157,7 +180,6 @@
         <div id="installModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeInstallModal()"></div>
         
         <!-- モーダル本体 -->
-        <!-- タブレット以上でも崩れないよう、max-w-mdを設定し、高さを制限してスクロール可能に -->
         <div id="installModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
             
             <!-- モーダルヘッダー -->
@@ -172,18 +194,17 @@
             <div class="overflow-y-auto p-5 safe-bottom">
                 
                 <!-- 動画エリア -->
-                <!-- 縦長動画を想定し、max-hを設定して画面からはみ出さないように -->
                 <div class="relative w-full bg-gray-100 rounded-xl overflow-hidden mb-5 border border-gray-100 flex justify-center bg-black">
-                    <!-- スケルトン (読み込み中) -->
+                    <!-- スケルトン -->
                     <div id="videoSkeleton" class="absolute inset-0 bg-gray-200 animate-pulse flex flex-col items-center justify-center text-gray-400 z-10">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                         <span class="text-xs font-bold">Loading...</span>
                     </div>
-                    <!-- 動画 (最初はsrcなし) max-heightを指定して縦長でも全体が見えるように -->
+                    <!-- 動画 -->
                     <video id="tutorialVideo" class="w-full max-h-[60vh] object-contain opacity-0 transition-opacity duration-500" loop muted playsinline controls></video>
                 </div>
 
-                <!-- Android向け説明 (アコーディオン) -->
+                <!-- Android向け説明 -->
                 <div class="mt-2">
                     <details class="group bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
                         <summary class="flex justify-between items-center font-bold text-gray-600 p-4 cursor-pointer hover:bg-gray-100 transition-colors list-none">
@@ -205,13 +226,53 @@
         </div>
     </div>
 
+    <!-- 共有完了モーダル (広告＆サイト共有) -->
+    <div id="shareCompleteModalContainer" class="fixed inset-0 z-50 flex justify-center items-end sm:items-center pointer-events-none hidden">
+        <!-- オーバーレイ背景 -->
+        <div id="shareCompleteModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeShareCompleteModal()"></div>
+        
+        <!-- モーダル本体 -->
+        <div id="shareCompleteModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
+            
+            <!-- モーダルヘッダー -->
+            <div class="flex justify-between items-center p-5 border-b border-gray-100 shrink-0">
+                <h3 class="font-bold text-lg text-gray-800">共有が完了しました！</h3>
+                <button onclick="closeShareCompleteModal()" class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <!-- モーダルコンテンツ -->
+            <div class="overflow-y-auto p-5 safe-bottom flex flex-col items-center">
+                
+                <p class="text-sm text-gray-600 mb-4 text-center">よろしければ、このアプリを<br>お友達にも教えてあげてください！</p>
+
+                <!-- 広告エリア (300x250) -->
+                <div class="mb-6 bg-gray-50 flex justify-center items-center overflow-hidden border border-gray-100 rounded-lg" style="width: 300px; height: 250px;">
+                    <!-- admax -->
+                    <div class="admax-ads" data-admax-id="2ace92a3707051c590b93ec5c6aaf6b7" style="display:inline-block;"></div>
+                    <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "2ace92a3707051c590b93ec5c6aaf6b7",type: "banner"});</script>
+                    <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+                    <!-- admax -->
+                </div>
+
+                <!-- サイト共有ボタン -->
+                <button onclick="shareSite()" class="w-full bg-[#1db31d] text-white px-4 py-3 rounded-full font-bold shadow-md active:scale-95 transition-transform flex justify-center items-center hover:bg-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                    <span>このサイトを友達に共有</span>
+                </button>
+                
+            </div>
+        </div>
+    </div>
+
     <!-- 非表示Canvas -->
     <canvas id="shareCanvas" style="display: none;"></canvas>
 
     <script>
         // --- 設定・状態変数 ---
         const THEME_GREEN = '#1db31d';
-        let currentDate = new Date(2026, 1, 1); // 2026年2月
+        let currentDate = new Date(); // 今日の日付を初期値に設定
         let selectedDates = {};
         let currentMode = 'allDay';
         let isSharing = false;
@@ -230,12 +291,19 @@
         const shareBtn = document.getElementById('shareBtn');
         const shareBtnText = document.getElementById('shareBtnText');
         const canvas = document.getElementById('shareCanvas');
+        
+        // インストールモーダル
         const installBtn = document.getElementById('installBtn');
         const installModalContainer = document.getElementById('installModalContainer');
         const installModalContent = document.getElementById('installModalContent');
         const installModalOverlay = document.getElementById('installModalOverlay');
         const tutorialVideo = document.getElementById('tutorialVideo');
         const videoSkeleton = document.getElementById('videoSkeleton');
+        
+        // 共有完了モーダル
+        const shareCompleteModalContainer = document.getElementById('shareCompleteModalContainer');
+        const shareCompleteModalContent = document.getElementById('shareCompleteModalContent');
+        const shareCompleteModalOverlay = document.getElementById('shareCompleteModalOverlay');
 
         // --- 初期化処理 ---
         function init() {
@@ -243,12 +311,9 @@
             setupEventListeners();
         }
 
-        // --- モーダル操作 ---
+        // --- インストールモーダル操作 ---
         function openInstallModal() {
-            // コンテナを表示
             installModalContainer.classList.remove('hidden');
-            
-            // アニメーション用クラス適用 (少し遅らせて発火)
             requestAnimationFrame(() => {
                 installModalOverlay.classList.remove('opacity-0');
                 installModalContent.classList.remove('translate-y-full');
@@ -259,30 +324,54 @@
                 tutorialVideo.src = "./tutorial.mp4";
                 tutorialVideo.load();
                 
-                // ロード完了時の処理
                 tutorialVideo.onloadeddata = () => {
                     videoSkeleton.style.display = 'none';
                     tutorialVideo.classList.remove('opacity-0');
                     tutorialVideo.play();
                 };
             } else {
-                // 既にロード済みなら再生
                 tutorialVideo.play();
             }
         }
 
         function closeInstallModal() {
-            // モーダルを隠すアニメーション
             installModalContent.classList.add('translate-y-full');
             installModalOverlay.classList.add('opacity-0');
-            
-            // 動画停止
             tutorialVideo.pause();
-
-            // アニメーション完了後にコンテナを非表示
             setTimeout(() => {
                 installModalContainer.classList.add('hidden');
             }, 300);
+        }
+
+        // --- 共有完了モーダル操作 ---
+        function openShareCompleteModal() {
+            shareCompleteModalContainer.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                shareCompleteModalOverlay.classList.remove('opacity-0');
+                shareCompleteModalContent.classList.remove('translate-y-full');
+            });
+        }
+
+        function closeShareCompleteModal() {
+            shareCompleteModalContent.classList.add('translate-y-full');
+            shareCompleteModalOverlay.classList.add('opacity-0');
+            setTimeout(() => {
+                shareCompleteModalContainer.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- サイトを共有する機能 ---
+        function shareSite() {
+            const shareText = "あきリスト | 空いている日を画像で共有:https://x.gd/CalendarShare";
+            if (navigator.share) {
+                navigator.share({
+                    text: shareText
+                }).catch(e => console.log('シェアがキャンセルされました', e));
+            } else {
+                navigator.clipboard.writeText(shareText)
+                    .then(() => alert('共有テキストをコピーしました！'))
+                    .catch(() => alert('コピーに失敗しました。'));
+            }
         }
 
         // --- カレンダー描画 ---
@@ -544,13 +633,19 @@
             canvas.toBlob(async (blob) => {
                 const file = new File([blob], `schedule_${year}_${month}.png`, { type: 'image/png' });
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    try { await navigator.share({ files: [file] }); } catch (e) {}
+                    try { 
+                        await navigator.share({ files: [file] }); 
+                        setTimeout(openShareCompleteModal, 500); // シェア完了後に広告モーダル表示
+                    } catch (e) {
+                        console.log('シェアがキャンセルされました', e);
+                    }
                 } else {
                     const link = document.createElement('a');
                     link.download = `schedule_${year}_${month}.png`;
                     link.href = canvas.toDataURL();
                     link.click();
                     alert('画像を作成しました。保存して共有してください。');
+                    setTimeout(openShareCompleteModal, 500); // フォールバック後にも表示
                 }
                 isSharing = false;
                 shareBtnText.textContent = '共有';
@@ -568,5 +663,3 @@
     </script>
 </body>
 </html>
-
-

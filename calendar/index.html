@@ -7,14 +7,12 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="https://daihachi.pages.dev/assets/favicon.ico" />
-    
-    <!-- Google API Libraries -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
         body {
@@ -24,35 +22,68 @@
         }
         .safe-top { padding-top: env(safe-area-inset-top); }
         .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-        @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .animate-zoom-in { animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
+        
+        /* アニメーション */
+        @keyframes zoomIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-zoom-in {
+            animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        /* 詳細（details）の開閉アニメーション用 */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
     </style>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="あきリスト">
+    <link rel="apple-touch-icon" href="./icon-128.png">
+        
+    <meta property="og:title" content="あきリスト">
+    <meta name="description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta property="og:description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta property="og:image" content="https://daihachi.pages.dev/calendar/ogp_image.png">
+    <meta property="og:url" content="https://daihachi.pages.dev/calendar/">
+    <meta property="og:type" content="website">
+        
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="あきリスト">
+    <meta name="twitter:description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta name="twitter:image" content="https://daihachi.pages.dev/calendar/ogp_image.png">
 </head>
 <body class="bg-gray-50 text-gray-900 h-[100dvh] flex flex-col overflow-hidden select-none">
 
     <!-- ヘッダー -->
     <header class="bg-white px-4 py-3 shadow-sm shrink-0 safe-top z-30 border-b border-gray-100">
         <div class="flex justify-between items-center max-w-4xl mx-auto h-10">
+            <!-- ロゴエリア -->
             <a href="https://daihachi.pages.dev" class="flex items-center h-full hover:opacity-70 transition-opacity no-underline text-current mr-auto min-w-0">
                 <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="D Logo" class="h-8 w-auto object-contain block shrink-0">
+                
                 <div class="flex items-center h-full pt-1 overflow-hidden whitespace-nowrap"> 
                     <span class="mx-3 text-gray-300 text-2xl font-light transform -skew-x-12 leading-none shrink-0">/</span>
-                    <span class="text-[#1db31d] text-lg font-bold tracking-wide hidden sm:inline leading-none truncate">あきリスト | Googleカレンダー連携</span>
+                    <span class="text-[#1db31d] text-lg font-bold tracking-wide hidden sm:inline leading-none truncate">あきリスト | 空いている日を画像で共有</span>
                     <span class="text-[#1db31d] text-base font-bold tracking-wide sm:hidden leading-none truncate">あきリスト</span>
                 </div>
             </a>
+
+            <!-- 右側ボタンエリア -->
             <div class="flex items-center gap-2 shrink-0 ml-2">
-                <!-- Google連携ボタン -->
-                <button id="googleBtn" class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform flex items-center hover:bg-gray-50">
-                    <img src="https://www.gstatic.com/images/branding/product/1x/calendar_2020q4_48dp.png" class="w-4 h-4 mr-1">
-                    <span id="googleBtnText">予定読込</span>
-                </button>
+                <!-- インストールボタン -->
                 <button id="installBtn" class="text-[#1db31d] bg-white border border-[#1db31d] px-3 py-1.5 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform flex items-center hover:bg-gray-50">
-                    <span>アプリ</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>アプリを入れる</span>
                 </button>
+
+                <!-- 共有ボタン -->
                 <button id="shareBtn" class="bg-[#1db31d] text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform flex items-center hover:bg-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
                     <span id="shareBtnText">共有</span>
                 </button>
             </div>
@@ -72,105 +103,180 @@
         </div>
     </div>
 
-    <!-- カレンダー本体エリア -->
+    <!-- カレンダー本体エリア (スクロール対応) -->
     <main class="flex-1 p-4 w-full max-w-4xl mx-auto flex flex-col min-h-0 z-10 overflow-y-auto">
+        <!-- 曜日ヘッダー -->
         <div class="grid grid-cols-7 mb-2 text-center text-sm text-gray-400 shrink-0 font-medium">
-            <div class="text-red-500">日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div class="text-blue-500">土</div>
+            <div class="text-red-500">日</div>
+            <div>月</div>
+            <div>火</div>
+            <div>水</div>
+            <div>木</div>
+            <div>金</div>
+            <div class="text-blue-500">土</div>
         </div>
-        <div id="calendarGrid" class="flex-1 min-h-[350px] bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 gap-0 border border-gray-100"></div>
-        <!-- 広告エリア -->
+        
+        <!-- 日付グリッド (最小高さを指定してカレンダーが潰れないようにする) -->
+        <!-- 固定行クラス(grid-rows-6)を削除し、JSで動的に行を計算して均等に広げる -->
+        <div id="calendarGrid" class="flex-1 min-h-[350px] bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 gap-0 border border-gray-100">
+            <!-- JSで動的に生成 -->
+        </div>
+
+        <!-- 広告エリア (320x50) -->
         <div class="mt-4 flex justify-center shrink-0 min-h-[50px]">
-            <div class="admax-ads" data-admax-id="5636fa032a26f3fac72efcee0ff3d316" style="display:inline-block;"></div>
-            <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+            <div class="w-[320px] h-[50px] flex items-center justify-center overflow-hidden">
+                <!-- admax -->
+                <div class="admax-ads" data-admax-id="5636fa032a26f3fac72efcee0ff3d316" style="display:inline-block;"></div>
+                <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "5636fa032a26f3fac72efcee0ff3d316",type: "banner"});</script>
+                <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+                <!-- admax -->
+            </div>
         </div>
     </main>
 
     <!-- モード選択バー -->
     <div class="bg-white/95 backdrop-blur-sm border-t border-gray-100 p-4 pb-8 shrink-0 z-30 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] safe-bottom">
         <div class="flex justify-between items-end max-w-2xl mx-auto px-2" id="modeSelector">
+            <!-- 終日 -->
             <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative transform -translate-y-2" data-mode="allDay">
-                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-lg bg-[#1db31d] text-white ring-4 ring-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 border-[#1db31d] bg-[#1db31d] text-white ring-4 ring-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
                 <span class="label text-[10px] font-bold text-gray-800">終日</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d]"></div>
             </button>
-            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50" data-mode="am">
-                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-gray-100 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/></svg></div>
+
+            <!-- 午前 -->
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80" data-mode="am">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                </div>
                 <span class="label text-[10px] font-bold text-gray-400">午前</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d] hidden"></div>
             </button>
-            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50" data-mode="pm">
-                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-gray-100 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19c0-3.037-2.463-5.5-5.5-5.5S6.5 15.963 6.5 19"/></svg></div>
+
+            <!-- 午後 -->
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80" data-mode="pm">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19c0-3.037-2.463-5.5-5.5-5.5S6.5 15.963 6.5 19"/><path d="M12 13.5v-6"/><path d="M12 13.5l-3-3"/><path d="M12 13.5l3-3"/></svg>
+                </div>
                 <span class="label text-[10px] font-bold text-gray-400">午後</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d] hidden"></div>
             </button>
-            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50" data-mode="custom">
-                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-gray-100 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg></div>
+
+            <!-- 解除 -->
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80" data-mode="custom">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                </div>
                 <span class="label text-[10px] font-bold text-gray-400">解除</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-gray-400 hidden"></div>
             </button>
         </div>
     </div>
 
-    <!-- モーダル等は既存のコードを維持 -->
+    <!-- インストール説明モーダル -->
     <div id="installModalContainer" class="fixed inset-0 z-50 flex justify-center items-end sm:items-center pointer-events-none hidden">
+        <!-- オーバーレイ背景 -->
         <div id="installModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeInstallModal()"></div>
+        
+        <!-- モーダル本体 -->
         <div id="installModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
+            
+            <!-- モーダルヘッダー -->
             <div class="flex justify-between items-center p-5 border-b border-gray-100 shrink-0">
                 <h3 class="font-bold text-lg text-gray-800">アプリとして使う</h3>
                 <button onclick="closeInstallModal()" class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
+
+            <!-- モーダルコンテンツ (スクロール可能) -->
             <div class="overflow-y-auto p-5 safe-bottom">
-                <div class="relative w-full bg-black rounded-xl overflow-hidden mb-5 flex justify-center aspect-[9/16]">
-                    <div id="videoSkeleton" class="absolute inset-0 bg-gray-200 animate-pulse flex flex-col items-center justify-center text-gray-400 z-10"><span class="text-xs font-bold">Loading...</span></div>
-                    <video id="tutorialVideo" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" loop muted playsinline></video>
+                
+                <!-- 動画エリア -->
+                <div class="relative w-full bg-gray-100 rounded-xl overflow-hidden mb-5 border border-gray-100 flex justify-center bg-black">
+                    <!-- スケルトン -->
+                    <div id="videoSkeleton" class="absolute inset-0 bg-gray-200 animate-pulse flex flex-col items-center justify-center text-gray-400 z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                        <span class="text-xs font-bold">Loading...</span>
+                    </div>
+                    <!-- 動画 -->
+                    <video id="tutorialVideo" class="w-full max-h-[60vh] object-contain opacity-0 transition-opacity duration-500" loop muted playsinline controls></video>
                 </div>
-                <details class="group bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
-                    <summary class="flex justify-between items-center font-bold text-gray-600 p-4 cursor-pointer list-none">Androidの方はこちら</summary>
-                    <div class="text-sm text-gray-600 px-4 pb-4">Chromeのメニューから「ホーム画面に追加」を選択してください。</div>
-                </details>
+
+                <!-- Android向け説明 -->
+                <div class="mt-2">
+                    <details class="group bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+                        <summary class="flex justify-between items-center font-bold text-gray-600 p-4 cursor-pointer hover:bg-gray-100 transition-colors list-none">
+                            <span class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-gray-400"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                Androidの方はこちら
+                            </span>
+                            <span class="transition-transform group-open:rotate-180">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </summary>
+                        <div class="text-sm text-gray-600 px-4 pb-4 pt-0 leading-relaxed">
+                            <p>Chromeブラウザの右上にあるメニューボタン（︙）を押し、「アプリをインストール」または「ホーム画面に追加」を選択してください。</p>
+                        </div>
+                    </details>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 共有完了モーダル -->
+    <!-- 共有完了モーダル (広告＆サイト共有) -->
     <div id="shareCompleteModalContainer" class="fixed inset-0 z-50 flex justify-center items-end sm:items-center pointer-events-none hidden">
+        <!-- オーバーレイ背景 -->
         <div id="shareCompleteModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeShareCompleteModal()"></div>
+        
+        <!-- モーダル本体 -->
         <div id="shareCompleteModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
+            
+            <!-- モーダルヘッダー -->
             <div class="flex justify-between items-center p-5 border-b border-gray-100 shrink-0">
                 <h3 class="font-bold text-lg text-gray-800">共有が完了しました！</h3>
                 <button onclick="closeShareCompleteModal()" class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
+
+            <!-- モーダルコンテンツ -->
             <div class="overflow-y-auto p-5 safe-bottom flex flex-col items-center">
-                <p class="text-sm text-gray-600 mb-4 text-center">このアプリを友達に教える</p>
-                <div class="mb-6" style="width: 300px; height: 250px;">
+                
+                <p class="text-sm text-gray-600 mb-4 text-center">よろしければ、このアプリを<br>お友達にも教えてあげてください！</p>
+
+                <!-- 広告エリア (300x250) -->
+                <div class="mb-6 bg-gray-50 flex justify-center items-center overflow-hidden border border-gray-100 rounded-lg" style="width: 300px; height: 250px;">
+                    <!-- admax -->
                     <div class="admax-ads" data-admax-id="2ace92a3707051c590b93ec5c6aaf6b7" style="display:inline-block;"></div>
+                    <script type="text/javascript">(admaxads = window.admaxads || []).push({admax_id: "2ace92a3707051c590b93ec5c6aaf6b7",type: "banner"});</script>
+                    <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+                    <!-- admax -->
                 </div>
-                <button onclick="shareSite()" class="w-full bg-[#1db31d] text-white px-4 py-3 rounded-full font-bold shadow-md active:scale-95 transition-transform flex justify-center items-center">
+
+                <!-- サイト共有ボタン -->
+                <button onclick="shareSite()" class="w-full bg-[#1db31d] text-white px-4 py-3 rounded-full font-bold shadow-md active:scale-95 transition-transform flex justify-center items-center hover:bg-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
                     <span>このサイトを友達に共有</span>
                 </button>
+                
             </div>
         </div>
     </div>
 
+    <!-- 非表示Canvas -->
     <canvas id="shareCanvas" style="display: none;"></canvas>
 
     <script>
-        // --- 設定 ---
-        // ★修正1: http:// を削除しました
-        const CLIENT_ID = '1046190827691-paenml27s94v4egq8ofj96ic820bht90.apps.googleusercontent.com';
-        const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly';
+        // --- 設定・状態変数 ---
         const THEME_GREEN = '#1db31d';
-
-        let currentDate = new Date();
+        let currentDate = new Date(); // 今日の日付を初期値に設定
         let selectedDates = {};
-        let busyDates = {}; 
         let currentMode = 'allDay';
         let isSharing = false;
-        let tokenClient;
 
         // マーカー定義
         const markers = {
@@ -180,79 +286,92 @@
             custom: { label: '解除', colorClass: 'border-gray-200',   textClass: 'text-gray-500',   canvasColor: '#e5e7eb' },
         };
 
+        // --- DOM要素の取得 ---
         const gridEl = document.getElementById('calendarGrid');
         const monthLabelEl = document.getElementById('currentMonthLabel');
         const shareBtn = document.getElementById('shareBtn');
+        const shareBtnText = document.getElementById('shareBtnText');
         const canvas = document.getElementById('shareCanvas');
+        
+        // インストールモーダル
+        const installBtn = document.getElementById('installBtn');
+        const installModalContainer = document.getElementById('installModalContainer');
+        const installModalContent = document.getElementById('installModalContent');
+        const installModalOverlay = document.getElementById('installModalOverlay');
+        const tutorialVideo = document.getElementById('tutorialVideo');
+        const videoSkeleton = document.getElementById('videoSkeleton');
+        
+        // 共有完了モーダル
+        const shareCompleteModalContainer = document.getElementById('shareCompleteModalContainer');
+        const shareCompleteModalContent = document.getElementById('shareCompleteModalContent');
+        const shareCompleteModalOverlay = document.getElementById('shareCompleteModalOverlay');
 
-        // --- 初期化 ---
+        // --- 初期化処理 ---
         function init() {
-            renderCalendar();
+            renderCalendar(); // 引数なし＝初回描画
             setupEventListeners();
-            initGoogleAuth();
         }
 
-        // --- Google Calendar API 連携 ---
-        function initGoogleAuth() {
-            const checkGSI = setInterval(() => {
-                if (typeof google !== 'undefined') {
-                    clearInterval(checkGSI);
-                    tokenClient = google.accounts.oauth2.initTokenClient({
-                        client_id: CLIENT_ID,
-                        scope: SCOPES,
-                        // ★修正2: ここで受け取ったトークンを fetchEvents に渡す
-                        callback: (resp) => {
-                            if (resp.error) {
-                                console.error(resp);
-                                return;
-                            }
-                            fetchEvents(resp.access_token);
-                        },
-                    });
-                }
-            }, 100);
+        // --- インストールモーダル操作 ---
+        function openInstallModal() {
+            installModalContainer.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                installModalOverlay.classList.remove('opacity-0');
+                installModalContent.classList.remove('translate-y-full');
+            });
+            
+            // 動画ロード処理
+            if (!tutorialVideo.getAttribute('src')) {
+                tutorialVideo.src = "./tutorial.mp4";
+                tutorialVideo.load();
+                
+                tutorialVideo.onloadeddata = () => {
+                    videoSkeleton.style.display = 'none';
+                    tutorialVideo.classList.remove('opacity-0');
+                    tutorialVideo.play();
+                };
+            } else {
+                tutorialVideo.play();
+            }
         }
 
-        // ★修正3: トークンを引数で受け取る形に変更
-        async function fetchEvents(accessToken) {
-            document.getElementById('googleBtnText').textContent = '読込中...';
-            try {
-                const now = new Date();
-                // 今月の1日から
-                const min = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-                // 3ヶ月後まで
-                const max = new Date(now.getFullYear(), now.getMonth() + 3, 1).toISOString();
+        function closeInstallModal() {
+            installModalContent.classList.add('translate-y-full');
+            installModalOverlay.classList.add('opacity-0');
+            tutorialVideo.pause();
+            setTimeout(() => {
+                installModalContainer.classList.add('hidden');
+            }, 300);
+        }
 
-                const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${min}&timeMax=${max}&singleEvents=true&orderBy=startTime`;
-                
-                // 受け取った accessToken を使う
-                const response = await fetch(url, {
-                    headers: { 'Authorization': `Bearer ${accessToken}` }
-                });
-                
-                if (!response.ok) throw new Error('API Error');
-                
-                const data = await response.json();
-                
-                busyDates = {};
-                if (data.items) {
-                    data.items.forEach(event => {
-                        // 終日(date) か 時間指定(dateTime) かを確認
-                        const start = event.start.date || event.start.dateTime;
-                        if (start) {
-                            const dateStr = start.split('T')[0]; // "2025-02-14"
-                            const d = new Date(dateStr);
-                            const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-                            busyDates[key] = true;
-                        }
-                    });
-                }
+        // --- 共有完了モーダル操作 ---
+        function openShareCompleteModal() {
+            shareCompleteModalContainer.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                shareCompleteModalOverlay.classList.remove('opacity-0');
+                shareCompleteModalContent.classList.remove('translate-y-full');
+            });
+        }
 
-                document.getElementById('googleBtnText').textContent = '読込完了';
-                renderCalendar(); // 再描画して点を表示
-            } catch (e) {
-                console.error(e);
-                document.getElementById('googleBtnText').textContent = 'エラー';
+        function closeShareCompleteModal() {
+            shareCompleteModalContent.classList.add('translate-y-full');
+            shareCompleteModalOverlay.classList.add('opacity-0');
+            setTimeout(() => {
+                shareCompleteModalContainer.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- サイトを共有する機能 ---
+        function shareSite() {
+            const shareText = "あきリスト | 空いている日を画像で共有:  https://daihachi.pages.dev/calendar?openExternalBrowser=1";
+            if (navigator.share) {
+                navigator.share({
+                    text: shareText
+                }).catch(e => console.log('シェアがキャンセルされました', e));
+            } else {
+                navigator.clipboard.writeText(shareText)
+                    .then(() => alert('共有テキストをコピーしました！'))
+                    .catch(() => alert('コピーに失敗しました。'));
             }
         }
 
@@ -260,57 +379,71 @@
         function renderCalendar(animatingDay = null) {
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
+            
+            // 年月表示更新
             monthLabelEl.textContent = `${year}年 ${month + 1}月`;
+
+            // グリッドクリア
             gridEl.innerHTML = '';
 
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const firstDay = new Date(year, month, 1).getDay();
-            
-            // 行数を計算してグリッドを整える
+            const today = new Date();
+
+            // 週数の計算をして行を均等にする
             const totalSlots = firstDay + daysInMonth;
             const weeks = Math.ceil(totalSlots / 7);
             gridEl.style.gridTemplateRows = `repeat(${weeks}, minmax(0, 1fr))`;
 
-            for (let i = 0; i < firstDay; i++) gridEl.appendChild(document.createElement('div'));
+            // 空白セル
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                gridEl.appendChild(empty);
+            }
 
+            // 日付セル生成
             for (let day = 1; day <= daysInMonth; day++) {
                 const key = `${year}-${month}-${day}`;
                 const mode = selectedDates[key];
-                const isBusy = busyDates[key]; 
+                const isSelected = !!mode;
+                const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
                 
-                // 今日かどうか判定
-                const today = new Date();
-                const isToday = (today.getFullYear() === year && today.getMonth() === month && today.getDate() === day);
-                
+                // 色クラス決定
+                const dayOfWeek = (day + firstDay - 1) % 7;
+                let numColorClass = 'text-gray-700';
+                if (isToday) numColorClass = 'text-[#1db31d] font-bold';
+                else if (dayOfWeek === 0) numColorClass = 'text-red-500';
+                else if (dayOfWeek === 6) numColorClass = 'text-blue-500';
+
+                // ボタン作成
                 const btn = document.createElement('button');
-                // スマホでタップしたときの青枠を消す
-                btn.className = "flex flex-col items-center justify-center relative w-full h-full p-1 tap-highlight-transparent select-none";
+                btn.className = "flex flex-col items-center justify-center relative w-full h-full tap-highlight-transparent group";
+                btn.style.webkitTapHighlightColor = "transparent";
                 btn.onclick = () => toggleDate(day);
 
-                // 土日祝の色
-                const dayOfWeek = (firstDay + day - 1) % 7;
-                let numClass = "text-xl font-light text-gray-700";
-                if (dayOfWeek === 0) numClass = "text-xl font-light text-red-500";
-                else if (dayOfWeek === 6) numClass = "text-xl font-light text-blue-500";
+                // HTML構造
+                let markerHtml = `<div class="w-5 h-5"></div>`; // プレースホルダー
                 
-                if (isToday) numClass = "text-xl font-bold text-[#1db31d]";
+                if (isSelected) {
+                    const textColor = markers[mode].textClass.replace('text-white', 'text-gray-500');
+                    const label = mode !== 'allDay' 
+                        ? `<span class="text-[9px] font-bold leading-none mt-1 ${textColor}">${markers[mode].label}</span>`
+                        : '';
+                    
+                    // アニメーションクラスを付けるか判定
+                    const animClass = (day === animatingDay) ? 'animate-zoom-in' : '';
 
-                // マーカー部分のHTML
-                let markerHtml = ``;
-                if (mode && markers[mode]) {
                     markerHtml = `
-                        <div class="flex flex-col items-center ${day === animatingDay ? 'animate-zoom-in' : ''}">
-                            <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-[3px] ${markers[mode].colorClass}"></div>
-                            ${mode !== 'allDay' ? `<span class="text-[9px] font-bold mt-0.5 ${markers[mode].textClass}">${markers[mode].label}</span>` : ''}
-                        </div>`;
+                        <div class="flex flex-col items-center justify-start ${animClass}">
+                            <div class="w-5 h-5 rounded-full border-[3px] ${markers[mode].colorClass} bg-transparent box-border"></div>
+                            ${label}
+                        </div>
+                    `;
                 }
 
                 btn.innerHTML = `
-                    <div class="relative w-full text-center">
-                        <span class="${numClass}">${day}</span>
-                        ${isBusy ? `<div class="absolute top-0 right-1 w-2 h-2 bg-gray-300 rounded-full"></div>` : ''}
-                    </div>
-                    <div class="h-6 mt-1 flex justify-center items-center w-full">
+                    <span class="text-xl font-light ${numColorClass}">${day}</span>
+                    <div class="h-8 flex flex-col justify-start items-center w-full mt-1">
                         ${markerHtml}
                     </div>
                 `;
@@ -318,225 +451,215 @@
             }
         }
 
+        // --- 日付トグル処理 ---
         function toggleDate(day) {
-            const key = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${day}`;
-            let isAdded = false;
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            const key = `${year}-${month}-${day}`;
             
-            // 現在のモードと、すでに塗られているモードが同じなら消す
-            if (selectedDates[key] === currentMode) {
-                delete selectedDates[key];
-            } else if (currentMode === 'custom') {
-                delete selectedDates[key]; // 解除モードなら消すだけ
+            let isAdded = false;
+
+            if (currentMode === 'custom') {
+                if (selectedDates[key]) delete selectedDates[key];
             } else {
-                selectedDates[key] = currentMode;
-                isAdded = true;
+                if (selectedDates[key] === currentMode) {
+                    delete selectedDates[key];
+                } else {
+                    selectedDates[key] = currentMode;
+                    isAdded = true;
+                }
             }
+            
             renderCalendar(isAdded ? day : null);
         }
 
+        // --- イベントリスナー設定 ---
         function setupEventListeners() {
-            document.getElementById('prevMonth').onclick = () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); };
-            document.getElementById('nextMonth').onclick = () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); };
-            
-            document.getElementById('googleBtn').onclick = () => {
-                if (tokenClient) {
-                    tokenClient.requestAccessToken({prompt: 'consent'});
-                } else {
-                    alert("Google連携の準備中です。数秒待ってから押してください。");
-                }
+            // 月移動
+            document.getElementById('prevMonth').onclick = () => {
+                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+                renderCalendar();
+            };
+            document.getElementById('nextMonth').onclick = () => {
+                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+                renderCalendar();
             };
 
-            document.querySelectorAll('.mode-btn').forEach(btn => {
+            // モード切替
+            const modeBtns = document.querySelectorAll('.mode-btn');
+            modeBtns.forEach(btn => {
                 btn.onclick = () => {
-                    // 全ボタンを非アクティブ化
-                    document.querySelectorAll('.mode-btn').forEach(b => {
-                        b.classList.add('opacity-50'); 
-                        b.classList.remove('transform', '-translate-y-2');
+                    // スタイルリセット
+                    modeBtns.forEach(b => {
+                        const m = b.dataset.mode;
+                        const isCus = m === 'custom';
+                        b.className = 'mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80';
+                        const iconCont = b.querySelector('.icon-container');
+                        iconCont.className = 'icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 ' + (isCus ? 'text-gray-400' : 'text-gray-400');
+                        iconCont.classList.remove('ring-4', 'ring-white', 'shadow-lg');
+                        iconCont.style.backgroundColor = '';
+                        iconCont.style.color = '';
+                        b.querySelector('.label').className = 'label text-[10px] font-bold text-gray-400';
                         b.querySelector('.indicator').classList.add('hidden');
                     });
-                    // 押されたボタンをアクティブ化
-                    btn.classList.remove('opacity-50'); 
-                    btn.classList.add('transform', '-translate-y-2');
-                    btn.querySelector('.indicator').classList.remove('hidden');
+
+                    // アクティブスタイル適用
                     currentMode = btn.dataset.mode;
+                    const isCustom = currentMode === 'custom';
+                    
+                    btn.className = 'mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative transform -translate-y-2';
+                    const activeIconCont = btn.querySelector('.icon-container');
+                    
+                    activeIconCont.className = `icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 ring-4 ring-white`;
+                    if(isCustom) {
+                        activeIconCont.classList.add('bg-gray-200', 'text-gray-600');
+                    } else {
+                        activeIconCont.style.backgroundColor = markers[currentMode].canvasColor;
+                        activeIconCont.style.color = 'white';
+                    }
+
+                    btn.querySelector('.label').className = 'label text-[10px] font-bold text-gray-800';
+                    btn.querySelector('.indicator').classList.remove('hidden');
                 };
             });
-            
+
+            // ボタン
             shareBtn.onclick = generateImageAndShare;
-            document.getElementById('installBtn').onclick = openInstallModal;
+            installBtn.onclick = openInstallModal;
         }
 
-        // 画像生成と共有（ここはいじっていませんが、日付描画のバグを防ぐため少し調整済み）
+        // --- 画像生成と共有 (Canvas) ---
         async function generateImageAndShare() {
             if (isSharing) return;
             isSharing = true;
-            document.getElementById('shareBtnText').textContent = '作成中...';
-            
+            shareBtnText.textContent = '作成中...';
+            shareBtn.classList.add('opacity-70');
+
             await document.fonts.ready;
             const ctx = canvas.getContext('2d');
-            const w = 800, h = 1300;
-            canvas.width = w; canvas.height = h;
+            const width = 800;
+            const height = 1300;
+            canvas.width = width;
+            canvas.height = height;
 
-            // 背景
-            ctx.fillStyle = THEME_GREEN; 
-            ctx.fillRect(0, 0, w, h);
-            
-            // 白いカード
-            const cardM = 40, cardT = 40;
-            const cardW = w - (cardM * 2), cardH = h - cardT - 80;
-            ctx.fillStyle = '#ffffff'; 
-            ctx.roundRect ? ctx.roundRect(cardM, cardT, cardW, cardH, 40) : ctx.rect(cardM, cardT, cardW, cardH); // roundRect非対応対策
+            // 1. 背景
+            ctx.fillStyle = THEME_GREEN;
+            ctx.fillRect(0, 0, width, height);
+
+            // 2. カード (タイトル文字を削除してカードを上に詰める)
+            const cardMargin = 40;
+            const cardTop = 40; // 上の余白も左右と同じ40に設定
+            const bottomMargin = 80; // 下はURL文字があるので少し広めに
+            const cardHeight = height - cardTop - bottomMargin;
+            const cardWidth = width - (cardMargin * 2);
+            const cornerRadius = 40;
+
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(cardMargin, cardTop, cardWidth, cardHeight, cornerRadius);
+            else ctx.rect(cardMargin, cardTop, cardWidth, cardHeight);
+            ctx.fillStyle = '#ffffff';
             ctx.fill();
 
-            // 年月
+            // 3. 年月
             const year = currentDate.getFullYear();
-            const month = currentDate.getMonth(); // 0始まり
-            ctx.fillStyle = '#333333'; 
-            ctx.font = 'bold 60px "Montserrat", sans-serif'; 
+            const month = currentDate.getMonth() + 1;
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 60px "Montserrat", "Noto Sans JP", sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(`${year}年 ${month + 1}月`, w/2, cardT + 100);
+            ctx.fillText(`${year}年 ${month}月`, width / 2, cardTop + 100);
 
-            // 曜日
-            const days = ['日','月','火','水','木','金','土'];
-            ctx.font = 'bold 30px sans-serif';
-            const colWidth = (cardW - 100) / 7; // 7列で割る
-            const startX = cardM + 50 + (colWidth / 2); // 最初の列の中心
+            // 4. 曜日
+            const days = ['日', '月', '火', '水', '木', '金', '土'];
+            const gridMargin = 50; 
+            const effectiveCardWidth = cardWidth - (gridMargin * 2);
+            const colWidth = effectiveCardWidth / 7;
+            const headerY = cardTop + 200;
             
-            days.forEach((d, i) => {
-                ctx.fillStyle = i === 0 ? '#ef4444' : i === 6 ? '#3b82f6' : '#9ca3af';
-                ctx.fillText(d, startX + (colWidth * i), cardT + 200);
+            ctx.font = 'bold 30px "Montserrat", "Noto Sans JP", sans-serif';
+            days.forEach((day, index) => {
+                ctx.fillStyle = index === 0 ? '#ef4444' : index === 6 ? '#3b82f6' : '#9ca3af';
+                const x = cardMargin + gridMargin + (colWidth * index) + (colWidth / 2);
+                ctx.fillText(day, x, headerY);
             });
 
-            // 日付
+            // 5. 日付
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const firstDay = new Date(year, month, 1).getDay();
-            const rowH = (cardH - 350) / 6; // 行の高さ
-            
-            for(let d = 1; d <= daysInMonth; d++) {
-                const dayIndex = firstDay + d - 1;
-                const col = dayIndex % 7;
-                const row = Math.floor(dayIndex / 7);
+            const totalSlots = firstDay + daysInMonth;
+            const weeks = Math.ceil(totalSlots / 7);
+            const gridStartY = headerY + 60;
+            const gridBottomLimit = cardTop + cardHeight - 60;
+            const rowHeight = (gridBottomLimit - gridStartY) / weeks;
+
+            let currentRow = 0;
+            for (let day = 1; day <= daysInMonth; day++) {
+                const colIndex = (firstDay + day - 1) % 7;
+                if (day > 1 && colIndex === 0) currentRow++;
+
+                const x = cardMargin + gridMargin + (colIndex * colWidth) + (colWidth / 2);
+                const y = gridStartY + (currentRow * rowHeight) + (rowHeight / 2) - 10; 
                 
-                const x = startX + (colWidth * col);
-                const y = cardT + 300 + (row * rowH);
-                
-                const key = `${year}-${month}-${d}`;
-                const m = selectedDates[key];
-                
-                // 丸印
-                if(m && markers[m]) {
-                    ctx.beginPath(); 
-                    ctx.arc(x, y - 15, 20, 0, Math.PI*2); // y位置調整
-                    ctx.strokeStyle = markers[m].canvasColor; 
-                    ctx.lineWidth = 6; 
+                const key = `${year}-${month - 1}-${day}`;
+                const mode = selectedDates[key];
+
+                if (mode) {
+                    const color = markers[mode].canvasColor;
+                    ctx.beginPath();
+                    const markY = y + 45; 
+                    ctx.arc(x, markY, 14, 0, 2 * Math.PI);
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = color;
                     ctx.stroke();
+
+                    if (mode !== 'allDay') {
+                        ctx.fillStyle = color;
+                        ctx.font = 'bold 12px "Montserrat", "Noto Sans JP", sans-serif';
+                        ctx.fillText(markers[mode].label, x, markY + 25);
+                    }
                 }
-                
-                // 数字
-                ctx.fillStyle = col === 0 ? '#ef4444' : col === 6 ? '#3b82f6' : '#333333';
-                ctx.font = '300 42px Montserrat'; 
-                ctx.textBaseline = 'middle';
-                ctx.fillText(d, x, y - 15);
+
+                ctx.fillStyle = colIndex === 0 ? '#ef4444' : colIndex === 6 ? '#3b82f6' : '#333333';
+                ctx.font = '300 42px "Montserrat", "Noto Sans JP", sans-serif';
+                ctx.fillText(day, x, y);
             }
 
-            // フッター
-            ctx.fillStyle = '#ffffff'; 
-            ctx.font = '24px Montserrat'; 
+            // 6. URL
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '24px "Montserrat", "Noto Sans JP", sans-serif';
             ctx.textAlign = 'right';
-            ctx.textBaseline = 'alphabetic';
-            ctx.fillText('https://x.gd/CalendarShare', w - cardM, h - 30);
+            ctx.fillText('https://x.gd/CalendarShare', width - cardMargin, height - 30);
 
+            // シェア
             canvas.toBlob(async (blob) => {
-                const file = new File([blob], 'schedule.png', { type: 'image/png' });
-                try {
-                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                        await navigator.share({ files: [file] });
-                    } else {
-                        const link = document.createElement('a'); 
-                        link.download = 'schedule.png';
-                        link.href = canvas.toDataURL(); 
-                        link.click();
+                const file = new File([blob], `schedule_${year}_${month}.png`, { type: 'image/png' });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try { 
+                        await navigator.share({ files: [file] }); 
+                        setTimeout(openShareCompleteModal, 500); // シェア完了後に広告モーダル表示
+                    } catch (e) {
+                        console.log('シェアがキャンセルされました', e);
                     }
-                    openShareCompleteModal();
-                } catch(e) {
-                    console.log("Share canceled or failed", e);
+                } else {
+                    const link = document.createElement('a');
+                    link.download = `schedule_${year}_${month}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                    alert('画像を作成しました。保存して共有してください。');
+                    setTimeout(openShareCompleteModal, 500); // フォールバック後にも表示
                 }
-                isSharing = false; 
-                document.getElementById('shareBtnText').textContent = '共有';
+                isSharing = false;
+                shareBtnText.textContent = '共有';
+                shareBtn.classList.remove('opacity-70');
             });
         }
 
-        // モーダル操作
-        function openInstallModal() { 
-            const container = document.getElementById('installModalContainer');
-            const overlay = document.getElementById('installModalOverlay');
-            const content = document.getElementById('installModalContent');
-            const video = document.getElementById('tutorialVideo');
-            
-            container.classList.remove('hidden'); 
-            setTimeout(() => { 
-                overlay.classList.remove('opacity-0'); 
-                content.classList.remove('translate-y-full'); 
-            }, 10); 
-            
-            video.src = "./tutorial.mp4"; 
-            video.onloadeddata = () => { 
-                document.getElementById('videoSkeleton').style.display='none'; 
-                video.classList.remove('opacity-0'); 
-                video.play().catch(e => console.log(e)); 
-            }; 
-        }
-
-        function closeInstallModal() { 
-            const container = document.getElementById('installModalContainer');
-            const overlay = document.getElementById('installModalOverlay');
-            const content = document.getElementById('installModalContent');
-            const video = document.getElementById('tutorialVideo');
-
-            content.classList.add('translate-y-full'); 
-            overlay.classList.add('opacity-0'); 
-            video.pause(); 
-            setTimeout(() => container.classList.add('hidden'), 300); 
-        }
-
-        function openShareCompleteModal() { 
-            const container = document.getElementById('shareCompleteModalContainer');
-            const overlay = document.getElementById('shareCompleteModalOverlay');
-            const content = document.getElementById('shareCompleteModalContent');
-            
-            container.classList.remove('hidden'); 
-            setTimeout(() => { 
-                overlay.classList.remove('opacity-0'); 
-                content.classList.remove('translate-y-full'); 
-            }, 10); 
-        }
-
-        function closeShareCompleteModal() { 
-            const container = document.getElementById('shareCompleteModalContainer');
-            const overlay = document.getElementById('shareCompleteModalOverlay');
-            const content = document.getElementById('shareCompleteModalContent');
-
-            content.classList.add('translate-y-full'); 
-            overlay.classList.add('opacity-0'); 
-            setTimeout(() => container.classList.add('hidden'), 300); 
-        }
-
-        function shareSite() { 
-            if (navigator.share) {
-                navigator.share({ 
-                    title: 'あきリスト',
-                    text: "空いている日を画像で共有できるアプリ", 
-                    url: "https://daihachi.pages.dev" 
-                }).catch(console.error);
-            } else {
-                alert("URLをコピーしました: https://daihachi.pages.dev");
-                navigator.clipboard.writeText("https://daihachi.pages.dev");
-            }
-        }
-
+        // アプリ起動
         init();
-    </script>
 
+        // サービスワーカー
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(() => console.log('Service Worker Registered'));
+        }
+    </script>
 </body>
 </html>
-

@@ -34,6 +34,15 @@
         
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
+
+        /* スクロールバー非表示（カレンダー内の予定リスト用） */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 h-[100dvh] flex flex-col overflow-hidden select-none">
@@ -85,7 +94,7 @@
             <div class="text-red-500">日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div class="text-blue-500">土</div>
         </div>
         
-        <div id="calendarGrid" class="flex-1 min-h-[350px] bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 gap-0 border border-gray-100">
+        <div id="calendarGrid" class="flex-1 min-h-[400px] bg-white rounded-2xl p-1 shadow-sm grid grid-cols-7 gap-px border border-gray-200 bg-gray-200">
             </div>
 
         <div class="mt-4 flex justify-center shrink-0 min-h-[50px]">
@@ -172,16 +181,32 @@
 
     <script>
         // --- 設定・状態変数 ---
-        const CLIENT_ID = '1046190827691-paenml27s94v4egq8ofj96ic820bht90.apps.googleusercontent.com';
+        const CLIENT_ID = '1046190827691-u47fneoa4k6oq156nbfbl4hpfd9jgc47.apps.googleusercontent.com';
         const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly';
         const THEME_GREEN = '#1db31d';
+        const LOCAL_STORAGE_KEY_EVENTS = 'akilist_google_events'; // 保存用のキー
         
         let currentDate = new Date();
         let selectedDates = {};
-        let busyDates = {}; // Googleカレンダーの予定がある日を保存
+        
+        // Googleカレンダーのイベントデータ（日付キーでリストを持つ）
+        // 形式: { "2025-1-1": [ { title: "塾", time: "18:00", isAllDay: false, colorClass: "..." }, ... ] }
+        let googleEventsData = {}; 
+        
         let currentMode = 'allDay';
         let isSharing = false;
         let tokenClient;
+
+        // イベント用カラーパレット（パステルカラー）
+        const eventColors = [
+            'bg-blue-100 text-blue-800 border-blue-200',
+            'bg-green-100 text-green-800 border-green-200',
+            'bg-indigo-100 text-indigo-800 border-indigo-200',
+            'bg-yellow-100 text-yellow-800 border-yellow-200',
+            'bg-pink-100 text-pink-800 border-pink-200',
+            'bg-purple-100 text-purple-800 border-purple-200',
+            'bg-orange-100 text-orange-800 border-orange-200'
+        ];
 
         // マーカー定義
         const markers = {
@@ -204,12 +229,39 @@
         const shareCompleteModalContainer = document.getElementById('shareCompleteModalContainer');
         const shareCompleteModalContent = document.getElementById('shareCompleteModalContent');
         const shareCompleteModalOverlay = document.getElementById('shareCompleteModalOverlay');
+        const googleBtn = document.getElementById('googleBtn');
+        const googleBtnText = document.getElementById('googleBtnText');
 
         // --- 初期化 ---
         function init() {
+            // ローカルストレージから予定データを復元
+            loadEventsFromStorage();
+            
             renderCalendar();
             setupEventListeners();
-            initGoogleAuth(); // Google認証の準備
+            initGoogleAuth(); 
+        }
+
+        // --- ローカルストレージ処理 ---
+        function loadEventsFromStorage() {
+            try {
+                const stored = localStorage.getItem(LOCAL_STORAGE_KEY_EVENTS);
+                if (stored) {
+                    googleEventsData = JSON.parse(stored);
+                    googleBtnText.textContent = '更新'; // データがあればボタン名を「更新」に
+                }
+            } catch (e) {
+                console.error("Failed to load events from storage", e);
+                googleEventsData = {};
+            }
+        }
+
+        function saveEventsToStorage() {
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY_EVENTS, JSON.stringify(googleEventsData));
+            } catch (e) {
+                console.error("Failed to save events to storage", e);
+            }
         }
 
         // --- Google Calendar API 連携 ---
@@ -232,39 +284,75 @@
             }, 100);
         }
 
-        // 予定を取得する関数（時差対策済み）
+        // 文字列からハッシュ値を生成して色を決める
+        function getColorForEvent(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const index = Math.abs(hash) % eventColors.length;
+            return eventColors[index];
+        }
+
+        // 予定を取得・保存する関数
         async function fetchEvents(accessToken) {
-            document.getElementById('googleBtnText').textContent = '読込中...';
+            googleBtnText.textContent = '取得中...';
             try {
                 const now = new Date();
-                const min = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-                const max = new Date(now.getFullYear(), now.getMonth() + 3, 1).toISOString();
+                const min = new Date(now.getFullYear(), now.getMonth() - 1, 1).toISOString(); // 前月から取得
+                const max = new Date(now.getFullYear(), now.getMonth() + 4, 1).toISOString(); // 4ヶ月後まで
                 const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${min}&timeMax=${max}&singleEvents=true&orderBy=startTime`;
                 
                 const response = await fetch(url, { headers: { 'Authorization': `Bearer ${accessToken}` } });
                 if (!response.ok) throw new Error('API Error');
                 
                 const data = await response.json();
-                busyDates = {}; // リセット
+                
+                // データを初期化して再構築
+                googleEventsData = {}; 
 
                 if (data.items) {
                     data.items.forEach(event => {
                         const start = event.start.date || event.start.dateTime;
-                        if (start) {
-                            // "2025-02-14T..." から "2025-02-14" を切り出し
-                            const dateStr = start.split('T')[0];
-                            const [y, m, d] = dateStr.split('-').map(Number);
-                            // JSの月は0-11なので m-1
-                            const key = `${y}-${m - 1}-${d}`;
-                            busyDates[key] = true;
+                        if (!start) return;
+
+                        // "2025-02-14T..." から "2025-02-14" を切り出し
+                        const dateStr = start.split('T')[0];
+                        const [y, m, d] = dateStr.split('-').map(Number);
+                        const key = `${y}-${m - 1}-${d}`; // JSの月は0始まり
+
+                        if (!googleEventsData[key]) {
+                            googleEventsData[key] = [];
                         }
+
+                        // 時間の取得
+                        let timeStr = '';
+                        let isAllDay = !!event.start.date;
+                        if (!isAllDay && event.start.dateTime) {
+                            const dateObj = new Date(event.start.dateTime);
+                            const hours = dateObj.getHours().toString().padStart(2, '0');
+                            const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+                            timeStr = `${hours}:${minutes}`;
+                        }
+
+                        // イベント情報の作成
+                        const title = event.summary || '(タイトルなし)';
+                        googleEventsData[key].push({
+                            title: title,
+                            time: timeStr,
+                            isAllDay: isAllDay,
+                            colorClass: getColorForEvent(title) // タイトルに基づいて色を固定
+                        });
                     });
                 }
-                document.getElementById('googleBtnText').textContent = '読込完了';
-                renderCalendar(); // 予定を表示するために再描画
+
+                // 保存と更新
+                saveEventsToStorage();
+                googleBtnText.textContent = '更新';
+                renderCalendar(); 
             } catch (e) {
                 console.error(e);
-                document.getElementById('googleBtnText').textContent = 'エラー';
+                googleBtnText.textContent = 'エラー';
                 alert('カレンダーの取得に失敗しました');
             }
         }
@@ -284,43 +372,85 @@
             const weeks = Math.ceil(totalSlots / 7);
             gridEl.style.gridTemplateRows = `repeat(${weeks}, minmax(0, 1fr))`;
 
-            for (let i = 0; i < firstDay; i++) gridEl.appendChild(document.createElement('div'));
+            // 空白セル
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = "bg-gray-50/50";
+                gridEl.appendChild(empty);
+            }
 
             for (let day = 1; day <= daysInMonth; day++) {
                 const key = `${year}-${month}-${day}`;
                 const mode = selectedDates[key];
                 const isSelected = !!mode;
-                const isBusy = busyDates[key]; // Googleカレンダーの予定があるか
+                const events = googleEventsData[key] || [];
 
                 // 今日の判定
                 const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
                 
-                // 色クラス
+                // 日付の色
                 const dayOfWeek = (day + firstDay - 1) % 7;
-                let numColorClass = 'text-gray-700';
-                if (isToday) numColorClass = 'text-[#1db31d] font-bold';
-                else if (dayOfWeek === 0) numColorClass = 'text-red-500';
-                else if (dayOfWeek === 6) numColorClass = 'text-blue-500';
+                let numColorClass = 'text-gray-600';
+                let bgClass = 'bg-white';
 
-                const btn = document.createElement('button');
-                btn.className = "flex flex-col items-center justify-center relative w-full h-full tap-highlight-transparent group";
-                btn.onclick = () => toggleDate(day);
+                if (isToday) {
+                    numColorClass = 'text-white bg-[#1db31d] rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-sm';
+                } else if (dayOfWeek === 0) {
+                    numColorClass = 'text-red-500';
+                    bgClass = 'bg-red-50/30';
+                } else if (dayOfWeek === 6) {
+                    numColorClass = 'text-blue-500';
+                    bgClass = 'bg-blue-50/30';
+                }
 
-                let markerHtml = `<div class="w-5 h-5"></div>`;
+                const btn = document.createElement('div'); // buttonからdivに変更して内部のクリック制御をしやすくする
+                btn.className = `relative w-full h-full flex flex-col p-1 ${bgClass} hover:bg-gray-50 transition-colors cursor-pointer select-none`;
+                
+                // クリックイベントを手動で制御
+                btn.onclick = (e) => {
+                    // イベント要素をクリックしても反応するようにバブリングさせるが、基本は日付トグル
+                    toggleDate(day);
+                };
+
+                // GoogleカレンダーイベントのリストHTML生成
+                let eventsHtml = '';
+                if (events.length > 0) {
+                    eventsHtml = `<div class="flex flex-col gap-0.5 mt-1 w-full overflow-y-auto scrollbar-hide" style="max-height: calc(100% - 24px);">`;
+                    events.forEach(ev => {
+                        const timeDisplay = ev.time ? `<span class="opacity-75 mr-1">${ev.time}</span>` : '';
+                        eventsHtml += `
+                            <div class="px-1 py-0.5 rounded-[3px] text-[9px] font-medium leading-tight truncate border-l-2 ${ev.colorClass}">
+                                ${timeDisplay}${ev.title}
+                            </div>
+                        `;
+                    });
+                    eventsHtml += `</div>`;
+                } else {
+                    // 予定がない時のプレースホルダー（レイアウト崩れ防止用）
+                    eventsHtml = `<div class="flex-1"></div>`;
+                }
+
+                // 選択マーカー（ユーザーがタップしたマーク）
+                let markerHtml = '';
                 if (isSelected) {
-                    const label = mode !== 'allDay' ? `<span class="text-[9px] font-bold leading-none mt-1 ${markers[mode].textClass.replace('text-white','text-gray-500')}">${markers[mode].label}</span>` : '';
+                    const label = mode !== 'allDay' ? `<span class="text-[9px] font-bold leading-none mt-0.5 text-white drop-shadow-md">${markers[mode].label}</span>` : '';
                     const animClass = (day === animatingDay) ? 'animate-zoom-in' : '';
-                    markerHtml = `<div class="flex flex-col items-center justify-start ${animClass}"><div class="w-5 h-5 rounded-full border-[3px] ${markers[mode].colorClass} bg-transparent"></div>${label}</div>`;
+                    
+                    // マーカーを右下にフロート表示させるか、オーバーレイさせる
+                    markerHtml = `
+                        <div class="absolute bottom-1 right-1 z-10 pointer-events-none ${animClass} flex flex-col items-center">
+                            <div class="w-5 h-5 rounded-full border-[3px] shadow-sm bg-white ${markers[mode].colorClass}"></div>
+                            ${label}
+                        </div>
+                    `;
                 }
 
                 btn.innerHTML = `
-                    <div class="relative w-full text-center">
-                        <span class="text-xl font-light ${numColorClass}">${day}</span>
-                        ${isBusy ? `<div class="absolute top-0 right-1 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>` : ''}
+                    <div class="flex justify-between items-start shrink-0">
+                        <div class="text-xs font-medium leading-none ${numColorClass}">${day}</div>
                     </div>
-                    <div class="h-8 flex flex-col justify-start items-center w-full mt-1">
-                        ${markerHtml}
-                    </div>
+                    ${eventsHtml}
+                    ${markerHtml}
                 `;
                 gridEl.appendChild(btn);
             }
@@ -345,7 +475,7 @@
             document.getElementById('nextMonth').onclick = () => { currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1); renderCalendar(); };
             
             // Googleボタン
-            document.getElementById('googleBtn').onclick = () => {
+            googleBtn.onclick = () => {
                 if (tokenClient) tokenClient.requestAccessToken({prompt: 'consent'});
                 else alert("準備中です。少々お待ちください。");
             };
@@ -394,47 +524,113 @@
             if(ctx.roundRect) ctx.roundRect(m,t,cW,cH,40); else ctx.rect(m,t,cW,cH);
             ctx.fill();
 
-            // 年月・曜日
+            // 年月
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth() + 1;
             ctx.fillStyle = '#333333'; ctx.font = 'bold 60px "Montserrat", sans-serif'; ctx.textAlign = 'center';
             ctx.fillText(`${year}年 ${month}月`, w/2, t+100);
 
+            // 曜日
             const days = ['日','月','火','水','木','金','土'];
-            const gm = 50, colW = (cW - gm*2)/7, hY = t+200;
+            const gm = 40, colW = (cW - gm*2)/7, hY = t+200;
             ctx.font = 'bold 30px sans-serif';
             days.forEach((d,i) => {
                 ctx.fillStyle = i===0?'#ef4444':i===6?'#3b82f6':'#9ca3af';
                 ctx.fillText(d, m+gm+(colW*i)+(colW/2), hY);
             });
 
-            // 日付
+            // 日付と予定の描画
             const daysInMonth = new Date(year, month, 0).getDate();
             const firstDay = new Date(year, month-1, 1).getDay();
             const total = firstDay + daysInMonth;
             const weeks = Math.ceil(total/7);
-            const rH = (cH - 260)/weeks; // 高さ調整
-            let r=0;
+            const gridStartY = hY + 40;
+            const gridH = cH - 260; // カレンダー部分の高さ
+            const rH = gridH / weeks; // 1行の高さ
+            
+            // 罫線を描く
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#e5e7eb';
+            // 横線
+            for(let i=0; i<=weeks; i++) {
+                const y = gridStartY + (i*rH);
+                ctx.beginPath(); ctx.moveTo(m+gm, y); ctx.lineTo(m+gm+(colW*7), y); ctx.stroke();
+            }
+            // 縦線
+            for(let i=0; i<=7; i++) {
+                const x = m+gm+(i*colW);
+                ctx.beginPath(); ctx.moveTo(x, gridStartY); ctx.lineTo(x, gridStartY+(weeks*rH)); ctx.stroke();
+            }
 
+            let r=0;
             for(let d=1; d<=daysInMonth; d++){
                 const c = (firstDay+d-1)%7;
                 if(d>1 && c===0) r++;
-                const x = m+gm+(c*colW)+(colW/2);
-                const y = hY + 60 + (r*rH) + (rH/2) - 10;
-                const key = `${year}-${month-1}-${d}`;
-                const md = selectedDates[key];
+                
+                const cellX = m+gm+(c*colW);
+                const cellY = gridStartY + (r*rH);
+                
+                // 日付数字
+                ctx.fillStyle = c===0?'#ef4444':c===6?'#3b82f6':'#333333';
+                ctx.font = 'bold 24px Montserrat'; 
+                ctx.textAlign = 'left';
+                ctx.fillText(d, cellX + 10, cellY + 30);
 
+                const key = `${year}-${month-1}-${d}`;
+                const events = googleEventsData[key] || [];
+
+                // 予定の描画（最大3件程度）
+                let eventY = cellY + 45;
+                const maxEvents = Math.floor((rH - 45) / 22);
+                
+                events.slice(0, maxEvents).forEach(ev => {
+                    // 背景色（簡易的にパステルカラーをHEXで定義）
+                    // Tailwindのクラスから色を推測してCanvas用に変換するのは複雑なので、
+                    // 固定パレットに対応するCanvas色を定義
+                    let boxColor = '#dbeafe'; // default blue
+                    let textColor = '#1e40af';
+                    
+                    if(ev.colorClass.includes('green')) { boxColor='#dcfce7'; textColor='#166534'; }
+                    else if(ev.colorClass.includes('red') || ev.colorClass.includes('pink')) { boxColor='#fce7f3'; textColor='#9d174d'; }
+                    else if(ev.colorClass.includes('yellow') || ev.colorClass.includes('orange')) { boxColor='#fef9c3'; textColor='#854d0e'; }
+                    else if(ev.colorClass.includes('purple') || ev.colorClass.includes('indigo')) { boxColor='#f3e8ff'; textColor='#6b21a8'; }
+
+                    // イベントボックス
+                    ctx.fillStyle = boxColor;
+                    ctx.fillRect(cellX + 4, eventY, colW - 8, 20);
+                    
+                    // テキスト
+                    ctx.fillStyle = textColor;
+                    ctx.font = '12px sans-serif';
+                    ctx.textAlign = 'left';
+                    let text = ev.time ? `${ev.time} ${ev.title}` : ev.title;
+                    // はみ出し対策（簡易）
+                    if(text.length > 8) text = text.substring(0,8) + '..';
+                    ctx.fillText(text, cellX + 8, eventY + 14);
+
+                    eventY += 22;
+                });
+
+                // 空きリストのマーカー（右下に円を描画）
+                const md = selectedDates[key];
                 if(md){
                     const clr = markers[md].canvasColor;
-                    ctx.beginPath(); ctx.arc(x, y+45, 14, 0, Math.PI*2);
-                    ctx.strokeStyle=clr; ctx.lineWidth=5; ctx.stroke();
-                    if(md!=='allDay'){
-                        ctx.fillStyle=clr; ctx.font='bold 12px sans-serif'; ctx.fillText(markers[md].label, x, y+25);
+                    const markX = cellX + colW - 20;
+                    const markY = cellY + rH - 20;
+                    
+                    ctx.beginPath(); 
+                    ctx.arc(markX, markY, 12, 0, Math.PI*2);
+                    ctx.fillStyle = '#ffffff'; ctx.fill(); // 白背景
+                    ctx.lineWidth = 3; ctx.strokeStyle=clr; ctx.stroke();
+                    
+                    // 文字は小さすぎるので入れないか、入れるなら極小で
+                    if(md !== 'allDay') {
+                       // ctx.fillStyle = clr; ctx.font = 'bold 8px sans-serif'; ctx.textAlign='center';
+                       // ctx.fillText(markers[md].label[0], markX, markY+3);
                     }
                 }
-                ctx.fillStyle = c===0?'#ef4444':c===6?'#3b82f6':'#333333';
-                ctx.font = '300 42px Montserrat'; ctx.fillText(d, x, y);
             }
+
             // URL
             ctx.fillStyle='#fff'; ctx.font='24px Montserrat'; ctx.textAlign='right';
             ctx.fillText('https://x.gd/CalendarShare', w-m, h-30);

@@ -4,123 +4,230 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>あきリスト | 空いている日を画像で共有</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="https://daihachi.pages.dev/assets/favicon.ico" />
+    
+    <!-- Google API Libraries -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <style>
-        body { font-family: 'Montserrat', 'Noto Sans JP', sans-serif; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
         .safe-top { padding-top: env(safe-area-inset-top); }
         .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
         @keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .animate-zoom-in { animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 h-[100dvh] flex flex-col overflow-hidden select-none">
 
+    <!-- ヘッダー -->
     <header class="bg-white px-4 py-3 shadow-sm shrink-0 safe-top z-30 border-b border-gray-100">
         <div class="flex justify-between items-center max-w-4xl mx-auto h-10">
-            <a href="https://daihachi.pages.dev" class="flex items-center h-full hover:opacity-70 transition-opacity no-underline text-current mr-auto">
+            <a href="https://daihachi.pages.dev" class="flex items-center h-full hover:opacity-70 transition-opacity no-underline text-current mr-auto min-w-0">
                 <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="D Logo" class="h-8 w-auto object-contain block shrink-0">
-                <div class="flex items-center h-full pt-1 overflow-hidden"> 
-                    <span class="mx-3 text-gray-300 text-2xl font-light transform -skew-x-12 leading-none">/</span>
-                    <span class="text-[#1db31d] text-lg font-bold tracking-wide leading-none truncate">あきリスト</span>
+                <div class="flex items-center h-full pt-1 overflow-hidden whitespace-nowrap"> 
+                    <span class="mx-3 text-gray-300 text-2xl font-light transform -skew-x-12 leading-none shrink-0">/</span>
+                    <span class="text-[#1db31d] text-lg font-bold tracking-wide hidden sm:inline leading-none truncate">あきリスト | Googleカレンダー連携</span>
+                    <span class="text-[#1db31d] text-base font-bold tracking-wide sm:hidden leading-none truncate">あきリスト</span>
                 </div>
             </a>
-            <div class="flex items-center gap-2">
-                <button id="googleBtn" class="bg-white border border-gray-300 px-3 py-1.5 rounded-full text-xs font-bold flex items-center shadow-sm active:scale-95 transition-transform">
+            <div class="flex items-center gap-2 shrink-0 ml-2">
+                <!-- Google連携ボタン -->
+                <button id="googleBtn" class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform flex items-center hover:bg-gray-50">
                     <img src="https://www.gstatic.com/images/branding/product/1x/calendar_2020q4_48dp.png" class="w-4 h-4 mr-1">
                     <span id="googleBtnText">予定読込</span>
                 </button>
-                <button id="shareBtn" class="bg-[#1db31d] text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform">共有</button>
+                <button id="installBtn" class="text-[#1db31d] bg-white border border-[#1db31d] px-3 py-1.5 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform flex items-center hover:bg-gray-50">
+                    <span>アプリ</span>
+                </button>
+                <button id="shareBtn" class="bg-[#1db31d] text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform flex items-center hover:bg-green-600">
+                    <span id="shareBtnText">共有</span>
+                </button>
             </div>
         </div>
     </header>
 
+    <!-- 月切り替えバー -->
     <div class="bg-white p-2 shadow-sm shrink-0 z-20 border-b border-gray-50">
         <div class="flex items-center justify-between max-w-4xl mx-auto">
-            <button id="prevMonth" class="p-2 text-gray-600">
+            <button id="prevMonth" class="p-2 hover:bg-gray-100 rounded-full text-gray-600 active:bg-gray-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
             <span id="currentMonthLabel" class="text-xl font-bold text-gray-800 tracking-widest"></span>
-            <button id="nextMonth" class="p-2 text-gray-600">
+            <button id="nextMonth" class="p-2 hover:bg-gray-100 rounded-full text-gray-600 active:bg-gray-200 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
         </div>
     </div>
 
+    <!-- カレンダー本体エリア -->
     <main class="flex-1 p-4 w-full max-w-4xl mx-auto flex flex-col min-h-0 z-10 overflow-y-auto">
-        <div class="grid grid-cols-7 mb-2 text-center text-sm text-gray-400 font-medium">
+        <div class="grid grid-cols-7 mb-2 text-center text-sm text-gray-400 shrink-0 font-medium">
             <div class="text-red-500">日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div class="text-blue-500">土</div>
         </div>
         <div id="calendarGrid" class="flex-1 min-h-[350px] bg-white rounded-2xl p-2 shadow-sm grid grid-cols-7 gap-0 border border-gray-100"></div>
+        <!-- 広告エリア -->
+        <div class="mt-4 flex justify-center shrink-0 min-h-[50px]">
+            <div class="admax-ads" data-admax-id="5636fa032a26f3fac72efcee0ff3d316" style="display:inline-block;"></div>
+            <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+        </div>
     </main>
 
-    <!-- モード選択 -->
-    <div class="bg-white/95 border-t border-gray-100 p-4 pb-8 shrink-0 z-30 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] safe-bottom">
-        <div class="flex justify-around items-end max-w-2xl mx-auto px-2" id="modeSelector">
-            <button class="mode-btn flex flex-col items-center space-y-1 transform -translate-y-2" data-mode="allDay">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center bg-[#1db31d] text-white ring-4 ring-white shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <!-- モード選択バー -->
+    <div class="bg-white/95 backdrop-blur-sm border-t border-gray-100 p-4 pb-8 shrink-0 z-30 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] safe-bottom">
+        <div class="flex justify-between items-end max-w-2xl mx-auto px-2" id="modeSelector">
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative transform -translate-y-2" data-mode="allDay">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-lg bg-[#1db31d] text-white ring-4 ring-white"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
                 <span class="label text-[10px] font-bold text-gray-800">終日</span>
-                <div class="indicator w-1 h-1 rounded-full bg-[#1db31d]"></div>
+                <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d]"></div>
             </button>
-            <!-- 他のボタンは省略（既存コードを維持してください） -->
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50" data-mode="am">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-gray-100 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/></svg></div>
+                <span class="label text-[10px] font-bold text-gray-400">午前</span>
+                <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d] hidden"></div>
+            </button>
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50" data-mode="pm">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-gray-100 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19c0-3.037-2.463-5.5-5.5-5.5S6.5 15.963 6.5 19"/></svg></div>
+                <span class="label text-[10px] font-bold text-gray-400">午後</span>
+                <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d] hidden"></div>
+            </button>
+            <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50" data-mode="custom">
+                <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm bg-gray-100 text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg></div>
+                <span class="label text-[10px] font-bold text-gray-400">解除</span>
+                <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-gray-400 hidden"></div>
+            </button>
+        </div>
+    </div>
+
+    <!-- モーダル等は既存のコードを維持 -->
+    <div id="installModalContainer" class="fixed inset-0 z-50 flex justify-center items-end sm:items-center pointer-events-none hidden">
+        <div id="installModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeInstallModal()"></div>
+        <div id="installModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center p-5 border-b border-gray-100 shrink-0">
+                <h3 class="font-bold text-lg text-gray-800">アプリとして使う</h3>
+                <button onclick="closeInstallModal()" class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto p-5 safe-bottom">
+                <div class="relative w-full bg-black rounded-xl overflow-hidden mb-5 flex justify-center aspect-[9/16]">
+                    <div id="videoSkeleton" class="absolute inset-0 bg-gray-200 animate-pulse flex flex-col items-center justify-center text-gray-400 z-10"><span class="text-xs font-bold">Loading...</span></div>
+                    <video id="tutorialVideo" class="w-full h-full object-cover opacity-0 transition-opacity duration-500" loop muted playsinline></video>
+                </div>
+                <details class="group bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+                    <summary class="flex justify-between items-center font-bold text-gray-600 p-4 cursor-pointer list-none">Androidの方はこちら</summary>
+                    <div class="text-sm text-gray-600 px-4 pb-4">Chromeのメニューから「ホーム画面に追加」を選択してください。</div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- 共有完了モーダル -->
+    <div id="shareCompleteModalContainer" class="fixed inset-0 z-50 flex justify-center items-end sm:items-center pointer-events-none hidden">
+        <div id="shareCompleteModalOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeShareCompleteModal()"></div>
+        <div id="shareCompleteModalContent" class="relative bg-white w-full sm:max-w-md sm:rounded-2xl rounded-t-2xl shadow-2xl transform transition-transform duration-300 translate-y-full pointer-events-auto flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center p-5 border-b border-gray-100 shrink-0">
+                <h3 class="font-bold text-lg text-gray-800">共有が完了しました！</h3>
+                <button onclick="closeShareCompleteModal()" class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="overflow-y-auto p-5 safe-bottom flex flex-col items-center">
+                <p class="text-sm text-gray-600 mb-4 text-center">このアプリを友達に教える</p>
+                <div class="mb-6" style="width: 300px; height: 250px;">
+                    <div class="admax-ads" data-admax-id="2ace92a3707051c590b93ec5c6aaf6b7" style="display:inline-block;"></div>
+                </div>
+                <button onclick="shareSite()" class="w-full bg-[#1db31d] text-white px-4 py-3 rounded-full font-bold shadow-md active:scale-95 transition-transform flex justify-center items-center">
+                    <span>このサイトを友達に共有</span>
+                </button>
+            </div>
         </div>
     </div>
 
     <canvas id="shareCanvas" style="display: none;"></canvas>
 
     <script>
-        // --- 設定 (Cloudflare WorkerのURLに書き換えてください) ---
-        const WORKER_URL = 'https://aki-list-proxy.daihachi10sub.workers.dev/';
-        const CLIENT_ID = 'http://1046190827691-paenml27s94v4egq8ofj96ic820bht90.apps.googleusercontent.com';
+        // --- 設定 ---
+        const CLIENT_ID = 'http://1046190827691-paenml27s94v4egq8ofj96ic820bht90.apps.googleusercontent.com'; // ここを書き換え！
         const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly';
+        const THEME_GREEN = '#1db31d';
 
         let currentDate = new Date();
         let selectedDates = {};
-        let busyDates = {};
+        let busyDates = {}; // Googleカレンダーから取得した「予定がある日」
         let currentMode = 'allDay';
+        let isSharing = false;
         let tokenClient;
 
-        // --- Google API & Backend 連携 ---
+        // マーカー定義
+        const markers = {
+            allDay: { label: '終日', colorClass: 'border-[#1db31d]', textClass: 'text-[#1db31d]', canvasColor: '#1db31d' },
+            am:     { label: '午前', colorClass: 'border-orange-400', textClass: 'text-orange-400', canvasColor: '#fb923c' },
+            pm:     { label: '午後', colorClass: 'border-blue-400',   textClass: 'text-blue-400',   canvasColor: '#60a5fa' },
+            custom: { label: '解除', colorClass: 'border-gray-200',   textClass: 'text-gray-500',   canvasColor: '#e5e7eb' },
+        };
+
+        const gridEl = document.getElementById('calendarGrid');
+        const monthLabelEl = document.getElementById('currentMonthLabel');
+        const shareBtn = document.getElementById('shareBtn');
+        const canvas = document.getElementById('shareCanvas');
+
         function init() {
             renderCalendar();
             setupEventListeners();
-            
+            initGoogleAuth();
+        }
+
+        // --- Google Calendar API 連携 ---
+        function initGoogleAuth() {
+            // GISライブラリが読み込まれるのを待つ
             const checkGSI = setInterval(() => {
                 if (typeof google !== 'undefined') {
                     clearInterval(checkGSI);
                     tokenClient = google.accounts.oauth2.initTokenClient({
                         client_id: CLIENT_ID,
                         scope: SCOPES,
-                        callback: async (resp) => {
+                        callback: (resp) => {
                             if (resp.error) return;
-                            await fetchEventsFromBackend(resp.access_token);
+                            fetchEvents();
                         },
                     });
                 }
             }, 100);
         }
 
-        async function fetchEventsFromBackend(accessToken) {
+        async function fetchEvents() {
             document.getElementById('googleBtnText').textContent = '読込中...';
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-            const min = new Date(year, month, 1).toISOString();
-            const max = new Date(year, month + 1, 1).toISOString();
-
             try {
-                // Cloudflare Workerへリクエスト
-                const response = await fetch(`${WORKER_URL}/events?timeMin=${min}&timeMax=${max}`, {
-                    headers: { 'Authorization': `Bearer ${accessToken}` }
+                // 簡易的にfetchでカレンダー情報を取得（アクセストークン使用）
+                const token = google.accounts.oauth2.getAccessToken();
+                const now = new Date();
+                const min = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+                const max = new Date(now.getFullYear(), now.getMonth() + 3, 1).toISOString(); // 3ヶ月分
+
+                const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${min}&timeMax=${max}&singleEvents=true`;
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `Bearer ${token.access_token}` }
                 });
                 const data = await response.json();
                 
+                // 予定がある日をマーク
                 busyDates = {};
                 data.items.forEach(event => {
-                    const dateStr = event.start.split('T')[0];
+                    const start = event.start.dateTime || event.start.date;
+                    const dateStr = start.split('T')[0]; // "YYYY-MM-DD"
                     const d = new Date(dateStr);
                     const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
                     busyDates[key] = true;
@@ -134,10 +241,8 @@
             }
         }
 
-        // --- カレンダー描画ロジック (既存のものを維持) ---
+        // --- カレンダー描画 ---
         function renderCalendar(animatingDay = null) {
-            const gridEl = document.getElementById('calendarGrid');
-            const monthLabelEl = document.getElementById('currentMonthLabel');
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
             monthLabelEl.textContent = `${year}年 ${month + 1}月`;
@@ -145,43 +250,147 @@
 
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const firstDay = new Date(year, month, 1).getDay();
-            const weeks = Math.ceil((firstDay + daysInMonth) / 7);
+            const totalSlots = firstDay + daysInMonth;
+            const weeks = Math.ceil(totalSlots / 7);
             gridEl.style.gridTemplateRows = `repeat(${weeks}, minmax(0, 1fr))`;
 
             for (let i = 0; i < firstDay; i++) gridEl.appendChild(document.createElement('div'));
 
             for (let day = 1; day <= daysInMonth; day++) {
                 const key = `${year}-${month}-${day}`;
-                const isBusy = busyDates[key];
                 const mode = selectedDates[key];
+                const isBusy = busyDates[key]; // Googleカレンダーの予定有無
+                const isToday = new Date().toDateString() === new Date(year, month, day).toDateString();
                 
                 const btn = document.createElement('button');
-                btn.className = "flex flex-col items-center justify-center relative w-full h-full";
-                btn.onclick = () => {
-                    if (selectedDates[key]) delete selectedDates[key];
-                    else selectedDates[key] = currentMode;
-                    renderCalendar(day);
-                };
+                btn.className = "flex flex-col items-center justify-center relative w-full h-full tap-highlight-transparent group";
+                btn.onclick = () => toggleDate(day);
+
+                // 土日祝色
+                const dayOfWeek = (day + firstDay - 1) % 7;
+                let numColor = dayOfWeek === 0 ? 'text-red-500' : (dayOfWeek === 6 ? 'text-blue-500' : 'text-gray-700');
+                if (isToday) numColor = 'text-[#1db31d] font-bold';
+
+                let markerHtml = `<div class="w-5 h-5"></div>`;
+                if (mode) {
+                    markerHtml = `
+                        <div class="flex flex-col items-center ${day === animatingDay ? 'animate-zoom-in' : ''}">
+                            <div class="w-5 h-5 rounded-full border-[3px] ${markers[mode].colorClass}"></div>
+                            ${mode !== 'allDay' ? `<span class="text-[9px] font-bold mt-1 ${markers[mode].textClass}">${markers[mode].label}</span>` : ''}
+                        </div>`;
+                }
 
                 btn.innerHTML = `
                     <div class="relative">
-                        <span class="text-xl font-light">${day}</span>
+                        <span class="text-xl font-light ${numColor}">${day}</span>
                         ${isBusy ? `<div class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>` : ''}
                     </div>
-                    <div class="h-8 mt-1 flex justify-center items-center">
-                        ${mode ? `<div class="w-5 h-5 rounded-full border-[3px] border-[#1db31d] ${day===animatingDay?'animate-zoom-in':''}"></div>` : ''}
-                    </div>
+                    <div class="h-8 flex flex-col justify-start items-center w-full mt-1">${markerHtml}</div>
                 `;
                 gridEl.appendChild(btn);
             }
         }
 
+        function toggleDate(day) {
+            const key = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${day}`;
+            let isAdded = false;
+            if (currentMode === 'custom') { delete selectedDates[key]; }
+            else {
+                if (selectedDates[key] === currentMode) delete selectedDates[key];
+                else { selectedDates[key] = currentMode; isAdded = true; }
+            }
+            renderCalendar(isAdded ? day : null);
+        }
+
         function setupEventListeners() {
-            document.getElementById('googleBtn').onclick = () => tokenClient.requestAccessToken({prompt: 'consent'});
             document.getElementById('prevMonth').onclick = () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); };
             document.getElementById('nextMonth').onclick = () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); };
-            // shareBtn等のイベントは既存コードを維持
+            document.getElementById('googleBtn').onclick = () => {
+                if (tokenClient) tokenClient.requestAccessToken({prompt: 'consent'});
+            };
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.onclick = () => {
+                    document.querySelectorAll('.mode-btn').forEach(b => {
+                        b.classList.add('opacity-50'); b.classList.remove('transform', '-translate-y-2');
+                        b.querySelector('.indicator').classList.add('hidden');
+                    });
+                    btn.classList.remove('opacity-50'); btn.classList.add('transform', '-translate-y-2');
+                    btn.querySelector('.indicator').classList.remove('hidden');
+                    currentMode = btn.dataset.mode;
+                };
+            });
+            shareBtn.onclick = generateImageAndShare;
+            document.getElementById('installBtn').onclick = openInstallModal;
         }
+
+        async function generateImageAndShare() {
+            if (isSharing) return;
+            isSharing = true;
+            document.getElementById('shareBtnText').textContent = '作成中...';
+            await document.fonts.ready;
+            const ctx = canvas.getContext('2d');
+            const w = 800, h = 1300;
+            canvas.width = w; canvas.height = h;
+
+            ctx.fillStyle = THEME_GREEN; ctx.fillRect(0, 0, w, h);
+            const cardM = 40, cardT = 40;
+            const cardW = w - (cardM * 2), cardH = h - cardT - 80;
+            ctx.beginPath(); ctx.roundRect(cardM, cardT, cardW, cardH, 40);
+            ctx.fillStyle = '#ffffff'; ctx.fill();
+
+            const year = currentDate.getFullYear(), month = currentDate.getMonth() + 1;
+            ctx.fillStyle = '#333333'; ctx.font = 'bold 60px "Montserrat", sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText(`${year}年 ${month}月`, w/2, cardT + 100);
+
+            const days = ['日','月','火','水','木','金','土'];
+            ctx.font = 'bold 30px sans-serif';
+            days.forEach((d, i) => {
+                ctx.fillStyle = i === 0 ? '#ef4444' : i === 6 ? '#3b82f6' : '#9ca3af';
+                ctx.fillText(d, cardM + 50 + ((cardW - 100) / 6) * i, cardT + 200);
+            });
+
+            // 日付描画（簡易版）
+            const daysInMonth = new Date(year, month, 0).getDate();
+            const firstDay = new Date(year, month - 1, 1).getDay();
+            const rowH = (cardH - 300) / 6;
+            for(let d=1; d<=daysInMonth; d++) {
+                const col = (firstDay + d - 1) % 7;
+                const row = Math.floor((firstDay + d - 1) / 7);
+                const x = cardM + 50 + ((cardW - 100) / 6) * col;
+                const y = cardT + 300 + row * rowH;
+                const key = `${year}-${month-1}-${d}`;
+                const m = selectedDates[key];
+                if(m) {
+                    ctx.beginPath(); ctx.arc(x, y + 45, 14, 0, Math.PI*2);
+                    ctx.strokeStyle = markers[m].canvasColor; ctx.lineWidth = 5; ctx.stroke();
+                }
+                ctx.fillStyle = col === 0 ? '#ef4444' : col === 6 ? '#3b82f6' : '#333333';
+                ctx.font = '300 42px Montserrat'; ctx.fillText(d, x, y);
+            }
+
+            ctx.fillStyle = '#ffffff'; ctx.font = '24px Montserrat'; ctx.textAlign = 'right';
+            ctx.fillText('https://x.gd/CalendarShare', w - cardM, h - 30);
+
+            canvas.toBlob(async (blob) => {
+                const file = new File([blob], 'schedule.png', { type: 'image/png' });
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({ files: [file] });
+                    openShareCompleteModal();
+                } else {
+                    const link = document.createElement('a'); link.download = 'schedule.png';
+                    link.href = canvas.toDataURL(); link.click();
+                    openShareCompleteModal();
+                }
+                isSharing = false; document.getElementById('shareBtnText').textContent = '共有';
+            });
+        }
+
+        // モーダル操作等の関数（省略せず維持）
+        function openInstallModal() { installModalContainer.classList.remove('hidden'); setTimeout(() => { installModalOverlay.classList.remove('opacity-0'); installModalContent.classList.remove('translate-y-full'); }, 10); document.getElementById('tutorialVideo').src = "./tutorial.mp4"; document.getElementById('tutorialVideo').onloadeddata = () => { document.getElementById('videoSkeleton').style.display='none'; document.getElementById('tutorialVideo').classList.remove('opacity-0'); document.getElementById('tutorialVideo').play(); }; }
+        function closeInstallModal() { installModalContent.classList.add('translate-y-full'); installModalOverlay.classList.add('opacity-0'); document.getElementById('tutorialVideo').pause(); setTimeout(() => installModalContainer.classList.add('hidden'), 300); }
+        function openShareCompleteModal() { shareCompleteModalContainer.classList.remove('hidden'); setTimeout(() => { shareCompleteModalOverlay.classList.remove('opacity-0'); shareCompleteModalContent.classList.remove('translate-y-full'); }, 10); }
+        function closeShareCompleteModal() { shareCompleteModalContent.classList.add('translate-y-full'); shareCompleteModalOverlay.classList.add('opacity-0'); setTimeout(() => shareCompleteModalContainer.classList.add('hidden'), 300); }
+        function shareSite() { navigator.share({ text: "あきリスト | 空いている日を画像で共有:https://x.gd/CalendarShare" }); }
 
         init();
     </script>

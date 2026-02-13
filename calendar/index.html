@@ -104,6 +104,12 @@
                 <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
             </div>
         </div>
+
+        <div class="mt-8 pb-24 text-center">
+            <a href="https://daihachi.pages.dev/privacy/" target="_blank" rel="noopener noreferrer" class="text-[10px] text-gray-400 hover:text-gray-600 underline decoration-gray-300 underline-offset-2">
+                プライバシーポリシー
+            </a>
+        </div>
     </main>
 
     <div class="bg-white/95 backdrop-blur-sm border-t border-gray-100 p-4 pb-8 shrink-0 z-30 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] safe-bottom">
@@ -190,7 +196,6 @@
         let selectedDates = {};
         
         // Googleカレンダーのイベントデータ（日付キーでリストを持つ）
-        // 形式: { "2025-1-1": [ { title: "塾", time: "18:00", isAllDay: false, colorClass: "..." }, ... ] }
         let googleEventsData = {}; 
         
         let currentMode = 'allDay';
@@ -394,7 +399,8 @@
                 let bgClass = 'bg-white';
 
                 if (isToday) {
-                    numColorClass = 'text-white bg-[#1db31d] rounded-full w-6 h-6 flex items-center justify-center font-bold shadow-sm';
+                    // 今日は緑色の太字のみ（丸囲みなし）
+                    numColorClass = 'text-[#1db31d] font-bold';
                 } else if (dayOfWeek === 0) {
                     numColorClass = 'text-red-500';
                     bgClass = 'bg-red-50/30';
@@ -585,8 +591,6 @@
                 
                 events.slice(0, maxEvents).forEach(ev => {
                     // 背景色（簡易的にパステルカラーをHEXで定義）
-                    // Tailwindのクラスから色を推測してCanvas用に変換するのは複雑なので、
-                    // 固定パレットに対応するCanvas色を定義
                     let boxColor = '#dbeafe'; // default blue
                     let textColor = '#1e40af';
                     
@@ -622,12 +626,6 @@
                     ctx.arc(markX, markY, 12, 0, Math.PI*2);
                     ctx.fillStyle = '#ffffff'; ctx.fill(); // 白背景
                     ctx.lineWidth = 3; ctx.strokeStyle=clr; ctx.stroke();
-                    
-                    // 文字は小さすぎるので入れないか、入れるなら極小で
-                    if(md !== 'allDay') {
-                       // ctx.fillStyle = clr; ctx.font = 'bold 8px sans-serif'; ctx.textAlign='center';
-                       // ctx.fillText(markers[md].label[0], markX, markY+3);
-                    }
                 }
             }
 

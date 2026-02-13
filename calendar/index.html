@@ -44,6 +44,23 @@
             scrollbar-width: none;
         }
     </style>
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="あきリスト">
+    <link rel="apple-touch-icon" href="./icon-128.png">
+        
+    <meta property="og:title" content="あきリスト">
+    <meta name="description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta property="og:description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta property="og:image" content="https://daihachi.pages.dev/calendar/ogp_image.png">
+    <meta property="og:url" content="https://daihachi.pages.dev/calendar/">
+    <meta property="og:type" content="website">
+        
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="あきリスト">
+    <meta name="twitter:description" content="あきリストは、空いている日をカレンダーで選んで画像として共有できるシンプルなスケジュール共有アプリです。終日・午前・午後をタップで簡単に設定できます。">
+    <meta name="twitter:image" content="https://daihachi.pages.dev/calendar/ogp_image.png">
 </head>
 <body class="bg-gray-50 text-gray-900 h-[100dvh] flex flex-col overflow-hidden select-none">
 
@@ -545,7 +562,7 @@
                 ctx.fillText(d, m+gm+(colW*i)+(colW/2), hY);
             });
 
-            // 日付と予定の描画
+            // 日付とマークの描画
             const daysInMonth = new Date(year, month, 0).getDate();
             const firstDay = new Date(year, month-1, 1).getDay();
             const total = firstDay + daysInMonth;
@@ -575,62 +592,40 @@
                 
                 const cellX = m+gm+(c*colW);
                 const cellY = gridStartY + (r*rH);
+                const centerX = cellX + colW/2;
                 
-                // 日付数字
+                // 日付数字 (上部中央に配置)
                 ctx.fillStyle = c===0?'#ef4444':c===6?'#3b82f6':'#333333';
-                ctx.font = 'bold 24px Montserrat'; 
-                ctx.textAlign = 'left';
-                ctx.fillText(d, cellX + 10, cellY + 30);
+                ctx.font = 'bold 30px Montserrat'; 
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top'; // 上揃え
+                ctx.fillText(d, centerX, cellY + 15);
 
                 const key = `${year}-${month-1}-${d}`;
-                const events = googleEventsData[key] || [];
-
-                // 予定の描画（最大3件程度）
-                let eventY = cellY + 45;
-                const maxEvents = Math.floor((rH - 45) / 22);
-                
-                events.slice(0, maxEvents).forEach(ev => {
-                    // 背景色（簡易的にパステルカラーをHEXで定義）
-                    let boxColor = '#dbeafe'; // default blue
-                    let textColor = '#1e40af';
-                    
-                    if(ev.colorClass.includes('green')) { boxColor='#dcfce7'; textColor='#166534'; }
-                    else if(ev.colorClass.includes('red') || ev.colorClass.includes('pink')) { boxColor='#fce7f3'; textColor='#9d174d'; }
-                    else if(ev.colorClass.includes('yellow') || ev.colorClass.includes('orange')) { boxColor='#fef9c3'; textColor='#854d0e'; }
-                    else if(ev.colorClass.includes('purple') || ev.colorClass.includes('indigo')) { boxColor='#f3e8ff'; textColor='#6b21a8'; }
-
-                    // イベントボックス
-                    ctx.fillStyle = boxColor;
-                    ctx.fillRect(cellX + 4, eventY, colW - 8, 20);
-                    
-                    // テキスト
-                    ctx.fillStyle = textColor;
-                    ctx.font = '12px sans-serif';
-                    ctx.textAlign = 'left';
-                    let text = ev.time ? `${ev.time} ${ev.title}` : ev.title;
-                    // はみ出し対策（簡易）
-                    if(text.length > 8) text = text.substring(0,8) + '..';
-                    ctx.fillText(text, cellX + 8, eventY + 14);
-
-                    eventY += 22;
-                });
-
-                // 空きリストのマーカー（右下に円を描画）
                 const md = selectedDates[key];
+
+                // マークの描画 (中央に配置)
                 if(md){
                     const clr = markers[md].canvasColor;
-                    const markX = cellX + colW - 20;
-                    const markY = cellY + rH - 20;
-                    
+                    const centerY = cellY + rH/2 + 10; // 中央より少し下（日付の下）
+
+                    // 丸
                     ctx.beginPath(); 
-                    ctx.arc(markX, markY, 12, 0, Math.PI*2);
+                    ctx.arc(centerX, centerY, 18, 0, Math.PI*2);
                     ctx.fillStyle = '#ffffff'; ctx.fill(); // 白背景
-                    ctx.lineWidth = 3; ctx.strokeStyle=clr; ctx.stroke();
+                    ctx.lineWidth = 4; ctx.strokeStyle = clr; ctx.stroke();
+                    
+                    // ラベル（午前/午後など）を丸の下に描画
+                    ctx.fillStyle = clr;
+                    ctx.font = 'bold 12px sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'top';
+                    ctx.fillText(markers[md].label, centerX, centerY + 25);
                 }
             }
 
             // URL
-            ctx.fillStyle='#fff'; ctx.font='24px Montserrat'; ctx.textAlign='right';
+            ctx.fillStyle='#fff'; ctx.font='24px Montserrat'; ctx.textAlign='right'; ctx.textBaseline='alphabetic';
             ctx.fillText('https://x.gd/CalendarShare', w-m, h-30);
 
             canvas.toBlob(async(b)=>{
@@ -653,6 +648,10 @@
         function shareSite(){ const t="あきリスト: https://daihachi.pages.dev"; if(navigator.share) navigator.share({text:t}); else navigator.clipboard.writeText(t).then(()=>alert("URLをコピーしました")); }
 
         init();
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(() => console.log('Service Worker Registered'));
+        }
     </script>
 </body>
 </html>

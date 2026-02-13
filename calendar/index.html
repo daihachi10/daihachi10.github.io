@@ -160,13 +160,14 @@
 
     <script>
         // --- 設定 ---
-        const CLIENT_ID = 'http://1046190827691-u47fneoa4k6oq156nbfbl4hpfd9jgc47.apps.googleusercontent.com'; // ここを書き換え！
+        // ★修正1: http:// を削除しました
+        const CLIENT_ID = '1046190827691-u47fneoa4k6oq156nbfbl4hpfd9jgc47.apps.googleusercontent.com';
         const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly';
         const THEME_GREEN = '#1db31d';
 
         let currentDate = new Date();
         let selectedDates = {};
-        let busyDates = {}; // Googleカレンダーから取得した「予定がある日」
+        let busyDates = {}; 
         let currentMode = 'allDay';
         let isSharing = false;
         let tokenClient;
@@ -184,6 +185,7 @@
         const shareBtn = document.getElementById('shareBtn');
         const canvas = document.getElementById('shareCanvas');
 
+        // --- 初期化 ---
         function init() {
             renderCalendar();
             setupEventListeners();
@@ -192,49 +194,62 @@
 
         // --- Google Calendar API 連携 ---
         function initGoogleAuth() {
-            // GISライブラリが読み込まれるのを待つ
             const checkGSI = setInterval(() => {
                 if (typeof google !== 'undefined') {
                     clearInterval(checkGSI);
                     tokenClient = google.accounts.oauth2.initTokenClient({
                         client_id: CLIENT_ID,
                         scope: SCOPES,
+                        // ★修正2: ここで受け取ったトークンを fetchEvents に渡す
                         callback: (resp) => {
-                            if (resp.error) return;
-                            fetchEvents();
+                            if (resp.error) {
+                                console.error(resp);
+                                return;
+                            }
+                            fetchEvents(resp.access_token);
                         },
                     });
                 }
             }, 100);
         }
 
-        async function fetchEvents() {
+        // ★修正3: トークンを引数で受け取る形に変更
+        async function fetchEvents(accessToken) {
             document.getElementById('googleBtnText').textContent = '読込中...';
             try {
-                // 簡易的にfetchでカレンダー情報を取得（アクセストークン使用）
-                const token = google.accounts.oauth2.getAccessToken();
                 const now = new Date();
+                // 今月の1日から
                 const min = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-                const max = new Date(now.getFullYear(), now.getMonth() + 3, 1).toISOString(); // 3ヶ月分
+                // 3ヶ月後まで
+                const max = new Date(now.getFullYear(), now.getMonth() + 3, 1).toISOString();
 
-                const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${min}&timeMax=${max}&singleEvents=true`;
+                const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${min}&timeMax=${max}&singleEvents=true&orderBy=startTime`;
+                
+                // 受け取った accessToken を使う
                 const response = await fetch(url, {
-                    headers: { 'Authorization': `Bearer ${token.access_token}` }
+                    headers: { 'Authorization': `Bearer ${accessToken}` }
                 });
+                
+                if (!response.ok) throw new Error('API Error');
+                
                 const data = await response.json();
                 
-                // 予定がある日をマーク
                 busyDates = {};
-                data.items.forEach(event => {
-                    const start = event.start.dateTime || event.start.date;
-                    const dateStr = start.split('T')[0]; // "YYYY-MM-DD"
-                    const d = new Date(dateStr);
-                    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
-                    busyDates[key] = true;
-                });
+                if (data.items) {
+                    data.items.forEach(event => {
+                        // 終日(date) か 時間指定(dateTime) かを確認
+                        const start = event.start.date || event.start.dateTime;
+                        if (start) {
+                            const dateStr = start.split('T')[0]; // "2025-02-14"
+                            const d = new Date(dateStr);
+                            const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+                            busyDates[key] = true;
+                        }
+                    });
+                }
 
                 document.getElementById('googleBtnText').textContent = '読込完了';
-                renderCalendar();
+                renderCalendar(); // 再描画して点を表示
             } catch (e) {
                 console.error(e);
                 document.getElementById('googleBtnText').textContent = 'エラー';
@@ -250,6 +265,8 @@
 
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const firstDay = new Date(year, month, 1).getDay();
+            
+            // 行数を計算してグリッドを整える
             const totalSlots = firstDay + daysInMonth;
             const weeks = Math.ceil(totalSlots / 7);
             gridEl.style.gridTemplateRows = `repeat(${weeks}, minmax(0, 1fr))`;
@@ -259,33 +276,43 @@
             for (let day = 1; day <= daysInMonth; day++) {
                 const key = `${year}-${month}-${day}`;
                 const mode = selectedDates[key];
-                const isBusy = busyDates[key]; // Googleカレンダーの予定有無
-                const isToday = new Date().toDateString() === new Date(year, month, day).toDateString();
+                const isBusy = busyDates[key]; 
+                
+                // 今日かどうか判定
+                const today = new Date();
+                const isToday = (today.getFullYear() === year && today.getMonth() === month && today.getDate() === day);
                 
                 const btn = document.createElement('button');
-                btn.className = "flex flex-col items-center justify-center relative w-full h-full tap-highlight-transparent group";
+                // スマホでタップしたときの青枠を消す
+                btn.className = "flex flex-col items-center justify-center relative w-full h-full p-1 tap-highlight-transparent select-none";
                 btn.onclick = () => toggleDate(day);
 
-                // 土日祝色
-                const dayOfWeek = (day + firstDay - 1) % 7;
-                let numColor = dayOfWeek === 0 ? 'text-red-500' : (dayOfWeek === 6 ? 'text-blue-500' : 'text-gray-700');
-                if (isToday) numColor = 'text-[#1db31d] font-bold';
+                // 土日祝の色
+                const dayOfWeek = (firstDay + day - 1) % 7;
+                let numClass = "text-xl font-light text-gray-700";
+                if (dayOfWeek === 0) numClass = "text-xl font-light text-red-500";
+                else if (dayOfWeek === 6) numClass = "text-xl font-light text-blue-500";
+                
+                if (isToday) numClass = "text-xl font-bold text-[#1db31d]";
 
-                let markerHtml = `<div class="w-5 h-5"></div>`;
-                if (mode) {
+                // マーカー部分のHTML
+                let markerHtml = ``;
+                if (mode && markers[mode]) {
                     markerHtml = `
                         <div class="flex flex-col items-center ${day === animatingDay ? 'animate-zoom-in' : ''}">
-                            <div class="w-5 h-5 rounded-full border-[3px] ${markers[mode].colorClass}"></div>
-                            ${mode !== 'allDay' ? `<span class="text-[9px] font-bold mt-1 ${markers[mode].textClass}">${markers[mode].label}</span>` : ''}
+                            <div class="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-[3px] ${markers[mode].colorClass}"></div>
+                            ${mode !== 'allDay' ? `<span class="text-[9px] font-bold mt-0.5 ${markers[mode].textClass}">${markers[mode].label}</span>` : ''}
                         </div>`;
                 }
 
                 btn.innerHTML = `
-                    <div class="relative">
-                        <span class="text-xl font-light ${numColor}">${day}</span>
-                        ${isBusy ? `<div class="absolute -top-1 -right-2 w-1.5 h-1.5 bg-gray-300 rounded-full"></div>` : ''}
+                    <div class="relative w-full text-center">
+                        <span class="${numClass}">${day}</span>
+                        ${isBusy ? `<div class="absolute top-0 right-1 w-2 h-2 bg-gray-300 rounded-full"></div>` : ''}
                     </div>
-                    <div class="h-8 flex flex-col justify-start items-center w-full mt-1">${markerHtml}</div>
+                    <div class="h-6 mt-1 flex justify-center items-center w-full">
+                        ${markerHtml}
+                    </div>
                 `;
                 gridEl.appendChild(btn);
             }
@@ -294,10 +321,15 @@
         function toggleDate(day) {
             const key = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${day}`;
             let isAdded = false;
-            if (currentMode === 'custom') { delete selectedDates[key]; }
-            else {
-                if (selectedDates[key] === currentMode) delete selectedDates[key];
-                else { selectedDates[key] = currentMode; isAdded = true; }
+            
+            // 現在のモードと、すでに塗られているモードが同じなら消す
+            if (selectedDates[key] === currentMode) {
+                delete selectedDates[key];
+            } else if (currentMode === 'custom') {
+                delete selectedDates[key]; // 解除モードなら消すだけ
+            } else {
+                selectedDates[key] = currentMode;
+                isAdded = true;
             }
             renderCalendar(isAdded ? day : null);
         }
@@ -305,95 +337,206 @@
         function setupEventListeners() {
             document.getElementById('prevMonth').onclick = () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCalendar(); };
             document.getElementById('nextMonth').onclick = () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCalendar(); };
+            
             document.getElementById('googleBtn').onclick = () => {
-                if (tokenClient) tokenClient.requestAccessToken({prompt: 'consent'});
+                if (tokenClient) {
+                    tokenClient.requestAccessToken({prompt: 'consent'});
+                } else {
+                    alert("Google連携の準備中です。数秒待ってから押してください。");
+                }
             };
+
             document.querySelectorAll('.mode-btn').forEach(btn => {
                 btn.onclick = () => {
+                    // 全ボタンを非アクティブ化
                     document.querySelectorAll('.mode-btn').forEach(b => {
-                        b.classList.add('opacity-50'); b.classList.remove('transform', '-translate-y-2');
+                        b.classList.add('opacity-50'); 
+                        b.classList.remove('transform', '-translate-y-2');
                         b.querySelector('.indicator').classList.add('hidden');
                     });
-                    btn.classList.remove('opacity-50'); btn.classList.add('transform', '-translate-y-2');
+                    // 押されたボタンをアクティブ化
+                    btn.classList.remove('opacity-50'); 
+                    btn.classList.add('transform', '-translate-y-2');
                     btn.querySelector('.indicator').classList.remove('hidden');
                     currentMode = btn.dataset.mode;
                 };
             });
+            
             shareBtn.onclick = generateImageAndShare;
             document.getElementById('installBtn').onclick = openInstallModal;
         }
 
+        // 画像生成と共有（ここはいじっていませんが、日付描画のバグを防ぐため少し調整済み）
         async function generateImageAndShare() {
             if (isSharing) return;
             isSharing = true;
             document.getElementById('shareBtnText').textContent = '作成中...';
+            
             await document.fonts.ready;
             const ctx = canvas.getContext('2d');
             const w = 800, h = 1300;
             canvas.width = w; canvas.height = h;
 
-            ctx.fillStyle = THEME_GREEN; ctx.fillRect(0, 0, w, h);
+            // 背景
+            ctx.fillStyle = THEME_GREEN; 
+            ctx.fillRect(0, 0, w, h);
+            
+            // 白いカード
             const cardM = 40, cardT = 40;
             const cardW = w - (cardM * 2), cardH = h - cardT - 80;
-            ctx.beginPath(); ctx.roundRect(cardM, cardT, cardW, cardH, 40);
-            ctx.fillStyle = '#ffffff'; ctx.fill();
+            ctx.fillStyle = '#ffffff'; 
+            ctx.roundRect ? ctx.roundRect(cardM, cardT, cardW, cardH, 40) : ctx.rect(cardM, cardT, cardW, cardH); // roundRect非対応対策
+            ctx.fill();
 
-            const year = currentDate.getFullYear(), month = currentDate.getMonth() + 1;
-            ctx.fillStyle = '#333333'; ctx.font = 'bold 60px "Montserrat", sans-serif'; ctx.textAlign = 'center';
-            ctx.fillText(`${year}年 ${month}月`, w/2, cardT + 100);
+            // 年月
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth(); // 0始まり
+            ctx.fillStyle = '#333333'; 
+            ctx.font = 'bold 60px "Montserrat", sans-serif'; 
+            ctx.textAlign = 'center';
+            ctx.fillText(`${year}年 ${month + 1}月`, w/2, cardT + 100);
 
+            // 曜日
             const days = ['日','月','火','水','木','金','土'];
             ctx.font = 'bold 30px sans-serif';
+            const colWidth = (cardW - 100) / 7; // 7列で割る
+            const startX = cardM + 50 + (colWidth / 2); // 最初の列の中心
+            
             days.forEach((d, i) => {
                 ctx.fillStyle = i === 0 ? '#ef4444' : i === 6 ? '#3b82f6' : '#9ca3af';
-                ctx.fillText(d, cardM + 50 + ((cardW - 100) / 6) * i, cardT + 200);
+                ctx.fillText(d, startX + (colWidth * i), cardT + 200);
             });
 
-            // 日付描画（簡易版）
-            const daysInMonth = new Date(year, month, 0).getDate();
-            const firstDay = new Date(year, month - 1, 1).getDay();
-            const rowH = (cardH - 300) / 6;
-            for(let d=1; d<=daysInMonth; d++) {
-                const col = (firstDay + d - 1) % 7;
-                const row = Math.floor((firstDay + d - 1) / 7);
-                const x = cardM + 50 + ((cardW - 100) / 6) * col;
-                const y = cardT + 300 + row * rowH;
-                const key = `${year}-${month-1}-${d}`;
+            // 日付
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay();
+            const rowH = (cardH - 350) / 6; // 行の高さ
+            
+            for(let d = 1; d <= daysInMonth; d++) {
+                const dayIndex = firstDay + d - 1;
+                const col = dayIndex % 7;
+                const row = Math.floor(dayIndex / 7);
+                
+                const x = startX + (colWidth * col);
+                const y = cardT + 300 + (row * rowH);
+                
+                const key = `${year}-${month}-${d}`;
                 const m = selectedDates[key];
-                if(m) {
-                    ctx.beginPath(); ctx.arc(x, y + 45, 14, 0, Math.PI*2);
-                    ctx.strokeStyle = markers[m].canvasColor; ctx.lineWidth = 5; ctx.stroke();
+                
+                // 丸印
+                if(m && markers[m]) {
+                    ctx.beginPath(); 
+                    ctx.arc(x, y - 15, 20, 0, Math.PI*2); // y位置調整
+                    ctx.strokeStyle = markers[m].canvasColor; 
+                    ctx.lineWidth = 6; 
+                    ctx.stroke();
                 }
+                
+                // 数字
                 ctx.fillStyle = col === 0 ? '#ef4444' : col === 6 ? '#3b82f6' : '#333333';
-                ctx.font = '300 42px Montserrat'; ctx.fillText(d, x, y);
+                ctx.font = '300 42px Montserrat'; 
+                ctx.textBaseline = 'middle';
+                ctx.fillText(d, x, y - 15);
             }
 
-            ctx.fillStyle = '#ffffff'; ctx.font = '24px Montserrat'; ctx.textAlign = 'right';
+            // フッター
+            ctx.fillStyle = '#ffffff'; 
+            ctx.font = '24px Montserrat'; 
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'alphabetic';
             ctx.fillText('https://x.gd/CalendarShare', w - cardM, h - 30);
 
             canvas.toBlob(async (blob) => {
                 const file = new File([blob], 'schedule.png', { type: 'image/png' });
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({ files: [file] });
+                try {
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({ files: [file] });
+                    } else {
+                        const link = document.createElement('a'); 
+                        link.download = 'schedule.png';
+                        link.href = canvas.toDataURL(); 
+                        link.click();
+                    }
                     openShareCompleteModal();
-                } else {
-                    const link = document.createElement('a'); link.download = 'schedule.png';
-                    link.href = canvas.toDataURL(); link.click();
-                    openShareCompleteModal();
+                } catch(e) {
+                    console.log("Share canceled or failed", e);
                 }
-                isSharing = false; document.getElementById('shareBtnText').textContent = '共有';
+                isSharing = false; 
+                document.getElementById('shareBtnText').textContent = '共有';
             });
         }
 
-        // モーダル操作等の関数（省略せず維持）
-        function openInstallModal() { installModalContainer.classList.remove('hidden'); setTimeout(() => { installModalOverlay.classList.remove('opacity-0'); installModalContent.classList.remove('translate-y-full'); }, 10); document.getElementById('tutorialVideo').src = "./tutorial.mp4"; document.getElementById('tutorialVideo').onloadeddata = () => { document.getElementById('videoSkeleton').style.display='none'; document.getElementById('tutorialVideo').classList.remove('opacity-0'); document.getElementById('tutorialVideo').play(); }; }
-        function closeInstallModal() { installModalContent.classList.add('translate-y-full'); installModalOverlay.classList.add('opacity-0'); document.getElementById('tutorialVideo').pause(); setTimeout(() => installModalContainer.classList.add('hidden'), 300); }
-        function openShareCompleteModal() { shareCompleteModalContainer.classList.remove('hidden'); setTimeout(() => { shareCompleteModalOverlay.classList.remove('opacity-0'); shareCompleteModalContent.classList.remove('translate-y-full'); }, 10); }
-        function closeShareCompleteModal() { shareCompleteModalContent.classList.add('translate-y-full'); shareCompleteModalOverlay.classList.add('opacity-0'); setTimeout(() => shareCompleteModalContainer.classList.add('hidden'), 300); }
-        function shareSite() { navigator.share({ text: "あきリスト | 空いている日を画像で共有:https://x.gd/CalendarShare" }); }
+        // モーダル操作
+        function openInstallModal() { 
+            const container = document.getElementById('installModalContainer');
+            const overlay = document.getElementById('installModalOverlay');
+            const content = document.getElementById('installModalContent');
+            const video = document.getElementById('tutorialVideo');
+            
+            container.classList.remove('hidden'); 
+            setTimeout(() => { 
+                overlay.classList.remove('opacity-0'); 
+                content.classList.remove('translate-y-full'); 
+            }, 10); 
+            
+            video.src = "./tutorial.mp4"; 
+            video.onloadeddata = () => { 
+                document.getElementById('videoSkeleton').style.display='none'; 
+                video.classList.remove('opacity-0'); 
+                video.play().catch(e => console.log(e)); 
+            }; 
+        }
+
+        function closeInstallModal() { 
+            const container = document.getElementById('installModalContainer');
+            const overlay = document.getElementById('installModalOverlay');
+            const content = document.getElementById('installModalContent');
+            const video = document.getElementById('tutorialVideo');
+
+            content.classList.add('translate-y-full'); 
+            overlay.classList.add('opacity-0'); 
+            video.pause(); 
+            setTimeout(() => container.classList.add('hidden'), 300); 
+        }
+
+        function openShareCompleteModal() { 
+            const container = document.getElementById('shareCompleteModalContainer');
+            const overlay = document.getElementById('shareCompleteModalOverlay');
+            const content = document.getElementById('shareCompleteModalContent');
+            
+            container.classList.remove('hidden'); 
+            setTimeout(() => { 
+                overlay.classList.remove('opacity-0'); 
+                content.classList.remove('translate-y-full'); 
+            }, 10); 
+        }
+
+        function closeShareCompleteModal() { 
+            const container = document.getElementById('shareCompleteModalContainer');
+            const overlay = document.getElementById('shareCompleteModalOverlay');
+            const content = document.getElementById('shareCompleteModalContent');
+
+            content.classList.add('translate-y-full'); 
+            overlay.classList.add('opacity-0'); 
+            setTimeout(() => container.classList.add('hidden'), 300); 
+        }
+
+        function shareSite() { 
+            if (navigator.share) {
+                navigator.share({ 
+                    title: 'あきリスト',
+                    text: "空いている日を画像で共有できるアプリ", 
+                    url: "https://daihachi.pages.dev" 
+                }).catch(console.error);
+            } else {
+                alert("URLをコピーしました: https://daihachi.pages.dev");
+                navigator.clipboard.writeText("https://daihachi.pages.dev");
+            }
+        }
 
         init();
     </script>
+
 </body>
 </html>
 

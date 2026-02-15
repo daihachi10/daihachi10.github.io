@@ -1048,7 +1048,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const numberDiv = document.createElement("div");
       numberDiv.className = "number";
       numberDiv.style.transform = `rotate(${
-        i * segmentAngle + segmentAngle / 2
+        gradientStartAngle + i * segmentAngle + segmentAngle / 2 - 90
       }deg)`;
       if (noDuplicatesCheckbox.checked && drawnNumbers.includes(label)) {
         numberDiv.classList.add("drawn");
@@ -1066,6 +1066,14 @@ document.addEventListener("DOMContentLoaded", () => {
         span.style.fontSize = "1.1rem";
       }
       span.style.whiteSpace = "nowrap";
+      if (useNamesCheckbox.checked) {
+        // 名前モード: 放射方向にテキストを表示 (回転なし)
+        span.style.transform = "none";
+      } else {
+        // 数字モード: 幅を統一して回転中心を揃える
+        span.style.minWidth = "2.5em";
+        span.style.textAlign = "center";
+      }
       numberDiv.appendChild(span);
       rouletteWheel.appendChild(numberDiv);
     }
@@ -1076,7 +1084,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultIndexOnWheel = numbers.indexOf(resultNumber);
     const randomOffset = (Math.random() - 0.5) * segmentAngle * 0.75;
     const targetSegmentCenterAngle =
-      resultIndexOnWheel * segmentAngle + segmentAngle / 2;
+      gradientStartAngle + resultIndexOnWheel * segmentAngle + segmentAngle / 2 - 90;
     const finalTargetAngle = targetSegmentCenterAngle + randomOffset;
     currentRouletteResultNumber = resultNumber;
     currentRouletteFinalTargetAngle = finalTargetAngle;
@@ -1177,6 +1185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     stopRouletteAudio();
     body.classList.remove("focus-mode-on");
+    body.classList.add("focus-mode-off");
   });
   const updateTimerDisplay = () => {
     const minutes = Math.floor(timerModeTimeLeft / 60);

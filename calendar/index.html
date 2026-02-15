@@ -6,6 +6,8 @@
     <title>あきリスト | 空いている日を画像で共有</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@latest/dist/driver.css"/>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +21,7 @@
             font-family: 'Montserrat', 'Noto Sans JP', sans-serif;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            color-scheme: light dark;
         }
         .safe-top { padding-top: env(safe-area-inset-top); }
         .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
@@ -42,6 +45,139 @@
         .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        /* ダークモード */
+        @media (prefers-color-scheme: dark) {
+            /* body */
+            body.bg-gray-50 { background-color: #111827 !important; }
+            body.text-gray-900 { color: #e5e7eb !important; }
+
+            /* ヘッダー */
+            header.bg-white { background-color: #1f2937 !important; }
+            header.border-gray-100 { border-color: #374151 !important; }
+            header .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
+
+            /* ヘッダー内のボタン */
+            #googleBtn.bg-white { background-color: #374151 !important; }
+            #googleBtn.border-gray-300 { border-color: #4b5563 !important; }
+            #googleBtn.text-gray-700 { color: #d1d5db !important; }
+            #googleBtn:hover { background-color: #4b5563 !important; }
+
+            #installBtn.bg-white { background-color: #1f2937 !important; }
+            #installBtn:hover { background-color: #374151 !important; }
+
+            /* ナビ部分（月切り替え） */
+            .bg-white.p-2.shadow-sm.border-b.border-gray-50 { background-color: #1f2937 !important; border-color: #374151 !important; }
+            #currentMonthLabel.text-gray-800 { color: #e5e7eb !important; }
+            #prevMonth.text-gray-600, #nextMonth.text-gray-600 { color: #9ca3af !important; }
+            #prevMonth:hover, #nextMonth:hover { background-color: #374151 !important; }
+
+            /* 曜日ヘッダー */
+            .grid.grid-cols-7.text-gray-400 > div { color: #6b7280 !important; }
+            .grid.grid-cols-7.text-gray-400 > div.text-red-500 { color: #f87171 !important; }
+            .grid.grid-cols-7.text-gray-400 > div.text-blue-500 { color: #60a5fa !important; }
+
+            /* カレンダーグリッド */
+            #calendarGrid.bg-gray-200 { background-color: #374151 !important; }
+            #calendarGrid.border-gray-200 { border-color: #374151 !important; }
+            #calendarGrid .bg-white { background-color: #1f2937 !important; }
+            #calendarGrid .bg-gray-50\/50 { background-color: #111827 !important; }
+            #calendarGrid .bg-red-50\/30 { background-color: rgba(127, 29, 29, 0.15) !important; }
+            #calendarGrid .bg-blue-50\/30 { background-color: rgba(30, 58, 138, 0.15) !important; }
+            #calendarGrid .hover\:bg-gray-50:hover { background-color: #374151 !important; }
+
+            /* カレンダー日付テキスト */
+            #calendarGrid .text-gray-600 { color: #d1d5db !important; }
+            #calendarGrid .text-red-500 { color: #f87171 !important; }
+            #calendarGrid .text-blue-500 { color: #60a5fa !important; }
+
+            /* イベントカラー（ダークモード用） */
+            #calendarGrid .bg-blue-100 { background-color: rgba(59, 130, 246, 0.2) !important; }
+            #calendarGrid .text-blue-800 { color: #93c5fd !important; }
+            #calendarGrid .border-blue-200 { border-color: rgba(59, 130, 246, 0.4) !important; }
+
+            #calendarGrid .bg-green-100 { background-color: rgba(34, 197, 94, 0.2) !important; }
+            #calendarGrid .text-green-800 { color: #86efac !important; }
+            #calendarGrid .border-green-200 { border-color: rgba(34, 197, 94, 0.4) !important; }
+
+            #calendarGrid .bg-indigo-100 { background-color: rgba(99, 102, 241, 0.2) !important; }
+            #calendarGrid .text-indigo-800 { color: #a5b4fc !important; }
+            #calendarGrid .border-indigo-200 { border-color: rgba(99, 102, 241, 0.4) !important; }
+
+            #calendarGrid .bg-yellow-100 { background-color: rgba(234, 179, 8, 0.2) !important; }
+            #calendarGrid .text-yellow-800 { color: #fde047 !important; }
+            #calendarGrid .border-yellow-200 { border-color: rgba(234, 179, 8, 0.4) !important; }
+
+            #calendarGrid .bg-pink-100 { background-color: rgba(236, 72, 153, 0.2) !important; }
+            #calendarGrid .text-pink-800 { color: #f9a8d4 !important; }
+            #calendarGrid .border-pink-200 { border-color: rgba(236, 72, 153, 0.4) !important; }
+
+            #calendarGrid .bg-purple-100 { background-color: rgba(168, 85, 247, 0.2) !important; }
+            #calendarGrid .text-purple-800 { color: #d8b4fe !important; }
+            #calendarGrid .border-purple-200 { border-color: rgba(168, 85, 247, 0.4) !important; }
+
+            #calendarGrid .bg-orange-100 { background-color: rgba(249, 115, 22, 0.2) !important; }
+            #calendarGrid .text-orange-800 { color: #fdba74 !important; }
+            #calendarGrid .border-orange-200 { border-color: rgba(249, 115, 22, 0.4) !important; }
+
+            /* メインエリア */
+            main { background-color: #111827 !important; }
+
+            /* フッター（モードセレクター） */
+            .bg-white\/95.backdrop-blur-sm { background-color: rgba(31, 41, 55, 0.95) !important; }
+            .bg-white\/95.border-gray-100 { border-color: #374151 !important; }
+            .bg-white\/95 .shadow-\[0_-4px_20px_rgba\(0\,0\,0\,0\.05\)\] { box-shadow: 0 -4px 20px rgba(0,0,0,0.3) !important; }
+
+            /* モードボタン */
+            #modeSelector .bg-gray-100 { background-color: #374151 !important; }
+            #modeSelector .text-gray-400 { color: #9ca3af !important; }
+            #modeSelector .text-gray-800 { color: #e5e7eb !important; }
+            #modeSelector .ring-white { --tw-ring-color: #1f2937 !important; }
+            #modeSelector .bg-gray-200 { background-color: #4b5563 !important; }
+            #modeSelector .text-gray-600 { color: #d1d5db !important; }
+
+            /* マーカーの白背景 */
+            #calendarGrid .bg-white.rounded-full { background-color: #1f2937 !important; }
+
+            /* モーダル */
+            #installModalContent.bg-white,
+            #shareCompleteModalContent.bg-white { background-color: #1f2937 !important; }
+            #installModalContent .border-gray-100,
+            #shareCompleteModalContent .border-gray-100 { border-color: #374151 !important; }
+            #installModalContent .text-gray-800,
+            #shareCompleteModalContent .text-gray-800 { color: #e5e7eb !important; }
+            #installModalContent .bg-gray-100,
+            #shareCompleteModalContent .bg-gray-100 { background-color: #374151 !important; }
+            #installModalContent .text-gray-500,
+            #shareCompleteModalContent .text-gray-500 { color: #9ca3af !important; }
+            #installModalContent .bg-gray-50,
+            #shareCompleteModalContent .bg-gray-50 { background-color: #111827 !important; }
+            #installModalContent .text-gray-600,
+            #shareCompleteModalContent .text-gray-600 { color: #d1d5db !important; }
+            #installModalContent .bg-gray-200,
+            #shareCompleteModalContent .bg-gray-200 { background-color: #374151 !important; }
+
+            /* プライバシーポリシーリンク */
+            .text-gray-400.hover\:text-gray-600:hover { color: #9ca3af !important; }
+            .decoration-gray-300 { text-decoration-color: #4b5563 !important; }
+
+            /* 区切り線のスラッシュ */
+            header .text-gray-300 { color: #4b5563 !important; }
+
+            /* 広告コンテナ */
+            .bg-gray-50.flex.justify-center.items-center.overflow-hidden { background-color: #111827 !important; }
+
+            /* ツアー確認ダイアログ */
+            #tourConfirmContent.bg-white { background-color: #1f2937 !important; }
+            #tourConfirmContent .text-gray-800 { color: #e5e7eb !important; }
+            #tourConfirmContent .text-gray-500 { color: #9ca3af !important; }
+            #tourConfirmContent .bg-gray-100 { background-color: #374151 !important; }
+            #tourConfirmContent .text-gray-600 { color: #d1d5db !important; }
+
+            /* ヘルプボタン */
+            #helpBtn { color: #9ca3af !important; }
+            #helpBtn:hover { background-color: #374151 !important; }
         }
     </style>
 
@@ -67,7 +203,7 @@
     <header class="bg-white px-4 py-3 shadow-sm shrink-0 safe-top z-30 border-b border-gray-100">
         <div class="flex justify-between items-center max-w-4xl mx-auto h-10">
             <a href="https://daihachi.pages.dev" class="flex items-center h-full hover:opacity-70 transition-opacity no-underline text-current mr-auto min-w-0">
-                <img src="https://daihachi10.github.io/assets/img/logo.webp" alt="D Logo" class="h-8 w-auto object-contain block shrink-0">
+                <img src="./logo.png" alt="D Logo" class="h-8 w-auto object-contain block shrink-0">
                 <div class="flex items-center h-full pt-1 overflow-hidden whitespace-nowrap"> 
                     <span class="mx-3 text-gray-300 text-2xl font-light transform -skew-x-12 leading-none shrink-0">/</span>
                     <span class="text-[#1db31d] text-lg font-bold tracking-wide hidden sm:inline leading-none truncate">あきリスト</span>
@@ -75,6 +211,9 @@
             </a>
 
             <div class="flex items-center gap-2 shrink-0 ml-2">
+                <button id="helpBtn" class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform flex items-center hover:bg-gray-50" title="使い方">
+                    ？
+                </button>
                 <button id="googleBtn" class="bg-white border border-gray-300 text-gray-700 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm active:scale-95 transition-transform flex items-center hover:bg-gray-50">
                     <img src="https://www.gstatic.com/images/branding/product/1x/calendar_2020q4_48dp.png" class="w-4 h-4 mr-1">
                     <span id="googleBtnText">予定読込</span>
@@ -133,28 +272,28 @@
         <div class="flex justify-between items-end max-w-2xl mx-auto px-2" id="modeSelector">
             <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative transform -translate-y-2" data-mode="allDay">
                 <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-colors duration-300 border-[#1db31d] bg-[#1db31d] text-white ring-4 ring-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -960 960 960" fill="currentColor"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
                 </div>
                 <span class="label text-[10px] font-bold text-gray-800">終日</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d]"></div>
             </button>
             <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80" data-mode="am">
                 <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -960 960 960" fill="currentColor"><path d="M440-800v-120h80v120h-80Zm0 760v-120h80v120h-80Zm360-400v-80h120v80H800Zm-760 0v-80h120v80H40Zm708-252-56-56 70-72 58 58-72 70ZM198-140l-58-58 72-70 56 56-70 72Zm564 0-70-72 56-56 72 70-58 58ZM212-692l-72-70 58-58 70 72-56 56Zm98 382q-70-70-70-170t70-170q70-70 170-70t170 70q70 70 70 170t-70 170q-70 70-170 70t-170-70Zm283.5-56.5Q640-413 640-480t-46.5-113.5Q547-640 480-640t-113.5 46.5Q320-547 320-480t46.5 113.5Q413-320 480-320t113.5-46.5ZM480-480Z"/></svg>
                 </div>
                 <span class="label text-[10px] font-bold text-gray-400">午前</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d] hidden"></div>
             </button>
             <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80" data-mode="pm">
                 <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19c0-3.037-2.463-5.5-5.5-5.5S6.5 15.963 6.5 19"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -960 960 960" fill="currentColor"><path d="m734-556-56-58 86-84 56 56-86 86ZM80-160v-80h800v80H80Zm360-520v-120h80v120h-80ZM226-558l-84-86 56-56 86 86-58 56Zm71 158h366q-23-54-72-87t-111-33q-62 0-111 33t-72 87Zm-97 80q0-117 81.5-198.5T480-600q117 0 198.5 81.5T760-320H200Zm280-80Z"/></svg>
                 </div>
                 <span class="label text-[10px] font-bold text-gray-400">午後</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-[#1db31d] hidden"></div>
             </button>
             <button class="mode-btn flex flex-col items-center space-y-1 transition-all duration-300 relative opacity-50 hover:opacity-80" data-mode="custom">
                 <div class="icon-container w-10 h-10 rounded-full flex items-center justify-center shadow-sm transition-colors duration-300 bg-gray-100 text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 -960 960 960" fill="currentColor"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
                 </div>
                 <span class="label text-[10px] font-bold text-gray-400">解除</span>
                 <div class="indicator absolute -bottom-4 w-1 h-1 rounded-full bg-gray-400 hidden"></div>
@@ -189,6 +328,7 @@
                 <h3 class="font-bold text-lg text-gray-800">共有完了！</h3>
                 <button onclick="closeShareCompleteModal()" class="p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
             </div>
+            <div class="text-center text-gray-600 px-4 pb-4">よろしければ、このアプリを<br>お友達にも教えてあげてください!</div>
             <div class="overflow-y-auto p-5 safe-bottom flex flex-col items-center">
                 <div class="mb-6 bg-gray-50 flex justify-center items-center overflow-hidden border border-gray-100 rounded-lg" style="width: 300px; height: 250px;">
                     <div class="admax-ads" data-admax-id="2ace92a3707051c590b93ec5c6aaf6b7" style="display:inline-block;"></div>
@@ -201,6 +341,20 @@
     </div>
 
     <canvas id="shareCanvas" style="display: none;"></canvas>
+
+    <!-- ツアー確認ダイアログ -->
+    <div id="tourConfirmContainer" class="fixed inset-0 z-[60] flex justify-center items-center pointer-events-none hidden">
+        <div id="tourConfirmOverlay" class="absolute inset-0 bg-black/50 transition-opacity duration-300 opacity-0 pointer-events-auto" onclick="closeTourConfirm(false)"></div>
+        <div id="tourConfirmContent" class="relative bg-white w-[90%] max-w-sm rounded-2xl shadow-2xl transform transition-all duration-300 scale-90 opacity-0 pointer-events-auto p-6 text-center">
+            <div class="text-4xl mb-3">👋</div>
+            <h3 class="font-bold text-lg text-gray-800 mb-2">はじめまして！</h3>
+            <p class="text-gray-500 text-sm mb-5">使い方のツアーを表示しますか？</p>
+            <div class="flex gap-3">
+                <button onclick="closeTourConfirm(false)" class="flex-1 py-2.5 rounded-full text-sm font-bold text-gray-600 bg-gray-100 active:scale-95 transition-transform hover:bg-gray-200">あとで</button>
+                <button onclick="closeTourConfirm(true)" class="flex-1 py-2.5 rounded-full text-sm font-bold text-white bg-[#1db31d] active:scale-95 transition-transform hover:bg-green-600 shadow-md">表示する</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // --- 設定・状態変数 ---
@@ -647,7 +801,111 @@
         function closeShareCompleteModal(){ shareCompleteModalContent.classList.add('translate-y-full'); shareCompleteModalOverlay.classList.add('opacity-0'); setTimeout(()=>shareCompleteModalContainer.classList.add('hidden'),300); }
         function shareSite(){ const t="あきリスト: https://daihachi.pages.dev"; if(navigator.share) navigator.share({text:t}); else navigator.clipboard.writeText(t).then(()=>alert("URLをコピーしました")); }
 
+        // --- ツアー確認ダイアログ ---
+        function openTourConfirm() {
+            const container = document.getElementById('tourConfirmContainer');
+            const overlay = document.getElementById('tourConfirmOverlay');
+            const content = document.getElementById('tourConfirmContent');
+            container.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                overlay.classList.remove('opacity-0');
+                content.classList.remove('scale-90', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            });
+        }
+
+        function closeTourConfirm(startTour) {
+            const container = document.getElementById('tourConfirmContainer');
+            const overlay = document.getElementById('tourConfirmOverlay');
+            const content = document.getElementById('tourConfirmContent');
+            overlay.classList.add('opacity-0');
+            content.classList.add('scale-90', 'opacity-0');
+            content.classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                container.classList.add('hidden');
+                if (startTour) startGuidedTour();
+            }, 300);
+            localStorage.setItem('akilist_tour_shown', 'true');
+        }
+
+        // --- Driver.js ツアー ---
+        function startGuidedTour() {
+            const driverObj = window.driver.js.driver({
+                showProgress: true,
+                animate: true,
+                nextBtnText: '次へ',
+                prevBtnText: '戻る',
+                doneBtnText: '完了！',
+                progressText: '{{current}} / {{total}}',
+                steps: [
+                    {
+                        element: '#calendarGrid',
+                        popover: {
+                            title: '📅 カレンダー',
+                            description: '空いている日をタップして選択しましょう。選択した日にマークが付きます。',
+                            side: 'top',
+                            align: 'center'
+                        }
+                    },
+                    {
+                        element: '#modeSelector',
+                        popover: {
+                            title: '✏️ モード切り替え',
+                            description: '「終日」「午前」「午後」を選んでからカレンダーをタップ。「解除」で選択を取り消せます。',
+                            side: 'top',
+                            align: 'center'
+                        }
+                    },
+                    {
+                        element: '#shareBtn',
+                        popover: {
+                            title: '📤 共有',
+                            description: '選んだ日程を画像にして共有できます。LINEやメッセージで送りましょう！',
+                            side: 'bottom',
+                            align: 'center'
+                        }
+                    },
+                    {
+                        element: '#googleBtn',
+                        popover: {
+                            title: '📆 予定読込',
+                            description: 'Googleカレンダーの予定を読み込んで、カレンダー上に表示できます。',
+                            side: 'bottom',
+                            align: 'center'
+                        }
+                    },
+                    {
+                        element: '#installBtn',
+                        popover: {
+                            title: '📱 アプリとして使う',
+                            description: 'ホーム画面に追加すると、アプリのようにすぐ開けます。',
+                            side: 'bottom',
+                            align: 'center'
+                        }
+                    },
+                    {
+                        element: '#currentMonthLabel',
+                        popover: {
+                            title: '◀️ 月の切り替え ▶️',
+                            description: '左右の矢印ボタンで他の月に移動できます。',
+                            side: 'bottom',
+                            align: 'center'
+                        }
+                    }
+                ]
+            });
+            driverObj.drive();
+        }
+
+        // ヘルプボタン
+        document.getElementById('helpBtn').onclick = () => startGuidedTour();
+
         init();
+
+        // 初回訪問時にツアー確認ダイアログを表示
+        if (!localStorage.getItem('akilist_tour_shown')) {
+            setTimeout(openTourConfirm, 800);
+        }
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js').then(() => console.log('Service Worker Registered'));

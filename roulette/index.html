@@ -1,847 +1,954 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ルーレット | daihachi</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
 
- 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ルーレット | daihachi</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
 
-    <style>
-:root {
-  --logo-color: #1db31d;
-  --color-primary: #1a73e8;
-  --color-primary-dark: #0f3d7a;
-  --color-primary-light: #e8f0fe;
-  --color-primary-disabled: #a0c3f0;
-  --color-accent: #e94560;
-  --color-text-primary: #333;
-  --color-text-secondary: #5f6368;
-  --color-white: #ffffff;
-  --color-bg: #f0f2f5;
-  --color-bg-alt: #f8f9fa;
-  --color-bg-secondary: #e0e0e0;
-  --color-bg-secondary-hover: #c7c7c7;
-  --color-bg-focus: #dbe4f0;
-  --color-border: #ddd;
-  --color-border-light: #e0e2e5;
-  --color-card: #4a90e2;
-  --color-card-back: #f7f7f7;
-  --color-neutral-dark: #34495e;
-  --shadow-color-light: rgba(0, 0, 0, 0.1);
-  --shadow-color-medium: rgba(0, 0, 0, 0.15);
-  --overlay-bg: rgba(0, 0, 0, 0.6);
-  --roulette-number-bg: rgba(255, 255, 255, 0.8);
-  --radius: 80px;
 
-  /* Drag & Drop specific colors */
-  --drag-dest-highlight: #cce5ff;
-  --drag-line-color: #1a73e8;
-}
 
-/* 基本スタイル */
-body {
-  font-family: "Montserrat", "NotoSansJP", Arial, sans-serif;
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center; /* 垂直方向も中央揃えに */
-  min-height: 100vh;
-  margin: 0;
-  padding: 20px;
-  box-sizing: border-box;
-  transition: background-color 0.5s ease-in-out;
-}
+  <style>
+    :root {
+      --logo-color: #1db31d;
+      --color-primary: #1a73e8;
+      --color-primary-dark: #0f3d7a;
+      --color-primary-light: #e8f0fe;
+      --color-primary-disabled: #a0c3f0;
+      --color-accent: #e94560;
+      --color-text-primary: #333;
+      --color-text-secondary: #5f6368;
+      --color-white: #ffffff;
+      --color-bg: #f0f2f5;
+      --color-bg-alt: #f8f9fa;
+      --color-bg-secondary: #e0e0e0;
+      --color-bg-secondary-hover: #c7c7c7;
+      --color-bg-focus: #dbe4f0;
+      --color-border: #ddd;
+      --color-border-light: #e0e2e5;
+      --color-card: #4a90e2;
+      --color-card-back: #f7f7f7;
+      --color-neutral-dark: #34495e;
+      --shadow-color-light: rgba(0, 0, 0, 0.1);
+      --shadow-color-medium: rgba(0, 0, 0, 0.15);
+      --overlay-bg: rgba(0, 0, 0, 0.6);
+      --roulette-number-bg: rgba(255, 255, 255, 0.8);
+      --radius: 80px;
 
-.hidden-force {
-  display: none !important;
-}
+      /* Drag & Drop specific colors */
+      --drag-dest-highlight: #cce5ff;
+      --drag-line-color: #1a73e8;
+    }
 
-.home {
-  /* font-family: "Caveat", cursive; */
-  text-decoration: none;
-  font-size: 20px;
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  bottom: 20px;
-  right: 70px;
-  color: var(--color-primary);
-}
 
-/* フォーカスモード時の背景 */
-body.focus-mode-on {
-  background-color: var(--color-bg-focus);
-}
+    /* 基本スタイル */
+    body {
+      font-family: "Montserrat", "NotoSansJP", Arial, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* 垂直方向も中央揃えに */
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: background-color 0.5s ease-in-out;
+      overflow-x: hidden !important;
+    }
 
-.container {
-  background-color: var(--color-white);
-  padding: 30px 40px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px var(--shadow-color-light);
-  text-align: center;
-  width: 100%;
-  max-width: 450px;
-  position: relative;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
+    .hidden-force {
+      display: none !important;
+    }
 
-/* フォーカスモード時のコンテナスタイル */
-.focus-mode-on .container {
-  max-width: 80vw;
-  height: 80vh;
-  box-shadow: 0 15px 40px var(--shadow-color-medium);
-}
+    .home {
+      /* font-family: "Caveat", cursive; */
+      text-decoration: none;
+      font-size: 20px;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      bottom: 20px;
+      right: 70px;
+      color: var(--color-primary);
+    }
 
-/* 右上のボタングループ */
-.top-right-buttons {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  display: flex;
-  gap: 10px;
-  z-index: 20;
-  align-items: center;
-}
+    /* フォーカスモード時の背景 */
+    body.focus-mode-on {
+      background-color: var(--color-bg-focus);
+    }
 
-.profile-name-display {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  margin-right: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100px;
-  transition: opacity 0.3s ease-in-out;
-}
+    .container {
+      background-color: var(--color-white);
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px var(--shadow-color-light);
+      text-align: center;
+      width: 100%;
+      max-width: 450px;
+      position: relative;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-.focus-mode-on .profile-name-display {
-  opacity: 0;
-  pointer-events: none;
-}
+    /* フォーカスモード時のコンテナスタイル */
+    .focus-mode-on .container {
+      max-width: 90vw;
+      height: auto;
+      min-height: 80vh;
+      box-shadow: 0 15px 40px var(--shadow-color-medium);
+    }
 
-/* フォーカス切り替えボタン */
-.focus-toggle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border-light);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  transition: all 0.3s ease-in-out;
-}
-.focus-toggle-btn:hover {
-  background-color: var(--color-primary-light);
-  border-color: var(--color-primary-disabled);
-}
-.focus-toggle-btn svg {
-  width: 20px;
-  height: 20px;
-  color: var(--color-text-secondary);
-}
-.focus-mode-off .icon-shrink,
-.focus-mode-on .icon-expand {
-  display: none;
-}
+    /* 右上のボタングループ */
+    .top-right-buttons {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      gap: 10px;
+      z-index: 20;
+      align-items: center;
+    }
 
-h1.main-title {
-  color: var(--color-primary);
-  margin-bottom: 20px;
-}
+    .profile-name-display {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      margin-right: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100px;
+      transition: opacity 0.3s ease-in-out;
+    }
 
-/* 非表示になるコントロールパネルの共通スタイル */
-.control-panel {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.focus-mode-on .control-panel {
-  opacity: 0;
-  transform: translateY(-15px);
-  height: 0;
-  overflow: hidden;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.focus-mode-on h1.main-title {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  margin-bottom: 0;
-}
+    .focus-mode-on .profile-name-display {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-/* ゲームエリア */
-.game-area {
-  min-height: 280px;
-  position: relative;
-  margin-bottom: 20px;
-  transition: min-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.focus-mode-on .game-area {
-  min-height: 450px;
-  margin-top: 40px;
-}
+    /* フォーカス切り替えボタン */
+    .focus-toggle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-border-light);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      transition: all 0.3s ease-in-out;
+    }
 
-.focus-mode-on #result-display {
-  transform: scale(1.2);
-}
+    .focus-toggle-btn:hover {
+      background-color: var(--color-primary-light);
+      border-color: var(--color-primary-disabled);
+    }
 
-/* ルーレットモード */
-.roulette-container {
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.roulette-wheel {
-  transition: transform 5s cubic-bezier(0.1, 0.8, 0.2, 1);
-}
-.focus-mode-on .roulette-container {
-  transform: scale(1.4);
-}
+    .focus-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+      color: var(--color-text-secondary);
+    }
 
-/* カード選択モード */
-.focus-mode-on .card-grid {
-  gap: 15px;
-}
-.focus-mode-on .card {
-  height: 100px;
-}
+    .focus-mode-off .icon-shrink,
+    .focus-mode-on .icon-expand {
+      display: none;
+    }
 
-/* 履歴エリア */
-.history-area {
-  margin-top: 20px;
-}
+    h1.main-title {
+      color: var(--color-primary);
+      margin-bottom: 20px;
+    }
 
-/* モード選択 */
-.mode-selector {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  /* margin-bottom: 20px; */
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.mode-highlight {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: var(--color-primary-light);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 0;
-}
-.mode-btn {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  transition: color 0.3s;
-}
-.mode-btn.active {
-  font-weight: bold;
-}
+    /* 非表示になるコントロールパネルの共通スタイル */
+    .control-panel {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-/* 設定・オプション */
-.settings,
-.options {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-input[type="number"] {
-  width: 60px;
-  padding: 8px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  text-align: center;
-  font-size: 1rem;
-}
-input[type="checkbox"] {
-  transform: scale(1.2);
-  margin-right: 5px;
-}
+    .focus-mode-on .control-panel {
+      opacity: 0;
+      transform: translateY(-15px);
+      height: 0;
+      overflow: hidden;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
 
-/* ボタン */
-.buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-button {
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
-}
-#start-button {
-  width: 450px;
-  padding: 32px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
-#start-button:hover {
-  background-color: var(--color-primary-dark);
-}
-#start-button:disabled {
-  background-color: var(--color-primary-disabled);
-  cursor: not-allowed;
-}
-#reset-button {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  padding: 10px 37px;
-  margin-top: 20px;
-}
-#reset-button:hover {
-  background-color: var(--color-bg-secondary-hover);
-}
-button:active {
-  transform: scale(0.9);
-}
+    .focus-mode-on h1.main-title {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
 
-.mode-content {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transform: translateX(15px);
-  pointer-events: none;
-  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-}
-.mode-content.active {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
+    /* ゲームエリア */
+    .game-area {
+      min-height: 280px;
+      position: relative;
+      margin-bottom: 20px;
+      transition: min-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-/* シンプルモード */
-#simple-mode-area {
-  padding: 20px;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-#simple-mode-area p {
-  margin: 0 0 10px 0;
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-}
-.result-box {
-  font-size: 5rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  min-height: 80px;
-  line-height: 80px;
-}
-.zoom {
-  animation: result-reveal-animation 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    forwards;
-}
+    .focus-mode-on .game-area {
+      min-height: 450px;
+      margin-top: 40px;
+    }
 
-@keyframes result-reveal-animation {
-  0% {
-    transform: translateY(20px) scale(0.8);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(-10px) scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
+    .focus-mode-on #result-display {
+      transform: scale(1.2);
+    }
 
-/* ルーレットモード */
-.roulette-container {
-  position: relative;
-  width: 280px;
-  height: 280px;
-  margin: 0 auto;
-}
+    /* ルーレットモード */
+    .roulette-container {
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-.focus-mode-on .roulette-container {
-  width: 400px;
-  height: 400px;
-}
+    .roulette-wheel {
+      transition: transform 5s cubic-bezier(0.1, 0.8, 0.2, 1);
+    }
 
-.roulette-pointer {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 30px solid var(--color-accent);
-  z-index: 10;
-}
-.roulette-wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 5px solid var(--color-neutral-dark);
-  position: relative;
-  transition: transform 5s cubic-bezier(0.1, 0.8, 0.2, 1);
-  overflow: hidden;
-}
-.roulette-wheel .number {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center left;
-  width: 100px;
-  height: 1px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.roulette-wheel .number span {
-  display: block;
-  transform: rotate(90deg);
-  font-weight: bold;
-  font-size: 1rem;
-  color: var(--color-text-primary);
-  padding: 3px 8px;
-  background-color: var(--roulette-number-bg);
-  border-radius: 5px;
-  transition: opacity 0.3s ease-in-out;
-}
+    /* カード選択モード */
+    .focus-mode-on .card-grid {
+      gap: 15px;
+    }
 
-.roulette-wheel .number.drawn span {
-  opacity: 0.2;
-}
+    .focus-mode-on .card {
+      height: 100px;
+    }
 
-.focus-mode-on .roulette-wheel .number {
-  width: 185px;
-}
+    /* 履歴エリア */
+    .history-area {
+      margin-top: 20px;
+    }
 
-.focus-mode-on .roulette-wheel .number span {
-  background-color: transparent;
-  color: var(--color-white);
-  /* font-size: 1.1rem; ← JSで上書きされるためコメントアウト的扱いになります */
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-}
+    /* モード選択 */
+    .mode-selector {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      /* margin-bottom: 20px; */
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-/* カード選択モード */
-#card-message {
-  margin-top: 10px;
-  color: var(--color-text-secondary);
-  min-height: 24px;
-}
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  gap: 10px;
-  padding: 10px;
-  max-height: 208px;
-  overflow-y: auto;
-}
-.card {
-  height: 60px;
-  background-color: var(--color-card);
-  border-radius: 8px;
-  cursor: pointer;
-  perspective: 1000px;
-}
-.card.flipped {
-  pointer-events: none;
-}
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform-style: preserve-3d;
-}
+    .mode-highlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: var(--color-primary-light);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
 
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-}
-.card-front {
-  background-color: var(--color-card);
-  color: var(--color-white);
-  font-size: 2rem;
-  font-weight: bold;
-}
-.card-front::before {
-  content: "?";
-}
-.card-back {
-  background-color: var(--color-card-back);
-  color: var(--color-text-primary);
-  transform: rotateY(180deg);
-  font-size: 1.8rem;
-  font-weight: bold;
-}
+    .mode-btn {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      transition: color 0.3s;
+    }
 
-/* 履歴エリア */
-#history-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  max-height: 120px;
-  overflow-y: auto;
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  border-radius: 20px;
-  padding: 30px;
-}
-#history-list li {
-  background-color: var(--color-white);
-  color: var(--color-text-secondary);
-  padding: 5px 12px;
-  border-radius: 15px;
-  border: 1px solid var(--color-border-light);
-  font-size: 0.9rem;
-}
+    .mode-btn.active {
+      font-weight: bold;
+    }
 
-/* 結果表示オーバーレイ */
-#result-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--overlay-bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-#result-overlay:not(.hidden) {
-  opacity: 1;
-  pointer-events: auto;
-}
-#result-popup {
-  font-size: 10rem;
-  font-weight: bold;
-  color: var(--color-white);
-  padding: 40px 60px;
-  background-color: var(--color-primary);
-  border-radius: 20px;
-  transform: scale(0.7) translateY(20px);
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.3s ease-in-out;
-}
-#result-overlay:not(.hidden) #result-popup {
-  transform: scale(1) translateY(0);
-  opacity: 1;
-}
+    /* 設定・オプション */
+    .settings,
+    .options {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
 
-/* レスポンシブ対応 */
-@media (max-width: 480px) {
-  .container {
-    padding: 20px;
-  }
-  h1 {
-    font-size: 1.8rem;
-  }
-  .buttons {
-    flex-direction: column;
-  }
-  #result-popup {
-    font-size: 6rem;
-  }
-}
+    input[type="number"] {
+      width: 60px;
+      padding: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      text-align: center;
+      font-size: 1rem;
+    }
 
-/* 設定モーダル */
-#settings-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--overlay-bg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1100;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-}
-#settings-modal:not(.hidden) {
-  opacity: 1;
-  pointer-events: auto;
-}
-.modal-content {
-  background-color: var(--color-white);
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px var(--shadow-color-medium);
-  width: 90%;
-  max-width: 728px;
-  position: relative;
-  transform: scale(0.9);
-  transition: transform 0.3s ease-in-out;
-  max-height: 85vh; /* 画面が小さいときにはみ出さないように */
-  overflow-y: auto; /* スクロール可能に */
-}
-.adbox {
-  text-align: center;
-  padding-bottom: 20px;
-}
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 5px;
+    }
 
-.ad-text {
-  font-size: 0.8rem;
-  color: var(--color-text-secondary);
-}
-#close-ad-btn {
-  margin-bottom: 10px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  background-color: var(--color-bg-secondary);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: 0;
-}
+    /* ボタン */
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
 
-.hidden.adbox {
-  display: none !important;
-}
-#settings-modal:not(.hidden) .modal-content {
-  transform: scale(1);
-}
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: var(--color-text-secondary);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.setting-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-}
-.setting-item label {
-  font-size: 1rem;
-}
-#volume-slider {
-  width: 60%;
-}
+    button {
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+    }
 
-/* =========================================
+    #start-button {
+      width: 100%;
+      max-width: 450px;
+      padding: 32px;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    #start-button:hover {
+      background-color: var(--color-primary-dark);
+    }
+
+    #start-button:disabled {
+      background-color: var(--color-primary-disabled);
+      cursor: not-allowed;
+    }
+
+    #reset-button {
+      background-color: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      padding: 10px 37px;
+      margin-top: 20px;
+    }
+
+    #reset-button:hover {
+      background-color: var(--color-bg-secondary-hover);
+    }
+
+    button:active {
+      transform: scale(0.9);
+    }
+
+    .mode-content {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transform: translateX(15px);
+      pointer-events: none;
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    }
+
+    .mode-content.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    /* シンプルモード */
+    #simple-mode-area {
+      padding: 20px;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    #simple-mode-area p {
+      margin: 0 0 10px 0;
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+    }
+
+    .result-box {
+      font-size: 5rem;
+      font-weight: bold;
+      color: var(--color-primary);
+      min-height: 80px;
+      line-height: 80px;
+    }
+
+    .zoom {
+      animation: result-reveal-animation 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes result-reveal-animation {
+      0% {
+        transform: translateY(20px) scale(0.8);
+        opacity: 0;
+      }
+
+      50% {
+        transform: translateY(-10px) scale(1.1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ルーレットモード */
+    .roulette-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto;
+    }
+
+    .focus-mode-on .roulette-container {
+      width: clamp(250px, 65vmin, 550px);
+      height: clamp(250px, 65vmin, 550px);
+    }
+
+    .roulette-pointer {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 30px solid var(--color-accent);
+      z-index: 10;
+    }
+
+    .roulette-wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 5px solid var(--color-neutral-dark);
+      position: relative;
+      transition: transform 5s cubic-bezier(0.1, 0.8, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .roulette-wheel .number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center left;
+      width: calc(50% - 10px);
+      height: 1px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .roulette-wheel .number span {
+      display: block;
+      transform: rotate(90deg);
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--color-text-primary);
+      padding: 3px 8px;
+      /* background-color: var(--roulette-number-bg); */
+      border-radius: 5px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .roulette-wheel .number.drawn span {
+      opacity: 0.2;
+    }
+
+    .focus-mode-on .roulette-wheel .number {
+      width: calc(50% - 10px);
+    }
+
+    .focus-mode-on .roulette-wheel .number span {
+      background-color: transparent;
+      color: var(--color-white);
+      /* font-size: 1.1rem; ← JSで上書きされるためコメントアウト的扱いになります */
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+    }
+
+    /* カード選択モード */
+    #card-message {
+      margin-top: 10px;
+      color: var(--color-text-secondary);
+      min-height: 24px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 10px;
+      padding: 10px;
+      max-height: 208px;
+      overflow-y: auto;
+    }
+
+    .card {
+      height: 60px;
+      background-color: var(--color-card);
+      border-radius: 8px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+
+    .card.flipped {
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+    }
+
+    .card-front {
+      background-color: var(--color-card);
+      color: var(--color-white);
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .card-front::before {
+      content: "?";
+    }
+
+    .card-back {
+      background-color: var(--color-card-back);
+      color: var(--color-text-primary);
+      transform: rotateY(180deg);
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    /* 履歴エリア */
+    #history-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-height: 120px;
+      overflow-y: auto;
+      background-color: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 30px;
+    }
+
+    #history-list li {
+      background-color: var(--color-white);
+      color: var(--color-text-secondary);
+      padding: 5px 12px;
+      border-radius: 15px;
+      border: 1px solid var(--color-border-light);
+      font-size: 0.9rem;
+    }
+
+    /* 結果表示オーバーレイ */
+    #result-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--overlay-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      pointer-events: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    #result-overlay:not(.hidden) {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #result-popup {
+      font-size: 10rem;
+      font-weight: bold;
+      color: var(--color-white);
+      padding: 40px 60px;
+      background-color: var(--color-primary);
+      border-radius: 20px;
+      transform: scale(0.7) translateY(20px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.3s ease-in-out;
+    }
+
+    #result-overlay:not(.hidden) #result-popup {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      #start-button {
+        width: 100%;
+        max-width: 450px;
+        padding: 24px;
+      }
+
+      #result-popup {
+        font-size: 6rem;
+      }
+
+      .roulette-wheel .number span {
+        font-size: 0.75rem;
+        padding: 2px 5px;
+      }
+    }
+
+    /* 設定モーダル */
+    #settings-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--overlay-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      z-index: 1100;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+    }
+
+    /* サイドバー広告 */
+    .modal-sidebar-ad {
+      flex-shrink: 0;
+      width: 160px;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-white);
+    }
+
+    @media (max-width: 1200px) {
+      .modal-sidebar-ad {
+        display: none;
+      }
+    }
+
+    #settings-modal:not(.hidden) {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background-color: var(--color-white);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px var(--shadow-color-medium);
+      width: 90%;
+      max-width: 728px;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease-in-out;
+      max-height: 85vh;
+      /* 画面が小さいときにはみ出さないように */
+      overflow-y: auto;
+      /* スクロール可能に */
+    }
+
+    .adbox {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+    .ad-text {
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+    }
+
+    #close-ad-btn {
+      margin-bottom: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      background-color: var(--color-bg-secondary);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .hidden.adbox {
+      display: none !important;
+    }
+
+    #settings-modal:not(.hidden) .modal-content {
+      transform: scale(1);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: var(--color-text-secondary);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .setting-item label {
+      font-size: 1rem;
+    }
+
+    #volume-slider {
+      width: 60%;
+    }
+
+    /* =========================================
          プロファイル・フォルダ管理セクション (NEW)
          ========================================= */
-.profiles-section {
-  margin-top: 20px;
-  text-align: left;
-}
-.profiles-section h3 {
-  margin-bottom: 10px;
-  color: var(--color-text-primary);
-}
+    .profiles-section {
+      margin-top: 20px;
+      text-align: left;
+    }
 
-/* ツリー表示用コンテナ */
-#profiles-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-height: 50px;
-  padding-bottom: 20px;
-}
+    .profiles-section h3 {
+      margin-bottom: 10px;
+      color: var(--color-text-primary);
+    }
 
-/* アイテム（プロファイル・フォルダ共通） */
-.tree-item {
-  position: relative;
-  user-select: none;
-}
+    /* ツリー表示用コンテナ */
+    #profiles-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-height: 50px;
+      padding-bottom: 20px;
+    }
 
-/* プロファイルアイテム */
-.profile-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.profile-item.active {
-  background-color: var(--color-primary-light);
-  border-color: var(--color-primary);
-  font-weight: bold;
-}
-.profile-item:hover:not(.active) {
-  background-color: var(--color-bg-secondary);
-}
-.profile-item .profile-name {
-  flex-grow: 1;
-}
+    /* アイテム（プロファイル・フォルダ共通） */
+    .tree-item {
+      position: relative;
+      user-select: none;
+    }
 
-/* フォルダアイテム */
-.folder-item {
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  background-color: #fcfcfc;
-  margin-bottom: 5px;
-  overflow: hidden;
-}
-.folder-header {
-  display: flex;
-  align-items: center;
-  padding: 10px 12px;
-  background-color: #eaeaea;
-  cursor: pointer;
-  font-weight: bold;
-  color: var(--color-neutral-dark);
-  gap: 8px;
-}
-.folder-header:hover {
-  background-color: #dcdcdc;
-}
-.folder-content {
-  padding: 5px 5px 5px 20px; /* 左側にインデント */
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-height: 10px; /* ドロップ領域確保 */
-  background-color: #f9f9f9;
-}
-.folder-content.collapsed {
-  display: none;
-}
-.folder-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  color: var(--color-text-secondary);
-  margin-right: 2px;
-}
-.folder-arrow svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
-}
+    /* プロファイルアイテム */
+    .profile-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background-color: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
 
-/* アイコン */
-.icon-folder,
-.icon-profile {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-  color: var(--color-text-secondary);
-}
-.folder-header .icon-folder {
-  color: #ffca28; /* Folder Color */
-}
+    .profile-item.active {
+      background-color: var(--color-primary-light);
+      border-color: var(--color-primary);
+      font-weight: bold;
+    }
 
-/* DnD Visual Feedback */
-.drag-over-folder {
-  background-color: var(--drag-dest-highlight) !important;
-  border: 2px dashed var(--color-primary) !important;
-}
-.drag-over-top {
-  border-top: 3px solid var(--drag-line-color) !important;
-}
-.drag-over-bottom {
-  border-bottom: 3px solid var(--drag-line-color) !important;
-}
-.tree-item.dragging {
-  opacity: 0.5;
-}
+    .profile-item:hover:not(.active) {
+      background-color: var(--color-bg-secondary);
+    }
 
-/* アクションボタン（ツリー内の3点リーダー） */
-.item-actions {
-  margin-left: auto;
-  display: flex;
-  gap: 5px;
-}
-.action-btn {
-  background: none;
-  border: none;
-  color: var(--color-text-secondary);
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 20px;
-  opacity: 0.6;
-  transition: opacity 0.2s, background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.tree-item:hover .action-btn,
-.folder-header:hover .action-btn {
-  opacity: 1;
-}
-.action-btn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
+    .profile-item .profile-name {
+      flex-grow: 1;
+    }
 
-/* 新規追加ボタン（ドロップダウン） */
-.add-menu-wrapper {
-  position: relative;
-  display: inline-block;
-  margin-top: 10px;
-}
-#add-btn-trigger {
-  /* padding: 8px 16px;
+    /* フォルダアイテム */
+    .folder-item {
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      background-color: #fcfcfc;
+      margin-bottom: 5px;
+      overflow: hidden;
+    }
+
+    .folder-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      background-color: #eaeaea;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--color-neutral-dark);
+      gap: 8px;
+    }
+
+    .folder-header:hover {
+      background-color: #dcdcdc;
+    }
+
+    .folder-content {
+      padding: 5px 5px 5px 20px;
+      /* 左側にインデント */
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-height: 10px;
+      /* ドロップ領域確保 */
+      background-color: #f9f9f9;
+    }
+
+    .folder-content.collapsed {
+      display: none;
+    }
+
+    .folder-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      color: var(--color-text-secondary);
+      margin-right: 2px;
+    }
+
+    .folder-arrow svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* アイコン */
+    .icon-folder,
+    .icon-profile {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      color: var(--color-text-secondary);
+    }
+
+    .folder-header .icon-folder {
+      color: #ffca28;
+      /* Folder Color */
+    }
+
+    /* DnD Visual Feedback */
+    .drag-over-folder {
+      background-color: var(--drag-dest-highlight) !important;
+      border: 2px dashed var(--color-primary) !important;
+    }
+
+    .drag-over-top {
+      border-top: 3px solid var(--drag-line-color) !important;
+    }
+
+    .drag-over-bottom {
+      border-bottom: 3px solid var(--drag-line-color) !important;
+    }
+
+    .tree-item.dragging {
+      opacity: 0.5;
+    }
+
+    /* アクションボタン（ツリー内の3点リーダー） */
+    .item-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 5px;
+    }
+
+    .action-btn {
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 20px;
+      opacity: 0.6;
+      transition: opacity 0.2s, background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tree-item:hover .action-btn,
+    .folder-header:hover .action-btn {
+      opacity: 1;
+    }
+
+    .action-btn:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* 新規追加ボタン（ドロップダウン） */
+    .add-menu-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    #add-btn-trigger {
+      /* padding: 8px 16px;
   font-size: 0.9rem;
   background-color: var(--color-bg-secondary);
   border: 1px dashed var(--color-border);
@@ -849,1121 +956,987 @@ button:active {
   border-radius: var(--radius);
   cursor: pointer; */
 
-  background-color: var(--color-bg-secondary) !important;
-  border: 1px dashed var(--color-border);
-  color: var(--color-text-secondary) !important;
-  border-radius: var(--radius);
-  padding: 8px 16px !important;
-  margin-top: 10px;
-  background: none;
-  color: var(--color-primary);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s, transform 0.1s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-#add-btn-trigger:hover {
-  background-color: var(--color-bg-secondary-hover);
-}
-.add-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid var(--color-border);
-  border-radius: 22px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: none;
-  z-index: 100;
-  min-width: 220px;
-  overflow: hidden;
-}
-.add-dropdown.visible {
-  display: block;
-}
-.add-option {
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  text-align: left;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.add-option:hover {
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
-}
+      background-color: var(--color-bg-secondary) !important;
+      border: 1px dashed var(--color-border);
+      color: var(--color-text-secondary) !important;
+      border-radius: var(--radius);
+      padding: 8px 16px !important;
+      margin-top: 10px;
+      background: none;
+      color: var(--color-primary);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
 
-/* プロファイル用カスタムコンテキストメニュー */
-#profile-context-menu {
-  position: fixed;
-  z-index: 1200;
-  background-color: var(--color-white);
-  border-radius: 22px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  padding: 8px 0;
-  min-width: 150px;
-  opacity: 0;
-  transform: scale(0.95);
-  transform-origin: top left;
-  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
-  pointer-events: none;
-}
+    #add-btn-trigger:hover {
+      background-color: var(--color-bg-secondary-hover);
+    }
 
-#profile-context-menu.visible {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-}
+    .add-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: none;
+      z-index: 100;
+      min-width: 220px;
+      overflow: hidden;
+    }
 
-.context-menu-item {
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--color-text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+    .add-dropdown.visible {
+      display: block;
+    }
 
-.context-menu-item:hover {
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
-}
+    .add-option {
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-align: left;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.context-menu-separator {
-  height: 1px;
-  background-color: var(--color-border);
-  margin: 5px 0;
-}
+    .add-option:hover {
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+    }
 
-.focus-mode-on #roulette-mode-area {
-  margin-top: 120px;
-}
+    /* プロファイル用カスタムコンテキストメニュー */
+    #profile-context-menu {
+      position: fixed;
+      z-index: 1200;
+      background-color: var(--color-white);
+      border-radius: 22px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      padding: 8px 0;
+      min-width: 150px;
+      opacity: 0;
+      transform: scale(0.95);
+      transform-origin: top left;
+      transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+      pointer-events: none;
+    }
 
-.focus-mode-on #result-display {
-  padding-top: 200px;
-  font-size: 15rem;
-}
+    #profile-context-menu.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
 
-body {
-  overflow: hidden;
-}
+    .context-menu-item {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--color-text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-#names-list,
-#exclude-numbers,
-#history-list {
-  border-radius: 20px !important;
-}
-#reset-local-storage-btn {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  padding: 10px 20px;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s, transform 0.1s;
-}
+    .context-menu-item:hover {
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+    }
 
-/* インポートボタン用スタイル */
-#import-profile-btn {
-  background-color: var(--color-bg-secondary) !important;
-  border: 1px dashed var(--color-border);
-  color: var(--color-text-secondary) !important;
-  border-radius: var(--radius);
-  padding: 8px 16px !important;
-  margin-top: 10px;
-  background: none;
-  color: var(--color-primary);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s, transform 0.1s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
+    .context-menu-separator {
+      height: 1px;
+      background-color: var(--color-border);
+      margin: 5px 0;
+    }
 
-.github-open-button {
-  padding-left: 15px;
-  color: var(--color-primary);
-  text-decoration: none;
-}
+    .focus-mode-on #roulette-mode-area {
+      margin-top: 60px;
+    }
 
-#open-in-new-tab-icon {
-  color: var(--color-primary);
-  fill: var(--color-primary);
-}
+    .focus-mode-on #result-display {
+      padding-top: 200px;
+      font-size: 15rem;
+    }
 
-/* ★★★ 新着情報セクションのスタイル ★★★ */
-.news-section {
-  margin-top: 25px;
-  text-align: left;
-}
+    body {
+      overflow: auto;
+    }
 
-.news-box {
-  height: 130px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
+    #names-list,
+    #exclude-numbers,
+    #history-list {
+      border-radius: 20px !important;
+    }
 
-.news-section h3 {
-  text-decoration: none;
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  color: var(--color-text-primary);
-}
+    #reset-local-storage-btn {
+      background-color: var(--color-bg-secondary);
+      color: var(--color-text-primary);
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.1s;
+    }
 
-.reload-link {
-  text-decoration: none;
-  color: var(--color-text-primary);
-}
+    /* インポートボタン用スタイル */
+    #import-profile-btn {
+      background-color: var(--color-bg-secondary) !important;
+      border: 1px dashed var(--color-border);
+      color: var(--color-text-secondary) !important;
+      border-radius: var(--radius);
+      padding: 8px 16px !important;
+      margin-top: 10px;
+      background: none;
+      color: var(--color-primary);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.3s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
 
-.news-item {
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 15px;
-  background-color: var(--color-bg-alt);
-  margin-bottom: 10px;
-  scroll-snap-align: start;
-}
-.news-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.news-version {
-  font-weight: bold;
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-}
-.news-title {
-  color: #000000;
-  font-weight: bold;
-  font-size: 1rem;
-  color: var(--color-text-primary);
-}
-.news-detail {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-  margin-left: 2px;
-}
+    .github-open-button {
+      padding-left: 15px;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
 
-/* Timer Display Styles */
-.timer-display {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 10em;
-  font-weight: bold;
-  color: var(--color-primary);
-  z-index: 1000;
-  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
-}
+    #open-in-new-tab-icon {
+      color: var(--color-primary);
+      fill: var(--color-primary);
+    }
 
-.result-timer-display {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2em;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  z-index: 1001;
-}
+    /* ★★★ 新着情報セクションのスタイル ★★★ */
+    .news-section {
+      margin-top: 25px;
+      text-align: left;
+    }
 
-/* Timer Mode Specific Styles */
-#timer-mode-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
+    .news-box {
+      height: 130px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
 
-.timer-input-group {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
+    .news-section h3 {
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: var(--color-text-primary);
+    }
 
-.timer-input-group input[type="number"] {
-  width: 80px;
-  padding: 10px;
-  font-size: 1.5em;
-  text-align: center;
-  border: 2px solid var(--color-primary);
-  border-radius: 5px;
-}
+    .reload-link {
+      text-decoration: none;
+      color: var(--color-text-primary);
+    }
 
-.timer-input-group span {
-  font-size: 1.5em;
-  font-weight: bold;
-}
+    .news-item {
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 15px;
+      background-color: var(--color-bg-alt);
+      margin-bottom: 10px;
+      scroll-snap-align: start;
+    }
 
-.timer-display-mode {
-  font-size: 5em;
-  font-weight: bold;
-  color: var(--color-primary);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
+    .news-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-.timer-controls {
-  display: flex;
-  gap: 10px;
-}
+    .news-version {
+      font-weight: bold;
+      color: var(--color-white);
+      background-color: var(--color-primary);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
 
-/* =========================================
+    .news-title {
+      color: #000000;
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--color-text-primary);
+    }
+
+    .news-detail {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin-left: 2px;
+    }
+
+    /* Timer Display Styles */
+    .timer-display {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 10em;
+      font-weight: bold;
+      color: var(--color-primary);
+      z-index: 1000;
+      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .result-timer-display {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+    }
+
+    /* Timer Mode Specific Styles */
+    #timer-mode-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .timer-input-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .timer-input-group input[type="number"] {
+      width: 80px;
+      padding: 10px;
+      font-size: 1.5em;
+      text-align: center;
+      border: 2px solid var(--color-primary);
+      border-radius: 5px;
+    }
+
+    .timer-input-group span {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .timer-display-mode {
+      font-size: 5em;
+      font-weight: bold;
+      color: var(--color-primary);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* =========================================
          ダークモード対応 (Device Preference)
          ========================================= */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* テキストカラーの反転 */
-    --color-text-primary: #e4e6eb;
-    --color-text-secondary: #b0b3b8;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        /* テキストカラーの反転 */
+        --color-text-primary: #e4e6eb;
+        --color-text-secondary: #b0b3b8;
 
-    /* 背景色のダーク化 */
-    --color-bg: #18191a; /* 全体の背景 */
-    --color-white: #242526; /* コンテナやカードの背景 */
-    --color-bg-alt: #3a3b3c; /* 履歴やニュースなどの背景 */
-    --color-bg-secondary: #3e4042; /* ボタンやアイテムの背景 */
-    --color-bg-secondary-hover: #4e4f50;
-    --color-bg-focus: #000000; /* フォーカスモード時の背景 */
+        /* 背景色のダーク化 */
+        --color-bg: #18191a;
+        /* 全体の背景 */
+        --color-white: #242526;
+        /* コンテナやカードの背景 */
+        --color-bg-alt: #3a3b3c;
+        /* 履歴やニュースなどの背景 */
+        --color-bg-secondary: #3e4042;
+        /* ボタンやアイテムの背景 */
+        --color-bg-secondary-hover: #4e4f50;
+        --color-bg-focus: #000000;
+        /* フォーカスモード時の背景 */
 
-    /* ボーダーとシャドウ */
-    --color-border: #3e4042;
-    --color-border-light: #2f3031;
-    --shadow-color-light: rgba(0, 0, 0, 0.3);
-    --shadow-color-medium: rgba(0, 0, 0, 0.5);
-    --overlay-bg: rgba(0, 0, 0, 0.8);
+        /* ボーダーとシャドウ */
+        --color-border: #3e4042;
+        --color-border-light: #2f3031;
+        --shadow-color-light: rgba(0, 0, 0, 0.3);
+        --shadow-color-medium: rgba(0, 0, 0, 0.5);
+        --overlay-bg: rgba(0, 0, 0, 0.8);
 
-    /* コンポーネント固有 */
-    --color-card-back: #303030;
-    --color-neutral-dark: #e4e6eb; /* ルーレットの枠線など */
-    --roulette-number-bg: rgba(0, 0, 0, 0.7);
+        /* コンポーネント固有 */
+        --color-card-back: #303030;
+        --color-neutral-dark: #e4e6eb;
+        /* ルーレットの枠線など */
+        --roulette-number-bg: rgba(0, 0, 0, 0.7);
 
-    /* ドラッグ&ドロップ */
-    --drag-dest-highlight: rgba(26, 115, 232, 0.3);
-  }
+        /* ドラッグ&ドロップ */
+        --drag-dest-highlight: rgba(26, 115, 232, 0.3);
+      }
 
-  /* ハードコードされた色のオーバーライド */
+      /* ハードコードされた色のオーバーライド */
 
-  /* 入力フォーム */
-  input[type="number"],
-  input[type="text"],
-  textarea {
-    background-color: #3a3b3c;
-    color: #e4e6eb;
-    border-color: #3e4042;
-  }
+      /* 入力フォーム */
+      input[type="number"],
+      input[type="text"],
+      textarea {
+        background-color: #3a3b3c;
+        color: #e4e6eb;
+        border-color: #3e4042;
+      }
 
-  /* フォルダ・プロファイルツリー */
-  .folder-item {
-    background-color: #242526;
-    border-color: #3e4042;
-  }
-  .folder-header {
-    background-color: #3a3b3c;
-    color: #e4e6eb;
-  }
-  .folder-header:hover {
-    background-color: #4e4f50;
-  }
-  .folder-content {
-    background-color: #18191a;
-  }
-  .profile-item {
-    background-color: #3a3b3c;
-    border-color: #3e4042;
-  }
-  .profile-item:hover:not(.active) {
-    background-color: #4e4f50;
-  }
-  .folder-arrow,
-  .action-btn {
-    color: #b0b3b8;
-  }
+      /* フォルダ・プロファイルツリー */
+      .folder-item {
+        background-color: #242526;
+        border-color: #3e4042;
+      }
 
-  /* ドロップダウン・コンテキストメニュー */
-  .add-dropdown,
-  #profile-context-menu,
-  .modal-content {
-    background-color: #242526;
-    border-color: #3e4042;
-    color: #e4e6eb;
-  }
-  .add-option,
-  .context-menu-item {
-    color: #e4e6eb;
-  }
-  .add-option:hover,
-  .context-menu-item:hover {
-    background-color: #3a3b3c;
-  }
+      .folder-header {
+        background-color: #3a3b3c;
+        color: #e4e6eb;
+      }
 
-  /* アイコン類 */
-  .focus-toggle-btn {
-    background-color: #3a3b3c;
-    border-color: #3e4042;
-  }
-  .focus-toggle-btn:hover {
-    background-color: #4e4f50;
-  }
+      .folder-header:hover {
+        background-color: #4e4f50;
+      }
 
-  /* モード選択タブ */
-  .mode-btn {
-    color: #b0b3b8;
-  }
-  .mode-btn.active {
-    color: #333; /* ハイライト背景が明るいため文字は暗くする */
-  }
+      .folder-content {
+        background-color: #18191a;
+      }
 
-  /* ニュース・履歴 */
-  #history-list,
-  .news-item {
-    background-color: #3a3b3c;
-    border-color: #3e4042;
-  }
-  #history-list li {
-    background-color: #242526;
-    border-color: #3e4042;
-    color: #e4e6eb;
-  }
+      .profile-item {
+        background-color: #3a3b3c;
+        border-color: #3e4042;
+      }
 
-  /* 設定モーダルの閉じるボタンなど */
-  .close-btn {
-    color: #e4e6eb;
-  }
-  .close-btn:hover {
-    background-color: #3a3b3c;
-  }
-}
+      .profile-item:hover:not(.active) {
+        background-color: #4e4f50;
+      }
 
-/* チェックボックス自体をiOS風スイッチの背景にする */
-#use-names-checkbox {
-  /* デフォルトのチェックボックスの見た目を消す */
-  appearance: none;
-  -webkit-appearance: none;
+      .folder-arrow,
+      .action-btn {
+        color: #b0b3b8;
+      }
 
-  /* スイッチのサイズと背景 */
-  width: 40px;
-  height: 20px;
-  background: #e9e9ea; /* OFFの色 */
-  border-radius: 30px;
+      /* ドロップダウン・コンテキストメニュー */
+      .add-dropdown,
+      #profile-context-menu,
+      .modal-content {
+        background-color: #242526;
+        border-color: #3e4042;
+        color: #e4e6eb;
+      }
 
-  /* 配置調整 */
-  position: relative;
-  vertical-align: middle; /* テキストと高さを合わせる */
-  cursor: pointer;
-  margin-right: 8px; /* テキストとの間隔 */
+      .add-option,
+      .context-menu-item {
+        color: #e4e6eb;
+      }
 
-  /* アニメーション */
-  transition: background-color 0.3s ease-in-out;
-}
+      .add-option:hover,
+      .context-menu-item:hover {
+        background-color: #3a3b3c;
+      }
 
-/* スイッチの丸いボタン部分（疑似要素で作成） */
-#use-names-checkbox::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 15px;
-  height: 15px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影 */
-  transition: transform 0.3s ease-in-out;
-}
+      /* アイコン類 */
+      .focus-toggle-btn {
+        background-color: #3a3b3c;
+        border-color: #3e4042;
+      }
 
-/* --- チェックが入った時のスタイル --- */
+      .focus-toggle-btn:hover {
+        background-color: #4e4f50;
+      }
 
-/* 背景色を緑にする */
-#use-names-checkbox:checked {
-  background: #34c759;
-}
+      /* モード選択タブ */
+      .mode-btn {
+        color: #b0b3b8;
+      }
 
-/* 丸いボタンを右に動かす */
-#use-names-checkbox:checked::after {
-  transform: translateX(20px);
-}
+      .mode-btn.active {
+        color: #333;
+        /* ハイライト背景が明るいため文字は暗くする */
+      }
 
-   </style>
+      /* ニュース・履歴 */
+      #history-list,
+      .news-item {
+        background-color: #3a3b3c;
+        border-color: #3e4042;
+      }
+
+      #history-list li {
+        background-color: #242526;
+        border-color: #3e4042;
+        color: #e4e6eb;
+      }
+
+      /* 設定モーダルの閉じるボタンなど */
+      .close-btn {
+        color: #e4e6eb;
+      }
+
+      .close-btn:hover {
+        background-color: #3a3b3c;
+      }
+    }
+
+    /* チェックボックス自体をiOS風スイッチの背景にする */
+    #use-names-checkbox {
+      /* デフォルトのチェックボックスの見た目を消す */
+      appearance: none;
+      -webkit-appearance: none;
+
+      /* スイッチのサイズと背景 */
+      width: 40px;
+      height: 20px;
+      background: #e9e9ea;
+      /* OFFの色 */
+      border-radius: 30px;
+
+      /* 配置調整 */
+      position: relative;
+      vertical-align: middle;
+      /* テキストと高さを合わせる */
+      cursor: pointer;
+      margin-right: 8px;
+      /* テキストとの間隔 */
+
+      /* アニメーション */
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    /* スイッチの丸いボタン部分（疑似要素で作成） */
+    #use-names-checkbox::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 15px;
+      height: 15px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      /* 影 */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* --- チェックが入った時のスタイル --- */
+
+    /* 背景色を緑にする */
+    #use-names-checkbox:checked {
+      background: #34c759;
+    }
+
+    /* 丸いボタンを右に動かす */
+    #use-names-checkbox:checked::after {
+      transform: translateX(20px);
+    }
+  </style>
 
 
-    <link rel="icon" href="./assets/favicon.ico" />
-    <link rel="manifest" href="manifest.json">
-    <meta
-      name="description"
-      content="シンプルで使いやすいオンラインルーレット。人数や数値範囲、名前リスト対応、履歴保存やプロファイル管理、カード機能まで備えた多機能ツールです。"
-    />
+  <link rel="icon" href="./assets/favicon.ico" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="シンプルで使いやすいオンラインルーレット。人数や数値範囲、名前リスト対応、履歴保存やプロファイル管理、カード機能まで備えた多機能ツールです。" />
 
-    <script src="script.js" defer></script>
-    <script src="sw.js"></script>
+  <script src="script.js" defer></script>
+  <script src="sw.js"></script>
 
-    <!-- Cloudflare Pages Analytics -->
-    <script
-      defer=""
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "9ce264149b6b4849b69e322a4857909c"}'
-    ></script>
-    <!-- Cloudflare Pages Analytics -->
-  </head>
-  <body class="focus-mode-off">
-    <!-- <a href="https://daihachi10.github.io" class="home"
+  <!-- Cloudflare Pages Analytics -->
+  <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "9ce264149b6b4849b69e322a4857909c"}'></script>
+  <!-- Cloudflare Pages Analytics -->
+</head>
+
+<body class="focus-mode-off">
+  <!-- <a href="https://daihachi10.github.io" class="home"
       ><span id="copy">&copy;</span>Daihachi</a
     > -->
-    <div class="container">
-      <div class="top-right-buttons">
-        <span id="profile-name-display" class="profile-name-display"
-          >新規プロファイル</span
-        >
-        <button
-          id="theme-toggle-btn"
-          class="focus-toggle-btn"
-          title="テーマカラー切り替え"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="currentColor"
-          >
-            <path
-              d="M346-140 100-386q-10-10-15-22t-5-25q0-13 5-25t15-22l230-229-106-106 62-65 400 400q10 10 14.5 22t4.5 25q0 13-4.5 25T686-386L440-140q-10 10-22 15t-25 5q-13 0-25-5t-22-15Zm47-506L179-432h428L393-646Zm399 526q-36 0-61-25.5T706-208q0-27 13.5-51t30.5-47l42-54 44 54q16 23 30 47t14 51q0 37-26 62.5T792-120Z"
-            ></path>
-          </svg>
-        </button>
-        <button id="settings-btn" class="focus-toggle-btn" title="設定">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="currentColor"
-          >
-            <path
-              d="M200-160v-280h-80v-80h240v80h-80v280h-80Zm0-440v-200h80v200h-80Zm160 0v-80h80v-120h80v120h80v80H360Zm80 440v-360h80v360h-80Zm240 0v-120h-80v-80h240v80h-80v120h-80Zm0-280v-360h80v360h-80Z"
-            ></path>
-          </svg>
-        </button>
-        <button
-          id="focus-toggle-btn"
-          class="focus-toggle-btn"
-          title="フォーカスモード切り替え"
-        >
-          <svg
-            class="icon-expand"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="currentColor"
-          >
-            <path
-              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
-            ></path>
-          </svg>
-          <svg
-            class="icon-shrink"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-          >
-            <path
-              d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z"
-            ></path>
-          </svg>
-        </button>
+  <div class="container">
+    <div class="top-right-buttons">
+      <span id="profile-name-display" class="profile-name-display">新規プロファイル</span>
+      <button id="theme-toggle-btn" class="focus-toggle-btn" title="テーマカラー切り替え">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M346-140 100-386q-10-10-15-22t-5-25q0-13 5-25t15-22l230-229-106-106 62-65 400 400q10 10 14.5 22t4.5 25q0 13-4.5 25T686-386L440-140q-10 10-22 15t-25 5q-13 0-25-5t-22-15Zm47-506L179-432h428L393-646Zm399 526q-36 0-61-25.5T706-208q0-27 13.5-51t30.5-47l42-54 44 54q16 23 30 47t14 51q0 37-26 62.5T792-120Z">
+          </path>
+        </svg>
+      </button>
+      <button id="settings-btn" class="focus-toggle-btn" title="設定">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M200-160v-280h-80v-80h240v80h-80v280h-80Zm0-440v-200h80v200h-80Zm160 0v-80h80v-120h80v120h80v80H360Zm80 440v-360h80v360h-80Zm240 0v-120h-80v-80h240v80h-80v120h-80Zm0-280v-360h80v360h-80Z">
+          </path>
+        </svg>
+      </button>
+      <button id="focus-toggle-btn" class="focus-toggle-btn" title="フォーカスモード切り替え">
+        <svg class="icon-expand" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z">
+          </path>
+        </svg>
+        <svg class="icon-shrink" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M120-120v-200h80v120h120v80H120Zm520 0v-80h120v-120h80v200H640ZM120-640v-200h200v80H200v120h-80Zm640 0v-120H640v-80h200v200h-80Z">
+          </path>
+        </svg>
+      </button>
+    </div>
+
+    <h1 class="main-title">ルーレット</h1>
+
+    <!-- モード選択タブ -->
+    <div class="mode-selector control-panel">
+      <div class="mode-highlight" style="width: 149px; transform: translateX(0px)"></div>
+      <button class="mode-btn active" data-mode="simple">シンプル</button>
+      <button class="mode-btn" data-mode="roulette">ルーレット</button>
+      <button class="mode-btn" data-mode="card">カード選択</button>
+    </div>
+
+    <!-- 設定エリア -->
+    <div class="settings control-panel"></div>
+    <div class="buttons">
+      <button id="start-button">スタート！</button>
+    </div>
+
+    <!-- 各モードの表示エリア -->
+    <div class="game-area">
+      <!-- シンプルモード -->
+      <div id="simple-mode-area" class="mode-content active">
+        <p>結果は...</p>
+        <div id="result-display" class="result-box">?</div>
       </div>
 
-      <h1 class="main-title">ルーレット</h1>
-
-      <!-- モード選択タブ -->
-      <div class="mode-selector control-panel">
-        <div
-          class="mode-highlight"
-          style="width: 149px; transform: translateX(0px)"
-        ></div>
-        <button class="mode-btn active" data-mode="simple">シンプル</button>
-        <button class="mode-btn" data-mode="roulette">ルーレット</button>
-        <button class="mode-btn" data-mode="card">カード選択</button>
-      </div>
-
-      <!-- 設定エリア -->
-      <div class="settings control-panel"></div>
-      <div class="buttons">
-        <button id="start-button">スタート！</button>
-      </div>
-
-      <!-- 各モードの表示エリア -->
-      <div class="game-area">
-        <!-- シンプルモード -->
-        <div id="simple-mode-area" class="mode-content active">
-          <p>結果は...</p>
-          <div id="result-display" class="result-box">?</div>
-        </div>
-
-        <!-- ルーレットモード -->
-        <div id="roulette-mode-area" class="mode-content">
-          <div class="roulette-container">
-            <div class="roulette-pointer"></div>
-            <div class="roulette-wheel">
-              <!-- JSで数字がここに生成されます -->
-            </div>
-          </div>
-        </div>
-
-        <!-- カード選択モード -->
-        <div id="card-mode-area" class="mode-content">
-          <p id="card-message">スタートボタンを押してカードを準備</p>
-          <div class="card-grid">
-            <!-- JSでカードがここに生成されます -->
-          </div>
-        </div>
-
-        <!-- タイマーモード -->
-        <div id="timer-mode-area" class="mode-content">
-          <div class="timer-input-group" data-protonpass-form="">
-            <input
-              type="number"
-              id="timer-minutes"
-              value="0"
-              min="0"
-              max="59"
-            />
-            <span>:</span>
-            <input
-              type="number"
-              id="timer-seconds"
-              value="0"
-              min="0"
-              max="59"
-            />
-          </div>
-          <div id="timer-display-mode" class="timer-display-mode">00:00</div>
-          <div class="timer-controls">
-            <button id="timer-start-btn">スタート</button>
-            <button id="timer-pause-btn">一時停止</button>
-            <button id="timer-reset-btn">リセット</button>
+      <!-- ルーレットモード -->
+      <div id="roulette-mode-area" class="mode-content">
+        <div class="roulette-container">
+          <div class="roulette-pointer"></div>
+          <div class="roulette-wheel">
+            <!-- JSで数字がここに生成されます -->
           </div>
         </div>
       </div>
 
-      <div class="history-area control-panel">
-        <ul id="history-list">
-          <!-- ここに引いた数字の履歴が追加されます -->
-        </ul>
+      <!-- カード選択モード -->
+      <div id="card-mode-area" class="mode-content">
+        <p id="card-message">スタートボタンを押してカードを準備</p>
+        <div class="card-grid">
+          <!-- JSでカードがここに生成されます -->
+        </div>
+      </div>
+
+      <!-- タイマーモード -->
+      <div id="timer-mode-area" class="mode-content">
+        <div class="timer-input-group" data-protonpass-form="">
+          <input type="number" id="timer-minutes" value="0" min="0" max="59" />
+          <span>:</span>
+          <input type="number" id="timer-seconds" value="0" min="0" max="59" />
+        </div>
+        <div id="timer-display-mode" class="timer-display-mode">00:00</div>
+        <div class="timer-controls">
+          <button id="timer-start-btn">スタート</button>
+          <button id="timer-pause-btn">一時停止</button>
+          <button id="timer-reset-btn">リセット</button>
+        </div>
       </div>
     </div>
 
-    <!-- 結果表示用オーバーレイ -->
-    <div id="result-overlay" class="hidden">
-      <div id="result-popup"></div>
-      <div id="result-timer-display" class="result-timer-display"></div>
+    <div class="history-area control-panel">
+      <ul id="history-list">
+        <!-- ここに引いた数字の履歴が追加されます -->
+      </ul>
     </div>
+  </div>
 
-    <!-- 設定モーダル -->
-    <div id="settings-modal" class="hidden">
-      <div class="modal-content">
-        <button id="close-modal-btn" class="close-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="currentColor"
-          >
-            <path
-              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-            ></path>
-          </svg>
-        </button>
-        <h2>設定</h2>
-        <div class="setting-item">
-          <label for="volume-slider">効果音の音量</label>
-          <input
-            type="range"
-            id="volume-slider"
-            min="0"
-            max="0.5"
-            step="0.0001"
-            value="0.002"
-          />
-        </div>
-        <div class="setting-item">
-          <label for="spin-duration">抽選時間 (秒)</label>
-          <input
-            type="number"
-            id="spin-duration"
-            min="0.5"
-            max="60"
-            step="0.5"
-            value="1.1"
-            style="width: 80px;"
-          />
-        </div>
-        <hr />
+  <!-- 結果表示用オーバーレイ -->
+  <div id="result-overlay" class="hidden">
+    <div id="result-popup"></div>
+    <div id="result-timer-display" class="result-timer-display"></div>
+  </div>
 
-        <!-- モード切り替えスイッチ -->
+  <!-- 設定モーダル -->
+  <div id="settings-modal" class="hidden">
+    <!-- 左サイドバー広告 -->
+    <div class="modal-sidebar-ad">
+      <!-- admax -->
+      <div class="admax-ads" data-admax-id="0426a160ce2500c7ef926941bd8d56dc"
+        style="display:inline-block;width:160px;height:600px;"></div>
+      <script
+        type="text/javascript">(admaxads = window.admaxads || []).push({ admax_id: "0426a160ce2500c7ef926941bd8d56dc", type: "banner" });</script>
+      <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+      <!-- admax -->
+    </div>
+    <div class="modal-content">
+      <button id="close-modal-btn" class="close-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z">
+          </path>
+        </svg>
+      </button>
+      <h2>設定</h2>
+      <div class="setting-item">
+        <label for="volume-slider">効果音の音量</label>
+        <input type="range" id="volume-slider" min="0" max="0.5" step="0.0001" value="0.002" />
+      </div>
+      <div class="setting-item">
+        <label for="spin-duration">抽選時間 (秒)</label>
+        <input type="number" id="spin-duration" min="0.5" max="60" step="0.5" value="1.1" style="width: 80px;" />
+      </div>
+      <hr />
+
+      <!-- モード切り替えスイッチ -->
+      <div style="margin-bottom: 15px">
+        <label style="cursor: pointer; font-weight: bold; font-size: 1.1rem">
+          <input type="checkbox" id="use-names-checkbox" />
+          名前でルーレットする
+        </label>
+      </div>
+
+      <!-- 数値モード用設定エリア (IDを追加してグループ化) -->
+      <div id="number-settings-container" style="display: block" data-protonpass-form="">
         <div style="margin-bottom: 15px">
-          <label style="cursor: pointer; font-weight: bold; font-size: 1.1rem">
-            <input type="checkbox" id="use-names-checkbox" />
-            名前でルーレットする
-          </label>
+          <label for="min-number">範囲:</label>
+          <input type="number" id="min-number" value="1" />
+          <span>～</span>
+          <input type="number" id="max-number" value="35" />
         </div>
 
-        <!-- 数値モード用設定エリア (IDを追加してグループ化) -->
-        <div
-          id="number-settings-container"
-          style="display: block"
-          data-protonpass-form=""
-        >
-          <div style="margin-bottom: 15px">
-            <label for="min-number">範囲:</label>
-            <input type="number" id="min-number" value="1" />
-            <span>～</span>
-            <input type="number" id="max-number" value="35" />
-          </div>
-
-          <div>
-            <label
-              for="exclude-numbers"
-              style="display: block; margin-bottom: 5px"
-              >除外する番号 (カンマ区切り):</label
-            >
-            <input
-              type="text"
-              id="exclude-numbers"
-              placeholder="例: 4, 15, 22"
-              style="
+        <div>
+          <label for="exclude-numbers" style="display: block; margin-bottom: 5px">除外する番号 (カンマ区切り):</label>
+          <input type="text" id="exclude-numbers" placeholder="例: 4, 15, 22" style="
                 width: 95%;
                 padding: 8px;
                 border-radius: 5px;
                 border: 1px solid var(--color-border);
-              "
-            />
-          </div>
+              " />
         </div>
+      </div>
 
-        <!-- 名前モード用設定エリア (IDを追加してグループ化) -->
-        <div id="name-settings-container" style="display: none">
-          <textarea
-            id="names-list"
-            placeholder="名前を改行区切りで入力してください。"
-            style="
+      <!-- 名前モード用設定エリア (IDを追加してグループ化) -->
+      <div id="name-settings-container" style="display: none">
+        <textarea id="names-list" placeholder="名前を改行区切りで入力してください。" style="
               width: 95%;
               height: 120px;
               padding: 8px;
               border-radius: 5px;
               border: 1px solid var(--color-border);
               margin-top: 5px;
-            "
-          ></textarea>
-        </div>
+            "></textarea>
+      </div>
 
-        <div
-          class="options control-panel"
-          style="margin-top: 20px; display: none"
-        >
-          <input type="checkbox" id="no-duplicates" checked="" />
-          <label for="no-duplicates">一度引いた数字(または名前)は出ない</label>
-        </div>
-        <button id="reset-button">引いた数字をリセット</button>
+      <div class="options control-panel" style="margin-top: 20px; display: none">
+        <input type="checkbox" id="no-duplicates" checked="" />
+        <label for="no-duplicates">一度引いた数字(または名前)は出ない</label>
+      </div>
+      <button id="reset-button">引いた数字をリセット</button>
 
-        <hr />
+      <hr />
 
-        <!-- ★★★ プロファイル・フォルダ管理セクション ★★★ -->
-        <div class="profiles-section">
-          <h3>プロファイルとフォルダ</h3>
+      <!-- ★★★ プロファイル・フォルダ管理セクション ★★★ -->
+      <div class="profiles-section">
+        <h3>プロファイルとフォルダ</h3>
 
-          <div id="profiles-container">
-            <div
-              class="tree-item profile-item active"
-              draggable="true"
-              data-id="1764381234281"
-              data-type="profile"
-            >
-              <svg
-                class="icon-profile"
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="currentColor"
-              >
-                <path
-                  d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"
-                ></path>
-              </svg>
-              <span class="profile-name" style="flex-grow: 1"
-                >新規プロファイル</span
-              >
-              <div class="item-actions">
-                <button class="action-btn menu-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 -960 960 960"
-                    width="24px"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div
-              class="tree-item profile-item"
-              draggable="true"
-              data-id="1764381170724"
-              data-type="profile"
-            >
-              <svg
-                class="icon-profile"
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="currentColor"
-              >
-                <path
-                  d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"
-                ></path>
-              </svg>
-              <span class="profile-name" style="flex-grow: 1">デフォルト</span>
-              <div class="item-actions">
-                <button class="action-btn menu-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 -960 960 960"
-                    width="24px"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
+        <div id="profiles-container">
+          <div class="tree-item profile-item active" draggable="true" data-id="1764381234281" data-type="profile">
+            <svg class="icon-profile" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+              width="24px" fill="currentColor">
+              <path
+                d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z">
+              </path>
+            </svg>
+            <span class="profile-name" style="flex-grow: 1">新規プロファイル</span>
+            <div class="item-actions">
+              <button class="action-btn menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                  fill="currentColor">
+                  <path
+                    d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z">
+                  </path>
+                </svg>
+              </button>
             </div>
           </div>
+          <div class="tree-item profile-item" draggable="true" data-id="1764381170724" data-type="profile">
+            <svg class="icon-profile" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+              width="24px" fill="currentColor">
+              <path
+                d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z">
+              </path>
+            </svg>
+            <span class="profile-name" style="flex-grow: 1">デフォルト</span>
+            <div class="item-actions">
+              <button class="action-btn menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                  fill="currentColor">
+                  <path
+                    d="M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z">
+                  </path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
 
-          <div class="add-menu-wrapper">
-            <!-- <button id="add-btn-trigger">
+        <div class="add-menu-wrapper">
+          <!-- <button id="add-btn-trigger">
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
               追加</button> -->
 
-            <button id="add-btn-trigger">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="currentColor"
-              >
-                <path
-                  d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
-                /></svg
-              >追加
-            </button>
-            <button id="import-profile-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="currentColor"
-              >
-                <path
-                  d="M480-80 200-360l56-57 184 184v-287h80v287l184-183 56 56L480-80Zm-40-520v-120h80v120h-80Zm0-200v-80h80v80h-80Z"
-                ></path></svg
-              >インポート
-            </button>
+          <button id="add-btn-trigger">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px"
+              fill="currentColor">
+              <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+            </svg>追加
+          </button>
+          <button id="import-profile-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px"
+              fill="currentColor">
+              <path
+                d="M480-80 200-360l56-57 184 184v-287h80v287l184-183 56 56L480-80Zm-40-520v-120h80v120h-80Zm0-200v-80h80v80h-80Z">
+              </path>
+            </svg>インポート
+          </button>
 
-            <div id="add-dropdown" class="add-dropdown">
-              <div class="add-option" data-action="add-profile">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"
-                  ></path>
-                </svg>
-                プロファイルを追加
-              </div>
-              <div class="add-option" data-action="add-folder">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"
-                  ></path>
-                </svg>
-                フォルダを追加
-              </div>
+          <div id="add-dropdown" class="add-dropdown">
+            <div class="add-option" data-action="add-profile">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="currentColor">
+                <path
+                  d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z">
+                </path>
+              </svg>
+              プロファイルを追加
+            </div>
+            <div class="add-option" data-action="add-folder">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="currentColor">
+                <path
+                  d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z">
+                </path>
+              </svg>
+              フォルダを追加
             </div>
           </div>
         </div>
+      </div>
 
-        <div>
-          <!-- インポートボタンと隠しファイル入力 -->
+      <div>
+        <!-- インポートボタンと隠しファイル入力 -->
 
-          <input
-            type="file"
-            id="import-file-input"
-            accept=".json"
-            style="display: none"
-          />
-        </div>
-        <hr />
+        <input type="file" id="import-file-input" accept=".json" style="display: none" />
+      </div>
+      <hr />
 
-        <!-- ★★★ 新着情報セクション ★★★ -->
-        <div class="news-section">
-          <h3><a class="reload-link" href="./index.html">新着情報</a></h3>
-          <div class="news-box">
-            <div class="news-item">
-              <div class="news-header">
-                <span class="news-version">V.0.2.1</span>
-                <span class="news-title">アプリのインストールでオフライン時のアクセスが可能に</span>
-              </div>
-              <div class="news-detail">
-                アプリのインストールでオフライン時でもアクセスできるようになりました。<a href="https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps" target="_blank">しくみ</a>
-                <button id="installButton" style="display: none;">アプリをインストール</button>
-                
-              </div>
+      <!-- ★★★ 新着情報セクション ★★★ -->
+      <div class="news-section" style="display: none;">
+        <h3><a class="reload-link" href="./index.html">新着情報</a></h3>
+        <div class="news-box">
+          <div class="news-item">
+            <div class="news-header">
+              <span class="news-version">V.0.2.1</span>
+              <span class="news-title">アプリのインストールでオフライン時のアクセスが可能に</span>
             </div>
+            <div class="news-detail">
+              アプリのインストールでオフライン時でもアクセスできるようになりました。<a
+                href="https://developer.mozilla.org/ja/docs/Web/Progressive_web_apps" target="_blank">しくみ</a>
+              <button id="installButton" style="display: none;">アプリをインストール</button>
 
-            <div class="news-item">
-              <div class="news-header">
-                <span class="news-version">V.0.2.0</span>
-                <span class="news-title">URLが変わりました</span>
-              </div>
-              <div class="news-detail">
-                <!-- <a href="https://roulettes.pages.dev/"
+            </div>
+          </div>
+
+          <div class="news-item">
+            <div class="news-header">
+              <span class="news-version">V.0.2.0</span>
+              <span class="news-title">URLが変わりました</span>
+            </div>
+            <div class="news-detail">
+              <!-- <a href="https://roulettes.pages.dev/"
                   >https://roulettes.pages.dev/</a
                 >
                 <br> -->
-                Github → Cloudflare
-                自動でリダイレクトされます。
-                <br>
-                <a href="https://roulettes.pages.dev/">roulettes.pages.dev</a>にアクセスできない場合は今まで通りGithub Pagesで表示されます。
-              </div>
+              Github → Cloudflare
+              自動でリダイレクトされます。
+              <br>
+              <a href="https://roulettes.pages.dev/">roulettes.pages.dev</a>にアクセスできない場合は今まで通りGithub Pagesで表示されます。
             </div>
+          </div>
 
-            <div class="news-item">
-              <div class="news-header">
-                <span class="news-version">V.0.1.1</span>
-                <span class="news-title">フォルダ機能とドラッグ＆ドロップ</span>
-              </div>
-              <div class="news-detail">
-                プロファイルをフォルダで整理できるようになりました。ドラッグ＆ドロップで並べ替えやフォルダへの移動が可能です。
-              </div>
+          <div class="news-item">
+            <div class="news-header">
+              <span class="news-version">V.0.1.1</span>
+              <span class="news-title">フォルダ機能とドラッグ＆ドロップ</span>
             </div>
+            <div class="news-detail">
+              プロファイルをフォルダで整理できるようになりました。ドラッグ＆ドロップで並べ替えやフォルダへの移動が可能です。
+            </div>
+          </div>
 
-            <div class="news-item">
-              <div class="news-header">
-                <span class="news-version">V.0.1.0</span>
-                <span class="news-title">プロファイルの保存機能強化</span>
-              </div>
-              <div class="news-detail">
-                名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。<a href="https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage" target="_blank">しくみ</a>
-              </div>
+          <div class="news-item">
+            <div class="news-header">
+              <span class="news-version">V.0.1.0</span>
+              <span class="news-title">プロファイルの保存機能強化</span>
+            </div>
+            <div class="news-detail">
+              名前リストがPCに自動保存されるようになり、プロファイルのインポート・エクスポート機能を追加しました。<a
+                href="https://developer.mozilla.org/ja/docs/Web/API/Window/localStorage" target="_blank">しくみ</a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="adbox" id="adbox" style="display: none;">
-          <hr />
-          <span class="ad-text">広告</span>
-          <button id="close-ad-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="currentColor"
-            >
-              <path
-                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
-              ></path>
-            </svg>
-          </button>
-          <!-- admax -->
-          <div
-            class="admax-ads"
-            data-admax-id="cfc35a98056c136d0b6a6ea4ced854dc"
-            style="display: inline-block; width: 728px; height: 90px"
-          ></div>
-          <script type="text/javascript">
-            (admaxads = window.admaxads || []).push({
-              admax_id: "cfc35a98056c136d0b6a6ea4ced854dc",
-              type: "banner",
-            });
-          </script>
-          <script
-            type="text/javascript"
-            charset="utf-8"
-            src="https://adm.shinobi.jp/st/t.js"
-            async=""
-          ></script>
-          <!-- admax -->
-        </div>
+      <div class="adbox" id="adbox">
+        <!-- <hr /> -->
+        <span class="ad-text">広告</span>
+        <button id="close-ad-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="currentColor">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z">
+            </path>
+          </svg>
+        </button>
+        <!-- admax -->
+        <div class="admax-ads" data-admax-id="cfc35a98056c136d0b6a6ea4ced854dc"
+          style="display: inline-block; width: 728px; height: 90px"></div>
+        <script type="text/javascript">
+          (admaxads = window.admaxads || []).push({
+            admax_id: "cfc35a98056c136d0b6a6ea4ced854dc",
+            type: "banner",
+          });
+        </script>
+        <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async=""></script>
+        <!-- admax -->
       </div>
     </div>
-
-    <div id="profile-context-menu">
-      <div class="context-menu-item hidden-force" data-action="load">
-        読み込み
-      </div>
-      <div class="context-menu-item hidden-force" data-action="save">
-        現在の設定を保存
-      </div>
-      <!-- エクスポートメニューを追加 -->
-      <div class="context-menu-item" data-action="export">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
-          viewBox="0 -960 960 960"
-          width="24px"
-          fill="currentColor"
-        >
-          <path
-            d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z"
-          ></path>
-        </svg>
-        エクスポート
-      </div>
-      <div class="context-menu-item" data-action="rename">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
-          viewBox="0 -960 960 960"
-          width="24px"
-          fill="currentColor"
-        >
-          <path
-            d="M563-491q73-54 114-118.5T718-738q0-32-10.5-47T679-800q-47 0-83 79.5T560-541q0 14 .5 26.5T563-491ZM120-120v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM136-280l-56-56 64-64-64-64 56-56 64 64 64-64 56 56-64 64 64-56 56-64-64-64 64Zm482-40q-30 0-55-11.5T520-369q-25 14-51.5 25T414-322l-28-75q28-10 53.5-21.5T489-443q-5-22-7.5-48t-2.5-56q0-144 57-238.5T679-880q52 0 85 38.5T797-734q0 86-54.5 170T591-413q7 7 14.5 10.5T621-399q26 0 60.5-33t62.5-87l73 34q-7 17-11 41t1 42q10-5 23.5-17t27.5-30l63 49q-26 36-60 58t-63 22q-21 0-37.5-12.5T733-371q-28 25-57 38t-58 13Z"
-          ></path>
-        </svg>
-        名前の変更
-      </div>
-      <div
-        class="context-menu-item"
-        data-action="delete"
-        style="color: #e94560"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
-          viewBox="0 -960 960 960"
-          width="24px"
-          fill="currentColor"
-        >
-          <path
-            d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z"
-          ></path>
-        </svg>
-        削除
-      </div>
+    <!-- 右サイドバー広告 -->
+    <div class="modal-sidebar-ad">
+      <!-- admax -->
+      <div class="admax-ads" data-admax-id="0426a160ce2500c7ef926941bd8d56dc"
+        style="display:inline-block;width:160px;height:600px;"></div>
+      <script
+        type="text/javascript">(admaxads = window.admaxads || []).push({ admax_id: "0426a160ce2500c7ef926941bd8d56dc", type: "banner" });</script>
+      <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+      <!-- admax -->
     </div>
+  </div>
 
-    <protonpass-root-2572
-      data-protonpass-role="root"
-      data-protonpass-theme="os"
-    ></protonpass-root-2572>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        const fonts = [
-          {
-            family: "Montserrat",
-            url: "https://daihachi10.github.io/css/fonts/Montserrat.woff2",
-            weight: "400",
-          },
-          {
-            family: "Montserrat",
-            url: "https://daihachi10.github.io/css/fonts/Montserrat-Bold.woff2",
-            weight: "700",
-          },
-          {
-            family: "NotoSansJP",
-            url: "https://daihachi10.github.io/css/fonts/NotoSansJP.woff2",
-            weight: "400",
-          },
-          {
-            family: "NotoSansJP",
-            url: "https://daihachi10.github.io/css/fonts/NotoSansJP-Bold.woff2",
-            weight: "700",
-          },
-        ];
+  <div id="profile-context-menu">
+    <div class="context-menu-item hidden-force" data-action="load">
+      読み込み
+    </div>
+    <div class="context-menu-item hidden-force" data-action="save">
+      現在の設定を保存
+    </div>
+    <!-- エクスポートメニューを追加 -->
+    <div class="context-menu-item" data-action="export">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+        <path
+          d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z">
+        </path>
+      </svg>
+      エクスポート
+    </div>
+    <div class="context-menu-item" data-action="rename">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+        <path
+          d="M563-491q73-54 114-118.5T718-738q0-32-10.5-47T679-800q-47 0-83 79.5T560-541q0 14 .5 26.5T563-491ZM120-120v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM136-280l-56-56 64-64-64-64 56-56 64 64 64-64 56 56-64 64 64-56 56-64-64-64 64Zm482-40q-30 0-55-11.5T520-369q-25 14-51.5 25T414-322l-28-75q28-10 53.5-21.5T489-443q-5-22-7.5-48t-2.5-56q0-144 57-238.5T679-880q52 0 85 38.5T797-734q0 86-54.5 170T591-413q7 7 14.5 10.5T621-399q26 0 60.5-33t62.5-87l73 34q-7 17-11 41t1 42q10-5 23.5-17t27.5-30l63 49q-26 36-60 58t-63 22q-21 0-37.5-12.5T733-371q-28 25-57 38t-58 13Z">
+        </path>
+      </svg>
+      名前の変更
+    </div>
+    <div class="context-menu-item" data-action="delete" style="color: #e94560">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+        <path
+          d="m376-300 104-104 104 104 56-56-104-104 104-104-56-56-104 104-104-104-56 56 104 104-104 104 56 56Zm-96 180q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520Zm-400 0v520-520Z">
+        </path>
+      </svg>
+      削除
+    </div>
+  </div>
 
-        // すべてのフォントをロード
-        Promise.all(
-          fonts.map((f) => {
-            const font = new FontFace(
-              f.family,
-              `url('${f.url}') format('woff2')`,
-              { weight: f.weight }
-            );
-            return font.load().then((loaded) => {
-              document.fonts.add(loaded);
-              console.log(`${f.family} (${f.weight}) loaded`);
-            });
-          })
-        ).then(() => {
-          console.log("All fonts loaded!");
+  <protonpass-root-2572 data-protonpass-role="root" data-protonpass-theme="os"></protonpass-root-2572>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const fonts = [
+        {
+          family: "Montserrat",
+          url: "https://daihachi10.github.io/css/fonts/Montserrat.woff2",
+          weight: "400",
+        },
+        {
+          family: "Montserrat",
+          url: "https://daihachi10.github.io/css/fonts/Montserrat-Bold.woff2",
+          weight: "700",
+        },
+        {
+          family: "NotoSansJP",
+          url: "https://daihachi10.github.io/css/fonts/NotoSansJP.woff2",
+          weight: "400",
+        },
+        {
+          family: "NotoSansJP",
+          url: "https://daihachi10.github.io/css/fonts/NotoSansJP-Bold.woff2",
+          weight: "700",
+        },
+      ];
 
-          // 例：ページのデフォルトフォントを設定したい場合
-          document.body.style.fontFamily =
-            "'Montserrat', 'NotoSansJP', sans-serif";
-        });
+      // すべてのフォントをロード
+      Promise.all(
+        fonts.map((f) => {
+          const font = new FontFace(
+            f.family,
+            `url('${f.url}') format('woff2')`,
+            { weight: f.weight }
+          );
+          return font.load().then((loaded) => {
+            document.fonts.add(loaded);
+            console.log(`${f.family} (${f.weight}) loaded`);
+          });
+        })
+      ).then(() => {
+        console.log("All fonts loaded!");
+
+        // 例：ページのデフォルトフォントを設定したい場合
+        document.body.style.fontFamily =
+          "'Montserrat', 'NotoSansJP', sans-serif";
       });
+    });
 
-      let deferredPrompt;
+    let deferredPrompt;
 
-      window.addEventListener('beforeinstallprompt', (e) => {
-        // イベントを保存
-        e.preventDefault();
-        deferredPrompt = e;
-        // インストールボタンを表示
-        document.getElementById('installButton').style.display = 'block';
-      });
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // イベントを保存
+      e.preventDefault();
+      deferredPrompt = e;
+      // インストールボタンを表示
+      document.getElementById('installButton').style.display = 'block';
+    });
 
-      document.getElementById('installButton').addEventListener('click', async () => {
-        if (deferredPrompt) {
-          // インストールプロンプトを表示
-          deferredPrompt.prompt();
-          // ユーザーの選択を待つ
-          const { outcome } = await deferredPrompt.userChoice;
-          if (outcome === 'accepted') {
-            console.log('ユーザーがインストールしました');
-          }
-          deferredPrompt = null;
+    document.getElementById('installButton').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        // インストールプロンプトを表示
+        deferredPrompt.prompt();
+        // ユーザーの選択を待つ
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('ユーザーがインストールしました');
         }
-      });
+        deferredPrompt = null;
+      }
+    });
 
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>

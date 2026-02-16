@@ -89,6 +89,7 @@
       width: 100%;
       max-width: 450px;
       position: relative;
+      overflow: hidden;
       transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -403,14 +404,13 @@
     /* ルーレットモード */
     .roulette-container {
       position: relative;
-      width: 280px;
-      height: 280px;
+      width: min(260px, calc(100% - 20px));
+      aspect-ratio: 1;
       margin: 0 auto;
     }
 
     .focus-mode-on .roulette-container {
-      width: clamp(250px, 65vmin, 550px);
-      height: clamp(250px, 65vmin, 550px);
+      width: clamp(250px, min(calc(100% - 40px), 70vh), 520px);
     }
 
     .roulette-pointer {

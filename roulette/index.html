@@ -677,6 +677,20 @@
       background-color: var(--color-white);
     }
 
+    .aki-list-modal-sidebar-ad {
+      flex-shrink: 0;
+      width: 160px;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-white);
+      background-image: url(./assets/img/aki-list-ad.png);
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+
     @media (max-width: 1200px) {
       .modal-sidebar-ad {
         display: none;
@@ -1569,14 +1583,7 @@
   <!-- 設定モーダル -->
   <div id="settings-modal" class="hidden">
     <!-- 左サイドバー広告 -->
-    <div class="modal-sidebar-ad">
-      <!-- admax -->
-      <div class="admax-ads" data-admax-id="0426a160ce2500c7ef926941bd8d56dc"
-        style="display:inline-block;width:160px;height:600px;"></div>
-      <script
-        type="text/javascript">(admaxads = window.admaxads || []).push({ admax_id: "0426a160ce2500c7ef926941bd8d56dc", type: "banner" });</script>
-      <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
-      <!-- admax -->
+    <div class="aki-list-modal-sidebar-ad" onclick="window.open('https://daihachi10.github.io/calendar', '_blank')">
     </div>
     <div class="modal-content">
       <button id="close-modal-btn" class="close-btn">

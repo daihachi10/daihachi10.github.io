@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>daihachi official website</title>
+  <meta name="description" content="daihachiの公式サイト" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="./assets/favicon.ico" />
+
+  <style>
+    @import url("defolt.css");
+    @import url("./cursor.css");
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* ===== About Section ===== */
+    .about-section {
+      padding: 60px 20px 50px;
+      text-align: center;
+      background-color: var(--bg-myprogram);
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .section-divider {
+      width: 36px;
+      height: 3px;
+      background-color: var(--text-color);
+      margin: 20px auto 30px;
+    }
+
+    .about-description {
+      line-height: 2;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+
+    /* ===== Search Section ===== */
+    .search-section {
+      background-color: var(--bg-about);
+      padding: 50px 20px 60px;
+      text-align: center;
+    }
+
+    .search-section .section-title {
+      margin-bottom: 30px;
+    }
+
+    .search-box-wrapper {
+      display: flex;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+      border: 2px solid #999;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: var(--bg-myprogram);
+      transition: border-color 0.2s;
+    }
+
+    .search-box-wrapper:focus-within {
+      border-color: var(--theme-color);
+    }
+
+    .site-search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 14px 18px;
+      font-size: 16px;
+      background: transparent;
+      color: var(--text-color);
+    }
+
+    .site-search-button {
+      background: none;
+      border: none;
+      padding: 12px 16px;
+      cursor: pointer;
+      color: var(--theme-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+
+    .site-search-button:hover {
+      background-color: rgba(29, 179, 29, 0.1);
+    }
+
+    /* ===== Program Section (Grid) ===== */
+    .program-section {
+      padding: 50px 20px 40px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .program-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease;
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .program-card-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .program-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .program-card:hover .program-card-image img {
+      transform: scale(1.08);
+    }
+
+    .program-card-info {
+      margin-top: 12px;
+    }
+
+    .program-card-info h3 {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .program-card-info p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .badge-new {
+      color: #ff0000b3;
+      font-size: 10px;
+      font-weight: bold;
+      padding-left: 3px;
+    }
+
+    .badge-hot {
+      color: #ff0000;
+      font-size: 10px;
+      font-weight: bold;
+      padding-left: 3px;
+    }
+
+    .fire,
+    .new-image {
+      width: 13px !important;
+      height: 13px !important;
+      vertical-align: bottom;
+    }
+
+    .link-button-area {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    /* ===== Contact Section ===== */
+    .contact-section {
+      padding: 40px 20px 60px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-box {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 50px 40px;
+    }
+
+    .contact-title {
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .contact-form label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 15px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      background-color: var(--bg-myprogram);
+      color: var(--text-color);
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--theme-color);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .submit-button {
+      background-color: var(--theme-color);
+      color: #fff;
+      border: 2px solid var(--theme-color);
+      border-radius: 35px;
+      padding: 12px 40px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s cubic-bezier(0.45, 0, 0.55, 1);
+    }
+
+    .submit-button:hover {
+      background-color: var(--bg-myprogram);
+      color: var(--text-color);
+    }
+
+    .contact-status {
+      text-align: center;
+      margin-top: 16px;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .contact-status.sending {
+      color: #666;
+    }
+
+    .contact-status.success {
+      color: #1db31d;
+      background-color: rgba(29, 179, 29, 0.08);
+    }
+
+    .contact-status.error {
+      color: #d32f2f;
+      background-color: rgba(211, 47, 47, 0.08);
+    }
+
+    /* ===== Footer Links ===== */
+    .footer-links {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .footer-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      margin: 0 16px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 800px) {
+      .program-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .contact-box {
+        padding: 30px 20px;
+      }
+
+      .about-description {
+        text-align: left;
+        padding: 0 10px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .program-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+
+  <link href="./css/common.css" rel="stylesheet" />
+  <link href="./css/loading.css" rel="stylesheet" />
+  <script src="./js/loading.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="./common/script.js"></script>
+  <meta name="theme-color" content="#1DB31D" />
+</head>
+
+<body>
+  <!-- admax -->
+  <!-- admax -->
+
+  <div id="loading"></div>
+
+  <!-- headerここから -->
+  <header class="header"></header>
+  <!-- headerここまで -->
+
+  <!-- mainここから -->
+  <main class="main">
+
+    <!-- About daihachi セクション -->
+    <section class="about-section" id="about">
+      <h2 class="section-title">About daihachi</h2>
+      <div class="section-divider"></div>
+      <p class="about-description">
+        daihachiはp5.jsを中心に様々なプログラミング言語でプログラミングをしています。
+      </p>
+    </section>
+
+    <!-- サイト内検索セクション -->
+    <section class="search-section">
+      <h2 class="section-title">サイト内検索</h2>
+      <div class="search-box-wrapper">
+        <input type="text" id="site-search-input" class="site-search-input" placeholder="" />
+        <button type="button" id="site-search-button" class="site-search-button" aria-label="検索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- MY PROGRAM セクション -->
+    <section class="program-section">
+      <h2 class="section-title">MY PROGRAM</h2>
+      <div class="section-divider"></div>
+      <div class="program-grid">
+        <!-- Row 1 -->
+        <a href="./program/33/" class="program-card">
+          <div class="program-card-image">
+            <img src="./images/program-img/img-item33-beta.webp" alt="ヘビゲーム　beta" loading="lazy" />
+          </div>
+          <div class="program-card-info">
+            <h3>SnakeGame <span class="badge-new">New<svg class="new-image" xmlns="http://www.w3.org/2000/svg"
+                  height="24px" viewBox="0 -960 960 960" width="24px" fill="#ff0000b3">
+                  <path
+                    d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                </svg></span></h3>
+            <p>ヘビゲームの再現をしました。りんごを食べると体が伸び、自分の身体に触れないようにりんごを食べるゲームです。</p>
+          </div>
+        </a>
+
+        <a href="./program/31/" class="program-card">
+          <div class="program-card-image">
+            <img src="./images/program-img/img-item31.webp" alt="MANY reCAPTCHA" loading="lazy" />
+          </div>
+          <div class="program-card-info">
+            <h3>MANY reCAPTCHA <span class="badge-new">New<svg class="new-image" xmlns="http://www.w3.org/2000/svg"
+                  height="24px" viewBox="0 -960 960 960" width="24px" fill="#ff0000b3">
+                  <path
+                    d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                </svg></span></h3>
+            <p>自分がロボットでは無いことを確認する時に確認する事を確認するサイトに</p>
+          </div>
+        </a>
+
+        <a href="./program/30/" class="program-card">
+          <div class="program-card-image">
+            <img src="./images/program-img/img-item30.webp" alt="REPRODUCED IN FIGMA" loading="lazy" />
+          </div>
+          <div class="program-card-info">
+            <h3>REPRODUCED IN FIGMA</h3>
+            <p>ホームページをfigmaで再現してみましたアニメーションこだわった！</p>
+          </div>
+        </a>
+
+        <!-- Row 2 -->
+        <a href="./program/25/" class="program-card">
+          <div class="program-card-image">
+            <img src="./images/program-img/img-item25.webp" alt="2DShootingGame" loading="lazy" />
+          </div>
+          <div class="program-card-info">
+            <h3>2DShootingGame</h3>
+            <p>2Dシューティングゲーム</p>
+          </div>
+        </a>
+
+        <a href="./program/16/index.html" class="program-card">
+          <div class="program-card-image">
+            <img src="./images/program-img/img-item16-02.webp" alt="自作パソコン" loading="lazy" />
+          </div>
+          <div class="program-card-info">
+            <h3>buildingPC <span class="badge-hot">HOT
+                <img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥" />
+              </span></h3>
+            <p>自作パソコン紹介</p>
+          </div>
+        </a>
+
+        <a href="./program/20/index.html" class="program-card">
+          <div class="program-card-image">
+            <img src="./images/program-img/img-item20-02.webp" alt="テト" loading="lazy" />
+          </div>
+          <div class="program-card-info">
+            <h3>テト <span class="badge-hot">HOT
+                <img class="fire" src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥" />
+              </span></h3>
+            <p>再現してみた</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="link-button-area">
+        <a class="link-button" href="./program.html">MORE PROGRAMS</a>
+      </div>
+    </section>
+
+    <!-- 広告セクション -->
+    <div style="align-items: center; text-align: center">
+      <div style="height: 100px; margin: auto">
+        <!-- admax -->
+        <div class="admax-ads" data-admax-id="46b9c331ab8acbcd2b45b1c9c278811a"
+          style="display: inline-block; width: 728px; height: 90px"></div>
+        <script type="text/javascript">
+          (admaxads = window.admaxads || []).push({
+            admax_id: "46b9c331ab8acbcd2b45b1c9c278811a",
+            type: "banner",
+          });
+        </script>
+        <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+        <!-- admax -->
+      </div>
+    </div>
+
+    <!-- お問い合わせセクション -->
+    <section class="contact-section">
+      <div class="contact-box">
+        <h2 class="contact-title">お問い合わせ</h2>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="contact-requirement">要件</label>
+            <input type="text" id="contact-requirement" name="requirement" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">メールアドレス</label>
+            <input type="email" id="contact-email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">本文</label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="submit-button">送信</button>
+          </div>
+        </form>
+        <div id="contact-status" class="contact-status" style="display:none;"></div>
+      </div>
+    </section>
+
+  </main>
+  <!-- mainここまで -->
+
+  <!-- フッターリンク -->
+  <div class="footer-links">
+    <a href="https://www.kiyac.app/privacypolicy/BjmwaG4ZvHNuCe7YUxiJ" target="_blank">プライバシーポリシー</a>
+    <a href="https://www.kiyac.app/termsOfService/BjmwaG4ZvHNuCe7YUxiJ" target="_blank">利用規約</a>
+  </div>
+
+  <!-- footerここから -->
+  <footer class="footer"></footer>
+  <!-- footerここまで -->
+
+  <script src="https://daihachi10.github.io/js/toggle-menu.js"></script>
+  <script src="./js/page-top.js"></script>
+
+  <script>
+    // サイト内検索
+    (function () {
+      const searchInput = document.getElementById('site-search-input');
+      const searchButton = document.getElementById('site-search-button');
+
+      function doSearch() {
+        const query = searchInput.value.trim();
+        if (query !== '') {
+          window.location.href = 'https://daihachi10.github.io/search/result.html?query=' + encodeURIComponent(query);
+        }
+      }
+
+      searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          doSearch();
+        }
+      });
+
+      searchButton.addEventListener('click', doSearch);
+    })();
+
+    // お問い合わせフォーム送信
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const statusEl = document.getElementById('contact-status');
+      const formData = {
+        requirement: document.getElementById('contact-requirement').value,
+        email: document.getElementById('contact-email').value,
+        message: document.getElementById('contact-message').value,
+      };
+
+      statusEl.style.display = 'block';
+      statusEl.textContent = '送信中...';
+      statusEl.className = 'contact-status sending';
+
+      fetch('https://daihachi-contact.daihachi10.workers.dev/contact', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          if (data.success) {
+            statusEl.textContent = '送信が完了しました。ありがとうございます！';
+            statusEl.className = 'contact-status success';
+            document.getElementById('contactForm').reset();
+          } else {
+            statusEl.textContent = '送信に失敗しました。もう一度お試しください。';
+            statusEl.className = 'contact-status error';
+          }
+        })
+        .catch(function (error) {
+          console.error('Error:', error);
+          statusEl.textContent = '送信に失敗しました。もう一度お試しください。';
+          statusEl.className = 'contact-status error';
+        });
+    });
+
+    // ユーザー名表示
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      const urlUser = params.get("user");
+      let user = null;
+
+      if (urlUser) {
+        user = urlUser;
+        localStorage.setItem("user", user);
+      } else {
+        user = localStorage.getItem("user");
+      }
+
+      if (user) {
+        const usernameElements = document.querySelectorAll("span.username");
+        usernameElements.forEach(function (element) {
+          element.textContent = "Hi " + user + "!";
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

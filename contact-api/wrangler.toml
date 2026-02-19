@@ -1,0 +1,8 @@
+name = "daihachi-contact"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "daihachi-contact-db"
+database_id = "" # wrangler d1 create daihachi-contact-db 実行後にIDをここに入れてください

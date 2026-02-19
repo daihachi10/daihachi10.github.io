@@ -1,183 +1,229 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>daihachiサイト内検索</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../css/search.css" />
-    <link rel="stylesheet" href="../css/common.css" />
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const inputElement = document.getElementById("search-input");
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>daihachiサイト内検索</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="../css/search.css" />
+  <link rel="stylesheet" href="../css/common.css" />
 
-        // ページ読み込み時にinput要素にフォーカスを設定
-        inputElement.focus();
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputElement = document.getElementById("search-input");
 
-        // '/'キーが押された時にinput要素にフォーカスを設定
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "/") {
-            event.preventDefault(); // デフォルトのブラウザ動作を防止
-            inputElement.focus();
-          }
-        });
+      // ページ読み込み時にinput要素にフォーカスを設定
+      inputElement.focus();
+
+      // '/'キーが押された時にinput要素にフォーカスを設定
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "/") {
+          event.preventDefault(); // デフォルトのブラウザ動作を防止
+          inputElement.focus();
+        }
       });
-    </script>
-  </head>
-  <body class="bg-gray-100 p-4">
-    <div class="top-box">
-      <div class="left">
-        <a href="../index.html#about" id="about" class="link"
-          >daihachiについて</a
-        >
-        <a href="../install.html" id="install" class="link">インストール</a>
+    });
+  </script>
+</head>
 
-        <a href="../program.html" id="program" class="link">プログラム</a>
-      </div>
-      <div class="right">
-        <a href="../account/index.html" class="icon-box">
-          <img class="icon" src="../assets/img/icon-192x192.png" />
-        </a>
-        <a href="../program.html" class="apps-box">
-          <img class="apps" src="../images/apps.svg" alt="apps" />
-        </a>
+<body class="bg-gray-100 p-4">
+  <div class="top-box">
+    <div class="left">
+      <a href="../index.html#about" id="about" class="link">daihachiについて</a>
+      <a href="../install.html" id="install" class="link">インストール</a>
+
+      <a href="../program.html" id="program" class="link">プログラム</a>
+    </div>
+    <div class="right">
+      <a href="../account/index.html" class="icon-box">
+        <img class="icon" src="../assets/img/icon-192x192.png" />
+      </a>
+      <a href="../program.html" class="apps-box">
+        <img class="apps" src="../images/apps.svg" alt="apps" />
+      </a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="logo-box">
+      <a href="../index.html" class="logo text-3xl font-semibold text-blue-600 text-center mb-6">
+        daihachi
+      </a>
+    </div>
+    <div class="search-container">
+      <input class="original-box-shadow" type="text" id="search-input" />
+      <div class="search-input-suggestions-box">
+        <ul id="search-input-suggestions"></ul>
       </div>
     </div>
-    <div class="container">
-      <div class="logo-box">
-        <a
-          href="../index.html"
-          class="logo text-3xl font-semibold text-blue-600 text-center mb-6"
-        >
-          daihachi
-        </a>
-      </div>
-      <div class="search-container">
-        <input class="original-box-shadow" type="text" id="search-input" />
-        <div class="search-input-suggestions-box">
-          <ul id="search-input-suggestions"></ul>
-        </div>
-      </div>
-    </div>
-    <script src="./text.js"></script>
-    <script>
-      $(document).ready(function () {
-        const searchInput = $("#search-input");
-        const searchButton = $("#search-button");
-        const resultsList = $("#results-list");
-        const noResultsMessage = $("#no-results");
-        const resultsContainer = $("#results-container");
-        const suggestionsList = $("#search-input-suggestions");
+  </div>
+  <script src="./text.js"></script>
+  <script>
+    $(document).ready(function () {
+      const searchInput = $("#search-input");
+      const searchButton = $("#search-button");
+      const resultsList = $("#results-list");
+      const noResultsMessage = $("#no-results");
+      const resultsContainer = $("#results-container");
+      const suggestionsList = $("#search-input-suggestions");
 
-        function performSearch(query) {
-          resultsList.empty();
-          let resultsFound = false;
-
-          if (query.trim() === "") {
-            noResultsMessage.hide();
-            resultsContainer.show();
-            suggestionsList.hide();
-            return;
-          }
-
-          $.each(data, function (index, item) {
-            if (
-              item.title.toLowerCase().includes(query) ||
-              item.url.toLowerCase().includes(query)
-            ) {
-              const listItem = $("<li>");
-              listItem.html(`<a href="${item.url}">${item.title}</a>`);
-              listItem.on("click", function () {
-                // リストアイテム全体をクリック可能にする
-                window.location.href = item.url;
-              });
-              resultsList.append(listItem);
-              resultsFound = true;
-            }
-          });
-
-          if (resultsFound) {
-            noResultsMessage.hide();
-            resultsContainer.show();
-            suggestionsList.hide();
-          } else {
-            noResultsMessage.show();
-            resultsContainer.hide();
-            suggestionsList.hide();
+      // あいまい検索ユーティリティ
+      function similarity(s1, s2) {
+        if (s1 === s2) return 1;
+        if (!s1 || !s2) return 0;
+        const len1 = s1.length, len2 = s2.length;
+        const maxLen = Math.max(len1, len2);
+        if (maxLen === 0) return 1;
+        if (len1 <= 2 || len2 <= 2) {
+          if (s2.includes(s1) || s1.includes(s2)) return 0.8;
+          return 0;
+        }
+        const matrix = [];
+        for (let i = 0; i <= len1; i++) matrix[i] = [i];
+        for (let j = 0; j <= len2; j++) matrix[0][j] = j;
+        for (let i = 1; i <= len1; i++) {
+          for (let j = 1; j <= len2; j++) {
+            const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
+            matrix[i][j] = Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost);
           }
         }
+        return 1 - matrix[len1][len2] / maxLen;
+      }
 
-        function updateSuggestions(query) {
-          suggestionsList.empty();
-          let suggestionsFound = false;
-          let maxLength = 0;
-
-          if (query.trim() === "") {
-            suggestionsList.hide();
-            return;
-          }
-
-          $.each(data, function (index, item) {
-            if (item.title.toLowerCase().includes(query)) {
-              const suggestionItem = $("<li>");
-              suggestionItem.text(item.title);
-              suggestionItem.on("click", function () {
-                searchInput.val(item.title);
-                performSearch(item.title.toLowerCase());
-                suggestionsList.hide();
-              });
-              suggestionsList.append(suggestionItem);
-              suggestionsFound = true;
-              maxLength = Math.max(maxLength, item.title.length);
-            }
-          });
-
-          if (suggestionsFound) {
-            suggestionsList.show();
-            suggestionsList.css("width", Math.min(maxLength * 10 + 100, 500));
-          } else {
-            suggestionsList.hide();
-          }
+      function fuzzyScore(query, text) {
+        if (!text || !query) return 0;
+        const q = query.toLowerCase(), t = text.toLowerCase();
+        if (t === q) return 100;
+        if (t.startsWith(q)) return 90;
+        if (t.includes(q)) return 60 + (q.length / t.length) * 30;
+        const words = t.split(/[\s\u3000、。・,.\-_|/\\()（）]/);
+        let best = 0;
+        for (const word of words) {
+          if (!word) continue;
+          if (word.startsWith(q)) { best = Math.max(best, 70); continue; }
+          if (word.includes(q)) { best = Math.max(best, 50); continue; }
+          const sim = similarity(q, word);
+          if (sim > 0.6) best = Math.max(best, sim * 40);
         }
+        if (best > 0) return best;
+        const overallSim = similarity(q, t.substring(0, q.length + 5));
+        if (overallSim > 0.5) return overallSim * 30;
+        return 0;
+      }
 
-        searchInput.on("input", function () {
-          const query = $(this).val().toLowerCase();
-          updateSuggestions(query);
+      function calculateScore(query, item) {
+        const q = query.toLowerCase();
+        const titleScore = fuzzyScore(q, item.title) * 3.0;
+        const descScore = fuzzyScore(q, item.description) * 1.5;
+        const urlScore = fuzzyScore(q, item.url) * 1.0;
+        const searchTextScore = item.searchText ? fuzzyScore(q, item.searchText) * 0.5 : 0;
+        let tagsScore = 0;
+          if (item.tags && item.tags.length > 0) {
+            for (const tag of item.tags) {
+              tagsScore = Math.max(tagsScore, fuzzyScore(q, tag) * 2.5);
+            }
+          }
+          return Math.max(titleScore, descScore, urlScore, searchTextScore, tagsScore);
+      }
+
+      function performSearch(query) {
+        resultsList.empty();
+        if (query.trim() === "") {
+          noResultsMessage.hide();
+          resultsContainer.show();
+          suggestionsList.hide();
+          return;
+        }
+        const scoredResults = [];
+        $.each(data, function (index, item) {
+          const score = calculateScore(query, item);
+          if (score > 10) scoredResults.push({ item, score });
         });
+        scoredResults.sort((a, b) => b.score - a.score);
 
-        searchButton.on("click", function () {
+        if (scoredResults.length > 0) {
+          for (const result of scoredResults) {
+            const listItem = $("<li>");
+            listItem.html(`<a href="${result.item.url}">${result.item.title}</a>`);
+            listItem.on("click", function () {
+              window.location.href = result.item.url;
+            });
+            resultsList.append(listItem);
+          }
+          noResultsMessage.hide();
+          resultsContainer.show();
+          suggestionsList.hide();
+        } else {
+          noResultsMessage.show();
+          resultsContainer.hide();
+          suggestionsList.hide();
+        }
+      }
+
+      function updateSuggestions(query) {
+        suggestionsList.empty();
+        if (query.trim() === "") { suggestionsList.hide(); return; }
+        const scored = [];
+        $.each(data, function (index, item) {
+          const score = calculateScore(query, item);
+          if (score > 15) scored.push({ item, score });
+        });
+        scored.sort((a, b) => b.score - a.score);
+        const top = scored.slice(0, 8);
+        if (top.length > 0) {
+          let maxLength = 0;
+          for (const s of top) {
+            const suggestionItem = $("<li>");
+            suggestionItem.text(s.item.title);
+            suggestionItem.on("click", function () {
+              searchInput.val(s.item.title);
+              performSearch(s.item.title.toLowerCase());
+              suggestionsList.hide();
+            });
+            suggestionsList.append(suggestionItem);
+            maxLength = Math.max(maxLength, s.item.title.length);
+          }
+          suggestionsList.show();
+          suggestionsList.css("width", Math.min(maxLength * 10 + 100, 500));
+        } else {
+          suggestionsList.hide();
+        }
+      }
+
+      searchInput.on("input", function () {
+        const query = $(this).val().toLowerCase();
+        updateSuggestions(query);
+      });
+
+      searchButton.on("click", function () {
+        const query = searchInput.val().toLowerCase();
+        performSearch(query);
+      });
+
+      searchInput.on("keydown", function (event) {
+        if (event.key === "Enter") {
           const query = searchInput.val().toLowerCase();
           performSearch(query);
-        });
-
-        searchInput.on("keydown", function (event) {
-          if (event.key === "Enter") {
-            const query = searchInput.val().toLowerCase();
-            performSearch(query);
-
-            window.location.href = `result.html?query=${query}`;
-          }
-        });
-
-        // URLクエリパラメータから検索キーワードを取得
-        const urlParams = new URLSearchParams(window.location.search);
-        const queryParam = urlParams.get("query");
-        if (queryParam) {
-          searchInput.val(queryParam);
-          performSearch(queryParam.toLowerCase());
+          window.location.href = `result.html?query=${query}`;
         }
       });
 
-      const listItem = $(".icon-box");
+      // URLクエリパラメータから検索キーワードを取得
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = urlParams.get("query");
+      if (queryParam) {
+        searchInput.val(queryParam);
+        performSearch(queryParam.toLowerCase());
+      }
+    });
 
-      const randomIndex = Math.floor(Math.random() * imagelist.length);
-      const randomImage = imagelist[randomIndex];
-      listItem.html(`<img class="icon" src="${randomImage}" />`);
-    </script>
-  </body>
+    const listItem = $(".icon-box");
+
+    const randomIndex = Math.floor(Math.random() * imagelist.length);
+    const randomImage = imagelist[randomIndex];
+    listItem.html(`<img class="icon" src="${randomImage}" />`);
+  </script>
+</body>
+
 </html>

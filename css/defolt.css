@@ -65,7 +65,7 @@
 @media (prefers-color-scheme: dark) {
   body:not(.light-mode) {
     --header-background-color: #414141;
-    --background-color: #414141;
+    --background-color: #333333;
     --text-color: #eee;
     --bg-myprogram: #333333;
     --bg-about: #2e2e2e;

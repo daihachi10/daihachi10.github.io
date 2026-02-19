@@ -1,165 +1,149 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>PROGRAM | daihachi official website</title>
-    <meta
-      name="description"
-      content="daihachiのプログラムがプレイができるサイトです。"
-    />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
-    <script>
-      let isUseColorChange = false;
-    </script>
-    <script src="https://daihachi10.github.io/js/toggle-menu.js"></script>
-    <link href="../../css/common.css" rel="stylesheet" />
-    <link href="../../css/details.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <link href="../../css/loading.css" rel="stylesheet" />
-    <script src="../../js/loading.js"></script>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
-    </style>
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="../common/script.js"></script>
-    <script src="/../../common/program.js"></script>
-    <meta name="theme-color" content="#1DB31D" />
-  </head>
 
-  <body>
-    <!-- admax -->
-    <script src=""></script>
-    <!-- admax -->
-    <!-- <div id="loading"></div> -->
+<head>
+  <meta charset="UTF-8" />
+  <title>PROGRAM | daihachi official website</title>
+  <meta name="search-tags" content="ヘビゲーム, スネーク, snake, スネークゲーム, ヘビ">
+  <meta name="description" content="daihachiのプログラムがプレイができるサイトです。" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="https://daihachi10.github.io/assets/favicon.ico" />
+  <script>
+    let isUseColorChange = false;
+  </script>
+  <script src="https://daihachi10.github.io/js/toggle-menu.js"></script>
+  <link href="../../css/common.css" rel="stylesheet" />
+  <link href="../../css/details.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link href="../../css/loading.css" rel="stylesheet" />
+  <script src="../../js/loading.js"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Yuji+Mai&family=Zen+Old+Mincho&display=swap");
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="../common/script.js"></script>
+  <script src="/../../common/program.js"></script>
+  <meta name="theme-color" content="#1DB31D" />
+</head>
 
-    <div class="progress"></div>
-    <!-- headerここから -->
-    <header class="header"></header>
-    <!-- headerここまで -->
+<body>
+  <!-- admax -->
+  <script src=""></script>
+  <!-- admax -->
+  <!-- <div id="loading"></div> -->
 
-    <!-- mainここから -->
-    <main class="main">
-      <div class="title">
-        <h1>SnakeGame</h1>
-        <p>ヘビゲーム</p>
-      </div>
-      <div class="shop-contents">
-        <div class="shop-item">
-          <h2>SnakeGame</h2>
-          <div class="item-area">
-            <div id="p5-canvas-container">
-              <!-- style="width: 1000px; text-align: center; padding-top: 200px" -->
-              <!-- <p>非公開に設定されています。</p>
+  <div class="progress"></div>
+  <!-- headerここから -->
+  <header class="header"></header>
+  <!-- headerここまで -->
+
+  <!-- mainここから -->
+  <main class="main">
+    <div class="title">
+      <h1>SnakeGame</h1>
+      <p>ヘビゲーム</p>
+    </div>
+    <div class="shop-contents">
+      <div class="shop-item">
+        <h2>SnakeGame</h2>
+        <div class="item-area">
+          <div id="p5-canvas-container">
+            <!-- style="width: 1000px; text-align: center; padding-top: 200px" -->
+            <!-- <p>非公開に設定されています。</p>
               <a href="../../program.html" class="link-text"
                 >プログラム一覧に戻る</a
               > -->
-            </div>
-            <!--p5-canvas-container-->
-            <div class="about-item">
-              <div id="control" class="control hidden">
-                <!--               <a onclick="topButton()" class="controlbutton top">↑</a> -->
-                <div class="controlbuttom">
-                  <!--                 <a onclick="leftButton()" class="controlbuttonbuttom">←</a> -->
-                  <!--                 <a onclick="bottomButton()" class="controlbuttonbuttom">↓</a> -->
-                  <!--                 <a onclick="rightButton()" class="controlbuttonbuttom">→</a> -->
-                </div>
+          </div>
+          <!--p5-canvas-container-->
+          <div class="about-item">
+            <div id="control" class="control hidden">
+              <!--               <a onclick="topButton()" class="controlbutton top">↑</a> -->
+              <div class="controlbuttom">
+                <!--                 <a onclick="leftButton()" class="controlbuttonbuttom">←</a> -->
+                <!--                 <a onclick="bottomButton()" class="controlbuttonbuttom">↓</a> -->
+                <!--                 <a onclick="rightButton()" class="controlbuttonbuttom">→</a> -->
               </div>
-              <p id="item-text" class="item-text">
-                ヘビゲームの再現をしました。りんごを食べると体が伸び、自分の身体に触れるとゲームオーバーです。
-              </p>
-              <p id="fps"></p>
-              <p id="1Pscore" class="score one-player"></p>
-              <p id="2Pscore" class="score two-player"></p>
-              <p id="time" class="time">残り時間</p>
+            </div>
+            <p id="item-text" class="item-text">
+              ヘビゲームの再現をしました。りんごを食べると体が伸び、自分の身体に触れるとゲームオーバーです。
+            </p>
+            <p id="fps"></p>
+            <p id="1Pscore" class="score one-player"></p>
+            <p id="2Pscore" class="score two-player"></p>
+            <p id="time" class="time">残り時間</p>
 
-              <a onclick="start()" id="startbutton" class="link-button"
-                >1Playerスタート</a
-              >
-              <a
-                onclick="start();is2Players = true"
-                id="2pstartbutton"
-                class="link-button"
-                >2Playersスタート</a
-              >
-              <a href="" id="GameOver" class="link-button">リスタート</a>
-              <!-- <button id="surinukebutton" class="settings">
+            <a onclick="start()" id="startbutton" class="link-button">1Playerスタート</a>
+            <a onclick="start();is2Players = true" id="2pstartbutton" class="link-button">2Playersスタート</a>
+            <a href="" id="GameOver" class="link-button">リスタート</a>
+            <!-- <button id="surinukebutton" class="settings">
                 すり抜けを有効にする
               </button> -->
-              <button id="timebutton" class="settings">時間を変更する</button>
-              <a href="https://g.co/kgs/" target="blank" class="link-button"
-                >Googleヘビゲーム</a
-              >
-              <p class="item-text"></p>
-              <a
-                href="https://github.com/daihachi10/daihachi10.github.io/blob/main/program/33/"
-                target="_blank"
-                class="link-button"
-                >VIEW CODE</a
-              >
-            </div>
+            <button id="timebutton" class="settings">時間を変更する</button>
+            <a href="https://g.co/kgs/" target="blank" class="link-button">Googleヘビゲーム</a>
+            <p class="item-text"></p>
+            <a href="https://github.com/daihachi10/daihachi10.github.io/blob/main/program/33/" target="_blank"
+              class="link-button">VIEW CODE</a>
           </div>
-          <!-- <div class="item-group recommended">
+        </div>
+        <!-- <div class="item-group recommended">
             <h2>ADVERTISEMENT</h2>
             <ul class="item-list"></ul>
           </div> -->
-        </div>
-        <aside id="sidebar" class="shop-menu"></aside>
       </div>
-    </main>
-    <!-- mainここまで -->
+      <aside id="sidebar" class="shop-menu"></aside>
+    </div>
+  </main>
+  <!-- mainここまで -->
 
-    <!-- footerここから -->
-    <footer class="footer"></footer>
-    <!-- footerここまで -->
-    <!-- <script src="./js/game.js"></script> -->
+  <!-- footerここから -->
+  <footer class="footer"></footer>
+  <!-- footerここまで -->
+  <!-- <script src="./js/game.js"></script> -->
 
-    <script>
-      function loadScript(url, callback, onErrorCallback) {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = url;
+  <script>
+    function loadScript(url, callback, onErrorCallback) {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = url;
 
-        // 読み込み成功時の処理
-        script.onload = function () {
-          console.log(url + " が正常に読み込まれました。");
-          if (callback && typeof callback === "function") {
-            callback(); // コールバック関数を実行
-          }
-        };
+      // 読み込み成功時の処理
+      script.onload = function () {
+        console.log(url + " が正常に読み込まれました。");
+        if (callback && typeof callback === "function") {
+          callback(); // コールバック関数を実行
+        }
+      };
 
-        // 読み込み失敗時の処理
-        script.onerror = function () {
-          console.error(url + " の読み込みに失敗しました。");
-          if (onErrorCallback && typeof onErrorCallback === "function") {
-            onErrorCallback(); // エラー用コールバック関数を実行
-          }
-        };
+      // 読み込み失敗時の処理
+      script.onerror = function () {
+        console.error(url + " の読み込みに失敗しました。");
+        if (onErrorCallback && typeof onErrorCallback === "function") {
+          onErrorCallback(); // エラー用コールバック関数を実行
+        }
+      };
 
-        // <head>要素の最後にscriptタグを追加
-        document.head.appendChild(script);
-      }
-      loadScript("./js/game.js");
-      // const isPassword = localStorage.getItem(password)
-      // if (ispassword == true) {
+      // <head>要素の最後にscriptタグを追加
+      document.head.appendChild(script);
+    }
+    loadScript("./js/game.js");
+    // const isPassword = localStorage.getItem(password)
+    // if (ispassword == true) {
 
-      // } else {
+    // } else {
 
-      //   const password = window.prompt("パスワードを入力してください");
-      //   if (password === "daihachi10") {
-      //     loadScript("./js/game.js");
-      //     localStorage.setItem(password, true)
-      //   } else {
-      //     window.location.href = "https://daihachi10.github.io/program";
-      //   }
-      // }
-    </script>
-    <script></script>
-  </body>
+    //   const password = window.prompt("パスワードを入力してください");
+    //   if (password === "daihachi10") {
+    //     loadScript("./js/game.js");
+    //     localStorage.setItem(password, true)
+    //   } else {
+    //     window.location.href = "https://daihachi10.github.io/program";
+    //   }
+    // }
+  </script>
+  <script></script>
+</body>
+
 </html>

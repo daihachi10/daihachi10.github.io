@@ -962,6 +962,34 @@ document.addEventListener("DOMContentLoaded", () => {
       rouletteAudioContext.loopId = null;
     }
   };
+
+  // ▼ Cloudflare Workerに回数を送信する関数
+  const incrementSpinCount = () => {
+    // ユーザーIDがなければ生成して保存
+    let userId = localStorage.getItem("roulette_user_id");
+    if (!userId) {
+      // crypto.randomUUIDが使えるブラウザなら使い、ダメならフォールバックを使用
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        userId = "user_" + crypto.randomUUID();
+      } else {
+        userId = "user_" + Date.now().toString(36) + Math.random().toString(36).substring(2);
+      }
+      localStorage.setItem("roulette_user_id", userId);
+    }
+    
+    fetch("https://roulette-counter.daihachi10sub.workers.dev/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: userId })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log("ルーレットの合計回転数:", data.count);
+      // 必要に応じてここに画面上に回数を表示する処理を追加できます
+    })
+    .catch(e => console.error("カウントAPIエラー", e));
+  };
+
   startButton.addEventListener("click", () => {
     if (currentMode === "roulette" && isSpinning) {
       stopRouletteAudio();
@@ -989,6 +1017,12 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("すべての数字を引き終えました！リセットしてください。");
       return;
     }
+
+    // ルーレットを回した（スタートした）タイミングでカウントアップ
+    if (currentMode !== "timer") {
+      incrementSpinCount();
+    }
+
     setControlsDisabled(!0);
     body.classList.add("focus-mode-on");
     body.classList.remove("focus-mode-off");

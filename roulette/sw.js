@@ -2,9 +2,9 @@ const CACHE_NAME = "roulette-pwa-v2"; // 更新を認識させるためバージ
 
 // 常に最新を確認したいファイル（ネットワーク優先）
 const appShellFiles = [
-  "./",             // ルートパス
+  "./", // ルートパス
   "./index.html",
-  "./script.js"
+  "./script.js",
 ];
 
 // あまり変更されない静的ファイル（キャッシュ優先）
@@ -32,7 +32,7 @@ self.addEventListener("install", (event) => {
       const allUrls = appShellFiles.concat(audioUrlsToCache, fontUrlsToCache);
       console.log("Caching all files for offline use");
       return cache.addAll(allUrls);
-    })
+    }),
   );
   // 新しいSWをすぐに有効化
   self.skipWaiting();
@@ -43,13 +43,16 @@ self.addEventListener("fetch", (event) => {
   // 非HTTPスキームは無視
   if (!event.request.url.startsWith("http")) return;
 
+  // GET以外のリクエスト（POSTなど、APIへのデータ送信）はキャッシュ処理をパスする
+  if (event.request.method !== "GET") return;
+
   const url = new URL(event.request.url);
 
   // 1. index.html や script.js の場合 -> 【ネットワーク優先】
   // (ネットから取得してキャッシュを更新。失敗したらキャッシュを使う)
   if (
-    url.pathname.endsWith("index.html") || 
-    url.pathname.endsWith("script.js") || 
+    url.pathname.endsWith("index.html") ||
+    url.pathname.endsWith("script.js") ||
     url.pathname.endsWith("/")
   ) {
     event.respondWith(
@@ -63,9 +66,12 @@ self.addEventListener("fetch", (event) => {
         })
         .catch(() => {
           // ネットワーク取得失敗（オフライン）：キャッシュから返す
-          console.log("Offline: returning cached version for", event.request.url);
+          console.log(
+            "Offline: returning cached version for",
+            event.request.url,
+          );
           return caches.match(event.request);
-        })
+        }),
     );
     return;
   }
@@ -77,11 +83,11 @@ self.addEventListener("fetch", (event) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(event.request).catch(err => {
+      return fetch(event.request).catch((err) => {
         // 画像などの取得失敗時は何もしないか、必要ならプレースホルダーを返す
         console.warn("Fetch failed for static asset:", err);
       });
-    })
+    }),
   );
 });
 
@@ -95,9 +101,9 @@ self.addEventListener("activate", (event) => {
             console.log("Deleting old cache:", cacheName);
             return caches.delete(cacheName);
           }
-        })
+        }),
       );
-    })
+    }),
   );
   return self.clients.claim();
 });
